@@ -4,12 +4,11 @@ from pprint import saferepr
 def index(request):
         returnStr = "Hello world\n"
 
-        returnStr += "HIa10\n"
-
+        returnStr += "pB"
         returnStr += "\n\n"
-        for thing in dir(request.user):
+        for thing in dir(request.session):
             try:
-                    hey = getattr(request.user, thing)
+                    hey = getattr(request.session, thing)
             except:
                     hey = "Nope"
             returnStr += "%s - %s\n" % (thing, hey)
