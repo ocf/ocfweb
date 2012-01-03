@@ -1,14 +1,18 @@
 from django.http import get_host, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.conf import settings
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from calnet.utils import verify_ticket
 from urlparse import urljoin
 from urllib import urlencode
 
-def _service_url(request):
+def _service_url(request, next_page):
     protocol = ('http://', 'https://')[request.is_secure()]
     host = get_host(request)
     service = protocol + host + request.path
-    return service
+    url = service
+    if next_page:
+	    url += "?" + urlencode({REDIRECT_FIELD_NAME: next_page})
+    return url
 
 
 def _redirect_url(request):
@@ -39,12 +43,13 @@ def _next_page_response(next_page):
         return HttpResponse("<h1>Operation Successful</h1><p>Congratulations.</p>")
 
 def login(request, next_page=None):
+    next_page = request.GET.get(REDIRECT_FIELD_NAME)
     if not next_page:
         next_page = _redirect_url(request)
     if "calnet_uid" in request.session and request.session["calnet_uid"]:
         return _next_page_response(next_page)
     ticket = request.GET.get("ticket")
-    service = _service_url(request)
+    service = _service_url(request, next_page)
     if ticket:
         verified_uid = verify_ticket(ticket, service)
         if verified_uid:
@@ -57,6 +62,7 @@ def login(request, next_page=None):
     return HttpResponseRedirect(_login_url(service))
 
 def logout(request, next_page=None):
+    next_page = request.GET.get(REDIRECT_FIELD_NAME)
     if "calnet_uid" in request.session:
         del request.session["calnet_uid"]
     if not next_page:

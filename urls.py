@@ -7,7 +7,7 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('',
     # Example:
     # (r'^account_tools/', include('account_tools.foo.urls')),
-    (r'^/?$', 'panda.index'),
+    (r'^panda/?$', 'panda.index'),
     (r'^calnet/login/?$', 'calnet.views.login'),
     (r'^calnet/logout/?$', 'calnet.views.logout'),
     # Uncomment the admin/doc line below to enable admin documentation:

@@ -1,15 +1,23 @@
 from django.http import HttpResponse
-from pprint import saferepr
+from calnet.decorators import login_required
 
+@login_required
 def index(request):
         returnStr = "Hello world\n"
-
-        returnStr += "pB"
+        
+        returnStr += "calnet_uid in session: "
+        if "calnet_uid" in request.session:
+        	returnStr += "True"
+        else:
+        	returnStr += "False"
+        	
         returnStr += "\n\n"
-        for thing in dir(request.session):
-            try:
-                    hey = getattr(request.session, thing)
-            except:
-                    hey = "Nope"
-            returnStr += "%s - %s\n" % (thing, hey)
+     	returnStr += "Calnet UID: "
+     	if "calnet_uid" in request.session:
+     		returnStr += str(request.session["calnet_uid"])
+     	else:
+     		returnStr += "Nothing"
+     	returnStr += "\n\n"
+     	
+     	returnStr = returnStr.replace("\n", "<br />\n")
         return HttpResponse(returnStr)
