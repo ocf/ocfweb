@@ -1,23 +1,23 @@
-from django.http import HttpResponse
-from calnet.decorators import login_required
+#from django.http import HttpResponse
+from django.shortcuts import render_to_response
+from django import forms
+from django.template import RequestContext
+from recaptcha.fields import ReCaptchaField
 
-@login_required
+class TestForm(forms.Form):
+    name = forms.CharField()
+    recaptcha = ReCaptchaField()
+
 def index(request):
-        returnStr = "Hello world\n"
-        
-        returnStr += "calnet_uid in session: "
-        if "calnet_uid" in request.session:
-        	returnStr += "True"
+	dump = {}
+        if request.method == "POST":
+            form = TestForm(request.POST)
+            if form.is_valid():
+                dump["form"] = "VALID"
         else:
-        	returnStr += "False"
-        	
-        returnStr += "\n\n"
-     	returnStr += "Calnet UID: "
-     	if "calnet_uid" in request.session:
-     		returnStr += str(request.session["calnet_uid"])
-     	else:
-     		returnStr += "Nothing"
-     	returnStr += "\n\n"
-     	
-     	returnStr = returnStr.replace("\n", "<br />\n")
-        return HttpResponse(returnStr)
+            form = TestForm()
+            
+        return render_to_response("test.html", {
+        	"form": form,
+        	"dump": dump
+        }, context_instance=RequestContext(request))

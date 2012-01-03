@@ -1,0 +1,6 @@
+Hello world<br />
+{{ dump }}
+<form method="POST" action="/~kedo/account_tools/panda">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" />
+</form>
