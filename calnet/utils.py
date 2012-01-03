@@ -10,7 +10,7 @@ from django.conf import settings
 def verify_ticket(ticket, service):
     """Verifies CAS 2.0+ XML-based authentication ticket.
 
-    Returns username on success and None on failure.
+    Returns CalNet UID on success and None on failure.
     """
     params = {'ticket': ticket, 'service': service}
     url = (urljoin(settings.CALNET_SERVER_URL, 'serviceValidate') + '?' +
