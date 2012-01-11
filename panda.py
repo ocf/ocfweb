@@ -12,8 +12,6 @@ def index(request):
     accounts = request.session["ocf_accounts"]
 
     dump = {}
-    for key in request.session.keys():
-        dump[key] = request.session[key]
 
     if request.method == "POST":
         form = ChpassForm(accounts, request.POST)

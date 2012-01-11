@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Open Computing Facility at U.C. Berkeley - {% block title %}{% endblock %}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="/bleuice.css" title="bleuice" />
+	<link rel="alternate stylesheet" type="text/css" href="/bleuarctic.css" title="bleuarctic" />
+<style type="text/css">
+.important{
+	font-weight: bold;
+	color: red;
+}
+.errorlist{
+	padding: 10px;
+	border:1px solid #850e0e;
+	background-color:#f55858;
+	margin: 0;
+}
+.errorlist li{
+	margin: 3px 0;
+	font-size: 20px;
+	color: $850e0e;
+}
+</style>
+<script type="text/javascript" src="/styleswitcher.js"></script>
+<link rel="shortcut icon" href="/favicon.png" type="image/png" />
+</head>
+
+<body>
+{% ssi /mnt/http/localhost/header.html %}
+<div id="mothercontainer">
+<div id="container">
+{% ssi /mnt/http/localhost/skinpicker.html %}
+{% block content %}
+<h1>Error</h1>
+{% endblock %}
+</div></div> <!-- end div container and mothercontainer -->
+{% ssi /mnt/http/localhost/footer.html %}
+</body>
+</html>
