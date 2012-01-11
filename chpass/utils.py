@@ -4,12 +4,6 @@ import base64
 import ldap
 
 from django.conf import settings
-#settings.AD_USERNAME = "webchpwd"
-#settings.AD_PASSWORD_FILE = "/home/k/ke/kedo/projects/crap.txt"
-#settings.AD_CACERTFILE = "/opt/ocf/packages/account/chpass/adcert.pem"
-#settings.KRB_KEYTAB = "/root/kedo.krb.keytab"
-#settings.KRB_PRINCIPAL = "webchpwd/root"
-#settings.KADMIN_LOCATION = "/usr/bin/kadmin"
 
 def _clean_user_account(user_account):
     return "".join(filter(lambda char: char.islower(), [char for char in user_account]))
