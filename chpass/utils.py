@@ -2,7 +2,7 @@ import pexpect
 import os
 import base64
 import ldap
-
+import time
 from django.conf import settings
 
 def _clean_user_account(user_account):
@@ -51,6 +51,6 @@ def change_krb_password(user_account, new_password):
     child.expect("Verifying - %s@OCF.BERKELEY.EDU's Password:" % user_account)
     child.sendline(new_password)
     
-    child.expect(".*")
-
-    return [not child.isalive(), child.before, child.after]
+    child.expect(pexpect.EOF)
+    time.sleep(0.1)
+    return not child.isalive()
