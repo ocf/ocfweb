@@ -1,7 +1,7 @@
 from django import forms
 from recaptcha.fields import ReCaptchaField
 from django.conf import settings
-from chpass.validators import validate_password
+from chpass.validators import validate_password_length
 from ocf import utils
 
 class ChpassForm(forms.Form):
@@ -19,9 +19,9 @@ class ChpassForm(forms.Form):
         ]
     
     new_password = forms.CharField(widget=forms.PasswordInput, label="New Password",
-            validators=[validate_password])
+            validators=[validate_password_length])
     confirm_password = forms.CharField(widget=forms.PasswordInput, label="Confirm Password",
-            validators=[validate_password])
+            validators=[validate_password_length])
     recaptcha = ReCaptchaField(label="ReCaptcha")
 
     def clean_ocf_account(self):
@@ -40,17 +40,14 @@ class ChpassForm(forms.Form):
         return data
 
     def clean_new_password(self):
-        data = self.cleaned_data["new_password"]
+        data = self.cleaned_data.get("new_password")
         return utils.clean_password(data)
     
     def clean_confirm_password(self):
-        data = self.cleaned_data["confirm_password"]
-        return utils.clean_password(data)
+        new_password = self.cleaned_data.get("new_password")
+        confirm_password = utils.clean_password(self.cleaned_data.get("confirm_password"))
 
-    def clean(self):
-        data = self.cleaned_data
-
-        if data["new_password"] != data["confirm_password"]:
-            raise forms.ValidationError("Your passwords don't match.")
-
-        return data
+        if new_password and confirm_password:
+            if new_password != confirm_password:
+                raise forms.ValidationError("Your passwords don't match.")
+        return confirm_password

@@ -2,9 +2,15 @@ import ldap
 from django.conf import settings
 
 def clean_user_account(user_account):
+    if not user_account:
+        return ""
+
     return "".join(filter(lambda char: char.islower(), [char for char in user_account]))
 
 def clean_password(password):
+    if not password:
+        return ""
+
     return "".join(filter(lambda char: char not in ["\t", "\n"], [char for char in password]))
 
 def users_by_calnet_uid(calnet_uid):
