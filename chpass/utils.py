@@ -1,12 +1,9 @@
 import pexpect
 import os
 import base64
-import ldap
 import time
 from django.conf import settings
-
-def _clean_user_account(user_account):
-    return "".join(filter(lambda char: char.islower(), [char for char in user_account]))
+from ocf.utils import clean_user_account, clean_password
 
 def _ad_unicode_password(raw_password):
     raw_password = "\"%s\"" % raw_password
@@ -19,29 +16,51 @@ def _people_dn(account_name):
 def _staff_dn(account_name):
     return "CN=%s,OU=Staff,DC=lab,DC=ocf,DC=berkeley,DC=edu" % account_name
 
+def _ldapmodify_command():
+    return "ldapmodify -x -H %(ad_host)s -D %(staff_dn)s -y %(ldap_password_file)s" % {
+            "ad_host": settings.AD_HOST,
+            "staff_dn": _staff_dn(settings.AD_USERNAME),
+            "ldap_password_file": settings.AD_PASSWORD_FILE
+        }
+
 def change_ad_password(user_account, new_password):
-    ldap_password = open(settings.AD_PASSWORD_FILE, "r").read().strip()
-    ldap.set_option(ldap.OPT_X_TLS_CACERTFILE, settings.AD_CACERTFILE)
-    ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
-    ldap.set_option(ldap.OPT_REFERRALS,0)
+    user_account = clean_user_account(user_account)
+    new_password = clean_password(new_password)
+    cmd = _ldapmodify_command()
+    child = pexpect.spawn(cmd, timeout=10, env={"LDAPCONF": "/opt/ocf/packages/account/chpass/ldap.conf"})
 
-    l = ldap.initialize("ldaps://biohazard.ocf.berkeley.edu")
-    l.simple_bind_s(_staff_dn(settings.AD_USERNAME), ldap_password)
+    dn = _people_dn(user_account)
 
-    modlist = [(ldap.MOD_REPLACE, "userAccountControl", "66048"),
-        (ldap.MOD_REPLACE, "unicodePwd", _ad_unicode_password(new_password))]
-    
-    return l.modify_s(_people_dn(_clean_user_account(user_account)), modlist)
+    child.sendline("dn: %s" % dn)
+    child.sendline("changetype: modify")
+    child.sendline("replace: unicodePwd")
+    base64_password = base64.b64encode(_ad_unicode_password(new_password))
+    child.sendline("unicodePwd::%s" % base64_password)
+    child.send("\n\n")
+    child.expect("modifying entry")
+
+    child.sendline("dn: %s" % dn)
+    child.sendline("changetype: modify")
+    child.sendline("replace: userAccountControl")
+    child.sendline("userAccountControl:66048")
+    child.send("\n\n")
+    child.expect("modifying entry")
+
+    child.sendeof()
+    child.expect(pexpect.EOF)
 
 def _kadmin_command(user_account):
+    user_account = clean_user_account(user_account)
     return "%(kadmin_location)s -K %(kerberos_keytab)s -p %(kerberos_principal)s cpw %(user_account)s" % {
             "kadmin_location": settings.KADMIN_LOCATION,
             "kerberos_keytab": settings.KRB_KEYTAB,
             "kerberos_principal": settings.KRB_PRINCIPAL,
-            "user_account": _clean_user_account(user_account)
+            "user_account": user_account
         }
 
 def change_krb_password(user_account, new_password):
+    user_account = clean_user_account(user_account)
+    new_password = clean_password(new_password)
     cmd = _kadmin_command(user_account)
     child = pexpect.spawn(cmd, timeout=10)
     
@@ -52,5 +71,3 @@ def change_krb_password(user_account, new_password):
     child.sendline(new_password)
     
     child.expect(pexpect.EOF)
-    time.sleep(0.1)
-    return not child.isalive()
