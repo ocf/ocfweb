@@ -25,7 +25,7 @@ def _redirect_url(request):
 
 def _login_url(service):
         params = {"service": service,
-                    "renew": True}
+                    "renew": "true"}
         return "%s?%s" % (urljoin(settings.CALNET_SERVER_URL, "login"), urlencode(params))
 
 def _logout_url(request, next_page=None):
