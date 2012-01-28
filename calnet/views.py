@@ -61,9 +61,12 @@ def login(request, next_page=None):
             return HttpResponseForbidden(error)
     return HttpResponseRedirect(_login_url(service))
 
-def logout(request, next_page=settings.CALNET_AFTER_LOGOUT_URL):
+def logout(request, next_page=None):
     if "calnet_uid" in request.session:
         del request.session["calnet_uid"]
+    if not next_page:
+        next_page = getattr(settings, "CALNET_AFTER_LOGOUT_URL", None)
+
     if not next_page:
         next_page = _redirect_url(request)
     return HttpResponseRedirect(_logout_url(request, next_page))
