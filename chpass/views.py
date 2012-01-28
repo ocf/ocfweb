@@ -39,7 +39,7 @@ def change_password(request):
                 change_krb_password(account, password)
                 krb_change_success = True
                 syslog.syslog("Kerberos password change successful")
-            except:
+            except Exception as e:
                 krb_change_success = False
                 backend_failures.add("KRB")
                 syslog.syslog("Kerberos password change failed: %s" % e)
