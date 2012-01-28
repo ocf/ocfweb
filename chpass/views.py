@@ -24,7 +24,7 @@ def change_password(request):
             account = form.cleaned_data["ocf_account"]
             password = form.cleaned_data["new_password"]
 
-            syslog.openlog("webchpwd from %s for %s" % (request.META["REMOTE_ADDR"], account))
+            syslog.openlog(str("webchpwd from %s for %s" % (request.META["REMOTE_ADDR"], account)))
 
             try:
                 change_ad_password(account, password)
