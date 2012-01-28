@@ -12,7 +12,7 @@ def change_password(request):
     calnet_uid = request.session["calnet_uid"]
     accounts = users_by_calnet_uid(calnet_uid)
 
-    backend_failures = set()
+    backend_failures = dict()
 
     if calnet_uid in settings.TESTER_CALNET_UIDS:
         # these test accounts aren't required to actually exist
@@ -32,7 +32,7 @@ def change_password(request):
                 syslog.syslog("Active Directory password change successful")
             except Exception as e:
                 ad_change_success = False
-                backend_failures.add("AD")
+                backend_failures["AD"] = str(e)
                 syslog.syslog("Active Directory password change failed: %s" % e)
 
             try:
@@ -41,7 +41,7 @@ def change_password(request):
                 syslog.syslog("Kerberos password change successful")
             except Exception as e:
                 krb_change_success = False
-                backend_failures.add("KRB")
+                backend_failures["KRB"] = str(e)
                 syslog.syslog("Kerberos password change failed: %s" % e)
 
             if ad_change_success and krb_change_success:
