@@ -71,3 +71,5 @@ def change_krb_password(user_account, new_password):
     child.sendline(new_password)
     
     child.expect(pexpect.EOF)
+    if "kadmin" in child.before:
+        raise Exception("kadmin Error: %s" % child.before)

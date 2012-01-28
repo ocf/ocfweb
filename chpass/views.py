@@ -1,3 +1,4 @@
+import syslog
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
@@ -20,23 +21,28 @@ def change_password(request):
     if request.method == "POST":
         form = ChpassForm(accounts, calnet_uid, request.POST)
         if form.is_valid():
-
             account = form.cleaned_data["ocf_account"]
             password = form.cleaned_data["new_password"]
+
+            syslog.openlog("webchpwd from %s for %s" % (request.META["REMOTE_ADDR"], account))
 
             try:
                 change_ad_password(account, password)
                 ad_change_success = True
-            except:
+                syslog.syslog("Active Directory password change successful")
+            except Exception as e:
                 ad_change_success = False
                 backend_failures.add("AD")
+                syslog.syslog("Active Directory password change failed: %s" % e)
 
             try:
                 change_krb_password(account, password)
                 krb_change_success = True
+                syslog.syslog("Kerberos password change successful")
             except:
                 krb_change_success = False
                 backend_failures.add("KRB")
+                syslog.syslog("Kerberos password change failed: %s" % e)
 
             if ad_change_success and krb_change_success:
                 # deleting this session variable will force
