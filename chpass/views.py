@@ -2,18 +2,15 @@ import syslog
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
-from django.http import HttpResponsePermanentRedirect
 from chpass.forms import ChpassForm
 from chpass.utils import change_ad_password, change_krb_password
+from chpass.decorators import https_required
 from ocf.utils import users_by_calnet_uid
 from calnet.decorators import login_required as calnet_required
 
+@https_required
 @calnet_required
 def change_password(request):
-    if not request.is_secure():
-        return HttpResponsePermanentRedirect("https://%s/%s" % \
-            (request.get_host(), request.get_full_path()))
-
     calnet_uid = request.session["calnet_uid"]
 
     # some old group accounts have CalNet UIDs associated with them
