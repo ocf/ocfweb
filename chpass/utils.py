@@ -6,6 +6,8 @@ from django.conf import settings
 from ocf.utils import clean_user_account, clean_password
 
 def _ad_unicode_password(raw_password):
+    """Returns a password in a format that Active Directory will accept"""
+
     raw_password = "\"%s\"" % raw_password
     raw_password = raw_password.encode("latin1", "ignore")
     return unicode(raw_password).encode("utf-16-le")
@@ -24,6 +26,24 @@ def _ldapmodify_command():
         }
 
 def change_ad_password(user_account, new_password):
+    """Change a user's Active Directory password.
+
+    Runs an ldapmodify command in a pexpect session to change a user's password.
+
+    Args:
+        user_account: a dirty string of a user's OCF account
+        new_password: a dirty string of a user's new password
+
+    Returns:
+        True if successful
+
+    Raises:
+        pexpect.TIMEOUT: We never got the line that we were expecting,
+            so something probably went wrong with the lines that we sent.
+        pexpect.EOF: The child ended prematurely.
+
+    """
+
     user_account = clean_user_account(user_account)
     new_password = clean_password(new_password)
     cmd = _ldapmodify_command()
@@ -49,6 +69,8 @@ def change_ad_password(user_account, new_password):
     child.sendeof()
     child.expect(pexpect.EOF)
 
+    return True
+
 def _kadmin_command(user_account):
     user_account = clean_user_account(user_account)
     return "%(kadmin_location)s -K %(kerberos_keytab)s -p %(kerberos_principal)s cpw %(user_account)s" % {
@@ -59,6 +81,26 @@ def _kadmin_command(user_account):
         }
 
 def change_krb_password(user_account, new_password):
+    """"Change a user's Kerberos password.
+
+    Runs a kadmin command in a pexpect session to change a user's password.
+
+    Args:
+        user_account: a dirty string of a user's OCF account
+        new_password: a dirty string of a user's new password
+
+    Returns:
+        True if successful
+
+    Raises:
+        Exception: kadmin returned an error. Probably incorrect
+            principal or error with sending the new password.
+        pexpect.TIMEOUT: We never got the line that we were expecting,
+            so something probably went wrong with the lines that we sent.
+        pexpect.EOF: The child ended prematurely.
+
+    """
+
     user_account = clean_user_account(user_account)
     new_password = clean_password(new_password)
     cmd = _kadmin_command(user_account)
@@ -73,3 +115,5 @@ def change_krb_password(user_account, new_password):
     child.expect(pexpect.EOF)
     if "kadmin" in child.before:
         raise Exception("kadmin Error: %s" % child.before)
+
+    return True

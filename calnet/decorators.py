@@ -25,8 +25,11 @@ def session_passes_test(test_func, login_url=None, redirect_field_name=REDIRECT_
 
 
 def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME):
-    """Decorator for views.
-    If the session doesn't have a non-None calnet_uid value, redirects to CalNet login view
+    """Decorator for views that require CalNet auth
+
+    Checks if "calnet_uid" is in the request.session dictionary.
+    If the value is not a valid uid, the user is rediected to CalNet login view.
+
     """
     actual_decorator = session_passes_test(
         lambda request: "calnet_uid" in request.session and request.session["calnet_uid"],
