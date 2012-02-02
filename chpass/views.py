@@ -2,6 +2,7 @@ import syslog
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
+from django.http import HttpResponsePermanentRedirect
 from chpass.forms import ChpassForm
 from chpass.utils import change_ad_password, change_krb_password
 from ocf.utils import users_by_calnet_uid
@@ -9,13 +10,19 @@ from calnet.decorators import login_required as calnet_required
 
 @calnet_required
 def change_password(request):
+    if not request.is_secure():
+        return HttpResponsePermanentRedirect("https://%s/%s" % \
+            (request.get_host(), request.get_full_path()))
+
     calnet_uid = request.session["calnet_uid"]
+
+    # some old group accounts have CalNet UIDs associated with them
     accounts = users_by_calnet_uid(calnet_uid)
 
     backend_failures = dict()
 
     if calnet_uid in settings.TESTER_CALNET_UIDS:
-        # these test accounts aren't required to actually exist
+        # these test accounts don't have to exist in AD or exist in LDAP
         accounts.extend(settings.TEST_OCF_ACCOUNTS)
 
     if request.method == "POST":
@@ -24,7 +31,8 @@ def change_password(request):
             account = form.cleaned_data["ocf_account"]
             password = form.cleaned_data["new_password"]
 
-            syslog.openlog(str("webchpwd from %s for %s" % (request.META["REMOTE_ADDR"], account)))
+            syslog.openlog(str("webchpwd as %s (from %s) for %s" % \
+                (calnet_uid, request.META["REMOTE_ADDR"], account)))
 
             try:
                 change_ad_password(account, password)
