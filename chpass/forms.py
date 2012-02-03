@@ -21,7 +21,7 @@ class ChpassForm(forms.Form):
     new_password = forms.CharField(widget=forms.PasswordInput, label="New Password",
             validators=[validate_password_strength], min_length=8, max_length=127)
     confirm_password = forms.CharField(widget=forms.PasswordInput, label="Confirm Password",
-            validators=[validate_password_length])
+            validators=[validate_password_strength], min_length=8, max_length=127)
     recaptcha = ReCaptchaField(label="ReCaptcha")
 
     def clean_ocf_account(self):
