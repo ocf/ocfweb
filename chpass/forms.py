@@ -1,7 +1,7 @@
 from django import forms
 from recaptcha.fields import ReCaptchaField
 from django.conf import settings
-from chpass.validators import validate_password_length
+from chpass.validators import validate_password_length, validate_password_strength
 from ocf import utils
 
 class ChpassForm(forms.Form):
@@ -19,7 +19,7 @@ class ChpassForm(forms.Form):
         ]
     
     new_password = forms.CharField(widget=forms.PasswordInput, label="New Password",
-            validators=[validate_password_length])
+            validators=[validate_password_length, validate_password_strength])
     confirm_password = forms.CharField(widget=forms.PasswordInput, label="Confirm Password",
             validators=[validate_password_length])
     recaptcha = ReCaptchaField(label="ReCaptcha")
