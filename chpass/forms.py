@@ -1,7 +1,7 @@
 from django import forms
 from recaptcha.fields import ReCaptchaField
 from django.conf import settings
-from chpass.validators import validate_password_length, validate_password_strength
+from chpass.validators import validate_password_strength
 from ocf import utils
 
 class ChpassForm(forms.Form):
