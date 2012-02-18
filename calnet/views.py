@@ -1,4 +1,5 @@
 from django.http import get_host, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.shortcuts import render_to_response
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from calnet.utils import verify_ticket
@@ -59,7 +60,9 @@ def login(request, next_page=None):
         else:
             error = "<h1>Forbidden</h1><p>CalNet login failed.</p>"
             return HttpResponseForbidden(error)
-    return HttpResponseRedirect(_login_url(service))
+    return render_to_response("redirecting_to_calnet.html",{
+        "calnet_url": _login_url(service)
+    })
 
 def logout(request, next_page=None):
     if "calnet_uid" in request.session:
