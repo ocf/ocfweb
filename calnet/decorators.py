@@ -17,7 +17,7 @@ def session_passes_test(test_func, login_url=None, redirect_field_name=REDIRECT_
         def _wrapped_view(request, *args, **kwargs):
             if test_func(request):
                 return view_func(request, *args, **kwargs)
-            path = urlquote(request.META.get('HTTP_REFERER', request.get_full_path()))
+            path = urlquote(request.META.get('REDIRECT_URL', request.get_full_path()))
             tup = login_url, redirect_field_name, path
             return HttpResponseRedirect('%s?%s=%s' % tup)
         return wraps(view_func, assigned=available_attrs(view_func))(_wrapped_view)
