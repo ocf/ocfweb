@@ -66,5 +66,3 @@ def change_password(request):
         "form_action": request.get_full_path(),
         "backend_failures": backend_failures
     }, context_instance=RequestContext(request))
-
-

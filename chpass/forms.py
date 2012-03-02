@@ -4,24 +4,31 @@ from django.conf import settings
 from chpass.validators import validate_password_strength
 from ocf import utils
 
+
 class ChpassForm(forms.Form):
     def __init__(self, ocf_accounts, calnet_uid, *args, **kwargs):
         super(ChpassForm, self).__init__(*args, **kwargs)
-        
         self.calnet_uid = calnet_uid
-        self.fields["ocf_account"] = forms.ChoiceField(choices=[(x,x) for x in ocf_accounts],
-                label="OCF Account")
+        self.fields["ocf_account"] = forms.ChoiceField(choices=[
+            (x, x) for x in ocf_accounts],
+            label="OCF Account")
         self.fields.keyOrder = [
             "ocf_account",
             "new_password",
             "confirm_password",
             "recaptcha"
         ]
-    
-    new_password = forms.CharField(widget=forms.PasswordInput, label="New Password",
-            validators=[validate_password_strength], min_length=8, max_length=127)
-    confirm_password = forms.CharField(widget=forms.PasswordInput, label="Confirm Password",
-            validators=[validate_password_strength], min_length=8, max_length=127)
+
+    new_password = forms.CharField(widget=forms.PasswordInput,
+        label="New Password",
+        validators=[validate_password_strength],
+        min_length=8,
+        max_length=127)
+    confirm_password = forms.CharField(widget=forms.PasswordInput,
+        label="Confirm Password",
+        validators=[validate_password_strength],
+        min_length=8,
+        max_length=127)
     recaptcha = ReCaptchaField(label="ReCaptcha")
 
     def clean_ocf_account(self):
@@ -42,7 +49,7 @@ class ChpassForm(forms.Form):
     def clean_new_password(self):
         data = self.cleaned_data.get("new_password")
         return utils.clean_password(data)
-    
+
     def clean_confirm_password(self):
         new_password = self.cleaned_data.get("new_password")
         confirm_password = utils.clean_password(self.cleaned_data.get("confirm_password"))

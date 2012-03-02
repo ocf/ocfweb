@@ -1,5 +1,6 @@
 from django.http import HttpResponsePermanentRedirect
 
+
 def https_required(function=None):
     def _decorator(request, *args, **kwargs):
         if not request.is_secure():
