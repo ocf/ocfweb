@@ -1,12 +1,14 @@
 try:
     from functools import update_wrapper, wraps
 except ImportError:
-    from django.utils.functional import update_wrapper, wraps  # Python 2.4 fallback.
+    # Python 2.4 fallback
+    from django.utils.functional import update_wrapper, wraps
 
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http import HttpResponseRedirect
 from django.utils.decorators import available_attrs
 from django.utils.http import urlquote
+
 
 def session_passes_test(test_func, login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
     if not login_url:
@@ -38,4 +40,3 @@ def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME):
     if function:
         return actual_decorator(function)
     return actual_decorator
-
