@@ -1,1 +1,8 @@
 Will eventually be the central app for OCF users to manage and administrate their account.
+
+Requires:
+python-django
+python-ldap
+python-mysqldb
+python-flup
+python-cracklib
