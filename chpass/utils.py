@@ -59,13 +59,6 @@ def change_ad_password(user_account, new_password):
     child.send("\n\n")
     child.expect("modifying entry")
 
-    child.sendline("dn: %s" % dn)
-    child.sendline("changetype: modify")
-    child.sendline("replace: userAccountControl")
-    child.sendline("userAccountControl:66048")
-    child.send("\n\n")
-    child.expect("modifying entry")
-
     child.sendeof()
     child.expect(pexpect.EOF)
 
