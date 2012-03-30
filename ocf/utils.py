@@ -10,7 +10,7 @@ def clean_user_account(user_account):
     return "".join(filter(lambda char: char.islower(), [char for char in user_account]))
 
 def clean_password(password):
-    """Return a string that could become an OCF password"""
+    """Return a string without tab or newlines"""
 
     if not password:
         return ""
