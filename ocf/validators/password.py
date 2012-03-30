@@ -11,6 +11,8 @@ def _is_printable_ascii(char):
     return 32 <= ord(char) <= 176
 
 def validate_printable_ascii(value):
-    for char in list(str(value)):
+    """Verifies that the string value argument is composed only of printable ASCII characters"""
+
+    for char in list(value):
         if not _is_printable_ascii(char):
             raise ValidationError("Password contains characters other than printable ASCII characters.")
