@@ -15,4 +15,4 @@ def validate_printable_ascii(value):
 
     for char in list(value):
         if not _is_printable_ascii(char):
-            raise ValidationError("Password contains characters other than printable ASCII characters.")
+            raise ValidationError("Password contained characters other than printable ASCII characters.")
