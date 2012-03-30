@@ -3,8 +3,87 @@
 {% block title %}Request Account{% endblock %}
 
 {% block content %}
+<h2>Create an OCF Account</h2>
+
+{{ form.non_field_errors }}
+
+<p>This form is only for the creation of individual accounts. If you want to create an account for a student group, please visit a staff member in the OCF lab during <a href="http://www.ocf.berkeley.edu/cgi-bin/staff_hours.cgi">staff hours</a> to create your account.</p>
+
+<hr />
+
 <form method="post" action="{{ form_action }}" id="request-account-form">{% csrf_token %}
-{{ form.as_p }}
+    <p>If the below is not your correct full name, please visit the lab during <a href="http://www.ocf.berkeley.edu/cgi-bin/staff_hours.cgi">staff hours</a> to create your account. (Note: names longer than 32 characters are truncated.)</p>
+
+    <label for="fullname">Full Name:</label>
+    <div id="fullname" style="font-weight: bold">{{ real_name }}</div><br />
+    <hr />
+
+    <div class="fieldWrapper">
+        {{ form.ocf_login_name.errors }}
+        <p>Your account name must consist of between three and eight lowercase letters (no spaces, numbers, underscores, or other symbols), and it <emph class="important">MUST</emph><emph> be based on your real name or initials.</emph></p>
+        <label for="id_ocf_login_name">Login Name:</label>
+        {{ form.ocf_login_name }}
+    </div>
+    <hr />
+
+    <div class="fieldWrapper">
+        {{ form.password.errors }}
+        {{ form.verify_password.errors }}
+
+        <p>Your password <emph class="important">MUST</emph> be at least eight characters long, and it may contain upper and lowercase letters, numbers, or other symbols. However, your password may not be a word in any language. Good passwords are usually a combination of upper and lowercase letters and numbers. Do not share this password with anyone, even OCF staff.</p>
+        <label for="id_password">Password:</label>
+        {{ form.password }}
+
+        <label for="id_verify_password">Verify Password:</label>
+        {{ form.verify_password }}
+    </div>
+    <hr />
+
+    <div field="fieldWrapper">
+        {{ form.contact_email.errors }}
+        <p>It will take a few days before your account is created in our system. Please enter your e-mail address below so the OCF can contact you when your account has been created.</p>
+        <label for="id_contact_email">Contact E-mail:</label>
+        {{ form.contact_email }}
+    </div>
+
+    <div field="fieldWrapper">
+        {{ form.forward_email.errors }}
+        <p>You will receive an @ocf.berkeley.edu e-mail address. Do you want us to forward mail sent to your @ocf address to your contact e-mail address?</p>
+        {{ form.forward_email }}
+    </div>
+    <hr />
+
+<fieldset>
+    <legend>Read our disclaimer. You are responsible for knowing and following our policies.</legend>
+    <div id="create-disclaimer">
+        <p>Users must respect the rights of other users, respect the integrity of the systems and related physical resources, and observe all relevant laws, regulations, and contractual obligations.</p>
+        <p>Students and employees may have rights of access to information about themselves contained in computer files, as specified in federal and state laws. Files may be subject to search under court order. In addition, system administrators may access user files as required to protect the integrity of computer systems. For example, system administrators may access or examine files or account that are suspected of unauthorized use of misuse, or that have been corrupted or damaged.</p>
+        <p>All existing laws (federal and state) and University regulations and policies apply, including not only those laws and regulations that are specific to computers and networks, but also those that may apply generally to personal conduct.</p>
+        <p>Misuse of computer, networking, or information resources may result in the loss of computing privileges. Additionally, misuse can be prosecuted under applicable statutes. Users may be held accountable for their conduct under any applicable University or campus policies, procedures, or collective bargaining agreements. Illegal reproduction of software protected by U.S. Copyright Law is subject to civil damages and criminal penalties including fines and imprisonment.</p>
+        <p><emph>Examples of misuse</emph> include, but are not limited to, the activities in the following list:
+            <ol>
+                <li>Using a computer account that you are not authorized to use. Obtaining a password for a computer account without the consent of the account owner, or sharing your own account.</li>
+                <li>Using the Campus Network to gain unauthorized access to any computer systems.</li>
+                <li>Knowingly performing an act which will interfere with the normal operation of computers, terminals, peripherals, or networks.</li>
+                <li>Knowingly running or installing on any computer system or network, or giving to another user, a program intended to damage or to place excessive load on a computer system or network. This includes but is not limited to programs known as computer viruses, Trojan horses, and worms.</li>
+                <li>Attempting to circumvent data protection schemes or uncovering security loopholes.</li>
+                <li>Violating terms of applicable software licensing agreements or copyright laws.</li>
+                <li>Using electronic mail or communication to harass other users.</li>
+                <li>Posting materials on electronic bulletin boards that violate existing laws or the University's codes of conduct.</li>
+                <li>Attempting to monitor or tamper with another user's electronic communications, or reading, copying, changing, or deleting another user's files or software without the explicit agreement of the owner.</li>
+                <li>Using OCF or University equipment or resources for commercial purposes unless specifically authorized.</li>
+            </ol>
+        </p>
+    </div>
+
+    <div class="fieldWrapper">
+        {{ form.disclaimer_agreement.errors }}
+        <label for="id_disclaimer_agreement">I have read, understood, and agreed to follow the above policies. In addition, I agree not to hold the University of California, the Associated Students of the University of California, or the Open Computing Facility (OCF) responsible for lost files or other misfortunes which may result from my use of the OCF's facilities. Additionally, I certify that I am eligible for an OCF account according to <a href="http://docs.ocf.berkeley.edu/wiki/Account_eligibility">OCF account eligibility policy</a>.</label>
+        {{ form.disclaimer_agreement }}
+        <p><emph class="important">Check this box</emph> to confirm that you have read, understood, and agreed to these policies.</p>
+    </div>
+</fieldset>
+
 <input type="submit" value="Request Account" />
 </form>
 

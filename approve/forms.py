@@ -10,12 +10,12 @@ class ApproveForm(forms.Form):
         validators=[validate_unused_name],
         min_length=3,
         max_length=8)
-    new_password = forms.CharField(widget=forms.PasswordInput,
+    password = forms.CharField(widget=forms.PasswordInput,
         label="New Password",
         validators=[validate_crack_strength, validate_printable_ascii],
         min_length=8,
         max_length=64)
-    confirm_password = forms.CharField(widget=forms.PasswordInput,
+    verify_password = forms.CharField(widget=forms.PasswordInput,
         label="Confirm Password",
         min_length=8,
         max_length=64)
@@ -26,15 +26,15 @@ class ApproveForm(forms.Form):
 
     disclaimer_agreement = forms.BooleanField(label="You have read, understood, and agreed to our policies.")
 
-    def clean_new_password(self):
-        data = self.cleaned_data.get("new_password")
+    def clean_password(self):
+        data = self.cleaned_data.get("password")
         return utils.clean_password(data)
 
-    def clean_confirm_password(self):
-        new_password = self.cleaned_data.get("new_password")
-        confirm_password = utils.clean_password(self.cleaned_data.get("confirm_password"))
+    def clean_verify_password(self):
+        password = self.cleaned_data.get("password")
+        verify_password = utils.clean_password(self.cleaned_data.get("verify_password"))
 
-        if new_password and confirm_password:
-            if new_password != confirm_password:
+        if password and verify_password:
+            if password != verify_password:
                 raise forms.ValidationError("Your passwords don't match.")
-        return confirm_password
+        return verify_password
