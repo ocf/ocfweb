@@ -1,3 +1,4 @@
+import ldap
 try:
     from xml.etree import ElementTree
 except ImportError:
@@ -26,3 +27,43 @@ def verify_ticket(ticket, service):
             return None
     except:
         return None
+
+def _get_longest_string(strs):
+    longest_len = 0
+    longest_str = None
+    for string in strs:
+        string_length = len(string)
+        if string_length >= longest_len:
+            longest_len = string_length
+            longest_str = string
+    return longest_str
+
+def _get_calnet_names(uid):
+    """Returns CalNet LDAP entries relating to names"""
+    l = ldap.initialize(settings.CALNET_LDAP)
+    l.simple_bind_s("", "")
+    search_filter = "(uid=%s)" % uid
+    attrs = ["givenName", "sn", "displayname"]
+    ldap_entries = l.search_st("ou=People,dc=Berkeley,dc=EDU", ldap.SCOPE_SUBTREE, search_filter, attrs)
+    return ldap_entries
+
+def name_by_calnet_uid(uid):
+    """Returns the name of CalNet person, searched by CalNet UID.
+
+    Returns None on faliure.
+    """
+    names = _get_calnet_names(uid)
+    
+    # the name we want to input into our system is "givenName sn"
+    # displayName is not necessarily equal to what's printed on Cal 1 Cards
+
+    if "givenName" in names and "sn" in names:
+        given_name = _get_longest_string(names["givenName"])
+        sn = _get_longest_string(names["sn"])
+        if given_name and sn:
+            return "%s %s" % (given_name, sn)
+    elif "displayName" in names:
+        display_name = _get_longest_string(names["displayName"])
+        if display_name:
+            return display_name
+    return None

@@ -4,8 +4,10 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # calnet
+CALNET_LDAP = "<your value here"> # eg: "ldap://ldap.berkeley.edu"
 CALNET_SERVER_URL = "<your value here>" # eg: "https://auth.berkeley.edu/cas/"
 LOGIN_URL = "<your value here>" # eg: "/account_tools/calnet/login"
+LOGOUT_URL = "<your value here"> # eg: "/account_tools/calnet/logout"
 
 # ocf
 OCF_LDAP = "<your value here"> # eg: "ldaps://ldap-master.ocf.berkeley.edu"

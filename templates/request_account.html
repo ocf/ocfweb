@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Request Account{% endblock %}
+
+{% block content %}
+<form method="post" action="{{ form_action }}" id="request-account-form">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Request Account" />
+</form>
+
+<p>Click <a href="https://secure.ocf.berkeley.edu/account_tools/calnet/logout">here</a> to log out of CalNet.</p>
+{% endblock %}
