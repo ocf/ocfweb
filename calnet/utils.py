@@ -45,7 +45,10 @@ def _get_calnet_names(uid):
     search_filter = "(uid=%s)" % uid
     attrs = ["givenName", "sn", "displayname"]
     ldap_entries = l.search_st("ou=People,dc=Berkeley,dc=EDU", ldap.SCOPE_SUBTREE, search_filter, attrs)
-    return ldap_entries
+    if len(ldap_entries):
+        return ldap_entries[0]
+    else:
+        return None
 
 def name_by_calnet_uid(uid):
     """Returns the name of CalNet person, searched by CalNet UID.
