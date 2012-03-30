@@ -20,6 +20,7 @@ def request_account(request):
         })
 
     if request.method == "POST":
+        pass
     else:
         form = ApproveForm()
 

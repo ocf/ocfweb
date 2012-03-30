@@ -130,5 +130,6 @@ INSTALLED_APPS = (
     'account_tools.calnet',
     'account_tools.recaptcha',
     'account_tools.chpass',
+    'account_tools.approve',
     'account_tools.ocf',
 )
