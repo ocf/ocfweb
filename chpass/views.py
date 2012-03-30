@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.conf import settings
 from chpass.forms import ChpassForm
 from chpass.utils import change_ad_password, change_krb_password
-from chpass.decorators import https_required
+from ocf.decorators import https_required
 from ocf.utils import users_by_calnet_uid
 from calnet.decorators import login_required as calnet_required
 
