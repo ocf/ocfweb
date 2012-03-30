@@ -46,7 +46,7 @@ def _get_calnet_names(uid):
     attrs = ["givenName", "sn", "displayname"]
     ldap_entries = l.search_st("ou=People,dc=Berkeley,dc=EDU", ldap.SCOPE_SUBTREE, search_filter, attrs)
     if len(ldap_entries):
-        return ldap_entries[0]
+        return ldap_entries[0][0]
     else:
         return None
 
