@@ -19,37 +19,40 @@
     <hr />
 
     <div class="fieldWrapper">
-        {{ form.ocf_login_name.errors }}
         <p>Your account name must consist of between three and eight lowercase letters (no spaces, numbers, underscores, or other symbols), and it <emph class="important">MUST</emph><emph> be based on your real name or initials.</emph></p>
+        {{ form.ocf_login_name.errors }}
         <label for="id_ocf_login_name">Login Name:</label>
-        {{ form.ocf_login_name }}
+        {{ form.ocf_login_name }}<br /><br />
     </div>
     <hr />
 
     <div class="fieldWrapper">
-        {{ form.password.errors }}
-        {{ form.verify_password.errors }}
-
         <p>Your password <emph class="important">MUST</emph> be at least eight characters long, and it may contain upper and lowercase letters, numbers, or other symbols. However, your password may not be a word in any language. Good passwords are usually a combination of upper and lowercase letters and numbers. Do not share this password with anyone, even OCF staff.</p>
+        {{ form.password.errors }}
         <label for="id_password">Password:</label>
-        {{ form.password }}
+        {{ form.password }}<br /><br />
 
+        {{ form.verify_password.errors }}
         <label for="id_verify_password">Verify Password:</label>
-        {{ form.verify_password }}
+        {{ form.verify_password }}<br /><br />
     </div>
     <hr />
 
     <div field="fieldWrapper">
-        {{ form.contact_email.errors }}
         <p>It will take a few days before your account is created in our system. Please enter your e-mail address below so the OCF can contact you when your account has been created.</p>
+        {{ form.contact_email.errors }}
         <label for="id_contact_email">Contact E-mail:</label>
-        {{ form.contact_email }}
+        {{ form.contact_email }}<br /><br />
     </div>
 
     <div field="fieldWrapper">
-        {{ form.forward_email.errors }}
-        <p>You will receive an @ocf.berkeley.edu e-mail address. Do you want us to forward mail sent to your @ocf address to your contact e-mail address?</p>
-        {{ form.forward_email }}
+        <p>You will receive an @ocf.berkeley.edu e-mail address.<p>
+        <fieldset>
+            <legend>Do you want us to forward mail sent to your @ocf address to your contact e-mail address?</legend>
+            {{ form.forward_email.errors }}
+            {{ form.forward_email }}
+        </fieldset>
+        <br />
     </div>
     <hr />
 
