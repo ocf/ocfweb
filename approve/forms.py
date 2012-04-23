@@ -24,7 +24,10 @@ class ApproveForm(forms.Form):
         required=False,
         initial=True)
 
-    disclaimer_agreement = forms.BooleanField(label="You have read, understood, and agreed to our policies.")
+    disclaimer_agreement = forms.BooleanField(label="You have read, understood, and agreed to our policies.",
+            error_messages={
+                "required": "You did not agree to our policies."
+                })
 
     def clean_password(self):
         data = self.cleaned_data.get("password")
