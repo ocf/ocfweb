@@ -1,5 +1,5 @@
 from django import forms
-from approve.validators import validate_email_host_exists
+from approve.validators import validate_email_host_exists, validate_username_not_reserved
 from ocf.validators.password import validate_crack_strength, validate_printable_ascii
 from ocf.validators.user import validate_unused_name, validate_name_characters
 
@@ -8,7 +8,7 @@ class ApproveForm(forms.Form):
         super(ApproveForm, self).__init__(*args, **kwargs)
 
     ocf_login_name = forms.CharField(label="OCF Login Name",
-        validators=[validate_unused_name, validate_name_characters],
+        validators=[validate_unused_name, validate_name_characters, validate_username_not_reserved],
         min_length=3,
         max_length=8)
     password = forms.CharField(widget=forms.PasswordInput,
