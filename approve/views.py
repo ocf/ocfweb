@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
 from approve.forms import ApproveForm
+from approve.approve import run_approve
 from ocf.decorators import https_required
 from ocf.utils import users_by_calnet_uid
 from calnet.decorators import login_required as calnet_required
@@ -24,7 +25,18 @@ def request_account(request):
     if request.method == "POST":
         form = ApproveForm(request.POST)
         if form.is_valid():
-            pass
+            account_name = form.cleaned_data["ocf_login_name"]
+            email_address = form.cleaned_data["contact_email"]
+            forward_mail = form.cleaned_data["forward_email"]
+            password = form.cleaned_data["password"]
+            try:
+                run_approve(real_name, calnet_uid, account_name,\
+                    email_address, forward_mail, password)
+            except Exception as e:
+                if not "__all__" in form.errors:
+                    form.errors["__all__"] = []
+
+                form.errors["__all__"].append(str(e))
     else:
         form = ApproveForm()
 
