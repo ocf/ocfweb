@@ -1,3 +1,4 @@
+from django.forms.forms import NON_FIELD_ERRORS
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
@@ -33,10 +34,7 @@ def request_account(request):
                 run_approve(real_name, calnet_uid, account_name,\
                     email_address, forward_mail, password)
             except Exception as e:
-                if not "__all__" in form.errors:
-                    form.errors["__all__"] = []
-
-                form.errors["__all__"].append(str(e))
+                form._errors[NON_FIELD_ERRORS] = form.error_class([str(e)])
     else:
         form = ApproveForm()
 
