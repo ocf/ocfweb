@@ -30,11 +30,18 @@ def request_account(request):
             email_address = form.cleaned_data["contact_email"]
             forward_mail = form.cleaned_data["forward_email"]
             password = form.cleaned_data["password"]
+
+            successfully_approved = False
             try:
                 run_approve(real_name, calnet_uid, account_name,\
                     email_address, forward_mail, password)
+                successfully_approved = True
             except Exception as e:
                 form._errors[NON_FIELD_ERRORS] = form.error_class([str(e)])
+
+            if successfully_approved:
+                return render_to_response("successfully_requested_account.html",{
+                    })
     else:
         form = ApproveForm()
 
