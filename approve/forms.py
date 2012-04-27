@@ -1,5 +1,6 @@
 from django import forms
 from approve.validators import validate_email_host_exists, validate_username_not_reserved
+from ocf.utils import clean_password
 from ocf.validators.password import validate_crack_strength, validate_printable_ascii
 from ocf.validators.user import validate_unused_name, validate_name_characters
 
@@ -33,11 +34,11 @@ class ApproveForm(forms.Form):
 
     def clean_password(self):
         data = self.cleaned_data.get("password")
-        return utils.clean_password(data)
+        return clean_password(data)
 
     def clean_verify_password(self):
         password = self.cleaned_data.get("password")
-        verify_password = utils.clean_password(self.cleaned_data.get("verify_password"))
+        verify_password = clean_password(self.cleaned_data.get("verify_password"))
 
         if password and verify_password:
             if password != verify_password:
