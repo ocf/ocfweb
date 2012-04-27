@@ -1,7 +1,10 @@
 import pexpect
 from django.conf import settings
 
-def run_approve(real_name, calnet_uid, account_name, email_address, forward_mail, password):
+def run_approve(real_name, university_id, account_name, email_address, forward_mail, password):
+    """Run the approve program, raising Exception for each error"""
+    # university_id is generally calnet_uid
+    timeout_sec = 3
     try:
         child = pexpect.spawn(settings.APPROVE_BIN)
 
@@ -72,3 +75,5 @@ def run_approve(real_name, calnet_uid, account_name, email_address, forward_mail
         print "Success"
     except:
         raise Exception("Error approving account.")
+
+    return True
