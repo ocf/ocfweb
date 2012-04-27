@@ -1,4 +1,5 @@
 from django import forms
+from approve.validators import validate_email_host_exists
 from ocf.validators.password import validate_crack_strength, validate_printable_ascii
 from ocf.validators.user import validate_unused_name, validate_name_characters
 
@@ -19,7 +20,8 @@ class ApproveForm(forms.Form):
         label="Confirm Password",
         min_length=8,
         max_length=64)
-    contact_email = forms.EmailField(label="Content E-Mail")
+    contact_email = forms.EmailField(label="Content E-Mail",
+            validators=[validate_email_host_exists])
     forward_email = forms.BooleanField(label="Forward @ocf E-Mail to Contact E-Mail",
         required=False,
         initial=True)
