@@ -8,6 +8,7 @@ from ocf.decorators import https_required
 from ocf.utils import users_by_calnet_uid
 from calnet.decorators import login_required as calnet_required
 
+
 @https_required
 @calnet_required
 def change_password(request):

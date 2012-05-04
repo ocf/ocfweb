@@ -1,7 +1,8 @@
 from django import forms
 from recaptcha.fields import ReCaptchaField
 from django.conf import settings
-from ocf.validators.password import validate_crack_strength, validate_printable_ascii
+from ocf.validators.password import validate_crack_strength, \
+    validate_printable_ascii
 from ocf import utils
 
 

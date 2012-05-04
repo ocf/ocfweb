@@ -28,6 +28,7 @@ def verify_ticket(ticket, service):
     except:
         return None
 
+
 def _get_longest_string(strs):
     longest_len = 0
     longest_str = None
@@ -38,17 +39,20 @@ def _get_longest_string(strs):
             longest_str = string
     return longest_str
 
+
 def _get_calnet_names(uid):
     """Returns CalNet LDAP entries relating to names"""
     l = ldap.initialize(settings.CALNET_LDAP)
     l.simple_bind_s("", "")
     search_filter = "(uid=%s)" % uid
     attrs = ["givenName", "sn", "displayname"]
-    ldap_entries = l.search_st("ou=People,dc=Berkeley,dc=EDU", ldap.SCOPE_SUBTREE, search_filter, attrs)
+    ldap_entries = l.search_st("ou=People,dc=Berkeley,dc=EDU",
+                               ldap.SCOPE_SUBTREE, search_filter, attrs)
     if len(ldap_entries):
         return ldap_entries[0][1]
     else:
         return None
+
 
 def name_by_calnet_uid(uid):
     """Returns the name of CalNet person, searched by CalNet UID.
@@ -56,7 +60,7 @@ def name_by_calnet_uid(uid):
     Returns None on faliure.
     """
     names = _get_calnet_names(uid)
-    
+
     # the name we want to input into our system is "givenName sn"
     # displayName is not necessarily equal to what's printed on Cal 1 Cards
 

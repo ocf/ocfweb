@@ -1,6 +1,7 @@
 import pexpect
 from django.conf import settings
 
+
 def run_approve(real_name, university_id, account_name, email_address, forward_mail, password):
     """Run the approve program, raising Exception for each error"""
     # university_id is generally calnet_uid
@@ -10,7 +11,7 @@ def run_approve(real_name, university_id, account_name, email_address, forward_m
 
         child.expect("The authenticity", timeout=timeout_sec)
         child.sendline("yes")
-        
+
         child.expect("Is this", timeout=timeout_sec)
         child.sendline("i")
     except:

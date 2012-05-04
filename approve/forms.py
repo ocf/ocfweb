@@ -1,15 +1,20 @@
 from django import forms
-from approve.validators import validate_email_host_exists, validate_username_not_reserved
+from approve.validators import validate_email_host_exists, \
+    validate_username_not_reserved
 from ocf.utils import clean_password
-from ocf.validators.password import validate_crack_strength, validate_printable_ascii
-from ocf.validators.user import validate_unused_name, validate_name_characters
+from ocf.validators.password import validate_crack_strength, \
+    validate_printable_ascii
+from ocf.validators.user import validate_unused_name, \
+    validate_name_characters
+
 
 class ApproveForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ApproveForm, self).__init__(*args, **kwargs)
 
     ocf_login_name = forms.CharField(label="OCF Login Name",
-        validators=[validate_unused_name, validate_name_characters, validate_username_not_reserved],
+        validators=[validate_unused_name, validate_name_characters, \
+                    validate_username_not_reserved],
         min_length=3,
         max_length=8)
     password = forms.CharField(widget=forms.PasswordInput,
@@ -23,11 +28,12 @@ class ApproveForm(forms.Form):
         max_length=64)
     contact_email = forms.EmailField(label="Content E-Mail",
             validators=[validate_email_host_exists])
-    forward_email = forms.BooleanField(label="Forward @ocf E-Mail to Contact E-Mail",
-        required=False,
+    forward_email = forms.BooleanField(required=False,
+        label="Forward @ocf E-Mail to Contact E-Mail",
         initial=True)
 
-    disclaimer_agreement = forms.BooleanField(label="You have read, understood, and agreed to our policies.",
+    disclaimer_agreement = forms.BooleanField(
+            label="You have read, understood, and agreed to our policies.",
             error_messages={
                 "required": "You did not agree to our policies."
                 })

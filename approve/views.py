@@ -9,6 +9,7 @@ from ocf.utils import users_by_calnet_uid
 from calnet.decorators import login_required as calnet_required
 from calnet.utils import name_by_calnet_uid
 
+
 @https_required
 @calnet_required
 def request_account(request):
@@ -40,13 +41,14 @@ def request_account(request):
                 form._errors[NON_FIELD_ERRORS] = form.error_class([str(e)])
 
             if successfully_approved:
-                return render_to_response("successfully_requested_account.html",{
-                    })
+                return render_to_response("successfully_requested_account.html",
+                    {})
     else:
         form = ApproveForm()
 
-    return render_to_response("request_account.html",{
+    return render_to_response("request_account.html",
+        {
         "form": form,
         "form_action": request.get_full_path(),
         "real_name": real_name
-    }, context_instance=RequestContext(request))
+        }, context_instance=RequestContext(request))
