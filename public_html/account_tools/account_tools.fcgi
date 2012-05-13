@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 import sys, os
-import account_tools
 
-projects_location = os.path.join(account_tools.__path__[0], os.path.pardir)
-project_location = "%s/account_tools" % projects_location
+projects_location = "/usr/local/www/django_projects/lib/python"
+project_location = os.path.join(projects_location, "account_tools")
 
 # Add a custom Python path.
 sys.path.insert(0, projects_location)
