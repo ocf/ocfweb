@@ -7,3 +7,4 @@ recursive-include account_tools/chpass *
 recursive-include account_tools/ocf *
 recursive-include account_tools/recaptcha *
 recursive-include account_tools/templates *
+recursive-include public_html *

@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /account_tools/account_tools.fcgi/$1 [QSA,L]

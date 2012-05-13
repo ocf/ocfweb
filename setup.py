@@ -15,7 +15,13 @@ setup(
     package_data = {
         'account_tools.approve': ['reserved_names.txt'],
         'account_tools': ['templates/*.html'],
-        },
+    },
+    data_files = [
+        ('/mnt/http/localhost/account_tools', [
+            'public_html/account_tools/.htaccess',
+            'public_html/account_tools/account_tools.fcgi'
+        ])
+    ],
     version = "0.0.1",
     description = "OCF account manage Django app",
     author = "Kenny Do",
