@@ -1,0 +1,9 @@
+include README
+include MANIFEST.in
+recursive-include account_tools *
+recursive-include account_tools/approve *
+recursive-include account_tools/calnet *
+recursive-include account_tools/chpass *
+recursive-include account_tools/ocf *
+recursive-include account_tools/recaptcha *
+recursive-include account_tools/templates *
