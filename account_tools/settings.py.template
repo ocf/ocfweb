@@ -93,7 +93,7 @@ MEDIA_URL = ''
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '0fgqpxiw)k34-zcc6g)g4)#1#izez#03slnh8)!&sj7kt5!o=h'
+SECRET_KEY = '<your value here>'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -116,6 +116,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '<your value here>', #eg: "/usr/local/www/django_projects/lib/python/account_tools/templates"
 )
 
 ALLOWED_INCLUDE_ROOTS = (
