@@ -23,8 +23,8 @@ class my_install_lib(install_lib):
         chown_cmd = "chown -R root:ocf %s" % package_location
         subprocess.call(shlex.split(chown_cmd))
 
-        print "Chmod 0644"
-        chmod_cmd = "chmod -R 0644 %s" % package_location
+        print "Chmod go-w"
+        chmod_cmd = "chmod -R go-w %s" % package_location
         subprocess.call(shlex.split(chmod_cmd))
 
 setup(
