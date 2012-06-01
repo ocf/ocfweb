@@ -20,7 +20,7 @@ class my_install_lib(install_lib):
         shutil.copy(SETTINGS_SECRET_FILE, destination)
 
         print "Changing owner to root:root"
-        chown_cmd = "chown -R root:root %s" % package_location
+        chown_cmd = "chown -R root:ocf %s" % package_location
         subprocess.call(shlex.split(chown_cmd))
 
         print "Chmod 0644"
