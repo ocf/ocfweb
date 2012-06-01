@@ -19,7 +19,7 @@ def request_account(request):
     real_name = name_by_calnet_uid(calnet_uid)
 
     if calnet_uid not in settings.TESTER_CALNET_UIDS and len(existing_accounts):
-        return render_to_response("already_requested_account", {
+        return render_to_response("already_requested_account.html", {
             "calnet_uid": calnet_uid,
             "calnet_url": settings.LOGOUT_URL
         })
