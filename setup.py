@@ -43,7 +43,7 @@ setup(
         'account_tools': ['templates/*.html'],
     },
     data_files=[
-        ('/mnt/http/localhost/account_tools', [
+        ('/var/www/account_tools', [
             'public_html/account_tools/.htaccess',
             'public_html/account_tools/account_tools.fcgi'
         ])

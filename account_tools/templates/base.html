@@ -42,14 +42,14 @@ strong strong{
 </head>
 
 <body>
-{% ssi /mnt/http/localhost/header.html %}
+{% ssi /var/www/header.html %}
 <div id="mothercontainer">
 <div id="container">
-{% ssi /mnt/http/localhost/skinpicker.html %}
+{% ssi /var/www/skinpicker.html %}
 {% block content %}
 <h1>Error</h1>
 {% endblock %}
 </div></div> <!-- end div container and mothercontainer -->
-{% ssi /mnt/http/localhost/footer.html %}
+{% ssi /var/www/footer.html %}
 </body>
 </html>
