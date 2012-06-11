@@ -45,13 +45,13 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
+}
+
+SESSION_ENGINE = '<your value here>' # eg: 'django.contrib.sessions.backends.cache'
+CACHES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '<your value here>',                      # Or path to database file if using sqlite3.
-        'USER': '<your value here>',                      # Not used with sqlite3.
-        'PASSWORD': '<your value here>',                  # Not used with sqlite3.
-        'HOST': '<your value here>',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'BACKEND': '<your value here>', # eg: 'django.core.cache.backends.filebased.FileBasedCache'
+        'LOCATION': '<your value here>', # eg: '/var/tmp/account_tools_cache'
     }
 }
 
