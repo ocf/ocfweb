@@ -10,4 +10,5 @@ The central application for new OCF users to request an account and for existing
 - python-flup
 - python-ldap
 - python-mysqldb
+- python-paramiko
 - python-pexpect
