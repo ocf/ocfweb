@@ -3,7 +3,7 @@ from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from ocf.decorators import https_required
-from paramiko import SSHClient
+from paramiko import AuthenticationException, SSHClient
 
 @https_required
 def commands(request):
@@ -20,11 +20,15 @@ def commands(request):
 
             ssh = SSHClient()
             ssh.load_host_keys(settings.CMDS_HOST_KEYS_FILENAME)
-            ssh.connect(settings.CMDS_HOST, username=username, password=password)
-            
-            ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run)
-            output = ssh_stdout.read()
-            error = ssh_stderr.read()
+            try:
+                ssh.connect(settings.CMDS_HOST, username=username, password=password)
+            except AuthenticationException, ae:
+                error = "Authentication failed. Did you type the wrong username or password?"
+                
+            if not error:
+                ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run)
+                output = ssh_stdout.read()
+                error = ssh_stderr.read()
     else:
         form = CommandForm()
 
