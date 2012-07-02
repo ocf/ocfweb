@@ -40,7 +40,7 @@ def change_password(request):
                 syslog.syslog("Active Directory password change successful")
             except Exception as e:
                 ad_change_success = False
-                backend_failures["AD"] = re.sub(r'unicodePwd::[A-Za-z=]+', '*', str(e))
+                backend_failures["AD"] = re.sub(r'(before \(last 100 chars\)):(.*)\n', '\g<1>: ***', str(e))
                 syslog.syslog("Active Directory password change failed: %s" % e)
 
             try:
