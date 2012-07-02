@@ -66,6 +66,5 @@ def change_password(request):
 
     return render_to_response("change_password.html", {
         "form": form,
-        "form_action": request.get_full_path(),
         "backend_failures": backend_failures
     }, context_instance=RequestContext(request))

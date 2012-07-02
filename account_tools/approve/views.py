@@ -49,6 +49,5 @@ def request_account(request):
     return render_to_response("request_account.html",
         {
         "form": form,
-        "form_action": request.get_full_path(),
         "real_name": real_name
         }, context_instance=RequestContext(request))

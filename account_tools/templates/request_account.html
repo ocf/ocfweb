@@ -11,7 +11,7 @@
 
 <hr />
 
-<form method="post" action="{{ form_action }}" id="request-account-form">{% csrf_token %}
+<form method="post" action="{% url request_account %}" id="request-account-form">{% csrf_token %}
     <p>If the below is not your correct full name, please visit the lab during <a href="http://www.ocf.berkeley.edu/cgi-bin/staff_hours.cgi">staff hours</a> to create your account. (Note: names longer than 32 characters are truncated.)</p>
 
     <label for="fullname">Full Name:</label>
