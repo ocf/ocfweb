@@ -1,4 +1,6 @@
 import syslog
+import re
+
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
@@ -38,7 +40,7 @@ def change_password(request):
                 syslog.syslog("Active Directory password change successful")
             except Exception as e:
                 ad_change_success = False
-                backend_failures["AD"] = str(e)
+                backend_failures["AD"] = re.sub(r'unicodePwd::[A-Za-z=]+', '*', str(e))
                 syslog.syslog("Active Directory password change failed: %s" % e)
 
             try:
