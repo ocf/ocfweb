@@ -52,7 +52,7 @@ def change_ad_password(user_account, new_password):
     user_account = clean_user_account(user_account)
     new_password = clean_password(new_password)
     cmd = _ldapmodify_command()
-    child = pexpect.spawn(cmd, timeout=10, env={"LDAPCONF": "/opt/ocf/packages/account/chpass/ldap.conf"})
+    child = pexpect.spawn(cmd, timeout=10, env={"LDAPCONF": settings.AD_LDAP_CONF_FILE})
 
     dn = _people_dn(user_account)
 
