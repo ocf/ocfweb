@@ -19,8 +19,8 @@ class my_install_lib(install_lib):
         print "Copying to %s" % destination
         shutil.copy(SETTINGS_SECRET_FILE, destination)
 
-        print "Changing owner to www-data:www-data"
-        chown_cmd = "chown -R www-data:www-data %s" % package_location
+        print "Changing owner to account-tools:account-tools"
+        chown_cmd = "chown -R account-tools:account-tools %s" % package_location
         subprocess.call(shlex.split(chown_cmd))
 
         print "Chmod go-rwx"
