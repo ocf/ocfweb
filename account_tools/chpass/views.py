@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
 from chpass.forms import ChpassForm
-from chpass.utils import change_ad_password, change_krb_password
+from chpass.utils import change_krb_password
 from ocf.decorators import https_required
 from ocf.utils import users_by_calnet_uid
 from calnet.decorators import login_required as calnet_required
@@ -35,15 +35,6 @@ def change_password(request):
                 (calnet_uid, request.META["REMOTE_ADDR"], account)))
 
             try:
-                change_ad_password(account, password)
-                ad_change_success = True
-                syslog.syslog("Active Directory password change successful")
-            except Exception as e:
-                ad_change_success = False
-                backend_failures["AD"] = re.sub(r'(before \(last 100 chars\)):(.*)\n', '\g<1>: ***', str(e))
-                syslog.syslog("Active Directory password change failed: %s" % e)
-
-            try:
                 change_krb_password(account, password)
                 krb_change_success = True
                 syslog.syslog("Kerberos password change successful")
@@ -52,7 +43,7 @@ def change_password(request):
                 backend_failures["KRB"] = str(e)
                 syslog.syslog("Kerberos password change failed: %s" % e)
 
-            if ad_change_success and krb_change_success:
+            if krb_change_success:
                 # deleting this session variable will force
                 # the next change_password requet to
                 # reauthenticate with CalNet
