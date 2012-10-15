@@ -34,8 +34,8 @@ def request_account(request):
 
             successfully_approved = False
             try:
-                run_approve(real_name, calnet_uid, account_name,\
-                    email_address, forward_mail, password)
+                run_approve(real_name, calnet_uid, account_name,
+                            email_address, forward_mail, password)
                 successfully_approved = True
             except Exception as e:
                 form._errors[NON_FIELD_ERRORS] = form.error_class([str(e)])
