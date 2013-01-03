@@ -17,6 +17,7 @@ OCF_RESERVED_NAMES_LIST = "<your value here>" # eg: "/usr/local/www/django_proje
 APPROVE_FILE = "<your value here>" # eg: "/opt/adm/approved.users"
 APPROVE_DIR = "<your value here>" # eg: "/opt/approve_queue", unused currently.
 APPROVE_LOG = "<your value here>" # eg: "/opt/adm/approved.log"
+PASSWORD_PUB_KEY = "<your value here>" # eg: "/opt/adm/pass_pub.key"
 
 # recaptcha
 RECAPTCHA_PUBLIC_KEY = "<your value here>"

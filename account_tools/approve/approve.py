@@ -7,6 +7,10 @@ from time import asctime
 import fnctl
 
 # Dependencies
+# pycrypto + cracklib (Optional)
+from Crypto.Cipher import PKCS1_OAEP
+from Crypto.PublicKey import RSA
+
 try:
     from cracklib import FascistCheck
 except ImportError:
@@ -44,10 +48,6 @@ def _check_username(username):
             if line.strip() == username:
                 raise ApprovalError("Username is reserved")
 
-def _check_forward(forward):
-    if forward not in ["y", "n"]:
-        raise ApprovalError("Please only type in a lowercase y or a lowercase n")
-
 def _string_match_percentage(a, b):
     return sum([i.lower() == j.lower()
                 for index in range(len(a))
@@ -69,6 +69,11 @@ def _check_password(password, username):
 def _check_email(email):
     if email.find("@") == -1 or email.find(".") == -1:
         raise ApprovalError("Invalid Entry, it doesn't look like an email")
+
+def _encrypt_password(password):
+    key = RSA.importKey(open(settings.PASSWORD_PUB_KEY).read())
+    cipher = PKCS1_OAEP.new(key)
+    return cipher.encrypt(password)
 
 def approve_user(real_name, calnet_uid, account_name, email, password,
                  forward = False):
@@ -94,7 +99,9 @@ def approve_group(group_name, responsible, calnet_uid, email, account_name, pass
              group_name = group_name, responsible = responsible)
 
 def _approve(calnet_uid, email, account_name, password, forward = False,
-             real_name = "(null)", group_name = "(null)", responsible = None):
+             real_name = None, group_name = None, responsible = None):
+    assert (real_name is None) != (group_name is None)
+
     if group_name:
         group = 1
         real_name = "(null)"
@@ -102,26 +109,26 @@ def _approve(calnet_uid, email, account_name, password, forward = False,
         group_name = "(null)"
         group = 0
 
-    forward = int(bool(forward))
-    password = base64.b64encode(password)
+    # Encrypt the password and base64 encode it
+    password = base64.b64encode(_encrypt_password(password))
 
     # Write to the list of users to be approved
-    sections = (username, real_name, group_name,
-                email, forward, group, password, " ",
-                university_id)
+    sections = [username, real_name, group_name,
+                email, int(forward), group, password, " ",
+                university_id]
 
     with open(settings.ACCOUNT_FILE, "a") as f:
         fcntl.flock(f, fcntl.LOCK_EX)
-        f.write(":".join((str(i) for i in sections)) + "\n")
+        f.write(":".join([str(i) for i in sections]) + "\n")
         fcntl.flock(f, fcntl.LOCK_UN)
 
     # Write to the log
     sections = [username, responsible, university_id,
                 getuser(), gethostname(),
-                1 if os.geteuid() == os.getuid() else 0,
-                1 if group_name else 0, asctime()]
+                int(os.geteuid() == os.getuid()),
+                group, asctime()]
 
     with open(settings.ACCOUNT_LOG, "a") as f:
         fcntl.flock(f, fcntl.LOCK_EX)
-        f.write(":".join((str(i) for i in sections)) + "\n")
+        f.write(":".join([str(i) for i in sections]) + "\n")
         fcntl.flock(f, fcntl.LOCK_UN)
