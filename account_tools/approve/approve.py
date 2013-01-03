@@ -1,5 +1,4 @@
-from __future__ import print_function
-import sys
+from django.conf import settings
 import os
 import base64
 from getpass import getuser, getpass
@@ -7,28 +6,19 @@ from socket import gethostname
 from time import asctime
 
 # Dependencies
-from lockfile import FileLock
 from cracklib import FascistCheck
-
-ACCOUNT_FILE = "approved.users" # "/opt/adm/approved.users"
-ACCOUNT_LOG = "approved.log" # "/opt/adm/approved.log"
-DIVIDER = "--------------------------"
-RN_USERS_FILE = "RN_UserInfo" # "/opt/adm/RN_UserInfo"
 
 class ApprovalError(Exception):
     pass
-
-def usage():
-    print("Usage: '{}' [--force]".format(__file__))
 
 def _check_real_name(real_name):
     if not all([i == " " or i.isalpha() for i in real_name]):
         raise ApprovalError("The only permitted characters are uppercase, "
                         "lowercase, and spaces")
 
-def _check_university_id(university_id):
-    if not all([i.isdigit() for i in university_id]):
-        raise ApprovalError("This doesn't appear to be a valid CAL ID")
+def _check_calnet_uid(calnet_uid):
+    if not all([i.isdigit() for i in calnet_uid]):
+        raise ApprovalError("This doesn't appear to be a valid calnet uid")
 
 def _check_username(username):
     if len(username) > 8 or len(username) < 3:
@@ -38,15 +28,17 @@ def _check_username(username):
 
     # In approved user file
     try:
-        with open(ACCOUNT_FILE) as f:
+        with open(settings.ACCOUNT_FILE) as f:
             for line in f:
                 if line.startswith(username + ":"):
                     raise ApprovalError("Duplicate username found in approved users file")
     except IOError:
         pass
 
-    if username in OCF_RESERVED_NAMES_LIST:
-        raise ApprovalError("Username is reserved")
+    with open(settings.OCF_RESERVED_NAMES_LIST) as reserved:
+        for line in reserved:
+            if line.strip() == username:
+                raise ApprovalError("Username is reserved")
 
 def _check_forward(forward):
     if forward not in ["y", "n"]:
@@ -73,47 +65,31 @@ def _check_email(email):
     if email.find("@") == -1 or email.find(".") == -1:
         raise ApprovalError("Invalid Entry, it doesn't look like an email")
 
-def _get_string(prompt, check = None, double_check = False, prompter = None):
-    while True:
-        if prompter:
-            val = prompter(prompt)
-        else:
-            val = raw_input(prompt)
+def approve_user(real_name, calnet_uid, account_name, email, password,
+                 forward = False):
+    _check_real_name(real_name)
+    _check_university_id(calnet_uid)
+    _check_username(account_name)
+    _check_email(email)
+    _check_password(password, real_name)
 
-        if check:
-            try:
-                check(val)
-            except ApprovalError as e:
-                print(e)
-            else:
-                if not double_check or raw_input("  Enter again to confirm: ") == val:
-                    return val
+    _approve(calnet_uid, email, account_name, password,
+             forward = forward, real_name = real_name)
 
-def approve_user(real_name, calnet_uid, account_name, email, forward, password):
-    with FileLock(ACCOUNT_FILE):
-        _check_real_name(real_name)
-        _check_university_id(calnet_uid)
-        _check_username(account_name)
-        _check_email(email)
-        _check_password(password, real_name)
+def approve_group(group_name, responsible, calnet_uid, email, account_name, password,
+                  forward = False):
+    _check_real_name(group_name)
+    _check_real_name(responsible)
+    _check_calnet_uid(calnet_uid)
+    _check_username(account_name)
+    _check_email(email)
+    _check_password(password, group_name)
 
-        _approve(real_name, None, None, calnet_uid, email,
-                 account_name, password, forward)
+    _approve(calnet_uid, email, account_name, password, forward = forward,
+             group_name = group_name, responsible = responsible)
 
-def approve_group(group_name, responsible, university_id, email, username, password, forward):
-    with FileLock(ACCOUNT_FILE):
-        _check_real_name(group_name)
-        _check_real_name(responsible)
-        _check_university_id(university_id)
-        _check_username(username)
-        _check_email(email)
-        _check_password(password, group_name)
-
-        _approve(None, group_name, responsible, university_id, email,
-                 username, password, forward)
-
-def _approve(real_name, group_name, responsible, university_id, email, username, password,
-            forward):
+def _approve(calnet_uid, email, account_name, password, forward = False,
+             real_name = "(null)", group_name = "(null)", responsible = None):
     if group_name:
         group = 1
         real_name = "(null)"
@@ -129,8 +105,9 @@ def _approve(real_name, group_name, responsible, university_id, email, username,
                 email, forward, group, password, " ",
                 university_id)
 
-    with open(ACCOUNT_FILE, "a") as f:
-        f.write(":".join((str(i) for i in sections)) + "\n")
+    with FileLock(settings.ACCOUNT_FILE):
+        with open(settings.ACCOUNT_FILE, "a") as f:
+            f.write(":".join((str(i) for i in sections)) + "\n")
 
     # Write to the log
     sections = [username, responsible, university_id,
@@ -138,5 +115,5 @@ def _approve(real_name, group_name, responsible, university_id, email, username,
                 1 if os.geteuid() == os.getuid() else 0,
                 1 if group_name else 0, asctime()]
 
-    with open(ACCOUNT_LOG, "a") as f:
+    with open(settings.ACCOUNT_LOG, "a") as f:
         f.write(":".join((str(i) for i in sections)) + "\n")
