@@ -71,6 +71,12 @@ def _check_email(email):
         raise ApprovalError("Invalid Entry, it doesn't look like an email")
 
 def _encrypt_password(password):
+    # Use an asymmetric encryption algorithm to allow the keys to be stored on disk
+    # Generate the public / private keys with the following code:
+    # >>> key = RSA.generate(2048)
+    # >>> open("private.pem", "w").write(key.exportKey())
+    # >>> open("public.pem", "w").write(key.publickey().exportKey())
+
     key = RSA.importKey(open(settings.PASSWORD_PUB_KEY).read())
     cipher = PKCS1_OAEP.new(key)
     return cipher.encrypt(password)
