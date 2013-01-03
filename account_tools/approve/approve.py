@@ -7,7 +7,10 @@ from time import asctime
 import fnctl
 
 # Dependencies
-from cracklib import FascistCheck
+try:
+    from cracklib import FascistCheck
+except ImportError:
+    FascistCheck = None
 
 class ApprovalError(Exception):
     pass
@@ -15,7 +18,7 @@ class ApprovalError(Exception):
 def _check_real_name(real_name):
     if not all([i == " " or i.isalpha() for i in real_name]):
         raise ApprovalError("The only permitted characters are uppercase, "
-                        "lowercase, and spaces")
+                            "lowercase, and spaces")
 
 def _check_calnet_uid(calnet_uid):
     if not all([i.isdigit() for i in calnet_uid]):
@@ -57,10 +60,11 @@ def _check_password(password, username):
     percentage = _string_match_percentage(password, username)
     # Threshold?
 
-    try:
-        FascistCheck(password)
-    except ValueError as e:
-        raise ApprovalError("Password issue: {}".format(e))
+    if FascistCheck:
+        try:
+            FascistCheck(password)
+        except ValueError as e:
+            raise ApprovalError("Password issue: {}".format(e))
 
 def _check_email(email):
     if email.find("@") == -1 or email.find(".") == -1:
