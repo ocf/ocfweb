@@ -14,7 +14,9 @@ OCF_LDAP = "<your value here"> # eg: "ldaps://ldap-master.ocf.berkeley.edu"
 
 # approve
 OCF_RESERVED_NAMES_LIST = "<your value here>" # eg: "/usr/local/www/django_projects/account_tools/approve/reserved_names.txt"
-APPROVE_BIN = "<your value here>" # eg: "/usr/local/etc/apache22/approve/bin/approve"
+APPROVE_FILE = "<your value here>" # eg: "/opt/adm/approved.users"
+APPROVE_DIR = "<your value here>" # eg: "/opt/approve_queue", unused currently.
+APPROVE_LOG = "<your value here>" # eg: "/opt/adm/approved.log"
 
 # recaptcha
 RECAPTCHA_PUBLIC_KEY = "<your value here>"
