@@ -73,6 +73,7 @@ def _check_email(email):
 def _encrypt_password(password):
     # Use an asymmetric encryption algorithm to allow the keys to be stored on disk
     # Generate the public / private keys with the following code:
+    # >>> from Crypto.PublicKey import RSA
     # >>> key = RSA.generate(2048)
     # >>> open("private.pem", "w").write(key.exportKey())
     # >>> open("public.pem", "w").write(key.publickey().exportKey())
