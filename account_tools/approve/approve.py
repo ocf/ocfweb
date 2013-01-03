@@ -4,6 +4,7 @@ import base64
 from getpass import getuser, getpass
 from socket import gethostname
 from time import asctime
+import fnctl
 
 # Dependencies
 from cracklib import FascistCheck
@@ -105,9 +106,10 @@ def _approve(calnet_uid, email, account_name, password, forward = False,
                 email, forward, group, password, " ",
                 university_id)
 
-    with FileLock(settings.ACCOUNT_FILE):
-        with open(settings.ACCOUNT_FILE, "a") as f:
-            f.write(":".join((str(i) for i in sections)) + "\n")
+    with open(settings.ACCOUNT_FILE, "a") as f:
+        fcntl.flock(f, fcntl.LOCK_EX)
+        f.write(":".join((str(i) for i in sections)) + "\n")
+        fcntl.flock(f, fcntl.LOCK_UN)
 
     # Write to the log
     sections = [username, responsible, university_id,
@@ -116,4 +118,6 @@ def _approve(calnet_uid, email, account_name, password, forward = False,
                 1 if group_name else 0, asctime()]
 
     with open(settings.ACCOUNT_LOG, "a") as f:
+        fcntl.flock(f, fcntl.LOCK_EX)
         f.write(":".join((str(i) for i in sections)) + "\n")
+        fcntl.flock(f, fcntl.LOCK_UN)
