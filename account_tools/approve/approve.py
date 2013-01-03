@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 from __future__ import print_function
 import sys
 import os
@@ -46,13 +45,8 @@ def _check_username(username):
     except IOError:
         pass
 
-    try:
-        with open(RN_USERS_FILE) as f:
-            for line in f:
-                if line.startswith(username + ":"):
-                    raise ApprovalError("Username is in RN_UserInfo")
-    except IOError:
-        pass
+    if username in OCF_RESERVED_NAMES_LIST:
+        raise ApprovalError("Username is reserved")
 
 def _check_forward(forward):
     if forward not in ["y", "n"]:
@@ -95,62 +89,16 @@ def _get_string(prompt, check = None, double_check = False, prompter = None):
                 if not double_check or raw_input("  Enter again to confirm: ") == val:
                     return val
 
-def run_prompt():
-    groupp = raw_input("Is this an (i)ndividual or (g)roup account? ")
-
-    if groupp not in ["i", "g"]:
-        raise ApprovalError("Illegal Acount type please only enter a lowercase i or a lowercase g")
-
-    if groupp in ["g"]:
-        # Group account request
-        real_name = None
-
-        group_name = _get_string("Group name: ", _check_real_name)
-        username = _get_string("Requested account name: ", _check_username)
-        responsible = _get_string("Responsible student: ", _check_real_name)
-    else:
-        # Individual account request
-        group_name = None
-        responsible = None
-
-        real_name = _get_string("Real name: ", _check_real_name)
-        university_id = _get_string("University ID#: ", _check_university_id)
-        username = _get_string("Requested account name: ", _check_username)
-
-    email_address = _get_string("Enter your email address: ", _check_email,
-                                double_check = True)
-
-    forward = _get_string(
-        "Your OCF account includes an @OCF.Berkeley.EDU "
-        "email address; would you like\n"
-        "mail sent there to be forwarded to your personal "
-        "email address? (y/n): ",
-        _check_forward)
-
-    forward = True if forward in ["y"] else False
-
-    # Lies, stuff actually appears.
-    password = _get_string(
-        "Choose a password (nothing will appear as you type): ",
-        lambda x: _check_password(x, group_name if group_name else username),
-        double_check = True,
-        prompter = getpass)
-
-    _approve(real_name, group_name, responsible, university_id, email_address, username,
-             password, forward)
-
-    print("Your account has been approved!")
-
-def approve_user(real_name, university_id, email, username, password, forward):
+def approve_user(real_name, calnet_uid, account_name, email, forward, password):
     with FileLock(ACCOUNT_FILE):
         _check_real_name(real_name)
-        _check_university_id(university_id)
-        _check_username(username)
+        _check_university_id(calnet_uid)
+        _check_username(account_name)
         _check_email(email)
         _check_password(password, real_name)
 
-        _approve(real_name, None, None, university_id, email,
-                 username, password, forward)
+        _approve(real_name, None, None, calnet_uid, email,
+                 account_name, password, forward)
 
 def approve_group(group_name, responsible, university_id, email, username, password, forward):
     with FileLock(ACCOUNT_FILE):
@@ -192,34 +140,3 @@ def _approve(real_name, group_name, responsible, university_id, email, username,
 
     with open(ACCOUNT_LOG, "a") as f:
         f.write(":".join((str(i) for i in sections)) + "\n")
-
-def main(args):
-    force = False
-
-    for arg in args:
-        if arg in ["--force"]:
-            force = True
-        else:
-            usage()
-
-    # Introduction
-    print("OCF Account Approval Program")
-
-    # Lock account file
-    if force:
-        print(DIVIDER)
-        print("Creating Lock file nobody else can use approve until you are complete")
-        print("approve is getting the runtime data of the program...", end="")
-
-        with FileLock(ACCOUNT_FILE):
-            print("Locked and Loaded")
-            print(DIVIDER)
-
-            run_prompt()
-
-        print("Removing lock file, people can use approve again")
-    else:
-        run_prompt()
-
-if __name__ == "__main__":
-    main(sys.argv[1:])
