@@ -16,6 +16,8 @@ try:
 except ImportError:
     FascistCheck = None
 
+RSA_CIPHER = None
+
 class ApprovalError(Exception):
     pass
 
@@ -78,9 +80,13 @@ def _encrypt_password(password):
     # >>> open("private.pem", "w").write(key.exportKey())
     # >>> open("public.pem", "w").write(key.publickey().exportKey())
 
-    key = RSA.importKey(open(settings.PASSWORD_PUB_KEY).read())
-    cipher = PKCS1_OAEP.new(key)
-    return cipher.encrypt(password)
+    global RSA_CIPHER
+
+    if RSA_CIPHER is None:
+        key = RSA.importKey(open(settings.PASSWORD_PUB_KEY).read())
+        RSA_CIPHER = PKCS1_OAEP.new(key)
+
+    return RSA_CIPHER.encrypt(password)
 
 def approve_user(real_name, calnet_uid, account_name, email, password,
                  forward = False):
