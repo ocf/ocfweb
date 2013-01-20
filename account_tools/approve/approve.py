@@ -4,7 +4,7 @@ import base64
 from getpass import getuser, getpass
 from socket import gethostname
 from time import asctime
-import fnctl
+import fcntl
 
 # Dependencies
 # pycrypto + cracklib (Optional)
