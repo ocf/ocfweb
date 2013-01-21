@@ -128,7 +128,7 @@ def _approve(calnet_uid, email, account_name, password, forward = False,
     password = base64.b64encode(_encrypt_password(password))
 
     # Write to the list of users to be approved
-    sections = [username, real_name, group_name,
+    sections = [account_name, real_name, group_name,
                 email, int(forward), group, password, " ",
                 university_id]
 
@@ -138,7 +138,7 @@ def _approve(calnet_uid, email, account_name, password, forward = False,
         fcntl.flock(f, fcntl.LOCK_UN)
 
     # Write to the log
-    sections = [username, responsible, university_id,
+    sections = [account_name, responsible, university_id,
                 getuser(), gethostname(),
                 int(os.geteuid() == os.getuid()),
                 group, asctime()]
