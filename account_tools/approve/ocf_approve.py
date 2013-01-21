@@ -113,7 +113,7 @@ def approve_group(group_name, responsible, calnet_uid, email, account_name, pass
     _approve(calnet_uid, email, account_name, password, forward = forward,
              group_name = group_name, responsible = responsible)
 
-def _approve(calnet_uid, email, account_name, password, forward = False,
+def _approve(university_uid, email, account_name, password, forward = False,
              real_name = None, group_name = None, responsible = None):
     assert (real_name is None) != (group_name is None)
 
@@ -130,7 +130,7 @@ def _approve(calnet_uid, email, account_name, password, forward = False,
     # Write to the list of users to be approved
     sections = [account_name, real_name, group_name,
                 email, int(forward), group, password, " ",
-                university_id]
+                university_uid]
 
     with open(settings.APPROVE_FILE, "a") as f:
         fcntl.flock(f, fcntl.LOCK_EX)
@@ -138,7 +138,7 @@ def _approve(calnet_uid, email, account_name, password, forward = False,
         fcntl.flock(f, fcntl.LOCK_UN)
 
     # Write to the log
-    sections = [account_name, responsible, university_id,
+    sections = [account_name, responsible, university_uid,
                 getuser(), gethostname(),
                 int(os.geteuid() == os.getuid()),
                 group, asctime()]
