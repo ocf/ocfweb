@@ -125,7 +125,7 @@ def _approve(university_uid, email, account_name, password, forward = False,
         group = 0
 
     # Encrypt the password and base64 encode it
-    password = base64.b64encode(_encrypt_password(password))
+    password = base64.b64encode(_encrypt_password(password.encode()))
 
     # Write to the list of users to be approved
     sections = [account_name, real_name, group_name,
