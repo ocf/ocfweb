@@ -27,7 +27,9 @@ def _check_real_name(real_name):
                             "lowercase, and spaces")
 
 def _check_calnet_uid(calnet_uid):
-    if not all([i.isdigit() for i in calnet_uid]):
+    try:
+        int(calnet_uid)
+    except ValueError:
         raise ApprovalError("This doesn't appear to be a valid calnet uid")
 
 def _check_username(username):
