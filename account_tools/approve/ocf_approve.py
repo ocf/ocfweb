@@ -91,7 +91,7 @@ def _encrypt_password(password):
 def approve_user(real_name, calnet_uid, account_name, email, password,
                  forward = False):
     _check_real_name(real_name)
-    _check_university_id(calnet_uid)
+    _check_calnet_uid(calnet_uid)
     _check_username(account_name)
     _check_email(email)
     _check_password(password, real_name)
