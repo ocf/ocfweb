@@ -68,7 +68,7 @@ def _check_password(password, username):
         try:
             FascistCheck(password)
         except ValueError as e:
-            raise ApprovalError("Password issue: {}".format(e))
+            raise ApprovalError("Password issue: {0}".format(e))
 
 def _check_email(email):
     if email.find("@") == -1 or email.find(".") == -1:
