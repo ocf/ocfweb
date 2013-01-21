@@ -40,7 +40,7 @@ def _check_username(username):
 
     # In approved user file
     try:
-        with open(settings.ACCOUNT_FILE) as f:
+        with open(settings.APPROVE_FILE) as f:
             for line in f:
                 if line.startswith(username + ":"):
                     raise ApprovalError("Duplicate username found in approved users file")
