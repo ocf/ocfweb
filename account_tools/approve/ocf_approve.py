@@ -138,7 +138,9 @@ def _approve(university_uid, email, account_name, password, forward = False,
         fcntl.flock(f, fcntl.LOCK_UN)
 
     # Write to the log
-    sections = [account_name, responsible, university_uid,
+    name = group_name if group else real_name
+
+    sections = [account_name, name, university_uid,
                 getuser(), gethostname(),
                 0, group, asctime()]
 
