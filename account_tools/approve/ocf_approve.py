@@ -129,7 +129,7 @@ def _approve(university_uid, email, account_name, password, forward = False,
 
     # Write to the list of users to be approved
     sections = [account_name, real_name, group_name,
-                email, int(forward), group, password, " ",
+                email, int(forward), group, password,
                 university_uid]
 
     with open(settings.APPROVE_FILE, "a") as f:
@@ -140,8 +140,7 @@ def _approve(university_uid, email, account_name, password, forward = False,
     # Write to the log
     sections = [account_name, responsible, university_uid,
                 getuser(), gethostname(),
-                int(os.geteuid() == os.getuid()),
-                group, asctime()]
+                0, group, asctime()]
 
     with open(settings.APPROVE_LOG, "a") as f:
         fcntl.flock(f, fcntl.LOCK_EX)
