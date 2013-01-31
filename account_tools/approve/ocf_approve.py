@@ -1,17 +1,19 @@
 from django.conf import settings
 import os
 import base64
+import fcntl
 from difflib import SequenceMatcher
 from getpass import getuser, getpass
+from re import match
 from socket import gethostname
 from time import asctime
-import fcntl
 
 # Dependencies
-# pycrypto + cracklib
+# pycrypto, cracklib, dnspython
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from cracklib import FascistCheck
+from dns import resolver
 
 class ApprovalError(Exception):
     pass
@@ -68,8 +70,19 @@ def _check_password(password, username):
             raise ApprovalError("Password problem: {0}".format(e))
 
 def _check_email(email):
-    if email.find("@") == -1 or email.find(".") == -1:
-        raise ApprovalError("Invalid email address: {0}".format(email))
+    # Very naive email address regex
+    regex = r'^[a-zA-Z0-9._%-+]+@([a-zA-Z0-9._%-]+.[a-zA-Z]{2,6})$'
+    m = match(regex, email)
+    if m:
+        domain = m.group(1)
+        try:
+            # Check that the domain has MX record(s)
+            answer = resolver.query(domain, 'MX')
+            if answer:
+                return
+        except (resolver.NoAnswer, resolver.NXDOMAIN):
+            pass
+    raise ApprovalError("Invalid email address: {0}".format(email))
 
 def _encrypt_password(password):
     # Use an asymmetric encryption algorithm to allow the keys to be stored on disk
