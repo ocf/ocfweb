@@ -22,9 +22,8 @@ class ApprovalError(Exception):
     pass
 
 def _check_real_name(real_name):
-    if not all([i == " " or i.isalpha() for i in real_name]):
-        raise ApprovalError("The only permitted characters are uppercase, "
-                            "lowercase, and spaces")
+    if not all([i in " -" or i.isalpha() for i in real_name]):
+        raise ApprovalError("Real name contains invalid characters")
 
 def _check_calnet_uid(calnet_uid):
     try:
