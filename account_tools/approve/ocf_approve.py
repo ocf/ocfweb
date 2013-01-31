@@ -8,16 +8,10 @@ from time import asctime
 import fcntl
 
 # Dependencies
-# pycrypto + cracklib (Optional)
+# pycrypto + cracklib
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
-
-try:
-    from cracklib import FascistCheck
-except ImportError:
-    FascistCheck = None
-
-RSA_CIPHER = None
+from cracklib import FascistCheck
 
 class ApprovalError(Exception):
     pass
@@ -85,12 +79,8 @@ def _encrypt_password(password):
     # >>> open("private.pem", "w").write(key.exportKey())
     # >>> open("public.pem", "w").write(key.publickey().exportKey())
 
-    global RSA_CIPHER
-
-    if RSA_CIPHER is None:
-        key = RSA.importKey(open(settings.PASSWORD_PUB_KEY).read())
-        RSA_CIPHER = PKCS1_OAEP.new(key)
-
+    key = RSA.importKey(open(settings.PASSWORD_PUB_KEY).read())
+    RSA_CIPHER = PKCS1_OAEP.new(key)
     return RSA_CIPHER.encrypt(password)
 
 def approve_user(real_name, calnet_uid, account_name, email, password,
