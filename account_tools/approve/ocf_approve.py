@@ -4,6 +4,7 @@ import base64
 import fcntl
 from difflib import SequenceMatcher
 from getpass import getuser, getpass
+from pwd import getpwnam
 from re import match
 from socket import gethostname
 from time import asctime
@@ -29,12 +30,21 @@ def _check_university_uid(university_uid):
         raise ApprovalError("Invalid UID number: {0}".format(university_uid))
 
 def _check_username(username):
+
+    # Is this a valid username?
     if len(username) > 8 or len(username) < 3:
         raise ApprovalError("Username must be between 3 and 8 letters: {0}".format(username))
     elif any([not i.islower() for i in username]):
         raise ApprovalError("Username must contain only lowercase letters: {0}".format(username))
 
-    # In approved user file
+    # Is the username already taken?
+    try:
+        getpwnam(username)
+        raise ApprovalError("Username already in use: {0}".format(username))
+    except KeyError:
+        pass
+
+    # Is the username already requested?
     try:
         with open(settings.APPROVE_FILE) as f:
             for line in f:
@@ -43,6 +53,7 @@ def _check_username(username):
     except IOError:
         pass
 
+    # Is the username reserved?
     with open(settings.OCF_RESERVED_NAMES_LIST) as reserved:
         for line in reserved:
             if line.strip() == username:
