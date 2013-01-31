@@ -25,11 +25,11 @@ def _check_real_name(real_name):
     if not all([i in " -" or i.isalpha() for i in real_name]):
         raise ApprovalError("Real name contains invalid characters")
 
-def _check_calnet_uid(calnet_uid):
+def _check_university_uid(university_uid):
     try:
-        int(calnet_uid)
+        int(university_uid)
     except ValueError:
-        raise ApprovalError("This doesn't appear to be a valid calnet uid")
+        raise ApprovalError("This doesn't appear to be a valid UID number")
 
 def _check_username(username):
     if len(username) > 8 or len(username) < 3:
@@ -92,7 +92,7 @@ def _encrypt_password(password):
 def approve_user(real_name, calnet_uid, account_name, email, password,
                  forward = True):
     _check_real_name(real_name)
-    _check_calnet_uid(calnet_uid)
+    _check_university_uid(calnet_uid)
     _check_username(account_name)
     _check_email(email)
     _check_password(password, real_name)
@@ -100,16 +100,16 @@ def approve_user(real_name, calnet_uid, account_name, email, password,
     _approve(calnet_uid, email, account_name, password,
              forward = forward, real_name = real_name)
 
-def approve_group(group_name, responsible, calnet_uid, email, account_name, password,
+def approve_group(group_name, responsible, osl_gid, email, account_name, password,
                   forward = False):
     _check_real_name(group_name)
     _check_real_name(responsible)
-    _check_calnet_uid(calnet_uid)
+    _check_university_uid(osl_gid)
     _check_username(account_name)
     _check_email(email)
     _check_password(password, group_name)
 
-    _approve(calnet_uid, email, account_name, password, forward = forward,
+    _approve(osl_gid, email, account_name, password, forward = forward,
              group_name = group_name, responsible = responsible)
 
 def _approve(university_uid, email, account_name, password, forward = True,
