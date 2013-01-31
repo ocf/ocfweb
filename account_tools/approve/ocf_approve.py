@@ -23,33 +23,33 @@ class ApprovalError(Exception):
 
 def _check_real_name(real_name):
     if not all([i in " -" or i.isalpha() for i in real_name]):
-        raise ApprovalError("Real name contains invalid characters")
+        raise ApprovalError("Invalid characters in name: {0}".format(real_name))
 
 def _check_university_uid(university_uid):
     try:
         int(university_uid)
     except ValueError:
-        raise ApprovalError("This doesn't appear to be a valid UID number")
+        raise ApprovalError("Invalid UID number: {0}".format(university_uid))
 
 def _check_username(username):
     if len(username) > 8 or len(username) < 3:
-        raise ApprovalError("Usernames must be between 3 and 8 characters")
+        raise ApprovalError("Username must be between 3 and 8 letters: {0}".format(username))
     elif any([not i.islower() for i in username]):
-        raise ApprovalError("Usernames must consist of only lowercase alphabet")
+        raise ApprovalError("Username must contain only lowercase letters: {0}".format(username))
 
     # In approved user file
     try:
         with open(settings.APPROVE_FILE) as f:
             for line in f:
                 if line.startswith(username + ":"):
-                    raise ApprovalError("Duplicate username found in approved users file")
+                    raise ApprovalError("Username already requested: {0}".format(username))
     except IOError:
         pass
 
     with open(settings.OCF_RESERVED_NAMES_LIST) as reserved:
         for line in reserved:
             if line.strip() == username:
-                raise ApprovalError("Username is reserved")
+                raise ApprovalError("Username is reserved: {0}".format(username))
 
 def _string_match_percentage(a, b):
     return sum([i.lower() == j.lower()
@@ -58,7 +58,7 @@ def _string_match_percentage(a, b):
 
 def _check_password(password, username):
     if len(password) < 8:
-        raise ApprovalError("The password you entered is too short (minimum of 8 chars)")
+        raise ApprovalError("Password must be at least 8 characters")
 
     percentage = _string_match_percentage(password, username)
     # Threshold?
@@ -67,11 +67,11 @@ def _check_password(password, username):
         try:
             FascistCheck(password)
         except ValueError as e:
-            raise ApprovalError("Password issue: {0}".format(e))
+            raise ApprovalError("Password problem: {0}".format(e))
 
 def _check_email(email):
     if email.find("@") == -1 or email.find(".") == -1:
-        raise ApprovalError("Invalid Entry, it doesn't look like an email")
+        raise ApprovalError("Invalid email address: {0}".format(email))
 
 def _encrypt_password(password):
     # Use an asymmetric encryption algorithm to allow the keys to be stored on disk
