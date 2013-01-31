@@ -1,6 +1,7 @@
 from django.conf import settings
 import os
 import base64
+from difflib import SequenceMatcher
 from getpass import getuser, getpass
 from socket import gethostname
 from time import asctime
@@ -60,8 +61,11 @@ def _check_password(password, username):
     if len(password) < 8:
         raise ApprovalError("Password must be at least 8 characters")
 
-    percentage = _string_match_percentage(password, username)
-    # Threshold?
+    s = SequenceMatcher()
+    s.set_seqs(password, username)
+    threshold = 0.6
+    if s.ratio() > threshold:
+        raise ApprovalError("Password is too similar to username")
 
     if FascistCheck:
         try:
