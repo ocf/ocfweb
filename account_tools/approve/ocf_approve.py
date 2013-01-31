@@ -90,7 +90,7 @@ def _encrypt_password(password):
     return RSA_CIPHER.encrypt(password)
 
 def approve_user(real_name, calnet_uid, account_name, email, password,
-                 forward = False):
+                 forward = True):
     _check_real_name(real_name)
     _check_calnet_uid(calnet_uid)
     _check_username(account_name)
@@ -112,7 +112,7 @@ def approve_group(group_name, responsible, calnet_uid, email, account_name, pass
     _approve(calnet_uid, email, account_name, password, forward = forward,
              group_name = group_name, responsible = responsible)
 
-def _approve(university_uid, email, account_name, password, forward = False,
+def _approve(university_uid, email, account_name, password, forward = True,
              real_name = None, group_name = None, responsible = None):
     assert (real_name is None) != (group_name is None)
 
