@@ -140,7 +140,7 @@ def _approve(university_uid, email, account_name, password, forward = False,
     name = group_name if group else real_name
 
     sections = [account_name, name, university_uid,
-                getuser(), gethostname(),
+                email, getuser(), gethostname(),
                 0, group, asctime()]
 
     with open(settings.APPROVE_LOG, "a") as f:
