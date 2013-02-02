@@ -64,8 +64,8 @@ def _check_password(password, username):
     # Threshold?
 
     # XXX: Double quotes are exploitable when adding through kadmin
-    if "\"" in password:
-        raise ApprovalError("Double quotes are forbidden in passwords")
+    if "\"" in password or "\n" in password:
+        raise ApprovalError("Double quotes and newlines are forbidden in passwords")
 
     if FascistCheck:
         try:
