@@ -63,6 +63,10 @@ def _check_password(password, username):
     percentage = _string_match_percentage(password, username)
     # Threshold?
 
+    # XXX: Double quotes are exploitable when adding through kadmin
+    if "\"" in password:
+        raise ApprovalError("Double quotes are forbidden in passwords")
+
     if FascistCheck:
         try:
             FascistCheck(password)
