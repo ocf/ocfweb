@@ -64,7 +64,7 @@ def _check_password(password, username):
     # Threshold?
 
     # XXX: Double quotes are exploitable when adding through kadmin
-    if "\"" in password or "\n" in password:
+    if "\"" in password or "\n" in password or "\r" in password:
         raise ApprovalError("Double quotes and newlines are forbidden in passwords")
 
     if FascistCheck:
@@ -74,6 +74,10 @@ def _check_password(password, username):
             raise ApprovalError("Password issue: {0}".format(e))
 
 def _check_email(email):
+    """
+    Technically the check for a valid email is to mail to that address with a
+    confirmation link, but this'll do as a quick basic check.
+    """
     if email.find("@") == -1 or email.find(".") == -1:
         raise ApprovalError("Invalid Entry, it doesn't look like an email")
 
