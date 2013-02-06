@@ -1,55 +1,63 @@
 from django.conf import settings
 import os
 import base64
+import fcntl
+from difflib import SequenceMatcher
 from getpass import getuser, getpass
+from pwd import getpwnam
+from re import match
 from socket import gethostname
 from time import asctime
-import fcntl
 
 # Dependencies
-# pycrypto + cracklib (Optional)
+# pycrypto, cracklib, dnspython
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
-
-try:
-    from cracklib import FascistCheck
-except ImportError:
-    FascistCheck = None
-
-RSA_CIPHER = None
+from cracklib import FascistCheck
+from dns import resolver
 
 class ApprovalError(Exception):
     pass
 
 def _check_real_name(real_name):
     if not all([i in " -" or i.isalpha() for i in real_name]):
-        raise ApprovalError("Real name contains invalid characters")
+        raise ApprovalError("Invalid characters in name: {0}".format(real_name))
 
-def _check_calnet_uid(calnet_uid):
+def _check_university_uid(university_uid):
     try:
-        int(calnet_uid)
+        int(university_uid)
     except ValueError:
-        raise ApprovalError("This doesn't appear to be a valid calnet uid")
+        raise ApprovalError("Invalid UID number: {0}".format(university_uid))
 
 def _check_username(username):
-    if len(username) > 8 or len(username) < 3:
-        raise ApprovalError("Usernames must be between 3 and 8 characters")
-    elif any([not i.islower() for i in username]):
-        raise ApprovalError("Usernames must consist of only lowercase alphabet")
 
-    # In approved user file
+    # Is this a valid username?
+    if len(username) > 8 or len(username) < 3:
+        raise ApprovalError("Username must be between 3 and 8 letters: {0}".format(username))
+    elif any([not i.islower() for i in username]):
+        raise ApprovalError("Username must contain only lowercase letters: {0}".format(username))
+
+    # Is the username already taken?
+    try:
+        getpwnam(username)
+        raise ApprovalError("Username already in use: {0}".format(username))
+    except KeyError:
+        pass
+
+    # Is the username already requested?
     try:
         with open(settings.APPROVE_FILE) as f:
             for line in f:
                 if line.startswith(username + ":"):
-                    raise ApprovalError("Duplicate username found in approved users file")
+                    raise ApprovalError("Username already requested: {0}".format(username))
     except IOError:
         pass
 
+    # Is the username reserved?
     with open(settings.OCF_RESERVED_NAMES_LIST) as reserved:
         for line in reserved:
             if line.strip() == username:
-                raise ApprovalError("Username is reserved")
+                raise ApprovalError("Username is reserved: {0}".format(username))
 
 def _string_match_percentage(a, b):
     return sum([i.lower() == j.lower()
@@ -58,10 +66,13 @@ def _string_match_percentage(a, b):
 
 def _check_password(password, username):
     if len(password) < 8:
-        raise ApprovalError("The password you entered is too short (minimum of 8 chars)")
+        raise ApprovalError("Password must be at least 8 characters")
 
-    percentage = _string_match_percentage(password, username)
-    # Threshold?
+    s = SequenceMatcher()
+    s.set_seqs(password, username)
+    threshold = 0.6
+    if s.ratio() > threshold:
+        raise ApprovalError("Password is too similar to username")
 
     # XXX: Double quotes are exploitable when adding through kadmin
     if "\n" in password or "\r" in password:
@@ -71,15 +82,25 @@ def _check_password(password, username):
         try:
             FascistCheck(password)
         except ValueError as e:
-            raise ApprovalError("Password issue: {0}".format(e))
+            raise ApprovalError("Password problem: {0}".format(e))
 
 def _check_email(email):
     """
-    Technically the check for a valid email is to mail to that address with a
-    confirmation link, but this'll do as a quick basic check.
+    Check the email with naive regex and check for the domain's MX record.
     """
-    if email.find("@") == -1 or email.find(".") == -1:
-        raise ApprovalError("Invalid Entry, it doesn't look like an email")
+
+    regex = r'^[a-zA-Z0-9._%-+]+@([a-zA-Z0-9._%-]+.[a-zA-Z]{2,6})$'
+    m = match(regex, email)
+    if m:
+        domain = m.group(1)
+        try:
+            # Check that the domain has MX record(s)
+            answer = resolver.query(domain, 'MX')
+            if answer:
+                return
+        except (resolver.NoAnswer, resolver.NXDOMAIN):
+            pass
+    raise ApprovalError("Invalid email address: {0}".format(email))
 
 def _encrypt_password(password):
     # Use an asymmetric encryption algorithm to allow the keys to be stored on disk
@@ -89,18 +110,14 @@ def _encrypt_password(password):
     # >>> open("private.pem", "w").write(key.exportKey())
     # >>> open("public.pem", "w").write(key.publickey().exportKey())
 
-    global RSA_CIPHER
-
-    if RSA_CIPHER is None:
-        key = RSA.importKey(open(settings.PASSWORD_PUB_KEY).read())
-        RSA_CIPHER = PKCS1_OAEP.new(key)
-
+    key = RSA.importKey(open(settings.PASSWORD_PUB_KEY).read())
+    RSA_CIPHER = PKCS1_OAEP.new(key)
     return RSA_CIPHER.encrypt(password)
 
 def approve_user(real_name, calnet_uid, account_name, email, password,
-                 forward = False):
+                 forward = True):
     _check_real_name(real_name)
-    _check_calnet_uid(calnet_uid)
+    _check_university_uid(calnet_uid)
     _check_username(account_name)
     _check_email(email)
     _check_password(password, real_name)
@@ -108,19 +125,19 @@ def approve_user(real_name, calnet_uid, account_name, email, password,
     _approve(calnet_uid, email, account_name, password,
              forward = forward, real_name = real_name)
 
-def approve_group(group_name, responsible, calnet_uid, email, account_name, password,
+def approve_group(group_name, responsible, osl_gid, email, account_name, password,
                   forward = False):
     _check_real_name(group_name)
     _check_real_name(responsible)
-    _check_calnet_uid(calnet_uid)
+    _check_university_uid(osl_gid)
     _check_username(account_name)
     _check_email(email)
     _check_password(password, group_name)
 
-    _approve(calnet_uid, email, account_name, password, forward = forward,
+    _approve(osl_gid, email, account_name, password, forward = forward,
              group_name = group_name, responsible = responsible)
 
-def _approve(university_uid, email, account_name, password, forward = False,
+def _approve(university_uid, email, account_name, password, forward = True,
              real_name = None, group_name = None, responsible = None):
     assert (real_name is None) != (group_name is None)
 
