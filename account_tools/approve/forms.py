@@ -28,7 +28,7 @@ class ApproveForm(forms.Form):
         max_length=64)
     contact_email = forms.EmailField(label="Contact E-Mail",
             validators=[validate_email_host_exists])
-    confirm_email = forms.EmailField(label="Contact E-Mail",
+    confirm_email = forms.EmailField(label="Confirm Contact E-Mail",
             validators=[validate_email_host_exists])
     forward_email = forms.BooleanField(required=False,
         label="Forward @ocf E-Mail to Contact E-Mail",
