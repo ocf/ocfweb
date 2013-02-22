@@ -61,3 +61,7 @@ class ApproveForm(forms.Form):
             if email != verify_contact_email:
                 raise forms.ValidationError("Your emails don't match.")
         return verify_contact_email
+
+class GroupApproveForm(ApproveForm):
+    def __init__(self, *args, **kwargs):
+        super(ApproveForm, self).__init__(*args, **kwargs)

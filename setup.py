@@ -20,7 +20,8 @@ class my_install_lib(install_lib):
         shutil.copy(SETTINGS_SECRET_FILE, destination)
 
         print "Changing owner to account-tools:account-tools"
-        chown_cmd = "chown -R account-tools:account-tools %s" % package_location
+        #chown_cmd = "chown -R account-tools:account-tools %s" % package_location
+        chown_cmd = "chown -R account-tools:account-tools /var/www/account_tools"
         subprocess.call(shlex.split(chown_cmd))
 
         print "Chmod go-rwx"

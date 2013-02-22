@@ -2,7 +2,7 @@ from django.forms.forms import NON_FIELD_ERRORS
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
-from approve.forms import ApproveForm
+from approve.forms import ApproveForm, GroupApproveForm
 from approve.ocf_approve import approve_user, ApprovalError
 from ocf.decorators import https_required
 from ocf.utils import users_by_calnet_uid
@@ -13,6 +13,9 @@ from calnet.utils import name_by_calnet_uid
 @https_required
 @calnet_required
 def request_account(request):
+    return ind_request_account(request)
+
+def ind_request_account(request):
     calnet_uid = request.session["calnet_uid"]
 
     existing_accounts = users_by_calnet_uid(calnet_uid)
@@ -48,3 +51,6 @@ def request_account(request):
         "form": form,
         "real_name": real_name
         }, context_instance=RequestContext(request))
+
+def request_group_account(request):
+    return ind_request_account(request)
