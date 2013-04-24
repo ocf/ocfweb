@@ -12,7 +12,7 @@ class CommandForm(forms.Form):
         max_length=64)
 
     COMMAND_CHOICES = (
-        ("/opt/ocf/bin/paper", "paper quota — how many pages you have printed this semester"),
+        ("/opt/ocf/bin/paper", "paper quota — how many pages you have remaining this semester"),
         ("/usr/bin/quota -svQ", "disk quota — how much disk space you have used and how much you have left"),
         ("/opt/ocf/bin/spam-setup", "spam-setup — set up SpamAssassin spam filtering for your OCF email"),
         ("/opt/ocf/bin/makehttp", "makehttp — set up the web space for your OCF account"),
