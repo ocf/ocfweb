@@ -2,3 +2,4 @@
 *~
 *.swp
 settings.py
+build/

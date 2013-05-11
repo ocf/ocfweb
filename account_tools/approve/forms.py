@@ -26,7 +26,9 @@ class ApproveForm(forms.Form):
         label="Confirm Password",
         min_length=8,
         max_length=64)
-    contact_email = forms.EmailField(label="Content E-Mail",
+    contact_email = forms.EmailField(label="Contact E-Mail",
+            validators=[validate_email_host_exists])
+    verify_contact_email = forms.EmailField(label="Confirm Contact E-Mail",
             validators=[validate_email_host_exists])
     forward_email = forms.BooleanField(required=False,
         label="Forward @ocf E-Mail to Contact E-Mail",
@@ -50,3 +52,16 @@ class ApproveForm(forms.Form):
             if password != verify_password:
                 raise forms.ValidationError("Your passwords don't match.")
         return verify_password
+
+    def clean_verify_contact_email(self):
+        email = self.cleaned_data.get("contact_email")
+        verify_contact_email = self.cleaned_data.get("verify_contact_email")
+
+        if email and verify_contact_email:
+            if email != verify_contact_email:
+                raise forms.ValidationError("Your emails don't match.")
+        return verify_contact_email
+
+class GroupApproveForm(ApproveForm):
+    def __init__(self, *args, **kwargs):
+        super(ApproveForm, self).__init__(*args, **kwargs)
