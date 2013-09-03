@@ -12,7 +12,6 @@
 <hr />
 
 <form method="post" action="{% url request_account %}" id="request-account-form">{% csrf_token %}
-    <p>If the below is not your correct full name, please visit the lab during <a href="http://www.ocf.berkeley.edu/staff_hours">staff hours</a> to create your account. (Note: names longer than 32 characters are truncated.)</p>
 
     <label for="fullname">Full Name:</label>
     <div id="fullname" style="font-weight: bold">{{ real_name }}</div><br />
@@ -86,7 +85,7 @@
 
     <div class="fieldWrapper">
         {{ form.disclaimer_agreement.errors }}
-        <label for="id_disclaimer_agreement">I have read, understood, and agreed to follow the above policies. In addition, I agree not to hold the University of California, the Associated Students of the University of California, or the Open Computing Facility (OCF) responsible for lost files or other misfortunes which may result from my use of the OCF's facilities. Additionally, I certify that I am eligible for an OCF account according to <a href="http://wiki.ocf.berkeley.edu/membership/eligibility/">OCF account eligibility policy</a>.</label>
+        <label for="id_disclaimer_agreement">I have read, understood, and agreed to follow the above policies. In addition, I agree not to hold the University of California, the Associated Students of the University of California, or the Open Computing Facility (OCF) responsible for lost files or other misfortunes which may result from my use of the OCF's facilities. Additionally, I certify that I am eligible for an OCF account according to the <a href="http://wiki.ocf.berkeley.edu/membership/eligibility/">OCF account eligibility policy</a>.</label>
         {{ form.disclaimer_agreement }}
         <p><strong><strong>Check this box</strong></strong> to confirm that you have read, understood, and agreed to these policies.</p>
     </div>
