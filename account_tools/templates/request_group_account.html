@@ -3,11 +3,11 @@
 {% block title %}Request Group Account{% endblock %}
 
 {% block content %}
-<h2>Request an OCF Account</h2>
+<h2>Request an OCF Group Account</h2>
 
 {{ form.non_field_errors }}
 
-<p>This form is <strong>ONLY</strong> for the creation of group accounts. If you want to create an individual account, please visit the <a href="{% url request_account %}">individual account request page</a> to create your account.</p>
+<p>This form is <strong><strong>ONLY</strong></strong> for the creation of group accounts. If you want to create an individual account, please visit the <a href="{% url request_account %}">individual account request page</a> to create your account.</p>
 
 <hr />
 
@@ -53,7 +53,7 @@
     </div>
 
     <div field="fieldWrapper">
-        <p>You will receive an @ocf.berkeley.edu e-mail address.<p>
+        <p>Your group will receive an @ocf.berkeley.edu e-mail address. All mail will be automatically forwarded to the contact e-mail address above.<p>
     </div>
     <hr />
 
