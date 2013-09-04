@@ -1,6 +1,9 @@
+import sys
 import ldap
 from django.conf import settings
 
+sys.path.append('/opt/ocf/packages/scripts/')
+import signat
 
 def clean_user_account(user_account):
     """Return an string that could be an OCF user name"""
@@ -50,3 +53,19 @@ def user_exists(user_account):
                                ldap.SCOPE_SUBTREE, search_filter, attrs)
 
     return len(ldap_entries) == 1
+
+def get_signat_xml(id, service, key):
+    root = signat.get_osl(id, service, key)
+    groups = signat.parse_osl(root)
+    return groups
+
+def get_student_groups(calnet_uid):
+    tuples = ()
+    groups = get_signat_xml(calnet_uid, 'getSignatoriesStudentGroups', 'UID')
+    for gid in groups:
+        tuples += (str(gid), str(groups[gid]['groupName'])),
+    return tuples
+
+def get_student_group_name(group_id):
+    group = get_signat_xml(group_id, 'getStudentGroups', 'GroupID')
+    return group[group_id]['groupName']

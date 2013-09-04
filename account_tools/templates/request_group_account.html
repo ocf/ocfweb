@@ -1,25 +1,29 @@
 {% extends "base.html" %}
 
-{% block title %}Request Account{% endblock %}
+{% block title %}Request Group Account{% endblock %}
 
 {% block content %}
-<h2>Create an OCF Account</h2>
+<h2>Create an OCF Group Account</h2>
 
 {{ form.non_field_errors }}
 
-<p>This form is only for the creation of individual accounts. If you want to create an account for a student group, please visit a staff member in the OCF lab during <a href="http://www.ocf.berkeley.edu/cgi-bin/staff_hours.cgi">staff hours</a> to create your account.</p>
+<p>This form is <strong>ONLY</strong> for the creation of group accounts. If you want to create an individual account, please visit the <a href="{% url request_account %}">individual account request page</a> to create your account.</p>
 
 <hr />
 
 <form method="post" action="{% url request_group_account %}" id="request-account-form">{% csrf_token %}
     <p>If the below is not your correct full name, please visit the lab during <a href="http://www.ocf.berkeley.edu/cgi-bin/staff_hours.cgi">staff hours</a> to create your account. (Note: names longer than 32 characters are truncated.)</p>
 
-    <label for="fullname">Full Name:</label>
+    <label for="fullname">Responsible Student's Name:</label>
     <div id="fullname" style="font-weight: bold">{{ real_name }}</div><br />
     <hr />
 
+    <label for="fullname">List of Student Groups:</label>
+    <div id="fullname" style="font-weight: bold">{{ form.student_groups }}</div><br />
+    <hr />
+
     <div class="fieldWrapper">
-        <p>Your account name must consist of between three and eight lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
+        <p>Your group account name must consist of between three and eight lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
         {{ form.ocf_login_name.errors }}
         <label for="id_ocf_login_name">Login Name:</label>
         {{ form.ocf_login_name }}<br /><br />
@@ -51,13 +55,6 @@
 
     <div field="fieldWrapper">
         <p>You will receive an @ocf.berkeley.edu e-mail address.<p>
-        <fieldset>
-            <legend>Do you want us to forward mail sent to your @ocf address to your contact e-mail address?</legend>
-            {{ form.forward_email.errors }}
-            {{ form.forward_email }}
-            <label for="id_forward_email">Yes, forward my @ocf e-mail.</label>
-        </fieldset>
-        <br />
     </div>
     <hr />
 

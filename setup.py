@@ -21,11 +21,11 @@ class my_install_lib(install_lib):
 
         print "Changing owner to account-tools:account-tools"
         #chown_cmd = "chown -R account-tools:account-tools %s" % package_location
-        chown_cmd = "chown -R account-tools:account-tools /var/www/account_tools"
+        chown_cmd = "chown -Rv account-tools:account-tools /var/www/account_tools"
         subprocess.call(shlex.split(chown_cmd))
 
         print "Chmod go-rwx"
-        chmod_cmd = "chmod -R go-rwx %s" % package_location
+        chmod_cmd = "chmod -Rv go-rwx %s" % package_location
         subprocess.call(shlex.split(chmod_cmd))
 
 setup(

@@ -1,7 +1,7 @@
 from django import forms
 from approve.validators import validate_email_host_exists, \
     validate_username_not_reserved
-from ocf.utils import clean_password
+from ocf.utils import clean_password, get_student_groups
 from ocf.validators.password import validate_crack_strength, \
     validate_printable_ascii
 from ocf.validators.user import validate_unused_name, \
@@ -64,4 +64,10 @@ class ApproveForm(forms.Form):
 
 class GroupApproveForm(ApproveForm):
     def __init__(self, *args, **kwargs):
+        calnet_uid = kwargs.pop('calnet_uid')
         super(ApproveForm, self).__init__(*args, **kwargs)
+
+        self.fields['student_groups'] = forms.ChoiceField(
+            choices=get_student_groups(int(calnet_uid)),
+            label="Student Groups",
+            required=True)

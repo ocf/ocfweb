@@ -23,6 +23,10 @@ def _check_real_name(real_name):
     if not all([i in " -" or i.isalpha() for i in real_name]):
         raise ApprovalError("Invalid characters in name: {0}".format(real_name))
 
+def _check_real_group_name(real_name):
+    if not all([i in " -" or i.isalnum() for i in real_name]):
+        raise ApprovalError("Invalid characters in name: {0}".format(real_name))
+
 def _check_university_uid(university_uid):
     try:
         int(university_uid)
@@ -127,7 +131,7 @@ def approve_user(real_name, calnet_uid, account_name, email, password,
 
 def approve_group(group_name, responsible, osl_gid, email, account_name, password,
                   forward = False):
-    _check_real_name(group_name)
+    _check_real_group_name(group_name)
     _check_real_name(responsible)
     _check_university_uid(osl_gid)
     _check_username(account_name)
