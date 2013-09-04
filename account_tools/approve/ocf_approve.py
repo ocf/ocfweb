@@ -130,7 +130,7 @@ def approve_user(real_name, calnet_uid, account_name, email, password,
              forward = forward, real_name = real_name)
 
 def approve_group(group_name, responsible, osl_gid, email, account_name, password,
-                  forward = False):
+                  forward = True):
     _check_real_group_name(group_name)
     _check_real_name(responsible)
     _check_university_uid(osl_gid)
