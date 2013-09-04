@@ -45,7 +45,7 @@ def change_password(request):
 
             if krb_change_success:
                 # deleting this session variable will force
-                # the next change_password requet to
+                # the next change_password request to
                 # reauthenticate with CalNet
                 del request.session["calnet_uid"]
 
