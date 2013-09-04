@@ -3,7 +3,7 @@
 {% block title %}Request Group Account{% endblock %}
 
 {% block content %}
-<h2>Create an OCF Group Account</h2>
+<h2>Request an OCF Account</h2>
 
 {{ form.non_field_errors }}
 
@@ -12,7 +12,6 @@
 <hr />
 
 <form method="post" action="{% url request_group_account %}" id="request-account-form">{% csrf_token %}
-    <p>If the below is not your correct full name, please visit the lab during <a href="http://www.ocf.berkeley.edu/cgi-bin/staff_hours.cgi">staff hours</a> to create your account. (Note: names longer than 32 characters are truncated.)</p>
 
     <label for="fullname">Responsible Student's Name:</label>
     <div id="fullname" style="font-weight: bold">{{ real_name }}</div><br />
@@ -23,7 +22,7 @@
     <hr />
 
     <div class="fieldWrapper">
-        <p>Your group account name must consist of between three and eight lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
+        <p>Your group account name must consist of between three and eight lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>SHOULD</strong> be based on your group's real name or initials.</strong></p>
         {{ form.ocf_login_name.errors }}
         <label for="id_ocf_login_name">Login Name:</label>
         {{ form.ocf_login_name }}<br /><br />
@@ -83,7 +82,7 @@
 
     <div class="fieldWrapper">
         {{ form.disclaimer_agreement.errors }}
-        <label for="id_disclaimer_agreement">I have read, understood, and agreed to follow the above policies. In addition, I agree not to hold the University of California, the Associated Students of the University of California, or the Open Computing Facility (OCF) responsible for lost files or other misfortunes which may result from my use of the OCF's facilities. Additionally, I certify that I am eligible for an OCF account according to <a href="http://docs.ocf.berkeley.edu/wiki/Account_eligibility">OCF account eligibility policy</a>.</label>
+        <label for="id_disclaimer_agreement">I have read, understood, and agreed to follow the above policies. In addition, I agree not to hold the University of California, the Associated Students of the University of California, or the Open Computing Facility (OCF) responsible for lost files or other misfortunes which may result from my use of the OCF's facilities. Additionally, I certify that I am eligible for an OCF account according to the <a href="http://wiki.ocf.berkeley.edu/membership/eligibility/">OCF account eligibility policy</a>.</label>
         {{ form.disclaimer_agreement }}
         <p><strong><strong>Check this box</strong></strong> to confirm that you have read, understood, and agreed to these policies.</p>
     </div>
@@ -93,5 +92,5 @@
 <input type="submit" value="Request Account" id="request-account-form-submit" />
 </form>
 
-<p>Click <a href="https://secure.ocf.berkeley.edu/account_tools/calnet/logout">here</a> to log out of CalNet.</p>
+<p>Click <a href="{% url calnet_logout %}">here</a> to log out of CalNet.</p>
 {% endblock %}
