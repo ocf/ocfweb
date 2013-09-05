@@ -39,9 +39,9 @@ TEST_OCF_ACCOUNTS = (
 
 TEST_GROUP_ACCOUNTS = (
 # comma separated tuples of CalLink OIDs and student group names
-    (99999, "Non Exist"), # this group does not exist
+    (91740, "The Testing Group"), # needs to have a real OID, so boo
     (46187, "Open Computing Facility"), # good old ocf
-    (23433, "Awesome Group of Awesome") # why not
+    (46692, "Awesome Group of Awesome") # boo another real OID
 )
 
 TESTER_CALNET_UIDS = (
