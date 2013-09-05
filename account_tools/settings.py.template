@@ -39,7 +39,7 @@ TEST_OCF_ACCOUNTS = (
 
 TEST_GROUP_ACCOUNTS = (
 # comma separated tuples of CalLink OIDs and student group names
-    (00000, "Non Exist"), # this group does not exist
+    (99999, "Non Exist"), # this group does not exist
     (46187, "Open Computing Facility"), # good old ocf
     (23433, "Awesome Group of Awesome") # why not
 )
