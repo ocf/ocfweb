@@ -14,19 +14,21 @@ class my_install_lib(install_lib):
         install_lib.run(self)
         package_location = os.path.join(self.install_dir, "account_tools")
 
-        print "Copying account_tools settings file"
         destination = os.path.join(package_location, "settings.py")
-        print "Copying to %s" % destination
+        print "Copying settings file to %s..." % destination,
         shutil.copy(SETTINGS_SECRET_FILE, destination)
+        print "done"
 
-        print "Changing owner to account-tools:account-tools"
+        print "Changing owner to account-tools:account-tools...",
         #chown_cmd = "chown -R account-tools:account-tools %s" % package_location
-        chown_cmd = "chown -Rv account-tools:account-tools /var/www/account_tools"
+        chown_cmd = "chown -R account-tools:account-tools /var/www/account_tools"
         subprocess.call(shlex.split(chown_cmd))
+        print "done"
 
-        print "Chmod go-rwx"
-        chmod_cmd = "chmod -Rv go-rwx %s" % package_location
+        print "Chmod go-rwx...",
+        chmod_cmd = "chmod -R go-rwx %s" % package_location
         subprocess.call(shlex.split(chmod_cmd))
+        print "done"
 
 setup(
     name="account_tools",

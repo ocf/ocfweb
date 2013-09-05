@@ -4,13 +4,13 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # calnet
-CALNET_LDAP = "<your value here"> # eg: "ldap://ldap.berkeley.edu"
+CALNET_LDAP = "<your value here>" # eg: "ldap://ldap.berkeley.edu"
 CALNET_SERVER_URL = "<your value here>" # eg: "https://auth.berkeley.edu/cas/"
 LOGIN_URL = "<your value here>" # eg: "/account_tools/calnet/login"
-LOGOUT_URL = "<your value here"> # eg: "/account_tools/calnet/logout"
+LOGOUT_URL = "<your value here>" # eg: "/account_tools/calnet/logout"
 
 # ocf
-OCF_LDAP = "<your value here"> # eg: "ldaps://ldap-master.ocf.berkeley.edu"
+OCF_LDAP = "<your value here>" # eg: "ldaps://ldap-master.ocf.berkeley.edu"
 
 # approve
 OCF_RESERVED_NAMES_LIST = "<your value here>" # eg: "/usr/local/www/django_projects/account_tools/approve/reserved_names.txt"
@@ -29,12 +29,19 @@ KRB_PRINCIPAL = "<your value here>"
 KADMIN_LOCATION = "/usr/bin/kadmin"
 
 # cmds
-CMDS_HOST = "<your value here"> # eg: "tsunami.ocf.berkeley.edu"
+CMDS_HOST = "<your value here>" # eg: "tsunami.ocf.berkeley.edu"
 CMDS_HOST_KEYS_FILENAME = "<your value here>" # eg: "/root/secretstuff/host_keys"
 
 TEST_OCF_ACCOUNTS = (
 # comma separated strings of OCF usernames
     "nonexist", # this account does not exist
+)
+
+TEST_GROUP_ACCOUNTS = (
+# comma separated tuples of CalLink OIDs and student group names
+    (00000, "Non Exist"), # this group does not exist
+    (46187, "Open Computing Facility"), # good old ocf
+    (23433, "Awesome Group of Awesome") # why not
 )
 
 TESTER_CALNET_UIDS = (

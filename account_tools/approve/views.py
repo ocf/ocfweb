@@ -56,6 +56,8 @@ def request_group_account(request):
 
     existing_accounts = users_by_calnet_uid(calnet_uid)
     responsible = name_by_calnet_uid(calnet_uid)
+ 
+    student_groups = get_student_groups(int(calnet_uid))
 
     if calnet_uid not in settings.TESTER_CALNET_UIDS and len(existing_accounts):
         return render_to_response("already_requested_account.html", {
@@ -63,8 +65,21 @@ def request_group_account(request):
             "calnet_url": settings.LOGOUT_URL
         })
 
+    if calnet_uid in settings.TESTER_CALNET_UIDS:
+        if student_groups:
+            student_groups = ((student_groups),) + settings.TEST_GROUP_ACCOUNTS
+        else:
+            student_groups = settings.TEST_GROUP_ACCOUNTS
+
+    if not student_groups:
+        return render_to_response("no_student_groups.html", {
+            "calnet_uid": calnet_uid,
+            "calnet_url": settings.LOGOUT_URL
+        })
+
     if request.method == "POST":
-        form = GroupApproveForm(request.POST, calnet_uid = calnet_uid)
+        form = GroupApproveForm(request.POST, calnet_uid = calnet_uid,
+            student_groups = student_groups)
         if form.is_valid():
             account_name = form.cleaned_data["ocf_login_name"]
             email_address = form.cleaned_data["contact_email"]
@@ -82,7 +97,8 @@ def request_group_account(request):
                 return render_to_response("successfully_requested_account.html",
                                           {})
     else:
-        form = GroupApproveForm(calnet_uid = calnet_uid)
+        form = GroupApproveForm(calnet_uid = calnet_uid, student_groups =
+            student_groups)
 
     return render_to_response("request_group_account.html",
         {
