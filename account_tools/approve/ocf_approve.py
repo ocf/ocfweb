@@ -129,16 +129,16 @@ def approve_user(real_name, calnet_uid, account_name, email, password,
     _approve(calnet_uid, email, account_name, password,
              forward = forward, real_name = real_name)
 
-def approve_group(group_name, responsible, osl_gid, email, account_name, password,
+def approve_group(group_name, responsible, callink_oid, email, account_name, password,
                   forward = True):
     _check_real_group_name(group_name)
     _check_real_name(responsible)
-    _check_university_uid(osl_gid)
+    _check_university_uid(callink_oid)
     _check_username(account_name)
     _check_email(email)
     _check_password(password, group_name)
 
-    _approve(osl_gid, email, account_name, password, forward = forward,
+    _approve(callink_oid, email, account_name, password, forward = forward,
              group_name = group_name, responsible = responsible)
 
 def _approve(university_uid, email, account_name, password, forward = True,

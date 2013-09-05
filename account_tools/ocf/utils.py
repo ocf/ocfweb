@@ -60,12 +60,10 @@ def get_signat_xml(id, service, key):
     return groups
 
 def get_student_groups(calnet_uid):
-    tuples = ()
-    groups = get_signat_xml(calnet_uid, 'getSignatoriesStudentGroups', 'UID')
-    for gid in groups:
-        tuples += (str(gid), str(groups[gid]['groupName'])),
+    groups = get_signat_xml(calnet_uid, 'SignatoriesActiveStudentGroups', 'UID')
+    tuples = sorted(groups.items(), key=lambda tuple: tuple[1])
     return tuples
 
 def get_student_group_name(group_id):
-    group = get_signat_xml(group_id, 'getStudentGroups', 'GroupID')
-    return group[group_id]['groupName']
+    group = get_signat_xml(group_id, 'StudentGroups', 'GroupID')
+    return group[group_id]

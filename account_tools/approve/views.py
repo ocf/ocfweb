@@ -70,11 +70,11 @@ def request_group_account(request):
             email_address = form.cleaned_data["contact_email"]
             forward_mail = form.cleaned_data["forward_email"]
             password = form.cleaned_data["password"]
-            osl_gid = form.cleaned_data["student_groups"]
-            group_name = get_student_group_name(int(osl_gid))
+            callink_oid = form.cleaned_data["student_groups"]
+            group_name = get_student_group_name(int(callink_oid))
 
             try:
-                approve_group(group_name, responsible, osl_gid, email_address, account_name,
+                approve_group(group_name, responsible, callink_oid, email_address, account_name,
                     password, forward = False)
             except ApprovalError as e:
                 form._errors[NON_FIELD_ERRORS] = form.error_class([str(e)])
