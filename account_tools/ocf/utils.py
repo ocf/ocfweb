@@ -32,7 +32,7 @@ def users_by_calnet_uid(calnet_uid):
     l = ldap.initialize(settings.OCF_LDAP)
     l.simple_bind_s("", "")
 
-    search_filter = "(calNetuid=%s)" % calnet_uid
+    search_filter = "(calnetUid=%s)" % calnet_uid
     attrs = ["uid"]
 
     ldap_entries = l.search_st("ou=People,dc=OCF,dc=Berkeley,dc=EDU",
