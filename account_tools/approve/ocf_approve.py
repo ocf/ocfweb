@@ -20,7 +20,7 @@ class ApprovalError(Exception):
     pass
 
 def _check_real_name(real_name):
-    if not all([i in " -." or i.isalpha() for i in real_name]):
+    if not all([i in " -.'" or i.isalpha() for i in real_name]):
         raise ApprovalError("Invalid characters in name: {0}".format(real_name))
 
 def _check_real_group_name(real_name):
