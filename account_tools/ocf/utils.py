@@ -2,9 +2,6 @@ import sys
 import ldap
 from django.conf import settings
 
-sys.path.append('/opt/ocf/packages/scripts/')
-import signat
-
 def clean_user_account(user_account):
     """Return an string that could be an OCF user name"""
 
@@ -55,6 +52,9 @@ def user_exists(user_account):
     return len(ldap_entries) == 1
 
 def get_signat_xml(id, service, key):
+    sys.path.append('/opt/ocf/packages/scripts/')
+    import signat
+
     root = signat.get_osl(id, service, key)
     groups = signat.parse_osl(root)
     return groups
