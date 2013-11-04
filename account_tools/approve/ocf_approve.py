@@ -151,6 +151,7 @@ def _approve(university_uid, email, account_name, password, forward = True,
     else:
         group_name = "(null)"
         group = 0
+        responsible = "(null)"
 
     # Encrypt the password and base64 encode it
     password = base64.b64encode(_encrypt_password(password.encode()))
@@ -158,7 +159,7 @@ def _approve(university_uid, email, account_name, password, forward = True,
     # Write to the list of users to be approved
     sections = [account_name, real_name, group_name,
                 email, int(forward), group, password,
-                university_uid]
+                university_uid, responsible]
 
     with open(settings.APPROVE_FILE, "a") as f:
         fcntl.flock(f, fcntl.LOCK_EX)
@@ -170,7 +171,7 @@ def _approve(university_uid, email, account_name, password, forward = True,
 
     sections = [account_name, name, university_uid,
                 email, getuser(), gethostname(),
-                0, group, asctime()]
+                0, group, asctime(), responsible]
 
     with open(settings.APPROVE_LOG, "a") as f:
         fcntl.flock(f, fcntl.LOCK_EX)
