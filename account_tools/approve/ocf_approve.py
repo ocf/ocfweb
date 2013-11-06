@@ -92,7 +92,7 @@ def _check_email(email):
     """
     Check the email with naive regex and check for the domain's MX record.
     """
-    regex = r'^[a-zA-Z0-9._%\-+]+@([a-zA-Z0-9._%-]+.[a-zA-Z]{2,6})$'
+    regex = r'^[a-zA-Z0-9._%\-+]+@([a-zA-Z0-9._%\-]+.[a-zA-Z]{2,6})$'
 
     m = match(regex, email)
     if m:
