@@ -2,8 +2,6 @@
 import sys, os
 sys.path.insert(0, "/var/www/account_tools/lib/python2.7/site-packages")
 sys.path.insert(1, "/var/www/account_tools/lib/python2.7/site-packages/account_tools")
-sys.path.insert(2, "/var/www/account_tools/lib/python2.6/site-packages")
-sys.path.insert(3, "/var/www/account_tools/lib/python2.6/site-packages/account_tools")
 
 # Set the DJANGO_SETTINGS_MODULE environment variable.
 os.environ['DJANGO_SETTINGS_MODULE'] = "account_tools.settings"
