@@ -45,7 +45,7 @@ def change_krb_password(user_account, new_password):
     child.expect("%s@OCF.BERKELEY.EDU's Password:" % user_account)
     child.sendline(new_password)
 
-    child.expect("Verifying - %s@OCF.BERKELEY.EDU's Password:" % user_account)
+    child.expect("Verify password - %s@OCF.BERKELEY.EDU's Password:" % user_account)
     child.sendline(new_password)
 
     child.expect(pexpect.EOF)
