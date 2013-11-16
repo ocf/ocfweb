@@ -38,6 +38,7 @@ setup(
         "account_tools.calnet",
         "account_tools.chpass",
         "account_tools.cmds",
+        "account_tools.vhost",
         "account_tools.ocf",
         "account_tools.ocf.validators",
         "account_tools.recaptcha"
