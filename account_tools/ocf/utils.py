@@ -1,6 +1,7 @@
 import sys
 import ldap
 from django.conf import settings
+from paramiko import AuthenticationException, SSHClient
 
 def clean_user_account(user_account):
     """Return an string that could be an OCF user name"""
@@ -79,6 +80,17 @@ def user_exists(user_account):
                                ldap.SCOPE_SUBTREE, search_filter, attrs)
 
     return len(ldap_entries) == 1
+
+def password_matches(user_account, password):
+    """Returns True if the password matches the user account given"""
+    ssh = SSHClient()
+    ssh.load_host_keys(settings.CMDS_HOST_KEYS_FILENAME)
+
+    try:
+        ssh.connect(settings.CMDS_HOST, username=user_account, password=password)
+    except AuthenticationException, ae:
+        return False
+    return True
 
 def get_signat_xml(id, service, key):
     sys.path.append('/opt/ocf/packages/scripts/')
