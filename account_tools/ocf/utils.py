@@ -1,7 +1,7 @@
 import sys
 import ldap
+import pexpect
 from django.conf import settings
-from paramiko import AuthenticationException, SSHClient
 
 def clean_user_account(user_account):
     """Return an string that could be an OCF user name"""
@@ -83,14 +83,17 @@ def user_exists(user_account):
 
 def password_matches(user_account, password):
     """Returns True if the password matches the user account given"""
-    ssh = SSHClient()
-    ssh.load_host_keys(settings.CMDS_HOST_KEYS_FILENAME)
+    
+    cmd = "kinit --no-forwardable -l0"
+    child = pexpect.spawn(cmd, timeout=10)
 
-    try:
-        ssh.connect(settings.CMDS_HOST, username=user_account, password=password)
-    except AuthenticationException, ae:
-        return False
-    return True
+    child.expect("%s@OCF.BERKELEY.EDU's Password:" % user_account)
+    child.sendline(password)
+
+    child.expect(pexpect.EOF)
+    child.close()
+
+    return child.exitstatus == 0
 
 def get_signat_xml(id, service, key):
     sys.path.append('/opt/ocf/packages/scripts/')
