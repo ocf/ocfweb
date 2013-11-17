@@ -1,0 +1,26 @@
+{% extends "base.html" %}                                                                                                    
+{% block title %}OCF Login{% endblock %}
+
+{% block content %}
+
+{% if error %}
+<div class="login-error">
+{{ error|linebreaks }}
+</div>
+{% endif %}
+
+<style type="text/css">
+.login-error{
+    border:1px solid #850e0e;
+    background-color:#f55858;
+}
+</style>
+
+<p>The page you're attempting to access requires you to log in. Please enter your OCF username and password.</p>
+<form action="{% url login %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Login" />
+</form>
+
+{% endblock %}
