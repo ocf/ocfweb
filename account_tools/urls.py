@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     url(r'^calnet/login/?$', 'account_tools.calnet.views.login', name="calnet_login"),
     url(r'^calnet/logout/?$', 'account_tools.calnet.views.logout', name="calnet_logout"),
     url(r'^login$', 'account_tools.ocf.views.login', name="login"),
-    url(r'^logout$', 'account_tools.ocf.views.logout', name="logout")
+    url(r'^logout$', 'account_tools.ocf.views.logout', name="logout"),
+    url(r'^group_accounts_only$', 'account_tools.ocf.views.group_accounts_only', name='group_accounts_only')
 )
