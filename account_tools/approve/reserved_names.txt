@@ -36,7 +36,7 @@ jabber
 libuuid
 list
 logjam
-OBlp
+lp
 mail
 mailinx
 mailman
