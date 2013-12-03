@@ -2,6 +2,7 @@ abuse
 accounts
 admin
 announce
+approve
 arpwatch
 audit
 avahi
@@ -13,6 +14,7 @@ bod
 boinc
 clamav
 cricket
+create
 daemon
 dca
 debmirror
@@ -34,7 +36,7 @@ jabber
 libuuid
 list
 logjam
-lp
+OBlp
 mail
 mailinx
 mailman
