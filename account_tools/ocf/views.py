@@ -1,6 +1,6 @@
 from ocf.forms import LoginForm
 from django.forms import Form
-from ocf.utils import password_matches
+from ocf.utils import password_matches, user_is_group
 from ocf.decorators import login_required, https_required
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
@@ -46,6 +46,21 @@ def logout(request):
     return render_to_response("logout.html", {
             "user": request.session["ocf_user"]
     }, context_instance=RequestContext(request))
+
+@https_required
+@login_required
+def group_accounts_only(request):
+    user_account = request.session["ocf_user"]
+
+    if user_is_group(user_account):
+        # send back to commands instead of "redirect_back" to hopefully
+        # avoid an infinite redirect loop if somehow group_accounts_only
+        # becomes the return path
+        return HttpResponseRedirect(reverse("commands"))
+
+    return render_to_response("group_accounts_only.html", {
+        "user": request.session["ocf_user"]
+    })
 
 def redirect_back(request):
     """Return the user to the page they were trying to access, or the commands
