@@ -2,6 +2,7 @@
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+NO_HTTPS = True
 
 # calnet
 CALNET_LDAP = "<your value here>" # eg: "ldap://ldap.berkeley.edu"
