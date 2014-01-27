@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.safestring import mark_safe
 
 class VirtualHostForm(forms.Form):
     # group identity
@@ -16,7 +17,7 @@ class VirtualHostForm(forms.Form):
                already in use.")
 
     requested_why = forms.CharField(
-        widget=forms.Textarea,
+        widget=forms.Textarea(attrs={"cols": 60, "rows": 3}),
         label="Please explain why you would like to use the requested \
                subdomain instead of your current address on \
                ocf.berkeley.edu.",
@@ -25,25 +26,24 @@ class VirtualHostForm(forms.Form):
 
     # web site requirements
     website_complete = forms.BooleanField(
-        label="Our website is already complete and uploaded to the OCF \
-               server. The website has the final content, and is not \
-               just a placeholder.")
+        label="Our site is already complete and uploaded to the OCF \
+               server. The website is not just a placeholder.")
 
     website_hosted_by_ocf = forms.BooleanField(
-        label="Our website is substantially hosted by the OCF. We do \
-               not use frames, redirects, proxies, or other tricks to \
+        label="Our site is substantially hosted by the OCF. We \
+               don't use frames, redirects, proxies, or other tricks to \
                circumvent this policy.")
 
     website_ocf_banner = forms.BooleanField(
-        label="We have placed a \
+        label=mark_safe("We have placed a \
                 <a href=\"http://www.ocf.berkeley.edu/images/hosted-logos/\">\
-                Hosted by the OCF</a> banner image on our site.")
+                Hosted by the OCF</a> banner image on our site."))
 
     website_disclaimer_text = forms.BooleanField(
-        label="We have placed the \
+        label=mark_safe("We have placed the \
                <a href=\"http://wiki.ocf.berkeley.edu/services/vhost/#disclaimer\">\
                university-required disclaimer</a> on every page of our \
-               site.")
+               site."))
 
     website_updated_software = forms.BooleanField(
         label="Any software (such as WordPress, Joomla, Drupal, etc.) \
