@@ -3,10 +3,11 @@ from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
 from vhost.forms import VirtualHostForm
 from ocf.decorators import https_required, login_required, group_account_required
 from django.core.urlresolvers import reverse
-from paramiko import AuthenticationException, SSHClient
+import datetime, socket
 
 @login_required
 @group_account_required
@@ -16,6 +17,58 @@ def request_vhost(request):
 
     if request.method == "POST":
         form = VirtualHostForm(request.POST)
+
+        if form.is_valid():
+            # send email to hostmaster@ocf and redirect to success page
+            requested_subdomain = form.cleaned_data["requested_subdomain"]
+            requested_why = form.cleaned_data["requested_why"]
+            your_name = form.cleaned_data["your_name"]
+            your_email = form.cleaned_data["your_email"]
+            your_position = form.cleaned_data["your_position"]
+
+            full_domain = "{}.berkeley.edu".format(requested_subdomain)
+            ip_addr = get_client_ip(request)
+
+            try:
+                ip_reverse = socket.gethostbyaddr(ip_addr)[0]
+            except:
+                ip_reverse = "unknown"
+
+            subject = "Virtual Hosting Request: {} ({})".format(full_domain, user_account)
+            message = (
+                "Virtual Hosting Request:\n" + \
+                "  - OCF Account: {user_account}\n" + \
+                "  - OCF Account Title: {title}\n" + \
+                "  - Requested Subdomain: {full_domain}\n" + \
+                "\n" + \
+                "Request Reason:\n" + \
+                "{requested_why}\n\n" + \
+                "Requested by:\n" + \
+                "  - Name: {your_name}\n" + \
+                "  - Position: {your_position}\n" + \
+                "  - Email: {your_email}\n" + \
+                "  - IP Address: {ip_addr} ({ip_reverse})\n" + \
+                "  - User Agent: {user_agent}\n" + \
+                "\n\n" + \
+                "--------\n" + \
+                "Request submitted to account_tools on {now}.").format(
+                    user_account=user_account,
+                    title=attrs["cn"][0],
+                    full_domain=full_domain,
+                    requested_why=requested_why,
+                    your_name=your_name,
+                    your_position=your_position,
+                    your_email=your_email,
+                    ip_addr=ip_addr,
+                    ip_reverse=ip_reverse,
+                    user_agent=request.META.get("HTTP_USER_AGENT"),
+                    now=datetime.datetime.now().strftime("%A %B %e, %Y @ %I:%M:%S %p"))
+
+            from_addr = your_email
+            to = ["hostmaster@ocf.berkeley.edu"]
+
+            send_mail(subject, message, from_addr, to, fail_silently=False)
+            return lol
     else:
         form = VirtualHostForm(initial={"requested_subdomain": user_account})
 
@@ -28,20 +81,13 @@ def request_vhost(request):
         "group_url": group_url
     }, context_instance=RequestContext(request))
 
-    """
-    if request.method == "POST":
-        form = CommandForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+# http://stackoverflow.com/a/5976065/450164
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
 
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[-1].strip()
     else:
-        form = CommandForm()
-   
-    return render_to_response("request_vhost.html", {
-        "form": form,
-        "command": command_to_run,
-        "output": output,
-        "error": error,
-    })
-    """
+        ip = request.META.get('REMOTE_ADDR')
+
+    return ip
