@@ -52,22 +52,35 @@ However, in order to obtain a subdomain for your site, you must meet both univer
         <p><label for="group_acct">Group OCF Account:</label> <input type="text" acct="group_acct" id="group_acct" value="{{ user }}" disabled="disabled" /></p>
         <p><label for="group_url">Current OCF-Hosted Group Website:</label> <input type="text" url="group_url" id="group_url" value="{{ group_url }}" disabled="disabled" style="width: 400px;" /></p>
 
+		{{ form.group_no_vhost.errors }}
         <p>{{ form.group_no_vhost }} {{ form.group_no_vhost.label_tag }}</p>
 
 		<p><strong>Requested Subdomain</strong></p>
+		{{ form.requested_subdomain.errors }}
         <p>{{ form.requested_subdomain.label_tag }} {{ form.requested_subdomain }}.berkeley.edu</p>
+		{{ form.requested_subdomain_available.errors }}
         <p>{{ form.requested_subdomain_available }} {{ form.requested_subdomain_available.label_tag }}</p>
+		{{ form.requested_why.errors }}
         <p>{{ form.requested_why.label_tag }} {{ form.requested_why }}</p>
 
 		<p><strong>Web Site Requirements</strong></p>
+		{{ form.website_complete.errors }}
         <p>{{ form.website_complete }} {{ form.website_complete.label_tag }}</p>
+		{{ form.website_hosted_by_ocf.errors }}
         <p>{{ form.website_hosted_by_ocf }} {{ form.website_hosted_by_ocf.label_tag }}</p>
+		{{ form.website_ocf_banner.errors }}
         <p>{{ form.website_ocf_banner }} {{ form.website_ocf_banner.label_tag }}</p>
+		{{ form.website_disclaimer_text.errors }}
         <p>{{ form.website_disclaimer_text }} {{ form.website_disclaimer_text.label_tag }}</p>
+		{{ form.website_updated_software.errors }}
         <p>{{ form.website_updated_software }} {{ form.website_updated_software.label_tag }}</p>
 
 		<p><strong>Confirm Request</strong></p>
+		{{ form.your_name.errors }}
         <p>{{ form.your_name.label_tag }} {{ form.your_name }}</p>
+		{{ form.your_email.errors }}
+        <p>{{ form.your_email.label_tag }} {{ form.your_email }}</p>
+		{{ form.your_position.errors }}
         <p>{{ form.your_position.label_tag }} {{ form.your_position }} (e.g. Webmaster)</p>
 
 		<hr />

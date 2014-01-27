@@ -58,6 +58,11 @@ class VirtualHostForm(forms.Form):
         min_length=1,
         max_length=64)
 
+    your_email = forms.EmailField(
+        label="Your Email Address:",
+        min_length=1,
+        max_length=64)
+
     your_position = forms.CharField(
         label="Your Relationship to Group:",
         min_length=1,
