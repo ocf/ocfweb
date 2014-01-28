@@ -40,6 +40,7 @@ def request_vhost(request):
                 "  - OCF Account: {user_account}\n" + \
                 "  - OCF Account Title: {title}\n" + \
                 "  - Requested Subdomain: {full_domain}\n" + \
+                "  - Current URL: http://www.ocf.berkeley.edu/~{user_account}\n" + \
                 "\n" + \
                 "Request Reason:\n" + \
                 "{requested_why}\n\n" + \
@@ -51,7 +52,8 @@ def request_vhost(request):
                 "  - User Agent: {user_agent}\n" + \
                 "\n\n" + \
                 "--------\n" + \
-                "Request submitted to account_tools on {now}.").format(
+                "Request submitted to account_tools ({hostname}) on {now}.\n" + \
+                "{full_path}").format(
                     user_account=user_account,
                     title=attrs["cn"][0],
                     full_domain=full_domain,
@@ -62,10 +64,12 @@ def request_vhost(request):
                     ip_addr=ip_addr,
                     ip_reverse=ip_reverse,
                     user_agent=request.META.get("HTTP_USER_AGENT"),
-                    now=datetime.datetime.now().strftime("%A %B %e, %Y @ %I:%M:%S %p"))
+                    now=datetime.datetime.now().strftime("%A %B %e, %Y @ %I:%M:%S %p"),
+                    hostname=socket.gethostname(),
+                    full_path=request.build_absolute_uri())
 
             from_addr = your_email
-            to = ["hostmaster@ocf.berkeley.edu"]
+            to = ["ckuehl@ocf.berkeley.edu"]
 
             send_mail(subject, message, from_addr, to, fail_silently=False)
             return lol
