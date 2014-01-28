@@ -1,8 +1,7 @@
 from ocf.utils import user_attrs, user_is_group
 from django.conf import settings
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from vhost.forms import VirtualHostForm
 from ocf.decorators import https_required, login_required, group_account_required
@@ -70,12 +69,13 @@ def request_vhost(request):
                     full_path=request.build_absolute_uri())
 
             from_addr = email.utils.formataddr((your_name, your_email))
-            to = ["ckuehl@ocf.berkeley.edu"]
+            to = ["hostmaster@ocf.berkeley.edu"]
 
             try:
                 send_mail(subject, message, from_addr, to, fail_silently=False)
-                return lol
-            except:
+                return redirect(reverse("request_vhost_success"))
+            except Exception as ex:
+                print ex
                 print("Failed to send vhost request email!")
                 error = \
                     "We were unable to submit your virtual hosting request. Please " + \
@@ -92,6 +92,9 @@ def request_vhost(request):
         "group_url": group_url,
         "error": error
     }, context_instance=RequestContext(request))
+
+def request_vhost_success(request):
+    return render_to_response("successfully_submitted_vhost.html")
 
 # http://stackoverflow.com/a/5976065/450164
 def get_client_ip(request):
