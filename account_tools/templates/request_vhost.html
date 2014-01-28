@@ -45,7 +45,23 @@ However, in order to obtain a subdomain for your site, you must meet both univer
 	<form method="post">
         {% csrf_token %}
 
-		<p>You are currently logged in using the OCF account <strong>mygroup</strong>. If this is not the group you wish to request a subdomain for, please <a href="#">log out</a> and log back in.</p>
+        {% if error %}
+            <div class="email-error">{{ error }}</div>
+
+            <style type="text/css">
+                .email-error{
+                    line-height: 1.4em;
+                    font-size: 110%;
+                    margin: 10px;
+                    padding: 6px;
+
+                    border:1px solid #850e0e;
+                    background-color:#f55858;
+                }
+            </style>
+        {% endif %}
+
+        <p>You are currently logged in using the OCF account <strong>{{ user }}</strong>. If this is not the group you wish to request a subdomain for, please <a href="/logout">log out</a> and log back in.</p>
 
 		<p><strong>Group Identity</strong></p>
         <p><label for="group_name">Group Name:</label> <input type="text" name="group_name" id="group_name" value="{{ attrs.cn.0 }}" disabled="disabled" /></p>

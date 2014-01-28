@@ -7,13 +7,14 @@ from django.core.mail import send_mail
 from vhost.forms import VirtualHostForm
 from ocf.decorators import https_required, login_required, group_account_required
 from django.core.urlresolvers import reverse
-import datetime, socket
+import datetime, socket, email
 
 @login_required
 @group_account_required
 def request_vhost(request):
     user_account = request.session["ocf_user"]
     attrs = user_attrs(user_account)
+    error = None
 
     if request.method == "POST":
         form = VirtualHostForm(request.POST)
@@ -40,7 +41,7 @@ def request_vhost(request):
                 "  - OCF Account: {user_account}\n" + \
                 "  - OCF Account Title: {title}\n" + \
                 "  - Requested Subdomain: {full_domain}\n" + \
-                "  - Current URL: http://www.ocf.berkeley.edu/~{user_account}\n" + \
+                "  - Current URL: http://www.ocf.berkeley.edu/~{user_account}/\n" + \
                 "\n" + \
                 "Request Reason:\n" + \
                 "{requested_why}\n\n" + \
@@ -68,11 +69,17 @@ def request_vhost(request):
                     hostname=socket.gethostname(),
                     full_path=request.build_absolute_uri())
 
-            from_addr = your_email
+            from_addr = email.utils.formataddr((your_name, your_email))
             to = ["ckuehl@ocf.berkeley.edu"]
 
-            send_mail(subject, message, from_addr, to, fail_silently=False)
-            return lol
+            try:
+                send_mail(subject, message, from_addr, to, fail_silently=False)
+                return lol
+            except:
+                print("Failed to send vhost request email!")
+                error = \
+                    "We were unable to submit your virtual hosting request. Please " + \
+                    "try again or email us at hostmaster@ocf.berkeley.edu"
     else:
         form = VirtualHostForm(initial={"requested_subdomain": user_account})
 
@@ -82,7 +89,8 @@ def request_vhost(request):
         "form": form,
         "user": user_account,
         "attrs": attrs,
-        "group_url": group_url
+        "group_url": group_url,
+        "error": error
     }, context_instance=RequestContext(request))
 
 # http://stackoverflow.com/a/5976065/450164
