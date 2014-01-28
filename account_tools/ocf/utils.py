@@ -66,7 +66,8 @@ def user_is_group(user_account):
     """Returns True if an OCF user account exists and is a group account"""
 
     attrs = user_attrs(user_account)
-    return attrs and "oslGid" in attrs
+    if 'callinkOid' in attrs or 'oslGid' in attrs:
+        return True
 
 def user_exists(user_account):
     """Returns True if an OCF user exists with specified account name"""
