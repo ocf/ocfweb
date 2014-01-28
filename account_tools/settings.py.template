@@ -4,6 +4,11 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 NO_HTTPS = True
 
+# email
+EMAIL_HOST = "sandstorm"
+EMAIL_PORT = 25 
+EMAIL_USE_TLS = True
+
 # calnet
 CALNET_LDAP = "<your value here>" # eg: "ldap://ldap.berkeley.edu"
 CALNET_SERVER_URL = "<your value here>" # eg: "https://auth.berkeley.edu/cas/"
