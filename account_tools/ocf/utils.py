@@ -85,6 +85,7 @@ def password_matches(user_account, password):
     """Returns True if the password matches the user account given"""
 
     user_account = clean_user_account(user_account)
+    password = clean_password(password)
 
     cmd = "kinit --no-forwardable -l0 %s@OCF.BERKELEY.EDU" % user_account
     child = pexpect.spawn(cmd, timeout=10)
