@@ -27,21 +27,15 @@
 	}
 </style>
 
-<h2>Request Berkeley.edu Subdomain</h2>
+<h2>Request Berkeley.edu Virtual Hosting</h2>
 <p>
 	One of the benefits of hosting your student group's site with the OCF is that you have the option of using an address like "mygroup.berkeley.edu" to access your site.
-However, in order to obtain a subdomain for your site, you must meet both university policies regarding acceptable use of berkeley.edu subdomains, as well as OCF policies for virtual hosting.
+However, in order to obtain a berkeley.edu name for your site, you must meet both university policies regarding acceptable use of berkeley.edu names, as well as OCF policies for virtual hosting.
 </p>
-<p>Please start by reading the following documents in their entirety:</p>
-<ul>
-	<li><a href="http://wiki.ocf.berkeley.edu/services/vhost/">Virtual Hosting (OCF)</a></li>
-	<li><a href="https://security.berkeley.edu/policy/usepolicy.html">UC Berkeley Computer Use Policy</a></li>
-	<li><a href="https://security.berkeley.edu/policy/dns">UC Berkeley DNS Service Policy</a></li>
-</ul>
-<p>If you believe your group satisfies all requirements listed in the above documents, you may complete the form below to request for us to set up a virtual host for your account.</p>
+<p>Please start by reading the <a href="http://wiki.ocf.berkeley.edu/services/vhost/">OCF Virtual Hosting documentation</a>. If you believe your group satisfies all requirements listed, you may complete the form below to request for us to set up a virtual host for your account.</p>
 
 <div id="request_form">
-	<h3>Subdomain Request Form</h3>
+	<h3>Virtual Hosting Request Form</h3>
 	<form method="post">
         {% csrf_token %}
 
@@ -61,7 +55,7 @@ However, in order to obtain a subdomain for your site, you must meet both univer
             </style>
         {% endif %}
 
-        <p>You are currently logged in using the OCF account <strong>{{ user }}</strong>. If this is not the group you wish to request a subdomain for, please <a href="/logout">log out</a> and log back in.</p>
+        <p>You are currently logged in using the OCF account <strong>{{ user }}</strong>. If this is not the group you wish to request a virtual hosting for, please <a href="/logout">log out</a> and log back in.</p>
 
 		<p><strong>Group Identity</strong></p>
         <p><label for="group_name">Group Name:</label> <input type="text" name="group_name" id="group_name" value="{{ attrs.cn.0 }}" disabled="disabled" /></p>
@@ -71,7 +65,7 @@ However, in order to obtain a subdomain for your site, you must meet both univer
 		{{ form.group_no_vhost.errors }}
         <p>{{ form.group_no_vhost }} {{ form.group_no_vhost.label_tag }}</p>
 
-		<p><strong>Requested Subdomain</strong></p>
+		<p><strong>Requested Domain</strong></p>
 		{{ form.requested_subdomain.errors }}
         <p>{{ form.requested_subdomain.label_tag }} {{ form.requested_subdomain }}.berkeley.edu</p>
 		{{ form.requested_subdomain_available.errors }}
@@ -100,9 +94,9 @@ However, in order to obtain a subdomain for your site, you must meet both univer
         <p>{{ form.your_position.label_tag }} {{ form.your_position }} (e.g. Webmaster)</p>
 
 		<hr />
-		<p>All subdomain requests are subject to both university and OCF approval. Once we have verified that you are in compliance with OCF policies, we will submit a subdomain request to the university on your behalf using the information you provided.</p>
+		<p>All virtual hosting requests are subject to both university and OCF approval. Once we have verified that you are in compliance with OCF policies, we will submit a name request to the university on your behalf using the information you provided.</p>
 		<p>After double-checking that the information provided above is correct, click the button below to submit your request.</p>
-		<p><input type="submit" name="submit" value="Submit Subdomain Request" /></p>
+		<p><input type="submit" name="submit" value="Submit Virtual Hosting Request" /></p>
 	</form>
 </div>
 

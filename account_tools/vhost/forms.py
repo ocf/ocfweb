@@ -8,18 +8,18 @@ class VirtualHostForm(forms.Form):
 
     # requested subdomain
     requested_subdomain = forms.CharField(
-        label="Requested Subdomain:",
+        label="Requested Domain:",
         min_length=1,
         max_length=32)
 
     requested_subdomain_available = forms.BooleanField(
-        label="We have verified that the requested subdomain is not \
+        label="We have verified that the requested domain is not \
                already in use.")
 
     requested_why = forms.CharField(
         widget=forms.Textarea(attrs={"cols": 60, "rows": 3}),
         label="Please explain why you would like to use the requested \
-               subdomain instead of your current address on \
+               domain instead of your current address on \
                ocf.berkeley.edu.",
         min_length=1,
         max_length=1024)
@@ -42,8 +42,8 @@ class VirtualHostForm(forms.Form):
     website_disclaimer_text = forms.BooleanField(
         label=mark_safe("We have placed the \
                <a href=\"http://wiki.ocf.berkeley.edu/services/vhost/#disclaimer\">\
-               university-required disclaimer</a> on every page of our \
-               site."))
+               university-required disclaimer</a> on either the home page or \
+			   about page of our site."))
 
     website_updated_software = forms.BooleanField(
         label="Any software (such as WordPress, Joomla, Drupal, etc.) \
