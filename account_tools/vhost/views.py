@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from vhost.forms import VirtualHostForm
 from ocf.decorators import https_required, login_required, group_account_required
 from django.core.urlresolvers import reverse
+import dns.resolver as resolver
 import datetime, socket, email
 
 @login_required
@@ -19,7 +20,6 @@ def request_vhost(request):
         form = VirtualHostForm(request.POST)
 
         if form.is_valid():
-            # send email to hostmaster@ocf and redirect to success page
             requested_subdomain = form.cleaned_data["requested_subdomain"]
             requested_why = form.cleaned_data["requested_why"]
             your_name = form.cleaned_data["your_name"]
@@ -27,59 +27,69 @@ def request_vhost(request):
             your_position = form.cleaned_data["your_position"]
 
             full_domain = "{}.berkeley.edu".format(requested_subdomain)
-            ip_addr = get_client_ip(request)
 
-            try:
-                ip_reverse = socket.gethostbyaddr(ip_addr)[0]
-            except:
-                ip_reverse = "unknown"
+            # verify that the requested domain is available
+            if not domain_available(full_domain):
+                error = "The domain you requested is not available. Please select a different one."
+            
+            if True:
+                error = "noo"
 
-            subject = "Virtual Hosting Request: {} ({})".format(full_domain, user_account)
-            message = (
-                "Virtual Hosting Request:\n" + \
-                "  - OCF Account: {user_account}\n" + \
-                "  - OCF Account Title: {title}\n" + \
-                "  - Requested Subdomain: {full_domain}\n" + \
-                "  - Current URL: http://www.ocf.berkeley.edu/~{user_account}/\n" + \
-                "\n" + \
-                "Request Reason:\n" + \
-                "{requested_why}\n\n" + \
-                "Requested by:\n" + \
-                "  - Name: {your_name}\n" + \
-                "  - Position: {your_position}\n" + \
-                "  - Email: {your_email}\n" + \
-                "  - IP Address: {ip_addr} ({ip_reverse})\n" + \
-                "  - User Agent: {user_agent}\n" + \
-                "\n\n" + \
-                "--------\n" + \
-                "Request submitted to account_tools ({hostname}) on {now}.\n" + \
-                "{full_path}").format(
-                    user_account=user_account,
-                    title=attrs["cn"][0],
-                    full_domain=full_domain,
-                    requested_why=requested_why,
-                    your_name=your_name,
-                    your_position=your_position,
-                    your_email=your_email,
-                    ip_addr=ip_addr,
-                    ip_reverse=ip_reverse,
-                    user_agent=request.META.get("HTTP_USER_AGENT"),
-                    now=datetime.datetime.now().strftime("%A %B %e, %Y @ %I:%M:%S %p"),
-                    hostname=socket.gethostname(),
-                    full_path=request.build_absolute_uri())
+            if not error:
+                # send email to hostmaster@ocf and redirect to success page
+                ip_addr = get_client_ip(request)
 
-            from_addr = email.utils.formataddr((your_name, your_email))
-            to = ["hostmaster@ocf.berkeley.edu"]
+                try:
+                    ip_reverse = socket.gethostbyaddr(ip_addr)[0]
+                except:
+                    ip_reverse = "unknown"
 
-            try:
-                send_mail(subject, message, from_addr, to, fail_silently=False)
-                return redirect(reverse("request_vhost_success"))
-            except Exception as ex:
-                print ex
-                print("Failed to send vhost request email!")
-                error = \
-                    "We were unable to submit your virtual hosting request. Please " + \
-                    "try again or email us at hostmaster@ocf.berkeley.edu"
+                subject = "Virtual Hosting Request: {} ({})".format(full_domain, user_account)
+                message = (
+                    "Virtual Hosting Request:\n" + \
+                    "  - OCF Account: {user_account}\n" + \
+                    "  - OCF Account Title: {title}\n" + \
+                    "  - Requested Subdomain: {full_domain}\n" + \
+                    "  - Current URL: http://www.ocf.berkeley.edu/~{user_account}/\n" + \
+                    "\n" + \
+                    "Request Reason:\n" + \
+                    "{requested_why}\n\n" + \
+                    "Requested by:\n" + \
+                    "  - Name: {your_name}\n" + \
+                    "  - Position: {your_position}\n" + \
+                    "  - Email: {your_email}\n" + \
+                    "  - IP Address: {ip_addr} ({ip_reverse})\n" + \
+                    "  - User Agent: {user_agent}\n" + \
+                    "\n\n" + \
+                    "--------\n" + \
+                    "Request submitted to account_tools ({hostname}) on {now}.\n" + \
+                    "{full_path}").format(
+                        user_account=user_account,
+                        title=attrs["cn"][0],
+                        full_domain=full_domain,
+                        requested_why=requested_why,
+                        your_name=your_name,
+                        your_position=your_position,
+                        your_email=your_email,
+                        ip_addr=ip_addr,
+                        ip_reverse=ip_reverse,
+                        user_agent=request.META.get("HTTP_USER_AGENT"),
+                        now=datetime.datetime.now().strftime("%A %B %e, %Y @ %I:%M:%S %p"),
+                        hostname=socket.gethostname(),
+                        full_path=request.build_absolute_uri())
+
+                from_addr = email.utils.formataddr((your_name, your_email))
+                to = ["hostmaster@ocf.berkeley.edu"]
+
+                try:
+                    send_mail(subject, message, from_addr, to, fail_silently=False)
+                    return redirect(reverse("request_vhost_success"))
+                except Exception as ex:
+                    print ex
+                    print("Failed to send vhost request email!")
+                    error = \
+                        "We were unable to submit your virtual hosting request. Please " + \
+                        "try again or email us at hostmaster@ocf.berkeley.edu"
     else:
         form = VirtualHostForm(initial={"requested_subdomain": user_account})
 
@@ -106,3 +116,12 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
 
     return ip
+
+def domain_available(domain):
+    try:
+        resolver.query(domain, "NS")
+    except resolver.NXDOMAIN:
+        return True
+    except:
+        pass
+    return False
