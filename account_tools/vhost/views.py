@@ -7,7 +7,7 @@ from vhost.forms import VirtualHostForm
 from ocf.decorators import https_required, login_required, group_account_required
 from django.core.urlresolvers import reverse
 import dns.resolver as resolver
-import datetime, socket, email
+import datetime, socket, email, os.path
 
 @login_required
 @group_account_required
@@ -15,6 +15,9 @@ def request_vhost(request):
     user_account = request.session["ocf_user"]
     attrs = user_attrs(user_account)
     error = None
+
+    if has_vhost(user_account):
+        return render_to_response("already_have_vhost.html", {"user": user_account})
 
     if request.method == "POST":
         form = VirtualHostForm(request.POST)
@@ -125,3 +128,13 @@ def domain_available(domain):
     except:
         pass
     return False
+
+def has_vhost(user):
+    """Returns whether or not a virtual host is already configured for
+    the given user."""
+
+    check = (user, user + "!")
+    line_matches = lambda fields: len(fields) > 0 and fields[0] in check
+
+    with open(os.path.expanduser(settings.OCF_VHOST_DB)) as file:
+        return any(line_matches(line.split()) for line in file)

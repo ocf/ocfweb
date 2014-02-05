@@ -17,6 +17,7 @@ LOGOUT_URL = "<your value here>" # eg: "/account_tools/calnet/logout"
 
 # ocf
 OCF_LDAP = "<your value here>" # eg: "ldaps://ldap-master.ocf.berkeley.edu"
+OCF_VHOST_DB = "~staff/vhost/vhost.conf"
 
 # approve
 OCF_RESERVED_NAMES_LIST = "<your value here>" # eg: "/usr/local/www/django_projects/account_tools/approve/reserved_names.txt"
