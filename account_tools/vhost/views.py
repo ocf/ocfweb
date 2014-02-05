@@ -1,4 +1,4 @@
-from ocf.utils import user_attrs, user_is_group
+from ocf.utils import user_attrs, user_is_group, check_email
 from django.conf import settings
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
@@ -34,9 +34,9 @@ def request_vhost(request):
             # verify that the requested domain is available
             if not domain_available(full_domain):
                 error = "The domain you requested is not available. Please select a different one."
-            
-            if True:
-                error = "noo"
+
+            if not check_email(your_email):
+                error = "The email you entered doesn't appear to be valid. Please double-check it."
 
             if not error:
                 # send email to hostmaster@ocf and redirect to success page
