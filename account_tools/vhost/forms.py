@@ -2,19 +2,11 @@ from django import forms
 from django.utils.safestring import mark_safe
 
 class VirtualHostForm(forms.Form):
-    # group identity
-    group_no_vhost = forms.BooleanField(
-        label="We do not already have virtual hosting on our OCF account.")
-
     # requested subdomain
     requested_subdomain = forms.CharField(
         label="Requested Domain:",
         min_length=1,
         max_length=32)
-
-    requested_subdomain_available = forms.BooleanField(
-        label="We have verified that the requested domain is not \
-               already in use.")
 
     requested_why = forms.CharField(
         widget=forms.Textarea(attrs={"cols": 60, "rows": 3}),
@@ -43,7 +35,7 @@ class VirtualHostForm(forms.Form):
         label=mark_safe("We have placed the \
                <a href=\"http://wiki.ocf.berkeley.edu/services/vhost/#disclaimer\">\
                university-required disclaimer</a> on either the home page or \
-			   about page of our site."))
+               about page of our site."))
 
     website_updated_software = forms.BooleanField(
         label="Any software (such as WordPress, Joomla, Drupal, etc.) \
@@ -67,3 +59,10 @@ class VirtualHostForm(forms.Form):
         label="Your Relationship to Group:",
         min_length=1,
         max_length=64)
+
+    comments = forms.CharField(
+        widget=forms.Textarea(attrs={"cols": 60, "rows": 3}),
+        label="Please write any special requests and/or comments you have:",
+        required=False,
+        min_length=1,
+        max_length=1024)

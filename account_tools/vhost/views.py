@@ -25,6 +25,7 @@ def request_vhost(request):
         if form.is_valid():
             requested_subdomain = form.cleaned_data["requested_subdomain"]
             requested_why = form.cleaned_data["requested_why"]
+            comments = form.cleaned_data["comments"]
             your_name = form.cleaned_data["your_name"]
             your_email = form.cleaned_data["your_email"]
             your_position = form.cleaned_data["your_position"]
@@ -57,6 +58,8 @@ def request_vhost(request):
                     "\n" + \
                     "Request Reason:\n" + \
                     "{requested_why}\n\n" + \
+                    "Comments/Special Requests:\n" + \
+                    "{comments}\n\n" + \
                     "Requested by:\n" + \
                     "  - Name: {your_name}\n" + \
                     "  - Position: {your_position}\n" + \
@@ -71,6 +74,7 @@ def request_vhost(request):
                         title=attrs["cn"][0],
                         full_domain=full_domain,
                         requested_why=requested_why,
+                        comments=comments,
                         your_name=your_name,
                         your_position=your_position,
                         your_email=your_email,
