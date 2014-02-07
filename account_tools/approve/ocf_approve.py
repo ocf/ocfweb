@@ -5,16 +5,15 @@ import fcntl
 from difflib import SequenceMatcher
 from getpass import getuser, getpass
 from pwd import getpwnam
-from re import match
 from socket import gethostname
 from time import asctime
+from ocf.utils import check_email
 
 # Dependencies
 # pycrypto, cracklib, dnspython
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from cracklib import FascistCheck
-from dns import resolver
 
 class ApprovalError(Exception):
     pass
@@ -89,22 +88,8 @@ def _check_password(password, username):
             raise ApprovalError("Password problem: {0}".format(e))
 
 def _check_email(email):
-    """
-    Check the email with naive regex and check for the domain's MX record.
-    """
-    regex = r'^[a-zA-Z0-9._%\-+]+@([a-zA-Z0-9._%\-]+.[a-zA-Z]{2,6})$'
-
-    m = match(regex, email)
-    if m:
-        domain = m.group(1)
-        try:
-            # Check that the domain has MX record(s)
-            answer = resolver.query(domain, 'MX')
-            if answer:
-                return
-        except (resolver.NoAnswer, resolver.NXDOMAIN):
-            pass
-    raise ApprovalError("Invalid email address: {0}".format(email))
+    if not check_email(email):
+        raise ApprovalError("Invalid email address: {0}".format(email))
 
 def _encrypt_password(password):
     # Use an asymmetric encryption algorithm to allow the keys to be stored on disk

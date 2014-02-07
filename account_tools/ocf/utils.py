@@ -1,7 +1,9 @@
 import sys
 import ldap
 import pexpect
+from re import match
 from django.conf import settings
+from dns import resolver
 
 def clean_user_account(user_account):
     """Return an string that could be an OCF user name"""
@@ -115,3 +117,22 @@ def get_student_groups(calnet_uid):
 def get_student_group_name(group_id):
     group = get_signat_xml(group_id, 'StudentGroups', 'GroupID')
     return group[group_id]
+
+def check_email(email):
+    """
+    Check the email with naive regex and check for the domain's MX record.
+    Returns True for valid email, False for bad email.
+    """
+    regex = r'^[a-zA-Z0-9._%\-+]+@([a-zA-Z0-9._%\-]+.[a-zA-Z]{2,6})$'
+
+    m = match(regex, email)
+    if m:
+        domain = m.group(1)
+        try:
+            # Check that the domain has MX record(s)
+            answer = resolver.query(domain, 'MX')
+            if answer:
+                return True
+        except (resolver.NoAnswer, resolver.NXDOMAIN):
+            pass
+    return False
