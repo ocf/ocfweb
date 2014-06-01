@@ -1,4 +1,4 @@
-{% extends "base.html" %}                                                                                                    
+{% extends "base.html" %}
 {% block title %}Account Commands{% endblock %}
 
 {% block content %}
@@ -6,7 +6,7 @@
 SSH also allows you access to the full range of account management tools and other services we offer. 
 For more information, see <a href="http://wiki.ocf.berkeley.edu/">our documentation</a>.</p>
 
-<form action="{% url commands %}" method="post">
+<form action="{% url 'commands' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Run Command" />

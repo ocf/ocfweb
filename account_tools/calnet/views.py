@@ -1,4 +1,4 @@
-from django.http import get_host, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render_to_response
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
@@ -9,7 +9,7 @@ from urllib import urlencode
 
 def _service_url(request, next_page):
     protocol = ('http://', 'https://')[request.is_secure()]
-    host = get_host(request)
+    host = request.get_host()
     service = protocol + host + request.path
     url = service
     if next_page:
@@ -20,7 +20,7 @@ def _service_url(request, next_page):
 def _redirect_url(request):
     """ Redirects to referring page """
     next_page = request.META.get('HTTP_REFERER')
-    prefix = ('http://', 'https://')[request.is_secure()] + get_host(request)
+    prefix = ('http://', 'https://')[request.is_secure()] + request.get_host()
     if next_page and next_page.startswith(prefix):
         next_page = next_page[len(prefix):]
     return next_page
@@ -36,7 +36,7 @@ def _logout_url(request, next_page=None):
     url = urljoin(settings.CALNET_SERVER_URL, 'logout')
     if next_page:
         protocol = ('http://', 'https://')[request.is_secure()]
-        host = get_host(request)
+        host = request.get_host()
         url += '?' + urlencode({'url': protocol + host + next_page})
     return url
 

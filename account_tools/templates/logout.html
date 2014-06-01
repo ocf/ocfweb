@@ -1,10 +1,10 @@
-{% extends "base.html" %}                                                                                                    
+{% extends "base.html" %}
 {% block title %}OCF Logout{% endblock %}
 
 {% block content %}
 
 <p>You are currently logged in as {{ user }}.</p>
-<form action="{% url logout %}" method="post">
+<form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Logout" />

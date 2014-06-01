@@ -7,11 +7,11 @@
 
 {{ form.non_field_errors }}
 
-<p>This form is <strong><strong>ONLY</strong></strong> for the creation of group accounts. If you want to create an individual account, please visit the <a href="{% url request_account %}">individual account request page</a> to create your account.</p>
+<p>This form is <strong><strong>ONLY</strong></strong> for the creation of group accounts. If you want to create an individual account, please visit the <a href="{% url 'request_account' %}">individual account request page</a> to create your account.</p>
 
 <hr />
 
-<form method="post" action="{% url request_group_account %}" id="request-account-form">{% csrf_token %}
+<form method="post" action="{% url 'request_group_account' %}" id="request-account-form">{% csrf_token %}
 
     <label for="fullname">Responsible Student's Name:</label>
     <div id="fullname" style="font-weight: bold">{{ real_name }}</div><br />
@@ -92,5 +92,5 @@
 <input type="submit" value="Request Account" id="request-account-form-submit" />
 </form>
 
-<p>Click <a href="{% url calnet_logout %}">here</a> to log out of CalNet.</p>
+<p>Click <a href="{% url 'calnet_logout' %}">here</a> to log out of CalNet.</p>
 {% endblock %}
