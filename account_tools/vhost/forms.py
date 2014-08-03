@@ -34,8 +34,7 @@ class VirtualHostForm(forms.Form):
     website_disclaimer_text = forms.BooleanField(
         label=mark_safe("We have placed the \
                <a href=\"http://wiki.ocf.berkeley.edu/services/vhost/#disclaimer\">\
-               university-required disclaimer</a> on either the home page or \
-               about page of our site."))
+               university-required disclaimer</a> on each page of our site."))
 
     website_updated_software = forms.BooleanField(
         label="Any software (such as WordPress, Joomla, Drupal, etc.) \
