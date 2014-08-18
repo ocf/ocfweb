@@ -1,7 +1,9 @@
-import pexpect
-import os
 import base64
+import os
+import pexpect
+import socket
 import time
+
 from django.conf import settings
 from ocf.utils import clean_user_account, clean_password
 
@@ -11,13 +13,13 @@ def _kadmin_command(user_account):
     return "%(kadmin_location)s -K %(kerberos_keytab)s -p %(kerberos_principal)s cpw %(user_account)s" % {
             "kadmin_location": settings.KADMIN_LOCATION,
             "kerberos_keytab": settings.KRB_KEYTAB,
-            "kerberos_principal": settings.KRB_PRINCIPAL,
+            "kerberos_principal": "chpass/" + socket.getfqdn(),
             "user_account": user_account
         }
 
 
 def change_krb_password(user_account, new_password):
-    """"Change a user's Kerberos password.
+    """Change a user's Kerberos password.
 
     Runs a kadmin command in a pexpect session to change a user's password.
 
