@@ -1,6 +1,9 @@
 from django.conf.urls import url
+from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 
 urlpatterns = [
+    url(r'^/?$', lambda _: redirect(reverse("change_password"))),
     url(r'^change_password/?$', 'account_tools.chpass.views.change_password', name="change_password"),
     url(r'^commands/?$', 'account_tools.cmds.views.commands', name="commands"),
     url(r'^request_account/?$', 'account_tools.approve.views.request_account', name="request_account"),
