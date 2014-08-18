@@ -7,7 +7,6 @@ urlpatterns = [
     url(r'^change-password$', 'account_tools.chpass.views.change_password', name="change_password"),
     url(r'^commands$', 'account_tools.cmds.views.commands', name="commands"),
     url(r'^request-account$', 'account_tools.approve.views.request_account', name="request_account"),
-    url(r'^request-group-account$', 'account_tools.approve.views.request_group_account', name="request_group_account"),
     url(r'^request-vhost$', 'account_tools.vhost.views.request_vhost', name="request_vhost"),
     url(r'^request-vhost/success$', 'account_tools.vhost.views.request_vhost_success', name="request_vhost_success"),
     url(r'^calnet/login$', 'account_tools.calnet.views.login', name="calnet_login"),

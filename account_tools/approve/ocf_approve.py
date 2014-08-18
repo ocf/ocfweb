@@ -22,10 +22,6 @@ def _check_real_name(real_name):
     if not all([i in " -.'" or i.isalpha() for i in real_name]):
         raise ApprovalError("Invalid characters in name: {0}".format(real_name))
 
-def _check_real_group_name(real_name):
-    if not all([i in " -" or i.isalnum() for i in real_name]):
-        raise ApprovalError("Invalid characters in name: {0}".format(real_name))
-
 def _check_university_uid(university_uid):
     try:
         int(university_uid)
@@ -103,47 +99,28 @@ def _encrypt_password(password):
     RSA_CIPHER = PKCS1_OAEP.new(key)
     return RSA_CIPHER.encrypt(password)
 
-def approve_user(real_name, calnet_uid, account_name, email, password,
-                 forward = True):
+def approve_user(real_name, calnet_uid, account_name, email, password):
     _check_real_name(real_name)
     _check_university_uid(calnet_uid)
     _check_username(account_name)
     _check_email(email)
     _check_password(password, real_name)
 
-    _approve(calnet_uid, email, account_name, password,
-             forward = forward, real_name = real_name)
+    _approve(calnet_uid, email, account_name, password, real_name = real_name)
 
-def approve_group(group_name, responsible, callink_oid, email, account_name, password,
-                  forward = True):
-    _check_real_group_name(group_name)
-    _check_real_name(responsible)
-    _check_university_uid(callink_oid)
-    _check_username(account_name)
-    _check_email(email)
-    _check_password(password, group_name)
+def _approve(university_uid, email, account_name, password, real_name = None,
+        responsible = None):
 
-    _approve(callink_oid, email, account_name, password, forward = forward,
-             group_name = group_name, responsible = responsible)
-
-def _approve(university_uid, email, account_name, password, forward = True,
-             real_name = None, group_name = None, responsible = None):
-    assert (real_name is None) != (group_name is None)
-
-    if group_name:
-        group = 1
-        real_name = "(null)"
-    else:
-        group_name = "(null)"
-        group = 0
-        responsible = "(null)"
+    group_name = "(null)"
+    group = 0
+    responsible = "(null)"
 
     # Encrypt the password and base64 encode it
     password = base64.b64encode(_encrypt_password(password.encode()))
 
     # Write to the list of users to be approved
     sections = [account_name, real_name, group_name,
-                email, int(forward), group, password,
+                email, 0, group, password,
                 university_uid, responsible]
 
     with open(settings.APPROVE_FILE, "a") as f:
@@ -152,7 +129,7 @@ def _approve(university_uid, email, account_name, password, forward = True,
         fcntl.flock(f, fcntl.LOCK_UN)
 
     # Write to the log
-    name = group_name if group else real_name
+    name = real_name
 
     sections = [account_name, name, university_uid,
                 email, getuser(), gethostname(),

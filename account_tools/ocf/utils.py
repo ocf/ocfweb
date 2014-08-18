@@ -43,13 +43,13 @@ def users_by_calnet_uid(calnet_uid):
 def user_attrs(user_account):
     """Returns a dictionary of LDAP attributes for a given LDAP UID in
     the form:
-        
+
     {
       'uid': ['somebody'],
       'objectClass': ['ocfAccount', 'account', 'posixAccount'],
       'loginShell': ['/bin/zsh']
     }
-    
+
     Returns None if no account exists with uid=user_account.
     """
 
@@ -100,23 +100,6 @@ def password_matches(user_account, password):
     child.close()
 
     return child.exitstatus == 0
-
-def get_signat_xml(id, service, key):
-    sys.path.append('/opt/ocf/packages/scripts/')
-    import signat
-
-    root = signat.get_osl(id, service, key)
-    groups = signat.parse_osl(root)
-    return groups
-
-def get_student_groups(calnet_uid):
-    groups = get_signat_xml(calnet_uid, 'SignatoriesActiveStudentGroups', 'UID')
-    tuples = sorted(groups.items(), key=lambda tuple: tuple[1])
-    return tuples
-
-def get_student_group_name(group_id):
-    group = get_signat_xml(group_id, 'StudentGroups', 'GroupID')
-    return group[group_id]
 
 def check_email(email):
     """

@@ -30,9 +30,6 @@ class ApproveForm(forms.Form):
             validators=[validate_email_host_exists])
     verify_contact_email = forms.EmailField(label="Confirm Contact E-Mail",
             validators=[validate_email_host_exists])
-    forward_email = forms.BooleanField(required=False,
-        label="Forward @ocf E-Mail to Contact E-Mail",
-        initial=True)
 
     disclaimer_agreement = forms.BooleanField(
             label="You have read, understood, and agreed to our policies.",
