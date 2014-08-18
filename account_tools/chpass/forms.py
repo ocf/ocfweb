@@ -1,5 +1,4 @@
 from django import forms
-from recaptcha.fields import ReCaptchaField
 from django.conf import settings
 from ocf.validators.password import validate_crack_strength, \
     validate_printable_ascii
@@ -16,8 +15,7 @@ class ChpassForm(forms.Form):
         self.fields.keyOrder = [
             "ocf_account",
             "new_password",
-            "confirm_password",
-            "recaptcha"
+            "confirm_password"
         ]
 
     new_password = forms.CharField(widget=forms.PasswordInput,
@@ -29,7 +27,6 @@ class ChpassForm(forms.Form):
         label="Confirm Password",
         min_length=8,
         max_length=64)
-    recaptcha = ReCaptchaField(label="ReCaptcha")
 
     def clean_ocf_account(self):
         data = self.cleaned_data["ocf_account"]
