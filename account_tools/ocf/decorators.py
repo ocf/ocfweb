@@ -1,7 +1,9 @@
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
-from django.core.urlresolvers import reverse
-from ocf.utils import user_is_group
 from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.shortcuts import render
+
+from ocf.utils import user_is_group
 
 def login_required(function):
     def _decorator(request, *args, **kwargs):
@@ -18,6 +20,8 @@ def group_account_required(function):
         if user_is_group(request.session["ocf_user"]):
             return function(request, *args, **kwargs)
 
-        return HttpResponseRedirect(reverse("group_accounts_only"))
+        return render(request, "group_accounts_only.html", {
+            "user": request.session["ocf_user"]
+        }, status=403)
 
     return _decorator
