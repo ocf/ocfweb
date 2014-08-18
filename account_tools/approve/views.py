@@ -4,13 +4,11 @@ from django.template import RequestContext
 from django.conf import settings
 from approve.forms import ApproveForm, GroupApproveForm
 from approve.ocf_approve import approve_user, approve_group, ApprovalError
-from ocf.decorators import https_required
 from ocf.utils import users_by_calnet_uid, get_student_groups, get_student_group_name
 from calnet.decorators import login_required as calnet_required
 from calnet.utils import name_by_calnet_uid
 
 
-@https_required
 @calnet_required
 def request_account(request):
     calnet_uid = request.session["calnet_uid"]
@@ -49,7 +47,6 @@ def request_account(request):
         "real_name": real_name
         }, context_instance=RequestContext(request))
 
-@https_required
 @calnet_required
 def request_group_account(request):
     calnet_uid = request.session["calnet_uid"]

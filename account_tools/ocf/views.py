@@ -1,13 +1,12 @@
 from ocf.forms import LoginForm
 from django.forms import Form
 from ocf.utils import password_matches, user_is_group
-from ocf.decorators import login_required, https_required
+from ocf.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 
-@https_required
 def login(request):
     error = None
 
@@ -31,7 +30,6 @@ def login(request):
         "error": error
     }, context_instance=RequestContext(request))
 
-@https_required
 @login_required
 def logout(request):
     if request.method == "POST":
@@ -47,7 +45,6 @@ def logout(request):
             "user": request.session["ocf_user"]
     }, context_instance=RequestContext(request))
 
-@https_required
 @login_required
 def group_accounts_only(request):
     user_account = request.session["ocf_user"]

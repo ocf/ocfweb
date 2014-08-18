@@ -2,10 +2,8 @@ from cmds.forms import CommandForm
 from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from ocf.decorators import https_required
 from paramiko import AuthenticationException, SSHClient
 
-@https_required
 def commands(request):
     command_to_run = ''
     output = ''
@@ -24,7 +22,7 @@ def commands(request):
                 ssh.connect(settings.CMDS_HOST, username=username, password=password)
             except AuthenticationException, ae:
                 error = "Authentication failed. Did you type the wrong username or password?"
-                
+
             if not error:
                 ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run)
                 output = ssh_stdout.read()

@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.core.mail import send_mail
 from vhost.forms import VirtualHostForm
-from ocf.decorators import https_required, login_required, group_account_required
+from ocf.decorators import login_required, group_account_required
 from django.core.urlresolvers import reverse
 import dns.resolver as resolver
 import datetime, socket, email, os.path

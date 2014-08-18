@@ -6,12 +6,10 @@ from django.template import RequestContext
 from django.conf import settings
 from chpass.forms import ChpassForm
 from chpass.utils import change_krb_password
-from ocf.decorators import https_required
 from ocf.utils import users_by_calnet_uid
 from calnet.decorators import login_required as calnet_required
 
 
-@https_required
 @calnet_required
 def change_password(request):
     calnet_uid = request.session["calnet_uid"]
