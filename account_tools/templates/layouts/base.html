@@ -40,13 +40,13 @@
 </head>
 
 <body>
-{% ssi "/var/www/header.html" %}
+{% include "layouts/base/header.html" %}
 <div id="mothercontainer">
 <div id="container">
 {% block content %}
 <h1>Error</h1>
 {% endblock %}
 </div></div> <!-- end div container and mothercontainer -->
-{% ssi "/var/www/footer.html" %}
+{% include "layouts/base/footer.html" %}
 </body>
 </html>
