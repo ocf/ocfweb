@@ -1,13 +1,19 @@
-from ocf.utils import user_attrs, user_is_group, check_email
+import datetime
+import dns.resolver as resolver
+import email
+import os.path
+import socket
+
 from django.conf import settings
+from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
-from django.core.mail import send_mail
-from vhost.forms import VirtualHostForm
+import requests
+
 from ocf.decorators import login_required, group_account_required
-from django.core.urlresolvers import reverse
-import dns.resolver as resolver
-import datetime, socket, email, os.path
+from ocf.utils import user_attrs, user_is_group, check_email
+from vhost.forms import VirtualHostForm
 
 @login_required
 @group_account_required
@@ -140,5 +146,5 @@ def has_vhost(user):
     check = (user, user + "!")
     line_matches = lambda fields: len(fields) > 0 and fields[0] in check
 
-    with open(os.path.expanduser(settings.OCF_VHOST_DB)) as file:
-        return any(line_matches(line.split()) for line in file)
+    vhosts = requests.get(settings.OCF_VHOST_DB).text.split("\n")
+    return any(line_matches(line.split()) for line in vhosts)

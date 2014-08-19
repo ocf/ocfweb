@@ -3,3 +3,4 @@ cracklib==2.8.19
 paramiko==1.14.0
 pexpect==3.3
 python-ldap==2.4.15
+requests==2.3.0
