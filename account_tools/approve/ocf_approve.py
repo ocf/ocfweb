@@ -2,6 +2,7 @@ from django.conf import settings
 import os
 import base64
 import fcntl
+import paramiko
 from difflib import SequenceMatcher
 from getpass import getuser, getpass
 from pwd import getpwnam
@@ -139,3 +140,13 @@ def _approve(university_uid, email, account_name, password, real_name = None,
         fcntl.flock(f, fcntl.LOCK_EX)
         f.write(":".join([str(i) for i in sections]) + "\n")
         fcntl.flock(f, fcntl.LOCK_UN)
+
+    _trigger_create()
+
+def _trigger_create():
+    """Attempt to trigger a create run."""
+    key = paramiko.RSAKey.from_private_key_file(settings.ADMIN_SSH_KEY)
+    ssh = paramiko.SSHClient()
+    ssh.load_host_keys(settings.CMDS_HOST_KEYS_FILENAME)
+    ssh.connect(hostname='admin.ocf.berkeley.edu', username='atool', pkey=key)
+    ssh.exec_command('/srv/atool/bin/create')

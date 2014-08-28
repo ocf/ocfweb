@@ -5,6 +5,46 @@
 {% block content %}
 <h2>Request an OCF Account</h2>
 
+<style>
+.welcome-banner {
+}
+
+.welcome-banner > a {
+    display: block;
+    padding: 10px 30px;
+    margin-bottom: 15px;
+    background-color: #ffffcc;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+
+.welcome-banner > a:hover {
+    background-color: #FFFFDF !important;
+}
+
+.welcome-banner h1 {
+    margin: 0;
+    padding: 0;
+    color: #111 !important;
+    font-size: 32px !important;
+    margin-bottom: 5px !important;
+    font-weight: bold !important;
+}
+
+.welcome-banner > a > p {
+    color: #333 !important;
+    font-size: 14px !important;
+    line-height: 1.2em;
+    margin-bottom: 15px !important;
+}
+
+.welcome-banner *:hover, .welcome-banner:hover * {
+    text-decoration: none;
+}
+</style>
+<h2>Welcome to the OCF</h2>
+
 {{ form.non_field_errors }}
 
 <p>This form is <strong><strong>ONLY</strong></strong> for requesting individual accounts. If you want to request an account for a student group, please visit a staff member in the OCF lab during <a href="http://www.ocf.berkeley.edu/staff_hours">staff hours</a>.</p>
@@ -84,6 +124,16 @@
 
 <input type="submit" value="Request Account" id="request-account-form-submit" />
 </form>
+
+<div class="welcome-banner" style="margin-top: 20px;">
+    <a href="http://hello.ocf.berkeley.edu/">
+        <p>OCF &hearts; GNU/Linux, Python, Ruby, Puppet, <br />Free &amp; Open-Source Software</p>
+        <p>
+            Does this sound like you?</br>
+            Learn about joining our staff team!
+        </p>
+    </a>
+</div> 
 
 <p>Click <a href="{% url 'calnet_logout' %}">here</a> to log out of CalNet.</p>
 {% endblock %}
