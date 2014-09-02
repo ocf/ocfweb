@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
 from approve.forms import ApproveForm
-from approve.ocf_approve import approve_user, ApprovalError
+from approve.ocf_approve import approve_user, ApprovalError, filter_real_name
 from ocf.utils import users_by_calnet_uid
 from calnet.decorators import login_required as calnet_required
 from calnet.utils import name_by_calnet_uid
@@ -14,7 +14,7 @@ def request_account(request):
     calnet_uid = request.session["calnet_uid"]
 
     existing_accounts = users_by_calnet_uid(calnet_uid)
-    real_name = name_by_calnet_uid(calnet_uid)
+    real_name = filter_real_name(name_by_calnet_uid(calnet_uid))
 
     if calnet_uid not in settings.TESTER_CALNET_UIDS and len(existing_accounts):
         return render_to_response("already_requested_account.html", {

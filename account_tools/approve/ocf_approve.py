@@ -19,8 +19,14 @@ from cracklib import FascistCheck
 class ApprovalError(Exception):
     pass
 
+def filter_real_name(name):
+    return filter(_valid_real_name_char, name)
+
+def _valid_real_name_char(char):
+    return char in " -.'" or char.isalpha()
+
 def _check_real_name(real_name):
-    if not all([i in " -.'" or i.isalpha() for i in real_name]):
+    if not all(map(_valid_real_name_char, real_name)):
         raise ApprovalError("Invalid characters in name: {0}".format(real_name))
 
 def _check_university_uid(university_uid):
