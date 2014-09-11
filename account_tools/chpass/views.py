@@ -55,5 +55,6 @@ def change_password(request):
 
     return render_to_response("change_password.html", {
         "form": form,
+        "calnet_uid": calnet_uid,
         "backend_failures": backend_failures
     }, context_instance=RequestContext(request))
