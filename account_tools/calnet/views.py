@@ -1,10 +1,10 @@
+from urllib.parse import urlencode, urljoin
+
+import ocflib.calnet.utils as calnet
+import ocflib.constants as constants
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render_to_response
-from django.conf import settings
-from django.contrib.auth import REDIRECT_FIELD_NAME
-from calnet.utils import verify_ticket
-from urlparse import urljoin
-from urllib import urlencode
 
 
 def _service_url(request, next_page):
@@ -14,6 +14,8 @@ def _service_url(request, next_page):
     url = service
     if next_page:
         url += "?" + urlencode({REDIRECT_FIELD_NAME: next_page})
+
+    print(url)
     return url
 
 
@@ -29,11 +31,11 @@ def _redirect_url(request):
 def _login_url(service):
         params = {"service": service,
                     "renew": "true"}
-        return "%s?%s" % (urljoin(settings.CALNET_SERVER_URL, "login"), urlencode(params))
+        return "%s?%s" % (urljoin(constants.CAS_URL, "login"), urlencode(params))
 
 
 def _logout_url(request, next_page=None):
-    url = urljoin(settings.CALNET_SERVER_URL, 'logout')
+    url = urljoin(constants.CAS_URL, 'logout')
     if next_page:
         protocol = ('http://', 'https://')[request.is_secure()]
         host = request.get_host()
@@ -57,7 +59,7 @@ def login(request, next_page=None):
     ticket = request.GET.get("ticket")
     service = _service_url(request, next_page)
     if ticket:
-        verified_uid = verify_ticket(ticket, service)
+        verified_uid = calnet.verify_ticket(ticket, service)
         if verified_uid:
             request.session["calnet_uid"] = verified_uid
         if "calnet_uid" in request.session and request.session["calnet_uid"]:
@@ -73,9 +75,6 @@ def login(request, next_page=None):
 def logout(request, next_page=None):
     if "calnet_uid" in request.session:
         del request.session["calnet_uid"]
-    if not next_page:
-        next_page = getattr(settings, "CALNET_AFTER_LOGOUT_URL", None)
-
     if not next_page:
         next_page = _redirect_url(request)
     return HttpResponseRedirect(_logout_url(request, next_page))

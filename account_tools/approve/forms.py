@@ -1,11 +1,8 @@
+import ocflib.account.validators as validators
+import ocflib.misc.validators
 from django import forms
-from approve.validators import validate_email_host_exists, \
-    validate_username_not_reserved
-from ocf.utils import clean_password
-from ocf.validators.password import validate_crack_strength, \
-    validate_printable_ascii
-from ocf.validators.user import validate_unused_name, \
-    validate_name_characters
+
+from account_tools.utils import wrap_validator
 
 
 class ApproveForm(forms.Form):
@@ -13,23 +10,25 @@ class ApproveForm(forms.Form):
         super(ApproveForm, self).__init__(*args, **kwargs)
 
     ocf_login_name = forms.CharField(label="OCF Login Name",
-        validators=[validate_unused_name, validate_name_characters, \
-                    validate_username_not_reserved],
+        validators=[wrap_validator(validators.validate_username)],
         min_length=3,
         max_length=8)
+
+    # password is validated in clean since we need the username as part of the
+    # password validation (to compare similarity)
     password = forms.CharField(widget=forms.PasswordInput,
         label="New Password",
-        validators=[validate_crack_strength, validate_printable_ascii],
         min_length=8,
         max_length=64)
+
     verify_password = forms.CharField(widget=forms.PasswordInput,
         label="Confirm Password",
         min_length=8,
         max_length=64)
     contact_email = forms.EmailField(label="Contact E-Mail",
-            validators=[validate_email_host_exists])
-    verify_contact_email = forms.EmailField(label="Confirm Contact E-Mail",
-            validators=[validate_email_host_exists])
+        validators=[wrap_validator(ocflib.misc.validators.valid_email)])
+
+    verify_contact_email = forms.EmailField(label="Confirm Contact E-Mail")
 
     disclaimer_agreement = forms.BooleanField(
             label="You have read, understood, and agreed to our policies.",
@@ -37,13 +36,9 @@ class ApproveForm(forms.Form):
                 "required": "You did not agree to our policies."
                 })
 
-    def clean_password(self):
-        data = self.cleaned_data.get("password")
-        return clean_password(data)
-
     def clean_verify_password(self):
         password = self.cleaned_data.get("password")
-        verify_password = clean_password(self.cleaned_data.get("verify_password"))
+        verify_password = self.cleaned_data.get("verify_password")
 
         if password and verify_password:
             if password != verify_password:
@@ -59,13 +54,12 @@ class ApproveForm(forms.Form):
                 raise forms.ValidationError("Your emails don't match.")
         return verify_contact_email
 
-class GroupApproveForm(ApproveForm):
-    def __init__(self, *args, **kwargs):
-        calnet_uid = kwargs.pop('calnet_uid')
-        student_groups = kwargs.pop('student_groups')
-        super(ApproveForm, self).__init__(*args, **kwargs)
+    def clean(self):
+        cleaned_data = super(ApproveForm, self).clean()
 
-        self.fields['student_groups'] = forms.ChoiceField(
-            choices=student_groups,
-            label="Student Groups",
-            required=True)
+        # validate password (requires username to check similarity)
+        username = cleaned_data.get('username')
+        password = cleaned_data.get('password')
+
+        if username and password:
+            wrap_validator(validators.validate_password)(username, password)

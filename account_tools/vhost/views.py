@@ -4,25 +4,27 @@ import email
 import os.path
 import socket
 
+import ocflib.account.search as search
+import ocflib.account.utils as account
+import ocflib.misc.validators as validators
 from django.conf import settings
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
-import requests
 
 from ocf.decorators import login_required, group_account_required
-from ocf.utils import user_attrs, user_is_group, check_email
 from vhost.forms import VirtualHostForm
+
 
 @login_required
 @group_account_required
 def request_vhost(request):
     user_account = request.session["ocf_user"]
-    attrs = user_attrs(user_account)
+    attrs = search.user_attrs(user_account)
     error = None
 
-    if has_vhost(user_account):
+    if account.has_vhost(user_account):
         return render_to_response("already_have_vhost.html", {"user": user_account})
 
     if request.method == "POST":
@@ -39,10 +41,10 @@ def request_vhost(request):
             full_domain = "{}.berkeley.edu".format(requested_subdomain)
 
             # verify that the requested domain is available
-            if not domain_available(full_domain):
+            if validators.host_exists(full_domain):
                 error = "The domain you requested is not available. Please select a different one."
 
-            if not check_email(your_email):
+            if not validators.valid_email(your_email):
                 error = "The email you entered doesn't appear to be valid. Please double-check it."
 
             if not error:
@@ -98,7 +100,7 @@ def request_vhost(request):
                     send_mail(subject, message, from_addr, to, fail_silently=False)
                     return redirect(reverse("request_vhost_success"))
                 except Exception as ex:
-                    print ex
+                    print(ex)
                     print("Failed to send vhost request email!")
                     error = \
                         "We were unable to submit your virtual hosting request. Please " + \
@@ -129,22 +131,3 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
 
     return ip
-
-def domain_available(domain):
-    try:
-        resolver.query(domain, "NS")
-    except resolver.NXDOMAIN:
-        return True
-    except:
-        pass
-    return False
-
-def has_vhost(user):
-    """Returns whether or not a virtual host is already configured for
-    the given user."""
-
-    check = (user, user + "!")
-    line_matches = lambda fields: len(fields) > 0 and fields[0] in check
-
-    vhosts = requests.get(settings.OCF_VHOST_DB).text.split("\n")
-    return any(line_matches(line.split()) for line in vhosts)

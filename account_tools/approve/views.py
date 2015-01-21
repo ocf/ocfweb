@@ -1,22 +1,23 @@
+import ocflib.account.manage as manage
+import ocflib.account.search as search
+import ocflib.calnet.utils as calnet
 from django.forms.forms import NON_FIELD_ERRORS
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
+
 from approve.forms import ApproveForm
-from approve.ocf_approve import approve_user, ApprovalError, filter_real_name
-from ocf.utils import users_by_calnet_uid
 from calnet.decorators import login_required as calnet_required
-from calnet.utils import name_by_calnet_uid
 
 
 @calnet_required
 def request_account(request):
     calnet_uid = request.session["calnet_uid"]
 
-    existing_accounts = users_by_calnet_uid(calnet_uid)
-    real_name = filter_real_name(name_by_calnet_uid(calnet_uid))
+    existing_accounts = search.users_by_calnet_uid(calnet_uid)
+    real_name = calnet.name_by_calnet_uid(calnet_uid)
 
-    if calnet_uid not in settings.TESTER_CALNET_UIDS and len(existing_accounts):
+    if calnet_uid not in settings.TESTER_CALNET_UIDS and existing_accounts:
         return render_to_response("already_requested_account.html", {
             "calnet_uid": calnet_uid,
             "calnet_url": settings.LOGOUT_URL
@@ -30,9 +31,11 @@ def request_account(request):
             password = form.cleaned_data["password"]
 
             try:
-                approve_user(real_name, calnet_uid, account_name,
-                             email_address, password)
-            except ApprovalError as e:
+                manage.queue_creation(real_name, calnet_uid, None, account_name,
+                     email_address, password)
+                manage.trigger_create(settings.ADMIN_SSH_KEY,
+                                      settings.CMDS_HOST_KEYS_FILENAME)
+            except Exception as e:
                 form._errors[NON_FIELD_ERRORS] = form.error_class([str(e)])
             else:
                 return render_to_response("successfully_requested_account.html",

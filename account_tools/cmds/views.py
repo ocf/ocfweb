@@ -20,7 +20,7 @@ def commands(request):
             ssh.load_host_keys(settings.CMDS_HOST_KEYS_FILENAME)
             try:
                 ssh.connect(settings.CMDS_HOST, username=username, password=password)
-            except AuthenticationException, ae:
+            except AuthenticationException as ae:
                 error = "Authentication failed. Did you type the wrong username or password?"
 
             if not error:

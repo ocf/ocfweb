@@ -1,9 +1,10 @@
+import ocflib.account.search as search
+import ocflib.account.validators as validators
+import ocflib.misc.validators
 from django import forms
 from django.conf import settings
-from ocf.validators.password import validate_crack_strength, \
-    validate_printable_ascii
-from ocf import utils
 
+from account_tools.utils import wrap_validator
 
 class ChpassForm(forms.Form):
     def __init__(self, ocf_accounts, calnet_uid, *args, **kwargs):
@@ -18,11 +19,14 @@ class ChpassForm(forms.Form):
             "confirm_password"
         ]
 
+
+    # password is validated in clean since we need the username as part of the
+    # password validation (to compare similarity)
     new_password = forms.CharField(widget=forms.PasswordInput,
         label="New Password",
-        validators=[validate_crack_strength, validate_printable_ascii],
         min_length=8,
         max_length=64)
+
     confirm_password = forms.CharField(widget=forms.PasswordInput,
         label="Confirm Password",
         min_length=8,
@@ -30,11 +34,10 @@ class ChpassForm(forms.Form):
 
     def clean_ocf_account(self):
         data = self.cleaned_data["ocf_account"]
-        data = utils.clean_user_account(data)
-        if not utils.user_exists(data):
+        if not search.user_exists(data):
             raise forms.ValidationError("OCF user account does not exist.")
 
-        ocf_accounts = utils.users_by_calnet_uid(self.calnet_uid)
+        ocf_accounts = search.users_by_calnet_uid(self.calnet_uid)
         if self.calnet_uid in settings.TESTER_CALNET_UIDS:
             ocf_accounts.extend(settings.TEST_OCF_ACCOUNTS)
 
@@ -43,15 +46,21 @@ class ChpassForm(forms.Form):
 
         return data
 
-    def clean_new_password(self):
-        data = self.cleaned_data.get("new_password")
-        return utils.clean_password(data)
-
     def clean_confirm_password(self):
         new_password = self.cleaned_data.get("new_password")
-        confirm_password = utils.clean_password(self.cleaned_data.get("confirm_password"))
+        confirm_password = self.cleaned_data.get("confirm_password")
 
         if new_password and confirm_password:
             if new_password != confirm_password:
                 raise forms.ValidationError("Your passwords don't match.")
         return confirm_password
+
+    def clean(self):
+        cleaned_data = super(ChpassForm, self).clean()
+
+        # validate password (requires username to check similarity)
+        username = cleaned_data.get('ocf_account')
+        password = cleaned_data.get('new_password')
+
+        if username and password:
+            wrap_validator(validators.validate_password)(username, password)

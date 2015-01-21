@@ -1,11 +1,12 @@
-from ocf.forms import LoginForm
-from django.forms import Form
-from ocf.utils import password_matches, user_is_group
-from ocf.decorators import login_required
-from django.http import HttpResponseRedirect
-from django.template import RequestContext
+import ocflib.account.utils as account
 from django.core.urlresolvers import reverse
+from django.forms import Form
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.template import RequestContext
+
+from ocf.decorators import login_required
+from ocf.forms import LoginForm
 
 def login(request):
     error = None
@@ -17,7 +18,7 @@ def login(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
 
-            if password_matches(username, password):
+            if account.password_matches(username, password):
                 request.session["ocf_user"] = username
                 return redirect_back(request)
             else:

@@ -1,12 +1,14 @@
-import syslog
 import re
+import socket
+import syslog
 
+import ocflib.account.manage as manage
+import ocflib.account.search as search
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
+
 from chpass.forms import ChpassForm
-from chpass.utils import change_krb_password
-from ocf.utils import users_by_calnet_uid
 from calnet.decorators import login_required as calnet_required
 
 
@@ -14,13 +16,12 @@ from calnet.decorators import login_required as calnet_required
 def change_password(request):
     calnet_uid = request.session["calnet_uid"]
 
-    # some old group accounts have CalNet UIDs associated with them
-    accounts = users_by_calnet_uid(calnet_uid)
+    accounts = search.users_by_calnet_uid(calnet_uid)
 
-    backend_failures = dict()
+    backend_failures = {}
 
     if calnet_uid in settings.TESTER_CALNET_UIDS:
-        # these test accounts don't have to exist in AD or exist in LDAP
+        # these test accounts don't have to exist in in LDAP
         accounts.extend(settings.TEST_OCF_ACCOUNTS)
 
     if request.method == "POST":
@@ -33,10 +34,12 @@ def change_password(request):
                 (calnet_uid, request.META["REMOTE_ADDR"], account)))
 
             try:
-                change_krb_password(account, password)
+                manage.change_password(account, password, settings.KRB_KEYTAB,
+                    "chpass/{}".format(socket.getfqdn()))
                 krb_change_success = True
                 syslog.syslog("Kerberos password change successful")
             except Exception as e:
+                print(e)
                 krb_change_success = False
                 backend_failures["KRB"] = str(e)
                 syslog.syslog("Kerberos password change failed: %s" % e)

@@ -1,9 +1,8 @@
+import ocflib.account.search as search
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import render
-
-from ocf.utils import user_is_group
 
 def login_required(function):
     def _decorator(request, *args, **kwargs):
@@ -17,7 +16,7 @@ def login_required(function):
 
 def group_account_required(function):
     def _decorator(request, *args, **kwargs):
-        if user_is_group(request.session["ocf_user"]):
+        if search.user_is_group(request.session["ocf_user"]):
             return function(request, *args, **kwargs)
 
         return render(request, "group_accounts_only.html", {
