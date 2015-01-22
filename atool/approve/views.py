@@ -31,20 +31,21 @@ def request_account(request):
             password = form.cleaned_data["password"]
 
             try:
-                manage.queue_creation(real_name, calnet_uid, None, account_name,
-                     email_address, password)
+                manage.queue_creation(real_name, calnet_uid, None,
+                                      account_name, email_address,
+                                      password)
                 manage.trigger_create(settings.ADMIN_SSH_KEY,
                                       settings.CMDS_HOST_KEYS_FILENAME)
             except Exception as e:
                 form._errors[NON_FIELD_ERRORS] = form.error_class([str(e)])
             else:
-                return render_to_response("successfully_requested_account.html",
-                                          {})
+                return render_to_response(
+                    "successfully_requested_account.html", {})
     else:
         form = ApproveForm()
 
     return render_to_response("request_account.html",
-        {
-        "form": form,
-        "real_name": real_name
-        }, context_instance=RequestContext(request))
+                              {
+                                  "form": form,
+                                  "real_name": real_name
+                              }, context_instance=RequestContext(request))

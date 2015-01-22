@@ -3,7 +3,8 @@ from urllib.parse import urlencode, urljoin
 import ocflib.calnet.utils as calnet
 import ocflib.constants as constants
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseRedirect, \
+    HttpResponseForbidden
 from django.shortcuts import render_to_response
 
 
@@ -30,8 +31,9 @@ def _redirect_url(request):
 
 def _login_url(service):
         params = {"service": service,
-                    "renew": "true"}
-        return "%s?%s" % (urljoin(constants.CAS_URL, "login"), urlencode(params))
+                  "renew": "true"}
+        return "%s?%s" % (
+            urljoin(constants.CAS_URL, "login"), urlencode(params))
 
 
 def _logout_url(request, next_page=None):
@@ -47,7 +49,8 @@ def _next_page_response(next_page):
     if next_page:
         return HttpResponseRedirect(next_page)
     else:
-        return HttpResponse("<h1>Operation Successful</h1><p>Congratulations.</p>")
+        return HttpResponse(
+            "<h1>Operation Successful</h1><p>Congratulations.</p>")
 
 
 def login(request, next_page=None):

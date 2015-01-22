@@ -1,4 +1,3 @@
-import re
 import socket
 import syslog
 
@@ -30,12 +29,13 @@ def change_password(request):
             account = form.cleaned_data["ocf_account"]
             password = form.cleaned_data["new_password"]
 
-            syslog.openlog(str("webchpwd as %s (from %s) for %s" % \
-                (calnet_uid, request.META["REMOTE_ADDR"], account)))
+            syslog.openlog(
+                str("webchpwd as %s (from %s) for %s" %
+                    (calnet_uid, request.META["REMOTE_ADDR"], account)))
 
             try:
                 manage.change_password(account, password, settings.KRB_KEYTAB,
-                    "chpass/{}".format(socket.getfqdn()))
+                                       "chpass/{}".format(socket.getfqdn()))
                 krb_change_success = True
                 syslog.syslog("Kerberos password change successful")
             except Exception as e:
@@ -50,9 +50,10 @@ def change_password(request):
                 # reauthenticate with CalNet
                 del request.session["calnet_uid"]
 
-                return render_to_response("successfully_changed_password.html", {
-                    "user_account": account
-                })
+                return render_to_response("successfully_changed_password.html",
+                                          {
+                                              "user_account": account
+                                          })
     else:
         form = ChpassForm(accounts, calnet_uid)
 

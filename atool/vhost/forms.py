@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.safestring import mark_safe
 
+
 class VirtualHostForm(forms.Form):
     # requested subdomain
     requested_subdomain = forms.CharField(
@@ -33,7 +34,7 @@ class VirtualHostForm(forms.Form):
 
     website_disclaimer_text = forms.BooleanField(
         label=mark_safe("We have placed the \
-               <a href=\"http://wiki.ocf.berkeley.edu/services/vhost/#disclaimer\">\
+               <a href=\"http://ocf.io/vhost#disclaimer\">\
                university-required disclaimer</a> on each page of our site."))
 
     website_updated_software = forms.BooleanField(

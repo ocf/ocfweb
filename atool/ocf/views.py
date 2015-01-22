@@ -8,6 +8,7 @@ from django.template import RequestContext
 from ocf.decorators import login_required
 from ocf.forms import LoginForm
 
+
 def login(request):
     error = None
 
@@ -22,7 +23,8 @@ def login(request):
                 request.session["ocf_user"] = username
                 return redirect_back(request)
             else:
-                error = "Authentication failed. Did you type the wrong username or password?"
+                error = "Authentication failed. Did you type the wrong" + \
+                    "username or password?"
     else:
         form = LoginForm()
 
@@ -30,6 +32,7 @@ def login(request):
         "form": form,
         "error": error
     }, context_instance=RequestContext(request))
+
 
 @login_required
 def logout(request):
@@ -43,7 +46,7 @@ def logout(request):
         form = Form()
 
     return render_to_response("logout.html", {
-            "user": request.session["ocf_user"]
+        "user": request.session["ocf_user"]
     }, context_instance=RequestContext(request))
 
 

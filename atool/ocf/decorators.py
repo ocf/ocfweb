@@ -1,8 +1,8 @@
 import ocflib.account.search as search
-from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+
 
 def login_required(function):
     def _decorator(request, *args, **kwargs):
@@ -13,6 +13,7 @@ def login_required(function):
         return HttpResponseRedirect(reverse("login"))
 
     return _decorator
+
 
 def group_account_required(function):
     def _decorator(request, *args, **kwargs):

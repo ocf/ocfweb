@@ -1,10 +1,10 @@
 import ocflib.account.search as search
 import ocflib.account.validators as validators
-import ocflib.misc.validators
 from django import forms
 from django.conf import settings
 
 from atool.utils import wrap_validator
+
 
 class ChpassForm(forms.Form):
     def __init__(self, ocf_accounts, calnet_uid, *args, **kwargs):
@@ -19,18 +19,17 @@ class ChpassForm(forms.Form):
             "confirm_password"
         ]
 
-
     # password is validated in clean since we need the username as part of the
     # password validation (to compare similarity)
     new_password = forms.CharField(widget=forms.PasswordInput,
-        label="New Password",
-        min_length=8,
-        max_length=64)
+                                   label="New Password",
+                                   min_length=8,
+                                   max_length=64)
 
     confirm_password = forms.CharField(widget=forms.PasswordInput,
-        label="Confirm Password",
-        min_length=8,
-        max_length=64)
+                                       label="Confirm Password",
+                                       min_length=8,
+                                       max_length=64)
 
     def clean_ocf_account(self):
         data = self.cleaned_data["ocf_account"]
@@ -42,7 +41,8 @@ class ChpassForm(forms.Form):
             ocf_accounts.extend(settings.TEST_OCF_ACCOUNTS)
 
         if data not in ocf_accounts:
-            raise forms.ValidationError("OCF user account and CalNet UID mismatch.")
+            raise forms.ValidationError(
+                "OCF user account and CalNet UID mismatch.")
 
         return data
 

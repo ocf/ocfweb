@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from paramiko import AuthenticationException, SSHClient
 
+
 def commands(request):
     command_to_run = ''
     output = ''
@@ -19,12 +20,14 @@ def commands(request):
             ssh = SSHClient()
             ssh.load_host_keys(settings.CMDS_HOST_KEYS_FILENAME)
             try:
-                ssh.connect(settings.CMDS_HOST, username=username, password=password)
-            except AuthenticationException as ae:
-                error = "Authentication failed. Did you type the wrong username or password?"
+                ssh.connect(settings.CMDS_HOST, username=username,
+                            password=password)
+            except AuthenticationException:
+                error = "Authentication failed. Did you type the wrong" + \
+                    "username or password?"
 
             if not error:
-                ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run)
+                _, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run)
                 output = ssh_stdout.read()
                 error = ssh_stderr.read()
     else:

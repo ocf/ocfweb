@@ -9,32 +9,36 @@ class ApproveForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ApproveForm, self).__init__(*args, **kwargs)
 
-    ocf_login_name = forms.CharField(label="OCF Login Name",
+    ocf_login_name = forms.CharField(
+        label="OCF Login Name",
         validators=[wrap_validator(validators.validate_username)],
         min_length=3,
         max_length=8)
 
     # password is validated in clean since we need the username as part of the
     # password validation (to compare similarity)
-    password = forms.CharField(widget=forms.PasswordInput,
+    password = forms.CharField(
+        widget=forms.PasswordInput,
         label="New Password",
         min_length=8,
         max_length=64)
 
-    verify_password = forms.CharField(widget=forms.PasswordInput,
+    verify_password = forms.CharField(
+        widget=forms.PasswordInput,
         label="Confirm Password",
         min_length=8,
         max_length=64)
-    contact_email = forms.EmailField(label="Contact E-Mail",
+    contact_email = forms.EmailField(
+        label="Contact E-Mail",
         validators=[wrap_validator(ocflib.misc.validators.valid_email)])
 
     verify_contact_email = forms.EmailField(label="Confirm Contact E-Mail")
 
     disclaimer_agreement = forms.BooleanField(
-            label="You have read, understood, and agreed to our policies.",
-            error_messages={
-                "required": "You did not agree to our policies."
-                })
+        label="You have read, understood, and agreed to our policies.",
+        error_messages={
+            "required": "You did not agree to our policies."
+            })
 
     def clean_verify_password(self):
         password = self.cleaned_data.get("password")
