@@ -4,7 +4,7 @@ import ocflib.misc.validators
 from django import forms
 from django.conf import settings
 
-from account_tools.utils import wrap_validator
+from atool.utils import wrap_validator
 
 class ChpassForm(forms.Form):
     def __init__(self, ocf_accounts, calnet_uid, *args, **kwargs):

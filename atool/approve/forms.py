@@ -2,7 +2,7 @@ import ocflib.account.validators as validators
 import ocflib.misc.validators
 from django import forms
 
-from account_tools.utils import wrap_validator
+from atool.utils import wrap_validator
 
 
 class ApproveForm(forms.Form):

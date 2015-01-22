@@ -1,5 +1,5 @@
 export PYTHONPATH := $(CURDIR):$(PYTHONPATH)
-SRC = account_tools
+SRC = atool
 
 check: lint
 

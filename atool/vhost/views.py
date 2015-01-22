@@ -58,25 +58,25 @@ def request_vhost(request):
 
                 subject = "Virtual Hosting Request: {} ({})".format(full_domain, user_account)
                 message = (
-                    "Virtual Hosting Request:\n" + \
-                    "  - OCF Account: {user_account}\n" + \
-                    "  - OCF Account Title: {title}\n" + \
-                    "  - Requested Subdomain: {full_domain}\n" + \
-                    "  - Current URL: http://www.ocf.berkeley.edu/~{user_account}/\n" + \
-                    "\n" + \
-                    "Request Reason:\n" + \
-                    "{requested_why}\n\n" + \
-                    "Comments/Special Requests:\n" + \
-                    "{comments}\n\n" + \
-                    "Requested by:\n" + \
-                    "  - Name: {your_name}\n" + \
-                    "  - Position: {your_position}\n" + \
-                    "  - Email: {your_email}\n" + \
-                    "  - IP Address: {ip_addr} ({ip_reverse})\n" + \
-                    "  - User Agent: {user_agent}\n" + \
-                    "\n\n" + \
-                    "--------\n" + \
-                    "Request submitted to account_tools ({hostname}) on {now}.\n" + \
+                    "Virtual Hosting Request:\n" +
+                    "  - OCF Account: {user_account}\n" +
+                    "  - OCF Account Title: {title}\n" +
+                    "  - Requested Subdomain: {full_domain}\n" +
+                    "  - Current URL: http://www.ocf.berkeley.edu/~{user_account}/\n" +
+                    "\n" +
+                    "Request Reason:\n" +
+                    "{requested_why}\n\n" +
+                    "Comments/Special Requests:\n" +
+                    "{comments}\n\n" +
+                    "Requested by:\n" +
+                    "  - Name: {your_name}\n" +
+                    "  - Position: {your_position}\n" +
+                    "  - Email: {your_email}\n" +
+                    "  - IP Address: {ip_addr} ({ip_reverse})\n" +
+                    "  - User Agent: {user_agent}\n" +
+                    "\n\n" +
+                    "--------\n" +
+                    "Request submitted to atool ({hostname}) on {now}.\n" +
                     "{full_path}").format(
                         user_account=user_account,
                         title=attrs["cn"][0],
