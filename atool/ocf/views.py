@@ -5,8 +5,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from ocf.decorators import login_required
-from ocf.forms import LoginForm
+from atool.ocf.decorators import login_required
+from atool.ocf.forms import LoginForm
 
 
 def login(request):

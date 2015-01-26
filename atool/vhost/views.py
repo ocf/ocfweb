@@ -10,8 +10,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 
-from ocf.decorators import login_required, group_account_required
-from vhost.forms import VirtualHostForm
+from atool.ocf.decorators import login_required, group_account_required
+from atool.vhost.forms import VirtualHostForm
 
 
 @login_required

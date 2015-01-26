@@ -7,8 +7,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
 
-from chpass.forms import ChpassForm
-from calnet.decorators import login_required as calnet_required
+from atool.chpass.forms import ChpassForm
+from atool.calnet.decorators import login_required as calnet_required
 
 
 @calnet_required
