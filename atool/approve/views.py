@@ -6,8 +6,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
 
-from atool.approve.forms import ApproveForm
-from atool.calnet.decorators import login_required as calnet_required
+from .forms import ApproveForm
+from ..calnet.decorators import login_required as calnet_required
 
 
 @calnet_required

@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from paramiko import AuthenticationException, SSHClient
 
-from atool.cmds.forms import CommandForm
+from .forms import CommandForm
 
 
 def commands(request):
