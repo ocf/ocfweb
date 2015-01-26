@@ -1,4 +1,4 @@
-# OCF Account Tools
+# atool
 
 ## About
 The central application for new OCF users to request an account and for existing OCF users to change their password.

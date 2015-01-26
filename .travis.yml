@@ -1,0 +1,20 @@
+---
+language: python
+python:
+  - "3.2"
+  - "3.4"
+install:
+  - pip install flake8
+script:
+  - make check
+notifications:
+  email:
+    recipients:
+      - root@ocf.berkeley.edu
+    on_success: never
+    on_failure: always
+  irc:
+    channels:
+      - "irc.ocf.berkeley.edu#rebuild-spam"
+    on_success: never
+    on_failure: always
