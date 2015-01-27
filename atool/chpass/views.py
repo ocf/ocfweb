@@ -34,8 +34,11 @@ def change_password(request):
                     (calnet_uid, request.META["REMOTE_ADDR"], account)))
 
             try:
-                manage.change_password(account, password, settings.KRB_KEYTAB,
-                                       "chpass/{}".format(socket.getfqdn()))
+                manage.change_password_with_keytab(
+                    account,
+                    password,
+                    settings.KRB_KEYTAB,
+                    "chpass/{}".format(socket.getfqdn()))
                 krb_change_success = True
                 syslog.syslog("Kerberos password change successful")
             except Exception as e:
