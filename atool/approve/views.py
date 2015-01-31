@@ -1,6 +1,6 @@
 import ocflib.account.manage as manage
 import ocflib.account.search as search
-import ocflib.calnet.utils as calnet
+import ocflib.ucb.directory as directory
 from django.forms.forms import NON_FIELD_ERRORS
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -15,7 +15,7 @@ def request_account(request):
     calnet_uid = request.session["calnet_uid"]
 
     existing_accounts = search.users_by_calnet_uid(calnet_uid)
-    real_name = calnet.name_by_calnet_uid(calnet_uid)
+    real_name = directory.name_by_calnet_uid(calnet_uid)
 
     if calnet_uid not in settings.TESTER_CALNET_UIDS and existing_accounts:
         return render_to_response("already_requested_account.html", {
