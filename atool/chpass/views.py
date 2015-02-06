@@ -3,6 +3,7 @@ import syslog
 
 import ocflib.account.manage as manage
 import ocflib.account.search as search
+import ocflib.ucb.groups as groups
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
@@ -11,11 +12,25 @@ from .forms import ChpassForm
 from ..calnet.decorators import login_required as calnet_required
 
 
+def _get_accounts_signatory_for(calnet_uid):
+    flatten = lambda lst: [item for sublist in lst for item in sublist]
+    group_accounts = flatten(map(
+        lambda group: group['accounts'],
+        groups.groups_by_student_signat(calnet_uid).values()))
+
+    # sanity check since we don't trust CalLink API that much:
+    # if >= 10 groups, can't change online, sorry
+    if len(group_accounts) < 10:
+        return group_accounts
+    return []
+
+
 @calnet_required
 def change_password(request):
     calnet_uid = request.session["calnet_uid"]
 
-    accounts = search.users_by_calnet_uid(calnet_uid)
+    accounts = search.users_by_calnet_uid(calnet_uid) + \
+        _get_accounts_signatory_for(calnet_uid)
 
     backend_failures = {}
 
