@@ -106,8 +106,9 @@ def request_vhost(request):
                     print(ex)
                     print("Failed to send vhost request email!")
                     error = \
-                        "We were unable to submit your virtual hosting request. Please " + \
-                        "try again or email us at hostmaster@ocf.berkeley.edu"
+                        "We were unable to submit your virtual hosting " + \
+                        "request. Please try again or email us at " + \
+                        "hostmaster@ocf.berkeley.edu"
     else:
         form = VirtualHostForm(initial={"requested_subdomain": user})
 

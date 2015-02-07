@@ -13,7 +13,9 @@ from ..calnet.decorators import login_required as calnet_required
 
 
 def _get_accounts_signatory_for(calnet_uid):
-    flatten = lambda lst: [item for sublist in lst for item in sublist]
+    def flatten(lst):
+        return [item for sublist in lst for item in sublist]
+
     group_accounts = flatten(map(
         lambda group: group['accounts'],
         groups.groups_by_student_signat(calnet_uid).values()))
