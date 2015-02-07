@@ -40,6 +40,9 @@ To lint before pushing, use `make check`.
 
 ## Deploying
 
-To deploy, push to master on GitHub, then trigger a puppet run on the
-`accounts` server. Run `svc -h /etc/service/atool` to restart the Gunicorn
-server.
+Puppet checks out the latest master from GitHub, and will auto-deploy when it
+changes. Simply pushing to master is enough, though it will take up to 30
+minutes for Puppet to run and deploy your changes.
+
+If for some reason you want to restart the server manually, you can use
+daemontools commands like `svc -h /etc/service/atool`.
