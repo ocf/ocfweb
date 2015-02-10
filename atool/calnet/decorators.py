@@ -10,9 +10,6 @@ from django.utils.http import urlquote
 def session_passes_test(test_func, redirect_field_name=REDIRECT_FIELD_NAME):
     def decorator(view_func):
         def _wrapped_view(request, *args, **kwargs):
-            print(request)
-            print(request.is_secure())
-
             if test_func(request):
                 return view_func(request, *args, **kwargs)
             path = urlquote(request.META.get('REDIRECT_URL',
