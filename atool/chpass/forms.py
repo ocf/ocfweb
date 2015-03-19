@@ -1,9 +1,36 @@
 import ocflib.account.search as search
 import ocflib.account.validators as validators
+import ocflib.ucb.groups as groups
 from django import forms
 from django.conf import settings
 
 from atool.utils import wrap_validator
+
+
+def _get_accounts_signatory_for(calnet_uid):
+    def flatten(lst):
+        return [item for sublist in lst for item in sublist]
+
+    group_accounts = flatten(map(
+        lambda group: group['accounts'],
+        groups.groups_by_student_signat(calnet_uid).values()))
+
+    # sanity check since we don't trust CalLink API that much:
+    # if >= 10 groups, can't change online, sorry
+    if len(group_accounts) < 10:
+        return group_accounts
+    return []
+
+
+def get_authorized_accounts_for(calnet_uid):
+    accounts = search.users_by_calnet_uid(calnet_uid) + \
+        _get_accounts_signatory_for(calnet_uid)
+
+    if calnet_uid in settings.TESTER_CALNET_UIDS:
+        # these test accounts don't have to exist in in LDAP
+        accounts.extend(settings.TEST_OCF_ACCOUNTS)
+
+    return accounts
 
 
 class ChpassForm(forms.Form):
@@ -36,9 +63,7 @@ class ChpassForm(forms.Form):
         if not search.user_exists(data):
             raise forms.ValidationError("OCF user account does not exist.")
 
-        ocf_accounts = search.users_by_calnet_uid(self.calnet_uid)
-        if self.calnet_uid in settings.TESTER_CALNET_UIDS:
-            ocf_accounts.extend(settings.TEST_OCF_ACCOUNTS)
+        ocf_accounts = get_authorized_accounts_for(self.calnet_uid)
 
         if data not in ocf_accounts:
             raise forms.ValidationError(
