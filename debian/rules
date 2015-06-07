@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+%:
+	dh $@ --with python-virtualenv --with systemd
+
+override_dh_virtualenv:
+	dh_virtualenv --python=/usr/bin/python3

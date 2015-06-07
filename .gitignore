@@ -1,5 +1,10 @@
 *.pyc
 *~
 *.swp
-settings.py
 build/
+debian/ocf-atool
+debian/*.log
+debian/files
+debian/substvars
+debian/ocf-atool.substvars
+debian/*.debhelper

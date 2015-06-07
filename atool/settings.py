@@ -1,30 +1,31 @@
-# Django settings for atool project.
+import os.path
+import socket
 
-DEBUG = True
+
+ALLOWED_HOSTS = [socket.getfqdn()]
+
+DEBUG = socket.getfqdn().startswith('dev-')
 TEMPLATE_DEBUG = DEBUG
-
-ALLOWED_HOSTS = [
-    "accounts.ocf.berkeley.edu",
-    "dev-accounts.ocf.berkeley.edu"
-]
 
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 
 # email
+# TODO: send mail via ocflib
 EMAIL_HOST = "smtp"
 EMAIL_PORT = 25
 EMAIL_USE_TLS = True
 
-# approve
-ADMIN_SSH_KEY = "/srv/atool/etc/atool-id_rsa"
+# TODO: connect using kerberos auth, not SSH keys (then we can avoid
+# ssh_known_hosts, too)
+ADMIN_SSH_KEY = "/etc/ocf-atool/atool-id_rsa"
 
 # chpass
-KRB_KEYTAB = "/srv/atool/etc/chpass.keytab"
+KRB_KEYTAB = "/etc/ocf-atool/chpass.keytab"
 
 # cmds
 CMDS_HOST = "ssh.ocf.berkeley.edu"
-CMDS_HOST_KEYS_FILENAME = "/srv/atool/etc/ssh_known_hosts"
+CMDS_HOST_KEYS_FILENAME = "/etc/ocf-atool/ssh_known_hosts"
 
 TEST_OCF_ACCOUNTS = (
     "sanjay",  # an old, sorried account with kerberos princ
@@ -56,20 +57,24 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/tmp/atool.db'
-    }
-}
+DATABASES = {}
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/tmp/atool_cache',
+
+if not DEBUG:
+    # in prod, we use an in-memory cache
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        }
     }
-}
+else:
+    # dummy cache that doesn't actually cache
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        }
+    }
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -95,7 +100,12 @@ USE_I18N = True
 USE_L10N = True
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '<fill this in>'
+if DEBUG:
+    SECRET_KEY = 'not-really-secret__623f2)7y)fz7&bqmlm+kc+olr'
+else:
+    with open('/etc/ocf-atool/secret') as f:
+        SECRET_KEY = f.read().strip()
+
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -114,7 +124,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'atool.urls'
 
 TEMPLATE_DIRS = (
-    "/srv/atool/src/atool/templates",
+    os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates'),
 )
 
 ALLOWED_INCLUDE_ROOTS = ()
