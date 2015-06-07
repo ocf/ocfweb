@@ -1,7 +1,6 @@
 *.pyc
 *~
 *.swp
-settings.py
 build/
 debian/ocf-atool
 debian/*.log

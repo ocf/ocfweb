@@ -56,12 +56,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/tmp/atool.db'
-    }
-}
+DATABASES = {}
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 CACHES = {
@@ -95,7 +90,7 @@ USE_I18N = True
 USE_L10N = True
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '<fill this in>'
+SECRET_KEY = 'not-really-secret__623f2)7y)fz7&bqmlm+kc+olr'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
