@@ -1,0 +1,5 @@
+ocf-atool (1) stable; urgency=medium
+
+  * Initial packaging.
+
+ -- Chris Kuehl <ckuehl@ocf.berkeley.edu>  Sat, 06 Jun 2015 19:15:00 -0700

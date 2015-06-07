@@ -1,0 +1,20 @@
+#!/bin/bash -e
+# ensure we have dch
+command -v dch > /dev/null 2>&1 || \
+	{ echo "You must install dch (from devscripts) first."; exit 1; }
+
+# increment version number
+version=$(grep '^VERSION = ' setup.py | cut -d' ' -f3)
+version=$((version+1))
+
+read -p "Bump version number to ${version}? [yN] " -n1 -r
+
+if [ "$REPLY" != "y" ]; then
+	echo "Cancelled."
+	exit 1
+fi
+
+sed -i "s/^VERSION = .*/VERSION = $version/" setup.py
+dch -v "$version" -D stable
+
+echo "The version numbers have been updated. Be sure to commit, then just push to GitHub to release."
