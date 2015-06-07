@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = 2
+VERSION = 3
 
 setup(
     name='atool',

@@ -1,3 +1,9 @@
+ocf-atool (3) stable; urgency=medium
+
+  * Fix ALLOWED_HOSTS in settings for prod
+
+ -- Chris Kuehl <ckuehl@ocf.berkeley.edu>  Sun, 07 Jun 2015 15:33:46 -0700
+
 ocf-atool (2) stable; urgency=medium
 
   * Read settings from /etc/ocf-atool/

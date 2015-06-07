@@ -2,7 +2,12 @@ import os.path
 import socket
 
 
-ALLOWED_HOSTS = [socket.getfqdn()]
+# this is validated against the "Host" header the user sends, so
+# 'earthquake.o.b.e' or 'localhost' won't work here
+#
+# it's ok to not include dev-accounts, because there is no validation when
+# DEBUG = True
+ALLOWED_HOSTS = ['accounts.ocf.berkeley.edu']
 
 DEBUG = socket.getfqdn().startswith('dev-')
 TEMPLATE_DEBUG = DEBUG
