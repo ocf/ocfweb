@@ -3,7 +3,7 @@ Description=Django web app for OCF account management
 
 [Service]
 User=atool
-ExecStart=/usr/share/python/ocf-atool/bin/gunicorn -c /srv/atool/etc/gunicorn.py atool.wsgi:application
+ExecStart=/usr/share/python/ocf-atool/bin/gunicorn -c /etc/ocf-atool/gunicorn.py atool.wsgi:application
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 
