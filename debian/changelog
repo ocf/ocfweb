@@ -1,3 +1,12 @@
+ocf-atool (2) stable; urgency=medium
+
+  * Read settings from /etc/ocf-atool/
+  * Generate Django secret automatically, provide gunicorn.py
+  * Include Gunicorn, start via systemd
+  * Various packaging improvements.
+
+ -- Chris Kuehl <ckuehl@ocf.berkeley.edu>  Sun, 07 Jun 2015 14:34:24 -0700
+
 ocf-atool (1) stable; urgency=medium
 
   * Initial packaging.
