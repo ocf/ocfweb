@@ -1,0 +1,18 @@
+# create conf directory
+if [ ! -e /etc/ocf-atool ]; then
+	mkdir /etc/ocf-atool || { echo "Couldn't mkdir /etc/ocf-atool, exiting."; exit 1; }
+fi
+
+# create secret file
+if [ ! -e /etc/ocf-atool/secret ]; then
+	echo "No Django secret exists, generating one automatically..."
+
+	tmp=$(mktemp --tmpdir=/etc/ocf-atool)
+	pwgen -s 64 -n1 > "$tmp"
+	chown atool:root "$tmp"
+	chmod 400 "$tmp"
+
+	mv "$tmp" /etc/ocf-atool/secret || { echo "Couldn't write to /etc/ocf-atool/secret, exiting."; exit 1; }
+fi
+
+#DEBHELPER#

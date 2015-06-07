@@ -1,0 +1,1 @@
+recursive-include atool/templates *.html

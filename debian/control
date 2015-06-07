@@ -7,5 +7,6 @@ Standards-Version: 3.9.5
 
 Package: ocf-atool
 Architecture: any
-Depends: ${python:Depends}, ${misc:Depends}, virtualenv | python-virtualenv
+Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends}, virtualenv |
+  python-virtualenv, pwgen
 Description: Django web app for OCF account management
