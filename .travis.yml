@@ -1,10 +1,9 @@
 ---
 language: python
 python:
-  - "3.2"
   - "3.4"
 install:
-  - pip install flake8
+  - pip install tox
 script:
   - make check
 notifications:
