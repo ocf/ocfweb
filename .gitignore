@@ -1,6 +1,8 @@
 *.pyc
 *~
 *.swp
+.tox
+*.egg-info
 build/
 debian/ocf-atool
 debian/*.log
