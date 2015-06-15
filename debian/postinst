@@ -1,3 +1,5 @@
+#DEBHELPER#
+
 # create secret file
 if [ ! -e /etc/ocf-atool/secret ]; then
 	echo "No Django secret exists, generating one automatically..."
@@ -9,5 +11,3 @@ if [ ! -e /etc/ocf-atool/secret ]; then
 
 	mv "$tmp" /etc/ocf-atool/secret || { echo "Couldn't write to /etc/ocf-atool/secret, exiting."; exit 1; }
 fi
-
-#DEBHELPER#
