@@ -1,3 +1,10 @@
+ocf-atool (4) stable; urgency=medium
+
+
+  * Improve Debian packaging
+
+ -- Chris Kuehl <ckuehl@ocf.berkeley.edu>  Sun, 14 Jun 2015 23:15:02 -0700
+
 ocf-atool (3) stable; urgency=medium
 
   * Fix ALLOWED_HOSTS in settings for prod
