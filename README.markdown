@@ -1,6 +1,5 @@
 atool
 ====
-[![Build Status](https://travis-ci.org/ocf/atool.svg)](https://travis-ci.org/ocf/atool)
 
 ## About
 
