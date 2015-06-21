@@ -1,9 +1,10 @@
-import ocflib.account.utils as account
 from django.core.urlresolvers import reverse
 from django.forms import Form
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+import ocflib.account.utils as utils
+import ocflib.account.validators as validators
 
 from .decorators import login_required
 from .forms import LoginForm
@@ -19,7 +20,8 @@ def login(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
 
-            if account.password_matches(username, password):
+            if (validators.user_exists(username) and
+                    utils.password_matches(username, password)):
                 request.session["ocf_user"] = username
                 return redirect_back(request)
             else:
