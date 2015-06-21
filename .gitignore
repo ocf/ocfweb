@@ -10,3 +10,6 @@ debian/files
 debian/substvars
 debian/ocf-atool.substvars
 debian/*.debhelper
+debian/changelog
+.version
+dist/
