@@ -1,3 +1,4 @@
+import os
 import os.path
 import socket
 
@@ -151,3 +152,20 @@ INSTALLED_APPS = (
 )
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+# log exceptions to stderr
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+}
