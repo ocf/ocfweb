@@ -15,12 +15,12 @@ class CommandForm(forms.Form):
         ("/opt/ocf/bin/paper",
          "paper quota -- how many pages you have remaining this semester"),
         ("/usr/bin/quota -svQ",
-         "disk quota -- how much disk space you have used and how much you" +
+         "disk quota -- how much disk space you have used and how much you " +
          "have left"),
         ("/opt/ocf/bin/makehttp",
          "makehttp -- set up the web space for your OCF account"),
         ("echo yes | /opt/ocf/bin/makemysql",
-         "makemysql -- reset your MySQL database password, or create a new" +
+         "makemysql -- reset your MySQL database password, or create a new " +
          "MySQL database (copy down the password somewhere secure)"),
     )
 
