@@ -2,8 +2,8 @@ SRC = atool
 
 check: tox
 
-tox: autoversion
-	tox
+test: autoversion
+	pre-commit run --all-files
 
 dev:
 	$(SRC)/manage.py runserver 127.0.0.1:8000

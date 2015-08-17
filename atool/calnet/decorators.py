@@ -13,7 +13,7 @@ def session_passes_test(test_func, redirect_field_name=REDIRECT_FIELD_NAME):
             if test_func(request):
                 return view_func(request, *args, **kwargs)
             path = urlquote(request.META.get('REDIRECT_URL',
-                            request.get_full_path()))
+                                             request.get_full_path()))
             tup = reverse('calnet_login'), redirect_field_name, path
             return HttpResponseRedirect('%s?%s=%s' % tup)
         return wraps(view_func,
@@ -28,7 +28,7 @@ def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME):
     is not a valid uid, the user is rediected to CalNet login view.
     """
     actual_decorator = session_passes_test(
-        lambda request: request.session.get("calnet_uid"),
+        lambda request: request.session.get('calnet_uid'),
         redirect_field_name=redirect_field_name
     )
     if function:

@@ -6,11 +6,12 @@ from atool.utils import wrap_validator
 
 
 class ApproveForm(forms.Form):
+
     def __init__(self, *args, **kwargs):
         super(ApproveForm, self).__init__(*args, **kwargs)
 
     ocf_login_name = forms.CharField(
-        label="OCF Login Name",
+        label='OCF Login Name',
         validators=[wrap_validator(validators.validate_username)],
         min_length=3,
         max_length=8)
@@ -19,30 +20,30 @@ class ApproveForm(forms.Form):
     # password validation (to compare similarity)
     password = forms.CharField(
         widget=forms.PasswordInput,
-        label="New Password",
+        label='New Password',
         min_length=8,
         max_length=64)
 
     verify_password = forms.CharField(
         widget=forms.PasswordInput,
-        label="Confirm Password",
+        label='Confirm Password',
         min_length=8,
         max_length=64)
     contact_email = forms.EmailField(
-        label="Contact E-Mail",
+        label='Contact E-Mail',
         validators=[wrap_validator(ocflib.misc.validators.valid_email)])
 
-    verify_contact_email = forms.EmailField(label="Confirm Contact E-Mail")
+    verify_contact_email = forms.EmailField(label='Confirm Contact E-Mail')
 
     disclaimer_agreement = forms.BooleanField(
-        label="You have read, understood, and agreed to our policies.",
+        label='You have read, understood, and agreed to our policies.',
         error_messages={
-            "required": "You did not agree to our policies."
-            })
+            'required': 'You did not agree to our policies.'
+        })
 
     def clean_verify_password(self):
-        password = self.cleaned_data.get("password")
-        verify_password = self.cleaned_data.get("verify_password")
+        password = self.cleaned_data.get('password')
+        verify_password = self.cleaned_data.get('verify_password')
 
         if password and verify_password:
             if password != verify_password:
@@ -50,8 +51,8 @@ class ApproveForm(forms.Form):
         return verify_password
 
     def clean_verify_contact_email(self):
-        email = self.cleaned_data.get("contact_email")
-        verify_contact_email = self.cleaned_data.get("verify_contact_email")
+        email = self.cleaned_data.get('contact_email')
+        verify_contact_email = self.cleaned_data.get('verify_contact_email')
 
         if email and verify_contact_email:
             if email != verify_contact_email:

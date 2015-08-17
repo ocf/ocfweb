@@ -2,12 +2,12 @@
 
 # create secret file
 if [ ! -e /etc/ocf-atool/secret ]; then
-	echo "No Django secret exists, generating one automatically..."
+    echo "No Django secret exists, generating one automatically..."
 
-	tmp=$(mktemp --tmpdir=/etc/ocf-atool)
-	pwgen -s 64 -n1 > "$tmp"
-	chown atool:root "$tmp"
-	chmod 400 "$tmp"
+    tmp=$(mktemp --tmpdir=/etc/ocf-atool)
+    pwgen -s 64 -n1 > "$tmp"
+    chown atool:root "$tmp"
+    chmod 400 "$tmp"
 
-	mv "$tmp" /etc/ocf-atool/secret || { echo "Couldn't write to /etc/ocf-atool/secret, exiting."; exit 1; }
+    mv "$tmp" /etc/ocf-atool/secret || { echo "Couldn't write to /etc/ocf-atool/secret, exiting."; exit 1; }
 fi

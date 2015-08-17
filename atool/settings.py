@@ -18,43 +18,43 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 
 # email
 # TODO: send mail via ocflib
-EMAIL_HOST = "smtp"
+EMAIL_HOST = 'smtp'
 EMAIL_PORT = 25
 EMAIL_USE_TLS = True
 
 # TODO: connect using kerberos auth, not SSH keys (then we can avoid
 # ssh_known_hosts, too)
-ADMIN_SSH_KEY = "/etc/ocf-atool/atool-id_rsa"
+ADMIN_SSH_KEY = '/etc/ocf-atool/atool-id_rsa'
 
 # chpass
-KRB_KEYTAB = "/etc/ocf-atool/chpass.keytab"
+KRB_KEYTAB = '/etc/ocf-atool/chpass.keytab'
 
 # cmds
-CMDS_HOST = "ssh.ocf.berkeley.edu"
-CMDS_HOST_KEYS_FILENAME = "/etc/ocf-atool/ssh_known_hosts"
+CMDS_HOST = 'ssh.ocf.berkeley.edu'
+CMDS_HOST_KEYS_FILENAME = '/etc/ocf-atool/ssh_known_hosts'
 
 TEST_OCF_ACCOUNTS = (
-    "sanjay",  # an old, sorried account with kerberos princ
-    "alec",  # an old, sorried account with no kerberos princ
-    "guser",  # an account specifically made for testing
-    "nonexist",  # this account does not exist
+    'sanjay',  # an old, sorried account with kerberos princ
+    'alec',  # an old, sorried account with no kerberos princ
+    'guser',  # an account specifically made for testing
+    'nonexist',  # this account does not exist
 )
 
 TESTER_CALNET_UIDS = (
-    "871036",   # kedo
-    "758566",   # waf
-    "872544",   # daradib
-    "646431",   # sanjayk
-    "1034192",  # ckuehl
-    "869331",   # tzhu
-    "863499",   # morshed
+    '871036',   # kedo
+    '758566',   # waf
+    '872544',   # daradib
+    '646431',   # sanjayk
+    '1034192',  # ckuehl
+    '869331',   # tzhu
+    '863499',   # morshed
 )
 
 # comma separated tuples of CalLink OIDs and student group names
 TEST_GROUP_ACCOUNTS = (
-    (91740, "The Testing Group"),  # needs to have a real OID, so boo
-    (46187, "Open Computing Facility"),  # good old ocf
-    (46692, "Awesome Group of Awesome")  # boo another real OID
+    (91740, 'The Testing Group'),  # needs to have a real OID, so boo
+    (46187, 'Open Computing Facility'),  # good old ocf
+    (46692, 'Awesome Group of Awesome')  # boo another real OID
 )
 
 ADMINS = (
