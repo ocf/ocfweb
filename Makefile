@@ -1,8 +1,6 @@
 SRC = atool
 
-check: tox
-
-test: autoversion
+check: autoversion
 	pre-commit run --all-files
 
 dev:
