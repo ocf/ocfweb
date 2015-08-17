@@ -24,6 +24,7 @@ def request_account(request):
         })
 
     if request.method == "POST":
+        return 'sorry, not available'
         form = ApproveForm(request.POST)
         if form.is_valid():
             account_name = form.cleaned_data["ocf_login_name"]
