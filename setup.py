@@ -11,4 +11,9 @@ setup(
     url='https://www.ocf.berkeley.edu/',
     author='Open Computing Facility',
     author_email='help@ocf.berkeley.edu',
+    install_requires=[
+        'django',
+        'gunicorn',
+        'ocflib',
+    ],
 )
