@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^commands$', 'atool.cmds.views.commands', name='commands'),
     url(r'^request-account$', 'atool.approve.views.request_account',
         name='request_account'),
+    url(r'^request-account/wait$', 'atool.approve.views.wait_for_account',
+        name='wait_for_account'),
     url(r'^request-vhost$', 'atool.vhost.views.request_vhost',
         name='request_vhost'),
     url(r'^request-vhost/success$', 'atool.vhost.views.request_vhost_success',

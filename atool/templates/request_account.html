@@ -42,16 +42,38 @@
 .welcome-banner *:hover, .welcome-banner:hover * {
     text-decoration: none;
 }
+
+.warning-text, .warning-text-small {
+    color: red;
+    font-weight: bold;
+}
 </style>
 <h2>Welcome to the OCF</h2>
 
-{{ form.non_field_errors }}
-
-<p>This form is <strong><strong>ONLY</strong></strong> for requesting individual accounts. If you want to request an account for a student group, please visit a staff member in the OCF lab during <a href="http://www.ocf.berkeley.edu/staff_hours">staff hours</a>.</p>
-
-<hr />
+{% if status == 'has_errors' %}
+<p class="warning-text">Your account couldn't be created for the following reasons:</p>
+{% elif status == 'has_warnings' %}
+<p class="warning-text">Your account has been flagged for the following reasons:</p>
+{% endif %}
 
 <form method="post" action="{% url 'request_account' %}" id="request-account-form">{% csrf_token %}
+    {{ form.non_field_errors }}
+
+    {% if status == 'has_errors' %}
+    <p class="warning-text-small">Please fix these issues and re-submit the form.</p>
+    {% elif status == 'has_warnings' %}
+    <p class="warning-text-small">
+    If you'd like, you can still submit your account request, but it will take
+    longer to process, as our volunteer staff team will need to manually review it.
+    </p>
+    <p class="warning-text-small">Either click below to submit anyway, or change your submission below.</p>
+    <p><input type="submit" name="warnings-submit" value="Ignore Warnings, Submit Anyway" /></p>
+    {% endif %}
+
+    <p>This form is <strong><strong>ONLY</strong></strong> for requesting individual accounts. If you want to request an account for a student group, please visit a staff member in the OCF lab during <a href="http://www.ocf.berkeley.edu/staff_hours">staff hours</a>.</p>
+
+    <hr />
+
 
     <label for="fullname">Full Name:</label>
     <div id="fullname" style="font-weight: bold">{{ real_name }}</div><br />

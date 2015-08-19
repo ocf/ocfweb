@@ -1,6 +1,7 @@
 import os
 import os.path
 import socket
+from configparser import ConfigParser
 
 
 # this is validated against the "Host" header the user sends, so
@@ -10,8 +11,7 @@ import socket
 # DEBUG = True
 ALLOWED_HOSTS = ['accounts.ocf.berkeley.edu']
 
-DEBUG = socket.getfqdn().startswith('dev-')
-TEMPLATE_DEBUG = DEBUG
+DEBUG = TEMPLATE_DEBUG = socket.getfqdn().startswith('dev-')
 
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
@@ -22,11 +22,8 @@ EMAIL_HOST = 'smtp'
 EMAIL_PORT = 25
 EMAIL_USE_TLS = True
 
-# TODO: connect using kerberos auth, not SSH keys (then we can avoid
-# ssh_known_hosts, too)
-ADMIN_SSH_KEY = '/etc/ocf-atool/atool-id_rsa'
-
 # chpass
+PASSWORD_ENCRYPTION_PUBKEY = '/etc/ocf-atool/create.pub'
 KRB_KEYTAB = '/etc/ocf-atool/chpass.keytab'
 
 # cmds
@@ -41,13 +38,9 @@ TEST_OCF_ACCOUNTS = (
 )
 
 TESTER_CALNET_UIDS = (
-    '871036',   # kedo
-    '758566',   # waf
     '872544',   # daradib
-    '646431',   # sanjayk
     '1034192',  # ckuehl
     '869331',   # tzhu
-    '863499',   # morshed
 )
 
 # comma separated tuples of CalLink OIDs and student group names
@@ -57,60 +50,40 @@ TEST_GROUP_ACCOUNTS = (
     (46692, 'Awesome Group of Awesome')  # boo another real OID
 )
 
-ADMINS = (
-    ('kedo', 'kedo@ocf.berkeley.edu'),
-)
-
-MANAGERS = ADMINS
-
 DATABASES = {}
-
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-
-if not DEBUG:
-    # in prod, we use an in-memory cache
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        }
-    }
-else:
-    # dummy cache that doesn't actually cache
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-        }
-    }
-
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# On Unix systems, a value of None will cause Django to use the same
-# timezone as the operating system.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
-TIME_ZONE = 'America/Los_Angeles'
-
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
-
-SITE_ID = 1
-
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
-USE_I18N = True
-
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale
-USE_L10N = True
-
-# Make this unique, and don't share it with anybody.
 if DEBUG:
-    SECRET_KEY = 'not-really-secret__623f2)7y)fz7&bqmlm+kc+olr'
+    # on dev, we use a file-backed cache so that you don't get logged out every
+    # time you update code and the server restarts.
+    cache = {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.expanduser('~/atool-cache'),
+    }
 else:
-    with open('/etc/ocf-atool/secret') as f:
-        SECRET_KEY = f.read().strip()
+    # on prod, we use an in-memory cache because we don't care about
+    # performance, memory usage, or persistence
+    cache = {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+
+CACHES = {  # sessions are stored here
+    'default': cache,
+    'TIMEOUT': 60 * 60 * 12,  # 12 hours
+    'OPTIONS': {
+        'MAX_ENTRIES': 1000,
+    },
+}
+
+TIME_ZONE = 'America/Los_Angeles'
+LANGUAGE_CODE = 'en-us'
+SITE_ID = 1
+USE_I18N = False
+USE_L10N = False
+
+conf = ConfigParser()
+conf.read('/etc/ocf-atool/ocf-atool.conf')
+
+SECRET_KEY = conf.get('django', 'secret')
+CELERY_BROKER = conf.get('celery', 'broker')
+CELERY_BACKEND = conf.get('celery', 'backend')
 
 
 # List of callables that know how to import templates from various sources.
@@ -141,10 +114,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
     'atool.calnet',
     'atool.chpass',
     'atool.approve',

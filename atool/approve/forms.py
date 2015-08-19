@@ -19,16 +19,18 @@ class ApproveForm(forms.Form):
     # password is validated in clean since we need the username as part of the
     # password validation (to compare similarity)
     password = forms.CharField(
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(render_value=True),
         label='New Password',
         min_length=8,
-        max_length=64)
+        max_length=64,
+    )
 
     verify_password = forms.CharField(
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(render_value=True),
         label='Confirm Password',
         min_length=8,
-        max_length=64)
+        max_length=64,
+    )
     contact_email = forms.EmailField(
         label='Contact E-Mail',
         validators=[wrap_validator(ocflib.misc.validators.valid_email)])

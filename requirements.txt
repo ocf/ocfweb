@@ -1,9 +1,14 @@
+amqp==1.4.6
+anyjson==0.3.3
+billiard==3.3.0.20
+celery==3.1.18
 colorama==0.3.3
 cracklib==2.9.3
-Django==1.8.3
+Django==1.8.4
 dnspython3==1.12.0
 ecdsa==0.13
 gunicorn==19.3.0
+kombu==3.0.26
 ldap3==0.9.8.8
 ocflib
 paramiko==1.15.2
@@ -12,5 +17,7 @@ pyasn1==0.1.8
 pycrypto==2.6.1
 PyMySQL==0.6.6
 pysnmp==4.2.5
+pytz==2015.4
+redis==2.10.3
 requests==2.7.0
 SQLAlchemy==1.0.8

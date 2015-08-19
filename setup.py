@@ -13,6 +13,7 @@ setup(
     author='Open Computing Facility',
     author_email='help@ocf.berkeley.edu',
     install_requires=[
+        'celery[redis]',
         'django',
         'gunicorn',
         'ocflib',

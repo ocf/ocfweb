@@ -17,8 +17,6 @@ def _service_url(request, next_page):
     url = service
     if next_page:
         url += '?' + urlencode({REDIRECT_FIELD_NAME: next_page})
-
-    print(url)
     return url
 
 
