@@ -1,5 +1,3 @@
-import time
-
 import ocflib.account.search as search
 import ocflib.ucb.directory as directory
 from django.conf import settings
@@ -15,24 +13,7 @@ from ocflib.account.submission import NewAccountResponse
 from atool.approve.forms import ApproveForm
 from atool.calnet.decorators import login_required as calnet_required
 from atool.ocf.tasks import celery_app
-from atool.ocf.tasks import create_account
-
-
-# TODO: this timeout won't work with a global lock on account creation
-def wait_for_validation(task, timeout=5):
-    """Wait for account validation to finish.
-
-    This doesn't mean the account is created, just that it's passed the
-    validation stage. The rest of the waiting is done asynchronously once we're
-    guaranteed the account can actually be created.
-    """
-    start = time.time()
-    while time.time() < start + timeout:
-        if task.state in ('VALIDATED', 'SUCCESS'):
-            return
-        time.sleep(0.1)
-    else:
-        raise RuntimeError('Timed out waiting for validation.')
+from atool.ocf.tasks import validate_then_create_account
 
 
 @calnet_required
@@ -44,7 +25,7 @@ def request_account(request):
     real_name = directory.name_by_calnet_uid(calnet_uid)
 
     if calnet_uid not in settings.TESTER_CALNET_UIDS and existing_accounts:
-        return render_to_response('already_requested_account.html', {
+        return render_to_response('request-account/already-has-account.html', {
             'calnet_uid': calnet_uid,
             'calnet_url': settings.LOGOUT_URL
         })
@@ -70,10 +51,10 @@ def request_account(request):
                     handle_warnings=NewAccountRequest.WARNINGS_SUBMIT,
                 )
 
-            task = create_account.delay(req)
-            wait_for_validation(task)
+            task = validate_then_create_account.delay(req)
+            task.wait(timeout=5)
 
-            if task.ready():
+            if isinstance(task.result, NewAccountResponse):
                 if task.result.status == NewAccountResponse.REJECTED:
                     status = 'has_errors'
                     form._errors[NON_FIELD_ERRORS] = form.error_class(task.result.errors)
@@ -81,21 +62,17 @@ def request_account(request):
                     status = 'has_warnings'
                     form._errors[NON_FIELD_ERRORS] = form.error_class(task.result.errors)
                 elif task.result.status == NewAccountResponse.PENDING:
-                    # TODO: this should redirect
-                    return render_to_response('successfully_requested_account.html', {})
+                    return HttpResponseRedirect(reverse('account_pending'))
                 else:
                     raise AssertionError('Unexpected state reached')
             else:
                 # validation was successful, the account is being created now
-                request.session['approve_task_id'] = task.id
+                request.session['approve_task_id'] = task.result
                 return HttpResponseRedirect(reverse('wait_for_account'))
-
-#            return render_to_response(
-#                'successfully_requested_account.html', {})
     else:
         form = ApproveForm()
 
-    return render_to_response('request_account.html',
+    return render_to_response('request-account/form.html',
                               {
                                   'form': form,
                                   'real_name': real_name,
@@ -104,15 +81,30 @@ def request_account(request):
 
 
 def wait_for_account(request):
-    from django.http import HttpResponse
     if 'approve_task_id' not in request.session:
-        # TODO: this
-        return
+        return render_to_response('request-account/wait/error-no-task-id.html', {})
 
     task = celery_app.AsyncResult(request.session['approve_task_id'])
-    meta = task.info
     if not task.ready():
+        meta = task.info
+        status = ['Starting creation']
         if isinstance(meta, dict) and 'status' in meta:
-            return HttpResponse(meta['status'])
-    else:
-        return HttpResponse('done waiting!')
+            status.extend(meta['status'])
+        return render_to_response('request-account/wait/wait.html', {
+            'status': status,
+        })
+    elif isinstance(task.result, NewAccountResponse):
+        if task.result.status == NewAccountResponse.CREATED:
+            return HttpResponseRedirect(reverse('account_created'))
+    elif isinstance(task.result, Exception):
+        raise task.result
+
+    return render_to_response('request-account/wait/error-probably-not-created.html', {})
+
+
+def account_pending(request):
+    return render_to_response('request-account/pending.html', {})
+
+
+def account_created(request):
+    return render_to_response('request-account/success.html', {})
