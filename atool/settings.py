@@ -6,10 +6,7 @@ from configparser import ConfigParser
 
 # this is validated against the "Host" header the user sends, so
 # 'earthquake.o.b.e' or 'localhost' won't work here
-#
-# it's ok to not include dev-accounts, because there is no validation when
-# DEBUG = True
-ALLOWED_HOSTS = ['accounts.ocf.berkeley.edu']
+ALLOWED_HOSTS = ['accounts.ocf.berkeley.edu', 'dev-accounts.ocf.berkeley.edu']
 
 DEBUG = TEMPLATE_DEBUG = socket.getfqdn().startswith('dev-')
 
@@ -93,11 +90,9 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    'atool.middleware.errors.OcflibErrorMiddleware',
 )
 
 ROOT_URLCONF = 'atool.urls'
@@ -109,15 +104,12 @@ TEMPLATE_DIRS = (
 ALLOWED_INCLUDE_ROOTS = ()
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
     'atool.calnet',
     'atool.chpass',
     'atool.approve',
     'atool.ocf',
+    'atool.middleware',
 )
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'

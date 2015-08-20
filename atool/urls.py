@@ -4,6 +4,8 @@ from django.shortcuts import redirect
 
 urlpatterns = [
     url(r'^/?$', lambda _: redirect(reverse('change_password'))),
+    url(r'^internal-error$', lambda _: 1 / 0),
+
     url(r'^change-password$', 'atool.chpass.views.change_password',
         name='change_password'),
     url(r'^commands$', 'atool.cmds.views.commands', name='commands'),
