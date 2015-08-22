@@ -11,6 +11,7 @@ setup(
     author_email='help@ocf.berkeley.edu',
     install_requires=[
         'django>=1.8,<1.8.999',
+        'gunicorn',
         'libsass',
         'ocflib',
     ],
