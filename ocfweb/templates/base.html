@@ -1,0 +1,181 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Open Computing Facility</title>
+
+    <link href="{% static 'scss/site.scss.css' %}" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+        <script src="{% static 'js/html5shiv-3.7.3.min.js' %}"></script>
+        <script src="{% static 'js/respond-1.4.2.min.js' %}"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar ocf-navbar navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Open Computing Facility</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Join</a></li>
+            <li><a href="#">About Us</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Services <span class="caret"></span>
+              </a>
+
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">foo</a></li>
+                <li><a href="#">bar</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#">Staff Hours</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="ocf-penguin-swing"></div>
+
+    <div class="ocf-hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+            <h1>Welcome to the Open Computing Facility!</h1>
+            <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
+            <p class="ocf-button-holder">
+              <a href="#" class="btn btn-lg">Learn what we do</a>
+              <a href="#" class="btn btn-lg">Join us</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ocf-status-bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <p><strong>Lab Currently Open</strong> 9am&ndash;6pm Thursday</p>
+          </div>
+          <div class="col-md-8 col-sm-6 hidden-xs">
+            <ul class="text-right list-inline ocf-status-list">
+              <li class="ocf-status-ok">Printing</li>
+              <li class="ocf-status-ok">Web</li>
+              <li class="ocf-status-ok">Email</li>
+              <li class="ocf-status-ok">SSH</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ocf-content container">
+      <div class="row">
+        <div class="col-sm-8">
+          <p>The Open Computing Facility is an all-volunteer student organization located at the University of California, Berkeley. Among other services, we offer:</p>
+          <ul>
+            <li><a href="#">A spiffy computer lab</a> in 6A Hearst Gym</li>
+            <li><a href="#">Free printing</a> for all UC Berkeley students</li>
+            <li><a href="#">Shell accounts</a> on our powerful on-campus servers</li>
+          </ul>
+          <p>We hold <a href="#">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop-ins welcome!</p>
+        </div>
+
+        <div class="col-sm-4 ocf-sidebar">
+          <h4>Staff Hours Thursday</h4>
+          <p>5&ndash;6pm in the lab</p>
+
+          <ul class="ocf-staffhours-faces">
+            <li><img alt="gravatar" src="https://www.gravatar.com/avatar/23932bd5d03cee1a66a73356ac063c54?s=55&amp;d=mm" /></li>
+            <li><img alt="gravatar" src="https://www.gravatar.com/avatar/b4a3363de72988194e4b9c25195c3d07?s=55&amp;d=mm" /></li>
+            <li><img alt="gravatar" src="https://www.gravatar.com/avatar/35dc1f61c8881fc1fd9d4d64d628182f?s=55&amp;d=mm" /></li>
+            <li><img alt="gravatar" src="https://www.gravatar.com/avatar/ba81a5d0bc575a98294f2411b3612234?s=55&amp;d=mm" /></li>
+            <li><img alt="gravatar" src="https://www.gravatar.com/avatar/c725083de7f8b6fe25a7f4ff560490c2?s=55&amp;d=mm" /></li>
+          </ul>
+
+          <p><a href="#">See more staff hours &raquo;</a></p>
+
+          <h4>Account Management</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer ocf-footer">
+      <div class="ocf-footer-top">
+        <div class="container">
+          <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit? <a href="#">Join the staff team.</a></p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <h5>About the OCF</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Official Documents</a></li>
+              <li><a href="#">History</a></li>
+              <li><a href="#">Volunteer Staff Team</a></li>
+              <li><a href="#">Current Officers</a></li>
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <h5>Account Tools</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Join the OCF</a></li>
+              <li><a href="#">Reset Password</a></li>
+              <li><a href="#">Manage My Account</a></li>
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <h5>Services</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Computer Lab &amp; Printing</a></li>
+              <li><a href="#">Web Hosting</a></li>
+              <li><a href="#">Email Hosting</a></li>
+              <li><a href="#">SSH/Remote Shell</a></li>
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <h5>Help and Support</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Status Blog</a></li>
+              <li><a href="#">User Documentation</a></li>
+              <li><a href="#">Staff Documentation</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ocf-copyright">
+          <p>The Open Computing Facility is run entirely by student volunteers.</p>
+          <p>Copyright &copy; 1989&ndash;{% now 'Y' %} Board of Directors of the Open Computing Facility</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'js/underscore-1.8.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-3.3.5.min.js' %}"></script>
+    <script src="{% static 'js/site.js' %}"></script>
+  </body>
+</html>
