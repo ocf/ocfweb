@@ -25,6 +25,11 @@ $status-bar-color: $color-blue-baby;
 $footer-top-color: $color-gray-light;
 $footer-bottom-color: $color-gray;
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   padding-top: $navbar-height;
 }
@@ -187,6 +192,10 @@ body {
 }
 
 .ocf-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
   background-color: $footer-bottom-color;
   padding-bottom: 20px;
 

@@ -1,1 +1,51 @@
 {% extends 'base.html' %}
+
+{% block hero %}
+  <div class="ocf-penguin-swing"></div>
+
+  <div class="ocf-hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <h1>Welcome to the Open Computing Facility!</h1>
+          <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
+          <p class="ocf-button-holder">
+            <a href="#" class="btn btn-lg">Learn what we do</a>
+            <a href="#" class="btn btn-lg">Create an account</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-8">
+      <p>The Open Computing Facility is an all-volunteer student organization located at the University of California, Berkeley. Among other services, we offer:</p>
+      <ul>
+        <li><a href="#">A spiffy computer lab</a> in 6A Hearst Gym</li>
+        <li><a href="#">Free printing</a> for all UC Berkeley students</li>
+        <li><a href="#">Shell accounts</a> on our powerful on-campus servers</li>
+      </ul>
+      <p>We hold <a href="#">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop-ins welcome!</p>
+    </div>
+
+    <div class="col-sm-4 ocf-sidebar">
+      <h4>Staff Hours Thursday</h4>
+      <p>5&ndash;6pm in the lab</p>
+
+      <ul class="ocf-staffhours-faces">
+        <li><img alt="gravatar" src="https://www.gravatar.com/avatar/23932bd5d03cee1a66a73356ac063c54?s=55&amp;d=mm" /></li>
+        <li><img alt="gravatar" src="https://www.gravatar.com/avatar/b4a3363de72988194e4b9c25195c3d07?s=55&amp;d=mm" /></li>
+        <li><img alt="gravatar" src="https://www.gravatar.com/avatar/35dc1f61c8881fc1fd9d4d64d628182f?s=55&amp;d=mm" /></li>
+        <li><img alt="gravatar" src="https://www.gravatar.com/avatar/ba81a5d0bc575a98294f2411b3612234?s=55&amp;d=mm" /></li>
+        <li><img alt="gravatar" src="https://www.gravatar.com/avatar/c725083de7f8b6fe25a7f4ff560490c2?s=55&amp;d=mm" /></li>
+      </ul>
+
+      <p><a href="#">See more staff hours &raquo;</a></p>
+
+      <h4>Account Management</h4>
+    </div>
+  </div>
+{% endblock %}

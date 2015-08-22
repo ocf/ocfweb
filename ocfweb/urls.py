@@ -4,5 +4,5 @@ from ocfweb.main.home import home
 
 
 urlpatterns = [
-    url('^$', home),
+    url('^$', home, name='home'),
 ]

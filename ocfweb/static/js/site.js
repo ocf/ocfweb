@@ -1,16 +1,14 @@
 $(document).ready(function() {
     // sticky footer
-    // TODO: can we do this with affix?
-    // http://getbootstrap.com/javascript/#affix
     var resizeTimeout;
     var updateFooterHeight = function() {
-        var height = $('.ocf-footer').height();
-        console.log(height);
+        var height = $('.ocf-footer').outerHeight();
+        $('body').css('margin-bottom', height);
     };
 
     $(window).resize(function() {
         clearTimeout(resizeTimeout);
-        setTimeout(updateFooterHeight, 1);
+        setTimeout(updateFooterHeight, 10);
     });
 
     updateFooterHeight();
