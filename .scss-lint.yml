@@ -17,3 +17,7 @@ linters:
     # why does anyone think this is a good idea?
     PropertySortOrder:
         enabled: false
+
+    Indentation:
+        enabled: true
+        width: 4

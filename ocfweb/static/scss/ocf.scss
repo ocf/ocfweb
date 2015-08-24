@@ -26,220 +26,220 @@ $footer-top-color: $color-gray-light;
 $footer-bottom-color: $color-gray;
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  padding-top: $navbar-height;
+    padding-top: $navbar-height;
 }
 
 .ocf-navbar {
-  @extend .navbar-default;
+    @extend .navbar-default;
 
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 0;
 
-  .navbar-brand {
-    background-image: url('../img/penguin.svg');
-    background-position: 7px 8px;
-    background-repeat: no-repeat;
-    background-size: 31px 41px;
+    .navbar-brand {
+        background-image: url('../img/penguin.svg');
+        background-position: 7px 8px;
+        background-repeat: no-repeat;
+        background-size: 31px 41px;
 
-    padding-left: 51px;
+        padding-left: 51px;
 
-    // this gives us just enough room to avoid wrapping on iPhone
-    @media (max-width: 767px) {
-      font-size: 16px;
-      font-weight: bold;
+        // this gives us just enough room to avoid wrapping on iPhone
+        @media (max-width: 767px) {
+            font-size: 16px;
+            font-weight: bold;
+        }
     }
-  }
 
-  .navbar-brand,
-  .navbar-nav > li > a {
-    color: $color-black;
-    height: $navbar-height;
-    padding-top: 21px;
-  }
+    .navbar-brand,
+    .navbar-nav > li > a {
+        color: $color-black;
+        height: $navbar-height;
+        padding-top: 21px;
+    }
 }
 
 .ocf-penguin-swing {
-  position: absolute;
+    position: absolute;
 
-  height: 407px;
+    height: 407px;
 
-  left: 50%;
-  right: 0;
-  top: -95px;
+    left: 50%;
+    right: 0;
+    top: -95px;
 
-  background-image: url('../img/penguin-swing.svg');
-  background-repeat: no-repeat;
-  background-size: 366px 407px;
+    background-image: url('../img/penguin-swing.svg');
+    background-repeat: no-repeat;
+    background-size: 366px 407px;
 
-  // responsive penguin ftw
-  @media (min-width: 1200px) {
-    background-position: 240px 0;
-  }
+    // responsive penguin ftw
+    @media (min-width: 1200px) {
+        background-position: 240px 0;
+    }
 
-  @media (min-width: 992px) and (max-width: 1199px) {
-    background-position: 178px 0;
-    top: -60px; // pull down a little to cover status bar
-  }
+    @media (min-width: 992px) and (max-width: 1199px) {
+        background-position: 178px 0;
+        top: -60px; // pull down a little to cover status bar
+    }
 
-  @media (min-width: 768px) and (max-width: 991px) {
-    background-position: 122px 0;
-  }
+    @media (min-width: 768px) and (max-width: 991px) {
+        background-position: 122px 0;
+    }
 
-  @media (max-width: 767px) {
-    display: none;
-  }
+    @media (max-width: 767px) {
+        display: none;
+    }
 }
 
 .ocf-hero {
-  background-color: $hero-color;
+    background-color: $hero-color;
 
-  h1 {
-    @media (max-width: 767px) {
-      font-size: 28px;
-      font-weight: 800;
+    h1 {
+        @media (max-width: 767px) {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        @media (min-width: 992px) {
+            font-size: 40px;
+        }
+
+        // we want the text to wrap after 'Open'
+        @media (min-width: 992px) and (max-width: 1199px) {
+            padding-right: 46px;
+        }
     }
 
-    @media (min-width: 992px) {
-      font-size: 40px;
+    .ocf-button-holder {
+        padding-bottom: 15px;
+
+        .btn {
+            background-color: $hero-button-color;
+            margin-right: 10px;
+            color: $color-black;
+
+            // help fit both buttons on one line on iPhone
+            @media (max-width: 767px) {
+                margin-right: 5px;
+            }
+
+            &:hover {
+                background-color: $hero-button-color-hover;
+            }
+        }
     }
-
-    // we want the text to wrap after 'Open'
-    @media (min-width: 992px) and (max-width: 1199px) {
-      padding-right: 46px;
-    }
-  }
-
-  .ocf-button-holder {
-    padding-bottom: 15px;
-
-    .btn {
-      background-color: $hero-button-color;
-      margin-right: 10px;
-      color: $color-black;
-
-      // help fit both buttons on one line on iPhone
-      @media (max-width: 767px) {
-        margin-right: 5px;
-      }
-
-      &:hover {
-        background-color: $hero-button-color-hover;
-      }
-    }
-  }
 }
 
 .ocf-status-bar {
-  background-color: $status-bar-color;
+    background-color: $status-bar-color;
 
-  p {
-    margin: 10px 0;
-  }
-
-  .ocf-status-list {
-    margin: 10px 0;
-
-    @media (min-width: 1200px) {
-      margin-right: 310px;
+    p {
+        margin: 10px 0;
     }
 
-    @media (min-width: 992px) and (max-width: 1199px) {
-      margin-right: 280px;
+    .ocf-status-list {
+        margin: 10px 0;
+
+        @media (min-width: 1200px) {
+            margin-right: 310px;
+        }
+
+        @media (min-width: 992px) and (max-width: 1199px) {
+            margin-right: 280px;
+        }
+
+        li {
+            margin-left: 5px;
+
+            &.ocf-status-ok::before {
+                background-color: $color-status-ok;
+            }
+
+            &.ocf-status-bad::before {
+                background-color: $color-status-bad;
+            }
+
+            &::before {
+                border-radius: 3px;
+                content: ' ';
+                display: inline-block;
+
+                height: 6px;
+                width: 6px;
+
+                margin-bottom: 2px;
+                margin-right: 5px;
+            }
+        }
     }
-
-    li {
-      margin-left: 5px;
-
-      &.ocf-status-ok::before {
-        background-color: $color-status-ok;
-      }
-
-      &.ocf-status-bad::before {
-        background-color: $color-status-bad;
-      }
-
-      &::before {
-        border-radius: 3px;
-        content: ' ';
-        display: inline-block;
-
-        height: 6px;
-        width: 6px;
-
-        margin-bottom: 2px;
-        margin-right: 5px;
-      }
-    }
-  }
 }
 
 .ocf-sidebar {
-  @media (max-width: 767px) {
-    border-top: solid 12px #aaa;
-    margin-top: 10px;
-    padding-top: 5px;
-  }
+    @media (max-width: 767px) {
+        border-top: solid 12px #aaa;
+        margin-top: 10px;
+        padding-top: 5px;
+    }
 
-  h4 {
-    font-weight: bold;
-    margin-bottom: 0;
-  }
+    h4 {
+        font-weight: bold;
+        margin-bottom: 0;
+    }
 }
 
 .ocf-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 
-  background-color: $footer-bottom-color;
-  padding-bottom: 20px;
+    background-color: $footer-bottom-color;
+    padding-bottom: 20px;
 
-  a {
-    color: $color-black;
-  }
-
-  h5 {
-    color: $color-black;
-    font-weight: bold;
-
-    margin-bottom: 5px;
-    margin-top: 20px;
-  }
-
-  .ocf-footer-top {
-    background-color: $footer-top-color;
-
-    p {
-      margin: 10px 0;
+    a {
+        color: $color-black;
     }
-  }
 
-  .ocf-copyright {
-    p {
-      color: #444;
-      font-size: 13px;
-      line-height: 1.3em;
-      margin: 0;
+    h5 {
+        color: $color-black;
+        font-weight: bold;
+
+        margin-bottom: 5px;
+        margin-top: 20px;
     }
-  }
+
+    .ocf-footer-top {
+        background-color: $footer-top-color;
+
+        p {
+            margin: 10px 0;
+        }
+    }
+
+    .ocf-copyright {
+        p {
+            color: #444;
+            font-size: 13px;
+            line-height: 1.3em;
+            margin: 0;
+        }
+    }
 }
 
 .ocf-content {
-  padding: 20px 15px;
+    padding: 20px 15px;
 }
 
 .ocf-staffhours-faces {
-  @extend .list-inline;
+    @extend .list-inline;
 
-  // squeeze closer on phones to try to fit them on a single line
-  @media (max-width: 767px) {
-    li {
-      padding: 0;
+    // squeeze closer on phones to try to fit them on a single line
+    @media (max-width: 767px) {
+        li {
+            padding: 0;
+        }
     }
-  }
 }

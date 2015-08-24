@@ -2,50 +2,50 @@
 {% load home_extras %}
 
 {% block hero %}
-  <div class="ocf-penguin-swing"></div>
+<div class="ocf-penguin-swing"></div>
 
-  <div class="ocf-hero">
+<div class="ocf-hero">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-8">
-          <h1>Welcome to the Open Computing Facility!</h1>
-          <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
-          <p class="ocf-button-holder">
-            <a href="https://hello.ocf.berkeley.edu/" class="btn btn-lg">Learn what we do</a>
-            <a href="https://accounts.ocf.berkeley.edu/request-account" class="btn btn-lg">Create an account</a>
-          </p>
+        <div class="row">
+            <div class="col-sm-8">
+                <h1>Welcome to the Open Computing Facility!</h1>
+                <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
+                <p class="ocf-button-holder">
+                <a href="https://hello.ocf.berkeley.edu/" class="btn btn-lg">Learn what we do</a>
+                <a href="https://accounts.ocf.berkeley.edu/request-account" class="btn btn-lg">Create an account</a>
+                </p>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 {% endblock %}
 
 {% block content %}
-  <div class="row">
+<div class="row">
     <div class="col-sm-8">
-      <p>The Open Computing Facility is an all-volunteer student organization located at the University of California, Berkeley. Among other services, we offer:</p>
-      <ul>
-        <li><a href="https://wiki.ocf.berkeley.edu/services/lab/">A spiffy computer lab</a> in 6A Hearst Gym</li>
-        <li><a href="https://wiki.ocf.berkeley.edu/services/lab/printing/">Free printing</a> for all UC Berkeley students</li>
-        <li><a href="https://wiki.ocf.berkeley.edu/services/shell/">Shell accounts</a> on our powerful on-campus servers</li>
-      </ul>
-      <p>We hold <a href="https://www.ocf.berkeley.edu/staff_hours/">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop-ins welcome!</p>
+        <p>The Open Computing Facility is an all-volunteer student organization located at the University of California, Berkeley. Among other services, we offer:</p>
+        <ul>
+            <li><a href="https://wiki.ocf.berkeley.edu/services/lab/">A spiffy computer lab</a> in 6A Hearst Gym</li>
+            <li><a href="https://wiki.ocf.berkeley.edu/services/lab/printing/">Free printing</a> for all UC Berkeley students</li>
+            <li><a href="https://wiki.ocf.berkeley.edu/services/shell/">Shell accounts</a> on our powerful on-campus servers</li>
+        </ul>
+        <p>We hold <a href="https://www.ocf.berkeley.edu/staff_hours/">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop-ins welcome!</p>
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
-      {% for staff_hour in staff_hours %}
-        <h4>Staff Hours {{staff_hour.day}}</h4>
-        <p>{{staff_hour.time}} in <a href="https://wiki.ocf.berkeley.edu/services/lab/">the lab</a></p>
-        <ul class="ocf-staffhours-faces">
-          {% for staffer in staff_hour.staff %}
-            <li><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:55}}" /></li>
-          {% endfor %}
-        </ul>
-      {% endfor %}
+        {% for staff_hour in staff_hours %}
+            <h4>Staff Hours {{staff_hour.day}}</h4>
+            <p>{{staff_hour.time}} in <a href="https://wiki.ocf.berkeley.edu/services/lab/">the lab</a></p>
+            <ul class="ocf-staffhours-faces">
+                {% for staffer in staff_hour.staff %}
+                    <li><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:55}}" /></li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
 
-      <p><a href="https://www.ocf.berkeley.edu/staff_hours/">See more staff hours &raquo;</a></p>
+        <p><a href="https://www.ocf.berkeley.edu/staff_hours/">See more staff hours &raquo;</a></p>
 
-      <h4>Account Management</h4>
+        <h4>Account Management</h4>
     </div>
-  </div>
+</div>
 {% endblock %}
