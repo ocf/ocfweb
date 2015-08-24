@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staff_hours %}
+{% load google_maps %}
 
 {% block hero %}
 <div class="ocf-penguin-swing"></div>
@@ -33,9 +34,12 @@
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
+        <h4>Open Computing Facility Lab</h4>
+        <p>{% google_map '100%' '250px' %}</p>
+
         {% for staff_hour in staff_hours %}
             <h4>Staff Hours {{staff_hour.day}}</h4>
-            <p>{{staff_hour.time}} in <a href="https://wiki.ocf.berkeley.edu/services/lab/">the lab</a></p>
+            <p>{{staff_hour.time}} in the lab</p>
             <ul class="ocf-staffhours-faces">
                 {% for staffer in staff_hour.staff %}
                     <li><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:55}}" /></li>

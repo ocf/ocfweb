@@ -32,6 +32,8 @@ html {
 
 body {
     padding-top: $navbar-height;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
 }
 
 .ocf-navbar {
@@ -97,6 +99,10 @@ body {
 
 .ocf-hero {
     background-color: $hero-color;
+
+    * {
+        font-size: 16px;
+    }
 
     h1 {
         @media (max-width: 767px) {
