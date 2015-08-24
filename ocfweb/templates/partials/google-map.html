@@ -1,0 +1,37 @@
+<div id="{{id}}" style="width: {{width}}; height: {{height}};"></div>
+<script>
+var OCF_LATITUDE = 37.869488,
+    OCF_LONGITUDE = -122.257522;
+
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('{{id}}'), {
+        center: {
+            lat: OCF_LATITUDE + 0.0004,
+            lng: OCF_LONGITUDE - 0.0004,
+        },
+        zoom: 17,
+    });
+
+    var marker = new google.maps.Marker({
+        position: {
+            lat: OCF_LATITUDE,
+            lng: OCF_LONGITUDE,
+        },
+        map: map,
+        title: 'Open Computing Facility',
+    });
+
+    var infowindow = new google.maps.InfoWindow({
+        content: (
+            '<strong>Open Computing Facility</strong><br>' +
+            '6A Hearst Gym<br>' +
+            'UC Berkeley, Berkeley, 94720'
+        ),
+    });
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
+    infowindow.open(map, marker);
+}
+</script>
+<script async delay src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4st-AHFMr1O-59eaoT2AGjvX_zHtbdN8&callback=initMap"></script>

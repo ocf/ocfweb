@@ -61,14 +61,12 @@
                             </ul>
                         </li>
 
-                        <li><a href="https://www.ocf.berkeley.edu/staff_hours/">Staff Hours</a></li>
+                        <li><a href="{% url 'staff-hours' %}">Staff Hours</a></li>
                         <li><a href="https://wiki.ocf.berkeley.edu/contact/">Contact Us</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </div>
-
-        {% block hero %}{% endblock %}
 
         <div class="ocf-status-bar">
             <div class="container">
@@ -95,6 +93,8 @@
                 </div>
             </div>
         </div>
+
+        {% block hero %}{% endblock %}
 
         <div class="ocf-content container">
             {% block content %}{% endblock %}

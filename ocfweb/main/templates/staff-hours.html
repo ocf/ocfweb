@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load staff_hours %}
+{% load google_maps %}
 
-{% block hero %}
+{% block heros %}
 <div class="ocf-penguin-swing"></div>
 
 <div class="ocf-hero">
@@ -23,29 +24,30 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-8">
-        <p>The Open Computing Facility is an all-volunteer student organization located at the University of California, Berkeley. Among other services, we offer:</p>
-        <ul>
-            <li><a href="https://wiki.ocf.berkeley.edu/services/lab/">A spiffy computer lab</a> in 6A Hearst Gym</li>
-            <li><a href="https://wiki.ocf.berkeley.edu/services/lab/printing/">Free printing</a> for all UC Berkeley students</li>
-            <li><a href="https://wiki.ocf.berkeley.edu/services/shell/">Shell accounts</a> on our powerful on-campus servers</li>
-        </ul>
-        <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop-ins welcome!</p>
-    </div>
-
-    <div class="col-sm-4 ocf-sidebar">
+        <h1>Staff Hours</h1>
         {% for staff_hour in staff_hours %}
-            <h4>Staff Hours {{staff_hour.day}}</h4>
+            <h2>Staff Hours {{staff_hour.day}}</h4>
             <p>{{staff_hour.time}} in <a href="https://wiki.ocf.berkeley.edu/services/lab/">the lab</a></p>
             <ul class="ocf-staffhours-faces">
                 {% for staffer in staff_hour.staff %}
-                    <li><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:55}}" /></li>
+                    <li>
+                        <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:110}}" />
+                        <h4>{{staffer.real_name}}</h4>
+                        <p>{{staffer.position}}</p>
+                    </li>
                 {% endfor %}
             </ul>
         {% endfor %}
 
-        <p><a href="{% url 'staff-hours' %}">See more staff hours &raquo;</a></p>
+        <p><a href="https://www.ocf.berkeley.edu/staff_hours/">See more staff hours &raquo;</a></p>
+    </div>
 
-        <h4>Account Management</h4>
+    <div class="col-sm-4 ocf-sidebar">
+        <h4>Open Computing Facility Lab</h4>
+        <p>{% google_map '100%' '250px' %}</p>
+        <p><strong>The OCF lab is located on the ground level of Hearst Gym (west entrance), Room 6A.</strong></p>
+        <p>You will need to show your student ID when you pass the Publications Center in Room 6.</p>
+        <p>All staff hours are held in the lab&mdash;feel free to drop by!</p>
     </div>
 </div>
 {% endblock %}
