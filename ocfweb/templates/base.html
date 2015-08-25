@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load lab_hours %}
+
 <!doctype html>
 <html class="page-{{request.resolver_match.url_name}}">
     <head>
@@ -20,8 +22,10 @@
             {% endif %}
         </title>
 
-        <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic,500,500italic|Lato:400,700,900" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic,500,500italic" rel="stylesheet">
         <link href="{% static 'scss/site.scss.css' %}" rel="stylesheet" />
+        <link rel="icon" href="{% static 'img/favicon-16.png' %}" sizes="16x16" />
+        <link rel="icon" href="{% static 'img/favicon-32.png' %}" sizes="32x32" />
 
         <!--[if lt IE 9]>
             <script src="{% static 'js/html5shiv-3.7.3.min.js' %}"></script>
@@ -52,7 +56,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="https://wiki.ocf.berkeley.edu/services/lab/">Computer Lab</a></li>
+                                <li><a href="{% url 'lab' %}">Computer Lab</a></li>
                                 <li><a href="https://wiki.ocf.berkeley.edu/services/lab/printing/">Printing</a></li>
                                 <li><a href="https://wiki.ocf.berkeley.edu/services/web/">Web Hosting</a></li>
                                 <li><a href="https://wiki.ocf.berkeley.edu/services/webapps/">Application Hosting</a></li>
@@ -79,7 +83,7 @@
                         {% else %}
                             <strong>Lab Currently Closed</strong>
                         {% endif %}
-                        {{lab_hours_text}}
+                        {{current_lab_hours|lab_hours_time}}
                         </p>
                     </div>
                     <div class="col-md-8 col-sm-6 hidden-xs">
@@ -132,7 +136,7 @@
                     <div class="col-sm-3">
                         <h5>Services</h5>
                         <ul class="list-unstyled">
-                            <li><a href="https://wiki.ocf.berkeley.edu/services/lab/">Computer Lab &amp; Printing</a></li>
+                            <li><a href="{% url 'lab' %}">Computer Lab &amp; Printing</a></li>
                             <li><a href="https://wiki.ocf.berkeley.edu/services/web/">Web Hosting</a></li>
                             <li><a href="https://wiki.ocf.berkeley.edu/services/mail/">Email Hosting</a></li>
                             <li><a href="https://wiki.ocf.berkeley.edu/services/shell/">SSH/Remote Shell</a></li>

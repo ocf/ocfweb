@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staff_hours %}
 {% load google_maps %}
+{% load lab_hours %}
 
 {% block hero %}
 <div class="ocf-penguin-swing"></div>
@@ -26,7 +27,7 @@
     <div class="col-sm-8 ocf-content-main">
         <p>The Open Computing Facility is an all-volunteer student organization located at the University of California, Berkeley. Among other services, we offer:</p>
         <ul>
-            <li><a href="https://wiki.ocf.berkeley.edu/services/lab/">A spiffy computer lab</a> in 6A Hearst Gym</li>
+            <li><a href="{% url 'lab' %}">A spiffy computer lab</a> in 6A Hearst Gym</li>
             <li><a href="https://wiki.ocf.berkeley.edu/services/lab/printing/">Free printing</a> for all UC Berkeley students</li>
             <li><a href="https://wiki.ocf.berkeley.edu/services/shell/">Shell accounts</a> on our powerful on-campus servers</li>
         </ul>
@@ -35,6 +36,13 @@
 
     <div class="col-sm-4 ocf-sidebar">
         <h4>Open Computing Facility Lab</h4>
+        <div class="row ocf-hours">
+            {% for hour in sidebar_hours %}
+            <div class="col-xs-12"><strong>{{hour|lab_hours_day}}:</strong> {{hour|lab_hours_time}}</div>
+            {% endfor %}
+        </div>
+        <p><a href="{% url 'lab' %}">See more lab hours &raquo;</a></p>
+
         <p>{% google_map '100%' '250px' %}</p>
 
         {% for staff_hour in staff_hours %}
@@ -42,7 +50,7 @@
             <p>{{staff_hour.time}} in the lab</p>
             <ul class="ocf-staffhours-faces">
                 {% for staffer in staff_hour.staff %}
-                    <li><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:55}}" /></li>
+                    <li><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" /></li>
                 {% endfor %}
             </ul>
         {% endfor %}

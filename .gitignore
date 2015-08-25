@@ -1,5 +1,5 @@
 ## ocfweb stuff
-/ocfweb/static/scss/*.css
+/ocfweb/static/scss/**/*.css
 
 ## generic python stuff below
 __pycache__/
