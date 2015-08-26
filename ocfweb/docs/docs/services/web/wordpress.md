@@ -1,0 +1,97 @@
+[[!meta title="WordPress"]]
+# WordPress
+
+WordPress is a popular CMS (content management system) on the Web.
+
+# Setting up WordPress
+
+The easiest way to set up WordPress is via [[SSH|services/shell]]. Some simple
+instructions:
+
+1. Go to our [web-based SSH client](https://ssh.ocf.berkeley.edu/) and sign in
+   with your username and password.
+
+2. Create your web root by entering `makehttp` and hitting enter.
+
+3. Create your MySQL database by entering `makemysql`. Copy the password it
+   gives you -- you'll need it later.
+
+4. Go to your web directory and download WordPress by entering these lines
+   individually:
+
+        cd ~/public_html
+        wp core download
+
+   This will download the latest version of WordPress into your web directory
+   using [wp-cli](http://wp-cli.org/).
+
+5. Visit your web admin dashboard and complete the installation process. Your
+   website will be `https://www.ocf.berkeley.edu/~username` and the dashboard
+   `https://www.ocf.berkeley.edu/~username/wp-admin`.
+
+   You can choose whatever you want for most options, but you'll need to use:
+
+   * **Database Name:** Your user name
+   * **Database User Name:** Your user name
+   * **Database Password:** Your MySQL password (the one you copied from step 3
+     above)
+   * **Database Host:** `mysql`
+   * **Table Prefix:** Anything you want (the default `wp_` is fine)
+
+# Recovering a database password
+
+The database password used by WordPress is recorded in the WordPress
+configuration file `wp-config.php` on the line that looks like
+
+    define('DB_PASSWORD', 'password_here');
+
+If you ever need your password back, you can always find where WordPress is
+installed (usually `~/public_html` or `~/public_html/wordpress`) and open
+`wp-config.php` in an editor or get the password over SSH like so:
+
+    cat ~/path/to/wordpress/wp-config.php | grep DB_PASSWORD
+
+# Migrating from WordPress.com
+
+If you already have a site hosted at WordPress.com and you'd like to move it to
+OCF web hosting, for example, to become eligible for [[virtual
+hosting|services/vhost]], you can move most of your website's functionality and
+content to the OCF's servers. Generally, the process is simple and sites
+migrated from WordPress.com hosting to the OCF function quite well, apart from
+possible minor differences in the appearance of themes.
+
+If you have an old WordPress installation lying around -- if you are replacing
+an old student group website, for example -- you should archive it before
+proceeding. See the example on our [[backup page|services/web/backups]] to
+easily make a backup over SSH.
+
+The basic steps to migration are as follows:
+
+1. Follow the steps above to install WordPress on your OCF account.
+
+2. Use the web admin dashboard to install all the themes and plugins you were
+   using at WordPress.com
+
+3. Log into your WordPress.com dashboard and go to `Tools > Export` to download
+   and XML file with all your site's posts and content.
+
+4. Log into the dashboard at your OCF WordPress installation and go to `Tools >
+   Import > WordPress`, then upload the XMl file with all your content.
+
+Further details can be found at [the support page by WordPress.com][1].
+
+[1]: https://en.support.wordpress.com/moving-to-a-self-hosted-wordpress-site/
+
+# Installing Jetpack
+
+The Jetpack plugin as well as several others require a publicly accessible
+XML-RPC file, which is not public by default. Before you can install Jetpack,
+you need to add the following lines to the file `.htaccess` in your WordPress
+folder:
+
+    <Files "xmlrpc.php">
+      order allow, deny
+      allow from all
+    </Files>
+
+If `.htaccess` doesn't exist, create it and add the above lines.

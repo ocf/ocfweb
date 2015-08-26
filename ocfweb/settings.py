@@ -13,6 +13,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'ocfweb',
     'ocfweb.main',
+    'ocfweb.docs',
 )
 
 MIDDLEWARE_CLASSES = (

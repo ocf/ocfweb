@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load google_maps %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-8">
+        {% autoescape off %}
+            {{content}}
+        {% endautoescape %}
+    </div>
+
+    <div class="col-sm-4 ocf-sidebar">
+        TOC here
+    </div>
+</div>
+{% endblock %}

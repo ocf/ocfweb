@@ -13,6 +13,7 @@ setup(
         'django>=1.8,<1.8.999',
         'gunicorn',
         'libsass',
+        'mistune',
         'ocflib',
     ],
     sass_manifests={

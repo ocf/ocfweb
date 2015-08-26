@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load google_maps %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-8">
+        <ul>
+            {% for link in links %}
+                <li><a href="{% url 'doc' link %}">{{link}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="col-sm-4 ocf-sidebar">
+        TODO: something here?
+    </div>
+</div>
+{% endblock %}
