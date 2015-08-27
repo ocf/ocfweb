@@ -85,6 +85,8 @@
                             <strong>Lab Currently Closed</strong>
                         {% endif %}
                         {{current_lab_hours|lab_hours_time}}
+                        on {{current_lab_hours|lab_hours_day_and_holiday}}
+                        <a class="subtle" href="{% url 'lab' %}">more &raquo;</a>
                         </p>
                     </div>
                     <div class="col-md-8 col-sm-6 hidden-xs">

@@ -36,11 +36,14 @@
 
     <div class="col-sm-4 ocf-sidebar">
         <h4>Open Computing Facility Lab</h4>
-        <div class="row ocf-hours">
+        <table class="ocf-hours">
             {% for hour in sidebar_hours %}
-            <div class="col-xs-12"><strong>{{hour|lab_hours_day}}:</strong> {{hour|lab_hours_time}}</div>
+                <tr>
+                    <th>{{hour|lab_hours_day}}:</th>
+                    <td>{{hour|lab_hours_time}} {{hour|lab_hours_holiday}}</td>
+                </tr>
             {% endfor %}
-        </div>
+        </table>
         <p><a href="{% url 'lab' %}">See more lab hours &raquo;</a></p>
 
         <p>{% google_map '100%' '250px' %}</p>

@@ -36,6 +36,14 @@ body {
     background-color: #f5f5f5;
 }
 
+.subtle {
+    color: #999;
+
+    &:hover {
+        color: #999;
+    }
+}
+
 .ocf-navbar {
     @extend .navbar-default;
 
@@ -70,6 +78,10 @@ body {
 
     p {
         margin: 10px 0;
+    }
+
+    .subtle {
+        margin-left: 2px;
     }
 
     .ocf-status-list {

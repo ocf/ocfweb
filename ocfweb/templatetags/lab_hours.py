@@ -9,6 +9,20 @@ def lab_hours_day(hours):
 
 
 @register.filter
+def lab_hours_day_and_holiday(hours):
+    if hours.holiday:
+        return '{hours.name} ({hours.holiday})'.format(hours=hours)
+    return hours.name
+
+
+@register.filter
+def lab_hours_holiday(hours):
+    if hours.holiday:
+        return '({hours.holiday})'.format(hours=hours)
+    return ''
+
+
+@register.filter
 def lab_hours_time(hours):
     if None not in [hours.open, hours.close]:
         def format_hour(hour):
@@ -20,6 +34,6 @@ def lab_hours_time(hours):
             else:
                 return str(hour % 12) + 'pm'
 
-        return '{}—{}'.format(format_hour(hours.open), format_hour(hours.close))
+        return '{}–{}'.format(format_hour(hours.open), format_hour(hours.close))
     else:
         return 'Closed All Day'
