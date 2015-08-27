@@ -23,7 +23,7 @@ def home(request):
                 'Berkeley students.'''
             ),
             'staff_hours': get_staff_hours_soonest_first()[:2],
-            'sidebar_hours': sidebar_hours,
+            'hours_columns': [sidebar_hours[:2], sidebar_hours[2:]],
         },
         context_instance=RequestContext(request),
     )
