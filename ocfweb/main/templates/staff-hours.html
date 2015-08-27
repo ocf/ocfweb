@@ -9,10 +9,6 @@
             <div class="col-sm-8">
                 <h1>Welcome to the Open Computing Facility!</h1>
                 <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
-                <p class="ocf-button-holder">
-                <a href="https://hello.ocf.berkeley.edu/" class="btn btn-lg">Learn what we do</a>
-                <a href="https://accounts.ocf.berkeley.edu/request-account" class="btn btn-lg">Create an account</a>
-                </p>
             </div>
         </div>
     </div>
@@ -24,20 +20,27 @@
     <div class="col-sm-8">
         <h1>Staff Hours</h1>
         {% for staff_hour in staff_hours %}
-            <h2>Staff Hours {{staff_hour.day}}</h4>
-            <p>{{staff_hour.time}} in <a href="https://wiki.ocf.berkeley.edu/services/lab/">the lab</a></p>
-            <ul class="ocf-staffhours-faces">
-                {% for staffer in staff_hour.staff %}
-                    <li>
-                        <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:110}}" />
-                        <h4>{{staffer.real_name}}</h4>
-                        <p>{{staffer.position}}</p>
-                    </li>
-                {% endfor %}
-            </ul>
+            <div class="hour {% if staff_hour.cancelled %} cancelled {% endif %}">
+                <div class="title">
+                    <strong>{{staff_hour.day}}</strong>
+                    {{staff_hour.time}}
+                    {% if staff_hour.cancelled %}
+                        <span class="cancelled-text">cancelled this week</span>
+                    {% endif %}
+                </div>
+                <div class="content">
+                    <ul class="ocf-staffhours-faces">
+                        {% for staffer in staff_hour.staff %}
+                            <li>
+                                <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:130}}" />
+                                <h4>{{staffer.real_name}}</h4>
+                                <h5>{{staffer.position}}</h5>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         {% endfor %}
-
-        <p><a href="https://www.ocf.berkeley.edu/staff_hours/">See more staff hours &raquo;</a></p>
     </div>
 
     <div class="col-sm-4 ocf-sidebar">

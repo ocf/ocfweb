@@ -13,8 +13,8 @@
                 <h1>Welcome to the Open Computing Facility!</h1>
                 <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
                 <p class="ocf-button-holder">
-                <a href="https://hello.ocf.berkeley.edu/" class="btn btn-lg">Learn what we do</a>
-                <a href="https://accounts.ocf.berkeley.edu/request-account" class="btn btn-lg">Create an account</a>
+                    <a href="https://hello.ocf.berkeley.edu/" class="btn btn-lg">Learn what we do</a>
+                    <a href="https://accounts.ocf.berkeley.edu/request-account" class="btn btn-lg">Create an account</a>
                 </p>
             </div>
         </div>
@@ -45,17 +45,26 @@
 
         <p>{% google_map '100%' '250px' %}</p>
 
-        {% for staff_hour in staff_hours %}
-            <h4>Staff Hours {{staff_hour.day}}</h4>
-            <p>{{staff_hour.time}} in the lab</p>
-            <ul class="ocf-staffhours-faces">
-                {% for staffer in staff_hour.staff %}
-                    <li><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" /></li>
-                {% endfor %}
-            </ul>
-        {% endfor %}
+        <div class="ocf-staffhours">
+            {% for staff_hour in staff_hours %}
+                <h4>Staff Hours {{staff_hour.day}}</h4>
+                <div class="{% if staff_hour.cancelled %} cancelled {% endif %}">
+                    <p>
+                        {{staff_hour.time}}
+                        {% if staff_hour.cancelled %}
+                            <span class="cancelled-text">cancelled this week</span>
+                        {% endif %}
+                    </p>
+                    <ul class="ocf-staffhours-faces">
+                        {% for staffer in staff_hour.staff %}
+                            <li><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" /></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
 
-        <p><a href="{% url 'staff-hours' %}">See more staff hours &raquo;</a></p>
+            <p><a href="{% url 'staff-hours' %}">See more staff hours &raquo;</a></p>
+        </div>
 
         <h4>Account Management</h4>
     </div>

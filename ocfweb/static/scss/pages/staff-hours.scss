@@ -1,0 +1,69 @@
+@import '../ocf';
+
+.page-staff-hours {
+    .hour {
+        border: solid 1px #ddd;
+        margin-bottom: 15px;
+
+        .title {
+            font-size: 16px;
+            padding: 7px 10px 5px;
+            border-bottom: solid 1px #ddd;
+            background-color: #eee;
+
+            strong {
+                margin-right: 3px;
+            }
+
+            span {
+                margin-left: 3px;
+            }
+        }
+
+        .content {
+            padding: 13px;
+        }
+
+        &.cancelled .title {
+            color: #999;
+        }
+
+        .cancelled-text {
+            color: #b20000;
+            font-weight: bold;
+        }
+
+        .ocf-staffhours-faces {
+            @extend .list-inline;
+            margin-bottom: 0;
+
+            li {
+                h4,
+                h5 {
+                    text-align: center;
+                }
+
+                h4 {
+                    margin-top: 5px;
+                    margin-bottom: 4px;
+                    font-size: 16px;
+                }
+
+                h5 {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    font-size: 14px;
+                    font-weight: normal;
+                }
+            }
+        }
+
+        &.cancelled .ocf-staffhours-faces {
+            opacity: 0.6;
+        }
+    }
+
+    .ocf-hero {
+        background-color: $hero-color;
+    }
+}

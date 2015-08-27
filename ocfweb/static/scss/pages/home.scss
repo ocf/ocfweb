@@ -19,88 +19,107 @@
         margin-top: 5px;
     }
 
-    .ocf-staffhours-faces {
-        @extend .list-inline;
-
-        // squeeze closer on phones to try to fit them on a single line
-        @media (max-width: 767px) {
-            li {
-                padding: 0;
-            }
-        }
-    }
-}
-
-.ocf-penguin-swing {
-    position: absolute;
-
-    height: 407px;
-
-    left: 50%;
-    right: 0;
-    top: -95px;
-
-    background-image: url('../img/penguin-swing.svg');
-    background-repeat: no-repeat;
-    background-size: 366px 407px;
-
-    // responsive penguin ftw
-    @media (min-width: 1200px) {
-        background-position: 240px 0;
-    }
-
-    @media (min-width: 992px) and (max-width: 1199px) {
-        background-position: 178px 0;
-        top: -60px; // pull down a little to cover status bar
-    }
-
-    @media (min-width: 768px) and (max-width: 991px) {
-        background-position: 122px 0;
-    }
-
-    @media (max-width: 767px) {
-        display: none;
-    }
-}
-
-.ocf-hero {
-    background-color: $hero-color;
-
-    * {
-        font-size: 16px;
-    }
-
-    h1 {
-        @media (max-width: 767px) {
-            font-size: 28px;
-            font-weight: 800;
+    .ocf-staffhours {
+        p {
+            margin: 0;
         }
 
-        @media (min-width: 992px) {
-            font-size: 40px;
+        .cancelled p {
+            color: #999;
         }
 
-        // we want the text to wrap after 'Open'
-        @media (min-width: 992px) and (max-width: 1199px) {
-            padding-right: 46px;
+        .cancelled-text {
+            color: #b20000;
+            font-weight: bold;
         }
-    }
 
-    .ocf-button-holder {
-        padding-bottom: 15px;
+        .ocf-staffhours-faces {
+            @extend .list-inline;
 
-        .btn {
-            background-color: $hero-button-color;
-            margin-right: 10px;
-            color: #000;
-
-            // help fit both buttons on one line on iPhone
+            // squeeze closer on phones to try to fit them on a single line
             @media (max-width: 767px) {
-                margin-right: 5px;
+                li {
+                    padding: 0;
+                }
+            }
+        }
+
+        .cancelled .ocf-staffhours-faces {
+            opacity: 0.6;
+        }
+    }
+
+    .ocf-penguin-swing {
+        position: absolute;
+
+        height: 407px;
+
+        left: 50%;
+        right: 0;
+        top: -95px;
+
+        background-image: url('../img/penguin-swing.svg');
+        background-repeat: no-repeat;
+        background-size: 366px 407px;
+
+        // responsive penguin ftw
+        @media (min-width: 1200px) {
+            background-position: 240px 0;
+        }
+
+        @media (min-width: 992px) and (max-width: 1199px) {
+            background-position: 178px 0;
+            top: -60px; // pull down a little to cover status bar
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            background-position: 122px 0;
+        }
+
+        @media (max-width: 767px) {
+            display: none;
+        }
+    }
+
+    .ocf-hero {
+        background-color: $hero-color;
+
+        * {
+            font-size: 16px;
+        }
+
+        h1 {
+            @media (max-width: 767px) {
+                font-size: 28px;
+                font-weight: 800;
             }
 
-            &:hover {
-                background-color: $hero-button-color-hover;
+            @media (min-width: 992px) {
+                font-size: 40px;
+            }
+
+            // we want the text to wrap after 'Open'
+            @media (min-width: 992px) and (max-width: 1199px) {
+                padding-right: 46px;
+            }
+        }
+
+        .ocf-button-holder {
+            padding-bottom: 15px;
+
+            .btn {
+                background-color: $hero-button-color;
+                margin-right: 10px;
+                color: #000;
+
+                // help fit both buttons on one line on iPhone
+                @media (max-width: 767px) {
+                    margin-right: 5px;
+                }
+
+                &:hover {
+                    background-color: $hero-button-color-hover;
+                }
             }
         }
     }
