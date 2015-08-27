@@ -28,6 +28,10 @@
             margin: 0;
         }
 
+        h3 {
+            margin-bottom: 0;
+        }
+
         .cancelled p {
             color: #999;
         }
@@ -87,6 +91,7 @@
 
     .ocf-hero {
         background-color: $hero-color;
+        padding-top: 10px;
 
         * {
             font-size: 16px;
@@ -126,5 +131,21 @@
                 }
             }
         }
+    }
+
+    .ocf-sidebar {
+        @media (min-width: 768px) {
+            padding-top: 30px;
+        }
+//        @media (max-width: 767px) {
+//            border-top: solid 12px #aaa;
+//            margin-top: 10px;
+//            padding-top: 5px;
+//        }
+
+//        h4 {
+//            font-weight: bold;
+//            margin-bottom: 0;
+//        }
     }
 }

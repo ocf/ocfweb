@@ -56,7 +56,7 @@
 
         <div class="ocf-staffhours">
             {% for staff_hour in staff_hours %}
-                <h4>Staff Hours {{staff_hour.day}}</h4>
+                <h3>Staff Hours {{staff_hour.day}}</h3>
                 <div class="{% if staff_hour.cancelled %} cancelled {% endif %}">
                     <p>
                         {{staff_hour.time}}
@@ -75,7 +75,7 @@
             <p><a href="{% url 'staff-hours' %}">See more staff hours &raquo;</a></p>
         </div>
 
-        <h4>Account Management</h4>
+        <h3>Account Management</h3>
     </div>
 </div>
 {% endblock %}
