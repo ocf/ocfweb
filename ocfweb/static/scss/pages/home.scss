@@ -2,6 +2,7 @@
 
 .page-home {
     .ocf-content-main {
+        margin-top: 20px;
         font-size: 16px;
     }
 
@@ -90,13 +91,17 @@
         }
     }
 
-    .ocf-hero {
-        background-color: $hero-color;
-        padding-top: 10px;
-
-        * {
-            font-size: 16px;
+    .ocf-status-bar .container {
+        @media (min-width: 768px) {
+            padding-right: 316px;
         }
+    }
+
+    .ocf-hero {
+        padding-top: 10px;
+        padding-bottom: 0;
+
+        font-size: 16px;
 
         h1 {
             @media (max-width: 767px) {
@@ -132,21 +137,5 @@
                 }
             }
         }
-    }
-
-    .ocf-sidebar {
-        @media (min-width: 768px) {
-            padding-top: 30px;
-        }
-//        @media (max-width: 767px) {
-//            border-top: solid 12px #aaa;
-//            margin-top: 10px;
-//            padding-top: 5px;
-//        }
-
-//        h4 {
-//            font-weight: bold;
-//            margin-bottom: 0;
-//        }
     }
 }

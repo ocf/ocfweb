@@ -15,7 +15,7 @@ def lab(request):
     return render_to_response(
         'lab.html',
         {
-            'title': 'Computer Lab – Free & Open Source',
+            'title': 'Computer Lab',
             'hours_next_week': hours_next_week,
         },
         context_instance=RequestContext(request),

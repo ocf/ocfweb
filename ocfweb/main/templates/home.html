@@ -25,13 +25,19 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-8 ocf-content-main">
-        <p>The Open Computing Facility is an all-volunteer student organization located at the University of California, Berkeley. Among other services, we offer:</p>
+        <p>
+            The Open Computing Facility is an all-volunteer student
+            organization located at the University of California, Berkeley.
+            We're passionate about open source and free software.
+        </p>
+        <p>Our volunteers maintain services for the Berkeley community. Among others, we offer:</p>
         <ul>
             <li><a href="{% url 'lab' %}">A spiffy computer lab</a> in 6A Hearst Gym</li>
             <li><a href="https://wiki.ocf.berkeley.edu/services/lab/printing/">Free printing</a> for all UC Berkeley students</li>
             <li><a href="https://wiki.ocf.berkeley.edu/services/shell/">Shell accounts</a> on our powerful on-campus servers</li>
+            <li>...and <a href="https://wiki.ocf.berkeley.edu/services/">lots more!</a></li>
         </ul>
-        <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop-ins welcome!</p>
+        <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop by to ask questions or just to hang out!</p>
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
@@ -80,8 +86,6 @@
 
             <p><a href="{% url 'staff-hours' %}">See more staff hours &raquo;</a></p>
         </div>
-
-        <h3>Account Management</h3>
     </div>
 </div>
 {% endblock %}

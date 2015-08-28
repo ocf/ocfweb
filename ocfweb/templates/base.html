@@ -77,7 +77,7 @@
         <div class="ocf-status-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-6 col-sm-6">
                         <p>
                         {% if lab_is_open %}
                             <strong>Lab Currently Open</strong>
@@ -89,7 +89,7 @@
                         <a class="subtle" href="{% url 'lab' %}">more &raquo;</a>
                         </p>
                     </div>
-                    <div class="col-md-8 col-sm-6 hidden-xs">
+                    <div class="col-md-6 col-sm-6 hidden-xs">
                         <ul class="text-right list-inline ocf-status-list">
                             {% for service, status in ocf_status.items %}
                                 <li class="ocf-status-{{status|yesno:'ok,bad'}}">
@@ -102,7 +102,15 @@
             </div>
         </div>
 
-        {% block hero %}{% endblock %}
+        {% block hero %}
+            {% if title %}
+                <div class="ocf-hero ocf-page-title">
+                    <div class="container">
+                        <h1>{{title}}</div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock %}
 
         <div class="ocf-content container">
             {% block content %}{% endblock %}
@@ -111,7 +119,7 @@
         <div class="footer ocf-footer">
             <div class="ocf-footer-top">
                 <div class="container">
-                    <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit? <a href="https://hello.ocf.berkeley.edu/">Join the staff team.</a></p>
+                    <p class="text-center">OCF &hearts; Linux, Python, Puppet, Ruby, and Free/Open-Source Software. Sound like you? <a href="https://hello.ocf.berkeley.edu/">Join the staff team!</a></p>
                 </div>
             </div>
 
