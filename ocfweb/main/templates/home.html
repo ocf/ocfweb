@@ -42,8 +42,14 @@
                     <table>
                         {% for hour in hours %}
                             <tr>
-                                <th>{{hour|lab_hours_day}}:</th>
-                                <td>{{hour|lab_hours_time}} {{hour|lab_hours_holiday}}</td>
+                                <th>{{hour.name}}:</th>
+                                <td>
+                                    {{hour|lab_hours_time}}
+                                    {% if hour.holiday %}
+                                        <br />
+                                        <em>{{hour.holiday}}</em>
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                     </table>

@@ -4,22 +4,10 @@ register = template.Library()
 
 
 @register.filter
-def lab_hours_day(hours):
-    return hours.name
-
-
-@register.filter
 def lab_hours_day_and_holiday(hours):
     if hours.holiday:
         return '{hours.name} ({hours.holiday})'.format(hours=hours)
     return hours.name
-
-
-@register.filter
-def lab_hours_holiday(hours):
-    if hours.holiday:
-        return '({hours.holiday})'.format(hours=hours)
-    return ''
 
 
 @register.filter
