@@ -14,6 +14,6 @@ urlpatterns = [
     url('^staff-hours$', staff_hours, name='staff-hours'),
     url('^lab$', lab, name='lab'),
 
-    url('^docs$', docs_index, name='docs'),
-    url('^docs/([a-zA-Z\-/]+)$', doc, name='doc'),
+    url('^docs/$', docs_index, name='docs'),
+    url('^docs(/[a-zA-Z\-/]+)/$', doc, name='doc'),
 ]

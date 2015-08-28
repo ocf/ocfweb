@@ -1,11 +1,6 @@
 @import '../ocf';
 
 .page-home {
-    .ocf-content-main {
-        margin-top: 20px;
-        font-size: 16px;
-    }
-
     .ocf-status-list {
         @media (min-width: 1200px) {
             margin-right: 310px;

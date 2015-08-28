@@ -6,6 +6,7 @@ ecdsa==0.13
 gunicorn==19.3.0
 ldap3==0.9.8.8
 libsass==0.8.3
+mistune==0.7.1
 ocflib
 ocfweb==1.0.0
 paramiko==1.15.2

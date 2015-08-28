@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
-{% load google_maps %}
+{% load docs %}
 
 {% block content %}
 <div class="row">
-    <div class="col-sm-8">
-        {% autoescape off %}
-            {{content}}
-        {% endautoescape %}
+    <div class="col-sm-8 ocf-content-block">
+        {{doc.html|safe}}
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
-        TOC here
+        <h3>More in this category</h3>
+        {% doc_tree root=doc.category suppress_root=False cur_path=doc.name %}
     </div>
 </div>
 {% endblock %}

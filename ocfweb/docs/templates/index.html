@@ -1,18 +1,44 @@
 {% extends 'base.html' %}
-{% load google_maps %}
+{% load docs %}
 
 {% block content %}
 <div class="row">
-    <div class="col-sm-8">
-        <ul>
-            {% for link in links %}
-                <li><a href="{% url 'doc' link %}">{{link}}</a></li>
-            {% endfor %}
-        </ul>
+    <div class="col-sm-8 ocf-content-block">
+        <p>
+            Our hard-working student volunteers (hereafter OCF staff) try to keep
+            documentation plentiful and up-to-date, but it's always lagging behind.
+        </p>
+        <p>
+            We recommend starting off by reading the FAQ. If you experience
+            difficulties that can't be answered here, feel free to contact us.
+        </p>
+        {% doc_tree root='/' %}
+
+        <h3>Staff documentation</h3>
+        <p>
+            If you're feeling adventurous, why not take a look at the
+            <a href="{% url 'doc' '/staff/' %}">technical documentation</a>
+            intended for staffers?
+        </p>
+
+        <h3>Status blog</h3>
+        <p>
+            Having unexplained troubles? Maybe something's wrong&mdash;check
+            out our <a href="http://status.ocf.berkeley.edu">status blog</a> to
+            get the latest info on maintenance and outages.
+        </p>
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
-        TODO: something here?
+        <h3>Notice something wrong?</h3>
+        <p>
+            Like most of the things we do, you can find our website
+            <a href="https://github.com/ocf/ocfweb">on GitHub</a>.
+            Feel free to send us a pull request with your suggestion!
+        </p>
+        <p>
+            (You could also just <a href="https://wiki.ocf.berkeley.edu/contact/">send us an email</a>.)
+        </p>
     </div>
 </div>
 {% endblock %}

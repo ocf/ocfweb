@@ -32,7 +32,7 @@ html {
 body {
     padding-top: $navbar-height;
     font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     background-color: #f5f5f5;
 }
 
@@ -85,6 +85,7 @@ h6 {
 
 .ocf-status-bar {
     background-color: $status-bar-color;
+    font-size: 14px;
 
     p {
         margin: 10px 0;
@@ -164,6 +165,16 @@ h6 {
 .ocf-content {
     background-color: white;
     padding: 0 25px 20px;
+}
+
+.ocf-content-block {
+    > :first-child {
+        margin-top: 20px;
+    }
+}
+
+.ocf-sidebar {
+    @extend .ocf-content-block;
 }
 
 .ocf-hero {
