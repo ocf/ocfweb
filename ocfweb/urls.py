@@ -15,5 +15,6 @@ urlpatterns = [
     url('^lab$', lab, name='lab'),
 
     url('^docs/$', docs_index, name='docs'),
-    url('^docs(/[a-zA-Z\-/]+)/$', doc, name='doc'),
+    # this is carefully constructed to prevent extra slashes at the start/end
+    url('^docs/((?:[^/][a-zA-Z\-/]*[^/])|[^/])/$', doc, name='doc'),
 ]

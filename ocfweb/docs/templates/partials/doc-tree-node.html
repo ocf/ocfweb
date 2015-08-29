@@ -3,9 +3,9 @@
 {% if not suppress_root %}
     <li>
         {% if cur_path != node.path %}
-            <a href="{% url 'doc' node.path %}">{{node.name}}</a>
+            <a href="{% url 'doc' node.url_path %}">{{node.title}}</a>
         {% else %}
-            <strong>{{node.name}}</strong>
+            <strong>{{node.title}}</strong>
         {% endif %}
 {% endif %}
 

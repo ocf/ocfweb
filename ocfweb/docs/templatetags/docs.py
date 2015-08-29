@@ -7,7 +7,11 @@ from django import template
 from ocfweb.docs.docs import list_docs
 
 
-Node = namedtuple('Node', ['path', 'name', 'children'])
+class Node(namedtuple('Node', ['path', 'title', 'children'])):
+
+    @property
+    def url_path(self):
+        return self.path.lstrip('/').rstrip('/')
 
 
 register = template.Library()
@@ -28,7 +32,7 @@ def doc_tree(root='/', suppress_root=True, cur_path=None, exclude='$^'):
         doc = docs.get(path)
         return Node(
             path=path,
-            name=doc.meta['title'] if doc else root,
+            title=doc.meta['title'] if doc else root,
             children=sorted(
                 [
                     _make_tree(child)

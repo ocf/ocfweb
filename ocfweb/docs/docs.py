@@ -26,8 +26,10 @@ class Document(namedtuple('Document', ['name', 'meta', 'html'])):
         Checks the document name for illegal characters and attempts at path
         traversal; it's OK to call this method with untrusted input.
         """
-        assert '.' not in name
-        assert name.startswith('/')
+        # the url mapping should do this already; this is just a sanity check in
+        # case anybody changes it in the future without thinking
+        assert '.' not in name, 'name shouldn\'t have dot: {}'.format(name)
+        assert name.startswith('/'), 'name should start with slash: {}'.format(name)
 
         # We want to do something like:
         #     join(dirname(__file__), 'docs', name + '.md')
@@ -109,8 +111,7 @@ def docs_index(request):
 
 
 def doc(request, doc_name):
-    # the url mapping should do this already; this is just a sanity check in
-    # case anybody changes it in the future without thinking
+    doc_name = '/' + doc_name
     try:
         doc = Document.from_name(doc_name)
     except ValueError:
