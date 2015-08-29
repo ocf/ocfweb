@@ -54,7 +54,7 @@ where backup is the name of the file that contains the dumped data. As usual, th
 
 ## Using .my.cnf for passwordless access to MySQL
 
-If you are using MySQL in a script or in another program, you will probably want to set it up so that the <pre>mysql</pre> call does not prompt for your password. While passing the -p option is the obvious way to achieve this, it is also ''very insecure'' because anyone on OCF can see the password while the mysql command is running. A better approach is to create a </pre>~/.my.cnf</pre> file with proper permissions that contains your MySQL password. To do this, enter the following commands: make sure you replace dbpasswd with the MySQL password given to you when you ran makemysql.
+If you are using MySQL in a script or in another program, you will probably want to set it up so that the <pre>mysql</pre> call does not prompt for your password. While passing the -p option is the obvious way to achieve this, it is also ''very insecure'' because anyone on OCF can see the password while the mysql command is running. A better approach is to create a </pre>~/.my.cnf</pre> file with proper permissions that contains your MySQL password. To do this, enter the following commands: make sure you replace dbpasswd with the MySQL password given to you when you ran makemysql. 
 <pre>
 touch ~/.my.cnf
 cat >> ~/.my.cnf << EOF

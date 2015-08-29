@@ -46,7 +46,7 @@ Use [[SSH|shell]] to run the command `passwd` and follow the prompts as shown be
 
 #### In person
 
-If you are not able to use CalNet or SSH, if you are a group and forgot your current password), you can meet a staff member in person during [[staff hours|staff-hours]].
+If you are not able to use CalNet or SSH, if you are a group and forgot your current password), you can meet a staff member in person during [staff hours](https://www.ocf.berkeley.edu/staff_hours).
 
 Please bring sufficient documentation as listed on the [[membership eligibility|membership/eligibility]] page to demonstrate that you are authorized to reset the account password.
 
@@ -92,7 +92,7 @@ Access to your [[MySQL database|services/mysql]], if you have one, is protected 
 
 ## After graduation
 
-Currently, we don't actively disable accounts, so you are free to use your account until that policy changes. We can't promise all of your OCF account privileges into perpetuity, however.  We are run by students volunteers using student money.
+Currently, we don't actively disable accounts, so you are free to use your account until that policy changes. We can't promise all of your OCF account privileges into perpetuity, however.  We are run by students volunteers using student money. 
 
 ## Disabled accounts
 
@@ -100,7 +100,7 @@ Some common reasons accounts are disabled:
 
  * by request
  * security (e.g., account hijacked)
- * misuse (e.g., excessive use of resources, violation of University policies)
+ * misuse (e.g., excessive use of resources, violation of University policies) 
 
 Accounts may also be disabled if OCF staff need to contact you but cannot do so.
 

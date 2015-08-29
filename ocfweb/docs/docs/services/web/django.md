@@ -42,15 +42,15 @@ The necessary scripts for you to create Django projects are installed on our log
 1.    Go into the directory you just created, and create two files: *.htaccess* (note the dot), and *run.fcgi*.
 
 * .htaccess:
-
+        
             RewriteEngine On
             RewriteBase /
             RewriteCond %{REQUEST_FILENAME} !-f
             # Change "username" and "hatsune" to your username and whatever directory name you made in public_html, respectively
             RewriteRule ^(.*)$ /~username/hatsune/run.fcgi/$1 [QSA,L]
-
+        
 * run.fcgi:
-
+        
             #!/usr/bin/env python
             import sys, os
 

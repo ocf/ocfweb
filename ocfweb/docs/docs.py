@@ -52,7 +52,7 @@ class Document(namedtuple('Document', ['name', 'meta', 'html'])):
             html, meta = markdown_and_meta(f.read())
 
         if 'title' not in meta:
-            raise ValueError('Document lacks required title meta variable.')
+            raise ValueError('Document {} lacks required title meta variable.'.format(name))
 
         return cls(
             name=name,
