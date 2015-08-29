@@ -13,6 +13,13 @@ gunicorn:
 scss:
 	python setup.py build_sass
 
+watch-scss: scss
+	while :; do \
+		find ocfweb/static -type f -name '*.scss' | \
+			inotifywait --fromfile - -e modify; \
+			make scss; \
+	done
+
 update-requirements:
 	$(eval TMP := $(shell mktemp -d))
 	virtualenv -p python3 $(TMP)
