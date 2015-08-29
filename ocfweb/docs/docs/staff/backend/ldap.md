@@ -79,7 +79,7 @@ Now if you make changes to some attributes (say, change the shell to `tcsh`) and
 
           1 entry read
     add: 0, rename: 0, modify: 1, delete: 0
-    Action? [yYqQvVebB*rsf+?] 
+    Action? [yYqQvVebB*rsf+?]
 
 You can enter "v" to view the LDIF change record (or "?" for help).
 

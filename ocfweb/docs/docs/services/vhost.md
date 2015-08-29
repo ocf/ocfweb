@@ -27,7 +27,7 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
 
 ### Instructions
 
-1.   [[Request an OCF group account|membership]] (if you haven't already done so). 
+1.   [[Request an OCF group account|membership]] (if you haven't already done so).
 2.   Set up your webspace and upload your website (if you haven't already done so). The website should be developed already, not a placeholder.
 3.   Place a [[Hosted by OCF banner|https://www.ocf.berkeley.edu/images/hosted-logos/]] on your home page that links to the OCF front page. If none of these images are appropriate for your site, you may design one of your own and [[submit it|contact]] for approval.
 4.   Place the university-mandated student group disclaimer on each page of your website (see the section below).

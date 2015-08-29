@@ -48,7 +48,7 @@ Any OCF Member who has attended an OCF General Meeting in either this semester
 or the one preceding shall be an active member.
 
 #### 2.3 Inactive Members
-Any OCF Member who is not an Active Member shall be considered an 
+Any OCF Member who is not an Active Member shall be considered an
 Inactive Member.
 
 
@@ -111,9 +111,9 @@ The <a href="#ocf_decision_making_process">OCF Decision Making Process</a> can c
 ##### 4.1.1 Election Meetings
 The Elections Meeting shall, in this order,
 
-1. approve the Faculty Sponsors, 
+1. approve the Faculty Sponsors,
 2. elect the General Manager,
-3. elect the Site Managers, 
+3. elect the Site Managers,
 4. appoint Directors,
 5. and then consider new business.
 
@@ -126,7 +126,7 @@ The OCF shall meet to elect officers during the third week of classes of the Fal
 ##### 4.1.2 Special General Meetings
 
 ###### 4.1.2.1 How Called
-Ten OCF members can call a Special General Meeting when the normal process for calling a General Meeting is not feasible. 
+Ten OCF members can call a Special General Meeting when the normal process for calling a General Meeting is not feasible.
 
 ###### 4.1.2.2 Procedure
 These ten members must notify the General Manager if possible, provide prominent public notice of the meeting at least one week beforehand and must try to contact all members of the OCF.
@@ -232,12 +232,12 @@ to deny or disparage other rights retained by individuals.
 
 <a id="amended_514_1991"></a>
 ##### 8.1.1 Process
-A proposed amendment to the Constitution must be presented at a Board of Directors meeting at least one week before the General Meeting at which it is to be discussed.  A list of proposed amendments must be made accessible to the general public of the OCF as soon as they have been presented to the Board of Directors.  At the general meeting, a discussion period on the amendment may be held until it is moved to a vote.  A 2/3 majority of all Active Members is required for approval. 
+A proposed amendment to the Constitution must be presented at a Board of Directors meeting at least one week before the General Meeting at which it is to be discussed.  A list of proposed amendments must be made accessible to the general public of the OCF as soon as they have been presented to the Board of Directors.  At the general meeting, a discussion period on the amendment may be held until it is moved to a vote.  A 2/3 majority of all Active Members is required for approval.
 
 *[This section was changed by amendment on May 14, 1991.]*
 
 ##### 8.1.2 Annotation
-Whenever this Constitution is amended, an annotation of the date of ratification shall be added to the beginning of this document and shall be further noted immediately following the new amendment. 
+Whenever this Constitution is amended, an annotation of the date of ratification shall be added to the beginning of this document and shall be further noted immediately following the new amendment.
 
 <a id="amended_0626_2015_2"></a>
 ##### 8.1.3 ASUC Records

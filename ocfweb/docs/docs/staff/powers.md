@@ -40,7 +40,7 @@ Staff members who demonstrate long-term commitment and proficiency are given add
 In order to reset user passwords, staff must also possess a `/root` principal. This principal grants the staffer the user the ability to change passwords. This is because chpass requires the Kerberos `change-password` privilege. The permission to do this originates in the Kerberos administrative ACL (`kerberos:/etc/heimdal-kdc/kadmind.acl`):
 
     username/root@OCF.BERKELEY.EDU change-password *@OCF.BERKELEY.EDU
-    
+
 ## Technical managers
 *group ocfroot*
 
@@ -51,13 +51,13 @@ This usually corresponds to Deputy Manager(s) and Site Manager(s). Sometimes the
 ### `ocfroot` group
 
 The ability to become root via sudo first requires the existence of a `/root` principal (see above).
-    
+
 This originates from PAM configuration at `/etc/pam.d/sudo` and `/etc/sudoers`.
 
 `/etc/pam.d/sudo`:
 
     auth required pam_krb5.so minimum_uid=1000 alt_auth_map=%s/root only_alt_auth
-        
+
 `/etc/sudoers`:
 
     %ocfroot ALL=(ALL) ALL
@@ -67,7 +67,7 @@ This originates from PAM configuration at `/etc/pam.d/sudo` and `/etc/sudoers`.
 This principal can be used to modify LDAP and Kerberos.
 
 #### ldapmodify
-    
+
 The ability to write to LDAP originates in OpenLDAP configuration (`ldap:/etc/ldap/slapd.conf`):
 
     # Allow read over SSL or Kerberos, and write by only admins

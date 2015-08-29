@@ -39,7 +39,7 @@ If the Zoroastrian Student Organization was requesting a group account, the CalL
 
 ## `signat-old`
 
-This older (deprecated) script queries the [OSL web service API](https://studentservices.berkeley.edu/WebServices/StudentGroupService/Service.asmx) with a CalNet UID and parses the returned XML as a Python dictionary which is in turn output as a YAML document. 
+This older (deprecated) script queries the [OSL web service API](https://studentservices.berkeley.edu/WebServices/StudentGroupService/Service.asmx) with a CalNet UID and parses the returned XML as a Python dictionary which is in turn output as a YAML document.
 
 ## Usage
 

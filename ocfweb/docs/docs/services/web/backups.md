@@ -101,7 +101,7 @@ Suppose your OCF account name is `johndoe` and you have WordPress installed
 directly in `~/public_html`. A typical backup might look like this:
 
     johndoe@tsunami:~$ mysqldump johndoe | gzip -c > ~/mysql-backup-7-26-15.sql.gz
-    Enter password: 
+    Enter password:
     johndoe@tsunami:~$ tar czhf ~/site-backup-7-26-15.tar.gz -C ~/ public_html
 
 while a restore would look like this:
@@ -118,4 +118,3 @@ The only real security concern is that you don't leave any backup files in your
 `public_html` directory. Doing so would allow anybody to download all your raw
 data and e.g. steal your website login information and find and exploit other
 security vulnerabilities.
-

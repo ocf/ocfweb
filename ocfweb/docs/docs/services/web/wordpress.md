@@ -34,7 +34,7 @@ instructions:
    * **Database Name:** Your user name
    * **Database User Name:** Your user name
    * **Database Password:** Your MySQL password (the one you copied from step 3
-	 above)
+     above)
    * **Database Host:** `mysql`
    * **Table Prefix:** Anything you want (the default `wp_` is fine)
 
@@ -95,4 +95,3 @@ folder:
     </Files>
 
 If `.htaccess` doesn't exist, create it and add the above lines.
-

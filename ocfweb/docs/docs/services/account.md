@@ -92,7 +92,7 @@ Access to your [[MySQL database|services/mysql]], if you have one, is protected 
 
 ## After graduation
 
-Currently, we don't actively disable accounts, so you are free to use your account until that policy changes. We can't promise all of your OCF account privileges into perpetuity, however.  We are run by students volunteers using student money. 
+Currently, we don't actively disable accounts, so you are free to use your account until that policy changes. We can't promise all of your OCF account privileges into perpetuity, however.  We are run by students volunteers using student money.
 
 ## Disabled accounts
 
@@ -100,7 +100,7 @@ Some common reasons accounts are disabled:
 
  * by request
  * security (e.g., account hijacked)
- * misuse (e.g., excessive use of resources, violation of University policies) 
+ * misuse (e.g., excessive use of resources, violation of University policies)
 
 Accounts may also be disabled if OCF staff need to contact you but cannot do so.
 

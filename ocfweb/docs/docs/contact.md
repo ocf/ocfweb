@@ -3,7 +3,7 @@
 > ## Before contacting us
 > Please conserve our valuable volunteer manpower by **making sure your
 > question isn't already answered in our [[Frequently asked questions|faq]]**.
-> 
+>
 > *Interested in [joining staff](https://hello.ocf.berkeley.edu/)? Feel free to
 > attend our meetings or contact us by email!*
 

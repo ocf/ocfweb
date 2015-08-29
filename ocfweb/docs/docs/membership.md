@@ -46,6 +46,6 @@ If there are issues when processing your account, you will be contacted by email
 
 ## Account life
 
-We don't actively close accounts. You don't need to re-apply for a new account every semester, and you can still use your account after you graduate. 
+We don't actively close accounts. You don't need to re-apply for a new account every semester, and you can still use your account after you graduate.
 
-Because the OCF is funded by students for student use, we cater our services to students, but it doesn't mean that your OCF account stops working after you stop being a student. However, we will occasionally make changes to our services based on the needs of current students and the abilities of current OCF staff, so we can't promise all OCF account privileges and services into perpetuity. 
+Because the OCF is funded by students for student use, we cater our services to students, but it doesn't mean that your OCF account stops working after you stop being a student. However, we will occasionally make changes to our services based on the needs of current students and the abilities of current OCF staff, so we can't promise all OCF account privileges and services into perpetuity.

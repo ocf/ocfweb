@@ -8,13 +8,13 @@ ID with the account record in LDAP.
 
 Open the LDAP record for editing.
 
-	$ kinit myusername/admin ldapvi uid=groupname
+    $ kinit myusername/admin ldapvi uid=groupname
 
 After looking up the user's UID in the [University
 directory](http://www.berkeley.edu/directory), add it to the record with a line
 like this:
 
-	calnetUid: 123456
+    calnetUid: 123456
 
 Save the file to update LDAP. Now, the user can update the account password at
 the usual URL: [https://accounts.ocf.berkeley.edu/change-password](https://accounts.ocf.berkeley.edu/change-password)
@@ -25,4 +25,3 @@ individual/group acount detection in scripts if an account has both
 <code>callinkOid</code> and <code>calnetUid</code> fields. If an account is
 associated in an RT ticket, leave the ticket open until the password has been
 reset and the account disassociated.
-

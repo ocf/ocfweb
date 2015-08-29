@@ -6,7 +6,7 @@ A shell account refers to a text-mode interface where commands can be run intera
 We support the following commonly used shell account tools (to name a few):
 
 *   Subversion, Git, and Mercurial: version control
-*   cron and at: execute commands on a periodic or scheduled basis 
+*   cron and at: execute commands on a periodic or scheduled basis
 *   vim and emacs: powerful and extensible text editors
 
 Most SSH/SFTP clients will prompt you to accept an unknown key when you first connect. Our SSH fingerprint can be used to verify that you're connecting to the correct server:

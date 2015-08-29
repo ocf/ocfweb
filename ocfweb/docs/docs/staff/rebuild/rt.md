@@ -49,28 +49,28 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
         # Debug - commented out for now
         #Set($LogToSTDERR, "debug");
         #Set($LogToSyslog, "debug");
-        
+
         Set($WebDomain, 'rt.ocf.berkeley.edu');
         Set($WebBaseURL , "https://rt.ocf.berkeley.edu");
         Set($WebPort, 443);
-        
+
         # Use external authentication provided by mod_auth_kerb
         Set($WebExternalAuth , 1);
         Set($WebFallbackToInternalAuth, 1);
         # tells RT to create users automatically if no user matching REMOTE_USER is found
         Set($WebExternalAuto, 1);
         Set($WebExternalGecos, undef);
-        
+
         # Plugins
         Set(@MailPlugins, qw(Auth::MailFrom Filter::TakeAction));
         Set(@Plugins,(qw(RT::Extension::CommandByMail RT::Extension::MergeUsers)));
-        
+
         # Make links clicky
         Set(@Active_MakeClicky, qw(httpurl_overwrite));
-        
+
         # Non-fail To addresses
         Set($UseFriendlyToLine, 1);
-        
+
         # Enable fulltext
         Set( %FullTextSearch,
             Enable     => 1,
@@ -78,7 +78,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
             Table      => 'AttachmentsIndex',
             MaxMatches => '10000',
         );
-        
+
         # Use plain text instead of HTML email
         Set($MessageBoxRichText, undef);
         Set($PreferRichText, undef);
@@ -232,8 +232,8 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
   Edit `/usr/share/request-tracker4/html/NoAuth/Logout.html`:
 
-  Change 
-    
+  Change
+
         <& /Elements/Header, Title => loc('Logout'), Refresh => RT->Config->Get('LogoutRefresh') &>
 
   to
@@ -278,7 +278,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
         clearAuthenticationCache();
         </script>
-   
+
   Add the following before the end of the <%INIT> block at the end of the file:
 
         # "Force" logout due to using mod_auth_kerb -- Chrome
@@ -299,7 +299,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
   squeeze-backports is required here too.
 
-        sudo aptitude install rt4-clients 
+        sudo aptitude install rt4-clients
 
 10. Set up rt@ocf.berkeley.edu to feed mail into rt-mailgate.
 
@@ -341,9 +341,9 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
   Re-enable Kerberos password authentication in Apache configuration and force-reload Apache.
 
-1. Create groups. I've created root and staff groups; this configuration may change as our use of RT is refined. 
-  
-  Go to Tools > Configuration > Groups > Create and create "Root" and "Staff" groups. 
+1. Create groups. I've created root and staff groups; this configuration may change as our use of RT is refined.
+
+  Go to Tools > Configuration > Groups > Create and create "Root" and "Staff" groups.
 
   Add users to these groups by the **Members** subsection in the upper right corner of the group modification page. (You can also alter a user's group memberships from the user's modification page.)
 
@@ -386,7 +386,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
   Add root as a watcher for General so staff@ gets automatically Cc'ed to new tickets. Click Watchers in the upper right corner and add root.
 
-4. Send more mail. 
+4. Send more mail.
 
   By default RT only sends an autoreply to the requestor on ticket creation. Create a new scrip (RT callback) so that Cc (staff@) gets notified on ticket creation as well.
 
@@ -399,7 +399,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
         {$Transaction->Content()}
 
-  Remove the second newline caused by using ikiwiki. 
+  Remove the second newline caused by using ikiwiki.
 
   Save changes.
 
@@ -420,7 +420,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
   This needs to be chained or something to send a template saying that the ticket is closed because it hasn't been modified in 30 days. I don't know what this entails, but the below is a start.
 
-  Put the following into a crontab; you may want to create a rt system user to run this. 
+  Put the following into a crontab; you may want to create a rt system user to run this.
 
         0 * * * * /usr/bin/rt-crontool --search RT::Search::FromSQL \
         --search-arg "LastUpdated < '5 days ago' AND Status = 'stalled'" \

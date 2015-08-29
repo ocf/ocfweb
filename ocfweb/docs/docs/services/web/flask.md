@@ -12,19 +12,19 @@ Flask is a popular microframework for Python web development. Using it on the OC
 1.    Go into the directory you just created, and create two files: *.htaccess* (note the dot), and *run.fcgi*.
 
 * .htaccess:
-        
+
             RewriteEngine On
             RewriteBase /
             RewriteCond %{REQUEST_FILENAME} !-f
             # Change "username" and "flasky" to your username and whatever directory name you made in public_html, respectively
             RewriteRule ^(.*)$ /~username/flasky/run.fcgi/$1 [QSA,L]
-        
+
 * run.fcgi:
-        
+
             #!/usr/bin/env python
             from flup.server.fcgi import WSGIServer
             from flaskyapplication import app
-            
+
             if __name__ == '__main__':
                 WSGIServer(app).run()
 
@@ -45,11 +45,11 @@ Flask is a popular microframework for Python web development. Using it on the OC
 
         from flask import Flask
         app = Flask(__name__)
-        
+
         @app.route('/')
         def hello_world():
             return 'Hello World!'
-        
+
         if __name__ == '__main__':
             app.run()
 
