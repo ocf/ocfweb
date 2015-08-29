@@ -57,10 +57,9 @@ class DjangoLinkInlineLexerMixin:
 
     def enable_django_links(self):
         self.rules.django_link = re.compile(
-            '^\[\['
+            '^\[\[(?!\!)'
             '([\s\S]+?)'
-            '\|'
-            '([^#]+?)'
+            '(?:\|([^#]+?))?'
             '(?:#(.*?))?'
             '\]\]'
         )
@@ -68,6 +67,19 @@ class DjangoLinkInlineLexerMixin:
 
     def output_django_link(self, m):
         text, target, fragment = m.group(1), m.group(2), m.group(3)
+        if not target:
+            # TODO: remove this when docs are cleaned up
+            _logger.warn(
+                'Found link without human text: `{}`'.format(text)
+            )
+            target = text
+
+        if target.lower() != target:
+            # TODO: remove this when docs are cleaned up, only allow lowercase in doc names
+            _logger.warn(
+                'Found uppercase text in target: `{}`'.format(target)
+            )
+            target = target.lower()
 
         def href(link, fragment):
             if fragment:
