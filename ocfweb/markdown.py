@@ -5,11 +5,48 @@ import mistune
 # tags of a format like: [[!meta title="Backups"]]
 META_REGEX = re.compile('\[\[!meta ([a-z]+)="([^"]*)"\]\]')
 
+
+class HtmlCommentsInlineLexer(mistune.InlineLexer):
+    """Strip HTML comments inside lines."""
+
+    def enable_html_comments(self):
+        self.rules.html_comment = re.compile(
+            '^<!--(.*?)-->'
+        )
+        self.default_rules.insert(0, 'html_comment')
+
+    def output_html_comment(self, m):
+        return ''
+
+
+class HtmlCommentsBlockLexer(mistune.BlockLexer):
+    """Strip blocks which consist entirely of HTML comments."""
+
+    def enable_html_comments(self):
+        self.rules.html_comment = re.compile(
+            '^<!--(.*?)-->'
+        )
+        self.default_rules.insert(0, 'html_comment')
+
+    def parse_html_comment(self, m):
+        pass
+
+
+_renderer = mistune.Renderer(
+    escape=True,
+    hard_wrap=False,
+)
+
+_inline = HtmlCommentsInlineLexer(_renderer)
+_inline.enable_html_comments()
+
+_block = HtmlCommentsBlockLexer(mistune.BlockGrammar())
+_block.enable_html_comments()
+
 markdown = mistune.Markdown(
-    renderer=mistune.Renderer(
-        escape=True,
-        hard_wrap=False,
-    ),
+    renderer=_renderer,
+    inline=_inline,
+    block=_block,
 )
 
 

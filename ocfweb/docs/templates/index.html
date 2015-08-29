@@ -12,12 +12,12 @@
             We recommend starting off by reading the FAQ. If you experience
             difficulties that can't be answered here, feel free to contact us.
         </p>
-        {% doc_tree root='/' %}
+        {% doc_tree root='/' exclude='^/staff' %}
 
         <h3>Staff documentation</h3>
         <p>
             If you're feeling adventurous, why not take a look at the
-            <a href="{% url 'doc' '/staff/' %}">technical documentation</a>
+            <a href="{% url 'doc' '/staff' %}">technical documentation</a>
             intended for staffers?
         </p>
 

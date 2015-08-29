@@ -1,3 +1,4 @@
+import re
 from collections import namedtuple
 from operator import attrgetter
 
@@ -13,10 +14,12 @@ register = template.Library()
 
 
 @register.inclusion_tag('partials/doc-tree.html')
-def doc_tree(root='/', suppress_root=True, cur_path=None):
+def doc_tree(root='/', suppress_root=True, cur_path=None, exclude='$^'):
     # root is expected to be like '/' or '/services/' or '/services/web/'
     assert root.startswith('/')
     assert root.endswith('/')
+
+    exclude = re.compile(exclude)
 
     docs = list_docs()
 
@@ -33,7 +36,7 @@ def doc_tree(root='/', suppress_root=True, cur_path=None):
                     {
                         root + doc.name[len(root):].split('/', 1)[0] + '/'
                         for doc in docs.values()
-                        if doc.name.startswith(root)
+                        if doc.name.startswith(root) and not exclude.match(doc.name)
                     }
                 ],
                 key=attrgetter('path'),
@@ -42,6 +45,6 @@ def doc_tree(root='/', suppress_root=True, cur_path=None):
 
     return {
         'tree': _make_tree(root),
-        'suppress_root': suppress_root,
+        'suppress_root': suppress_root or root == '/',
         'cur_path': cur_path,
     }

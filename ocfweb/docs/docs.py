@@ -117,7 +117,7 @@ def doc(request, doc_name):
         raise Http404()
 
     return render_to_response(
-        'doc.html',
+        doc.meta.get('template', 'doc.html'),
         {
             'title': doc.meta['title'],
             'doc': doc,
