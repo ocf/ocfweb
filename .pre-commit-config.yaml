@@ -37,3 +37,10 @@
     sha: 3eb13b9647543ad4d6a62c8be8a9131e3b99b96a
     hooks:
     -   id: scss-lint
+-   repo: local
+    hooks:
+    -   id: no-top-level-header
+        language: pcre
+        name: No Top-Level Headers (Markdown)
+        entry: ^#\s
+        files: \.md$
