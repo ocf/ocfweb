@@ -1,6 +1,5 @@
 [[!meta title="Ruby on Rails"]]
 
-# Ruby on Rails
 
 Ruby on Rails is a popular web framework for Ruby applications.
 

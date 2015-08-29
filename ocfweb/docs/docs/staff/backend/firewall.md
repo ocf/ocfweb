@@ -1,5 +1,4 @@
 [[!meta title="Firewall"]]
-# Firewall
 
 We use a Cisco ASA firewall provided by IST. We have two cables in our server
 room: one behind the firewall, and one not.

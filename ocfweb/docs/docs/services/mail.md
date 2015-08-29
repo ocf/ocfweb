@@ -1,5 +1,4 @@
 [[!meta title="Email"]]
-# Email
 ## Student groups
 
 We provide email hosting for student groups who have a

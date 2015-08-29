@@ -1,5 +1,4 @@
 [[!meta title="Lab"]]
-# Computer lab
 
 ## Location and hours
 

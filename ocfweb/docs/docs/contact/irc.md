@@ -1,6 +1,5 @@
 [[!meta title="Internet Relay Chat (IRC)"]]
 
-# Internet Relay Chat (IRC)
 
 OCF staff often use IRC to communicate. If you have questions, feel free to
 drop by -- it's often faster than emailing us, especially for discussion-type

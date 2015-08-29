@@ -1,5 +1,4 @@
 [[!meta title="Eligibility"]]
-# Membership eligibility
 
 The following individuals and groups are eligible for [[membership]]:
 

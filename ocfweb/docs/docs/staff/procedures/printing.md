@@ -1,5 +1,4 @@
 [[!meta title="Printing maintenance"]]
-# Printing maintenance
 ## Removing printers from service
 
 Ideally, printers shouldn't ever be turned off. Instead, they should be removed

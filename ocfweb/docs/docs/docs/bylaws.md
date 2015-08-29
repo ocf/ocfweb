@@ -1,6 +1,5 @@
 [[!meta title="Bylaws"]]
 
-# Bylaws of the Open Computing Facility
 
 This is the official **Bylaws of the Open Computing Facility**, as last amended at the Board meeting of April 30, 2014.
 

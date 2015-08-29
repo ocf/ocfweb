@@ -1,5 +1,4 @@
 [[!meta title="jessie migration"]]
-# jessie migration
 
 This table lists all servers and whether they have been upgraded to jessie. In
 general, we prefer to rebuild new servers using jessie, rather than upgrading

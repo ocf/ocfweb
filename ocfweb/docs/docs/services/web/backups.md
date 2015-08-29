@@ -1,5 +1,4 @@
 [[!meta title="Backups/Archiving"]]
-# Backups and archiving
 
 Keeping backups on hand is crucial to maintaining any website. While your data
 is protected from hardware failure by the OCF's backup infrastructure, you will
@@ -14,7 +13,8 @@ You can make easy-to-restore backups over [[SSH|services/shell]] by following
 the examples on this page. You could alternatively use SFTP, but this wouldn't
 allow you to back up a database.
 
-# Backing up a web directory
+
+## Backing up a web directory
 
 Making a backup of your website document tree (where all the `.html`, `.php`,
 etc. files are) is as simple as making a copy of your files into your home
@@ -33,21 +33,22 @@ the compressed file by changing `tar c` to `tar x`:
 
     tar xzhf ~/backups/backup.tar.gz -C ~/public_html website
 
-## WARNING
+### WARNING
 
 Do not try to backup your `public_html` folder by copying it directly! It is
 not a real directory, but a link to where the files are actually stored.
 Instead, explicitly copy all the files inside to another directory or use the
 the commands on this page which were written to do so.
 
-# Backing up a database
+
+## Backing up a database
 
 For many websites and frameworks, the web document tree only makes up half the
 site; the rest of the data resides in the database. Particularly, if you are
 using WordPress, Joomla, or Drupal, you will have to backup your database
 alongside your web directory.
 
-## MySQL
+### MySQL
 
 If you are using a MySQL database, you can use `mysqldump` to make snapshots.
 Instructions are on the [[MySQL|services/mysql]] page, but the basic syntax
@@ -68,7 +69,7 @@ and, to restore,
 
     gzip -dc ~/backup.sql.gz | mysql -D username
 
-### Using .my.cnf
+#### Using .my.cnf
 
 By default, you have to enter your MySQL every time you make a backup, which is
 inconvenient. Worse, if you forget the password and uses `makemysql` to reset
@@ -76,7 +77,8 @@ it, it will break your old website backups! If you want to save the trouble,
 [[follow our instructions|services/mysql]] to create `~/.my.cnf` which will
 allow you to use MySQL without entering the password by hand.
 
-# Taking down a site
+
+## Taking down a site
 
 If you have an old website you want to archive and remove from public view, you
 can make a backup of it using the above instructions and then delete your
@@ -95,7 +97,8 @@ If you instead wanted to delete the whole database, you could use the command
 However, you would need to run `makemysql` to create a new database, which
 would permanently change your password.
 
-# Example backup
+
+## Example backup
 
 Suppose your OCF account name is `johndoe` and you have WordPress installed
 directly in `~/public_html`. A typical backup might look like this:
@@ -112,7 +115,8 @@ while a restore would look like this:
 
 If you were using `.my.cnf`, you wouldn't even have to enter your database password.
 
-# Security
+
+## Security
 
 The only real security concern is that you don't leave any backup files in your
 `public_html` directory. Doing so would allow anybody to download all your raw

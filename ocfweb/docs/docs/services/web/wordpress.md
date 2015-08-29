@@ -1,9 +1,7 @@
 [[!meta title="WordPress"]]
-# WordPress
 
 WordPress is a popular CMS (content management system) on the Web.
 
-# Setting up WordPress
 
 The easiest way to set up WordPress is via [[SSH|services/shell]]. Some simple
 instructions:
@@ -38,7 +36,6 @@ instructions:
    * **Database Host:** `mysql`
    * **Table Prefix:** Anything you want (the default `wp_` is fine)
 
-# Recovering a database password
 
 The database password used by WordPress is recorded in the WordPress
 configuration file `wp-config.php` on the line that looks like
@@ -51,7 +48,6 @@ installed (usually `~/public_html` or `~/public_html/wordpress`) and open
 
     cat ~/path/to/wordpress/wp-config.php | grep DB_PASSWORD
 
-# Migrating from WordPress.com
 
 If you already have a site hosted at WordPress.com and you'd like to move it to
 OCF web hosting, for example, to become eligible for [[virtual
@@ -82,7 +78,6 @@ Further details can be found at [the support page by WordPress.com][1].
 
 [1]: https://en.support.wordpress.com/moving-to-a-self-hosted-wordpress-site/
 
-# Installing Jetpack
 
 The Jetpack plugin as well as several others require a publicly accessible
 XML-RPC file, which is not public by default. Before you can install Jetpack,

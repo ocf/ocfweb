@@ -1,5 +1,4 @@
 [[!meta title="Stale wiki pages"]]
-# Pages that need updating
 
 ## Staff
 

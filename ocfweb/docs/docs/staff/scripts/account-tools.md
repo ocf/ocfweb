@@ -1,6 +1,5 @@
 [[!meta title="account-tools (online account management)"]]
 
-# account-tools (online account management)
 
 account-tools is a django project for online password resets, account approvals, command execution, and virtual hosting request processing.
 

@@ -1,5 +1,4 @@
 [[!meta title="Account"]]
-# OCF account
 
 [[!toc levels=3 startlevel=2]]
 

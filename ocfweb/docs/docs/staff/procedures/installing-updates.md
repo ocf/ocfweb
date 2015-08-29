@@ -1,5 +1,4 @@
 [[!meta title="Installing updates with apt-dater"]]
-# Installing updates with apt-dater
 
 Installing updates requires root (`ocfroot` group). Besides that, anybody
 should feel free to install updates at any time. Generally it is quite safe,

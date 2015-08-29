@@ -1,5 +1,4 @@
 [[!meta title="Bootstrapping new desktops"]]
-# Bootstrapping new desktops
 
 In addition to the [[normal steps for bringing up new machines|staff/procedures/new-server]],
 desktops require a couple extra steps.

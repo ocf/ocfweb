@@ -1,6 +1,5 @@
 [[!meta title="Constitution"]]
 
-# Constitution of the Open Computing Facility
 
 This document records the '''Constitution of the Open Computing Facility''', as ratified or amended by votes of the OCF membership:
 

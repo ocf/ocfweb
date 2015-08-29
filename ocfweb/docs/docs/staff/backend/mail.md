@@ -1,5 +1,4 @@
 [[!meta title="Mail"]]
-# Mail
 
 We maintain two mail servers:
 

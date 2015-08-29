@@ -1,5 +1,4 @@
 [[!meta title="LDAP"]]
-# Lightweight Directory Access Protocol
 
 ## Introduction
 The Lightweight Directory Access Protocol accesses a directory service over a network. We currently use OpenLDAP to store information about accounts (except password hashes which are in [[Kerberos]]).

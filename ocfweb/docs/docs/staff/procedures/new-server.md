@@ -1,5 +1,4 @@
 [[!meta title="Creating new servers"]]
-# Creating new servers
 
 Bringing up new servers is pretty easy, but has a few easy-to-miss steps. This
 process requires both root and a `/admin` principal.

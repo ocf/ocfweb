@@ -1,5 +1,4 @@
 [[!meta title="Plans for new vhost mail server"]]
-# Plans for new vhost mail server
 
 We want to provide better mail for virtually-hosted student groups. There's
 probably a lot of demand for this service, and it complements our web hosting

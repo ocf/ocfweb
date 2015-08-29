@@ -1,6 +1,5 @@
 [[!meta title="pkusers (modify a user's printing account)"]]
 
-# pkusers (modify a user's printing account)
 
 [[!toc levels=3 startlevel=2]]
 

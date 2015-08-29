@@ -1,6 +1,5 @@
 [[!meta title="Staff privileges"]]
 
-# Staff privileges
 
 OCF staff are members of the OCF who contribute their time as volunteers, and are given responsibilities and privileges to maintain and improve the OCF's infrastructure. There are many powers granted to staff, which for simplification have been consolidated into a tiered structure.
 

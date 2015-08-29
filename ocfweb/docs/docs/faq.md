@@ -1,5 +1,4 @@
 [[!meta title="Frequently asked questions"]]
-# Some frequently asked questions
 
 [[!toc startlevel=3]]
 

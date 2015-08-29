@@ -1,5 +1,4 @@
 [[!meta title="Wiki editing"]]
-# Using ikiwiki
 
 [ikiwiki](https://ikiwiki.info/) uses [Markdown][markdown].
 

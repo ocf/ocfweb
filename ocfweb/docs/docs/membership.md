@@ -1,5 +1,4 @@
 [[!meta title="Joining the OCF"]]
-# Becoming an OCF member
 
 ## Before you begin
 

@@ -1,5 +1,4 @@
 [[!meta title="SSL certificates"]]
-# SSL certificates
 
 We are able to obtain signed certificates at no charge through the campus [InCommon-Comodo certificate service](https://wikihub.berkeley.edu/display/calnet/CalNet+InCommon-Comodo+Certificate+Service).
 
@@ -7,8 +6,8 @@ The primary Common Name for a certificate should always be the **server hostname
 
 This allows us to easily distinguish between certificates in cases where a service may be hosted by multiple hostnames, or where the hostname changes, without sharing private keys.
 
-# Setting up SSL
-## Generating a key/CSR
+## Setting up SSL
+### Generating a key/CSR
 The easiest way to generate a key and CSR is with the `makessl` script provided by `ocf/utils`. Specify the fully-qualified hostname of the server as the only argument. **Do not use service CNAMEs.**
 
 Example usage:
@@ -17,7 +16,7 @@ Example usage:
 
 This will create a file `supernova.ocf.berkeley.edu.key` in the same directory, and print a CSR to stdout.
 
-## Requesting a Certificate
+### Requesting a Certificate
 1. Go to the [InCommon Certificate Manager](https://cert-manager.com/customer/incommon) (or have the current Departmental Certificate Administrator go there).
 
 2. Click "Add" to request a new certificate.
@@ -26,7 +25,7 @@ This will create a file `supernova.ocf.berkeley.edu.key` in the same directory, 
 
 5. Approve the certificate and wait for it to be issued. Download "X509 Certificate Only" and place it in a file named `${fqdn}.crt` in the same directory as the key.
 
-## Installing key/certificate with Puppet
+### Installing key/certificate with Puppet
 You should install the key and certificate via Puppet. On lightning, create the directory `/opt/puppet/shares/private/$fqdn/ssl` and place the key and cert in it.
 
 Add the `ocf_ssl` module to the server (e.g. by adding `puppetClass: ocf_ssl` to the server's LDAP entry). This will provide the files:
@@ -37,7 +36,8 @@ Add the `ocf_ssl` module to the server (e.g. by adding `puppetClass: ocf_ssl` to
 
 The bundle file is automatically generated from the certificate you provided, and contains the InCommon intermediate certificate.
 
-# Verifying certificate
+
+## Verifying certificates
 
 For the host `rt.ocf.berkeley.edu` on port 443 (HTTPS), try connecting using the OpenSSL client.
 

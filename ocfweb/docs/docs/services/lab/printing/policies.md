@@ -1,5 +1,4 @@
 [[!meta title="Printing policies"]]
-# OCF printing policies
 
 ## General
 

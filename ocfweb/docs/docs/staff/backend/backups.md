@@ -1,5 +1,4 @@
 [[!meta title="Backups"]]
-# Backups
 ## Backup Storage
 
 We have two sources of storage for on-site backups:

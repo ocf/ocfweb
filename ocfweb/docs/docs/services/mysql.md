@@ -1,5 +1,4 @@
 [[!meta title="Database (MySQL)"]]
-# MySQL database
 The OCF provides each user with a MySQL database. Read the following sections for information about performing common MySQL tasks, and our rules and policies regarding MySQL.
 ## Policies
 We limit users to 1 database, and this database has the same name as your username. As a user of shared database server we ask you to respect the community and refrain from any activities that will hurt the quality of service for other users. We understand this policy is vague, so our suggested maximum size for databases is 1GB, and for individual tables 256 MB. Storing large amounts of data is not a problem unless the server has to perform complex queries on this data.

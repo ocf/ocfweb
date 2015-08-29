@@ -1,5 +1,4 @@
 [[!meta title="Git"]]
-# Git
 
 [[!toc levels=3 startlevel=2]]
 

@@ -1,5 +1,4 @@
 [[!meta title="Backporting packages"]]
-# Backporting packages
 
 It seems like we often either need a newer version of a package, or to apply
 our own patch to some package. We have [an apt

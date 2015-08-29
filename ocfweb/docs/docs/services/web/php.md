@@ -1,5 +1,4 @@
 [[!meta title="PHP"]]
-# PHP
 
 `death`, the OCF webserver, currently runs PHP 5.4 with the following
 non-standard packages installed:

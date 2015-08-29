@@ -1,5 +1,4 @@
 [[!meta title="DMCA"]]
-# Digital Millennium Copyright Act
 
 DMCA safe harbor provisions help "Online Service Providers" such as us avoid liability from copyright infringement by our users.
 

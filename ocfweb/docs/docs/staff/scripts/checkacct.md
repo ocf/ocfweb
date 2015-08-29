@@ -1,5 +1,4 @@
 [[!meta title="checkacct: search full names"]]
-# `checkacct`
 
 ## Introduction
 

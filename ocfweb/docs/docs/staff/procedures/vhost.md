@@ -1,5 +1,4 @@
 [[!meta title="Virtual hosting (staff)"]]
-# Virtual hosting
 ## Policy checklist
 
 * Website developed, not a placeholder

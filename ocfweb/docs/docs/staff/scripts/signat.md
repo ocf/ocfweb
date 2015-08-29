@@ -1,5 +1,4 @@
 [[!meta title="signat: check signatory status"]]
-# `signat`
 
 ## Introduction
 

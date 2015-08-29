@@ -1,5 +1,4 @@
 [[!meta title="Request Tracker"]]
-# Request Tracker
 
 **Note:** RT is now fully-Puppeted, so these instructions aren't super useful
 for OCF staff. This page is kept as a reference for others who might come

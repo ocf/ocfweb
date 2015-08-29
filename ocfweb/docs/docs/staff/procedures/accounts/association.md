@@ -1,5 +1,4 @@
 [[!meta title="CalNet Association"]]
-# Associate an account with a CalNet ID
 
 Occasionally, it is useful to allow someone to reset a group account password
 online when they are not a signatory, namely when the account is not for a
