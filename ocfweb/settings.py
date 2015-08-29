@@ -1,5 +1,7 @@
 import os
 
+from django.template.base import TemplateSyntaxError
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'not_a_secret-a(y))f7-_^ji^ezc5k7l%thr-m@(pk^rf)rz+)p#v82mmc_1dh'
@@ -26,6 +28,18 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'ocfweb.urls'
 
+
+class InvalidReferenceInTemplate(str):
+    """Raise exceptions on invalid references in templates.
+
+    By default Django just replaces references to undefined variables with
+    empty strings. This is a horrible idea, so we instead hack it to raise an
+    exception.
+    """
+
+    def __mod__(self, ref):
+        raise TemplateSyntaxError('Invalid reference in template: {}'.format(ref))
+
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
     'DIRS': [],
@@ -36,6 +50,7 @@ TEMPLATES = [{
             'django.contrib.messages.context_processors.messages',
             'ocfweb.context_processors.ocf_template_processor',
         ],
+        'string_if_invalid': InvalidReferenceInTemplate('%s'),
     },
 }]
 
