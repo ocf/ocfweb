@@ -8,7 +8,7 @@ Git is a distributed revision control system used by the OCF. Other version cont
 
 Although Git is a great tool for large-scale distributed development, for us a Subversion-like workflow with a "central repository" (where you clone/fetch from and push to) and linear history makes more sense. The instructions below assume that development is happening in a single branch.
 
-**Only commit your own, original work**.  You may commit another staff member's work if you have permission and change the author appropriately (e.g., `--author="Guest User <guser@ocf.berkeley.edu>"`). When committing, `git config user.name` should be your name and `git config user.email` should be your OCF email address -- this should be taken care of by [[LDAP]] and `/etc/mailname` on OCF machines.
+**Only commit your own, original work**.  You may commit another staff member's work if you have permission and change the author appropriately (e.g., `--author="Guest User <guser@ocf.berkeley.edu>"`). When committing, `git config user.name` should be your name and `git config user.email` should be your OCF email address -- this should be taken care of by [[LDAP|doc staff/backend/ldap]] and `/etc/mailname` on OCF machines.
 
 ### To "update"
 

@@ -12,7 +12,7 @@ Staff privileges are distinct from the Board of Directors, General Manager, and 
 ## Staff
 *group approve*
 
-Newly-interested staff members are given basic training on [[OCF scripts|scripts]] and added to group `approve`.
+Newly-interested staff members are given basic training on [[OCF scripts|doc staff/scripts]] and added to group `approve`.
 
 * receive `staff@ocf` mail (including staff discussions and announcements)
 * can process group account requests
@@ -30,7 +30,7 @@ Staff members who demonstrate long-term commitment and proficiency are given add
 * can login to all servers
 * have sudo access (root privileges) on the print server
 * can edit shared staff files such as `User_Info` and `motd` (message of the day)
-* can edit the [[wiki|ikiwiki/editing-the-wiki]] and are expected to help maintain it
+* can edit the [[wiki|doc staff/wiki]] and are expected to help maintain it
 * must hold staff hours
 * can reset account passwords (see below)
 

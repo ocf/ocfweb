@@ -15,7 +15,7 @@ The necessary scripts for you to create Django projects are installed on our log
 
         tsunami$ cd ~/projects
 
-1.  Create a new Django project. For this example, the project name will be "hatsune". You will want to stick with Python-friendly package and module names, as detailed in [[PEP 8|https://www.python.org/dev/peps/pep-0008/#package-and-module-names]].
+1.  Create a new Django project. For this example, the project name will be "hatsune". You will want to stick with Python-friendly package and module names, as detailed in [PEP 8](https://www.python.org/dev/peps/pep-0008/#package-and-module-names).
 
         tsunami$ django-admin startproject hatsune
 

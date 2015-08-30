@@ -1,7 +1,7 @@
 [[!meta title="LDAP"]]
 
 ## Introduction
-The Lightweight Directory Access Protocol accesses a directory service over a network. We currently use OpenLDAP to store information about accounts (except password hashes which are in [[Kerberos]]).
+The Lightweight Directory Access Protocol accesses a directory service over a network. We currently use OpenLDAP to store information about accounts (except password hashes which are in [[Kerberos|doc staff/backend/kerberos]]).
 
 ## Definition of an OCF account
 
@@ -59,7 +59,7 @@ Searching for an account in a group:
 
 ### `ldapvi`
 
-`ldapvi` is a "text editor" for LDAP which can generate LDIF change records to pass to `ldapadd` (or modify directly if you have the proper [[permissions|powers]]).
+`ldapvi` is a "text editor" for LDAP which can generate LDIF change records to pass to `ldapadd` (or modify directly if you have the proper [[permissions|doc staff/powers]]).
 
     $ ldapvi uid=daradib
     0 uid=daradib,ou=People,dc=OCF,dc=Berkeley,dc=EDU
@@ -91,7 +91,7 @@ You can enter "y" to apply changes, "q" to save the LDIF change record as a file
 
 ### `ldapadd`
 
-`ldapadd` is a utility to add entries to the LDAP directory if you have the proper [[permissions|powers]].
+`ldapadd` is a utility to add entries to the LDAP directory if you have the proper [[permissions|doc staff/powers]].
 
 To add an account, first create a file (we call it `user_file`):
 
@@ -107,7 +107,7 @@ To add an account, first create a file (we call it `user_file`):
     loginShell: /bin/bash
     calnetUid: 758472
 
-Then authenticate with [[Kerberos]]:
+Then authenticate with [[Kerberos|doc staff/backend/kerberos]]:
 
     $ kinit myusername/admin
 

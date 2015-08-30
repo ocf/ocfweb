@@ -17,4 +17,4 @@ OCF staff members are **not present** during all of these hours.
 
 ## Services
 
-* [[Printing]]
+* [[Printing|doc services/lab/printing]]

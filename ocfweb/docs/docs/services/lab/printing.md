@@ -8,11 +8,11 @@ Printing is currently limited to:
  * 15 pages per day on weekdays
  * 30 pages per day on weekends
 
-Please review our [[printing policies|printing/policies]] before contacting staff. Refer to the links above for an explanation of our printing policy changes.
+Please review our [[printing policies|doc services/lab/printing/policies]] before contacting staff. Refer to the links above for an explanation of our printing policy changes.
 
 ## Remaining quota
 
-To see how many pages you have left for the day and semester, run the `paper` command [over the web](https://accounts.ocf.berkeley.edu/commands) or [[in the shell|shell]]. Print quota is also displayed at the top of the screen when using a lab computer. Check your print balance regularly!
+To see how many pages you have left for the day and semester, run the `paper` command [over the web](https://accounts.ocf.berkeley.edu/commands) or [[in the shell|doc services/shell]]. Print quota is also displayed at the top of the screen when using a lab computer. Check your print balance regularly!
 
 ## Technical details
 

@@ -9,7 +9,7 @@ find you need a backup history of your own when you need to:
 * Regress to a previous state due to a bug
 * Recover from a security breach
 
-You can make easy-to-restore backups over [[SSH|services/shell]] by following
+You can make easy-to-restore backups over [[SSH|doc services/shell]] by following
 the examples on this page. You could alternatively use SFTP, but this wouldn't
 allow you to back up a database.
 
@@ -51,7 +51,7 @@ alongside your web directory.
 ### MySQL
 
 If you are using a MySQL database, you can use `mysqldump` to make snapshots.
-Instructions are on the [[MySQL|services/mysql]] page, but the basic syntax
+Instructions are on the [[MySQL|doc services/mysql]] page, but the basic syntax
 to make a backup is
 
     mysqldump username > ~/backup.sql
@@ -74,7 +74,7 @@ and, to restore,
 By default, you have to enter your MySQL every time you make a backup, which is
 inconvenient. Worse, if you forget the password and uses `makemysql` to reset
 it, it will break your old website backups! If you want to save the trouble,
-[[follow our instructions|services/mysql]] to create `~/.my.cnf` which will
+[[follow our instructions|doc services/mysql]] to create `~/.my.cnf` which will
 allow you to use MySQL without entering the password by hand.
 
 

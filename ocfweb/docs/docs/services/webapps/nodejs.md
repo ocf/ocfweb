@@ -56,13 +56,13 @@ running it (or see any errors in your terminal).
 
 ## Supervise your app with daemontools
 
-Cool, your app works. [[Set up daemontools|services/webapps#supervise]] to
+Cool, your app works. [[Set up daemontools|doc services/webapps#supervise]] to
 supervise your app (so that it starts and restarts automatically).
 
 ## Suggestions/improvements?
 
 If you have a better way to host Node.js-based apps on the app server (or a
 suggestion for how we could improve this documentation),
-[[send us an email|contact]]!
+[[send us an email|doc contact]]!
 
 [nvm-github]: https://github.com/creationix/nvm

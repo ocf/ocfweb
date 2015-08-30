@@ -1,3 +1,4 @@
+import logging
 import os
 from collections import namedtuple
 from itertools import chain
@@ -15,6 +16,7 @@ from django.template import RequestContext
 from ocfweb.markdown import markdown_and_meta
 
 DOCS_DIR = join(dirname(__file__), 'docs')
+_logger = logging.getLogger(__name__)
 
 
 class Document(namedtuple('Document', ['name', 'meta', 'html'])):
@@ -48,8 +50,13 @@ class Document(namedtuple('Document', ['name', 'meta', 'html'])):
         # sanity check that the file is under the directory we expect
         assert path.startswith(realpath(DOCS_DIR) + '/')
 
-        with open(path) as f:
-            html, meta = markdown_and_meta(f.read())
+        try:
+            with open(path) as f:
+                html, meta = markdown_and_meta(f.read())
+        except Exception as ex:
+            _logger.critical('Exception occured while markdown-ing doc {}'.format(name))
+            _logger.exception(ex)
+            raise
 
         if 'title' not in meta:
             raise ValueError('Document {} lacks required title meta variable.'.format(name))

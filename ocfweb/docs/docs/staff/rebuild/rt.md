@@ -225,7 +225,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
 8. mod_auth_kerb/ngx_http_auth_pam uses HTTP Basic authorization which has no concept of login/logout. Emulate logout behavior by changing the Logout page to send a 401 (works for Chrome), run proprietary IE code (works for IE), and make an Ajax call to a non-existing page with bad credentials (works for Firefox).
 
-  The below code has been "adapted" from [[https://trac-hacks.org/wiki/TrueHttpLogoutPatch]].
+  The below code has been "adapted" from https://trac-hacks.org/wiki/TrueHttpLogoutPatch
 
   This should be fixed so that RT's installation files aren't being directly modified.
 
@@ -433,7 +433,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 ## Todo
 * Fix Chrome double login, if possible.
 ** Doesn't occur when running Nginx, only Apache 2.
-* Set up ticket autoclose using [[http://requesttracker.wikia.com/wiki/UntouchedInHours]] or [[http://requesttracker.wikia.com/wiki/TimedNotifications]]
+* Set up ticket autoclose using http://requesttracker.wikia.com/wiki/UntouchedInHours or http://requesttracker.wikia.com/wiki/TimedNotifications
 
 ## References
-* [[http://requesttracker.wikia.com/wiki/HomePage]]
+* http://requesttracker.wikia.com/wiki/HomePage

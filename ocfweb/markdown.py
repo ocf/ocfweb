@@ -2,7 +2,6 @@ import logging
 import re
 
 import mistune
-from django.core.urlresolvers import NoReverseMatch
 from django.core.urlresolvers import reverse
 
 _logger = logging.getLogger(__name__)
@@ -53,13 +52,14 @@ class DjangoLinkInlineLexerMixin:
         [[human readable name|doc staff/backend/backups#something]]
     """
 
-    split_words = re.compile('((?:(?:\\ )|\S)+)')
+    split_words = re.compile('((?:\S|\\\\ )+)')
 
     def enable_django_links(self):
         self.rules.django_link = re.compile(
             '^\[\[(?!\!)'
             '([\s\S]+?)'
-            '(?:\|([^#]+?))?'
+            '\|'
+            '([^#]+?)'
             '(?:#(.*?))?'
             '\]\]'
         )
@@ -67,19 +67,6 @@ class DjangoLinkInlineLexerMixin:
 
     def output_django_link(self, m):
         text, target, fragment = m.group(1), m.group(2), m.group(3)
-        if not target:
-            # TODO: remove this when docs are cleaned up
-            _logger.warn(
-                'Found link without human text: `{}`'.format(text)
-            )
-            target = text
-
-        if target.lower() != target:
-            # TODO: remove this when docs are cleaned up, only allow lowercase in doc names
-            _logger.warn(
-                'Found uppercase text in target: `{}`'.format(target)
-            )
-            target = target.lower()
 
         def href(link, fragment):
             if fragment:
@@ -88,48 +75,11 @@ class DjangoLinkInlineLexerMixin:
 
         words = DjangoLinkInlineLexerMixin.split_words.findall(target)
         name, *params = words
-        try:
-            return self.renderer.link(
-                link=href(reverse(name, args=params), fragment),
-                title=None,
-                text=text,
-            )
-        except NoReverseMatch:
-            # TODO: disable this once all docs have been cleaned up
-            if len(words) == 1:
-                # this is probably a legacy link:
-                #  - either a full URL using bad syntax;
-                #    change it to use Markdown syntax [link text](http://google.com/)
-                #  - or a reference to another doc that doesn't start with `doc`;
-                #    change it to be like [[link text|doc staff/backend/backups]]
-                if re.match('^https?://', target):
-                    _logger.warn(
-                        'Matched wikilink against full URL, that should be fixed!\n'
-                        'grep for url: "{}"'.format(target)
-                    )
-                    return self.renderer.link(
-                        link=href(target, fragment),
-                        title=None,
-                        text=text,
-                    )
-                elif words[0] != 'doc':
-                    # try interpreting it as a document
-                    try:
-                        link = href(reverse('doc', args=[words[0].rstrip('/')]), fragment)
-                        _logger.warn(
-                            'Matched wikilink without `doc`, that should be fixed!\n'
-                            'grep for link: "{}"'.format(target)
-                        )
-                        return self.renderer.link(
-                            link=link,
-                            title=None,
-                            text=text,
-                        )
-                    except NoReverseMatch:
-                        # let the original exception raise, not this one
-                        pass
-
-            raise
+        return self.renderer.link(
+            link=href(reverse(name, args=params), fragment),
+            title=None,
+            text=text,
+        )
 
 
 class OcfMarkdownInlineLexer(

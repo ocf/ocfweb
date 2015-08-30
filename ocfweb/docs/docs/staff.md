@@ -3,7 +3,7 @@
 
 Find out what we're all about, and [come join us][hello]!
 
-Feel free to attend our meetings or [[contact us|contact]] by email.
+Feel free to attend our meetings or [[contact us|doc contact]] by email.
 
 [hello]: https://hello.ocf.berkeley.edu
 

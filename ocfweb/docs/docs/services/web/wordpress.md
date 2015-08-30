@@ -3,7 +3,7 @@
 WordPress is a popular CMS (content management system) on the Web.
 
 
-The easiest way to set up WordPress is via [[SSH|services/shell]]. Some simple
+The easiest way to set up WordPress is via [[SSH|doc services/shell]]. Some simple
 instructions:
 
 1. Go to our [web-based SSH client](https://ssh.ocf.berkeley.edu/) and sign in
@@ -51,14 +51,14 @@ installed (usually `~/public_html` or `~/public_html/wordpress`) and open
 
 If you already have a site hosted at WordPress.com and you'd like to move it to
 OCF web hosting, for example, to become eligible for [[virtual
-hosting|services/vhost]], you can move most of your website's functionality and
+hosting|doc services/vhost]], you can move most of your website's functionality and
 content to the OCF's servers. Generally, the process is simple and sites
 migrated from WordPress.com hosting to the OCF function quite well, apart from
 possible minor differences in the appearance of themes.
 
 If you have an old WordPress installation lying around -- if you are replacing
 an old student group website, for example -- you should archive it before
-proceeding. See the example on our [[backup page|services/web/backups]] to
+proceeding. See the example on our [[backup page|doc services/web/backups]] to
 easily make a backup over SSH.
 
 The basic steps to migration are as follows:

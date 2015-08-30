@@ -12,7 +12,7 @@ OCF servers currently run the following:
 
 If you'd like, you can install Rails 4 in your home directory using `gem`.  The
 installed version of Ruby should be sufficient. The following steps, which
-should all take place over [[SSH|services/shell]], will set up a gem directory
+should all take place over [[SSH|doc services/shell]], will set up a gem directory
 inside your home directory and installs Rails.
 
 1. Set up relevant environment variables on login:

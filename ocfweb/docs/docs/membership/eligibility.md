@@ -1,6 +1,6 @@
 [[!meta title="Eligibility"]]
 
-The following individuals and groups are eligible for [[membership]]:
+The following individuals and groups are eligible for [[membership|doc membership]]:
 
 [[!toc levels=2 startlevel=2]]
 
@@ -82,7 +82,7 @@ At least one of the following:
 
 ## Student groups, staff groups, or campus support organizations
 
-See [[Group Account Policy|https://docs.ocf.berkeley.edu/wiki/Policies:General#2_Policies_governing_group_accounts]] for additional restrictions.
+See [Group Account Policy](https://docs.ocf.berkeley.edu/wiki/Policies:General#2_Policies_governing_group_accounts) for additional restrictions.
 
 Current Cal ID and at least one of the following:
 

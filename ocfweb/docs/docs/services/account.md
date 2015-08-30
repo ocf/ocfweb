@@ -4,10 +4,10 @@
 
 ## Introduction
 
-Your OCF account is both proof of your [[membership]] and the means by which you authenticate to the variety of [[services]] operated by OCF [[staff]]. Your OCF account is independent from CalNet. (Technical info: public account information and salted password hashes are stored in [[staff/backend/LDAP]] and [[staff/backend/Kerberos]] databases, respectively.)
+Your OCF account is both proof of your [[membership|doc membership]] and the means by which you authenticate to the variety of [[services|doc services]] operated by OCF [[staff|doc staff]]. Your OCF account is independent from CalNet. (Technical info: public account information and salted password hashes are stored in [[LDAP|doc staff/backend/ldap]] and [[Kerberos|doc staff/backend/kerberos]] databases, respectively.)
 
 Accounts are not normally deactivated after your membership
-[[membership/eligibility]] expires (e.g., graduation). In fact, we have active
+[[eligibility|doc membership/eligibility]] expires (e.g., graduation). In fact, we have active
 accounts dating back to at least 1995.
 
 ## Passwords
@@ -35,7 +35,7 @@ staff hours instead to reset the password.
 
 You can change your password over SSH if you know your current password.
 
-Use [[SSH|shell]] to run the command `passwd` and follow the prompts as shown below. No text will appear when you are entering in a password, just press enter when done after each prompt.
+Use [[SSH|doc services/shell]] to run the command `passwd` and follow the prompts as shown below. No text will appear when you are entering in a password, just press enter when done after each prompt.
 
     $ passwd
     myusername@OCF.BERKELEY.EDU's Password: <my current password>
@@ -45,9 +45,9 @@ Use [[SSH|shell]] to run the command `passwd` and follow the prompts as shown be
 
 #### In person
 
-If you are not able to use CalNet or SSH, if you are a group and forgot your current password), you can meet a staff member in person during [staff hours](https://www.ocf.berkeley.edu/staff_hours).
+If you are not able to use CalNet or SSH, if you are a group and forgot your current password), you can meet a staff member in person during [[staff hours|staff-hours]].
 
-Please bring sufficient documentation as listed on the [[membership eligibility|membership/eligibility]] page to demonstrate that you are authorized to reset the account password.
+Please bring sufficient documentation as listed on the [[membership eligibility|doc membership/eligibility]] page to demonstrate that you are authorized to reset the account password.
 
 <a id="manual-reset"></a>
 #### Manual verification of identity (typically for alumni with old accounts)
@@ -69,7 +69,7 @@ You have two choices:
     your documentation.
 
   * **Option 2 (postal mail).** Mail your documentation to our [[mailing
-    address|contact/#index6h2]]. Expect a delay of at least 2-3 weeks,
+    address|doc contact#index6h2]]. Expect a delay of at least 2-3 weeks,
     possibly longer over summer.
 
 For security purposes, please include the following with your request:
@@ -87,7 +87,7 @@ If you no longer have your Cal ID, you may substitute it with another government
 
 ### MySQL
 
-Access to your [[MySQL database|services/mysql]], if you have one, is protected by a separate password.
+Access to your [[MySQL database|doc services/mysql]], if you have one, is protected by a separate password.
 
 ## After graduation
 
@@ -105,6 +105,6 @@ Accounts may also be disabled if OCF staff need to contact you but cannot do so.
 
 To re-enable your account, you will need to see a Manager (gm, sm, or dm after the staff member's name) during [staff hours](https://www.ocf.berkeley.edu/staff_hours).
 
-If you want to disable your OCF account, please [[contact us|contact]] and provide your OCF username. If your account appears to still be active, we may ask for some evidence that you are the account owner. Currently, disabled accounts are stored or archived and can be *re-enabled* by request at a later date. Disabled accounts may eventually be scheduled for deletion.
+If you want to disable your OCF account, please [[contact us|doc contact]] and provide your OCF username. If your account appears to still be active, we may ask for some evidence that you are the account owner. Currently, disabled accounts are stored or archived and can be *re-enabled* by request at a later date. Disabled accounts may eventually be scheduled for deletion.
 
 To permanently delete the contents of your account, you will need to have access to your account.

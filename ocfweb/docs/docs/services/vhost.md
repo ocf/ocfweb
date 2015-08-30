@@ -26,18 +26,18 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
 
 ### Instructions
 
-1.   [[Request an OCF group account|membership]] (if you haven't already done so).
+1.   [[Request an OCF group account|doc membership]] (if you haven't already done so).
 2.   Set up your webspace and upload your website (if you haven't already done so). The website should be developed already, not a placeholder.
-3.   Place a [[Hosted by OCF banner|https://www.ocf.berkeley.edu/images/hosted-logos/]] on your home page that links to the OCF front page. If none of these images are appropriate for your site, you may design one of your own and [[submit it|contact]] for approval.
+3.   Place a [Hosted by OCF banner](https://www.ocf.berkeley.edu/images/hosted-logos/) on your home page that links to the OCF front page. If none of these images are appropriate for your site, you may design one of your own and [[submit it|doc contact]] for approval.
 4.   Place the university-mandated student group disclaimer on each page of your website (see the section below).
-5. Complete the [[virtual hosting request
-   form|https://accounts.ocf.berkeley.edu/request-vhost]] online.
+5. Complete the [virtual hosting request
+   form](https://accounts.ocf.berkeley.edu/request-vhost) online.
    OCF staff will review your request and contact the university hostmaster on your
    behalf.
 
 ### Including the OCF banner
 
-To place any of the [[Hosted by OCF banners|https://www.ocf.berkeley.edu/images/hosted-logos/]] on your site, you can use HTML code such as the following:
+To place any of the [Hosted by OCF banners](https://www.ocf.berkeley.edu/images/hosted-logos/) on your site, you can use HTML code such as the following:
 
     <a href="https://www.ocf.berkeley.edu/">
     <img src="https://www.ocf.berkeley.edu/images/hosted-logos/ocfbadge_mini8.png" alt="Hosted by the OCF" width="98" height="39" style="border:0" />
@@ -75,12 +75,13 @@ Virtual web sites, just like other OCF user accounts, must comply with the relev
 
 In particular,
 
-*   **No off-site (third-party) hosting**: Circumventions around off-site hosting, including (but not limited to) proxies, redirects, and substantial inline frames (iframes) of non-berkeley.edu domains are not allowed. OCF does not process or advise off-site hosting requests, which can be [submitted directly to the university](https://offsitehosting.berkeley.edu/) (however, feel free to keep us informed if you have an existing OCF account).<br/>
-In other words, to comply with university policy, OCF will only provide virtual hosting for websites that are substantially hosted on OCF servers.
+* **No off-site (third-party) hosting**: Circumventions around off-site hosting, including (but not limited to) proxies, redirects, and substantial inline frames (iframes) of non-berkeley.edu domains are not allowed. OCF does not process or advise off-site hosting requests, which can be [submitted directly to the university](https://offsitehosting.berkeley.edu/) (however, feel free to keep us informed if you have an existing OCF account).
+
+  In other words, to comply with university policy, OCF will only provide virtual hosting for websites that are substantially hosted on OCF servers.
 
 #### Hosting badge
 
-All virtual hosts on the OCF must include an [[OCF banner|https://www.ocf.berkeley.edu/images/hosted-logos/]] on the front page that links to the [[OCF home page|https://www.ocf.berkeley.edu/]]. The banner need not be displayed extremely prominently, but it must be noticeable without undue effort. If the banner is removed or misplaced, the OCF reserves the right to terminate the virtual hosting service. The hosting badge not only attributes the OCF but also distinguishes it from sites hosted by other University departments.
+All virtual hosts on the OCF must include an [OCF banner](https://www.ocf.berkeley.edu/images/hosted-logos/) on the front page that links to the [[OCF home page|home]]. The banner need not be displayed extremely prominently, but it must be noticeable without undue effort. If the banner is removed or misplaced, the OCF reserves the right to terminate the virtual hosting service. The hosting badge not only attributes the OCF but also distinguishes it from sites hosted by other University departments.
 
 <a id="email"></a>
 ## Email Forwarding
@@ -98,7 +99,7 @@ In order to tell the mail server where to forward mail, you must create
 addresses to forward mail to, specified one per line.
 
 The easiest way to create forward files is to log in via
-[[SSH|services/shell]]. Once logged in, you can create the files by executing a
+[[SSH|doc services/shell]]. Once logged in, you can create the files by executing a
 command like:
 
     echo "my_email@example.com" > ~/.forward+officer

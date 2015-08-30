@@ -1,6 +1,6 @@
 [[!meta title="Bootstrapping new desktops"]]
 
-In addition to the [[normal steps for bringing up new machines|staff/procedures/new-server]],
+In addition to the [[normal steps for bringing up new machines|doc staff/procedures/new-server]],
 desktops require a couple extra steps.
 
 ## Generate labstats key/cert

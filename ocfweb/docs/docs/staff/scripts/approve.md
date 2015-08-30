@@ -8,7 +8,7 @@ OCF group accounts need to be manually approved by staff in the lab. All members
 
 ## Before Approve
 * SSH into supernova.ocf.berkeley.edu
-* Check to see whether the group has an existing OCF account with [[checkacct]]. You should try different variants of the group's name as it may not have been correctly entered (eg. acronym etc.).
+* Check to see whether the group has an existing OCF account with [[checkacct|doc staff/scripts/checkacct]]. You should try different variants of the group's name as it may not have been correctly entered (eg. acronym etc.).
 
         $ checkacct Open
         Login: api                        Name: Open API Project
@@ -16,8 +16,8 @@ OCF group accounts need to be manually approved by staff in the lab. All members
         Login: oai                        Name: Open Access Initiative at Berkeley
 
 * If the group does not have an account, ask the requester to fill out and sign a form (located near the staff computer).
-* For registered student groups, the OCF requires that a signatory authorizes the approval of the account. If the account is not a registered student group check with the [[membership eligibility|membership/eligibility]] to see what constitutes acceptable documentation. If they are **not** a registered student group skip the next step.
-* If the group is a registered student group, you can check the signatory status with the [[signat]]. There are three acceptable cases: (1) Student is a signatory and has an OCF account (2) Student is a signatory but does not have an OCF account (3) the student is not a signatory and has a note from a signatory.
+* For registered student groups, the OCF requires that a signatory authorizes the approval of the account. If the account is not a registered student group check with the [[membership eligibility|doc membership/eligibility]] to see what constitutes acceptable documentation. If they are **not** a registered student group skip the next step.
+* If the group is a registered student group, you can check the signatory status with the [[signat|doc staff/scripts/signat]]. There are three acceptable cases: (1) Student is a signatory and has an OCF account (2) Student is a signatory but does not have an OCF account (3) the student is not a signatory and has a note from a signatory.
 * Case 1:
 
         $signat sanjayk
@@ -60,4 +60,4 @@ When you run approve it will open a text editor to enter the following informati
 
 ### Post approval
 
-Explain that the account will be created in approximately one week and that they will need to apply for [[virtual hosting|services/vhost]] (if desirable) after they have set up their site. Point them to relevant wiki articles.
+Explain that the account will be created in approximately one week and that they will need to apply for [[virtual hosting|doc services/vhost]] (if desirable) after they have set up their site. Point them to relevant wiki articles.
