@@ -20,7 +20,6 @@ When contacting OCF staff, please reference
 
 ## Contents
 
-[[!toc levels=2 startlevel=2]]
 
 ## In person
 

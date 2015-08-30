@@ -1,7 +1,6 @@
 [[!meta title="chpass (reset a user's password)"]]
 
 
-[[!toc levels=3 startlevel=2]]
 
 ## Introduction
 

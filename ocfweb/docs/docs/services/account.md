@@ -1,6 +1,5 @@
 [[!meta title="Account"]]
 
-[[!toc levels=3 startlevel=2]]
 
 ## Introduction
 

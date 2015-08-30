@@ -4,7 +4,6 @@
 have applied for apphosting. For normal user accounts or for groups without
 apphosting, you'll want to host with FastCGI instead.**
 
-[[!toc levels=3 startlevel=2]]
 
 ## Introduction
 

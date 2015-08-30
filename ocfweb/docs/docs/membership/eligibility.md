@@ -2,7 +2,6 @@
 
 The following individuals and groups are eligible for [[membership|doc membership]]:
 
-[[!toc levels=2 startlevel=2]]
 
 The Open Computing Facility provides accounts and services to members. Members must meet at least one of the following eligibility criteria during account creation as verified electronically **or** by presentation of the specified documentation:
 

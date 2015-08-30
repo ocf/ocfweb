@@ -7,7 +7,6 @@ Each tier includes the privileges of the preceding tiers.
 
 Staff privileges are distinct from the Board of Directors, General Manager, and Site Manager(s), which hold executive/legislative/judicial powers, although in practice most staff members are Directors and vice versa.
 
-[[!toc startlevel=2]]
 
 ## Staff
 *group approve*

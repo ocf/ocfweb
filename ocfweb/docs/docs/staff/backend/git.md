@@ -1,6 +1,5 @@
 [[!meta title="Git"]]
 
-[[!toc levels=3 startlevel=2]]
 
 Git is a distributed revision control system used by the OCF. Other version control systems include Mercurial (also distributed) and Subversion (not distributed).
 
