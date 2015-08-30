@@ -11,11 +11,10 @@
 
     <div class="col-sm-4 ocf-sidebar">
         {% block sidebar %}
-            <h3>Table of Contents</h3>
-            <p>something here</p>
+            {% doc_toc doc=doc %}
 
             <h3>More in this category</h3>
-            {% doc_tree root=doc.category suppress_root=False cur_path=doc.name %}
+            {% doc_tree root=doc.category_for_sidebar suppress_root=False cur_path=doc.name %}
         {% endblock %}
     </div>
 </div>

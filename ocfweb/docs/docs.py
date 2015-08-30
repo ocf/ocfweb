@@ -71,6 +71,13 @@ class Document(namedtuple('Document', ['name', 'meta', 'html'])):
     def category(self):
         return self.name.rsplit('/', 1)[0] + '/'
 
+    @property
+    def category_for_sidebar(self):
+        if self.category == '/':
+            return self.name + '/'
+        else:
+            return self.category
+
 
 def list_doc_names():
     """Return a list of document names.

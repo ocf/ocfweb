@@ -82,6 +82,41 @@ class DjangoLinkInlineLexerMixin:
         )
 
 
+class TableOfContentsRendererMixin:
+
+    def reset_toc(self):
+        self.toc = []
+        self.toc_ids = set()
+
+    def get_toc(self):
+        return self.toc
+
+    def header(self, text, level, raw=None):
+        id = 'h{level}_{title}'.format(
+            level=level,
+            title=re.sub('[^a-z0-9\-_ ]', '', text.lower()).strip().replace(' ', '-'),
+        )
+
+        # dumb collision avoidance
+        while id in self.toc_ids:
+            id += '_'
+
+        self.toc.append((level, text, id))
+        self.toc_ids.add(id)
+        return '<h{level} id="{id}">{text}</h{level}>\n'.format(
+            level=level,
+            id=id,
+            text=text,
+        )
+
+
+class OcfMarkdownRenderer(
+    TableOfContentsRendererMixin,
+    mistune.Renderer,
+):
+    pass
+
+
 class OcfMarkdownInlineLexer(
     mistune.InlineLexer,
     DjangoLinkInlineLexerMixin,
@@ -97,7 +132,7 @@ class OcfMarkdownBlockLexer(
     pass
 
 
-_renderer = mistune.Renderer(
+_renderer = OcfMarkdownRenderer(
     escape=True,
     hard_wrap=False,
 )
@@ -109,11 +144,16 @@ _inline.enable_django_links()
 _block = OcfMarkdownBlockLexer(mistune.BlockGrammar())
 _block.enable_html_comments()
 
-markdown = mistune.Markdown(
+_markdown = mistune.Markdown(
     renderer=_renderer,
     inline=_inline,
     block=_block,
 )
+
+
+def markdown(text):
+    _renderer.reset_toc()
+    return _markdown(text)
 
 
 def get_meta_tags(text):
@@ -135,4 +175,6 @@ def get_meta_tags(text):
 def markdown_and_meta(text):
     """Return tuple (html, meta dict) for the given text."""
     text, meta = get_meta_tags(text)
-    return markdown(text), meta
+    html = markdown(text)
+    meta['toc'] = _renderer.get_toc()
+    return html, meta

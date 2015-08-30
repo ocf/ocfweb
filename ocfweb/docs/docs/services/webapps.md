@@ -143,7 +143,6 @@ details. In summary,
 
 ### Example setups for common platforms
 
-[[!map pages="services/webapps/*" show="title"]]
 
 ## Frequently asked questions
 ### Can you install a package on the app server?

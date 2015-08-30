@@ -19,6 +19,10 @@ Most SSH/SFTP clients will prompt you to accept an unknown key when you first co
 
 Your shell account can be controlled remotely using [SSH](https://en.wikipedia.org/wiki/Secure_Shell). The server name is <tt>ssh.ocf.berkeley.edu</tt> (<tt>tsunami</tt>).
 
+## SSH
+
+## SSH
+
 #### From your browser
 If you just need to access SSH quickly, you can use our [web-based SSH interface](https://ssh.ocf.berkeley.edu/) from your web browser.
 

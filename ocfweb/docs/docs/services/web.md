@@ -60,5 +60,3 @@ you to use alternatives instead (such as installing in a virtualenv or inside
 your home directory).
 
 ### Documentation
-
-[[!map pages="services/web/*" show="title"]]
