@@ -1,0 +1,30 @@
+@import '../ocf';
+
+.page-doc .ocf-content-block {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &:hover a {
+            display: inline;
+        }
+
+        a {
+            display: none;
+            font-size: 18px;
+
+            span {
+                @extend .glyphicon-link;
+                @extend .glyphicon;
+
+                color: #aaa;
+            }
+
+            &:hover span {
+                color: #777;
+            }
+        }
+    }
+}
