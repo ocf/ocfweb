@@ -25,7 +25,7 @@ When contacting OCF staff, please reference
 
 The OCF lab is located on the ground level of Hearst Gym (west entrance), Room 6A. You will need to show your student ID when you pass the Publications Center in Room 6.
 
-[<img src="https://www.ocf.berkeley.edu/map_hearst.png" alt="OCF lab map" width="400px" height="191px">](http://ocfblog.blogspot.com/2012/06/moving-to-hearst-gym.html)
+[![OCF lab map](https://www.ocf.berkeley.edu/map_hearst.png)](http://ocfblog.blogspot.com/2012/06/moving-to-hearst-gym.html)
 
 The lab is open in the fall and spring semesters during the Publications Center hours, currently:
 
