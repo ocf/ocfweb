@@ -172,6 +172,13 @@
             </div>
         </div>
 
+        <!-- Hack to make browsers load glyphicons immediately.
+
+             Without this, there is awkward flashing on some pages (e.g. docs)
+             when hovering over something and a glyphicon appears.
+        -->
+        <span style="font-family: 'Glyphicons Halflings';"></span>
+
         <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
         <script src="{% static 'js/underscore-1.8.3.min.js' %}"></script>
         <script src="{% static 'js/bootstrap-3.3.5.min.js' %}"></script>
