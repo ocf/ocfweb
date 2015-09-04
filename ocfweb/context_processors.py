@@ -19,6 +19,6 @@ def ocf_template_processor(request):
             # TODO: real statuses
             ('Printing', True),
             ('Email', True),
-            ('SSH', False),
+            ('SSH', True),
         ]),
     }
