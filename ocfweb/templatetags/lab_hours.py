@@ -17,8 +17,10 @@ def lab_hours_time(hours):
             """Format an hour with am / pm."""
             if hour == 0:
                 return '12am'
-            elif hour <= 12:
+            elif hour < 12:
                 return str(hour) + 'am'
+            elif hour == 12:
+                return '12pm'
             else:
                 return str(hour % 12) + 'pm'
 
