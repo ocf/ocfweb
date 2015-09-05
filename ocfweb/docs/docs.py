@@ -23,7 +23,7 @@ _logger = logging.getLogger(__name__)
 class Document(namedtuple('Document', ['name', 'meta', 'html'])):
 
     @classmethod
-    @lru_cache
+    @lru_cache()
     def from_name(cls, name):
         """Return an instantiated document object.
 
@@ -81,7 +81,7 @@ class Document(namedtuple('Document', ['name', 'meta', 'html'])):
             return self.category
 
 
-@lru_cache
+@lru_cache()
 def list_doc_names():
     """Return a list of document names.
 
