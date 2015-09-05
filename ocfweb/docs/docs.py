@@ -13,7 +13,8 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from ocfweb.markdown import markdown_and_meta
+from ocfweb.caching import lru_cache
+from ocfweb.component.markdown import markdown_and_meta
 
 DOCS_DIR = join(dirname(__file__), 'docs')
 _logger = logging.getLogger(__name__)
@@ -22,6 +23,7 @@ _logger = logging.getLogger(__name__)
 class Document(namedtuple('Document', ['name', 'meta', 'html'])):
 
     @classmethod
+    @lru_cache
     def from_name(cls, name):
         """Return an instantiated document object.
 
@@ -79,6 +81,7 @@ class Document(namedtuple('Document', ['name', 'meta', 'html'])):
             return self.category
 
 
+@lru_cache
 def list_doc_names():
     """Return a list of document names.
 
