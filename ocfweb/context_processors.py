@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from datetime import date
 from datetime import datetime
 
@@ -13,12 +12,4 @@ def ocf_template_processor(request):
     return {
         'lab_is_open': hours.is_open(now),
         'current_lab_hours': hours,
-        'ocf_status': OrderedDict([
-            ('Web', True),  # if you can see this page, web is up :)
-
-            # TODO: real statuses
-            ('Printing', True),
-            ('Email', True),
-            ('SSH', True),
-        ]),
     }

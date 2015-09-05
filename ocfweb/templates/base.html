@@ -76,29 +76,16 @@
 
         <div class="ocf-status-bar">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <p>
-                        {% if lab_is_open %}
-                            <strong>Lab Currently Open</strong>
-                        {% else %}
-                            <strong>Lab Currently Closed</strong>
-                        {% endif %}
-                        {{current_lab_hours|lab_hours_time}}
-                        on {{current_lab_hours|lab_hours_day_and_holiday}}
-                        <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
-                        </p>
-                    </div>
-                    <div class="col-md-6 col-sm-6 hidden-xs">
-                        <ul class="text-right list-inline ocf-status-list">
-                            {% for service, status in ocf_status.items %}
-                                <li class="ocf-status-{{status|yesno:'ok,bad'}}">
-                                    {{service}}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
+                <p>
+                    {% if lab_is_open %}
+                        <strong>Lab Currently Open</strong>
+                    {% else %}
+                        <strong>Lab Currently Closed</strong>
+                    {% endif %}
+                    {{current_lab_hours|lab_hours_time}}
+                    on {{current_lab_hours|lab_hours_day_and_holiday}}
+                    <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
+                </p>
             </div>
         </div>
 

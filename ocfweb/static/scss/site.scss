@@ -93,34 +93,6 @@ h6 {
     .subtle {
         margin-left: 2px;
     }
-
-    .ocf-status-list {
-        margin: 10px 0;
-
-        li {
-            margin-left: 5px;
-
-            &.ocf-status-ok::before {
-                background-color: $color-status-ok;
-            }
-
-            &.ocf-status-bad::before {
-                background-color: $color-status-bad;
-            }
-
-            &::before {
-                border-radius: 3px;
-                content: ' ';
-                display: inline-block;
-
-                height: 6px;
-                width: 6px;
-
-                margin-bottom: 2px;
-                margin-right: 5px;
-            }
-        }
-    }
 }
 
 .ocf-footer {
