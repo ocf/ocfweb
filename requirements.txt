@@ -1,3 +1,4 @@
+cachetools==1.1.0
 colorama==0.3.3
 cracklib==2.9.3
 Django==1.8.4
@@ -6,6 +7,7 @@ ecdsa==0.13
 gunicorn==19.3.0
 ldap3==0.9.8.8
 libsass==0.8.3
+lxml==3.4.4
 mistune==0.7.1
 ocflib
 ocfweb==1.0.0
@@ -15,9 +17,9 @@ pyasn1==0.1.8
 pycrypto==2.6.1
 PyMySQL==0.6.6
 pysnmp==4.2.5
+python-dateutil==2.4.2
 PyYAML==3.11
 redis==2.10.3
 requests==2.7.0
 six==1.9.0
 SQLAlchemy==1.0.8
-wheel==0.24.0
