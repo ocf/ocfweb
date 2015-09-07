@@ -16,6 +16,7 @@ INSTALLED_APPS = (
     'ocfweb',
     'ocfweb.main',
     'ocfweb.docs',
+    'ocfweb.middleware',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -24,6 +25,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'ocfweb.middleware.errors.OcflibErrorMiddleware',
 )
 
 ROOT_URLCONF = 'ocfweb.urls'
