@@ -8,6 +8,7 @@ from ocfweb.docs.docs import list_doc_names
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.staff_hours import staff_hours
+from ocfweb.main.servers import servers
 
 
 def doc_name(doc_name):
@@ -21,6 +22,7 @@ urlpatterns = [
     url('^$', home, name='home'),
     url('^favicon.ico$', favicon, name='favicon'),
     url('^staff-hours$', staff_hours, name='staff-hours'),
+    url('^servers$', servers, name='servers'),
 
     url('^docs/$', docs_index, name='docs'),
     # we use a complicated generated regex here so that we have actual

@@ -1,4 +1,6 @@
-[[!meta title="Servers"]]
+{% extends 'base.html' %}
+
+{% block content %}
 <style type="text/css">
 div.device {
     padding: 10px 15px;
@@ -86,7 +88,7 @@ div.networking {
 }
 </style>
 
-<script type="text/javascript" src="/media/javascript/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function () {
@@ -105,14 +107,10 @@ $(document).ready(function () {
 });
 </script>
 
-At the OCF, there are three physical servers whose job is to host virtual
-servers. These physical servers are hypervisors running QEMU and KVM. The
-servers which people see on a daily basis, like the login server, the web
-server, the print server, and things like that are all virtual machines
-hosted on these hypervisors.
-
-Below is a (non-exhaustive) list of servers and other computers at the OCF.
-VMs are grouped under the hypervisor hosting them.
+<div class="ocf-content-block">
+  <p>At the OCF, there are three physical servers whose job is to host virtual servers. These physical servers are hypervisors running QEMU and KVM. The servers which people see on a daily basis, like the login server, the web server, the print server, and things like that are all virtual machines hosted on these hypervisors.</p>
+  <p>Below is a (non-exhaustive) list of servers and other computers at the OCF.  VMs are grouped under the hypervisor hosting them.  </p>
+</div>
 
 <div id="serverlist" style="padding: 0% 5%">
     <div class="hypervisor">
@@ -411,3 +409,4 @@ VMs are grouped under the hypervisor hosting them.
         </div>
     </div>
 </div>
+{% endblock %}
