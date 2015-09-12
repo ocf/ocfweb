@@ -7,8 +7,8 @@ from ocfweb.docs.docs import docs_index
 from ocfweb.docs.docs import list_doc_names
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
-from ocfweb.main.staff_hours import staff_hours
 from ocfweb.main.servers import servers
+from ocfweb.main.staff_hours import staff_hours
 
 
 def doc_name(doc_name):
