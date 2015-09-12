@@ -40,7 +40,7 @@ or
 
 ### Viewing and modifying semester quotas
 
-On [pollution](https://ocf.berkeley.edu/servers) only,
+On [[pollution|servers]] only,
 
     ~$ pkusers -x /etc/pykota/pykota.semester <command>
 or

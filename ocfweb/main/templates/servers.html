@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 <style type="text/css">
@@ -88,7 +89,7 @@ div.networking {
 }
 </style>
 
-<script type="text/javascript" src="static/js/jquery.min.js"></script>
+<script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
 
 <script type="text/javascript">
 $(document).ready(function () {
