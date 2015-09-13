@@ -2,111 +2,6 @@
 {% load staticfiles %}
 
 {% block content %}
-<style type="text/css">
-div.device {
-    padding: 10px 15px;
-}
-div.hypervisor {
-    border-bottom: 1px solid #e5e5e5;
-}
-div.hypervisor-host {
-    background: #d0d0d0;
-    position: relative; /\* So the arrow can be absolutely positioned \*/
-}
-div.hypervisor-host:hover {
-    background: #e5e5e5;
-    cursor: pointer;
-}
-div.hypervisor-guests {
-    background: #e5e5e5;
-    display: none;
-}
-div.hypervisor-guest {
-    border-bottom: 1px solid #c0c0c0;
-}
-div.hypervisor-guest:last-child {
-    border-bottom: none;
-}
-div.device .info {
-    display: inline-block;
-    width: 100%;
-}
-div.device .hostname {
-    display: inline-block;
-    font-size: 150%;
-    width: 40%;
-    padding-bottom: 1ex;
-}
-div.device .ip {
-    font-size: 120%;
-}
-/\* Note: these two declarations override the above two. \*/
-div.hypervisor-guest .hostname {
-    font-size: 130%;
-}
-div.hypervisor-guest .ip {
-    font-size: 115%;
-}
-div.hypervisor-host .info {
-    vertical-align: middle;
-}
-div.hypervisor-host .arrow {
-    background-repeat: no-repeat;
-    background-size: contain;
-    display: inline-block;
-    height: 16px;
-    width: 3%;
-    position: absolute;
-    right: 3%;
-    top: 42%;
-}
-/\* Arrow images shamelessly stolen from Wikimedia mobile \*/
-div.hypervisor-host .arrow-up {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAQCAYAAADnEwSWAAAAaklEQVR42r3QwQmAQAwAQUuwFEu6Ai3CEizFDmIEIaCvjGBg8zmOgUwR0SpnzrZs6f4VaM8iO7qgQiEgQQoqtAoo0LjfRhck6EpAghQEyEGAHATIQYAcBMjBwhpQDyzsecY39B2sM+b6rRPoYrvAv4SdqgAAAABJRU5ErkJggg==);
-}
-div.hypervisor-host .arrow-down {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAQCAYAAADnEwSWAAAAeUlEQVR4Ab3RwQmAMBAF0S3BUiwpBVqEJViKHawLLhM8DgQPEwiB/w6JzPyt94jYq7saS8drr7qqre9A2Y1VEJsNfjABGgisHy3oIf7Mgx4C86CHwDzoITAPegjMgx4C86CHJubBw0JgHvQQmAc9BOZBD03Mg6eA6AGRXLvASs+J3wAAAABJRU5ErkJggg==);
-}
-div.physical-server {
-    background: #d940cd;
-    border-bottom: 1px solid #e67fdd;
-}
-div.desktop {
-    /\* Debian color, but lighter. Somehow I thought of this. \*/
-    background: #f8206c;
-    border-bottom: 1px solid #fa6b9d;
-}
-div.printer-etc {
-    /\* Looks kinda like the color of the printer \*/
-    background: #ece4d5;
-    border-bottom: 1px solid #fff6e6;
-}
-div.networking {
-    /\* Cisco color \*/
-    background: #15495d;
-    border-bottom: 1px solid #1e6885;
-    color: white;
-}
-</style>
-
-<script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
-
-<script type="text/javascript">
-$(document).ready(function () {
-    $("div.hypervisor-host").click(function (ev) {
-        $(ev.delegateTarget).parent().children("div.hypervisor-guests")
-            .slideToggle();
-        var arrow = $(ev.delegateTarget).children(".arrow");
-        if (arrow.hasClass("arrow-up")) {
-            arrow.addClass("arrow-down");
-            arrow.removeClass("arrow-up");
-        } else if (arrow.hasClass("arrow-down")) {
-            arrow.addClass("arrow-up");
-            arrow.removeClass("arrow-down");
-        }
-    });
-});
-</script>
 
 <div class="ocf-content-block">
   <p>At the OCF, there are three physical servers whose job is to host virtual servers. These physical servers are hypervisors running QEMU and KVM. The servers which people see on a daily basis, like the login server, the web server, the print server, and things like that are all virtual machines hosted on these hypervisors.</p>
@@ -115,299 +10,222 @@ $(document).ready(function () {
 
 <div id="serverlist" style="padding: 0% 5%">
     <div class="hypervisor">
-        <div class="hypervisor-host device">
-            <div class="info">
-                <span class="hostname">hal</span>
-                <span class="ip">169.229.10.10</span><br>
-                <span class="desc">KVM hypervisor</span>
-            </div>
-            <div class="arrow arrow-down"></div>
+        <div class="hypervisor-host">
+            <span class="hostname">hal</span>
+            <span class="ip">169.229.10.10</span><br>
+            <span class="desc">KVM hypervisor</span>
         </div>
         <div class="hypervisor-guests">
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">mudslide</span>
-                    <span class="ip">169.229.10.202</span><br>
-                    <span class="desc">Iodine, Mon, Mosh, Mumble</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">mudslide</span>
+                <span class="ip">169.229.10.202</span><br>
+                <span class="desc">Iodine, Mon, Mosh, Mumble</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">zombies</span>
-                    <span class="ip">169.229.10.44</span><br>
-                    <span class="desc">CSGO server</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">zombies</span>
+                <span class="ip">169.229.10.44</span><br>
+                <span class="desc">CSGO server</span>
             </div>
         </div>
     </div>
     <div class="hypervisor">
-        <div class="hypervisor-host device">
-            <div class="info">
-                <span class="hostname">jaws</span>
-                <span class="ip">169.229.10.12</span><br>
-                <span class="desc">KVM hypervisor</span>
-            </div>
-            <div class="arrow arrow-down"></div>
+        <div class="hypervisor-host">
+            <span class="hostname">jaws</span>
+            <span class="ip">169.229.10.12</span><br>
+            <span class="desc">KVM hypervisor</span>
         </div>
         <div class="hypervisor-guests">
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">anthrax</span>
-                    <span class="ip">169.229.10.35</span><br>
-                    <span class="desc">Postfix (OCF staff mail)</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">anthrax</span>
+                <span class="ip">169.229.10.35</span><br>
+                <span class="desc">Postfix (OCF staff mail)</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">biohazard</span>
-                    <span class="ip">169.229.10.34</span><br>
-                    <span class="desc">Apphosting</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">biohazard</span>
+                <span class="ip">169.229.10.34</span><br>
+                <span class="desc">Apphosting</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">blight</span>
-                    <span class="ip">169.229.10.26</span><br>
-                    <span class="desc">ikiwiki</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">blight</span>
+                <span class="ip">169.229.10.26</span><br>
+                <span class="desc">ikiwiki</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">death</span>
-                    <span class="ip">169.229.10.23</span><br>
-                    <span class="desc">Apache web server</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">death</span>
+                <span class="ip">169.229.10.23</span><br>
+                <span class="desc">Apache web server</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">earthquake</span>
-                    <span class="ip">169.229.10.41</span><br>
-                    <span class="desc">account-tools</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">earthquake</span>
+                <span class="ip">169.229.10.41</span><br>
+                <span class="desc">account-tools</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">firestorm</span>
-                    <span class="ip">169.229.10.20</span><br>
-                    <span class="desc">LDAP, Kerberos</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">firestorm</span>
+                <span class="ip">169.229.10.20</span><br>
+                <span class="desc">LDAP, Kerberos</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">flood</span>
-                    <span class="ip">169.229.10.31</span><br>
-                    <span class="desc">IRC, Jabber</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">flood</span>
+                <span class="ip">169.229.10.31</span><br>
+                <span class="desc">IRC, Jabber</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">lightning</span>
-                    <span class="ip">169.229.10.21</span><br>
-                    <span class="desc">Puppet</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">lightning</span>
+                <span class="ip">169.229.10.21</span><br>
+                <span class="desc">Puppet</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">maelstrom</span>
-                    <span class="ip">169.229.10.27</span><br>
-                    <span class="desc">MySQL</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">maelstrom</span>
+                <span class="ip">169.229.10.27</span><br>
+                <span class="desc">MySQL</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">pestilence</span>
-                    <span class="ip">169.229.10.22</span><br>
-                    <span class="desc">DNS, DHCP</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">pestilence</span>
+                <span class="ip">169.229.10.22</span><br>
+                <span class="desc">DNS, DHCP</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">pollution</span>
-                    <span class="ip">169.229.10.29</span><br>
-                    <span class="desc">CUPS</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">pollution</span>
+                <span class="ip">169.229.10.29</span><br>
+                <span class="desc">CUPS</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">reaper</span>
-                    <span class="ip">169.229.10.48</span><br>
-                    <span class="desc">Jenkins</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">reaper</span>
+                <span class="ip">169.229.10.48</span><br>
+                <span class="desc">Jenkins</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">sandstorm</span>
-                    <span class="ip">169.229.10.24</span><br>
-                    <span class="desc">Postfix (group email)</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">sandstorm</span>
+                <span class="ip">169.229.10.24</span><br>
+                <span class="desc">Postfix (group email)</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">supernova</span>
-                    <span class="ip">169.229.10.36</span><br>
-                    <span class="desc">Staff login</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">supernova</span>
+                <span class="ip">169.229.10.36</span><br>
+                <span class="desc">Staff login</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">tsunami</span>
-                    <span class="ip">169.229.10.25</span><br>
-                    <span class="desc">SSH login</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">tsunami</span>
+                <span class="ip">169.229.10.25</span><br>
+                <span class="desc">SSH login</span>
             </div>
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">typhoon</span>
-                    <span class="ip">169.229.10.28</span><br>
-                    <span class="desc">Request Tracker</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">typhoon</span>
+                <span class="ip">169.229.10.28</span><br>
+                <span class="desc">Request Tracker</span>
             </div>
         </div>
     </div>
     <div class="hypervisor">
-        <div class="hypervisor-host device">
-            <div class="info">
-                <span class="hostname">pandemic</span>
-                <span class="ip">169.229.10.14</span><br>
-                <span class="desc">NFS, KVM hypervisor</span>
-            </div>
-            <div class="arrow arrow-down"></div>
+        <div class="hypervisor-host">
+            <span class="hostname">pandemic</span>
+            <span class="ip">169.229.10.14</span><br>
+            <span class="desc">NFS, KVM hypervisor</span>
         </div>
         <div class="hypervisor-guests">
-            <div class="hypervisor-guest device">
-                <div class="info">
-                    <span class="hostname">dementors</span>
-                    <span class="ip">169.229.10.33</span><br>
-                    <span class="desc">Munin, Lab stats (as stats.ocf)</span>
-                </div>
+            <div class="hypervisor-guest">
+                <span class="hostname">dementors</span>
+                <span class="ip">169.229.10.33</span><br>
+                <span class="desc">Munin, Lab stats (as stats.ocf)</span>
             </div>
         </div>
     </div>
-    <div class="physical-server device">
-        <div class="info">
-            <span class="hostname">fallingrocks</span>
-            <span class="ip">169.229.10.30</span><br>
-            <span class="desc">Debian and Ubuntu mirror</span>
-        </div>
+    <div class="physical-server">
+        <span class="hostname">fallingrocks</span>
+        <span class="ip">169.229.10.30</span><br>
+        <span class="desc">Debian and Ubuntu mirror</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">avalanche</span>
-            <span class="ip">169.229.10.101</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">avalanche</span>
+        <span class="ip">169.229.10.101</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">bigbang</span>
-            <span class="ip">169.229.10.102</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">bigbang</span>
+        <span class="ip">169.229.10.102</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">blizzard</span>
-            <span class="ip">169.229.10.103</span><br>
-            <span class="desc">ASUC Publications staff computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">blizzard</span>
+        <span class="ip">169.229.10.103</span><br>
+        <span class="desc">ASUC Publications staff computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">cyclone</span>
-            <span class="ip">169.229.10.104</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">cyclone</span>
+        <span class="ip">169.229.10.104</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">destruction</span>
-            <span class="ip">169.229.10.105</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">destruction</span>
+        <span class="ip">169.229.10.105</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">eruption</span>
-            <span class="ip">169.229.10.100</span><br>
-            <span class="desc">Staff computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">eruption</span>
+        <span class="ip">169.229.10.100</span><br>
+        <span class="desc">Staff computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">famine</span>
-            <span class="ip">169.229.10.110</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">famine</span>
+        <span class="ip">169.229.10.110</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">hailstorm</span>
-            <span class="ip">169.229.10.111</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">hailstorm</span>
+        <span class="ip">169.229.10.111</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">headcrash</span>
-            <span class="ip">169.229.10.112</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">headcrash</span>
+        <span class="ip">169.229.10.112</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">heatwave</span>
-            <span class="ip">169.229.10.113</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">heatwave</span>
+        <span class="ip">169.229.10.113</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">hurricane</span>
-            <span class="ip">169.229.10.106</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">hurricane</span>
+        <span class="ip">169.229.10.106</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">madcow</span>
-            <span class="ip">169.229.10.107</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">madcow</span>
+        <span class="ip">169.229.10.107</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">outbreak</span>
-            <span class="ip">169.229.10.108</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">outbreak</span>
+        <span class="ip">169.229.10.108</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="desktop device">
-        <div class="info">
-            <span class="hostname">volcano</span>
-            <span class="ip">169.229.10.109</span><br>
-            <span class="desc">Lab computer</span>
-        </div>
+    <div class="desktop">
+        <span class="hostname">volcano</span>
+        <span class="ip">169.229.10.109</span><br>
+        <span class="desc">Lab computer</span>
     </div>
-    <div class="printer-etc device">
-        <div class="info">
-            <span class="hostname">deforestation</span>
-            <span class="ip">169.229.10.91</span><br>
-            <span class="desc">Lab printer</span>
-        </div>
+    <div class="printer-etc">
+        <span class="hostname">deforestation</span>
+        <span class="ip">169.229.10.91</span><br>
+        <span class="desc">Lab printer</span>
     </div>
-    <div class="printer-etc device">
-        <div class="info">
-            <span class="hostname">logjam</span>
-            <span class="ip">169.229.10.92</span><br>
-            <span class="desc">Lab printer</span>
-        </div>
-    </div>
-    <div class="printer-etc device">
-        <div class="info">
-            <span class="hostname">tornado</span>
-            <span class="ip">169.229.10.90</span><br>
-            <span class="desc">Print queue display</span>
-        </div>
+    <div class="printer-etc">
+        <span class="hostname">logjam</span>
+        <span class="ip">169.229.10.92</span><br>
+        <span class="desc">Lab printer</span>
     </div>
 </div>
+{% endblock %}
+
+{% block inline_js %}
+    <script>
+        $(document).ready(function() {
+            $('.hypervisor-host').click(function() {
+                $(this).parent().children('.hypervisor-guests').slideToggle();
+                $(this).toggleClass('expanded');
+            });
+        });
+    </script>
 {% endblock %}

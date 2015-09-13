@@ -1,0 +1,94 @@
+@import '../ocf';
+
+$color-server: #d940cd;
+$color-desktop: #f8206c;
+$color-printer: #ece4d5;
+$color-networking: #15495d;
+
+.page-servers {
+    .device {
+        padding: 10px 15px;
+
+        .hostname {
+            display: inline-block;
+            font-size: 150%;
+            width: 40%;
+            padding-bottom: 1ex;
+        }
+
+        .ip {
+            font-size: 120%;
+        }
+    }
+
+    .physical-server {
+        @extend .device;
+        background: $color-server;
+        border-bottom: 1px solid #e67fdd;
+    }
+
+    .desktop {
+        @extend .device;
+        background: $color-desktop;
+        border-bottom: 1px solid #fa6b9d;
+    }
+
+    .printer-etc {
+        @extend .device;
+        background: $color-printer;
+        border-bottom: 1px solid #fff6e6;
+    }
+
+    .networking {
+        @extend .device;
+        background: $color-networking;
+        border-bottom: 1px solid #1e6885;
+        color: white;
+    }
+
+    .hypervisor {
+        border-bottom: 1px solid #e5e5e5;
+
+        .hypervisor-guests {
+            background: #e5e5e5;
+            display: none;
+
+            .hypervisor-guest {
+                @extend .device;
+
+                border-bottom: 1px solid #c0c0c0;
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+
+                .hostname {
+                    font-size: 130%;
+                }
+
+                .ip {
+                    font-size: 115%;
+                }
+            }
+        }
+
+        .hypervisor-host {
+            @extend .device;
+            background-color: #d0d0d0;
+            background-repeat: no-repeat;
+            background-position: 97% 50%;
+
+            // Arrow images shamelessly stolen from Wikimedia mobile
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAQCAYAAADnEwSWAAAAeUlEQVR4Ab3RwQmAMBAF0S3BUiwpBVqEJViKHawLLhM8DgQPEwiB/w6JzPyt94jYq7saS8drr7qqre9A2Y1VEJsNfjABGgisHy3oIf7Mgx4C86CHwDzoITAPegjMgx4C86CHJubBw0JgHvQQmAc9BOZBD03Mg6eA6AGRXLvASs+J3wAAAABJRU5ErkJggg==);
+
+            &.expanded {
+                background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAQCAYAAADnEwSWAAAAaklEQVR42r3QwQmAQAwAQUuwFEu6Ai3CEizFDmIEIaCvjGBg8zmOgUwR0SpnzrZs6f4VaM8iO7qgQiEgQQoqtAoo0LjfRhck6EpAghQEyEGAHATIQYAcBMjBwhpQDyzsecY39B2sM+b6rRPoYrvAv4SdqgAAAABJRU5ErkJggg==);
+            }
+
+            &:hover {
+                background-color: #e5e5e5;
+                cursor: pointer;
+            }
+        }
+    }
+}
