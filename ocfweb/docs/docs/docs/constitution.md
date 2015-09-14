@@ -1,6 +1,5 @@
 [[!meta title="Constitution"]]
 
-
 This document records the '''Constitution of the Open Computing Facility''', as ratified or amended by votes of the OCF membership:
 
 * ratified on February 3, 1989;
@@ -10,7 +9,7 @@ This document records the '''Constitution of the Open Computing Facility''', as 
 3. <a href="#amended_1121_1991">November 21, 1991</a>;
 4. <a href="#amended_208_2000">February 8, 2000</a>;
 5. <a href="#amended_929_2014">September 29, 2014</a>; and
-6. June 26, 2015 (<a href="#amended_0626_2015_0">[0]</a>, <a href="#amended_0626_2015_1">[1]</a>, <a href="#amended_0626_2015_2">[2]</a>)
+6. September 1, 2015 (<a href="#amended_901_2015_0">[0]</a>, <a href="#amended_901_2015_1">[1]</a>, <a href="#amended_901_2015_2">[2]</a>)
 
 ## Preamble
 
@@ -31,12 +30,12 @@ Any UC Berkeley student, faculty or staff member may be an OCF Member.
 <a id="active_members"></a>
 #### 2.2 Active Members
 
-<a id="amended_0626_2015_0"></a>
+<a id="amended_901_2015_0"></a>
 ##### 2.2.1 Eligibility
 Only currently registered students, faculty, and staff may be active members in
 a registered student organization. Only active members may vote or hold office.
 
-*[As amended June 26, 2015.]*
+*[As amended at the General Meeting of September 1, 2015, with effect from June 26, 2015.]*
 
 ##### 2.2.2 During General Meetings
 Any member of the OCF shall be an Active Member by physical presence at an
@@ -58,9 +57,9 @@ Inactive Member.
 ##### 3.1.1 Offices
 The only elected offices are General Manager and Site Manager(s).
 
-<a id="amended_0626_2015_1"></a>
+<a id="amended_901_2015_1"></a>
 ##### 3.1.2 ............
-*[Repealed June 26, 2015 for redundancy with section 2.2.1.]*
+*[Repealed September 1, 2015 for redundancy with section 2.2.1.]*
 
 ##### 3.1.3 Elected
 The officers shall be elected at each OCF <a href="#election_meetings">Elections Meeting</a>.
@@ -238,11 +237,11 @@ A proposed amendment to the Constitution must be presented at a Board of Directo
 ##### 8.1.2 Annotation
 Whenever this Constitution is amended, an annotation of the date of ratification shall be added to the beginning of this document and shall be further noted immediately following the new amendment.
 
-<a id="amended_0626_2015_2"></a>
+<a id="amended_901_2015_2"></a>
 ##### 8.1.3 ASUC Records
 All amendments, additions or deletions to this document must be filed with the LEAD Center.
 
-*[As amended June 26, 2015.]*
+*[As amended at the General Meeting of September 1, 2015, with effect from June 26, 2015.]*
 
 #### 8.2 Bylaws
 Bylaws may be created or modified as needed, through the <a href="#ocf_decision_making_process">OCF Decision Making Process</a>.
