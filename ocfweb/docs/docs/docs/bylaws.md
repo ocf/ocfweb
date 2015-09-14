@@ -17,6 +17,6 @@ This is the official **Bylaws of the Open Computing Facility**, as last amended 
 
 7. BoD elections will take effect at 12:00 midnight after the conclusion of the meeting at which the election took place, with the exception of an Election Meeting.
 
-8. Ex officio members of the Board, with the exception of elected Managers, shall not be included when calculating the necessary number of Directors present to reach quorum.
+8. _Ex officio_ members of the Board, with the exception of elected Managers, shall not be included when calculating the necessary number of Directors present to reach quorum.
 
 Bylaws 1-4 amended at the general meeting of March 21, 2008. Bylaws 5-7 from the revision of the bylaws last amended February 7, 1995. Bylaw 8 added at the Board meeting of April 30, 2014.
