@@ -9,3 +9,7 @@ class LoginForm(forms.Form):
                                label='Password',
                                min_length=8,
                                max_length=64)
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username', '')
+        return username.strip().lower()

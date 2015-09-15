@@ -20,13 +20,18 @@ def login(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
 
-            if (validators.user_exists(username) and
-                    utils.password_matches(username, password)):
-                request.session['ocf_user'] = username
-                return redirect_back(request)
-            else:
-                error = 'Authentication failed. Did you type the wrong' + \
-                    'username or password?'
+            try:
+                if (validators.user_exists(username) and
+                        utils.password_matches(username, password)):
+                    request.session['ocf_user'] = username
+                    return redirect_back(request)
+                else:
+                    error = 'Authentication failed. Did you type the wrong' + \
+                        'username or password?'
+            except ValueError as ex:
+                error = 'Authentication failed: {error}'.format(
+                    error=str(ex),
+                )
     else:
         form = LoginForm()
 
