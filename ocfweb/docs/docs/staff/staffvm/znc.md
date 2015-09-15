@@ -68,6 +68,13 @@ It's useful along with [[OCF's IRC server|doc contact/irc]].
 
        [ ?? ] Launch ZNC now? (yes/no) [yes]: no
 
+   kpengboy's preferences, in addition to most of the above, include:
+
+       [ ?? ] Number of lines to buffer per channel [50]: 200
+       [ ?? ] Would you like to clear channel buffers after replay? (yes/no) [yes]: no
+
+   and enabling the buffextras module (in webadmin afterwards).
+
 3. If you accidentally started ZNC at the end of the setup, you should kill it
    now with `pkill znc`.
 
@@ -77,11 +84,15 @@ It's useful along with [[OCF's IRC server|doc contact/irc]].
 
        [Unit]
        Description=znc
+       After=network-online.target
 
        [Service]
        User=<YOUR_USER>
        ExecStart=/usr/bin/znc --foreground
+       ExecReload=/bin/kill -HUP $MAINPID
        Restart=always
+       KillSignal=SIGINT
+       SuccessExitStatus=2
 
        [Install]
        WantedBy=multi-user.target
