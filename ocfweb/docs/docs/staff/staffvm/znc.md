@@ -80,7 +80,7 @@ It's useful along with [[OCF's IRC server|doc contact/irc]].
 
 4. Now we'll set up systemd to supervise ZNC for us.
 
-   Create a file `/lib/systemd/system/znc.service` with the contents:
+   Create a file `/etc/systemd/system/znc.service` with the contents:
 
        [Unit]
        Description=znc
