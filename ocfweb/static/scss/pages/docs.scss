@@ -1,6 +1,10 @@
 @import '../ocf';
 
 .page-doc .ocf-content-block {
+    table {
+        @extend .table;
+    }
+
     h1,
     h2,
     h3,
