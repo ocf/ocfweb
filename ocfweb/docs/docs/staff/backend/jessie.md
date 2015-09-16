@@ -6,52 +6,47 @@ from wheezy. There are a few exceptions (marked as "upgrade" in the table).
 
 We don't list the desktops (all are jessie already).
 
-<table>
-    <tr><th>Server</th> <th>Status</th> <th>Comment</th></tr>
+## Public facing servers:
 
-    <!-- public-facing servers -->
-    <tr><td>death</td>    <td>wheezy</td>    <td>rebuild - complicated (rt#3524)</td></tr>
-    <tr><td>tsunami</td>    <td>wheezy</td>    <td>rebuild - same time as death (public)</td></tr>
-    <tr><td>biohazard</td>    <td>wheezy</td>    <td>rebuild - same time as death (public)</td></tr>
+Server         | Status | Comment
+---------------|--------|---------------
+death          | wheezy | rebuild - complicated (rt#3524)
+tsunami        | wheezy | rebuild - same time as death (public)
+biohazard      | wheezy | rebuild - same time as death (public)
+pollution      | wheezy | rebuild - pykota not compatible with jessie on last attempt, not well puppeted
 
-    <tr><td>pollution</td>    <td>wheezy</td>    <td>rebuild - pykota not compatible with jessie on last attempt, not well puppeted</td></tr>
+## Already upgraded:
 
-
-    <!-- already upgraded -->
-    <tr><td>jaws</td>    <td>jessie</td>    <td>upgrade - kvm host</td></tr>
-    <tr><td>hal</td>    <td>jessie</td>    <td>upgrade - kvm host</td></tr>
-    <tr><td>pandemic</td>    <td>jessie</td>    <td>upgrade - kvm host</td></tr>
-
-    <tr><td>anthrax</td>    <td>jessie</td>    <td>rebuild (no known issues)</td></tr>
-    <tr><td>blight</td>    <td>jessie</td>    <td>rebuild</td></tr>
-    <tr><td>dementors</td>    <td>jessie</td>    <td>rebuild - need to transfer some data (printer csv logs, munin data)</td></tr>
-    <tr><td>earthquake</td>    <td>jessie</td>    <td>rebuild - need to update ocflib with new path to kadmin at same time</td></tr>
-    <tr><td>fallingrocks</td>    <td>jessie</td>    <td>upgrade - mirrors</td></tr>
-    <tr><td>firestorm</td>    <td>jessie</td>    <td>upgrade - ldap/kerberos, needs careful testing</td></tr>
-    <tr><td>lightning</td>    <td>jessie</td>    <td>upgrade - puppet host</td></tr>
-    <tr><td>maelstrom</td>    <td>jessie</td>    <td>upgrade - mysql host, needs testing first</td></tr>
-    <tr><td>pestilence</td>    <td>jessie</td>    <td>rebuild - need to puppet first (want to move dns to git)</td></tr>
-    <tr><td>sandstorm</td>    <td>jessie</td>    <td>upgrade - replacing with new mail service (rt#3068) which will be rebuilt</td></tr>
-    <tr><td>supernova</td>    <td>jessie</td>    <td>upgrade - atool not well puppeted - still want to rebuild (rt#3676)</td></tr>
-    <tr><td>typhoon</td>    <td>jessie</td>    <td>rebuild</td></tr>
-    <tr><td>zombies</td>    <td>jessie</td>    <td>upgrade - some config not puppeted (csgo)</td></tr>
-
-    <tr><td>blackrain</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>blacksheep</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>despair</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>flood</td>    <td>jessie</td>    <td>upgrade - hozer (irc)</td></tr>
-    <tr><td>gnats</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>kamikaze</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>limniceruption</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>locusts</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>meltdown</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>meteorstorm</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>mudslide</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>quicksand</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>raptors</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>revolution</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-    <tr><td>smallpox</td>    <td>jessie</td>    <td>upgrade - hozer</td></tr>
-</table>
-
-<!-- vim: ts=20
--->
+Server         | Status | Comment
+---------------|--------|---------------
+jaws           | jessie | upgrade - kvm host
+hal            | jessie | upgrade - kvm host
+pandemic       | jessie | upgrade - kvm host
+anthrax        | jessie | rebuild (no known issues)
+blight         | jessie | rebuild
+dementors      | jessie | rebuild - need to transfer some data (printer csv logs, munin data)
+earthquake     | jessie | rebuild - need to update ocflib with new path to kadmin at same time
+fallingrocks   | jessie | upgrade - mirrors
+firestorm      | jessie | upgrade - ldap/kerberos, needs careful testing
+lightning      | jessie | upgrade - puppet host
+maelstrom      | jessie | upgrade - mysql host, needs testing first
+pestilence     | jessie | rebuild - need to puppet first (want to move dns to git)
+sandstorm      | jessie | upgrade - replacing with new mail service (rt#3068) which will be rebuilt
+supernova      | jessie | upgrade - atool not well puppeted - still want to rebuild (rt#3676)
+typhoon        | jessie | rebuild
+zombies        | jessie | upgrade - some config not puppeted (csgo)
+blackrain      | jessie | upgrade - hozer
+blacksheep     | jessie | upgrade - hozer
+despair        | jessie | upgrade - hozer
+flood          | jessie | upgrade - hozer (irc)
+gnats          | jessie | upgrade - hozer
+kamikaze       | jessie | upgrade - hozer
+limniceruption | jessie | upgrade - hozer
+locusts        | jessie | upgrade - hozer
+meltdown       | jessie | upgrade - hozer
+meteorstorm    | jessie | upgrade - hozer
+mudslide       | jessie | upgrade - hozer
+quicksand      | jessie | upgrade - hozer
+raptors        | jessie | upgrade - hozer
+revolution     | jessie | upgrade - hozer
+smallpox       | jessie | upgrade - hozer
