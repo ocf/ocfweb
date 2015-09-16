@@ -83,7 +83,7 @@ It's useful along with [[OCF's IRC server|doc contact/irc]].
    Create a file `/etc/systemd/system/znc.service` with the contents:
 
        [Unit]
-       Description=znc
+       Description=ZNC - IRC Bouncer
        After=network-online.target
 
        [Service]
