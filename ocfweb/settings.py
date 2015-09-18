@@ -10,8 +10,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
-    'django.contrib.sessions',
+    'django.contrib.humanize',
     'django.contrib.messages',
+    'django.contrib.sessions',
     'django.contrib.staticfiles',
     'ocfweb',
     'ocfweb.main',

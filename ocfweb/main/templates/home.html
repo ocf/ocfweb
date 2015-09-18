@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% load staff_hours %}
 {% load google_maps %}
 {% load lab_hours %}
@@ -38,6 +39,27 @@
             <li>...and <a href="{% url 'doc' 'services' %}">lots more!</a></li>
         </ul>
         <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop by to ask questions or just to hang out!</p>
+
+        <hr />
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Interested in free &amp; open-source software?</h4>
+                <p>Our volunteer staff team helps create and mantain the OCF services you use.</p>
+                <p>We're always on the lookout for new members interested in
+                learning more about technology and open source!</p>
+                <p><a href="https://hello.ocf.berkeley.edu/">Learn more about getting involved!</a></p>
+            </div>
+            <div class="col-sm-6">
+                <h4>News from the staff team</h4>
+                {% for blog_post in blog_posts %}
+                    <p>
+                        <a href="{{blog_post.link}}">{{blog_post.title}}</a><br />
+                        {{blog_post.published | naturaltime}}
+                    </p>
+                {% endfor %}
+                <p><a href="http://status.ocf.berkeley.edu/">More updates from the OCF &raquo;</a></p>
+            </div>
+        </div>
     </div>
 
     <div class="col-sm-4 ocf-sidebar">

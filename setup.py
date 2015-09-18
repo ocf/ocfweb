@@ -10,6 +10,8 @@ setup(
     author='Open Computing Facility',
     author_email='help@ocf.berkeley.edu',
     install_requires=[
+        'beautifulsoup4',
+        'cached-property',
         'cachetools',
         'django>=1.8,<1.8.999',
         'gunicorn',
