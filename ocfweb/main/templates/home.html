@@ -63,24 +63,16 @@
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
-        <h3>OCF Lab Hours</h3>
-        <div class="row ocf-hours">
-            {% for hours in hours_columns %}
-                <div class="col-lg-6">
-                    <table>
-                        {% for hour in hours %}
-                            <tr>
-                                <th>{{hour.name}}:</th>
-                                <td>
-                                    {{hour|lab_hours_time}}
-                                    {% if hour.holiday %}
-                                        <br />
-                                        <em>{{hour.holiday}}</em>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
+        <h3>Upcoming Lab Hours</h3>
+        <div class="ocf-hours">
+            {% for hour in hours %}
+                <div class="ocf-hour row">
+                    <div class="col-sm-3 ocf-hour-title">
+                        {{hour.weekday}}<br />
+                    </div>
+                    <div class="col-sm-9 ocf-hour-hours">
+                        {{hour | lab_hours_time}}
+                    </div>
                 </div>
             {% endfor %}
         </div>

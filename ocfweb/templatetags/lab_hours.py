@@ -6,8 +6,8 @@ register = template.Library()
 @register.filter
 def lab_hours_day_and_holiday(hours):
     if hours.holiday:
-        return '{hours.name} ({hours.holiday})'.format(hours=hours)
-    return hours.name
+        return '{hours.weekday} ({hours.holiday})'.format(hours=hours)
+    return hours.weekday
 
 
 @register.filter

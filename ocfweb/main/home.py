@@ -11,9 +11,8 @@ from ocfweb.component.blog import get_blog_posts
 
 
 def home(request):
-    today = date.today()
-    sidebar_hours = [
-        get_hours(today + timedelta(days=i)) for i in range(4)
+    hours = [
+        get_hours(date.today() + timedelta(days=i)) for i in range(7)
     ]
 
     blog_posts = [
@@ -32,7 +31,7 @@ def home(request):
                 'Berkeley students.'''
             ),
             'staff_hours': get_staff_hours_soonest_first()[:2],
-            'hours_columns': [sidebar_hours[:2], sidebar_hours[2:]],
+            'hours': hours,
             'blog_posts': blog_posts,
         },
         context_instance=RequestContext(request),
