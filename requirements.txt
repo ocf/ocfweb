@@ -10,7 +10,6 @@ libsass==0.8.3
 lxml==3.4.4
 mistune==0.7.1
 ocflib
-ocfweb==1.0.0
 paramiko==1.15.2
 pexpect==3.2
 pyasn1==0.1.8

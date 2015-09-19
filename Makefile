@@ -1,17 +1,31 @@
-SRC = website
+BIN := virtualenv_run/bin
+PYTHON := $(BIN)/python
+SHELL := /bin/bash
+RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
+
+.PHONY: check dev venv clean gunicorn
 
 check:
 	pre-commit run --all-files
 
-dev:
-	./manage.py runserver 0.0.0.0:8000
+dev: venv scss
+	@echo "Running on port $(RANDOM_PORT)"
+	$(PYTHON) ./manage.py runserver 0.0.0.0:$(RANDOM_PORT)
+
+venv:
+	python ./bin/venv-update -ppython3
+
+clean:
+	rm -rf *.egg-info
+	rm -rf virtualenv_run
 
 # closer to prod
-gunicorn:
-	gunicorn -b 0.0.0.0:8000 ocfweb.wsgi
+gunicorn: venv
+	@echo "Running on port $(RANDOM_PORT)"
+	$(BIN)/gunicorn -b 0.0.0.0:$(RANDOM_PORT) ocfweb.wsgi
 
-scss:
-	python setup.py build_sass
+scss: venv
+	$(PYTHON) setup.py build_sass
 
 watch-scss: scss
 	while :; do \
@@ -26,4 +40,4 @@ update-requirements:
 	. $(TMP)/bin/activate && \
 		pip install --upgrade pip && \
 		pip install . && \
-		pip freeze | grep -v '^ocf-website==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
+		pip freeze | grep -v '^ocfweb==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
