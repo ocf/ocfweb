@@ -1,6 +1,7 @@
 import re
 
 from django.conf.urls import url
+from django.http import HttpResponse
 
 from ocfweb.docs.docs import doc
 from ocfweb.docs.docs import docs_index
@@ -19,6 +20,8 @@ def doc_name(doc_name):
 doc_names = '|'.join(map(doc_name, list_doc_names()))
 
 urlpatterns = [
+    url('^_status$', lambda _: HttpResponse('ok'), name='status'),
+
     url('^$', home, name='home'),
     url('^favicon.ico$', favicon, name='favicon'),
     url('^staff-hours$', staff_hours, name='staff-hours'),

@@ -27,3 +27,10 @@ the site in development.
 
 Run `make scss` to build SCSS. You can also use `make watch-scss` to rebuild it
 automatically when SCSS files change.
+
+
+### Running tests
+
+To run tests locally, run `make check`. Please don't push to master with
+failing tests—Jenkins will refuse to deploy your code, and nobody will be able
+to deploy until fixing it.

@@ -3,17 +3,22 @@ PYTHON := $(BIN)/python
 SHELL := /bin/bash
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
 
-.PHONY: check dev venv clean gunicorn
+.PHONY: check dev venv clean lint test gunicorn
 
-check:
-	pre-commit run --all-files
+check: lint test
+
+lint: venv
+	$(BIN)/pre-commit run --all-files
+
+test: venv
+	$(BIN)/py.test tests/
 
 dev: venv scss
 	@echo "Running on port $(RANDOM_PORT)"
 	$(PYTHON) ./manage.py runserver 0.0.0.0:$(RANDOM_PORT)
 
 venv:
-	python ./bin/venv-update -ppython3
+	python ./bin/venv-update -ppython3 virtualenv_run requirements.txt requirements-dev.txt
 
 clean:
 	rm -rf *.egg-info

@@ -1,0 +1,5 @@
+ipdb
+mock
+pre-commit
+pytest
+pytest-django
