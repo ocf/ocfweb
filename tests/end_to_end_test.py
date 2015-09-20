@@ -5,11 +5,10 @@ import requests
 from django.core.urlresolvers import NoReverseMatch
 from django.core.urlresolvers import reverse
 
-from ocfweb.docs.docs import list_doc_names
 from ocfweb.urls import urlpatterns
 
 
-def _assert_does_not_error(running_server, path):
+def assert_does_not_error(running_server, path):
     path = running_server + path
     resp = requests.get(path)
     if resp.status_code != 200:
@@ -37,9 +36,4 @@ def _get_reversed_urlpatterns():
 
 @pytest.mark.parametrize('path', _get_reversed_urlpatterns())
 def test_view_does_not_error_with_default_args(running_server, path):
-    _assert_does_not_error(running_server, path)
-
-
-@pytest.mark.parametrize('doc_name', list_doc_names())
-def test_doc_does_not_error(running_server, doc_name):
-    _assert_does_not_error(running_server, '/docs' + doc_name)
+    assert_does_not_error(running_server, path)
