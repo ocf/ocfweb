@@ -38,12 +38,12 @@ install and manage dependencies and versions.
 
 Create a file at `~/apps/myapp/run` with content like:
 
-    #!/bin/sh -e
+    #!/bin/bash -e
     [ -e /srv/apps/celli/celli.sock ] && rm /srv/apps/celli/celli.sock
     umask 0
 
     . ~/.nvm/nvm.sh
-    NODE_ENV=production PORT=/srv/apps/$USER/$USER.sock \
+    NODE_ENV=production PORT=/srv/apps/$(whoami)/$(whoami).sock \
         exec ~/apps/myapp/src/bin/www
 
 Replace `~/apps/myapp/src/bin/www` with the path to your app, then make `run`

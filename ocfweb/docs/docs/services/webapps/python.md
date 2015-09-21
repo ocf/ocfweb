@@ -42,10 +42,10 @@ this][lol-syntax].
 
 Create a file at `~/apps/myapp/run` with content like:
 
-    #!/bin/sh -e
+    #!/bin/bash -e
     . ~/apps/myapp/venv/bin/activate
     PYTHONPATH=~/apps/myapp/src:$PYTHONPATH \
-        exec gunicorn -w 2 -b unix:/srv/apps/$USER/$USER.sock \
+        exec gunicorn -w 2 -b unix:/srv/apps/$(whoami)/$(whoami).sock \
         --log-file - main:app
 
 Replace `main:app` with the module containing the app, and name of your app,

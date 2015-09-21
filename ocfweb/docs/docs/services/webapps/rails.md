@@ -65,7 +65,7 @@ Create a file at `~/apps/myapp/run` with content like:
     cd ~/apps/myapp/src
     RAILS_ENV=production \
           exec ~/.rvm/gems/ruby-2.1.2/bin/unicorn_rails \
-          -l /srv/apps/$USER/$USER.sock
+          -l /srv/apps/$(whoami)/$(whoami).sock
 
 Replace `~/apps/myapp/src` with the path to your app, then make `run`
 executable:
