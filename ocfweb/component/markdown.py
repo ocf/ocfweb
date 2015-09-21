@@ -1,10 +1,7 @@
-import logging
 import re
 
 import mistune
 from django.core.urlresolvers import reverse
-
-_logger = logging.getLogger(__name__)
 
 # tags of a format like: [[!meta title="Backups"]]
 META_REGEX = re.compile('\[\[!meta ([a-z]+)="([^"]*)"\]\]')
