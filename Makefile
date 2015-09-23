@@ -14,7 +14,7 @@ test: venv
 	$(BIN)/py.test tests/
 
 dev: venv scss
-	@echo "Running on port $(RANDOM_PORT)"
+	@echo -e "\e[1m\e[93mRunning on http://$(shell hostname -f ):$(RANDOM_PORT)/\e[0m"
 	$(PYTHON) ./manage.py runserver 0.0.0.0:$(RANDOM_PORT)
 
 venv:
