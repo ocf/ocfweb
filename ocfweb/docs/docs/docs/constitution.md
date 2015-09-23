@@ -8,8 +8,9 @@ This document records the '''Constitution of the Open Computing Facility''', as 
 2. <a href="#amended_514_1991">May 14, 1991</a>;
 3. <a href="#amended_1121_1991">November 21, 1991</a>;
 4. <a href="#amended_208_2000">February 8, 2000</a>;
-5. <a href="#amended_929_2014">September 29, 2014</a>; and
-6. September 1, 2015 (<a href="#amended_901_2015_0">[0]</a>, <a href="#amended_901_2015_1">[1]</a>, <a href="#amended_901_2015_2">[2]</a>)
+5. <a href="#amended_929_2014">September 29, 2014</a>;
+6. September 1, 2015 (<a href="#amended_901_2015_0">[0]</a>, <a href="#amended_901_2015_1">[1]</a>, <a href="#amended_901_2015_2">[2]</a>); and
+7. <a href="#amended_922_2015">September 22, 2015</a>
 
 ## Preamble
 
@@ -228,11 +229,22 @@ to deny or disparage other rights retained by individuals.
 
 #### 8.1 Amendments
 
-<a id="amended_514_1991"></a>
 ##### 8.1.1 Process
+
+<a id="amended_514_1991"></a>
+###### 8.1.1.1 In General
 A proposed amendment to the Constitution must be presented at a Board of Directors meeting at least one week before the General Meeting at which it is to be discussed.  A list of proposed amendments must be made accessible to the general public of the OCF as soon as they have been presented to the Board of Directors.  At the general meeting, a discussion period on the amendment may be held until it is moved to a vote.  A 2/3 majority of all Active Members is required for approval.
 
 *[This section was changed by amendment on May 14, 1991.]*
+
+<a id="amended_922_2015"></a>
+###### 8.1.1.2 For Fulfilling University Requirements
+
+When the OCF is not formally in session, the Board of Directors may, with a 2/3
+majority vote, directly enact amendments whose only function is to bring this
+constitution into compliance with requirements set by the University.
+
+*[This section was introduced by amendment on September 22, 2015.]*
 
 ##### 8.1.2 Annotation
 Whenever this Constitution is amended, an annotation of the date of ratification shall be added to the beginning of this document and shall be further noted immediately following the new amendment.
