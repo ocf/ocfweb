@@ -7,6 +7,7 @@ from django.utils import timezone
 from ocflib.lab.hours import get_hours
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
 
+from ocfweb.component.banner import get_banner_message
 from ocfweb.component.blog import get_blog_posts
 
 
@@ -21,6 +22,8 @@ def home(request):
         if timezone.now() - post.published < timedelta(days=365)
     ][:2]
 
+    banner = get_banner_message()
+
     return render_to_response(
         'home.html',
         {
@@ -32,7 +35,9 @@ def home(request):
             ),
             'staff_hours': get_staff_hours_soonest_first()[:2],
             'hours': hours,
+            'today': hours[0],
             'blog_posts': blog_posts,
+            'banner': banner,
         },
         context_instance=RequestContext(request),
     )

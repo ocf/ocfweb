@@ -78,14 +78,19 @@
         <div class="ocf-status-bar">
             <div class="container">
                 <p>
-                    {% if lab_is_open %}
-                        <strong>Lab Currently Open</strong>
+                    {% if not force_lab_closed %}
+                        {% if lab_is_open %}
+                            <strong>Lab Currently Open</strong>
+                        {% else %}
+                            <strong>Lab Currently Closed</strong>
+                        {% endif %}
+                        {{current_lab_hours|lab_hours_time}}
+                        on {{current_lab_hours|lab_hours_day_and_holiday}}
+                        <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
                     {% else %}
-                        <strong>Lab Currently Closed</strong>
+                        <strong>Lab Temporarily Closed</strong>
+                        <a class="subtle" href="{% url 'home' %}">more &raquo;</a>
                     {% endif %}
-                    {{current_lab_hours|lab_hours_time}}
-                    on {{current_lab_hours|lab_hours_day_and_holiday}}
-                    <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
                 </p>
             </div>
         </div>
