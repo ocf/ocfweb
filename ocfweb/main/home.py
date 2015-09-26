@@ -8,6 +8,7 @@ from ocflib.lab.hours import get_hours
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
 
 from ocfweb.component.blog import get_blog_posts
+from ocfweb.component.lab_status import get_lab_status
 
 
 def home(request):
@@ -32,7 +33,9 @@ def home(request):
             ),
             'staff_hours': get_staff_hours_soonest_first()[:2],
             'hours': hours,
+            'today': hours[0],
             'blog_posts': blog_posts,
+            'lab_status': get_lab_status(),
         },
         context_instance=RequestContext(request),
     )
