@@ -26,9 +26,7 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-8 ocf-content-block">
-        {% if banner.visible %}
-            {{banner.html | safe}}
-        {% endif %}
+        {{lab_status.banner_html | safe}}
         <p>
             The Open Computing Facility is an all-volunteer student
             organization located at the University of California, Berkeley.
@@ -74,7 +72,7 @@
                         {{hour.weekday}}<br />
                     </div>
                     <div class="col-sm-9 ocf-hour-hours">
-                        {% if hour == today and banner.visible and banner.force_lab_closed %}
+                        {% if hour == today and lab_status.force_lab_closed %}
                             Temporarily Closed
                         {% else %}
                             {{hour | lab_hours_time}}

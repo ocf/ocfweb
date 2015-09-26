@@ -78,7 +78,7 @@
         <div class="ocf-status-bar">
             <div class="container">
                 <p>
-                    {% if not force_lab_closed %}
+                    {% if not lab_status.force_lab_closed %}
                         {% if lab_is_open %}
                             <strong>Lab Currently Open</strong>
                         {% else %}
