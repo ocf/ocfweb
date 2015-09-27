@@ -8,15 +8,22 @@ Printing is currently limited to:
  * 15 pages per day on weekdays
  * 30 pages per day on weekends
 
-Please review our [[printing policies|doc services/lab/printing/policies]] before contacting staff. Refer to the links above for an explanation of our printing policy changes.
+Please note:
+
+ * Each **printed side** of a sheet counts as a page.
+ * Jobs take time to process proportional to the job size.  If you submit a large job, please be patient while the print server processes it.
+
 
 ## Remaining quota
 
 To see how many pages you have left for the day and semester, run the `paper` command [over the web](https://accounts.ocf.berkeley.edu/commands) or [[in the shell|doc services/shell]]. Print quota is also displayed at the top of the screen when using a lab computer. Check your print balance regularly!
 
+## Printing refunds
+
+Pages are **not** normally refunded, except in cases of technical issues. In
+this case, you should talk with the Publications Center staff at the front desk
+for a refund.
+
 ## Technical details
 
-We currently have two HP LaserJet P4515x printers: deforestation and logjam.
-
- * [How much toner is left in each printer](https://www.ocf.berkeley.edu/~tzhu/printing/oracle/)? (expressed as approximate pages remaining over time)
- * [How many pages has each printer printed](https://www.ocf.berkeley.edu/~tzhu/printing/history/)? (expressed as total pages printed over time)
+See [[staff documentation|doc staff/procedures/printing]].

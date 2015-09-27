@@ -44,6 +44,15 @@ access to the back of the printer (and can be disruptive).
 
 Our printers use [CB388A maintenance kits][maintkit].
 
+## Stats
+
+ * [How much toner is left in each printer][oracle]? (expressed as approximate
+   pages remaining over time)
+ * [How many pages has each printer printed][historacle]? (expressed as total
+   pages printed over time)
+
 
 [toner]: http://www.staples.com/HP-64X-Black-Toner-Cartridge-CC364XD-High-Yield-Twin-Pack/product_821762
 [maintkit]: http://www.staples.com/office/supplies/StaplesProductDisplay?storeId=10001&partNumber=854426
+[oracle]: http://stats.ocf.berkeley.edu/printing/oracle/
+[historacle]: http://stats.ocf.berkeley.edu/printing/historacle/
