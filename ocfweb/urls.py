@@ -1,6 +1,7 @@
 import re
 
 from django.conf.urls import url
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
@@ -38,4 +39,17 @@ urlpatterns = [
     # validation of URLs (in other words, if you try to make a link to a
     # missing document, it will fail)
     url('^docs/({doc_names})/$'.format(doc_names=doc_names), doc, name='doc'),
+
+    # legacy redirects
+    url(r'^index\.s?html$', lambda _: redirect(reverse('home'), permanent=True)),
+    url(r'^OCF/policies(?:/|$)', lambda _: redirect(reverse('docs'), permanent=True)),
+    url(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(reverse('doc', args=('faq',)), permanent=True)),
+    url(r'^OCF/officers_.*\.html$', lambda _: redirect(
+        'https://www.ocf.berkeley.edu/OCF/past_officers.shtml',
+        permanent=True
+    )),
+    url(r'^OCF/staff/how-to-join\.shtml$', lambda _: redirect(
+        'https://hello.ocf.berkeley.edu/',
+        permanent=True
+    )),
 ]
