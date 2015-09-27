@@ -21,6 +21,6 @@ the usual URL: [https://accounts.ocf.berkeley.edu/change-password](https://accou
 CalNet association is only meant to be temporary and must be reverted once the
 password has been reset by removing this line. It can cause problems with
 individual/group acount detection in scripts if an account has both
-<code>callinkOid</code> and <code>calnetUid</code> fields. If an account is
-associated in an RT ticket, leave the ticket open until the password has been
-reset and the account disassociated.
+`callinkOid` and `calnetUid` fields. If an account is associated in an RT
+ticket, leave the ticket open until the password has been reset and the account
+disassociated.
