@@ -88,8 +88,7 @@ instead of a port, so do that.
 
 We provide some example setups below.
 
-<a id="supervise"></a>
-### Supervising and starting your app
+### Supervising and starting your app    {supervise}
 
 **Make sure you do these steps on the application server.** If you start your
 app on tsunami, the public login server, it won't work.

@@ -45,8 +45,7 @@ To place any of the [Hosted by OCF banners](https://www.ocf.berkeley.edu/images/
 
 The banner is required to be placed only on the home page of your site. You can also create your own OCF banner with approval from the OCF (see instructions above).
 
-<a id="disclaimer"></a>
-### Including the University Student Group Disclaimer
+### Including the University Student Group Disclaimer    {disclaimer}
 
 The university requires that all student group websites on a subdomain of berkeley.edu contain the following text on each page:
 
@@ -83,8 +82,7 @@ In particular,
 
 All virtual hosts on the OCF must include an [OCF banner](https://www.ocf.berkeley.edu/images/hosted-logos/) on the front page that links to the [[OCF home page|home]]. The banner need not be displayed extremely prominently, but it must be noticeable without undue effort. If the banner is removed or misplaced, the OCF reserves the right to terminate the virtual hosting service. The hosting badge not only attributes the OCF but also distinguishes it from sites hosted by other University departments.
 
-<a id="email"></a>
-## Email Forwarding
+## Email Forwarding    {email}
 
 By default, email forwarding is not provided for virtually-hosted group
 accounts. Groups can request this service, but should be prepared to deal with an

@@ -48,8 +48,7 @@ If you are not able to use CalNet or SSH, if you are a group and forgot your cur
 
 Please bring sufficient documentation as listed on the [[membership eligibility|doc membership/eligibility]] page to demonstrate that you are authorized to reset the account password.
 
-<a id="manual-reset"></a>
-#### Manual verification of identity (typically for alumni with old accounts)
+#### Manual verification of identity (typically for alumni with old accounts)    {manual-reset}
 
 If you have forgotten your individual account password and are unable to use
 CalNet or meet a staff member in person, you may reset your password through

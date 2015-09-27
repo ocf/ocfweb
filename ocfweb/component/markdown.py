@@ -79,7 +79,24 @@ class DjangoLinkInlineLexerMixin:
         )
 
 
-class TableOfContentsRendererMixin:
+class HeaderRendererMixin:
+    """Mixin to render headers with auto-generated IDs (or provided IDs).
+
+    If headers are written as usual, they'll be given automatically-generated
+    IDs based on their header level and text.
+
+    Headers can also be specified with an ID at the end wrapped in curly braces:
+
+        ### My Header    {my_id}
+
+    This ID will be used directly without further manipulation, and can be
+    relied on for linking.
+
+    Custom IDs can consist only of lowercase a-z, 0-9, dash, and underscore.
+
+    IDs are tracked into a table of contents which should be reset before
+    rendering a document and read afterwards.
+    """
 
     def reset_toc(self):
         self.toc = []
@@ -89,14 +106,22 @@ class TableOfContentsRendererMixin:
         return self.toc
 
     def header(self, text, level, raw=None):
-        id = 'h{level}_{title}'.format(
-            level=level,
-            title=re.sub('[^a-z0-9\-_ ]', '', text.lower()).strip().replace(' ', '-'),
-        )
+        custom_id_match = re.match(r'^(.*?)\s+{([a-z0-9\-_]+)}\s*$', text)
+        if custom_id_match:
+            text = custom_id_match.group(1)
+            id = custom_id_match.group(2)
 
-        # dumb collision avoidance
-        while id in self.toc_ids:
-            id += '_'
+            if id in self.toc_ids:
+                raise ValueError('Duplicate header ID in Markdown: "{}"'.format(id))
+        else:
+            id = 'h{level}_{title}'.format(
+                level=level,
+                title=re.sub('[^a-z0-9\-_ ]', '', text.lower()).strip().replace(' ', '-'),
+            )
+
+            # dumb collision avoidance
+            while id in self.toc_ids:
+                id += '_'
 
         self.toc.append((level, text, id))
         self.toc_ids.add(id)
@@ -108,7 +133,7 @@ class TableOfContentsRendererMixin:
 
 
 class OcfMarkdownRenderer(
-    TableOfContentsRendererMixin,
+    HeaderRendererMixin,
     mistune.Renderer,
 ):
     pass
