@@ -22,6 +22,8 @@ def home(request):
         if timezone.now() - post.published < timedelta(days=365)
     ][:2]
 
+    print('derp test test test test test')
+
     return render_to_response(
         'home.html',
         {
