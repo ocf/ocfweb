@@ -42,6 +42,8 @@ urlpatterns = [
 
     # legacy redirects
     url(r'^index\.s?html$', lambda _: redirect(reverse('home'), permanent=True)),
+    url(r'^staff_hours(?:\.cgi)?$', lambda _: redirect(reverse('staff-hours'), permanent=True)),
+    url(r'^staff-hours\.cgi$', lambda _: redirect(reverse('staff-hours'), permanent=True)),
     url(r'^OCF/policies(?:/|$)', lambda _: redirect(reverse('docs'), permanent=True)),
     url(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(reverse('doc', args=('faq',)), permanent=True)),
     url(r'^OCF/officers_.*\.html$', lambda _: redirect(
