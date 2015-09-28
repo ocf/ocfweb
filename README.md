@@ -1,7 +1,8 @@
 ocfweb
 ==========
+[![Build Status](https://jenkins.ocf.berkeley.edu/buildStatus/icon?job=ocfweb-test)](https://jenkins.ocf.berkeley.edu/job/ocfweb-test/)
 
-the main ocf website
+The main ocf website.
 
 
 ## Working on `ocfweb`
