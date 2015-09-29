@@ -1,10 +1,16 @@
 from setuptools import find_packages
 from setuptools import setup
 
+try:
+    with open('.version') as f:
+        VERSION = f.readline().strip()
+except IOError:
+    VERSION = 'unknown'
+
 setup(
     name='ocfweb',
-    version='1.0.0',
-    packages=find_packages(),
+    version=VERSION,
+    packages=find_packages(exclude=['debian', 'virtualenv_run']),
     include_package_data=True,
     url='https://www.ocf.berkeley.edu/',
     author='Open Computing Facility',
@@ -20,6 +26,6 @@ setup(
         'python-dateutil',
     ],
     sass_manifests={
-        'ocfweb': ('static/scss'),
+        'ocfweb': ('static/scss',),
     },
 )

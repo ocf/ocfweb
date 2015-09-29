@@ -1,0 +1,15 @@
+#DEBHELPER#
+
+if [ ! -f /etc/ocfweb/ocfweb.conf ]; then
+    cat > /etc/ocfweb/ocfweb.conf <<EOF
+[django]
+secret = not_a_secret
+debug = false
+
+# static assets
+static_url = https://static.ocf.berkeley.edu/
+static_root = /usr/share/ocfweb/static
+EOF
+fi
+
+# vim: ft=sh

@@ -1,0 +1,11 @@
+[Unit]
+Description=OCF website
+
+[Service]
+User=ocfweb
+ExecStart=/usr/share/python/ocfweb/bin/gunicorn ocfweb.wsgi
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

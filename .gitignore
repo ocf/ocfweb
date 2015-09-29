@@ -1,6 +1,15 @@
 ## ocfweb stuff
+/.version
 /ocfweb/static/scss/**/*.css
 /virtualenv_run
+
+/debian/ocfweb/
+/debian/*.log
+/debian/files
+/debian/substvars
+/debian/*.substvars
+/debian/*.debhelper
+/debian/changelog
 
 ## generic python stuff below
 __pycache__/
