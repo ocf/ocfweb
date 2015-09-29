@@ -46,3 +46,14 @@ update-requirements:
 		pip install --upgrade pip && \
 		pip install . && \
 		pip freeze | grep -v '^ocfweb==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
+
+builddeb: autoversion
+	dpkg-buildpackage -us -uc -b
+
+.PHONY: autoversion
+autoversion:
+	date +%Y.%m.%d.%H.%M-git`git rev-list -n1 HEAD | cut -b1-8` > .version
+	rm -f debian/changelog
+	DEBFULLNAME="Open Computing Facility" DEBEMAIL="help@ocf.berkeley.edu" VISUAL=true \
+		dch -v `cat .version` -D stable --no-force-save-on-release \
+		--create --package "ocfweb" "Package for Debian."

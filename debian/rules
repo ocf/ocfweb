@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+PYTHON := debian/ocfweb/usr/share/python/ocfweb/bin/python
+STATIC_DIR := debian/ocfweb/usr/share/ocfweb/static
+
+%:
+	dh $@ --with python-virtualenv --with systemd
+
+override_dh_virtualenv:
+	dh_virtualenv --python=/usr/bin/python3
+
+	# build sass, output static files
+	$(PYTHON) setup.py build_sass
+	mkdir -p "$(STATIC_DIR)"
+	OCFWEB_STATIC_ROOT="$(STATIC_DIR)" \
+		$(PYTHON) manage.py collectstatic --noinput
+
+override_dh_auto_clean:
+	# don't want to run `make clean` since it will wipe out the dev venv
+	rm -rf *.egg-info
+
+override_dh_auto_build:
+	# don't want to run `make`
+	@true

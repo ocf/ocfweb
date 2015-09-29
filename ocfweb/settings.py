@@ -1,13 +1,16 @@
 import os
+from configparser import ConfigParser
+from getpass import getuser
 
 from django.template.base import TemplateSyntaxError
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'not_a_secret-a(y))f7-_^ji^ezc5k7l%thr-m@(pk^rf)rz+)p#v82mmc_1dh'
+SECRET_KEY = 'not_a_secret'
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.ocf.berkeley.edu', 'dev.ocf.berkeley.edu', 'dev-www.ocf.berkeley.edu']
 
 INSTALLED_APPS = (
     'django.contrib.humanize',
@@ -67,9 +70,37 @@ USE_I18N = False
 USE_L10N = False
 USE_TZ = True
 
-os.environ.setdefault('OCFWEB_STATIC_URL', '/static/')
-STATIC_URL = os.environ['OCFWEB_STATIC_URL']
+STATIC_URL = '/static/'
 os.environ.setdefault('OCFWEB_STATIC_ROOT', '')
 STATIC_ROOT = os.environ['OCFWEB_STATIC_ROOT']
 
 X_FRAME_OPTIONS = 'DENY'
+
+# log exceptions to stderr
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+}
+
+
+if getuser() == 'ocfweb':
+    # not running in development, override options from config file
+    conf = ConfigParser()
+    conf.read('/etc/ocfweb/ocfweb.conf')
+
+    SECRET_KEY = conf.get('django', 'secret')
+    DEBUG = conf.getboolean('django', 'debug')
+
+    STATIC_URL = conf.get('django', 'static_url')
+    STATIC_ROOT = conf.get('django', 'static_root')
