@@ -10,7 +10,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'not_a_secret'
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.ocf.berkeley.edu', 'dev.ocf.berkeley.edu', 'dev-www.ocf.berkeley.edu']
+ALLOWED_HOSTS = [
+    'www.ocf.berkeley.edu',
+    'dev.ocf.berkeley.edu',
+    'dev-www.ocf.berkeley.edu',
+    'ocfweb.ocf.berkeley.edu',
+]
 
 INSTALLED_APPS = (
     'django.contrib.humanize',
