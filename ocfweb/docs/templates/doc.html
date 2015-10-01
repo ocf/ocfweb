@@ -5,13 +5,13 @@
 <div class="row">
     <div class="col-sm-8 ocf-content-block">
         {% block before-content %}{% endblock %}
-        {{doc.html|safe}}
+        {{html|safe}}
         {% block after-content %}{% endblock %}
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
         {% block sidebar %}
-            {% doc_toc doc=doc %}
+            {% doc_toc toc=toc %}
 
             <h3>More in this category</h3>
             {% doc_tree root=doc.category_for_sidebar suppress_root=False cur_path=doc.name %}

@@ -3,6 +3,8 @@ import re
 import mistune
 from django.core.urlresolvers import reverse
 
+from ocfweb.caching import lru_cache
+
 # tags of a format like: [[!meta title="Backups"]]
 META_REGEX = re.compile('\[\[!meta ([a-z]+)="([^"]*)"\]\]')
 
@@ -178,12 +180,13 @@ def markdown(text):
     return _markdown(text)
 
 
-def get_meta_tags(text):
-    """Return tuple (text, meta dict) for the given text.
+def text_and_meta(f):
+    """Return tuple (text, meta dict) for the given file.
 
     Meta tags are stripped from the Markdown source, but the Markdown is
     not rendered.
     """
+    text = f.read()
     meta = {}
 
     def repl(match):
@@ -194,9 +197,8 @@ def get_meta_tags(text):
     return text, meta
 
 
-def markdown_and_meta(text):
-    """Return tuple (html, meta dict) for the given text."""
-    text, meta = get_meta_tags(text)
+@lru_cache()
+def markdown_and_toc(text):
+    """Return tuple (html, toc) for the given text."""
     html = markdown(text)
-    meta['toc'] = _renderer.get_toc()
-    return html, meta
+    return html, _renderer.get_toc()

@@ -2,7 +2,7 @@
 {% load lab_hours %}
 
 <!doctype html>
-<html class="page-{{request.resolver_match.url_name}}">
+<html class="{{base_css_classes}}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,7 +63,6 @@
                                 <li><a href="{% url 'doc' 'services/shell' %}">SSH/SFTP (Shell)</a></li>
                                 <li><a href="{% url 'doc' 'services/mail' %}">Email Hosting</a></li>
                                 <li><a href="{% url 'doc' 'services/mysql' %}">MySQL Database</a></li>
-                                <li><a href="{% url 'servers' %}">Servers</a></li>
                             </ul>
                         </li>
 
