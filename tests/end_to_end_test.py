@@ -3,6 +3,8 @@ from textwrap import dedent
 import pytest
 import requests
 from django.core.urlresolvers import NoReverseMatch
+from django.core.urlresolvers import RegexURLPattern
+from django.core.urlresolvers import RegexURLResolver
 from django.core.urlresolvers import reverse
 
 from ocfweb.urls import urlpatterns
@@ -23,15 +25,19 @@ def assert_does_not_error(running_server, path):
         )
 
 
-def _get_reversed_urlpatterns():
+def _get_reversed_urlpatterns(urlpatterns=urlpatterns):
     """Yields a list of all URLs that we can reverse with default args."""
     for urlpattern in urlpatterns:
-        try:
-            path = reverse(urlpattern.name, *urlpattern.default_args)
-        except NoReverseMatch:
-            pass
-        else:
-            yield path
+        if isinstance(urlpattern, RegexURLPattern):
+            try:
+                path = reverse(urlpattern.name, *urlpattern.default_args)
+            except NoReverseMatch:
+                pass
+            else:
+                yield path
+        elif isinstance(urlpattern, RegexURLResolver):
+            # handle recursive urlpattern definitions
+            yield from _get_reversed_urlpatterns(urlpatterns=urlpattern.url_patterns)
 
 
 @pytest.mark.parametrize('path', _get_reversed_urlpatterns())

@@ -11,7 +11,7 @@ lint: venv
 	$(BIN)/pre-commit run --all-files
 
 test: venv
-	$(BIN)/py.test tests/
+	$(BIN)/py.test -v tests/
 
 dev: venv scss
 	@echo -e "\e[1m\e[93mRunning on http://$(shell hostname -f ):$(RANDOM_PORT)/\e[0m"
