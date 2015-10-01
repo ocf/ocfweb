@@ -4,7 +4,7 @@ from operator import attrgetter
 
 from django import template
 
-from ocfweb.docs.docs import list_docs
+from ocfweb.docs.urls import DOCS
 
 
 class Node(namedtuple('Node', ['path', 'title', 'children'])):
@@ -25,21 +25,19 @@ def doc_tree(root='/', suppress_root=True, cur_path=None, exclude='$^'):
 
     exclude = re.compile(exclude)
 
-    docs = list_docs()
-
     def _make_tree(root):
         path = root[:-1]
-        doc = docs.get(path)
+        doc = DOCS.get(path)
         return Node(
             path=path,
-            title=doc.meta['title'] if doc else root,
+            title=doc.title if doc else root,
             children=sorted(
                 [
                     _make_tree(child)
                     for child in
                     {
                         root + doc.name[len(root):].split('/', 1)[0] + '/'
-                        for doc in docs.values()
+                        for doc in DOCS.values()
                         if doc.name.startswith(root) and not exclude.match(doc.name)
                     }
                 ],
@@ -55,9 +53,7 @@ def doc_tree(root='/', suppress_root=True, cur_path=None, exclude='$^'):
 
 
 @register.inclusion_tag('partials/doc-toc.html')
-def doc_toc(doc):
-    toc = doc.meta['toc']
-
+def doc_toc(toc):
     if len(toc) > 3:  # heuristic to avoid dumb tables of contents
         levels = list(sorted({entry[0] for entry in toc}))
         cur = levels[0]

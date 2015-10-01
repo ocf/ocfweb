@@ -1,3 +1,4 @@
+import re
 from datetime import date
 from datetime import datetime
 
@@ -11,8 +12,18 @@ def ocf_template_processor(request):
     today = date.today()
     hours = DayHours.from_date(today)
 
+    base_css_classes = []
+    if request.resolver_match.url_name:
+        page_class = 'page-' + request.resolver_match.url_name
+        base_css_classes.append(page_class)
+
+        for arg in request.resolver_match.args:
+            page_class += '-' + re.sub('[^a-zA-Z_\-]', '-', arg)
+            base_css_classes.append(page_class)
+
     return {
         'lab_is_open': hours.is_open(now),
         'current_lab_hours': hours,
         'lab_status': get_lab_status(),
+        'base_css_classes': ' '.join(base_css_classes),
     }
