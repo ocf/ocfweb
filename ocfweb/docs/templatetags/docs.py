@@ -3,6 +3,7 @@ from collections import namedtuple
 from operator import attrgetter
 
 from django import template
+from django.utils.html import strip_tags
 
 from ocfweb.docs.urls import DOCS
 
@@ -69,7 +70,7 @@ def doc_toc(toc):
                 cur += 1
             html += '<li><a href="#{fragment}">{text}</a></li>'.format(
                 fragment=id,
-                text=text,
+                text=strip_tags(text),
             )
 
         while cur > levels[0]:

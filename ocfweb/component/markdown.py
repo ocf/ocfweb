@@ -2,6 +2,7 @@ import re
 
 import mistune
 from django.core.urlresolvers import reverse
+from django.utils.html import strip_tags
 
 from ocfweb.caching import lru_cache
 
@@ -118,7 +119,7 @@ class HeaderRendererMixin:
         else:
             id = 'h{level}_{title}'.format(
                 level=level,
-                title=re.sub('[^a-z0-9\-_ ]', '', text.lower()).strip().replace(' ', '-'),
+                title=re.sub('[^a-z0-9\-_ ]', '', strip_tags(text).lower()).strip().replace(' ', '-'),
             )
 
             # dumb collision avoidance
