@@ -57,10 +57,11 @@
         }
 
         .ocf-staffhours-faces {
-            @extend .list-inline;
-
-            li {
-                padding: 0;
+            @media (min-width: 768px) {
+                img {
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+                }
             }
         }
 
