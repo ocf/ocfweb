@@ -59,11 +59,8 @@
         .ocf-staffhours-faces {
             @extend .list-inline;
 
-            // squeeze closer on phones to try to fit them on a single line
-            @media (max-width: 767px) {
-                li {
-                    padding: 0;
-                }
+            li {
+                padding: 0;
             }
         }
 
