@@ -32,11 +32,11 @@ gunicorn: venv
 scss: venv
 	$(PYTHON) setup.py build_sass
 
-watch-scss: scss
+watch-scss: scss venv
 	while :; do \
 		find ocfweb/static -type f -name '*.scss' | \
 			inotifywait --fromfile - -e modify; \
-			make scss; \
+			$(PYTHON) setup.py build_sass; \
 	done
 
 update-requirements:
