@@ -127,7 +127,7 @@ class HeaderRendererMixin:
 
         self.toc.append((level, text, id))
         self.toc_ids.add(id)
-        return '<h{level} id="{id}">{text} <a class="" href="#{id}"><span></span></a></h{level}>\n'.format(
+        return '<h{level} id="{id}">{text} <a class="anchor" href="#{id}"><span></span></a></h{level}>\n'.format(
             level=level,
             id=id,
             text=text,

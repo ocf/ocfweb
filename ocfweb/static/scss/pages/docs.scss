@@ -12,11 +12,11 @@
     h4,
     h5,
     h6 {
-        &:hover a {
+        &:hover .anchor {
             display: inline;
         }
 
-        a {
+        .anchor {
             display: none;
             font-size: 18px;
 
