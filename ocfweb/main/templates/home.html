@@ -67,7 +67,7 @@
         <h3>Upcoming Lab Hours</h3>
         <div class="ocf-hours">
             {% for hour in hours %}
-                <div class="ocf-hour row">
+                <div class="ocf-hour row {% cycle 'odd' 'even' %}">
                     <div class="col-sm-3 ocf-hour-title">
                         {{hour.weekday}}<br />
                     </div>
@@ -81,7 +81,7 @@
                 </div>
             {% endfor %}
         </div>
-        <p><a href="{% url 'doc' 'services/lab' %}">See more lab hours &raquo;</a></p>
+        <p><a href="{% url 'doc' 'services/lab' %}" class="more-hours">more lab hours &raquo;</a></p>
 
         <p>{% google_map '100%' '250px' %}</p>
 
