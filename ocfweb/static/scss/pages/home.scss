@@ -57,12 +57,10 @@
         }
 
         .ocf-staffhours-faces {
-            @extend .list-inline;
-
-            // squeeze closer on phones to try to fit them on a single line
-            @media (max-width: 767px) {
-                li {
-                    padding: 0;
+            @media (min-width: 768px) {
+                img {
+                    margin-right: 10px;
+                    margin-bottom: 10px;
                 }
             }
         }

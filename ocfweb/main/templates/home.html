@@ -95,11 +95,13 @@
                             <span class="cancelled-text">cancelled this week</span>
                         {% endif %}
                     </p>
-                    <ul class="ocf-staffhours-faces">
+                    <div class="ocf-staffhours-faces">
+                      <!--
                         {% for staffer in staff_hour.staff %}
-                            <li><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" /></li>
+                            --><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" /><!--
                         {% endfor %}
-                    </ul>
+                      -->
+                    </div>
                 </div>
             {% endfor %}
 
