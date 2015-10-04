@@ -3,6 +3,7 @@ from textwrap import dedent
 from traceback import format_exc
 
 from django.conf import settings
+from django.http.response import Http404
 from ocflib.misc.mail import send_problem_report
 
 
@@ -10,6 +11,10 @@ class OcflibErrorMiddleware:
 
     def process_exception(self, request, exception):
         if settings.DEBUG:
+            return
+
+        if isinstance(exception, Http404):
+            # we don't care about reporting 404 errors
             return
 
         try:
