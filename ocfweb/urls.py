@@ -45,5 +45,5 @@ urlpatterns = [
         permanent=True
     )),
 
-    url('^docs', include(docs)),
+    url('^docs/', include(docs)),
 ]
