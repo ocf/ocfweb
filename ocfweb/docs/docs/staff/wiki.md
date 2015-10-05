@@ -1,35 +1,49 @@
-[[!meta title="Wiki editing"]]
+[[!meta title="Editing docs"]]
 
-[ikiwiki](https://ikiwiki.info/) uses [Markdown][markdown].
+The OCF's documentation (formerly known as "the wiki") is a part of the OCF
+website built with [Markdown][markdown] where we provide technical support for
+users and documentation for fellow staff.
 
-## Technical details
+## Overview
 
-Data is stored in `/srv/ikiwiki` on blight, which contains:
+Docs is currently a part of the OCF's main website, known as [ocfweb][ocfweb].
+Markdown syntax is parsed by [Mistune][mistune] with syntax highlighting done
+by [Pygments][pygments].
 
- * `public_html/`: output (HTML)
- * `wiki/`: input (Markdown)
- * `wiki.git/`: bare repository (git)
- * `wiki.setup`: ikiwiki configuration file
+We use a wiki-like syntax for making links within documentation and the
+website, e.g. from [[Virtual Hosting|doc services/vhost#h4_hosting-badge]]:
 
-The wiki's authoritative git repo is [GitHub][github]. Commit your changes and
-push them to GitHub, and they will be deployed automatically.
+    All virtual hosts on the OCF must include an [[OCF banner|doc services/vhost/badges]] on the front page that links to the [[OCF home page|home]].
 
-## Editing the wiki
+## Editing docs
 
-### Using git directly
+Edits to the documentation are made via the OCF website's Git repository on
+GitHub. The editing process is like our other Git workflows:
 
-1. Clone [the repository on GitHub][github].
+1. Fork [the repository on GitHub][ocfweb].
 
-2. Make changes.
+2. Make changes on a new branch.
 
 3. Push your changes.
 
-## Troubleshooting
+4. Make a pull request.
 
-If your edits aren't appearing, try rebuilding the entire wiki from the git
-repository.
+Once you make a pull request, it will automatically be tested by
+[Jenkins][jenkins], the build server. Jenkins will also deploy your changes
+once they have been merged.
 
-    $ sudo -u www-data /srv/ikiwiki/rebuild-wiki
+The repository's readme file has instructions for testing and building the
+website so you can preview your edits before making the commit. Also see [[our
+page on Git|doc staff/backend/git]] for further info on working with OCF repos.
 
-[github]: https://github.com/ocf/wiki
+## The old wiki
+
+The old wiki is stored on [[blight|doc staff/backend/servers]] under
+`/srv/wiki`.  You can find the pages on its [GitHub repo][oldgithub].
+
 [markdown]: https://daringfireball.net/projects/markdown/syntax
+[ocfweb]: https://github.com/ocf/ocfweb
+[mistune]: https://github.com/lepture/mistune
+[pygments]: http://pygments.org/
+[jenkins]: https://jenkins.ocf.berkeley.edu
+[oldgithub]: https://github.com/ocf/wiki

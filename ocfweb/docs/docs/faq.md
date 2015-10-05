@@ -9,7 +9,7 @@ More specifically, we have a [[list of services|doc services]].
 
 #### Who are you?
 
-The largest(\*) student organization on campus (\*by membership count). OCF is completely administered and operated by student volunteers ("staff"). [About the OCF](https://www.ocf.berkeley.edu/OCF/).
+The largest(\*) student organization on campus (\*by membership count). OCF is completely administered and operated by student volunteers ("staff"). [[About the OCF|doc about]].
 
 Interested in [joining staff](https://hello.ocf.berkeley.edu/)? Feel free to attend our meetings or [[contact us|doc contact]] by email.
 
