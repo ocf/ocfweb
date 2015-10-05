@@ -21,10 +21,6 @@ Your shell account can be controlled remotely using
 [SSH](https://en.wikipedia.org/wiki/Secure_Shell). The server name is
 `ssh.ocf.berkeley.edu` (`tsunami`).
 
-## SSH
-
-## SSH
-
 #### From your browser
 If you just need to access SSH quickly, you can use our [web-based SSH interface](https://ssh.ocf.berkeley.edu/) from your web browser.
 
@@ -39,7 +35,6 @@ On Windows, use [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/downlo
 
 * Host Name: `ssh.ocf.berkeley.edu`
 * Port: 22
-
 
 
 ## SFTP
