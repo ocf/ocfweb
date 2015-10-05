@@ -20,6 +20,8 @@ urlpatterns = [
     url('^staff-hours$', staff_hours, name='staff-hours'),
 
     # hosting logos
+    url(r'^images/hosted-logos/(?:index\.shtml)?$', lambda _: redirect(
+        reverse('doc', args=('services/vhost/badges',)), permanent=True)),
     url('^images/hosted-logos/(.*)$', lambda _, image: redirect('hosting_logo', image, permanent=True)),
     url('^hosting-logos/(.*)$', hosting_logo, name='hosting_logo'),
 

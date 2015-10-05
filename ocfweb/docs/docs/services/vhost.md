@@ -28,7 +28,7 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
 
 1.   [[Request an OCF group account|doc membership]] (if you haven't already done so).
 2.   Set up your webspace and upload your website (if you haven't already done so). The website should be developed already, not a placeholder.
-3.   Place a [Hosted by OCF banner](https://www.ocf.berkeley.edu/images/hosted-logos/) on your home page that links to the OCF front page. If none of these images are appropriate for your site, you may design one of your own and [[submit it|doc contact]] for approval.
+3.   Place a [[Hosted by OCF banner|doc services/vhost/badges]] on your home page that links to the OCF front page. If none of these images are appropriate for your site, you may design one of your own and [[submit it|doc contact]] for approval.
 4.   Place the university-mandated student group disclaimer on each page of your website (see the section below).
 5. Complete the [virtual hosting request
    form](https://accounts.ocf.berkeley.edu/request-vhost) online.
@@ -37,7 +37,7 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
 
 ### Including the OCF banner
 
-To place any of the [Hosted by OCF banners](https://www.ocf.berkeley.edu/images/hosted-logos/) on your site, you can use HTML code such as the following:
+To place any of the [[Hosted by OCF banners|doc services/vhost/badges]] on your site, you can use HTML code such as the following:
 
     <a href="https://www.ocf.berkeley.edu/">
     <img src="https://www.ocf.berkeley.edu/images/hosted-logos/ocfbadge_mini8.png" alt="Hosted by the OCF" width="98" height="39" style="border:0" />
@@ -80,7 +80,7 @@ In particular,
 
 #### Hosting badge
 
-All virtual hosts on the OCF must include an [OCF banner](https://www.ocf.berkeley.edu/images/hosted-logos/) on the front page that links to the [[OCF home page|home]]. The banner need not be displayed extremely prominently, but it must be noticeable without undue effort. If the banner is removed or misplaced, the OCF reserves the right to terminate the virtual hosting service. The hosting badge not only attributes the OCF but also distinguishes it from sites hosted by other University departments.
+All virtual hosts on the OCF must include an [[OCF banner|doc services/vhost/badges]] on the front page that links to the [[OCF home page|home]]. The banner need not be displayed extremely prominently, but it must be noticeable without undue effort. If the banner is removed or misplaced, the OCF reserves the right to terminate the virtual hosting service. The hosting badge not only attributes the OCF but also distinguishes it from sites hosted by other University departments.
 
 ## Email Forwarding    {email}
 
