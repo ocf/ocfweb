@@ -38,7 +38,7 @@ doc_names = '|'.join(map(doc_name, DOCS.keys()))
 
 
 urlpatterns = [
-    url('^$', docs_index, name='docs'),
+    url('^/$', docs_index, name='docs'),
 
     # we use a complicated generated regex here so that we have actual
     # validation of URLs (in other words, if you try to make a link to a
