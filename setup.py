@@ -23,6 +23,7 @@ setup(
         'lxml',
         'mistune',
         'ocflib',
+        'pygments',
         'python-dateutil',
     ],
     sass_manifests={
