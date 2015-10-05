@@ -3,6 +3,11 @@ import re
 import mistune
 from django.core.urlresolvers import reverse
 from django.utils.html import strip_tags
+from pygments import highlight
+from pygments.formatters import HtmlFormatter
+from pygments.lexers import get_lexer_by_name
+from pygments.lexers import guess_lexer
+from pygments.util import ClassNotFound
 
 from ocfweb.caching import lru_cache
 
@@ -34,6 +39,23 @@ class HtmlCommentsBlockLexerMixin:
 
     def parse_html_comment(self, m):
         pass
+
+
+class CodeRendererMixin:
+    """Render highlighted code."""
+    # TODO: don't use inline styles; see http://pygments.org/docs/formatters/
+    html_formatter = HtmlFormatter(noclasses=True)
+
+    def block_code(self, code, lang):
+        try:
+            if lang:
+                lexer = get_lexer_by_name(lang, stripall=True)
+            else:
+                lexer = guess_lexer(code)
+        except ClassNotFound:
+            lexer = get_lexer_by_name('shell')
+
+        return highlight(code, lexer, CodeRendererMixin.html_formatter)
 
 
 class DjangoLinkInlineLexerMixin:
@@ -137,6 +159,7 @@ class HeaderRendererMixin:
 
 class OcfMarkdownRenderer(
     HeaderRendererMixin,
+    CodeRendererMixin,
     mistune.Renderer,
 ):
     pass
