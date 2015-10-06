@@ -13,7 +13,7 @@ from ocfweb.component.lab_status import get_lab_status
 
 def home(request):
     hours = [
-        get_hours(date.today() + timedelta(days=i)) for i in range(5)
+        get_hours(date.today() + timedelta(days=i)) for i in range(3)
     ]
 
     blog_posts = [

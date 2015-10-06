@@ -18,6 +18,7 @@ setup(
     install_requires=[
         'cachetools',
         'django>=1.8,<1.8.999',
+        'django-ipware',
         'gunicorn',
         'libsass',
         'lxml',
