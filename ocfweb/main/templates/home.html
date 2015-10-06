@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load google_maps %}
 {% load humanize %}
-{% load staff_hours %}
 {% load lab_hours %}
+{% load staff_hours %}
 
 {% block hero %}
 <div class="ocf-penguin-swing"></div>
@@ -68,9 +69,9 @@
             The computer lab is located in
             <a href="{% url 'doc' 'services/lab' %}">6A Hearst Gym</a>.
         </p>
-        <p>
-            <strong>Upcoming Lab Hours</strong>
-        </p>
+        {% google_map '100%' '151px' show_info=False %}
+
+        <p><strong>Upcoming Lab Hours</strong></p>
         <div class="ocf-hours">
             {% for hour in hours %}
                 <div class="ocf-hour row {% cycle 'odd' 'even' %}">
