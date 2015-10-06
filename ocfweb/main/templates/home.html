@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% load staff_hours %}
-{% load google_maps %}
 {% load lab_hours %}
 
 {% block hero %}
@@ -64,7 +63,14 @@
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
-        <h3>Upcoming Lab Hours</h3>
+        <h3>OCF Computer Lab</h3>
+        <p>
+            The computer lab is located in
+            <a href="{% url 'doc' 'services/lab' %}">6A Hearst Gym</a>.
+        </p>
+        <p>
+            <strong>Upcoming Lab Hours</strong>
+        </p>
         <div class="ocf-hours">
             {% for hour in hours %}
                 <div class="ocf-hour row {% cycle 'odd' 'even' %}">
@@ -81,9 +87,17 @@
                 </div>
             {% endfor %}
         </div>
-        <p><a href="{% url 'doc' 'services/lab' %}" class="more-hours">more lab hours &raquo;</a></p>
+        <p><a href="{% url 'doc' 'services/lab' %}" class="see-more">See more lab hours &raquo;</a></p>
 
-        <p>{% google_map '100%' '250px' %}</p>
+        <p><strong>Account Tools</strong></p>
+        <ul>
+            <li><a href="https://accounts.ocf.berkeley.edu/commands">Check Account</a></li>
+            <li><a href="https://accounts.ocf.berkeley.edu/change-password">Reset Password</a></li>
+
+            {% if is_ocf_ip %}
+                <li><a href="https://printhost.ocf.berkeley.edu/jobs/">View Print Queue</a></li>
+            {% endif %}
+        </ul>
 
         <div class="ocf-staffhours">
             {% for staff_hour in staff_hours %}
@@ -96,7 +110,7 @@
                         {% endif %}
                     </p>
                     <div class="ocf-staffhours-faces">
-                      <!--
+                      <!--  XXX: html comment to avoid spaces between images
                         {% for staffer in staff_hour.staff %}
                             --><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" /><!--
                         {% endfor %}
@@ -105,7 +119,7 @@
                 </div>
             {% endfor %}
 
-            <p><a href="{% url 'staff-hours' %}">See more staff hours &raquo;</a></p>
+            <p><a href="{% url 'staff-hours' %}" class="see-more">See more staff hours &raquo;</a></p>
         </div>
     </div>
 </div>
