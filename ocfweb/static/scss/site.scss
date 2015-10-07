@@ -80,6 +80,12 @@ h6 {
             font-size: 14px;
         }
     }
+
+    .dropdown:hover .dropdown-menu {
+        @media (min-width: 768px) {
+            display: block;
+        }
+    }
 }
 
 .ocf-status-bar {
