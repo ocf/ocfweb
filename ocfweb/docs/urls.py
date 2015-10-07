@@ -16,7 +16,7 @@ DOCS = {
     for doc in chain(
         [
             Document(name='/staff/backend/servers', title='Servers', render=servers),
-            Document(name='/services/vhost/badges', title='Hosting Badges', render=hosting_badges),
+            Document(name='/services/vhost/badges', title='Hosting badges', render=hosting_badges),
         ],
         get_markdown_docs(),
     )
