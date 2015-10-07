@@ -1,3 +1,3 @@
-[[!meta title="Kerbeors"]]
+[[!meta title="Kerberos"]]
 
 TODO: this page
