@@ -48,7 +48,7 @@ def hosting_logo(request, image):
     student group websites."""
     # legacy images
     if image in LEGACY_IMAGES:
-        return redirect('hosting_logo', re.sub('\.[a-z]+$', '.png', image), permanent=True)
+        return redirect('hosting-logo', re.sub('\.[a-z]+$', '.png', image), permanent=True)
 
     return HttpResponse(
         get_image(image),

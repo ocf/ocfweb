@@ -6,7 +6,7 @@ def servers(doc, request):
     return render_to_response(
         'servers.html',
         {
-            'title': 'Servers',
+            'title': doc.title,
         },
         context_instance=RequestContext(request),
     )
