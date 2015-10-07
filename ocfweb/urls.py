@@ -22,8 +22,8 @@ urlpatterns = [
     # hosting logos
     url(r'^images/hosted-logos/(?:index\.shtml)?$',
         lambda _: redirect(reverse('doc', args=('services/vhost/badges',)), permanent=True)),
-    url('^images/hosted-logos/(.*)$', lambda _, image: redirect('hosting_logo', image, permanent=True)),
-    url('^hosting-logos/(.*)$', hosting_logo, name='hosting_logo'),
+    url('^images/hosted-logos/(.*)$', lambda _, image: redirect('hosting-logo', image, permanent=True)),
+    url('^hosting-logos/(.*)$', hosting_logo, name='hosting-logo'),
 
     # legacy redirects
     url(r'^index\.s?html$', lambda _: redirect(reverse('home'), permanent=True)),
