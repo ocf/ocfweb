@@ -81,9 +81,19 @@ h6 {
         }
     }
 
-    .dropdown:hover .dropdown-menu {
-        @media (min-width: 768px) {
-            display: block;
+    @media (min-width: 768px) {
+        .dropdown:hover {
+            > a,
+            > a:hover {
+                // styles copied from .open > a
+                // (unfortunately, can't @extend inside a media query)
+                background-color: #e7e7e7;
+                color: #555;
+            }
+
+            .dropdown-menu {
+                display: block;
+            }
         }
     }
 }
