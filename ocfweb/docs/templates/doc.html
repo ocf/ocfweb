@@ -4,7 +4,9 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-8 ocf-content-block">
-        {% block before-content %}{% endblock %}
+        {% block before-content %}
+          {% doc_toc toc=toc collapsible=True %}
+        {% endblock %}
         {{html|safe}}
         {% block after-content %}{% endblock %}
     </div>

@@ -1,4 +1,13 @@
 {% if html %}
-    <h3>Table of Contents</h3>
-    {{html|safe}}
+  <div class="ocf-doc-toc">
+    {% if collapsible %}
+        <a data-toggle="collapse" data-target="#toc" class="btn btn-lg">Table of Contents</a>
+        <div id="toc" class="collapse">
+          {{html|safe}}
+        </div>
+    {% else %}
+        <h3>Table of Contents</h3>
+        {{html|safe}}
+    {% endif %}
+  </div>
 {% endif %}

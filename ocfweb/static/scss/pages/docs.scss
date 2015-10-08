@@ -45,3 +45,25 @@
         font-size: 10px;
     }
 }
+
+.ocf-doc-toc {
+    display: none;
+
+    .btn {
+        margin-top: 10px;
+    }
+}
+
+.ocf-sidebar .ocf-doc-toc {
+    display: inline;
+}
+
+@media (max-width: 767px) {
+    .ocf-doc-toc {
+        display: inline;
+    }
+
+    .ocf-sidebar .ocf-doc-toc {
+        display: none;
+    }
+}
