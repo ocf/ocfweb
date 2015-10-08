@@ -22,56 +22,60 @@ It's useful along with [[OCF's IRC server|doc contact/irc]].
 
    The settings I use (everything else I accept defaults):
 
-       ckuehl@raptors:~$ znc --makeconf
-       [ ?? ] What port would you like ZNC to listen on? (1025 to 65535): 4095
+   ```text
+   ckuehl@raptors:~$ znc --makeconf
+   [ ?? ] What port would you like ZNC to listen on? (1025 to 65535): 4095
 
-       [ ?? ] Would you like ZNC to listen using SSL? (yes/no) [no]: yes
-       [ ?? ] Would you like ZNC to listen using both IPv4 and IPv6? (yes/no) [yes]: no
+   [ ?? ] Would you like ZNC to listen using SSL? (yes/no) [no]: yes
+   [ ?? ] Would you like ZNC to listen using both IPv4 and IPv6? (yes/no) [yes]: no
 
-       [ ?? ] Load global module <webadmin>? (yes/no) [no]: yes
+   [ ?? ] Load global module <webadmin>? (yes/no) [no]: yes
 
-       [ ** ] Now we need to set up a user...
-       [ ** ]
-       [ ?? ] Username (AlphaNumeric): ckuehl
-       [ ?? ] Enter Password:
-       [ ?? ] Confirm Password:
-       [ ?? ] Would you like this user to be an admin? (yes/no) [yes]: yes
-       [ ?? ] Nick [ckuehl]:
-       [ ?? ] Alt Nick [ckuehl_]:
-       [ ?? ] Ident [ckuehl]:
-       [ ?? ] Real Name [Got ZNC?]: Chris Kuehl
+   [ ** ] Now we need to set up a user...
+   [ ** ]
+   [ ?? ] Username (AlphaNumeric): ckuehl
+   [ ?? ] Enter Password:
+   [ ?? ] Confirm Password:
+   [ ?? ] Would you like this user to be an admin? (yes/no) [yes]: yes
+   [ ?? ] Nick [ckuehl]:
+   [ ?? ] Alt Nick [ckuehl_]:
+   [ ?? ] Ident [ckuehl]:
+   [ ?? ] Real Name [Got ZNC?]: Chris Kuehl
 
-       [ ?? ] Load module <chansaver>? (yes/no) [no]: yes
-       [ ?? ] Load module <controlpanel>? (yes/no) [no]: yes
-       [ ?? ] Load module <perform>? (yes/no) [no]:
-       [ ?? ] Load module <webadmin>? (yes/no) [no]: yes
+   [ ?? ] Load module <chansaver>? (yes/no) [no]: yes
+   [ ?? ] Load module <controlpanel>? (yes/no) [no]: yes
+   [ ?? ] Load module <perform>? (yes/no) [no]:
+   [ ?? ] Load module <webadmin>? (yes/no) [no]: yes
 
-       [ ?? ] Would you like to set up a network? (yes/no) [no]: yes
-       [ ?? ] Network (e.g. `freenode' or `efnet'): ocf
+   [ ?? ] Would you like to set up a network? (yes/no) [no]: yes
+   [ ?? ] Network (e.g. `freenode' or `efnet'): ocf
 
-       [ ?? ] Load module <chansaver>? (yes/no) [no]: yes
-       [ ?? ] Load module <keepnick>? (yes/no) [no]: yes
+   [ ?? ] Load module <chansaver>? (yes/no) [no]: yes
+   [ ?? ] Load module <keepnick>? (yes/no) [no]: yes
 
-       [ ** ] -- IRC Servers --
-       [ ** ] Only add servers from the same IRC network.
-       [ ** ] If a server from the list can't be reached, another server will be used.
-       [ ** ]
-       [ ?? ] IRC server (host only): irc.ocf.berkeley.edu
-       [ ?? ] [irc.ocf.berkeley.edu] Port (1 to 65535) [6667]: 6697
-       [ ?? ] [irc.ocf.berkeley.edu] Password (probably empty):
-       [ ?? ] Does this server use SSL? (yes/no) [no]: yes
+   [ ** ] -- IRC Servers --
+   [ ** ] Only add servers from the same IRC network.
+   [ ** ] If a server from the list can't be reached, another server will be used.
+   [ ** ]
+   [ ?? ] IRC server (host only): irc.ocf.berkeley.edu
+   [ ?? ] [irc.ocf.berkeley.edu] Port (1 to 65535) [6667]: 6697
+   [ ?? ] [irc.ocf.berkeley.edu] Password (probably empty):
+   [ ?? ] Does this server use SSL? (yes/no) [no]: yes
 
-       [ ?? ] Would you like to add a channel for ZNC to automatically join? [yes]: yes
-       [ ?? ] Channel name: #rebuild
-       [ ?? ] Would you like to add another channel? (yes/no) [no]: yes
-       [ ?? ] Channel name: #ocf
+   [ ?? ] Would you like to add a channel for ZNC to automatically join? [yes]: yes
+   [ ?? ] Channel name: #rebuild
+   [ ?? ] Would you like to add another channel? (yes/no) [no]: yes
+   [ ?? ] Channel name: #ocf
 
-       [ ?? ] Launch ZNC now? (yes/no) [yes]: no
+   [ ?? ] Launch ZNC now? (yes/no) [yes]: no
+   ```
 
    kpengboy's preferences, in addition to most of the above, include:
 
-       [ ?? ] Number of lines to buffer per channel [50]: 200
-       [ ?? ] Would you like to clear channel buffers after replay? (yes/no) [yes]: no
+   ```text
+   [ ?? ] Number of lines to buffer per channel [50]: 200
+   [ ?? ] Would you like to clear channel buffers after replay? (yes/no) [yes]: no
+   ```
 
    and enabling the buffextras module (in webadmin afterwards).
 
