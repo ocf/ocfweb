@@ -70,7 +70,7 @@
                         <li><a href="{% url 'docs' %}">Documentation</a></li>
                         <li><a href="{% url 'doc' 'contact' %}">Contact Us</a></li>
                     </ul>
-                </div><!--/.nav-collapse -->
+                </div>
             </div>
         </div>
 
@@ -81,11 +81,13 @@
                         {% if lab_is_open %}
                             <strong>Lab Currently Open</strong>
                         {% else %}
-                            <strong>Lab Currently Closed</strong>
+                            <strong>Lab Currently Closed</strong> Hours:
                         {% endif %}
-                        {{current_lab_hours|lab_hours_time}}
-                        on {{current_lab_hours|lab_hours_day_and_holiday}}
-                        <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
+                        <span class="nowrap">
+                            {{current_lab_hours|lab_hours_time}}
+                            on {{current_lab_hours|lab_hours_day_and_holiday}}
+                            <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
+                        </span>
                     {% else %}
                         <strong>Lab Temporarily Closed</strong>
                         <a class="subtle" href="{% url 'home' %}">more &raquo;</a>
