@@ -24,3 +24,7 @@ linters:
 
     ColorKeyword:
         enabled: false
+
+    # don't want to force using `//` comments everywhere
+    Comment:
+        enabled: false

@@ -2,11 +2,11 @@
 
 .page-home {
     .ocf-status-list {
-        @media (min-width: 1200px) {
+        @media (min-width: $screen-lg-min) {
             margin-right: 310px;
         }
 
-        @media (min-width: 992px) and (max-width: 1199px) {
+        @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
             margin-right: 280px;
         }
     }
@@ -60,12 +60,13 @@
             font-weight: bold;
         }
 
-        .ocf-staffhours-faces {
-            @media (min-width: 768px) {
-                img {
-                    margin-right: 10px;
-                    margin-bottom: 10px;
-                }
+        .ocf-staffhours-faces img {
+            margin-right: 10px;
+            margin-bottom: 10px;
+
+            @media (max-width: $screen-sm-max) {
+                margin-right: 5px;
+                margin-bottom: 5px;
             }
         }
 
@@ -88,26 +89,26 @@
         background-size: 366px 407px;
 
         // responsive penguin ftw
-        @media (min-width: 1200px) {
+        @media (min-width: $screen-lg-min) {
             background-position: 240px 0;
         }
 
-        @media (min-width: 992px) and (max-width: 1199px) {
+        @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
             background-position: 178px 0;
             top: -60px; // pull down a little to cover status bar
         }
 
-        @media (min-width: 768px) and (max-width: 991px) {
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
             background-position: 122px 0;
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: $screen-xs-max) {
             display: none;
         }
     }
 
     .ocf-status-bar .container {
-        @media (min-width: 768px) {
+        @media (min-width: $screen-sm-min) {
             padding-right: 316px;
         }
     }
@@ -119,32 +120,40 @@
         font-size: 16px;
 
         h1 {
-            @media (max-width: 767px) {
+            @media (max-width: $screen-xs-max) {
                 font-size: 28px;
                 font-weight: 800;
             }
 
-            @media (min-width: 992px) {
+            @media (min-width: $screen-md-min) {
                 font-size: 40px;
             }
 
             // we want the text to wrap after 'Open'
-            @media (min-width: 992px) and (max-width: 1199px) {
+            @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
                 padding-right: 46px;
             }
         }
 
         .ocf-button-holder {
-            padding-bottom: 15px;
+            padding-bottom: 10px;
+            margin-left: -10px;
+
+            @media (max-width: $screen-xs-max) {
+                margin-left: -5px;
+            }
 
             .btn {
                 background-color: $hero-button-color;
-                margin-right: 10px;
+                margin-left: 10px;
+                margin-bottom: 5px;
                 color: #000;
 
                 // help fit both buttons on one line on iPhone
-                @media (max-width: 767px) {
-                    margin-right: 5px;
+                @media (max-width: $screen-xs-max) {
+                    font-size: 14px;
+                    margin-left: 5px;
+                    padding: 10px;
                 }
 
                 &:hover {

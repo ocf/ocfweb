@@ -18,9 +18,6 @@ When contacting OCF staff, please reference
  * your OCF account name (if known)
  * the software you are using and any error messages encountered
 
-## Contents
-
-
 ## In person
 
 The OCF lab is located on the ground level of Hearst Gym (west entrance), Room 6A. You will need to show your student ID when you pass the Publications Center in Room 6.
