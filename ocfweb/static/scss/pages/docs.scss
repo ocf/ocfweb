@@ -45,3 +45,48 @@
         font-size: 10px;
     }
 }
+
+.doc-collapse-toggle {
+    @extend .btn;
+    @extend .btn-lg;
+
+    background-color: #f0f0f0;
+    color: #000;
+    margin-bottom: 10px;
+
+    .glyphicon {
+        @extend .glyphicon-minus;
+
+        font-size: 10px;
+        position: relative;
+        top: -2px;
+        margin-right: 2px;
+    }
+
+
+    &.collapsed .glyphicon {
+        @extend .glyphicon-plus;
+    }
+
+    &:hover {
+        background-color: #f7f7f7;
+    }
+}
+
+.ocf-doc-toc {
+    display: none;
+}
+
+.ocf-sidebar .ocf-doc-toc {
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .ocf-doc-toc {
+        display: block;
+    }
+
+    .ocf-sidebar .ocf-doc-toc {
+        display: none;
+    }
+}

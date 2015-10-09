@@ -54,7 +54,7 @@ def doc_tree(root='/', suppress_root=True, cur_path=None, exclude='$^'):
 
 
 @register.inclusion_tag('partials/doc-toc.html')
-def doc_toc(toc):
+def doc_toc(toc, collapsible=False):
     if len(toc) > 3:  # heuristic to avoid dumb tables of contents
         levels = list(sorted({entry[0] for entry in toc}))
         cur = levels[0]
@@ -83,4 +83,5 @@ def doc_toc(toc):
 
     return {
         'html': html,
+        'collapsible': collapsible
     }
