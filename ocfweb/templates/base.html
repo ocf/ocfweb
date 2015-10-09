@@ -81,9 +81,12 @@
                         {% if lab_is_open %}
                             <strong>Lab Currently Open</strong>
                         {% else %}
-                            <strong>Lab Currently Closed</strong> Hours:
+                            <strong>Lab Currently Closed</strong>
                         {% endif %}
                         <span class="nowrap">
+                            {% if not lab_is_open %}
+                                Hours:
+                            {% endif %}
                             {{current_lab_hours|lab_hours_time}}
                             on {{current_lab_hours|lab_hours_day_and_holiday}}
                             <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
@@ -113,7 +116,7 @@
         <div class="footer ocf-footer">
             <div class="ocf-footer-top">
                 <div class="container">
-                    <p class="text-center">OCF &hearts; Linux, Python, Puppet, Ruby, and Free/Open-Source Software. Sound like you? <a href="https://hello.ocf.berkeley.edu/">Join the staff team!</a></p>
+                    <p class="text-center">OCF &hearts; Linux, Python, Puppet, Ruby, and Free/Open-Source Software. <span class="nowrap">Sound like you? <a href="https://hello.ocf.berkeley.edu/">Join the staff team!</a></span></p>
                 </div>
             </div>
 

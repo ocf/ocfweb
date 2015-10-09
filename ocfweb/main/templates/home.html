@@ -75,10 +75,10 @@
         <div class="ocf-hours">
             {% for hour in hours %}
                 <div class="ocf-hour row {% cycle 'odd' 'even' %}">
-                    <div class="col-sm-3 ocf-hour-title">
+                    <div class="col-sm-5 col-md-3 ocf-hour-title">
                         {{hour.weekday}}<br />
                     </div>
-                    <div class="col-sm-9 ocf-hour-hours">
+                    <div class="col-sm-7 col-md-9 ocf-hour-hours">
                         {% if hour == today and lab_status.force_lab_closed %}
                             Temporarily Closed
                         {% else %}
