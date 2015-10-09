@@ -1,7 +1,11 @@
 {% if html %}
+<div class="dummy">
   <div class="ocf-doc-toc">
     {% if collapsible %}
-        <a data-toggle="collapse" data-target="#toc" class="btn btn-lg">Table of Contents</a>
+        <a data-toggle="collapse" data-target="#toc" class="doc-collapse-toggle collapsed">
+          <span class="glyphicon" aria-hidden="true"></span>
+          Table of Contents
+        </a>
         <div id="toc" class="collapse">
           {{html|safe}}
         </div>
@@ -10,4 +14,5 @@
         {{html|safe}}
     {% endif %}
   </div>
+</div>
 {% endif %}
