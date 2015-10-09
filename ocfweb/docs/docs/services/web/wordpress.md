@@ -2,6 +2,15 @@
 
 WordPress is a popular CMS (content management system) on the Web.
 
+OCF's [[web hosting|doc services/web]] supports local WordPress installations,
+and groups using WordPress are eligible for [[virtual hosting|doc
+services/vhost]] (mygroup.berkeley.edu names).
+
+Instructions for using WordPress are provided below; you can also [[drop by
+during staff hours|staff-hours]] for in-person assistance.
+
+
+## Installing WordPress
 
 The easiest way to set up WordPress is via [[SSH|doc services/shell]]. Some simple
 instructions:
@@ -17,8 +26,10 @@ instructions:
 4. Go to your web directory and download WordPress by entering these lines
    individually:
 
-        cd ~/public_html
-        wp core download
+   ```shell
+   cd ~/public_html
+   wp core download
+   ```
 
    This will download the latest version of WordPress into your web directory
    using [wp-cli](http://wp-cli.org/).
@@ -36,18 +47,11 @@ instructions:
    * **Database Host:** `mysql`
    * **Table Prefix:** Anything you want (the default `wp_` is fine)
 
+Your WordPress installation is now ready! You can log in using the username and
+password you created and start configuring your site.
 
-The database password used by WordPress is recorded in the WordPress
-configuration file `wp-config.php` on the line that looks like
 
-    define('DB_PASSWORD', 'password_here');
-
-If you ever need your password back, you can always find where WordPress is
-installed (usually `~/public_html` or `~/public_html/wordpress`) and open
-`wp-config.php` in an editor or get the password over SSH like so:
-
-    cat ~/path/to/wordpress/wp-config.php | grep DB_PASSWORD
-
+## Migrating from WordPress.com to OCF
 
 If you already have a site hosted at WordPress.com and you'd like to move it to
 OCF web hosting, for example, to become eligible for [[virtual
@@ -79,14 +83,108 @@ Further details can be found at [the support page by WordPress.com][1].
 [1]: https://en.support.wordpress.com/moving-to-a-self-hosted-wordpress-site/
 
 
+## Frequently Asked Questions
+
+### Jetpack plugin not working
+
 The Jetpack plugin as well as several others require a publicly accessible
 XML-RPC file, which is not public by default. Before you can install Jetpack,
 you need to add the following lines to the file `.htaccess` in your WordPress
 folder:
 
-    <Files "xmlrpc.php">
-      order allow, deny
-      allow from all
-    </Files>
+```apache
+<Files "xmlrpc.php">
+  order allow, deny
+  allow from all
+</Files>
+```
 
 If `.htaccess` doesn't exist, create it and add the above lines.
+
+
+### I forgot my admin password and can't log in
+
+First, try using the "Forgot Password" feature on your site. You can find a
+link from the login page.
+
+If you're not able to recover your password via email, you can use
+[wp-cli][wp-cli] instead, using the instructions below. (If you're not
+comfortable following these instructions, consider coming in to [[staff
+hours|staff-hours]] instead.
+
+
+1. Go to our [web-based SSH client](https://ssh.ocf.berkeley.edu/) and sign in
+   with your username and password.
+
+2. Change directory to your WordPress installation (probably `~/public_html`,
+   unless you changed it):
+
+   ```shell
+   cd ~/public_html
+   ```
+
+3. Figure out your username using the command `wp user list`. You should see output like the below:
+
+   ```shell
+   $ wp user list
+   +----+------------+--------------+---------------+
+   | ID | user_login | display_name | roles         |
+   +----+------------+--------------+---------------+
+   | 1  | admin      | Your Name    | administrator |
+   +----+------------+--------------+---------------+
+   ```
+
+4. Reset your password using the username given above.
+
+   ```
+   $ wp user update admin --user_pass=new_password
+   ```
+
+   (Replace `admin` in the command above with your real username, and
+   `new_password` with your new password.)
+
+
+### I forgot my MySQL (database) password
+
+The database password used by WordPress is recorded in the WordPress
+configuration file `wp-config.php` on the line that looks like
+
+```php
+define('DB_PASSWORD', 'password_here');
+```
+
+If you ever need your password back, you can always find where WordPress is
+installed (usually `~/public_html` or `~/public_html/wordpress`) and open
+`wp-config.php` in an editor or get the password over SSH like so:
+
+```shell
+cat ~/path/to/wordpress/wp-config.php | grep DB_PASSWORD
+```
+
+
+### My site URL is configured incorrectly
+
+If your site URL is configured incorrectly, you may have issues such as being
+unable to log in or being caught in a redirect loop.
+
+If that's the case, you can fix it by:
+
+1. Go to our [web-based SSH client](https://ssh.ocf.berkeley.edu/) and sign in
+   with your username and password.
+
+2. Change directory to your WordPress installation (probably `~/public_html`,
+   unless you changed it):
+
+   ```shell
+   cd ~/public_html
+   ```
+
+3. Run the following commands, substituting the correct URL for `example.com`:
+
+   ```shell
+   $ wp option update home 'http://example.com'
+   $ wp option update siteurl 'http://example.com'
+   ```
+
+
+[wp-cli]: http://wp-cli.org/
