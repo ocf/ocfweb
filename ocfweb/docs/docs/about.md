@@ -39,7 +39,7 @@ in-person consulting with our volunteer staff members, as well as online
 sources of information about computing on the Berkeley campus and how to use
 the available resources.  Additionally, the OCF has conducted career fairs in
 the past with its sister organization, the [Computer Science Undergraduate
-Association][csua]
+Association][csua].
 
 Policies for this cluster and decisions for the OCF organization are made
 by the OCF Board of Directors, a group of students elected each semester

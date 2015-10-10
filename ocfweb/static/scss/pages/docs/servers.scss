@@ -1,9 +1,9 @@
 @import '../../ocf';
 
 $color-server: #d940cd;
-$color-desktop: #f8206c;
-$color-printer: #ece4d5;
-$color-networking: #15495d;
+$color-desktop: #f8206c; // Debian color, but lighter. Somehow I thought of this.
+$color-printer: #ece4d5; // Looks kinda like the color of the printer
+$color-networking: #15495d; // Cisco color
 
 .page-doc-staff-backend-servers {
     .device {
