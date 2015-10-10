@@ -32,5 +32,8 @@ linters:
     SingleLinePerSelector:
         enabled: false
 
+    HexLength:
+        enabled: false
+
     HexNotation:
         enabled: false

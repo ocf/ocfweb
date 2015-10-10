@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block hero %}{% endblock %}
+{% block container %}
+    <div class="ocf-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2 ocf-penguin-holder hidden-xs">
+                    <img src="{% static 'img/about/penguin.svg' %}" width="100%" />
+                </div>
+                <div class="col-sm-10">
+                    <img style="float: left; margin-right: 20px; margin-bottom: 10px;" class="visible-xs" src="{% static 'img/about/penguin.svg' %}" width="90" />
+                    <h1>What is the Open Computing Facility?</h1>
+                    <p>We're a student organization dedicated to providing free computing for all UC Berkeley students, faculty, and staff.</p>
+                    <p>We run a <a href="{% url 'doc' 'services/lab' %}">super awesome computer lab</a> on southside, have a <a href="{% url 'doc' 'staff/backend/servers' %}">wicked set of servers</a> for staff to play on, and provide <a href="{% url 'doc' 'services' %}">cool services</a> to the Berkeley community.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ocf-meeting">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Join us at our weekly Tuesday meetings!</h2>
+                    <p>We meet every week to talk tech and make decisions. During the first meeting, we'll spend time talking about what the OCF is and why it's awesome.</p>
+                    <p>
+                        <strong style="font-size: 18px;">Sound interesting?</strong><br />
+                        Drop by and say hello, or <a href="{% url 'doc' 'contact' %}">get in touch</a>!
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <div class="ocf-button-holder">
+                        <h2>OCF Board of Directors Meetings</h2>
+                        <p>OCF Staff meet to discuss technology and to make decisions.</p>
+                        <p>Drop-in visitors are always welcome, especially those interested in joining the staff team!</p>
+                        <p><strong>When:</strong> Every Tuesday at 7:00 p.m.</p>
+                        <p><strong>Where:</strong> 380 Soda Hall</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ocf-services">
+        <div class="container">
+            <div class="row">
+                <h2>OCF staff help to provide cool services to the Berkeley community.</h2>
+            </div>
+            <div class="row">
+                <div>
+                    <div class="col-sm-4">
+                        <p><img src="{% static 'img/about/web.png' %}" alt="web hosting" /></p>
+                        <h3>Web &amp; Email Hosting</h3>
+                        <p>We provide free web and email hosting to our more than 30,000 members, both students and student groups.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><img src="{% static 'img/about/ssh.png' %}" alt="shell access" /></p>
+                        <h3>UNIX Shell Accounts</h3>
+                        <p>All members get their own shell account on our powerful Debian-based servers.<br />(Staff get their own private VMs!)</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><img src="{% static 'img/about/lab.png' %}" alt="computer lab" /></p>
+                        <h3>Computer Lab &amp; Free Printing</h3>
+                        <p>Our computer lab has free printing, dual monitors, mechanical keyboards, and blazing fast computers running Linux!</p>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ocf-lab">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <img src="{% static 'img/about/server-lab.png' %}" alt="servers and lab" />
+                </div>
+                <div class="col-md-5">
+                    <h2>We have a spiffy computer lab on southside.</h2>
+                    <h3><a href="https://accounts.ocf.berkeley.edu/request-account">Create an account</a> and drop by!</h3>
+                    <p>Our computer lab, located in <a href="{% url 'doc' 'services/lab' %}">6A Hearst Gym</a>, features dual monitors, mechanical keyboards, free printing, and super-fast Haswell i7's, all running Debian GNU/Linux.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ocf-logos">
+        <div class="container">
+            <div class="row">
+                <h2>Our lab and servers run free and open-source software.</h2>
+                <p>
+                    <img src="{% static 'img/about/logos/linux.png' %}" alt="linux" />
+                    <img src="{% static 'img/about/logos/debian.png' %}" alt="debian" />
+                    <img src="{% static 'img/about/logos/puppet.png' %}" alt="puppet" />
+                    <img src="{% static 'img/about/logos/python.png' %}" alt="python" />
+                    <img src="{% static 'img/about/logos/apache.png' %}" alt="apache" />
+                    <img src="{% static 'img/about/logos/mysql.png' %}" alt="mysql" />
+                    <img src="{% static 'img/about/logos/xfce.png' %}" alt="xfce" />
+                    <img src="{% static 'img/about/logos/vim.png' %}" alt="vim" />
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ocf-please">
+        <div class="container">
+            <div class="row">
+                <h2>Joining the OCF is an awesome way to learn!</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>We love talking tech and learning new things.</h3>
+                    <p>We use our weekly board meetings and staff hours not just to make decisions, but also to learn more about *nix and free software.</p>
+                </div>
+
+                <div class="col-md-4">
+                    <h3>We're totally open and super-inclusive!</h3>
+                    <p>Our members have a <em>wide</em> range of majors and technical backgrounds. There are tons of ways to learn and have fun!</p>
+                </div>
+
+                <div class="col-md-4">
+                    <h3>We've got a perfect sandbox to poke around.</h3>
+                    <p>In addition to our powerful servers and desktops, staff get access to their own private server to hoze.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ocf-first">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>We meet every Tuesday at 7:00 p.m. in 380 Soda.</h2>
+                    <h3>We hope to see you there!</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer-top %}{% endblock %}
