@@ -11,7 +11,7 @@ More specifically, we have a [[list of services|doc services]].
 
 The largest(\*) student organization on campus (\*by membership count). OCF is completely administered and operated by student volunteers ("staff"). [[About the OCF|doc about]].
 
-Interested in [joining staff](https://hello.ocf.berkeley.edu/)? Feel free to attend our meetings or [[contact us|doc contact]] by email.
+Interested in [[joining staff|about-staff]]? Feel free to attend our meetings or [[contact us|doc contact]] by email.
 
 #### Where is the lab? What are the hours?
 
@@ -23,7 +23,7 @@ See [[Join the OCF|doc membership]].
 
 #### How do I join [[OCF staff|doc staff]]?
 
-Check out [our staff recruitment website](https://hello.ocf.berkeley.edu)!
+Check out [[our staff recruitment website|about-staff]]!
 
 #### It's been a week since I requested an account, what happened!
 

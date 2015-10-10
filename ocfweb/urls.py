@@ -45,7 +45,7 @@ urlpatterns = [
     url(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(reverse('doc', args=('faq',)), permanent=True)),
     url(r'^OCF/officers_.*\.s?html$', lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True)),
     url(r'^OCF/staff/how-to-join\.shtml$',
-        lambda _: redirect('https://hello.ocf.berkeley.edu/', permanent=True)),
+        lambda _: redirect(reverse('about-staff'), permanent=True)),
 
     url('^docs', include(docs)),
 ]

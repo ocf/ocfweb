@@ -4,7 +4,7 @@
 > Please conserve our valuable volunteer manpower by **making sure your
 > question isn't already answered in our [[Frequently asked questions|doc faq]]**.
 >
-> *Interested in [joining staff](https://hello.ocf.berkeley.edu/)? Feel free to
+> *Interested in [[joining staff|about-staff]]? Feel free to
 > attend our meetings or contact us by email!*
 
 There are several ways to contact the student volunteers who keep the OCF
