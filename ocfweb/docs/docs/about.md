@@ -46,6 +46,7 @@ by the OCF Board of Directors, a group of students elected each semester
 by the OCF membership.  The Board meetings, held at least once every two
 weeks when classes are in session, are open to the public and provide a
 chance for any user to express their concerns or opinions about the OCF.
+[Minutes of previous meetings][minutes] are also available online.
 
 ## How to find us
 
@@ -64,3 +65,4 @@ organization and this website.
 [decal]: http://decal.ocf.berkeley.edu
 [csua]: http://csua.berkeley.edu
 [map]: http://status.ocf.berkeley.edu/2012/06/moving-to-hearst-gym.html
+[minutes]: https://www.ocf.berkeley.edu/~staff/bod/
