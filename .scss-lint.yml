@@ -28,3 +28,9 @@ linters:
     # don't want to force using `//` comments everywhere
     Comment:
         enabled: false
+
+    SingleLinePerSelector:
+        enabled: false
+
+    HexNotation:
+        enabled: false

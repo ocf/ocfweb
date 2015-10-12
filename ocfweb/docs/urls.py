@@ -8,6 +8,7 @@ from ocfweb.docs.doc import Document
 from ocfweb.docs.markdown_based import get_markdown_docs
 from ocfweb.docs.views.hosting_badges import hosting_badges
 from ocfweb.docs.views.index import docs_index
+from ocfweb.docs.views.lab import lab
 from ocfweb.docs.views.servers import servers
 
 
@@ -17,6 +18,7 @@ DOCS = {
         [
             Document(name='/staff/backend/servers', title='Servers', render=servers),
             Document(name='/services/vhost/badges', title='Hosting badges', render=hosting_badges),
+            Document(name='/services/lab', title='Computer lab', render=lab),
         ],
         get_markdown_docs(),
     )

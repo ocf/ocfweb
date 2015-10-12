@@ -26,7 +26,14 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-8 ocf-content-block">
+
         {{lab_status.banner_html | safe}}
+
+        <a href="{% url 'doc' 'services/lab' %}" class="update-banner">
+            <h4>Lab hours have been extended!</h4>
+            <p>Click here to see the updated hours.</p>
+        </a>
+
         <p>
             The Open Computing Facility is an all-volunteer student
             organization located at the University of California, Berkeley.
@@ -82,7 +89,7 @@
                         {% if hour == today and lab_status.force_lab_closed %}
                             Temporarily Closed
                         {% else %}
-                            {{hour | lab_hours_time}}
+                            {{hour.hours | lab_hours_time}}
                             {% if hour.holiday %}
                                 ({{hour.holiday}})
                             {% endif %}
