@@ -11,8 +11,8 @@ def lab_hours_day_and_holiday(hours):
 
 
 @register.filter
-def lab_hours_time(hours):
-    if None not in [hours.open, hours.close]:
+def lab_hours_time(day):
+    if day.hours:
         def format_hour(hour):
             """Format an hour with am / pm."""
             if hour == 0:
@@ -24,6 +24,9 @@ def lab_hours_time(hours):
             else:
                 return str(hour % 12) + 'pm'
 
-        return '{}–{}'.format(format_hour(hours.open), format_hour(hours.close))
+        return ',\xa0\xa0'.join(  # two non-breaking spaces
+            '{}–{}'.format(format_hour(hours.open), format_hour(hours.close))
+            for hours in day.hours
+        )
     else:
         return 'Closed All Day'

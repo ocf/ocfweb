@@ -83,6 +83,9 @@
                             Temporarily Closed
                         {% else %}
                             {{hour | lab_hours_time}}
+                            {% if hour.holiday %}
+                                ({{hour.holiday}})
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

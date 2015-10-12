@@ -84,7 +84,7 @@
                             <strong>Lab Currently Closed</strong>
                         {% endif %}
                         <span class="nowrap">
-                            {% if not lab_is_open %}
+                            {% if not lab_is_open and not current_lab_hours.closed_all_day %}
                                 Hours:
                             {% endif %}
                             {{current_lab_hours|lab_hours_time}}
