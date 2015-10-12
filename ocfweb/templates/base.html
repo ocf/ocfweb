@@ -2,6 +2,10 @@
 {% load lab_hours %}
 
 <!doctype html>
+<!--
+      Think this site is hideous? We could use you help!
+      More info at {{join_staff_url}} :-)
+-->
 <html class="{{base_css_classes}}">
     <head>
         <meta charset="utf-8">
@@ -48,7 +52,16 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="https://accounts.ocf.berkeley.edu/request-account">Join</a></li>
-                        <li><a href="{% url 'doc' 'about' %}">About Us</a></li>
+                        <li class="dropdown">
+                            <a href="{% url 'doc' 'about' %}" class="dropdown-toggle" data-toggle="dropdown">
+                                About Us <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url 'doc' 'about' %}">Our Organization</a></li>
+                                <li><a href="{% url 'about-staff' %}">Joining the Staff Team</a></li>
+                            </ul>
+                        </li>
 
                         <li class="dropdown">
                             <a href="{% url 'doc' 'services' %}" class="dropdown-toggle" data-toggle="dropdown">
@@ -109,65 +122,71 @@
             {% endif %}
         {% endblock %}
 
+        {% block container %}
         <div class="ocf-content container">
             {% block content %}{% endblock %}
         </div>
+        {% endblock %}
 
-        <div class="footer ocf-footer">
-            <div class="ocf-footer-top">
+        {% block footer %}
+            <div class="footer ocf-footer">
+                {% block footer-top %}
+                    <div class="ocf-footer-top">
+                        <div class="container">
+                            <p class="text-center">OCF &hearts; Linux, Python, Puppet, Ruby, and Free/Open-Source Software. <span class="nowrap">Sound like you? <a href="{% url 'about-staff' %}">Join the staff team!</a></span></p>
+                        </div>
+                    </div>
+                {% endblock %}
+
                 <div class="container">
-                    <p class="text-center">OCF &hearts; Linux, Python, Puppet, Ruby, and Free/Open-Source Software. <span class="nowrap">Sound like you? <a href="https://hello.ocf.berkeley.edu/">Join the staff team!</a></span></p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h5>About the OCF</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url 'doc' 'about' %}">Overview</a></li>
+                                <li><a href="{% url 'doc' 'about/officers' %}">Current Officers</a></li>
+                                <li><a href="{% url 'doc' 'docs' %}">Official Documents</a></li>
+                                <li><a href="https://www.ocf.berkeley.edu/~staff/bod/">Board Meeting Minutes</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <h5>Account Tools</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="https://accounts.ocf.berkeley.edu/request-account">Join the OCF</a></li>
+                                <li><a href="https://accounts.ocf.berkeley.edu/change-password">Reset Password</a></li>
+                                <li><a href="https://accounts.ocf.berkeley.edu/commands">Manage My Account</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <h5>Services</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url 'doc' 'services/lab' %}">Computer Lab &amp; Printing</a></li>
+                                <li><a href="{% url 'doc' 'services/web' %}">Web Hosting</a></li>
+                                <li><a href="{% url 'doc' 'services/mail' %}">Email Hosting</a></li>
+                                <li><a href="{% url 'doc' 'services/shell' %}">SSH/Remote Shell</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <h5>Help and Support</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="http://status.ocf.berkeley.edu/">Status Blog</a></li>
+                                <li><a href="{% url 'docs' %}">User Documentation</a></li>
+                                <li><a href="{% url 'doc' 'staff' %}">Staff Documentation</a></li>
+                                <li><a href="{% url 'doc' 'contact' %}">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="ocf-copyright">
+                        <p>The Open Computing Facility is run entirely by student volunteers.</p>
+                        <p>Copyright &copy; 1989&ndash;{% now 'Y' %} Board of Directors of the Open Computing Facility</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h5>About the OCF</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="{% url 'doc' 'about' %}">Overview</a></li>
-                            <li><a href="{% url 'doc' 'about/officers' %}">Current Officers</a></li>
-                            <li><a href="{% url 'doc' 'docs' %}">Official Documents</a></li>
-                            <li><a href="https://www.ocf.berkeley.edu/~staff/bod/">Board Meeting Minutes</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <h5>Account Tools</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="https://accounts.ocf.berkeley.edu/request-account">Join the OCF</a></li>
-                            <li><a href="https://accounts.ocf.berkeley.edu/change-password">Reset Password</a></li>
-                            <li><a href="https://accounts.ocf.berkeley.edu/commands">Manage My Account</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <h5>Services</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="{% url 'doc' 'services/lab' %}">Computer Lab &amp; Printing</a></li>
-                            <li><a href="{% url 'doc' 'services/web' %}">Web Hosting</a></li>
-                            <li><a href="{% url 'doc' 'services/mail' %}">Email Hosting</a></li>
-                            <li><a href="{% url 'doc' 'services/shell' %}">SSH/Remote Shell</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <h5>Help and Support</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="http://status.ocf.berkeley.edu/">Status Blog</a></li>
-                            <li><a href="{% url 'docs' %}">User Documentation</a></li>
-                            <li><a href="{% url 'doc' 'staff' %}">Staff Documentation</a></li>
-                            <li><a href="{% url 'doc' 'contact' %}">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="ocf-copyright">
-                    <p>The Open Computing Facility is run entirely by student volunteers.</p>
-                    <p>Copyright &copy; 1989&ndash;{% now 'Y' %} Board of Directors of the Open Computing Facility</p>
-                </div>
-            </div>
-        </div>
+        {% endblock %}
 
         <!-- Hack to make browsers load glyphicons immediately.
 

@@ -1,11 +1,9 @@
 [[!meta title="Staff documentation"]]
 [[!meta template="staff_index.html"]]
 
-Find out what we're all about, and [come join us][hello]!
+Find out what we're all about, and [[come join us|about-staff]]!
 
 Feel free to attend our meetings or [[contact us|doc contact]] by email.
-
-[hello]: https://hello.ocf.berkeley.edu
 
 ### Documentation
 

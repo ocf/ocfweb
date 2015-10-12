@@ -2,9 +2,10 @@ $icon-font-path: '../fonts/bootstrap/';
 @import 'bootstrap/bootstrap';
 
 @import 'ocf';
+@import 'pages/about';
+@import 'pages/docs';
 @import 'pages/home';
 @import 'pages/staff-hours';
-@import 'pages/docs';
 
 html {
     position: relative;
@@ -69,7 +70,7 @@ h6 {
     .navbar-nav > li > a {
         @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
             padding-left: 11px;
-            padding-right: 11px;
+            padding-right: 10px;
         }
     }
 

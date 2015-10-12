@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
+from ocfweb.about.lab import lab_open_source
+from ocfweb.about.staff import about_staff
 from ocfweb.docs.urls import urlpatterns as docs
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
@@ -18,6 +20,10 @@ urlpatterns = [
     url('^$', home, name='home'),
     url('^favicon.ico$', favicon, name='favicon'),
     url('^staff-hours$', staff_hours, name='staff-hours'),
+
+    # about pages
+    url('^about/staff$', about_staff, name='about-staff'),
+    url('^about/lab/open-source$', lab_open_source, name='lab-open-source'),
 
     # hosting logos
     url(r'^images/hosted-logos/(?:index\.shtml)?$',
@@ -39,7 +45,7 @@ urlpatterns = [
     url(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(reverse('doc', args=('faq',)), permanent=True)),
     url(r'^OCF/officers_.*\.s?html$', lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True)),
     url(r'^OCF/staff/how-to-join\.shtml$',
-        lambda _: redirect('https://hello.ocf.berkeley.edu/', permanent=True)),
+        lambda _: redirect(reverse('about-staff'), permanent=True)),
 
     url('^docs', include(docs)),
 ]

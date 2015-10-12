@@ -3,6 +3,7 @@ from datetime import date
 from ipaddress import ip_address
 from ipaddress import ip_network
 
+from django.core.urlresolvers import reverse
 from ipware.ip import get_real_ip
 from ocflib.lab.hours import Day
 
@@ -33,4 +34,5 @@ def ocf_template_processor(request):
         'lab_status': get_lab_status(),
         'base_css_classes': ' '.join(get_base_css_classes(request)),
         'is_ocf_ip': is_ocf_ip(real_ip) if real_ip else True,
+        'join_staff_url': request.build_absolute_uri(reverse('about-staff')),
     }
