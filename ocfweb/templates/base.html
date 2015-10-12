@@ -87,7 +87,7 @@
                             {% if not lab_is_open and not current_lab_hours.closed_all_day %}
                                 Hours:
                             {% endif %}
-                            {{current_lab_hours|lab_hours_time}}
+                            {{current_lab_hours.hours|lab_hours_time}}
                             on {{current_lab_hours|lab_hours_day_and_holiday}}
                             <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
                         </span>

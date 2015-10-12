@@ -34,6 +34,26 @@
         }
     }
 
+    .update-banner {
+        background-color: #FFF190;
+        padding: 20px;
+        padding-top: 15px;
+        padding-bottom: 5px;
+        display: block;
+        color: black;
+        margin-bottom: 10px;
+
+        h1, h2, h3, h4, h5, h6, p {
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        &:hover {
+            background-color: #FFF5B0;
+            text-decoration: none;
+        }
+    }
+
     .google-map {
         margin-bottom: 15px;
     }
