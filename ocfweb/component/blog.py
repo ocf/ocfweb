@@ -1,6 +1,7 @@
 from collections import namedtuple
 
 import dateutil.parser
+import requests
 from lxml import etree
 
 from ocfweb.caching import ttl_cache
@@ -44,7 +45,9 @@ class Post(namedtuple('Post', [
 @ttl_cache(ttl=60)
 def get_blog_posts():
     """Parse the beautiful OCF status blog atom feed into a list of Posts."""
-    tree = etree.parse('http://status.ocf.berkeley.edu/feeds/posts/default')
+    tree = etree.fromstring(
+        requests.get('http://status.ocf.berkeley.edu/feeds/posts/default', timeout=0.1).content
+    )
     return [
         Post.from_element(post)
         for post in tree.xpath(
