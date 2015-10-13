@@ -16,6 +16,16 @@
             display: inline;
         }
 
+
+        // hack to make anchors jump to 60px above the actual header so that
+        // they aren't blocked by the fixed OCF navbar
+        &:before {
+            content: '';
+            display: block;
+            height: 60px; // height of ocf navbar
+            margin-top: -60px; // negative navbar height
+        }
+
         .anchor {
             display: none;
             font-size: 18px;
