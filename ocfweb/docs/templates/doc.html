@@ -9,6 +9,15 @@
         {% endblock %}
         {{html|safe}}
         {% block after-content %}{% endblock %}
+        {% block page-footer %}
+            <hr />
+            <p>
+                <a class="edit-this-page" href="{{doc.edit_url}}">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    Edit this Page
+                </a>
+            </p>
+        {% endblock %}
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
