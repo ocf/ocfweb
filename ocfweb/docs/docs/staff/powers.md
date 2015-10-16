@@ -73,6 +73,6 @@ The ability to write to LDAP originates in OpenLDAP configuration (`ldap:/etc/ld
 
 #### kadmin
 
-The ability to write to Kerberos originates in the Kerberos administrative ACL (`kerberos:/etc/heimdal-kdc/kadmimd.acl`):
+The ability to write to Kerberos originates in the Kerberos administrative ACL (`kerberos:/etc/heimdal-kdc/kadmind.acl`):
 
     username/admin@OCF.BERKELEY.EDU all
