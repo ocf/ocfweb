@@ -25,3 +25,12 @@ class Document(namedtuple('Document', ['name', 'title', 'render'])):
             return self.name + '/'
         else:
             return self.category
+
+    @property
+    def edit_url(self):
+        """Return a GitHub edit URL for this page."""
+        return (
+            'https://github.com/ocf/ocfweb/edit/master/ocfweb/docs/docs' +
+            self.name +
+            '.md'
+        )

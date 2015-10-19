@@ -54,6 +54,27 @@
     h6 .anchor {
         font-size: 10px;
     }
+
+    .edit-this-page {
+        display: block;
+        padding: 5px;
+        font-size: 13px;
+
+        &:hover {
+            background-color: #f7f7f7;
+            text-decoration: none;
+        }
+
+        .glyphicon {
+            font-size: 10px;
+            margin-left: 5px;
+            margin-right: 2px;
+        }
+    }
+
+    .edit-page-border {
+        margin-top: 0;
+    }
 }
 
 .doc-collapse-toggle {
