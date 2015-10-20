@@ -22,8 +22,7 @@ Request the following DNS record from the [University hostmaster](http://www.net
 ### Mail (if requested)
 
 * Add vhost: edit `~staff/vhost/vhost-mail.conf`.
-* Update vhost configuration: Run `sudo ~staff/vhost/buildvirtual-mail.sh` on sandstorm.
-* Reload vhost configuration: run `sudo service postfix reload` on sandstorm.
+* Update vhost configuration: Run `sudo ~staff/vhost/mail.sh` on sandstorm.
 
 Request the following DNS records from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/):
 
