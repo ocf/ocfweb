@@ -81,8 +81,6 @@ At least one of the following:
 
 ## Student groups, staff groups, or campus support organizations
 
-See [Group Account Policy](https://docs.ocf.berkeley.edu/wiki/Policies:General#2_Policies_governing_group_accounts) for additional restrictions.
-
 Current Cal ID and at least one of the following:
 
 * Signatory position in an active student group on [CalLink](https://callink.berkeley.edu/)
