@@ -50,9 +50,8 @@ chance for any user to express their concerns or opinions about the OCF.
 
 ## How to find us
 
-The OCF is located in the basement of Hearst Gym (see [map][map]). Normal
-hours are Monday through Friday 9AM - 6PM, Saturday 11AM
-- 6PM, and Sunday 12PM - 5PM.
+The OCF is located in the basement of Hearst Gym (see [map][map]). For hours,
+see [[here|doc services/lab]].
 
 If you need to contact OCF staff members, you may [[send us an email|doc
 contact]]
