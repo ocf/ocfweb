@@ -4,7 +4,8 @@
 {% block content %}
     <div class="ocf-content-block">
       <p>At the OCF, there are three physical servers whose job is to host virtual servers. These physical servers are hypervisors running QEMU and KVM. The servers which people see on a daily basis, like the login server, the web server, the print server, and things like that are all virtual machines hosted on these hypervisors.</p>
-      <p>Below is a (non-exhaustive) list of servers and other computers at the OCF.  VMs are grouped under the hypervisor hosting them.  </p>
+      <p>Below is a (non-exhaustive) list of servers and other computers at the OCF.  VMs are grouped under the hypervisor hosting them.</p>
+      <p>Additional servers can be found in the file <tt>~staff/unlisted-servers</tt> on NFS.</p>
     </div>
 
     <div id="serverlist" style="padding: 0% 5%">
@@ -43,16 +44,6 @@
                     <span class="hostname">anthrax</span>
                     <span class="ip">169.229.10.35</span><br>
                     <span class="desc">Postfix (OCF staff mail)</span>
-                </div>
-                <div class="hypervisor-guest">
-                    <span class="hostname">biohazard</span>
-                    <span class="ip">169.229.10.34</span><br>
-                    <span class="desc">Apphosting</span>
-                </div>
-                <div class="hypervisor-guest">
-                    <span class="hostname">blight</span>
-                    <span class="ip">169.229.10.26</span><br>
-                    <span class="desc">ikiwiki</span>
                 </div>
                 <div class="hypervisor-guest">
                     <span class="hostname">earthquake</span>
@@ -105,11 +96,6 @@
                     <span class="desc">Staff login</span>
                 </div>
                 <div class="hypervisor-guest">
-                    <span class="hostname">tsunami</span>
-                    <span class="ip">169.229.10.25</span><br>
-                    <span class="desc">SSH login</span>
-                </div>
-                <div class="hypervisor-guest">
                     <span class="hostname">typhoon</span>
                     <span class="ip">169.229.10.28</span><br>
                     <span class="desc">Request Tracker</span>
@@ -124,9 +110,19 @@
             </div>
             <div class="hypervisor-guests">
                 <div class="hypervisor-guest">
+                    <span class="hostname">biohazard</span>
+                    <span class="ip">169.229.10.34</span><br>
+                    <span class="desc">Apphosting</span>
+                </div>
+                <div class="hypervisor-guest">
                     <span class="hostname">death</span>
                     <span class="ip">169.229.10.23</span><br>
                     <span class="desc">Apache web server</span>
+                </div>
+                <div class="hypervisor-guest">
+                    <span class="hostname">tsunami</span>
+                    <span class="ip">169.229.10.25</span><br>
+                    <span class="desc">SSH login</span>
                 </div>
             </div>
         </div>
