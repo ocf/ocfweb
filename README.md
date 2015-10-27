@@ -1,6 +1,7 @@
 ocfweb
 ==========
 [![Build Status](https://jenkins.ocf.berkeley.edu/buildStatus/icon?job=ocfweb-test)](https://jenkins.ocf.berkeley.edu/job/ocfweb-test/)
+[![Coverage Status](https://coveralls.io/repos/ocf/ocfweb/badge.svg?branch=HEAD&service=github)](https://coveralls.io/github/ocf/ocfweb?branch=HEAD)
 
 The main ocf website.
 
@@ -32,7 +33,7 @@ automatically when SCSS files change.
 
 ### Running tests
 
-To run tests locally, run `make check`. Please don't push to master with
+To run tests locally, run `make test`. Please don't push to master with
 failing tests—Jenkins will refuse to deploy your code, and nobody will be able
 to deploy until fixing it.
 

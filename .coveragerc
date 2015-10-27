@@ -1,0 +1,8 @@
+[run]
+parallel = True
+branch = True
+data_file = .coverage
+
+[report]
+show_missing = True
+include = ocfweb/*
