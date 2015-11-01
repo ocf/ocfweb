@@ -1,10 +1,5 @@
 [[!meta title="Virtual hosting (group.berkeley.edu)"]]
 
-**Note: There is currently a campus-wide DNS freeze in effect, lasting until
-October 28th. Until then, we won't be able to process new virtual hosts. You
-are welcome to submit the form, but your site won't be live until after that
-date.**
-
 
 Virtual hosting allows group accounts to have their website available on a
 different domain, typically under berkeley.edu. For example, a group's site can
