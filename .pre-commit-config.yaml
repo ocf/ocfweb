@@ -1,5 +1,5 @@
--   repo: https://github.com/pre-commit/pre-commit-hooks.git
-    sha: 616c1ebd1898c91de9a0548866a59cbd9f4547f6
+-   repo: https://github.com/chriskuehl/pre-commit-hooks.git
+    sha: cd3f867cafee3488a93a13f97bf7fdab329c996e
     hooks:
     -   id: autopep8-wrapper
         language_version: python3
@@ -13,25 +13,26 @@
     -   id: debug-statements
         language_version: python3
     -   id: detect-private-key
-        exclude: (bootstrap-scss|docs|bootstrap)$
     -   id: double-quote-string-fixer
         language_version: python3
     -   id: end-of-file-fixer
+        exclude: ^ocfweb/static/fonts/bootstrap/
     -   id: flake8
         language_version: python3
     -   id: name-tests-test
     -   id: requirements-txt-fixer
     -   id: trailing-whitespace
--   repo: https://github.com/asottile/reorder_python_imports.git
-    sha: 3d86483455ab5bd06cc1069fdd5ac57be5463f10
+        exclude: ^ocfweb/static/fonts/bootstrap/
+-   repo: https://github.com/chriskuehl/reorder_python_imports.git
+    sha: 138f897f7d53c53dd4535dc377764fa3a58e310c
     hooks:
     -   id: reorder-python-imports
         language_version: python3
--   repo: https://github.com/Lucas-C/pre-commit-hooks.git
-    sha: 2f63005157f76e34303fc891ec9e9bc97d267d4a
+-   repo: https://github.com/chriskuehl/pre-commit-hooks-1.git
+    sha: cb3b03ba29a70be8ff4702429ea331cfc61b87c8
     hooks:
     -   id: remove-tabs
-        exclude: (bootstrap-scss|docs|bootstrap|Makefile|debian/rules)$
+        exclude: (Makefile|debian/rules)$
         language_version: python2.7
 -   repo: https://github.com/pre-commit/mirrors-scss-lint
     sha: 3eb13b9647543ad4d6a62c8be8a9131e3b99b96a
@@ -43,4 +44,4 @@
         language: pcre
         name: No Top-Level Headers (Markdown)
         entry: ^#\s
-        files: \.md$
+        types: [markdown]
