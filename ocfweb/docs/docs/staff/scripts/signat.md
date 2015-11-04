@@ -2,36 +2,127 @@
 
 ## Introduction
 
-Obtains a list of active student groups registered with the LEAD Center for which an OCF member or CalNet UID is a signatory.
+The `signat` script is used to look up the signatory status of people
+and student groups. This allows us to verify that the people who email
+us or come in to staff hours are really signatories for their group, and
+it also gives all the information needed to create group accounts with
+[[approve|doc staff/scripts/approve]].
 
-For signatories without OCF accounts, you can lookup CalNet UIDs in the [CalNet directory](https://calnet.berkeley.edu/directory/). However, we still recommend that signatories [[request an individual account|doc membership]].
+## How it works
 
-We require that a signatory be present (or authorize) any administrative tasks (account approval, password resets, and account enabling) for student groups registered with the LEAD Center.
+`signat` is an interface to the [`ocflib`][ocflib] functions to query
+the [CalLink API][callinkapi] for group signatories. `ocflib` is also
+used to look up UIDs and OIDs in OCF [[LDAP|doc staff/backend/ldap]] and
+names in the university's [LDAP directory service][berkeleyldap].
 
-## Technical notes
-
-This Python script queries the [CalLink API](https://wikihub.berkeley.edu/pages/viewpage.action?pageId=80479487) with a CalNet UID and parses the returned XML as a Python dictionary which is in turn output as a YAML document. For OCF usernames, the CalNet UID is obtained from [[LDAP|doc staff/backend/ldap]].
+[ocflib]: github.com/ocf/ocflib
+[callinkapi]: https://studentservices.berkeley.edu/WebServices/StudentGroupServiceV2/Service.asmx
+[berkeleyldap]: https://wikihub.berkeley.edu/display/calnet/LDAP+Directory+Service
 
 ## Usage
 
-    $ signat
-    Returns active student group information for a signatory.
-    OCF username or CalNet UID is the first and only argument.
+There are several different types of queries available through `signat`.
 
-    Required packages: python-ldap, python-yaml
+```text
+$ signat -h
+usage: signat [-h] {uid,oid,user,name,group} ...
 
-    $ signat daradib
-    46187: Open Computing Facility
-    91232: Zoroastrian Student Organization
+Find active student groups and signatories
 
-    via
-    https://apis.berkeley.edu/callink
+optional arguments:
+  -h, --help            show this help message and exit
 
-If the Zoroastrian Student Organization was requesting a group account, the CalLink organization ID to use in [[approve|doc staff/scripts/approve]] would be 91232.
+subcommands:
 
-    $ signat 872544
-    46187: Open Computing Facility
-    91232: Zoroastrian Student Organization
+  {uid,oid,user,name,group}
+    uid                 Look up the signatory status of a person by CalNet UID
+    oid                 Look up the signatories of a group by CalLink OID
+    user                Look up the signatory status of an OCF user
+    name                Look up the signatory status of a person by name
+    group               Look up the signatories of a group by group name
+```
 
-    via
-    https://apis.berkeley.edu/callink
+`group` and `name` are the easiest queries to use when a group or
+signatory doesn't already have an OCF account. These perform a keyword
+search for people or groups by name.
+
+```text
+$ signat name N Impicciche
+Searching for people... Found 1 entry.
+Searching for signatories...
+
+NICHOLAS DANIEL IMPICCICHE (1032668)
+====================================
+Group                    Accounts                       OID
+-----------------------  ---------------------------  -----
+Open Computing Facility  decal, linux, ggroup, group  46187
+
+$ signat group free
+Searching for groups... Found 2 entries.
+Searching for signatories...
+
+Free Ventures (91915)
+Group accounts: free
+=====================
+Signatory                   UID
+----------------------  -------
+KEYAN SARRAFZADEH       1004456
+DAMINI SATIJA            995579
+Jasmine Chiman STOY      995773
+AMRIT MAHADEVAN AYALUR  1027142
+
+Students for a Free Tibet at Berkeley (46707)
+Group accounts: n/a
+=============================================
+Signatory               UID
+------------------  -------
+SANGMO TENZIN ARYA  1035554
+DORJEE TASHI        1110958
+TENZING DOLMA       1027935
+```
+
+`user` looks up an OCF account and prints the signatories for a group
+account or the signatory status of an individual account.
+
+```text
+$ signat user nickimp
+NICHOLAS DANIEL IMPICCICHE (1032668)
+====================================
+Group                    Accounts                       OID
+-----------------------  ---------------------------  -----
+Open Computing Facility  decal, linux, ggroup, group  46187
+
+$ signat user free
+Free Ventures (91915)
+Group accounts: free
+=====================
+Signatory                   UID
+----------------------  -------
+KEYAN SARRAFZADEH       1004456
+DAMINI SATIJA            995579
+Jasmine Chiman STOY      995773
+AMRIT MAHADEVAN AYALUR  1027142
+```
+
+The other two queries, `uid` and `oid`, don't offer much convenience,
+but complete the spectrum of useful queries.
+
+```text
+$ signat uid 1032668
+NICHOLAS DANIEL IMPICCICHE (1032668)
+====================================
+Group                    Accounts                       OID
+-----------------------  ---------------------------  -----
+Open Computing Facility  decal, linux, ggroup, group  46187
+
+$ signat oid 91915
+Free Ventures (91915)
+Group accounts: free
+=====================
+Signatory                   UID
+----------------------  -------
+KEYAN SARRAFZADEH       1004456
+DAMINI SATIJA            995579
+Jasmine Chiman STOY      995773
+AMRIT MAHADEVAN AYALUR  1027142
+```
