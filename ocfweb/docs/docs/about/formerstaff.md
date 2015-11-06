@@ -13,7 +13,7 @@ Some of the places OCF staffers have gone on to work at:
 
 ### On the Berkeley Campus
 
-* [Berkeley Multimedia Research Center](http://www.bmrc.berkeley.edu/)
+* Berkeley Multimedia Research Center
 * Center for Extreme Ultraviolet Astrophysics
 * EECS Department Technical & Computing Services (TCS)
 * [Campus Information Systems & Technology (IS&T)](http://ist.berkeley.edu/)
@@ -61,6 +61,7 @@ Some of the places OCF staffers have gone on to work at:
 * Inktomi (acquired by [Yahoo!](https://www.yahoo.com))
 * Interactive Development Environments
 * [Legato](http://www.legato.com/)
+* [LinkedIn](https://www.linkedin.com)
 * [Lookout Mobile Security](https://www.lookout.com)
 * [Massachusetts Institute of Technology](http://web.mit.edu)
 * [Microsoft](http://www.microsoft.com/)
