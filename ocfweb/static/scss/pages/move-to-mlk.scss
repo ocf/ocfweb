@@ -1,0 +1,63 @@
+@import '../ocf';
+
+$penguin-size: 2;
+
+.page-move-to-mlk {
+    body {
+        background-color: $color-green-light; // rgb(224, 255, 208);
+    }
+
+    .moving-container {
+        @extend .container;
+
+        padding-top: 30px;
+
+        h2 {
+            font-size: 42px;
+        }
+
+        h3 {
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .timeline p {
+            font-size: 16px;
+        }
+
+        .row {
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: 40px;
+
+            .col {
+                padding-left: 20px;
+                padding-right: 20px;
+                margin-top: 0;
+            }
+        }
+
+        .moving-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+        }
+
+        .moving-header {
+            @extend .moving-box;
+
+            margin-top: 40px;
+            background-image: url('../img/penguin.svg');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding-left: 300px;
+            background-size: 122px * $penguin-size 161px * $penguin-size;
+
+            p {
+                font-size: 24px;
+            }
+        }
+    }
+}
