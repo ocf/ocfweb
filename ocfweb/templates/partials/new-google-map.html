@@ -6,7 +6,7 @@ var OCF_LATITUDE = {{ocf_latitude}},
 function initMap() {
     var map = new google.maps.Map(document.getElementById('{{id}}'), {
         center: {
-            lat: OCF_LATITUDE,
+            lat: OCF_LATITUDE + 0.0005,
             lng: OCF_LONGITUDE,
         },
         zoom: 17,

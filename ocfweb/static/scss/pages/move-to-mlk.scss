@@ -12,16 +12,22 @@ $penguin-size: 2;
 
         padding-top: 30px;
 
-        h2 {
-            font-size: 42px;
-        }
-
-        h3 {
-            margin-top: 0;
-        }
-
         p {
-            font-size: 18px;
+            font-size: 16px;
+        }
+
+        @media (min-width: $screen-sm-max) {
+            h2 {
+                font-size: 42px;
+            }
+
+            h3 {
+                margin-top: 0;
+            }
+
+            p {
+                font-size: 18px;
+            }
         }
 
         .timeline p {
@@ -37,6 +43,10 @@ $penguin-size: 2;
                 padding-left: 20px;
                 padding-right: 20px;
                 margin-top: 0;
+
+                @media (max-width: $screen-xs-max) {
+                    margin-bottom: 20px;
+                }
             }
         }
 
@@ -48,15 +58,18 @@ $penguin-size: 2;
         .moving-header {
             @extend .moving-box;
 
-            margin-top: 40px;
-            background-image: url('../img/penguin.svg');
-            background-position: 10px 10px;
-            background-repeat: no-repeat;
-            padding-left: 300px;
-            background-size: 122px * $penguin-size 161px * $penguin-size;
+            @media (min-width: $screen-sm-min) {
+                background-image: url('../img/penguin.svg');
+                background-position: 10px 10px;
+                background-repeat: no-repeat;
+                padding-left: 300px;
+                background-size: 122px * $penguin-size 161px * $penguin-size;
+            }
 
-            p {
-                font-size: 24px;
+            @media (min-width: $screen-sm-max) {
+                p {
+                    font-size: 24px;
+                }
             }
         }
     }
