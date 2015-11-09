@@ -1,0 +1,39 @@
+<div class="google-map" id="{{id}}" style="width: {{width}}; height: {{height}};"></div>
+<script>
+var OCF_LATITUDE = {{ocf_latitude}},
+    OCF_LONGITUDE = {{ocf_longitude}};
+
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('{{id}}'), {
+        center: {
+            lat: OCF_LATITUDE + 0.0005,
+            lng: OCF_LONGITUDE,
+        },
+        zoom: 17,
+    });
+
+    var marker = new google.maps.Marker({
+        position: {
+            lat: OCF_LATITUDE,
+            lng: OCF_LONGITUDE,
+        },
+        map: map,
+        title: 'Open Computing Facility',
+    });
+    var infowindow = new google.maps.InfoWindow({
+        content: (
+            '<strong>Open Computing Facility</strong><br>' +
+            '171 MLK Student Union<br>' +
+            'UC Berkeley, Berkeley, 94720'
+        ),
+    });
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
+
+    {% if show_info %}
+        infowindow.open(map, marker);
+    {% endif %}
+}
+</script>
+<script async delay src="https://maps.googleapis.com/maps/api/js?key={{ocf_api_key}}&callback=initMap"></script>

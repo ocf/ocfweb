@@ -10,6 +10,7 @@ from ocfweb.docs.urls import urlpatterns as docs
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
+from ocfweb.main.move_to_mlk import move_to_mlk
 from ocfweb.main.staff_hours import staff_hours
 
 
@@ -20,6 +21,8 @@ urlpatterns = [
     url('^$', home, name='home'),
     url('^favicon.ico$', favicon, name='favicon'),
     url('^staff-hours$', staff_hours, name='staff-hours'),
+
+    url('^mlk$', move_to_mlk, name='move-to-mlk'),
 
     # about pages
     url('^about/staff$', about_staff, name='about-staff'),
