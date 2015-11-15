@@ -25,8 +25,8 @@ To be able to do this, we are always aiming to secure more resources to
 fully meet the needs of everyone in the campus community.  Our primary
 resources are our GNU/Linux workstations and servers, entirely
 administered by [[student volunteers|doc staff]].
-These resources are located within our computing lab in the basement of
-Hearst Gym.
+These resources are located within our computing lab on the ground floor of MLK
+Student Union.
 
 To help people explore the field of computing and educate them about the
 resources available, the OCF also provides a variety of educational services.
@@ -50,8 +50,8 @@ chance for any user to express their concerns or opinions about the OCF.
 
 ## How to find us
 
-The OCF is located in the basement of Hearst Gym (see [map][map]). For hours,
-see [[here|doc services/lab]].
+The OCF is located on the ground floor of MLK Student Union. For hours and a
+map, see [[here|doc services/lab]].
 
 If you need to contact OCF staff members, you may [[send us an email|doc
 contact]]
@@ -63,5 +63,4 @@ organization and this website.
 [berkeley]: http://berkeley.edu
 [decal]: http://decal.ocf.berkeley.edu
 [csua]: http://csua.berkeley.edu
-[map]: http://status.ocf.berkeley.edu/2012/06/moving-to-hearst-gym.html
 [minutes]: https://www.ocf.berkeley.edu/~staff/bod/

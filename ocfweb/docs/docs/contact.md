@@ -20,9 +20,9 @@ When contacting OCF staff, please reference
 
 ## In person
 
-The OCF lab is located on the ground level of Hearst Gym (west entrance), Room
-6A. You will need to show your student ID when you pass the Publications Center
-in Room 6.
+The OCF lab is located on the ground level of MLK Student Union (entrance on
+Lower Sproul), Room 171. You will need to show your student ID to the
+publications staff on desk when you enter the lab.
 
 OCF staff members are usually **not present** during lab open hours. To talk
 with an OCF volunteer staffer, check the [[posted staff hours|staff-hours]].
@@ -56,8 +56,8 @@ Our address is:
 
     ASUC / Open Computing Facility
     University of California, Berkeley
-    6A Hearst Gym MC 4520
-    Berkeley, CA 94720-4520
+    171 MLK Student Union
+    Berkeley, CA 94720
 
 ## Legal
 
