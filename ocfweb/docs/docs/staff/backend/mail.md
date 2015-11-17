@@ -34,19 +34,19 @@ We have
 [feedback loops](https://en.wikipedia.org/wiki/Feedback_loop_%28email%29)
 with
 
- - AOL
+ - AOL (out-of-date)
  - Comcast (out-of-date)
  - Cox (out-of-date)
  - FastMail (out-of-date)
  - Microsoft (Junk Email Reporting Agreement, 2013-03-06) (out-of-date)
  - Rackspace (out-of-date)
  - RoadRunner (out-of-date)
- - Yahoo
+ - Yahoo (out-of-date)
 
 We are whitelisted by
 
  - AOL (out-of-date)
- - [DNSWL](https://www.dnswl.org/s/?s=berkeley.edu)
+ - [DNSWL](https://www.dnswl.org/s/?s=berkeley.edu) (out-of-date)
  - Verizon (out-of-date)
 
 We are also registered with
