@@ -3,7 +3,7 @@ Description=OCF website
 
 [Service]
 User=ocfweb
-ExecStart=/usr/share/python/ocfweb/bin/gunicorn ocfweb.wsgi
+ExecStart=/usr/share/python/ocfweb/bin/gunicorn -w 12 ocfweb.wsgi
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 
