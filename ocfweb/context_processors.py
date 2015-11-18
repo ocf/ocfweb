@@ -5,14 +5,15 @@ from ipaddress import ip_network
 
 from django.core.urlresolvers import reverse
 from ipware.ip import get_real_ip
+from ocflib.constants import OCF_SUBNET_V4
 from ocflib.lab.hours import Day
 
 from ocfweb.component.lab_status import get_lab_status
 
 
 def is_ocf_ip(ip):
-    # TODO: move this to ocflib when it drops Python 3.2 support
-    return ip_address(ip) in ip_network('169.229.10.0/24')
+    # TODO: move this entire function to ocflib when it drops Python 3.2 support
+    return ip_address(ip) in ip_network(OCF_SUBNET_V4)
 
 
 def get_base_css_classes(request):
