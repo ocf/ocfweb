@@ -14,12 +14,12 @@
         </p>
 
         <h2>Logos and HTML</h2>
-        {% for badge in badges %}
-            <h4>{{badge}}</h4>
-            <p><img src="{% url 'hosting-logo' badge %}" /></p>
+        {% for badge_name, badge_url in badges %}
+            <h4>{{badge_name}}</h4>
+            <p><img src="{{badge_url}}" /></p>
             {% pygments html %}
                 <a href="https://www.ocf.berkeley.edu">
-                    <img src="{% url 'hosting-logo' badge %}"
+                    <img src="{{badge_url}}"
                         alt="Hosted by the OCF" style="border: 0;" />
                 </a>
             {% endpygments %}

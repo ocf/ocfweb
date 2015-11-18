@@ -38,6 +38,7 @@ MIDDLEWARE_CLASSES = (
     'ocfweb.middleware.errors.OcflibErrorMiddleware',
 )
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ROOT_URLCONF = 'ocfweb.urls'
 
 
