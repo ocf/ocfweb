@@ -7,7 +7,6 @@ RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
 
 test: virtualenv_run/
 	$(BIN)/coverage erase
-	$(BIN)/python install_coverage_path.py
 	COVERAGE_PROCESS_START=$(PWD)/.coveragerc \
 		$(BIN)/py.test -v tests/
 	$(BIN)/coverage combine
