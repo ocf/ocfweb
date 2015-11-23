@@ -27,6 +27,7 @@ INSTALLED_APPS = (
     'ocfweb.about',
     'ocfweb.docs',
     'ocfweb.middleware',
+    'ocfweb.stats',
 )
 
 MIDDLEWARE_CLASSES = (
