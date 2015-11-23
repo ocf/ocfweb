@@ -2,6 +2,14 @@
 PYTHON := debian/ocfweb/usr/share/python/ocfweb/bin/python
 STATIC_DIR := debian/ocfweb/usr/share/ocfweb/static
 
+# XXX: We have to unexport LDFLAGS to avoid breaking the numpy build;
+# alternatively, we can add `-shared` to LDFLAGS, but then that breaks
+# the pycrypto build.
+#
+# Simply unexporting it is probably closest to what will happen when you
+# manually pip install, so should be okay.
+unexport LDFLAGS
+
 %:
 	dh $@ --with python-virtualenv --with systemd
 
