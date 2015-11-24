@@ -1,11 +1,9 @@
 [[!meta title="Firewall"]]
 
-We use a Cisco ASA firewall provided by IST. We have two cables in our server
-room: one behind the firewall, and one not.
-
-See the [pretty good
-presentation](https://www.ocf.berkeley.edu/~staff/bod/2014/Fall/2014-09-22.pdf)
-from Fall 2014 about our networking.
+We use a Cisco ASA firewall provided by IST. We have one network port in the
+server room which is activated and behind the firewall; we have another network
+port activated in the lab behind the television which is also behind the
+firewall.
 
 
 ## Administering to the firewall
@@ -24,6 +22,9 @@ Some handy commands (first run `enable` and enter your password again):
 
   (always do this after testing your changes, or they'll revert upon restart!)
 
+(These commands are similar to the commands used for the
+[[switch|doc staff/backend/switch]].)
+
 
 ### Option 2: Using the Java GUI
 
@@ -32,3 +33,9 @@ This works best on-site, though it sometimes works using X forwarding as well.
 We have a handy script which handles downloading a recent Java and starting the
 app, located `/opt/share/utils/sbin/firewall`. It should be sufficient to just
 launch this script.
+
+
+## Automatic config diffs
+
+IST has configured [rancid](http://www.shrubbery.net/rancid/) to both back up
+and send us email diffs of the firewall's config.

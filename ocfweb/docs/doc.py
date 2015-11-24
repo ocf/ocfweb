@@ -1,9 +1,11 @@
 from collections import namedtuple
 
+from cached_property import cached_property
+
 
 class Document(namedtuple('Document', ['name', 'title', 'render'])):
 
-    @property
+    @cached_property
     def category(self):
         """Return full category path of the document.
 
@@ -11,7 +13,7 @@ class Document(namedtuple('Document', ['name', 'title', 'render'])):
         """
         return self.name.rsplit('/', 1)[0] + '/'
 
-    @property
+    @cached_property
     def category_for_sidebar(self):
         """Return the category to show similar pages for in the sidebar.
 
@@ -26,7 +28,7 @@ class Document(namedtuple('Document', ['name', 'title', 'render'])):
         else:
             return self.category
 
-    @property
+    @cached_property
     def edit_url(self):
         """Return a GitHub edit URL for this page."""
         return (
