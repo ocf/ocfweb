@@ -6,6 +6,7 @@ User=ocfweb
 ExecStart=/usr/share/python/ocfweb/bin/gunicorn -w 12 ocfweb.wsgi
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
+Environment=MATPLOTLIBRC=/etc/ocfweb
 
 [Install]
 WantedBy=multi-user.target
