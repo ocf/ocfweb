@@ -4,7 +4,7 @@
 {% block content %}
     <div class="ocf-content-block">
         <h2>Today's Lab Utilization</h2>
-        <p><img src="{% url 'daily_graph_image' %}" /></p>
+        <p><img src="{% url 'daily_graph_image' %}?date={% now 'Y-m-d' %}" /></p>
 
         <table class="table table-striped table-hover">
             <tr>

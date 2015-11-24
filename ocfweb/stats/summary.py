@@ -1,4 +1,5 @@
 from datetime import date
+from operator import attrgetter
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -15,10 +16,10 @@ def summary(request):
         'summary.html',
         {
             'title': 'Lab Statistics',
-            'desktop_profiles': [
-                UtilizationProfile.from_hostname(desktop, open_, close)
-                for desktop in sorted(list_desktops())
-            ],
+            'desktop_profiles': sorted(
+                UtilizationProfile.from_hostnames(list_desktops(), open_, close).values(),
+                key=attrgetter('hostname'),
+            ),
         },
         context_instance=RequestContext(request),
     )

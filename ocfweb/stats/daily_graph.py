@@ -60,10 +60,7 @@ def get_open_close(day):
 def get_daily_plot(day):
     """Return matplotlib plot representing a day's plot."""
     start, end = get_open_close(day)
-    profiles = [
-        UtilizationProfile.from_hostname(host, start, end)
-        for host in list_desktops(public_only=True)
-    ]
+    profiles = UtilizationProfile.from_hostnames(list_desktops(public_only=True), start, end).values()
 
     minutes = int((end - start).total_seconds() // 60)
     now = datetime.now()
