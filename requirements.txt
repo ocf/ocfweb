@@ -4,6 +4,7 @@ cracklib==2.9.3
 cycler==0.9.0
 Django==1.8.6
 django-ipware==1.1.2
+django-mathfilters==0.3.0
 dnspython3==1.12.0
 ecdsa==0.13
 gunicorn==19.3.0
