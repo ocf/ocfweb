@@ -3,6 +3,7 @@ from django.template import RequestContext
 
 
 def move_to_mlk(request):
+    1 / 0
     return render_to_response(
         'move-to-mlk.html',
         {
