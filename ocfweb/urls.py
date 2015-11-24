@@ -13,6 +13,7 @@ from ocfweb.main.hosting_logos import hosting_logo
 from ocfweb.main.move_to_mlk import move_to_mlk
 from ocfweb.main.staff_hours import staff_hours
 from ocfweb.stats.daily_graph import daily_graph_image
+from ocfweb.stats.summary import summary
 
 
 urlpatterns = [
@@ -36,7 +37,8 @@ urlpatterns = [
     url('^hosting-logos/(.*)$', hosting_logo, name='hosting-logo'),
 
     # stats
-    url(r'^stats/daily-graph/graph', daily_graph_image, name='daily_graph_image'),
+    url(r'^stats/$', summary, name='stats'),
+    url(r'^stats/daily-graph/graph$', daily_graph_image, name='daily_graph_image'),
 
     # legacy redirects
     url(r'^index\.s?html$', lambda _: redirect(reverse('home'), permanent=True)),
