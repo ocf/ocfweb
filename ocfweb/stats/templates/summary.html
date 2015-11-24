@@ -16,8 +16,8 @@
             {% for profile in desktop_profiles %}
                 <tr>
                     <td>{{profile.hostname}}</td>
-                    <td>{{profile.minutes_idle}}</td>
-                    <td>{{profile.minutes_busy}}</td>
+                    <td>{{profile.minutes_idle|floatformat:"0"}}</td>
+                    <td>{{profile.minutes_busy|floatformat:"0"}}</td>
                     <td>{{profile.minutes_busy|div:profile.total_minutes|mul:100|floatformat:"0"}}%</td>
                 </tr>
             {% endfor %}
