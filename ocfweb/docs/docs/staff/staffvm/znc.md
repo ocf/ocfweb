@@ -105,12 +105,12 @@ It's useful along with [[OCF's IRC server|doc contact/irc]].
 
 5. Reload systemd and start znc:
 
-    * `systemctl daemon-reload`
-    * `systemctl enable znc`
-    * `systemctl start znc`
+    * `sudo systemctl daemon-reload`
+    * `sudo systemctl enable znc`
+    * `sudo systemctl start znc`
 
 ZNC should now be running (and will start/restart automatically). You can see
-detailed information with `systemctl status znc`.
+detailed information with `sudo systemctl status znc`.
 
 If you enabled webadmin, you can access your server at
 `https://<your_staff_VM>.ocf.berkeley.edu:PORT/`. Make sure you use `https` or
