@@ -1,0 +1,2 @@
+# use a non-X / non-Tk backend since this is a headless app
+backend : Agg
