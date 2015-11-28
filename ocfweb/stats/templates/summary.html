@@ -3,8 +3,56 @@
 
 {% block content %}
     <div class="ocf-content-block">
-        <h2>Today's Lab Utilization</h2>
         <p><img src="{% url 'daily_graph_image' %}?date={% now 'Y-m-d' %}" /></p>
+
+        <h3>Currently in Lab</h3>
+        <p>
+            There are {{users_in_lab_count}} users in the lab currently
+            (including {{staff_in_lab|length}} staff).
+        </p>
+        {% if staff_in_lab %}
+            <ul>
+                {% for staff in staff_in_lab %}
+                    <li>{{staff.user}} on {{staff.host}} for {{staff.duration}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h3>Top Staff</h3>
+        <h4>This Semester</h4>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>User</th>
+                <th>Time</th>
+            </tr>
+
+            {% for staff in top_staff_semester %}
+                <tr>
+                    <td>{{staff.user}}</td>
+                    <td>{{staff.time}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <p>(Since the semester started on {{current_semester_start}}.)</p>
+
+        <h4>All-Time</h4>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>User</th>
+                <th>Time</th>
+            </tr>
+
+            {% for staff in top_staff_alltime %}
+                <tr>
+                    <td>{{staff.user}}</td>
+                    <td>{{staff.time}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <p>(Since records began on {{stats_epoch}}.)</p>
+
+
+        <h3>Today's Lab Utilization</h3>
 
         <table class="table table-striped table-hover">
             <tr>
