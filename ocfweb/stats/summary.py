@@ -1,4 +1,5 @@
 from datetime import date
+from datetime import datetime
 from operator import attrgetter
 
 from django.shortcuts import render_to_response
@@ -17,13 +18,25 @@ from ocfweb.stats.daily_graph import get_open_close
 
 def summary(request):
     open_, close = get_open_close(date.today())
+    now = datetime.today()
+
+    # If the lab has opened, but hasn't closed yet, only count
+    # statistics until the current time. If the lab isn't open
+    # yet, then don't count anything, and if it is closed, show
+    # statistics from when it was open during the day.
+    if now > open_ and now < close:
+        end = now
+    elif now <= open_:
+        end = open_
+    else:
+        end = close
 
     return render_to_response(
         'summary.html',
         {
             'title': 'Lab Statistics',
             'desktop_profiles': sorted(
-                UtilizationProfile.from_hostnames(list_desktops(), open_, close).values(),
+                UtilizationProfile.from_hostnames(list_desktops(), open_, end).values(),
                 key=attrgetter('hostname'),
             ),
             'current_semester_start': CURRENT_SEMESTER_START,
