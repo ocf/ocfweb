@@ -66,7 +66,11 @@
                     <td>{{profile.hostname}}</td>
                     <td>{{profile.minutes_idle|floatformat:"0"}}</td>
                     <td>{{profile.minutes_busy|floatformat:"0"}}</td>
-                    <td>{{profile.minutes_busy|div:profile.total_minutes|mul:100|floatformat:"0"}}%</td>
+                    {% if profile.total_minutes <= 0 %}
+                        <td>0%</td>
+                    {% else %}
+                        <td>{{profile.minutes_busy|div:profile.total_minutes|mul:100|floatformat:"0"}}%</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </table>
