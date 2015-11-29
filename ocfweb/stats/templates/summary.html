@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="ocf-content-block">
-        <p><img src="{% url 'daily_graph_image' %}?date={% now 'Y-m-d' %}" /></p>
+        <p><img class="img-responsive" src="{% url 'daily_graph_image' %}?date={% now 'Y-m-d' %}" /></p>
 
         <h3>Currently in Lab</h3>
         <p>
