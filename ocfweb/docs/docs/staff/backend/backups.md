@@ -8,10 +8,12 @@ We have two sources of storage for on-site backups:
   These drives serve as the primary backup location. New backups are saved
   here.
 
-* `hal:/opt/backups` (2 TiB usable; 2x 1-TiB WD RE drives in RAID 0)
+* `hal:/opt/backups` (6 TiB usable; 2x 3-TiB WD RE drives in an LVM volume group)
 
-  These drives are a secondary backup location, and are cloned daily from the
-  same location on `pandemic`.
+  This volume group provides `/dev/vg-backups/backups-mirror` which is cloned
+  daily from `/opt/backups` on pandemic, as well as
+  `/dev/vg-backups/backups-scratch`, which is scratch space for holding
+  compressed and encrypted backups while we upload them to off-site storage.
 
 ## Off-Site Backups
 
@@ -23,8 +25,10 @@ A more sophisticated scheme for off-site backups might be preferable at some
 point. Cloud-based storage is usually far too expensive (e.g. Glacier can
 easily cost thousands of dollars, see rt#253).
 
-[TODO: Re-evaluate cost with Google Nearline? But it's probably still too
-expensive.]
+We also use Google Nearline on an ad-hoc basis (i.e. we have scripts to make
+the backup, but they only upload and don't remove the old backups). They're
+not yet executed automatically and require some human care to ensure things
+work properly.
 
 ## Backup Contents
 
@@ -34,6 +38,8 @@ Backups currently include:
   * User home and web directories
   * `/opt/ocf` (some scripts and common environment settings)
 * MySQL databases (including user databases, stats, RT, print quotas)
+* Everything on GitHub (probably very unnecessary)
+* A [smattering of random files on random servers][backed-up-files]
 
 ## Backup Procedures
 
@@ -51,9 +57,9 @@ files can't be incrementally backed up, those take a whole ~2 GiB each time.)
 
 #### Request Tracker
 
-The RT database is stored in the `ocfrt` database on the MySQL host. It should
-be possible to restore RT using just the database, but nobody has tested
-restoring these.
+The RT database is stored in the `ocfrt` database on the MySQL host. It is
+possible to restore RT using just the database; in fact, simply running
+puppet is now sufficient to bring up a fully-functioning RT server.
 
 ## Ideas for backup improvements
 
@@ -95,4 +101,6 @@ Some general ideas for improving backups:
    SM, and one is in server room. This makes it easier to keep the off-site
    backup relatively recent.
 
-7. Investigate whether cloud-based is viable (probably not)
+7. Automate offsite backups to either Google Nearline or possibly Box.
+
+[backed-up-files]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/rsnapshot.conf#L53
