@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Account Commands{% endblock %}
+
+{% block content %}
+<p><strong>Note</strong>: You may find that running these commands via SSH is more convenient and secure.
+SSH also allows you access to the full range of account management tools and other services we offer.
+For more information, see <a href="http://wiki.ocf.berkeley.edu/">our documentation</a>.</p>
+
+<form action="{% url 'commands' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Run Command" />
+    <input type="reset" value="Reset" />
+</form>
+
+{% if command %}
+<hr />
+<p><emph>Command being run</emph>: <pre>{{ command }}</pre></p>
+{% endif %}
+
+<style type="text/css">
+.cmds-output, .cmds-error{
+    line-height: 1.4em;
+    font-size: 110%;
+    margin: 10px;
+    padding: 6px;
+    font-family: courier new, serif;
+}
+.cmds-output{
+    color: #111;
+    border: 1px solid #ddee99;
+    background-color: #fdfefa;
+}
+.cmds-error{
+    border:1px solid #850e0e;
+    background-color:#f55858;
+}
+</style>
+
+{% if output %}
+<div class="cmds-output">
+{{ output|linebreaks }}
+</div>
+{% endif %}
+{% if error %}
+<div class="cmds-error">
+{{ error|linebreaks }}
+</div>
+{% endif %}
+{% endblock %}
