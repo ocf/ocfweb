@@ -20,7 +20,7 @@ setup(
         'cachetools',
         'django-ipware',
         'django-mathfilters',
-        'django>=1.8,<1.8.999',
+        'django>=1.9,<1.9.999',
         'gunicorn',
         'libsass',
         'lxml',
