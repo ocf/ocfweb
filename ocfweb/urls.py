@@ -56,5 +56,5 @@ urlpatterns = [
     url(r'^OCF/staff/how-to-join\.shtml$',
         lambda _: redirect(reverse('about-staff'), permanent=True)),
 
-    url('^docs', include(docs)),
+    url('^docs/', include(docs)),
 ]
