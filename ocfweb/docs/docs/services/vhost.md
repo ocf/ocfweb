@@ -37,13 +37,7 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
 
 ### Including the OCF banner
 
-To place any of the [[Hosted by OCF banners|doc services/vhost/badges]] on your site, you can use HTML code such as the following:
-
-    <a href="https://www.ocf.berkeley.edu/">
-    <img src="https://www.ocf.berkeley.edu/images/hosted-logos/ocfbadge_mini8.png" alt="Hosted by the OCF" width="98" height="39" style="border:0" />
-    </a>
-
-The banner is required to be placed only on the home page of your site. You can also create your own OCF banner with approval from the OCF (see instructions above).
+Place any of the [[Hosted by OCF banners|doc services/vhost/badges]] on your site by copying the code onto your page. The banner is required to be placed only on the home page of your site. You can also create your own OCF banner with approval from the OCF (see instructions above).
 
 ### Including the University Student Group Disclaimer    {disclaimer}
 
