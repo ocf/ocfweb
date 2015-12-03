@@ -65,16 +65,12 @@
                 <h3>Regular Weekly Hours</h3>
                 <p>The regular OCF hours are:</p>
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <table class="table table-striped table-hover">
                             <tr><th>Sunday</th><td>{{regular_hours | getitem:SUNDAY | lab_hours_time}}</td></tr>
                             <tr><th>Monday</th><td>{{regular_hours | getitem:MONDAY | lab_hours_time}}</td></tr>
                             <tr><th>Tuesday</th><td>{{regular_hours | getitem:TUESDAY | lab_hours_time}}</td></tr>
                             <tr><th>Wednesday</th><td>{{regular_hours | getitem:WEDNESDAY | lab_hours_time}}</td></tr>
-                        </table>
-                    </div>
-                    <div class="col-sm-6">
-                        <table class="table table-striped table-hover">
                             <tr><th>Thursday</th><td>{{regular_hours | getitem:THURSDAY | lab_hours_time}}</td></tr>
                             <tr><th>Friday</th><td>{{regular_hours | getitem:FRIDAY | lab_hours_time}}</td></tr>
                             <tr><th>Saturday</th><td>{{regular_hours | getitem:SATURDAY | lab_hours_time}}</td></tr>
