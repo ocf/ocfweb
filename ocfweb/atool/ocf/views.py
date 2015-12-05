@@ -26,7 +26,7 @@ def login(request):
                     request.session['ocf_user'] = username
                     return redirect_back(request)
                 else:
-                    error = 'Authentication failed. Did you type the wrong' + \
+                    error = 'Authentication failed. Did you type the wrong ' + \
                         'username or password?'
             except ValueError as ex:
                 error = 'Authentication failed: {error}'.format(

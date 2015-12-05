@@ -26,7 +26,7 @@ def commands(request):
                 ssh.connect(CMDS_HOST, username=username,
                             password=password)
             except AuthenticationException:
-                error = 'Authentication failed. Did you type the wrong' + \
+                error = 'Authentication failed. Did you type the wrong ' + \
                     'username or password?'
 
             if not error:
