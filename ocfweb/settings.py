@@ -25,6 +25,7 @@ INSTALLED_APPS = (
     'mathfilters',
     'ocfweb',
     'ocfweb.about',
+    'ocfweb.atool',
     'ocfweb.docs',
     'ocfweb.main',
     'ocfweb.middleware',
@@ -55,6 +56,7 @@ class InvalidReferenceInTemplate(str):
     def __mod__(self, ref):
         raise TemplateSyntaxError('Invalid reference in template: {}'.format(ref))
 
+
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
     'DIRS': [],
@@ -72,6 +74,23 @@ TEMPLATES = [{
 WSGI_APPLICATION = 'ocfweb.wsgi.application'
 
 DATABASES = {}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+# on dev, we use a file-backed cache so that you don't get logged out every
+# time you update code and the server restarts.
+cache = {
+    'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+    'LOCATION': os.path.expanduser('~/atool-cache'),
+}
+
+CACHES = {  # sessions are stored here
+    'default': cache,
+    'TIMEOUT': 60 * 60 * 12,  # 12 hours
+    'OPTIONS': {
+        'MAX_ENTRIES': 1000,
+    },
+}
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Los_Angeles'
@@ -102,6 +121,9 @@ LOGGING = {
     },
 }
 
+CELERY_BROKER = 'redis://create'
+CELERY_BACKEND = 'redis://create'
+
 
 if getuser() == 'ocfweb':
     # not running in development, override options from config file
@@ -113,3 +135,10 @@ if getuser() == 'ocfweb':
 
     STATIC_URL = conf.get('django', 'static_url')
     STATIC_ROOT = conf.get('django', 'static_root')
+
+    CELERY_BROKER = conf.get('celery', 'broker')
+    CELERY_BACKEND = conf.get('celery', 'backend')
+
+    # on prod, we use an in-memory cache because we don't care about
+    # performance, memory usage, or persistence
+    cache = {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}

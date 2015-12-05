@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Error - Requested Account{% endblock %}
+
+{% block content %}
+<h1>Error Checking Status</h1>
+<p>Whoops, we aren't able to check the status of your request.</p>
+<p>No fears, though. You should receive an email once your account has been created.</p>
+<p>You could also try to <a href="{% url "request_account" %}">create the account again</a>.</p>
+{% endblock %}
