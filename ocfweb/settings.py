@@ -25,6 +25,7 @@ INSTALLED_APPS = (
     'mathfilters',
     'ocfweb',
     'ocfweb.about',
+    'ocfweb.atool',
     'ocfweb.docs',
     'ocfweb.main',
     'ocfweb.middleware',
@@ -55,6 +56,12 @@ class InvalidReferenceInTemplate(str):
     def __mod__(self, ref):
         raise TemplateSyntaxError('Invalid reference in template: {}'.format(ref))
 
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
+
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
     'DIRS': [],
@@ -73,6 +80,27 @@ WSGI_APPLICATION = 'ocfweb.wsgi.application'
 
 DATABASES = {}
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+if DEBUG:
+    # on dev, we use a file-backed cache so that you don't get logged out every
+    # time you update code and the server restarts.
+    cache = {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.expanduser('~/atool-cache'),
+    }
+else:
+    # on prod, we use an in-memory cache because we don't care about
+    # performance, memory usage, or persistence
+    cache = {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+
+CACHES = {  # sessions are stored here
+    'default': cache,
+    'TIMEOUT': 60 * 60 * 12,  # 12 hours
+    'OPTIONS': {
+        'MAX_ENTRIES': 1000,
+    },
+}
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Los_Angeles'
 USE_I18N = False
@@ -84,6 +112,8 @@ os.environ.setdefault('OCFWEB_STATIC_ROOT', '')
 STATIC_ROOT = os.environ['OCFWEB_STATIC_ROOT']
 
 X_FRAME_OPTIONS = 'DENY'
+
+USE_X_FORWARDED_HOST = True
 
 # log exceptions to stderr
 LOGGING = {
@@ -113,3 +143,6 @@ if getuser() == 'ocfweb':
 
     STATIC_URL = conf.get('django', 'static_url')
     STATIC_ROOT = conf.get('django', 'static_root')
+
+    CELERY_BROKER = conf.get('celery', 'broker')
+    CELERY_BACKEND = conf.get('celery', 'backend')

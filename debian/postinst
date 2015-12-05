@@ -9,6 +9,10 @@ debug = false
 # static assets
 static_url = https://static.ocf.berkeley.edu/
 static_root = /usr/share/ocfweb/static
+
+[celery]
+broker=redis://create
+backend=redis://create
 EOF
 fi
 
