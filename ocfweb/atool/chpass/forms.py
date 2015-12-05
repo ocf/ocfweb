@@ -18,8 +18,8 @@ def _get_accounts_signatory_for(calnet_uid):
 
     # sanity check since we don't trust CalLink API that much:
     # if >= 10 groups, can't change online, sorry
-    if len(group_accounts) < 10:
-        return group_accounts
+    assert len(group_accounts) < 10, 'should be less than 10 group accounts'
+
     return []
 
 

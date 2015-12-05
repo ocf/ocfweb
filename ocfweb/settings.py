@@ -57,11 +57,6 @@ class InvalidReferenceInTemplate(str):
         raise TemplateSyntaxError('Invalid reference in template: {}'.format(ref))
 
 
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
     'DIRS': [],
@@ -81,17 +76,13 @@ WSGI_APPLICATION = 'ocfweb.wsgi.application'
 DATABASES = {}
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-if DEBUG:
-    # on dev, we use a file-backed cache so that you don't get logged out every
-    # time you update code and the server restarts.
-    cache = {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': os.path.expanduser('~/atool-cache'),
-    }
-else:
-    # on prod, we use an in-memory cache because we don't care about
-    # performance, memory usage, or persistence
-    cache = {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+
+# on dev, we use a file-backed cache so that you don't get logged out every
+# time you update code and the server restarts.
+cache = {
+    'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+    'LOCATION': os.path.expanduser('~/atool-cache'),
+}
 
 CACHES = {  # sessions are stored here
     'default': cache,
@@ -113,8 +104,6 @@ STATIC_ROOT = os.environ['OCFWEB_STATIC_ROOT']
 
 X_FRAME_OPTIONS = 'DENY'
 
-USE_X_FORWARDED_HOST = True
-
 # log exceptions to stderr
 LOGGING = {
     'version': 1,
@@ -132,6 +121,9 @@ LOGGING = {
     },
 }
 
+CELERY_BROKER = 'redis://create'
+CELERY_BACKEND = 'redis://create'
+
 
 if getuser() == 'ocfweb':
     # not running in development, override options from config file
@@ -146,3 +138,7 @@ if getuser() == 'ocfweb':
 
     CELERY_BROKER = conf.get('celery', 'broker')
     CELERY_BACKEND = conf.get('celery', 'backend')
+
+    # on prod, we use an in-memory cache because we don't care about
+    # performance, memory usage, or persistence
+    cache = {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}

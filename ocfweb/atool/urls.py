@@ -1,37 +1,38 @@
 from django.conf.urls import url
-from django.core.urlresolvers import reverse
-from django.shortcuts import redirect
+
+from ocfweb.atool.approve.views import account_created
+from ocfweb.atool.approve.views import account_pending
+from ocfweb.atool.approve.views import request_account
+from ocfweb.atool.approve.views import wait_for_account
+from ocfweb.atool.calnet.views import calnet_login
+from ocfweb.atool.calnet.views import calnet_logout
+from ocfweb.atool.chpass.views import change_password
+from ocfweb.atool.cmds.views import commands
+from ocfweb.atool.ocf.views import login
+from ocfweb.atool.ocf.views import logout
+from ocfweb.atool.vhost.views import request_vhost
+from ocfweb.atool.vhost.views import request_vhost_success
 
 
 urlpatterns = [
-    url(r'^$', lambda _: redirect(reverse('change_password'))),
-    url(r'^internal-error/$', lambda _: 1 / 0),
-
-    url(r'^change-password/$', 'ocfweb.atool.chpass.views.change_password',
-        name='change_password'),
-    url(r'^commands/$', 'ocfweb.atool.cmds.views.commands', name='commands'),
+    url(r'^change-password/$', change_password, name='change_password'),
+    url(r'^commands/$', commands, name='commands'),
 
     # account creation
-    url(r'^request-account/$', 'ocfweb.atool.approve.views.request_account',
-        name='request_account'),
-    url(r'^request-account/wait/$', 'ocfweb.atool.approve.views.wait_for_account',
-        name='wait_for_account'),
-    url(r'^request-account/created/$', 'ocfweb.atool.approve.views.account_created',
-        name='account_created'),
-    url(r'^request-account/pending/$', 'ocfweb.atool.approve.views.account_pending',
-        name='account_pending'),
+    url(r'^request-account/$', request_account, name='request_account'),
+    url(r'^request-account/wait/$', wait_for_account, name='wait_for_account'),
+    url(r'^request-account/created/$', account_created, name='account_created'),
+    url(r'^request-account/pending/$', account_pending, name='account_pending'),
 
     # request vhost
-    url(r'^request-vhost/$', 'ocfweb.atool.vhost.views.request_vhost',
-        name='request_vhost'),
-    url(r'^request-vhost/success/$', 'ocfweb.atool.vhost.views.request_vhost_success',
-        name='request_vhost_success'),
+    url(r'^request-vhost/$', request_vhost, name='request_vhost'),
+    url(r'^request-vhost/success/$', request_vhost_success, name='request_vhost_success'),
 
     # calnet login
-    url(r'^calnet/login/$', 'ocfweb.atool.calnet.views.login', name='calnet_login'),
-    url(r'^calnet/logout/$', 'ocfweb.atool.calnet.views.logout', name='calnet_logout'),
+    url(r'^calnet/login/$', calnet_login, name='calnet_login'),
+    url(r'^calnet/logout/$', calnet_logout, name='calnet_logout'),
 
     # ocf login
-    url(r'^login/$', 'ocfweb.atool.ocf.views.login', name='login'),
-    url(r'^logout/$', 'ocfweb.atool.ocf.views.logout', name='logout')
+    url(r'^login/$', login, name='login'),
+    url(r'^logout/$', logout, name='logout')
 ]

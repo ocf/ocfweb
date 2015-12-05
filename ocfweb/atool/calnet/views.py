@@ -54,7 +54,7 @@ def _next_page_response(next_page):
             '<h1>Operation Successful</h1><p>Congratulations.</p>')
 
 
-def login(request, next_page=None):
+def calnet_login(request, next_page=None):
     next_page = request.GET.get(REDIRECT_FIELD_NAME)
     if not next_page:
         next_page = _redirect_url(request)
@@ -80,7 +80,7 @@ def login(request, next_page=None):
     )
 
 
-def logout(request, next_page=None):
+def calnet_logout(request, next_page=None):
     if 'calnet_uid' in request.session:
         del request.session['calnet_uid']
     if not next_page:

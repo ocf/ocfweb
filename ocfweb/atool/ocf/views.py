@@ -36,12 +36,12 @@ def login(request):
         form = LoginForm()
 
     return render_to_response('login.html',
-        {
-            'form': form,
-            'error': error
-        },
-        context_instance=RequestContext(request)
-    )
+                              {
+                                  'form': form,
+                                  'error': error
+                              },
+                              context_instance=RequestContext(request)
+                              )
 
 
 @login_required
