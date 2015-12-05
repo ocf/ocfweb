@@ -18,6 +18,7 @@ setup(
     install_requires=[
         'cached-property',
         'cachetools',
+        'celery[redis]',
         'django-ipware',
         'django-mathfilters',
         'django>=1.9,<1.9.999',
