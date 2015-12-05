@@ -20,7 +20,7 @@ def _get_accounts_signatory_for(calnet_uid):
     # if >= 10 groups, can't change online, sorry
     assert len(group_accounts) < 10, 'should be less than 10 group accounts'
 
-    return []
+    return group_accounts
 
 
 def get_authorized_accounts_for(calnet_uid):
