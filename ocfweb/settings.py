@@ -75,17 +75,23 @@ WSGI_APPLICATION = 'ocfweb.wsgi.application'
 
 DATABASES = {}
 
+# store sessions in the cache
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
-# on dev, we use a file-backed cache so that you don't get logged out every
-# time you update code and the server restarts.
-cache = {
-    'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-    'LOCATION': os.path.expanduser('~/atool-cache'),
-}
+# XXX: DO NOT CHANGE
+# Ensure cookies can't be read by JavaScript.
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_PATH = '/'
+SESSION_COOKIE_NAME = 'OCFWEB_SESSIONID'
 
 CACHES = {  # sessions are stored here
-    'default': cache,
+    'default': {
+        # on dev, we use a file-backed cache so that you don't get logged out
+        # every time you update code and the server restarts.
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.expanduser('~/.ocfweb-cache'),
+    },
     'TIMEOUT': 60 * 60 * 12,  # 12 hours
     'OPTIONS': {
         'MAX_ENTRIES': 1000,
@@ -139,6 +145,14 @@ if getuser() == 'ocfweb':
     CELERY_BROKER = conf.get('celery', 'broker')
     CELERY_BACKEND = conf.get('celery', 'backend')
 
-    # on prod, we use an in-memory cache because we don't care about
-    # performance, memory usage, or persistence
-    cache = {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+    # on prod, we use Redis as a cache
+    CACHES['default'] = {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://localhost:6379/0',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_DOMAIN = 'www.ocf.berkeley.edu'
