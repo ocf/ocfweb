@@ -29,3 +29,6 @@ override_dh_auto_clean:
 override_dh_auto_build:
 	# don't want to run `make`
 	@true
+
+override_dh_systemd_start:
+	dh_systemd_start --restart-after-upgrade
