@@ -21,6 +21,7 @@ setup(
         'celery[redis]',
         'django-ipware',
         'django-mathfilters',
+        'django-redis',
         'django>=1.9,<1.9.999',
         'gunicorn',
         'libsass',

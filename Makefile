@@ -45,11 +45,14 @@ watch-scss: scss virtualenv_run
 
 update-requirements:
 	$(eval TMP := $(shell mktemp -d))
-	virtualenv -p python3 $(TMP)
-	. $(TMP)/bin/activate && \
-		pip install --upgrade pip && \
-		pip install . && \
-		pip freeze | grep -v '^ocfweb==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
+	awk '/^\s*install_requires=\[$$/,/^\s*],$$/' setup.py | \
+		tail -n +2 | head -n -1 | \
+		grep -oE "'[^']+'" | \
+		cut -c 2- | rev | cut -c 2- | rev > $(TMP)/requirements.txt
+	python ./bin/venv-update -ppython3 $(TMP)/venv $(TMP)/requirements.txt
+	. $(TMP)/venv/bin/activate && \
+		pip freeze | sort | grep -vE '^(wheel|ocfweb)==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
+	rm -rf $(TMP)
 
 builddeb: autoversion
 	dpkg-buildpackage -us -uc -b
