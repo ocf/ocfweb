@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Already Requested Account{% endblock %}
+
+{% block content %}
+<p>This CalNet account has already submitted a request for approval.</p>
+<p>If you believe this is an error, please <a href="http://wiki.ocf.berkeley.edu/contact/">contact us</a> with your CalNet UID: {{ calnet_uid }}.
+
+<p>Please logout <a href="{% url 'calnet_logout' %}" id="calnet_url">here</a> if you are not automatically redirected in 5 seconds.</p>
+
+<script type="text/javascript">
+    function redirect_to_calnet(){
+        calnet_url = document.getElementById("calnet_url");
+        window.location = calnet_url;
+    }
+    window.setTimeout("redirect_to_calnet()", 5000);
+</script>
+{% endblock %}

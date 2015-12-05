@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Request Virtual Host{% endblock %}
+
+{% block content %}
+
+<h2>Request Berkeley.edu Virtual Hosting</h2>
+<p>Your group already has virtual hosting enabled. If you need help, feel free to email us at <a href="mailto:hostmaster@ocf.berkeley.edu">hostmaster@ocf.berkeley.edu</a>.</p>
+<p>You are currently logged in using the OCF account <strong>{{ user }}</strong>. If this is not the group you wish to request a virtual hosting for, please <a href="{% url 'logout' %}">log out</a> and log back in.</p>
+
+{% endblock %}

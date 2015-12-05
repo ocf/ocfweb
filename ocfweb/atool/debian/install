@@ -1,2 +1,0 @@
-conf/gunicorn.py etc/ocf-atool
-conf/ocf-atool.conf etc/ocf-atool
