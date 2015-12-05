@@ -1,0 +1,5 @@
+#DEBHELPER#
+
+if [ -f /etc/ocf-atool/ocf-atool.conf ]; then
+    chown atool:root /etc/ocf-atool/ocf-atool.conf
+fi

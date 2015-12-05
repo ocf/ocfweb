@@ -1,0 +1,15 @@
+*.pyc
+*~
+*.swp
+.tox
+*.egg-info
+build/
+debian/ocf-atool
+debian/*.log
+debian/files
+debian/substvars
+debian/ocf-atool.substvars
+debian/*.debhelper
+debian/changelog
+.version
+dist/
