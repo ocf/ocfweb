@@ -1,45 +1,42 @@
-"""Caching decorators for ocfweb.
-
-Provides the following decorators:
-
-    @lru_cache(...)
-    Arguments:
-        - maxsize (default: 1024)
-        - typed (default: True)
-
-    @ttl_cache(...)
-    Arguments:
-        - ttl (in seconds; default: 60)
-        - maxsize (default: 1024)
-        - typed (default: True)
-
-In DEBUG mode, no caching is done.
-"""
-from functools import partial
-
-import cachetools.func
+"""Caching decorators for ocfweb."""
 from django.conf import settings
+from django.core.cache import cache as django_cache
 
 
-def _make_decorator(decorator, **kwargs):
-    def real_decorator(fn):
+def cache(ttl=None):
+    """Caching function decorator, with an optional ttl.
+
+    The optional ttl (in seconds) specifies how long cache entries should live.
+    If not specified, cache entries last until the site rolls.
+
+    Uses the Django cache (which uses Redis) to achieve a shared cache across
+    worker processes.
+
+    In DEBUG mode, no caching is done.
+
+    Usage:
+
+        @cache()
+        def my_deterministic_function(a, b, c):
+            ....
+
+        @cache(ttl=60)
+        def my_changing_function(a, b, c):
+            ....
+    """
+    def outer(fn):
         if settings.DEBUG:
             return fn
-        return decorator(**kwargs)(fn)
-    return real_decorator
 
+        def inner(*args, **kwargs):
+            key = (fn, args, tuple((k, v) for k, v in sorted(kwargs.keys())))
 
-lru_cache = partial(
-    _make_decorator,
-    cachetools.func.lru_cache,
-    maxsize=1024,
-    typed=True,
-)
+            if key in django_cache:
+                return django_cache.get(key)
 
-ttl_cache = partial(
-    _make_decorator,
-    cachetools.func.ttl_cache,
-    ttl=60,
-    maxsize=1024,
-    typed=True,
-)
+            result = fn(*args, **kwargs)
+            django_cache.set(key, result, ttl)
+            return result
+
+        return inner
+    return outer

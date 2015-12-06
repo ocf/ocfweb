@@ -7,12 +7,12 @@ from ocflib.lab.hours import Day
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
 from requests.exceptions import RequestException
 
-from ocfweb.caching import ttl_cache
+from ocfweb.caching import cache
 from ocfweb.component.blog import get_blog_posts
 from ocfweb.component.lab_status import get_lab_status
 
 
-@ttl_cache(ttl=60)
+@cache(ttl=60)
 def get_staff_hours():
     return get_staff_hours_soonest_first()[:2]
 
