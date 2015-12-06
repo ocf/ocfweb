@@ -14,7 +14,7 @@ unexport LDFLAGS
 	dh $@ --with python-virtualenv --with systemd
 
 override_dh_virtualenv:
-	dh_virtualenv --python=/usr/bin/python3
+	dh_virtualenv --python=/usr/bin/python3 --extra-pip-arg='--upgrade' --preinstall=pip --preinstall=wheel
 
 	# build sass, output static files
 	$(PYTHON) setup.py build_sass
