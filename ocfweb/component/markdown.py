@@ -9,7 +9,7 @@ from pygments.lexers import get_lexer_by_name
 from pygments.lexers import guess_lexer
 from pygments.util import ClassNotFound
 
-from ocfweb.caching import lru_cache
+from ocfweb.caching import cache
 
 # tags of a format like: [[!meta title="Backups"]]
 META_REGEX = re.compile('\[\[!meta ([a-z]+)="([^"]*)"\]\]')
@@ -221,7 +221,7 @@ def text_and_meta(f):
     return text, meta
 
 
-@lru_cache()
+@cache()
 def markdown_and_toc(text):
     """Return tuple (html, toc) for the given text."""
     html = markdown(text)

@@ -17,7 +17,6 @@ setup(
     author_email='help@ocf.berkeley.edu',
     install_requires=[
         'cached-property',
-        'cachetools',
         'celery[redis]',
         'django-ipware',
         'django-mathfilters',

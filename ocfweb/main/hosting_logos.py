@@ -8,7 +8,7 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
-from ocfweb.caching import lru_cache
+from ocfweb.caching import cache
 
 
 # images not in PNG that we now redirect to PNG versions
@@ -26,7 +26,7 @@ LEGACY_IMAGES = [
 HOSTING_LOGOS_PATH = join(dirname(dirname(__file__)), 'static', 'img', 'hosting-logos')
 
 
-@lru_cache(maxsize=1000)
+@cache()
 def get_image(image):
     if not re.match(r'^[a-z0-9_\-]+\.png$', image):
         raise Http404()
