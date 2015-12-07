@@ -1,22 +1,17 @@
-import socket
-import syslog
-
-import ocflib.account.manage as manage
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from ocfweb.atool.calnet.decorators import login_required as calnet_required
 from ocfweb.atool.chpass.forms import ChpassForm
 from ocfweb.atool.chpass.forms import get_authorized_accounts_for
-from ocfweb.atool.constants import KRB_KEYTAB
+from ocfweb.atool.ocf.tasks import change_password as change_password_task
 
 
 @calnet_required
 def change_password(request):
     calnet_uid = request.session['calnet_uid']
     accounts = get_authorized_accounts_for(calnet_uid)
-
-    backend_failures = {}
+    error = None
 
     if request.method == 'POST':
         form = ChpassForm(accounts, calnet_uid, request.POST)
@@ -24,25 +19,14 @@ def change_password(request):
             account = form.cleaned_data['ocf_account']
             password = form.cleaned_data['new_password']
 
-            syslog.openlog(
-                str('webchpwd as %s (from %s) for %s' %
-                    (calnet_uid, request.META['REMOTE_ADDR'], account)))
-
             try:
-                manage.change_password_with_keytab(
-                    account,
-                    password,
-                    KRB_KEYTAB,
-                    'chpass/{}'.format(socket.getfqdn()))
-                krb_change_success = True
-                syslog.syslog('Kerberos password change successful')
-            except Exception as e:
-                print(e)
-                krb_change_success = False
-                backend_failures['KRB'] = str(e)
-                syslog.syslog('Kerberos password change failed: %s' % e)
-
-            if krb_change_success:
+                task = change_password_task.delay(account, password)
+                result = task.wait(timeout=5)
+                if isinstance(result, Exception):
+                    raise result
+            except ValueError as ex:
+                error = str(ex)
+            else:
                 # deleting this session variable will force
                 # the next change_password request to
                 # reauthenticate with CalNet
@@ -63,7 +47,7 @@ def change_password(request):
         {
             'form': form,
             'calnet_uid': calnet_uid,
-            'backend_failures': backend_failures
+            'error': error,
         },
         context_instance=RequestContext(request)
     )

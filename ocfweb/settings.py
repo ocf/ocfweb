@@ -1,5 +1,5 @@
+import configparser
 import os
-from configparser import ConfigParser
 from getpass import getuser
 
 from django.template.base import TemplateSyntaxError
@@ -130,10 +130,9 @@ LOGGING = {
 CELERY_BROKER = 'redis://create'
 CELERY_BACKEND = 'redis://create'
 
-
 if getuser() == 'ocfweb':
     # not running in development, override options from config file
-    conf = ConfigParser()
+    conf = configparser.ConfigParser()
     conf.read('/etc/ocfweb/ocfweb.conf')
 
     SECRET_KEY = conf.get('django', 'secret')
@@ -156,3 +155,15 @@ if getuser() == 'ocfweb':
 
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_DOMAIN = 'www.ocf.berkeley.edu'
+else:
+    # running in development
+
+    # try to read celery values used by approve
+    # (only works on supernova by staff members)
+    try:
+        conf = configparser.ConfigParser()
+        conf.read('/etc/ocf-create/ocf-create.conf')
+        CELERY_BROKER = conf.get('celery', 'broker')
+        CELERY_BACKEND = conf.get('celery', 'backend')
+    except configparser.NoSectionError:
+        pass

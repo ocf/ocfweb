@@ -1,11 +1,9 @@
 import ocflib.account.search as search
-import ocflib.account.validators as validators
 import ocflib.ucb.groups as groups
 from django import forms
 
 from ocfweb.atool.constants import TEST_OCF_ACCOUNTS
 from ocfweb.atool.constants import TESTER_CALNET_UIDS
-from ocfweb.atool.utils import wrap_validator
 
 
 def _get_accounts_signatory_for(calnet_uid):
@@ -48,17 +46,15 @@ class ChpassForm(forms.Form):
             'confirm_password'
         ]
 
-    # password is validated in clean since we need the username as part of the
-    # password validation (to compare similarity)
-    new_password = forms.CharField(widget=forms.PasswordInput,
-                                   label='New password',
-                                   min_length=8,
-                                   max_length=64)
+    new_password = forms.CharField(
+        widget=forms.PasswordInput,
+        label='New password',
+    )
 
-    confirm_password = forms.CharField(widget=forms.PasswordInput,
-                                       label='Confirm ~assword',
-                                       min_length=8,
-                                       max_length=64)
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput,
+        label='Confirm password',
+    )
 
     def clean_ocf_account(self):
         data = self.cleaned_data['ocf_account']
@@ -81,13 +77,3 @@ class ChpassForm(forms.Form):
             if new_password != confirm_password:
                 raise forms.ValidationError("Your passwords don't match.")
         return confirm_password
-
-    def clean(self):
-        cleaned_data = super(ChpassForm, self).clean()
-
-        # validate password (requires username to check similarity)
-        username = cleaned_data.get('ocf_account')
-        password = cleaned_data.get('new_password')
-
-        if username and password:
-            wrap_validator(validators.validate_password)(username, password)

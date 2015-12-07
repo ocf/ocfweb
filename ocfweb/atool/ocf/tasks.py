@@ -19,3 +19,4 @@ validate_then_create_account = _tasks.validate_then_create_account
 get_pending_requests = _tasks.get_pending_requests
 approve_request = _tasks.approve_request
 reject_request = _tasks.reject_request
+change_password = _tasks.change_password
