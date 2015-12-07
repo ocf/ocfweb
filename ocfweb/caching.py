@@ -2,6 +2,8 @@
 from django.conf import settings
 from django.core.cache import cache as django_cache
 
+from ocfweb.environment import ocfweb_version
+
 
 def cache(ttl=None):
     """Caching function decorator, with an optional ttl.
@@ -29,7 +31,16 @@ def cache(ttl=None):
             return fn
 
         def inner(*args, **kwargs):
-            key = (fn, args, tuple((k, v) for k, v in sorted(kwargs.keys())))
+            key = (
+                # We include the ocfweb version so that we don't use caches
+                # from a previous deployment (in case redis doesn't get restarted).
+                # The function may have changed since the old version, so we
+                # might get inconsistent results if we use its cache.
+                ocfweb_version(),
+                '{fn.__module__}#{fn.__name__}'.format(fn=fn),
+                args,
+                tuple((k, v) for k, v in sorted(kwargs.keys())),
+            )
 
             if key in django_cache:
                 return django_cache.get(key)
