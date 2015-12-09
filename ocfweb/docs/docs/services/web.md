@@ -58,5 +58,3 @@ Other flavors of the day may work but are not currently supported. We may be
 able to install additional packages on request, but will generally advise
 you to use alternatives instead (such as installing in a virtualenv or inside
 your home directory).
-
-### Documentation
