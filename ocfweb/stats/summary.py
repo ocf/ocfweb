@@ -5,6 +5,9 @@ from operator import attrgetter
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from ocflib.constants import CURRENT_SEMESTER_START
+from ocflib.lab.printing import get_maintkit
+from ocflib.lab.printing import get_toner
+from ocflib.lab.printing import PRINTERS
 from ocflib.lab.stats import list_desktops
 from ocflib.lab.stats import staff_in_lab
 from ocflib.lab.stats import STATS_EPOCH
@@ -45,6 +48,10 @@ def summary(request):
             'top_staff_alltime': top_staff_alltime()[:10],
             'top_staff_semester': top_staff_semester()[:10],
             'users_in_lab_count': users_in_lab_count(),
+            'printers': sorted(
+                (printer, get_toner(printer), get_maintkit(printer))
+                for printer in PRINTERS
+            ),
         },
         context_instance=RequestContext(request),
     )
