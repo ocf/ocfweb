@@ -3,8 +3,7 @@ PYTHON := $(BIN)/python
 SHELL := /bin/bash
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
 
-.PHONY: dev clean lint test coveralls gunicorn
-
+.PHONY: test
 test: virtualenv_run/
 	$(BIN)/coverage erase
 	COVERAGE_PROCESS_START=$(PWD)/.coveragerc \
@@ -14,9 +13,11 @@ test: virtualenv_run/
 	$(BIN)/pre-commit run --all-files
 
 # first set COVERALLS_REPO_TOKEN=<repo token> environment variable
+.PHONY: coveralls
 coveralls: virtualenv_run/ test
 	$(BIN)/coveralls
 
+.PHONY: dev
 dev: virtualenv_run/ scss
 	@echo -e "\e[1m\e[93mRunning on http://$(shell hostname -f ):$(RANDOM_PORT)/\e[0m"
 	$(PYTHON) ./manage.py runserver 0.0.0.0:$(RANDOM_PORT)
@@ -24,18 +25,22 @@ dev: virtualenv_run/ scss
 virtualenv_run/: requirements.txt requirements-dev.txt
 	python ./bin/venv-update -ppython3 virtualenv_run requirements.txt requirements-dev.txt
 
+.PHONY: clean
 clean:
 	rm -rf *.egg-info
 	rm -rf virtualenv_run
 
 # closer to prod
+.PHONY: gunicorn
 gunicorn: virtualenv_run/
 	@echo "Running on port $(RANDOM_PORT)"
 	$(BIN)/gunicorn -b 0.0.0.0:$(RANDOM_PORT) ocfweb.wsgi
 
+.PHONY: scss
 scss: virtualenv_run/
 	$(PYTHON) setup.py build_sass
 
+.PHONY: watch-scss
 watch-scss: scss virtualenv_run
 	while :; do \
 		find ocfweb/static -type f -name '*.scss' | \
@@ -43,6 +48,7 @@ watch-scss: scss virtualenv_run
 			$(PYTHON) setup.py build_sass; \
 	done
 
+.PHONY: update-requirements
 update-requirements:
 	$(eval TMP := $(shell mktemp -d))
 	awk '/^\s*install_requires=\[$$/,/^\s*],$$/' setup.py | \
@@ -54,6 +60,7 @@ update-requirements:
 		pip freeze | sort | grep -vE '^(wheel|ocfweb)==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
 	rm -rf $(TMP)
 
+.PHONY: builddeb
 builddeb: autoversion
 	dpkg-buildpackage -us -uc -b
 
