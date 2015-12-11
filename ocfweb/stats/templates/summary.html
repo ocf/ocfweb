@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% load common %}
 {% load mathfilters %}
+{% load ui_components %}
 
 {% block content %}
     <div class="ocf-content-block">
@@ -17,6 +19,22 @@
                 {% endfor %}
             </ul>
         {% endif %}
+
+        <h3>Printers</h3>
+        {% for printer, toner, maintkit in printers %}
+            <h4>{{printer}}</h4>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <p><strong>Toner: </strong> {{toner|getitem:0}} pages remaining</p>
+                    {% progress_bar label='' value=toner|getitem:0 max=toner|getitem:1 %}
+                </div>
+                <div class="col-sm-6">
+                    <p><strong>Maintenance Kit: </strong> {{maintkit|getitem:0}} pages remaining</p>
+                    {% progress_bar label='' value=maintkit|getitem:0 max=maintkit|getitem:1 %}
+                </div>
+            </div>
+        {% endfor %}
 
         <h3>Top Staff</h3>
         <h4>This Semester</h4>
