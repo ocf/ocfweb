@@ -30,21 +30,25 @@ Then, wait for your account to be created. (below)
 
 Follow this procedure to get a group account:
 
-1. **Prepare appropriate documents and identification.** See the [[membership eligibility|doc membership/eligibility]] page for information on the documents and identification you will be asked to present for verification at the time you submit your account form.
-2. **Have the authorized person come to staff hours.** For groups registered with the LEAD Center, that means a signatory. Otherwise, it's the person named in the documentation letter (and yes, you must bring documentation!).
+1. **Prepare appropriate documents and identification.** See the [[membership
+   eligibility|doc membership/eligibility]] page for information on the
+   documents and identification you will be asked to present for verification
+   at the time you submit your account form.
 
-1. **Await account creation.** (see below)
+2. **Have the authorized person come to staff hours.** For groups registered
+   with the LEAD Center, that means a signatory. Otherwise, it's the person
+   named in the documentation letter (and yes, you must bring documentation!).
+   The account will be created during your visit.
 
-## Waiting for account creation
-
-Account creation consists of "approve" and "create. "Approve" is when we record your request for an account, which uses CalNet for individual accounts. "Create", on the other hand, is done manually in batches by a Site Manager, usually every 1-2 weeks. You will receive an email when your account is created.
-
-If you have not received an email notification after one week, try logging in to our computer system.
-
-If there are issues when processing your account, you will be contacted by email.
 
 ## Account life
 
-We don't actively close accounts. You don't need to re-apply for a new account every semester, and you can still use your account after you graduate.
+We don't actively close accounts. You don't need to re-apply for a new account
+every semester, and you can still use your account after you graduate.
 
-Because the OCF is funded by students for student use, we cater our services to students, but it doesn't mean that your OCF account stops working after you stop being a student. However, we will occasionally make changes to our services based on the needs of current students and the abilities of current OCF staff, so we can't promise all OCF account privileges and services into perpetuity.
+Because the OCF is funded by students for student use, we cater our services to
+students, but it doesn't mean that your OCF account stops working after you
+stop being a student. However, we will occasionally make changes to our
+services based on the needs of current students and the abilities of current
+OCF staff, so we can't promise all OCF account privileges and services into
+perpetuity.
