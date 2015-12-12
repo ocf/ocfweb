@@ -11,7 +11,7 @@ CalNet UID), direct them to an OCF officer.
 
 ## Approving a request
 
-**The approve program can only be run from supernova.ocf.berkeley.edu**
+**The approve program can only be run from supernova.**
 
 ### Before approve
 
@@ -47,39 +47,12 @@ CalNet UID), direct them to an OCF officer.
 * Finally, check that the name on the requester's Cal ID matches who
   they say they are.
 
+
 ### Running approve
 
 When you run approve it will open a text editor; just fill out the form,
 save it, and let the requester enter a password when prompted.
 
-``` text
-$ approve
-user_name:
-group_name:
-callink_oid:
-signatory:
-email:
-# Please ensure that:
-#  * Person requesting account is signatory of group
-#    - Look up the signatory's CalNet UID on directory.berkeley.edu
-#    - Use `signat <uid>` to list groups they are a signatory for
-#  * Group does not have existing account (use checkacct)
-#  * Requested account name is based on group name
-#
-# vim: ft=yaml
-
-Pending account request:
-User Name:
-Group Name:
-CalLink OID:
-Email:
-
-Submit request? [yN] y
-...
-Account created!
-Your account was created successfully.
-You've been sent an email with more information.
-```
 
 ### Post approval
 

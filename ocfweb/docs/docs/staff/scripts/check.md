@@ -8,7 +8,7 @@ Check allows a staffer to get all the usage details of a user. Some information 
 
     $ check sanjayk
     sanjayk:*:18298:20:Sanjay Krishnan:/home/s/sa/sanjayk:/bin/tcsh
-    Member of group(s): ocf approve ocfstaff admin
+    Member of group(s): ocf ocfstaff admin
     Mail forwarded to "|procmail #sanjayk"
     CalNet UID number: 646431
     CalNet affilations: AFFILIATE-TYPE-ADVCON-ALUMNUS AFFILIATE-TYPE-ADVCON-STUDENT EMPLOYEE-TYPE-ACADEMIC STUDENT-TYPE-REGISTERED

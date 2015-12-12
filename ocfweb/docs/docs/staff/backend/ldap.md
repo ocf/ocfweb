@@ -53,7 +53,6 @@ Searching for an account:
 Searching for an account in a group:
 
     $ ldapsearch -x memberUid=sanjayk | grep cn:
-    cn: approve
     cn: ocfstaff
     cn: admin
 
