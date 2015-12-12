@@ -53,6 +53,10 @@ CalNet UID), direct them to an OCF officer.
 When you run approve it will open a text editor; just fill out the form,
 save it, and let the requester enter a password when prompted.
 
+Optionally, if you pass the OID as the only argument, the `group_name`,
+`callink_oid`, and `email` fields will get filled in automatically using
+the group's public information on CalLink.
+
 
 ### Post approval
 
