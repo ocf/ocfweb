@@ -42,8 +42,16 @@ def cache(ttl=None):
                 tuple((k, v) for k, v in sorted(kwargs.keys())),
             )
 
-            if key in django_cache:
-                return django_cache.get(key)
+            # The "get" method returns `None` both for cached values of `None`,
+            # and keys which aren't in the cache.
+            #
+            # The recommended workaround is using a sentinel as a default
+            # return value for when a key is missing. This allows us to still
+            # cache functions which return None.
+            cache_miss_sentinel = {}
+            retval = django_cache.get(key, cache_miss_sentinel)
+            if retval is not cache_miss_sentinel:
+                return retval
 
             result = fn(*args, **kwargs)
             django_cache.set(key, result, ttl)
