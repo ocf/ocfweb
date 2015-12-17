@@ -37,7 +37,8 @@ we'll cover everything you need to know here.
 ## Step 3: Install dependencies
 
 * Enter the new directory and run `dpkg-checkbuilddeps`, and install any
-  dependencies that are missing.
+  dependencies that are missing. If you'd like to install missing
+  dependencies automatically, you can use `sudo mk-build-deps -i`.
 
 
 ## Step 4: Make any changes (optional)
