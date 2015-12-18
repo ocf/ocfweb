@@ -51,10 +51,10 @@
                             {% for hour in hours_this_week %}
                                 <tr>
                                     <th>
-                                        {{hour | lab_hours_day_and_holiday}},
+                                        {{hour.weekday}},
                                         {{hour.date | date:'M d'}}
                                     </th>
-                                    <td>{{hour.hours | lab_hours_time}}</td>
+                                    <td>{{hour.hours | lab_hours_time}} {{hour | lab_hours_holiday}}</td>
                                 </tr>
                             {% endfor %}
                         </table>

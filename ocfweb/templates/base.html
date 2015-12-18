@@ -101,7 +101,7 @@
                                 Hours:
                             {% endif %}
                             {{current_lab_hours.hours|lab_hours_time}}
-                            on {{current_lab_hours|lab_hours_day_and_holiday}}
+                            on {{current_lab_hours.weekday}} {{current_lab_hours | lab_hours_holiday}}
                             <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
                         </span>
                     {% else %}
