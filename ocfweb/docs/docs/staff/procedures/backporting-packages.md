@@ -1,4 +1,4 @@
-[[!meta title="Backporting packages"]]
+[[!meta title="Backporting Debian packages"]]
 
 It seems like we often either need a newer version of a package, or to apply
 our own patch to some package. We have [an apt
@@ -74,16 +74,13 @@ similar to what Ubuntu does. The final version might look like `1.3.1-7ocf1`.
 
 Use a command like:
 
-    dch --local ocf --distribution jessie "Patched by OCF to not recursively delete $HOME on login."
+    dch --local ocf --distribution jessie 'Patched by OCF to not recursively delete $HOME on login.'
 
 
 ## Step 6: Build the package
 
-* Test that you can build the package with `fakeroot debian/rules binary`. Fix
-  any errors.
-
-* Build the package with `dpkg-buildpackage -us -uc -b`. The `.deb` file will
-  pop out in your parent directory.
+Build the package with `dpkg-buildpackage -us -uc -b`. The `.deb` file will
+pop out in your parent directory.
 
 
 ## Step 7: Test and upload to our apt repo
