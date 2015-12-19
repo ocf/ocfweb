@@ -35,6 +35,11 @@ setup(
         'python-dateutil',
     ],
     sass_manifests={
-        'ocfweb': ('static/scss',),
+        'ocfweb': ['static/scss'],
+    },
+    entry_points={
+        'console_scripts': [
+            'ocfweb-run-periodic-functions = ocfweb.bin.run_periodic_functions:main',
+        ],
     },
 )
