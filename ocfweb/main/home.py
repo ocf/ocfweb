@@ -5,26 +5,19 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from ocflib.lab.hours import Day
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
-from requests.exceptions import RequestException
 
-from ocfweb.caching import cache
+from ocfweb.caching import periodic
 from ocfweb.component.blog import get_blog_posts
 from ocfweb.component.lab_status import get_lab_status
 
 
-@cache(ttl=60)
+@periodic(60)
 def get_staff_hours():
     return get_staff_hours_soonest_first()[:2]
 
 
 def home(request):
-    try:
-        # fetching blog posts is hella flaky, we don't want to 500 if it fails
-        # TODO: do in a background job to avoid this
-        blog_posts = get_blog_posts()[:2]
-    except RequestException:
-        blog_posts = []
-
+    blog_posts = get_blog_posts()[:2]
     hours = [Day.from_date(date.today() + timedelta(days=i)) for i in range(3)]
     return render_to_response(
         'home.html',

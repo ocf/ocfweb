@@ -4,7 +4,7 @@ import dateutil.parser
 import requests
 from lxml import etree
 
-from ocfweb.caching import cache
+from ocfweb.caching import periodic
 
 
 _namespaces = {'atom': 'http://www.w3.org/2005/Atom'}
@@ -42,7 +42,7 @@ class Post(namedtuple('Post', [
         return cls(**attrs)
 
 
-@cache(ttl=60)
+@periodic(60)
 def get_blog_posts():
     """Parse the beautiful OCF status blog atom feed into a list of Posts."""
     tree = etree.fromstring(

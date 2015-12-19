@@ -15,6 +15,7 @@ from ocfweb.main.move_to_mlk import move_to_mlk
 from ocfweb.main.staff_hours import staff_hours
 from ocfweb.stats.daily_graph import daily_graph_image
 from ocfweb.stats.summary import summary
+from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
 
 
@@ -22,6 +23,7 @@ urlpatterns = [
     # test pages
     url('^_status$', lambda _: HttpResponse('ok'), name='status'),
     url('^test/session$', test_session, name='test_session'),
+    url('^test/periodic$', test_list_periodic_functions, name='test_list_periodic_functions'),
 
     url('^$', home, name='home'),
     url('^favicon.ico$', favicon, name='favicon'),
