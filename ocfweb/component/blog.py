@@ -46,7 +46,7 @@ class Post(namedtuple('Post', [
 def get_blog_posts():
     """Parse the beautiful OCF status blog atom feed into a list of Posts."""
     tree = etree.fromstring(
-        requests.get('http://status.ocf.berkeley.edu/feeds/posts/default', timeout=0.1).content
+        requests.get('http://status.ocf.berkeley.edu/feeds/posts/default', timeout=2).content
     )
     return [
         Post.from_element(post)
