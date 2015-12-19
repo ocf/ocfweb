@@ -9,6 +9,7 @@ from ocflib.constants import OCF_SUBNET_V4
 from ocflib.lab.hours import Day
 
 from ocfweb.component.lab_status import get_lab_status
+from ocfweb.environment import ocfweb_version
 
 
 def is_ocf_ip(ip):
@@ -36,4 +37,5 @@ def ocf_template_processor(request):
         'base_css_classes': ' '.join(get_base_css_classes(request)),
         'is_ocf_ip': is_ocf_ip(real_ip) if real_ip else True,
         'join_staff_url': request.build_absolute_uri(reverse('about-staff')),
+        'ocfweb_version': ocfweb_version(),
     }
