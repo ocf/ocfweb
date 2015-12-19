@@ -4,8 +4,21 @@ import subprocess
 import sys
 import time
 
+import mock
 import pytest
 import requests
+from django.core.cache import cache
+
+
+@pytest.yield_fixture(autouse=True)
+def clean_cache():
+    with mock.patch('django.conf.settings.CACHES', {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        },
+    }):
+        cache.clear()
+        yield
 
 
 @pytest.fixture(scope='session')
