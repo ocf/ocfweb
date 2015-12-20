@@ -17,7 +17,6 @@ def get_staff_hours():
 
 
 def home(request):
-    blog_posts = get_blog_posts()[:2]
     hours = [Day.from_date(date.today() + timedelta(days=i)) for i in range(3)]
     return render_to_response(
         'home.html',
@@ -31,7 +30,7 @@ def home(request):
             'staff_hours': get_staff_hours(),
             'hours': hours,
             'today': hours[0],
-            'blog_posts': blog_posts,
+            'blog_posts': get_blog_posts()[:2],
             'lab_status': get_lab_status(),
         },
         context_instance=RequestContext(request),

@@ -3,6 +3,8 @@ from collections import namedtuple
 import requests
 import yaml
 
+from ocfweb.caching import periodic
+
 
 class LabStatus(namedtuple('LabStatus', [
     'force_lab_closed',
@@ -11,6 +13,7 @@ class LabStatus(namedtuple('LabStatus', [
     pass
 
 
+@periodic(60)
 def get_lab_status():
     """Get the front page banner message from the default location."""
     try:
