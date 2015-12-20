@@ -30,6 +30,7 @@ INSTALLED_APPS = (
     'ocfweb.main',
     'ocfweb.middleware',
     'ocfweb.stats',
+    'ocfweb.test',
 )
 
 MIDDLEWARE_CLASSES = (

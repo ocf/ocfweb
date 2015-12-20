@@ -5,6 +5,7 @@ from ocfweb.caching import _make_function_call_key
 from ocfweb.caching import _make_key
 from ocfweb.caching import cache
 from ocfweb.caching import cache_lookup_with_fallback
+from ocfweb.caching import periodic
 
 
 class TestCacheLookupWithFallback:
@@ -139,3 +140,50 @@ class TestCacheKeys:
             ('herp', 'derp'),
             {'c': 'd', 'a': 'b'},
         ) == (mock_ocfweb_version, key, ('herp', 'derp'), (('a', 'b'), ('c', 'd')))
+
+
+class TestPeriodicDecorator:
+
+    def test_evaluates_function_on_miss(self):
+        """Ensure that if we miss, we call the function."""
+        m = mock.Mock(__name__='name', return_value='boop')
+        fn = periodic(60)(m)
+        assert fn() == m.return_value
+        m.assert_called_once_with()
+
+    def test_uses_cache_on_hit(self):
+        """Ensure that we actually do use the cache when available."""
+        # put it in the cache
+        m = mock.Mock(__name__='name', return_value='boop')
+        fn = periodic(60)(m)
+        fn()
+        m.assert_called_once_with()
+
+        # retrieve it from the cache
+        m.side_effect = lambda: 1 / 0  # in case it gets evaluated again...
+        result = fn()
+        assert result == m.return_value
+        assert m.call_count == 1
+
+    def test_different_functions_cached_separately(self):
+        """Ensure that we properly include function names in the cache key."""
+        # put one key in the cache for two different functions
+        m1 = mock.Mock(__name__='name', return_value='herp')
+        m2 = mock.Mock(__name__='name2', return_value='derp')
+        fn1 = periodic(60)(m1)
+        fn2 = periodic(60)(m2)
+        fn1()
+        fn2()
+
+        assert m1.call_count == 1
+        assert m2.call_count == 1
+
+        # retrieve both from the cache
+        m1.side_effect = lambda x, y: 1 / 0  # in case it gets evaluated again...
+        m2.side_effect = lambda x, y: 1 / 0  # in case it gets evaluated again...
+
+        assert fn1() == 'herp'
+        assert fn2() == 'derp'
+
+        assert m1.call_count == 1
+        assert m2.call_count == 1

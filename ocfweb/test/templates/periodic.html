@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="ocf-content-block">
+        <table class="table">
+            <tr>
+                <th>Function</th>
+                <th>Period (seconds)</th>
+                <th>TTL (seconds)</th>
+                <th>Age (seconds)</th>
+            </tr>
+
+
+            {% for periodic_function in periodic_functions %}
+                <tr>
+                    <td>{{periodic_function}}</td>
+                    <td>{{periodic_function.period}}</td>
+                    <td>{{periodic_function.ttl}}</td>
+                    <td>{{periodic_function.seconds_since_last_update}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <p>If everything is working properly, we expect age &lt; period &lt; ttl.</p>
+    </div>
+{% endblock %}
