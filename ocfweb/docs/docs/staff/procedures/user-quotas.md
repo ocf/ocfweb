@@ -45,9 +45,9 @@ instead.
 ## Raising disk quotas for every user
 
 Are you trying to raise disk quotas for every user? Congratulations on finding
-this page! The previous SM spent a couple of hours trying to figure out *how in
-the hell* our automatic disk quotas were working, despite all internet
-documentation claiming there is no way to set default disk quotas.
+this page! The SM who wrote this section spent a couple of hours trying to
+figure out *how in the hell* our automatic disk quotas were working, despite all
+internet documentation claiming there is no way to set default disk quotas.
 
 Indeed, you cannot configure a default quota. You can, however, set quotas for
 non-existent users! We've set quotas for user IDs 1000 through 99999 in order to
