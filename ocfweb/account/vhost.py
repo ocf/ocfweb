@@ -84,7 +84,7 @@ def request_vhost(request):
                     '  - User Agent: {user_agent}\n' +
                     '\n\n' +
                     '--------\n' +
-                    'Request submitted to atool ({hostname}) on {now}.\n' +
+                    'Request submitted to ocfweb ({hostname}) on {now}.\n' +
                     '{full_path}').format(
                         user=user,
                         title=attrs['cn'][0],

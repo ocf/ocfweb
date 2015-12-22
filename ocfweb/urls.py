@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 
 from ocfweb.about.lab import lab_open_source
 from ocfweb.about.staff import about_staff
-from ocfweb.atool.urls import urlpatterns as atool
+from ocfweb.account.urls import urlpatterns as account
 from ocfweb.docs.urls import urlpatterns as docs
 from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
@@ -66,7 +66,7 @@ urlpatterns = [
 
     url(r'^docs/', include(docs)),
 
-    url(r'^account/', include(atool)),
+    url(r'^account/', include(account)),
 
     url(r'^login/', include(login)),
 ]

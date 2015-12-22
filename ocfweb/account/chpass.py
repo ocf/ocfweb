@@ -4,8 +4,8 @@ from ocflib.account.search import user_exists
 from ocflib.account.search import users_by_calnet_uid
 from ocflib.ucb.groups import groups_by_student_signat
 
-from ocfweb.atool.constants import TEST_OCF_ACCOUNTS
-from ocfweb.atool.constants import TESTER_CALNET_UIDS
+from ocfweb.account.constants import TEST_OCF_ACCOUNTS
+from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
 from ocfweb.component.celery import change_password as change_password_task
 

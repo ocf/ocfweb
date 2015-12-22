@@ -12,8 +12,8 @@ from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest
 from ocflib.account.submission import NewAccountResponse
 
-from ocfweb.atool.constants import PASSWORD_ENCRYPTION_PUBKEY
-from ocfweb.atool.constants import TESTER_CALNET_UIDS
+from ocfweb.account.constants import PASSWORD_ENCRYPTION_PUBKEY
+from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
 from ocfweb.component.celery import celery_app
 from ocfweb.component.celery import validate_then_create_account

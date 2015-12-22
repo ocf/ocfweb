@@ -1,13 +1,13 @@
 from django.conf.urls import url
 
-from ocfweb.atool.chpass import change_password
-from ocfweb.atool.commands import commands
-from ocfweb.atool.register import account_created
-from ocfweb.atool.register import account_pending
-from ocfweb.atool.register import request_account
-from ocfweb.atool.register import wait_for_account
-from ocfweb.atool.vhost import request_vhost
-from ocfweb.atool.vhost import request_vhost_success
+from ocfweb.account.chpass import change_password
+from ocfweb.account.commands import commands
+from ocfweb.account.register import account_created
+from ocfweb.account.register import account_pending
+from ocfweb.account.register import request_account
+from ocfweb.account.register import wait_for_account
+from ocfweb.account.vhost import request_vhost
+from ocfweb.account.vhost import request_vhost_success
 
 
 urlpatterns = [

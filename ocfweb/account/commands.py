@@ -4,8 +4,8 @@ from django.shortcuts import render
 from paramiko import AuthenticationException
 from paramiko import SSHClient
 
-from ocfweb.atool.constants import CMDS_HOST
-from ocfweb.atool.constants import CMDS_HOST_KEYS_FILENAME
+from ocfweb.account.constants import CMDS_HOST
+from ocfweb.account.constants import CMDS_HOST_KEYS_FILENAME
 
 
 def commands(request):

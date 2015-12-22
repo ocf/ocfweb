@@ -25,7 +25,7 @@ INSTALLED_APPS = (
     'mathfilters',
     'ocfweb',
     'ocfweb.about',
-    'ocfweb.atool',
+    'ocfweb.account',
     'ocfweb.docs',
     'ocfweb.login',
     'ocfweb.main',
