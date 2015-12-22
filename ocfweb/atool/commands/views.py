@@ -3,7 +3,7 @@ from django.template import RequestContext
 from paramiko import AuthenticationException
 from paramiko import SSHClient
 
-from ocfweb.atool.cmds.forms import CommandForm
+from ocfweb.atool.commands.forms import CommandForm
 from ocfweb.atool.constants import CMDS_HOST
 from ocfweb.atool.constants import CMDS_HOST_KEYS_FILENAME
 
