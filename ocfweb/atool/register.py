@@ -1,5 +1,8 @@
 import ocflib.account.search as search
+import ocflib.account.validators as validators
+import ocflib.misc.validators
 import ocflib.ucb.directory as directory
+from django import forms
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.forms.forms import NON_FIELD_ERRORS
@@ -9,12 +12,12 @@ from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest
 from ocflib.account.submission import NewAccountResponse
 
-from ocfweb.atool.approve.forms import ApproveForm
-from ocfweb.atool.calnet.decorators import login_required as calnet_required
 from ocfweb.atool.constants import PASSWORD_ENCRYPTION_PUBKEY
 from ocfweb.atool.constants import TESTER_CALNET_UIDS
-from ocfweb.atool.ocf.tasks import celery_app
-from ocfweb.atool.ocf.tasks import validate_then_create_account
+from ocfweb.auth import calnet_required
+from ocfweb.component.celery import celery_app
+from ocfweb.component.celery import validate_then_create_account
+from ocfweb.component.forms import wrap_validator
 
 
 @calnet_required
@@ -28,7 +31,7 @@ def request_account(request):
     if calnet_uid not in TESTER_CALNET_UIDS and existing_accounts:
         return render(
             request,
-            'request-account/already-has-account.html',
+            'register/already-has-account.html',
             {
                 'calnet_uid': calnet_uid,
                 'calnet_url': settings.LOGOUT_URL
@@ -79,7 +82,7 @@ def request_account(request):
 
     return render(
         request,
-        'request-account/form.html',
+        'register/index.html',
         {
             'form': form,
             'real_name': real_name,
@@ -92,7 +95,7 @@ def wait_for_account(request):
     if 'approve_task_id' not in request.session:
         return render(
             request,
-            'request-account/wait/error-no-task-id.html', {},
+            'register/wait/error-no-task-id.html', {},
         )
 
     task = celery_app.AsyncResult(request.session['approve_task_id'])
@@ -103,7 +106,7 @@ def wait_for_account(request):
             status.extend(meta['status'])
         return render(
             request,
-            'request-account/wait/wait.html',
+            'register/wait/wait.html',
             {
                 'status': status,
             },
@@ -116,19 +119,86 @@ def wait_for_account(request):
 
     return render(
         request,
-        'request-account/wait/error-probably-not-created.html', {},
+        'register/wait/error-probably-not-created.html', {},
     )
 
 
 def account_pending(request):
     return render(
         request,
-        'request-account/pending.html', {},
+        'register/pending.html', {},
     )
 
 
 def account_created(request):
     return render(
         request,
-        'request-account/success.html', {},
+        'register/success.html', {},
     )
+
+
+class ApproveForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        super(ApproveForm, self).__init__(*args, **kwargs)
+
+    ocf_login_name = forms.CharField(
+        label='OCF login name',
+        validators=[wrap_validator(validators.validate_username)],
+        min_length=3,
+        max_length=8)
+
+    # password is validated in clean since we need the username as part of the
+    # password validation (to compare similarity)
+    password = forms.CharField(
+        widget=forms.PasswordInput(render_value=True),
+        label='New password',
+        min_length=8,
+        max_length=64,
+    )
+
+    verify_password = forms.CharField(
+        widget=forms.PasswordInput(render_value=True),
+        label='Confirm password',
+        min_length=8,
+        max_length=64,
+    )
+    contact_email = forms.EmailField(
+        label='Contact e-mail',
+        validators=[wrap_validator(ocflib.misc.validators.valid_email)])
+
+    verify_contact_email = forms.EmailField(label='Confirm contact e-mail')
+
+    disclaimer_agreement = forms.BooleanField(
+        label='You have read, understood, and agreed to our policies.',
+        error_messages={
+            'required': 'You did not agree to our policies.'
+        })
+
+    def clean_verify_password(self):
+        password = self.cleaned_data.get('password')
+        verify_password = self.cleaned_data.get('verify_password')
+
+        if password and verify_password:
+            if password != verify_password:
+                raise forms.ValidationError("Your passwords don't match.")
+        return verify_password
+
+    def clean_verify_contact_email(self):
+        email = self.cleaned_data.get('contact_email')
+        verify_contact_email = self.cleaned_data.get('verify_contact_email')
+
+        if email and verify_contact_email:
+            if email != verify_contact_email:
+                raise forms.ValidationError("Your emails don't match.")
+        return verify_contact_email
+
+    def clean(self):
+        cleaned_data = super(ApproveForm, self).clean()
+
+        # validate password (requires username to check similarity)
+        username = cleaned_data.get('username')
+        password = cleaned_data.get('password')
+
+        if username and password:
+            wrap_validator(validators.validate_password)(username, password)

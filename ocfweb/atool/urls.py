@@ -1,17 +1,13 @@
 from django.conf.urls import url
 
-from ocfweb.atool.approve.views import account_created
-from ocfweb.atool.approve.views import account_pending
-from ocfweb.atool.approve.views import request_account
-from ocfweb.atool.approve.views import wait_for_account
-from ocfweb.atool.calnet.views import calnet_login
-from ocfweb.atool.calnet.views import calnet_logout
-from ocfweb.atool.chpass.views import change_password
-from ocfweb.atool.commands.views import commands
-from ocfweb.atool.ocf.views import login
-from ocfweb.atool.ocf.views import logout
-from ocfweb.atool.vhost.views import request_vhost
-from ocfweb.atool.vhost.views import request_vhost_success
+from ocfweb.atool.chpass import change_password
+from ocfweb.atool.commands import commands
+from ocfweb.atool.register import account_created
+from ocfweb.atool.register import account_pending
+from ocfweb.atool.register import request_account
+from ocfweb.atool.register import wait_for_account
+from ocfweb.atool.vhost import request_vhost
+from ocfweb.atool.vhost import request_vhost_success
 
 
 urlpatterns = [
@@ -27,12 +23,4 @@ urlpatterns = [
     # request vhost
     url(r'^request-vhost/$', request_vhost, name='request_vhost'),
     url(r'^request-vhost/success/$', request_vhost_success, name='request_vhost_success'),
-
-    # calnet login
-    url(r'^calnet/login/$', calnet_login, name='calnet_login'),
-    url(r'^calnet/logout/$', calnet_logout, name='calnet_logout'),
-
-    # ocf login
-    url(r'^login/$', login, name='login'),
-    url(r'^logout/$', logout, name='logout')
 ]

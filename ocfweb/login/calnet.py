@@ -53,7 +53,7 @@ def _next_page_response(next_page):
             '<h1>Operation Successful</h1><p>Congratulations.</p>')
 
 
-def calnet_login(request, next_page=None):
+def login(request, next_page=None):
     next_page = request.GET.get(REDIRECT_FIELD_NAME)
     if not next_page:
         next_page = _redirect_url(request)
@@ -72,14 +72,14 @@ def calnet_login(request, next_page=None):
             return HttpResponseForbidden(error)
     return render(
         request,
-        'redirecting_to_calnet.html',
+        'calnet/redirecting_to_calnet.html',
         {
             'calnet_url': _login_url(service)
         },
     )
 
 
-def calnet_logout(request, next_page=None):
+def logout(request, next_page=None):
     if 'calnet_uid' in request.session:
         del request.session['calnet_uid']
     if not next_page:
