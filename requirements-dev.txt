@@ -1,3 +1,4 @@
+-e .
 ckuehl-pre-commit-types==0.6.2.dev1
 coverage
 coverage-enable-subprocess
