@@ -1,7 +1,6 @@
 import time
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from ocflib.lab.staff_hours import get_staff_hours as real_get_staff_hours
 
 from ocfweb.caching import periodic
@@ -14,7 +13,8 @@ def get_staff_hours():
 
 
 def staff_hours(request):
-    return render_to_response(
+    return render(
+        request,
         'staff-hours.html',
         {
             'title': 'Staff Hours',
@@ -22,5 +22,4 @@ def staff_hours(request):
             'today': time.strftime('%A'),
             'lab_status': get_lab_status(),
         },
-        context_instance=RequestContext(request),
     )

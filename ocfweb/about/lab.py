@@ -1,12 +1,11 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 
 def lab_open_source(request):
-    return render_to_response(
+    return render(
+        request,
         'lab-open-source.html',
         {
             'title': 'Open Source in our Computer Lab',
         },
-        context_instance=RequestContext(request),
     )

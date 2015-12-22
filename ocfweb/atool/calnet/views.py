@@ -7,8 +7,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http import HttpResponse
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 
 def _service_url(request, next_page):
@@ -71,12 +70,12 @@ def calnet_login(request, next_page=None):
         else:
             error = '<h1>Forbidden</h1><p>CalNet login failed.</p>'
             return HttpResponseForbidden(error)
-    return render_to_response(
+    return render(
+        request,
         'redirecting_to_calnet.html',
         {
             'calnet_url': _login_url(service)
         },
-        context_instance=RequestContext(request)
     )
 
 

@@ -4,8 +4,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.forms.forms import NON_FIELD_ERRORS
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest
 from ocflib.account.submission import NewAccountResponse
@@ -27,13 +26,13 @@ def request_account(request):
     real_name = directory.name_by_calnet_uid(calnet_uid)
 
     if calnet_uid not in TESTER_CALNET_UIDS and existing_accounts:
-        return render_to_response(
+        return render(
+            request,
             'request-account/already-has-account.html',
             {
                 'calnet_uid': calnet_uid,
                 'calnet_url': settings.LOGOUT_URL
             },
-            context_instance=RequestContext(request)
         )
 
     if request.method == 'POST':
@@ -78,22 +77,22 @@ def request_account(request):
     else:
         form = ApproveForm()
 
-    return render_to_response(
+    return render(
+        request,
         'request-account/form.html',
         {
             'form': form,
             'real_name': real_name,
             'status': status,
         },
-        context_instance=RequestContext(request)
     )
 
 
 def wait_for_account(request):
     if 'approve_task_id' not in request.session:
-        return render_to_response(
+        return render(
+            request,
             'request-account/wait/error-no-task-id.html', {},
-            context_instance=RequestContext(request)
         )
 
     task = celery_app.AsyncResult(request.session['approve_task_id'])
@@ -102,12 +101,12 @@ def wait_for_account(request):
         status = ['Starting creation']
         if isinstance(meta, dict) and 'status' in meta:
             status.extend(meta['status'])
-        return render_to_response(
+        return render(
+            request,
             'request-account/wait/wait.html',
             {
                 'status': status,
             },
-            context_instance=RequestContext(request)
         )
     elif isinstance(task.result, NewAccountResponse):
         if task.result.status == NewAccountResponse.CREATED:
@@ -115,21 +114,21 @@ def wait_for_account(request):
     elif isinstance(task.result, Exception):
         raise task.result
 
-    return render_to_response(
+    return render(
+        request,
         'request-account/wait/error-probably-not-created.html', {},
-        context_instance=RequestContext(request)
     )
 
 
 def account_pending(request):
-    return render_to_response(
+    return render(
+        request,
         'request-account/pending.html', {},
-        context_instance=RequestContext(request)
     )
 
 
 def account_created(request):
-    return render_to_response(
+    return render(
+        request,
         'request-account/success.html', {},
-        context_instance=RequestContext(request)
     )

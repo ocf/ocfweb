@@ -1,5 +1,4 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 from ocfweb.atool.calnet.decorators import login_required as calnet_required
 from ocfweb.atool.chpass.forms import ChpassForm
@@ -32,22 +31,22 @@ def change_password(request):
                 # reauthenticate with CalNet
                 del request.session['calnet_uid']
 
-                return render_to_response(
+                return render(
+                    request,
                     'successfully_changed_password.html',
                     {
                         'user_account': account
                     },
-                    context_instance=RequestContext(request)
                 )
     else:
         form = ChpassForm(accounts, calnet_uid)
 
-    return render_to_response(
+    return render(
+        request,
         'change_password.html',
         {
             'form': form,
             'calnet_uid': calnet_uid,
             'error': error,
         },
-        context_instance=RequestContext(request)
     )

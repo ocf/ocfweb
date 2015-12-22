@@ -1,8 +1,7 @@
 from datetime import date
 from datetime import timedelta
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from ocflib.lab.hours import Day
 from ocflib.lab.hours import HOLIDAYS
 from ocflib.lab.hours import REGULAR_HOURS
@@ -22,7 +21,8 @@ def get_holidays():
 
 
 def lab(doc, request):
-    return render_to_response(
+    return render(
+        request,
         'lab.html',
         {
             'title': doc.title,
@@ -45,5 +45,4 @@ def lab(doc, request):
             'FRIDAY': Day.FRIDAY,
             'SATURDAY': Day.SATURDAY,
         },
-        context_instance=RequestContext(request),
     )

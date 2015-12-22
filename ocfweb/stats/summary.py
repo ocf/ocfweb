@@ -2,8 +2,7 @@ from datetime import date
 from datetime import datetime
 from operator import attrgetter
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from ocflib.constants import CURRENT_SEMESTER_START
 from ocflib.lab.printing import get_maintkit
 from ocflib.lab.printing import get_toner
@@ -71,7 +70,8 @@ def printers():
 
 
 def summary(request):
-    return render_to_response(
+    return render(
+        request,
         'summary.html',
         {
             'title': 'Lab Statistics',
@@ -84,5 +84,4 @@ def summary(request):
             'users_in_lab_count': users_in_lab_count(),
             'printers': printers(),
         },
-        context_instance=RequestContext(request),
     )

@@ -7,8 +7,7 @@ import ocflib.misc.mail as mail
 import ocflib.misc.validators as validators
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 from ocfweb.atool.ocf.decorators import group_account_required
 from ocfweb.atool.ocf.decorators import login_required
@@ -23,12 +22,12 @@ def request_vhost(request):
     error = None
 
     if account.has_vhost(user):
-        return render_to_response(
+        return render(
+            request,
             'already_have_vhost.html',
             {
                 'user': user
             },
-            context_instance=RequestContext(request)
         )
 
     if request.method == 'POST':
@@ -116,7 +115,8 @@ def request_vhost(request):
 
     group_url = 'http://www.ocf.berkeley.edu/~{0}/'.format(user)
 
-    return render_to_response(
+    return render(
+        request,
         'request_vhost.html',
         {
             'form': form,
@@ -125,14 +125,14 @@ def request_vhost(request):
             'group_url': group_url,
             'error': error
         },
-        context_instance=RequestContext(request)
     )
 
 
 def request_vhost_success(request):
-    return render_to_response(
-        'successfully_submitted_vhost.html', {},
-        context_instance=RequestContext(request)
+    return render(
+        request,
+        'successfully_submitted_vhost.html',
+        {},
     )
 
 

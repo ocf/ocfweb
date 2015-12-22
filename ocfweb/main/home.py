@@ -1,8 +1,7 @@
 from datetime import date
 from datetime import timedelta
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from ocflib.lab.hours import Day
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
 
@@ -18,7 +17,8 @@ def get_staff_hours():
 
 def home(request):
     hours = [Day.from_date(date.today() + timedelta(days=i)) for i in range(3)]
-    return render_to_response(
+    return render(
+        request,
         'home.html',
         {
             'fulltitle': 'Open Computing Facility at UC Berkeley',
@@ -33,5 +33,4 @@ def home(request):
             'blog_posts': get_blog_posts()[:2],
             'lab_status': get_lab_status(),
         },
-        context_instance=RequestContext(request),
     )

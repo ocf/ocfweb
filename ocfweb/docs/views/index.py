@@ -1,12 +1,11 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 
 def docs_index(request):
-    return render_to_response(
+    return render(
+        request,
         'index.html',
         {
             'title': 'Documentation',
         },
-        context_instance=RequestContext(request),
     )

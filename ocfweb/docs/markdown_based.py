@@ -16,8 +16,7 @@ import os
 from functools import partial
 from pathlib import Path
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 from ocfweb.component.markdown import markdown_and_toc
 from ocfweb.component.markdown import text_and_meta
@@ -29,7 +28,8 @@ DOCS_DIR = Path(__file__).parent.joinpath('docs')
 
 def render_markdown_doc(meta, text, doc, request):
     html, toc = markdown_and_toc(text)
-    return render_to_response(
+    return render(
+        request,
         meta.get('template', 'doc.html'),
         {
             'title': doc.title,
@@ -37,7 +37,6 @@ def render_markdown_doc(meta, text, doc, request):
             'html': html,
             'toc': toc,
         },
-        context_instance=RequestContext(request),
     )
 
 

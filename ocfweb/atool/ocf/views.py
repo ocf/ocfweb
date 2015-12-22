@@ -3,8 +3,7 @@ import ocflib.account.validators as validators
 from django.core.urlresolvers import reverse
 from django.forms import Form
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 from .decorators import login_required
 from .forms import LoginForm
@@ -35,13 +34,14 @@ def login(request):
     else:
         form = LoginForm()
 
-    return render_to_response('login.html',
-                              {
-                                  'form': form,
-                                  'error': error
-                              },
-                              context_instance=RequestContext(request)
-                              )
+    return render(
+        request,
+        'login.html',
+        {
+            'form': form,
+            'error': error,
+        },
+    )
 
 
 @login_required
@@ -55,13 +55,13 @@ def logout(request):
     else:
         form = Form()
 
-    return render_to_response(
+    return render(
+        request,
         'logout.html',
         {
             'form': form,
             'user': request.session['ocf_user']
         },
-        context_instance=RequestContext(request)
     )
 
 

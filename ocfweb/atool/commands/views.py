@@ -1,5 +1,4 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from paramiko import AuthenticationException
 from paramiko import SSHClient
 
@@ -36,12 +35,12 @@ def commands(request):
     else:
         form = CommandForm()
 
-    return render_to_response(
+    return render(
+        request,
         'commands.html', {
             'form': form,
             'command': command_to_run,
             'output': output,
             'error': error,
         },
-        context_instance=RequestContext(request)
     )

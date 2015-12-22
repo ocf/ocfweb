@@ -1,6 +1,5 @@
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 
 def hosting_badges(doc, request):
@@ -16,11 +15,11 @@ def hosting_badges(doc, request):
         ]
     ]
 
-    return render_to_response(
+    return render(
+        request,
         'hosting_badges.html',
         {
             'title': doc.title,
             'badges': badges,
         },
-        context_instance=RequestContext(request),
     )
