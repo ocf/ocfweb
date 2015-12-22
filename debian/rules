@@ -22,6 +22,12 @@ override_dh_virtualenv:
 	OCFWEB_STATIC_ROOT="$(STATIC_DIR)" \
 		$(PYTHON) manage.py collectstatic --noinput
 
+override_dh_systemd_enable:
+	dh_systemd_enable ocfweb.service ocfweb-background.service
+
+override_dh_systemd_start:
+	dh_systemd_start ocfweb.service ocfweb-background.service
+
 override_dh_auto_clean:
 	# don't want to run `make clean` since it will wipe out the dev venv
 	rm -rf *.egg-info
