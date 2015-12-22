@@ -62,7 +62,7 @@ def running_server(unused_port):
     start = time.time()
     while time.time() - start < 5:
         try:
-            if requests.get(prefix + '/_status').status_code == 200:
+            if requests.get(prefix + '/test/status').status_code == 200:
                 break
         except requests.exceptions.ConnectionError:
             pass
