@@ -35,17 +35,17 @@ def render_doc(request, doc_name):
 
 def doc_name(doc_name):
     # we can't actually deal with escaping into a regex, so we just use a whitelist
-    assert re.match('^/[a-zA-Z\-/]+$', doc_name), 'Bad document name: ' + doc_name
+    assert re.match(r'^/[a-zA-Z\-/]+$', doc_name), 'Bad document name: ' + doc_name
     return doc_name[1:].replace('-', '\-')
 
 doc_names = '|'.join(map(doc_name, DOCS.keys()))
 
 
 urlpatterns = [
-    url('^$', docs_index, name='docs'),
+    url(r'^$', docs_index, name='docs'),
 
     # we use a complicated generated regex here so that we have actual
     # validation of URLs (in other words, if you try to make a link to a
     # missing document, it will fail)
-    url('^({doc_names})/$'.format(doc_names=doc_names), render_doc, name='doc'),
+    url(r'^({doc_names})/$'.format(doc_names=doc_names), render_doc, name='doc'),
 ]

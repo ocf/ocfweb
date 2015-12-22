@@ -22,26 +22,26 @@ from ocfweb.test.session import test_session
 
 urlpatterns = [
     # test pages
-    url('^test/status$', lambda _: HttpResponse('ok'), name='status'),
-    url('^test/session$', test_session, name='test_session'),
-    url('^test/periodic$', test_list_periodic_functions, name='test_list_periodic_functions'),
+    url(r'^test/status$', lambda _: HttpResponse('ok'), name='status'),
+    url(r'^test/session$', test_session, name='test_session'),
+    url(r'^test/periodic$', test_list_periodic_functions, name='test_list_periodic_functions'),
 
-    url('^$', home, name='home'),
-    url('^robots\.txt$', robots_dot_txt, name='robots.txt'),
-    url('^favicon.ico$', favicon, name='favicon'),
-    url('^staff-hours$', staff_hours, name='staff-hours'),
+    url(r'^$', home, name='home'),
+    url(r'^robots\.txt$', robots_dot_txt, name='robots.txt'),
+    url(r'^favicon.ico$', favicon, name='favicon'),
+    url(r'^staff-hours$', staff_hours, name='staff-hours'),
 
-    url('^mlk$', move_to_mlk, name='move-to-mlk'),
+    url(r'^mlk$', move_to_mlk, name='move-to-mlk'),
 
     # about pages
-    url('^about/staff$', about_staff, name='about-staff'),
-    url('^about/lab/open-source$', lab_open_source, name='lab-open-source'),
+    url(r'^about/staff$', about_staff, name='about-staff'),
+    url(r'^about/lab/open-source$', lab_open_source, name='lab-open-source'),
 
     # hosting logos
     url(r'^images/hosted-logos/(?:index\.shtml)?$',
         lambda _: redirect(reverse('doc', args=('services/vhost/badges',)), permanent=True)),
-    url('^images/hosted-logos/(.*)$', lambda _, image: redirect('hosting-logo', image, permanent=True)),
-    url('^hosting-logos/(.*)$', hosting_logo, name='hosting-logo'),
+    url(r'^images/hosted-logos/(.*)$', lambda _, image: redirect('hosting-logo', image, permanent=True)),
+    url(r'^hosting-logos/(.*)$', hosting_logo, name='hosting-logo'),
 
     # stats
     url(r'^stats/$', summary, name='stats'),
@@ -65,5 +65,5 @@ urlpatterns = [
 
     url('^docs/', include(docs)),
 
-    url('^account/', include(atool))
+    url('^account/', include(atool)),
 ]
