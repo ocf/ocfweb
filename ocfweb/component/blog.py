@@ -3,6 +3,7 @@ from collections import namedtuple
 import dateutil.parser
 import requests
 from lxml import etree
+from requests.exceptions import RequestException
 
 from ocfweb.caching import periodic
 
@@ -44,10 +45,27 @@ class Post(namedtuple('Post', [
 
 @periodic(60)
 def get_blog_posts():
-    """Parse the beautiful OCF status blog atom feed into a list of Posts."""
-    tree = etree.fromstring(
-        requests.get('http://status.ocf.berkeley.edu/feeds/posts/default', timeout=2).content
-    )
+    """Parse the beautiful OCF status blog atom feed into a list of Posts.
+
+    Unfortunately Blogger is hella flakey so we use it inside a loop and fail
+    silently if it doesn't succeed.
+    """
+    for _ in range(5):
+        try:
+            tree = etree.fromstring(
+                requests.get(
+                    'http://status.ocf.berkeley.edu/feeds/posts/default',
+                    timeout=2,
+                ).content,
+            )
+        except RequestException:
+            pass
+        else:
+            break
+    else:
+        # fail silently
+        return []
+
     return [
         Post.from_element(post)
         for post in tree.xpath(
