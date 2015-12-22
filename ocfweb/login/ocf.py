@@ -1,12 +1,11 @@
 import ocflib.account.utils as utils
 import ocflib.account.validators as validators
+from django import forms
 from django.core.urlresolvers import reverse
-from django.forms import Form
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from .decorators import login_required
-from .forms import LoginForm
+from ocfweb.auth import login_required
 
 
 def login(request):
@@ -36,7 +35,7 @@ def login(request):
 
     return render(
         request,
-        'login.html',
+        'ocf/login.html',
         {
             'form': form,
             'error': error,
@@ -47,17 +46,17 @@ def login(request):
 @login_required
 def logout(request):
     if request.method == 'POST':
-        form = Form(request.POST)
+        form = forms.Form(request.POST)
 
         if form.is_valid():
             del request.session['ocf_user']
             return redirect_back(request)
     else:
-        form = Form()
+        form = forms.Form()
 
     return render(
         request,
-        'logout.html',
+        'ocf/logout.html',
         {
             'form': form,
             'user': request.session['ocf_user']
@@ -72,3 +71,17 @@ def redirect_back(request):
         request.session['login_return_path'] = reverse('commands')
 
     return HttpResponseRedirect(request.session['login_return_path'])
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label='OCF username',
+                               min_length=3,
+                               max_length=8)
+    password = forms.CharField(widget=forms.PasswordInput,
+                               label='Password',
+                               min_length=8,
+                               max_length=64)
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username', '')
+        return username.strip().lower()

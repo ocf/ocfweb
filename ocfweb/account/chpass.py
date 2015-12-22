@@ -1,9 +1,13 @@
-import ocflib.account.search as search
-import ocflib.ucb.groups as groups
 from django import forms
+from django.shortcuts import render
+from ocflib.account.search import user_exists
+from ocflib.account.search import users_by_calnet_uid
+from ocflib.ucb.groups import groups_by_student_signat
 
-from ocfweb.atool.constants import TEST_OCF_ACCOUNTS
-from ocfweb.atool.constants import TESTER_CALNET_UIDS
+from ocfweb.account.constants import TEST_OCF_ACCOUNTS
+from ocfweb.account.constants import TESTER_CALNET_UIDS
+from ocfweb.auth import calnet_required
+from ocfweb.component.celery import change_password as change_password_task
 
 
 def _get_accounts_signatory_for(calnet_uid):
@@ -12,7 +16,7 @@ def _get_accounts_signatory_for(calnet_uid):
 
     group_accounts = flatten(map(
         lambda group: group['accounts'],
-        groups.groups_by_student_signat(calnet_uid).values()))
+        groups_by_student_signat(calnet_uid).values()))
 
     # sanity check since we don't trust CalLink API that much:
     # if >= 10 groups, can't change online, sorry
@@ -22,7 +26,7 @@ def _get_accounts_signatory_for(calnet_uid):
 
 
 def get_authorized_accounts_for(calnet_uid):
-    accounts = search.users_by_calnet_uid(calnet_uid) + \
+    accounts = users_by_calnet_uid(calnet_uid) + \
         _get_accounts_signatory_for(calnet_uid)
 
     if calnet_uid in TESTER_CALNET_UIDS:
@@ -30,6 +34,52 @@ def get_authorized_accounts_for(calnet_uid):
         accounts.extend(TEST_OCF_ACCOUNTS)
 
     return accounts
+
+
+@calnet_required
+def change_password(request):
+    calnet_uid = request.session['calnet_uid']
+    accounts = get_authorized_accounts_for(calnet_uid)
+    error = None
+
+    if request.method == 'POST':
+        form = ChpassForm(accounts, calnet_uid, request.POST)
+        if form.is_valid():
+            account = form.cleaned_data['ocf_account']
+            password = form.cleaned_data['new_password']
+
+            try:
+                task = change_password_task.delay(account, password)
+                result = task.wait(timeout=5)
+                if isinstance(result, Exception):
+                    raise result
+            except ValueError as ex:
+                error = str(ex)
+            else:
+                # deleting this session variable will force
+                # the next change_password request to
+                # reauthenticate with CalNet
+                del request.session['calnet_uid']
+
+                return render(
+                    request,
+                    'chpass/success.html',
+                    {
+                        'user_account': account
+                    },
+                )
+    else:
+        form = ChpassForm(accounts, calnet_uid)
+
+    return render(
+        request,
+        'chpass/index.html',
+        {
+            'form': form,
+            'calnet_uid': calnet_uid,
+            'error': error,
+        },
+    )
 
 
 class ChpassForm(forms.Form):
@@ -58,7 +108,7 @@ class ChpassForm(forms.Form):
 
     def clean_ocf_account(self):
         data = self.cleaned_data['ocf_account']
-        if not search.user_exists(data):
+        if not user_exists(data):
             raise forms.ValidationError('OCF user account does not exist.')
 
         ocf_accounts = get_authorized_accounts_for(self.calnet_uid)

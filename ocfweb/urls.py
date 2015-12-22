@@ -6,8 +6,9 @@ from django.shortcuts import redirect
 
 from ocfweb.about.lab import lab_open_source
 from ocfweb.about.staff import about_staff
-from ocfweb.atool.urls import urlpatterns as atool
+from ocfweb.account.urls import urlpatterns as account
 from ocfweb.docs.urls import urlpatterns as docs
+from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
@@ -63,7 +64,9 @@ urlpatterns = [
     url(r'^OCF/staff/how-to-join\.shtml$',
         lambda _: redirect(reverse('about-staff'), permanent=True)),
 
-    url('^docs/', include(docs)),
+    url(r'^docs/', include(docs)),
 
-    url('^account/', include(atool)),
+    url(r'^account/', include(account)),
+
+    url(r'^login/', include(login)),
 ]

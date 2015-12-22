@@ -1,30 +1,32 @@
 import datetime
 import socket
 
-import ocflib.account.search as search
-import ocflib.account.utils as account
-import ocflib.misc.mail as mail
-import ocflib.misc.validators as validators
+from django import forms
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.utils.safestring import mark_safe
+from ocflib.account.search import user_attrs
+from ocflib.account.utils import has_vhost
+from ocflib.misc.mail import send_mail
+from ocflib.misc.validators import host_exists
+from ocflib.misc.validators import valid_email
 
-from ocfweb.atool.ocf.decorators import group_account_required
-from ocfweb.atool.ocf.decorators import login_required
-from ocfweb.atool.vhost.forms import VirtualHostForm
+from ocfweb.auth import group_account_required
+from ocfweb.auth import login_required
 
 
 @login_required
 @group_account_required
 def request_vhost(request):
     user = request.session['ocf_user']
-    attrs = search.user_attrs(user)
+    attrs = user_attrs(user)
     error = None
 
-    if account.has_vhost(user):
+    if has_vhost(user):
         return render(
             request,
-            'already_have_vhost.html',
+            'vhost/already_have_vhost.html',
             {
                 'user': user
             },
@@ -44,11 +46,11 @@ def request_vhost(request):
             full_domain = '{}.berkeley.edu'.format(requested_subdomain)
 
             # verify that the requested domain is available
-            if validators.host_exists(full_domain):
+            if host_exists(full_domain):
                 error = 'The domain you requested is not available. ' + \
                     'Please select a different one.'
 
-            if not validators.valid_email(your_email):
+            if not valid_email(your_email):
                 error = "The email you entered doesn't appear to be " + \
                     'valid. Please double-check it.'
 
@@ -82,7 +84,7 @@ def request_vhost(request):
                     '  - User Agent: {user_agent}\n' +
                     '\n\n' +
                     '--------\n' +
-                    'Request submitted to atool ({hostname}) on {now}.\n' +
+                    'Request submitted to ocfweb ({hostname}) on {now}.\n' +
                     '{full_path}').format(
                         user=user,
                         title=attrs['cn'][0],
@@ -101,7 +103,7 @@ def request_vhost(request):
                         full_path=request.build_absolute_uri())
 
                 try:
-                    mail.send_mail('hostmaster@ocf.berkeley.edu', subject, message, sender=your_email)
+                    send_mail('hostmaster@ocf.berkeley.edu', subject, message, sender=your_email)
                     return redirect(reverse('request_vhost_success'))
                 except Exception as ex:
                     print(ex)
@@ -117,7 +119,7 @@ def request_vhost(request):
 
     return render(
         request,
-        'request_vhost.html',
+        'vhost/index.html',
         {
             'form': form,
             'user': user,
@@ -131,7 +133,7 @@ def request_vhost(request):
 def request_vhost_success(request):
     return render(
         request,
-        'successfully_submitted_vhost.html',
+        'vhost/success.html',
         {},
     )
 
@@ -146,3 +148,69 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
 
     return ip
+
+
+class VirtualHostForm(forms.Form):
+    # requested subdomain
+    requested_subdomain = forms.CharField(
+        label='Requested domain:',
+        min_length=1,
+        max_length=32)
+
+    requested_why = forms.CharField(
+        widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}),
+        label='Please explain why you would like to use the requested \
+               domain instead of your current address on \
+               ocf.berkeley.edu.',
+        min_length=1,
+        max_length=1024)
+
+    # web site requirements
+    website_complete = forms.BooleanField(
+        label='Our site is already complete and uploaded to the OCF \
+               server. The website is not just a placeholder.')
+
+    website_hosted_by_ocf = forms.BooleanField(
+        label="Our site is substantially hosted by the OCF. We \
+               don't use frames, redirects, proxies, or other tricks to \
+               circumvent this policy.")
+
+    website_ocf_banner = forms.BooleanField(
+        label=mark_safe("We have placed a \
+                <a href=\"http://www.ocf.berkeley.edu/images/hosted-logos/\">\
+                Hosted by the OCF</a> banner image on our site."))
+
+    website_disclaimer_text = forms.BooleanField(
+        label=mark_safe("We have placed the \
+               <a href=\"http://ocf.io/vhost#disclaimer\">\
+               university-required disclaimer</a> on each page of our site."))
+
+    website_updated_software = forms.BooleanField(
+        label='Any software (such as WordPress, Joomla, Drupal, etc.) \
+               is fully updated, and we will commit to updating it \
+               regularly to ensure our site is not compromised. (If \
+               you are not using any software on your website, check \
+               this box and move on.)')
+
+    # confirm request
+    your_name = forms.CharField(
+        label='Your full name:',
+        min_length=1,
+        max_length=64)
+
+    your_email = forms.EmailField(
+        label='Your email address:',
+        min_length=1,
+        max_length=64)
+
+    your_position = forms.CharField(
+        label='Your position in group:',
+        min_length=1,
+        max_length=64)
+
+    comments = forms.CharField(
+        widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}),
+        label='Please write any special requests and/or comments you have:',
+        required=False,
+        min_length=1,
+        max_length=1024)
