@@ -12,11 +12,23 @@ from ocflib.lab.hours import Day
 from ocflib.lab.stats import list_desktops
 from ocflib.lab.stats import UtilizationProfile
 
+from ocfweb.caching import periodic
 from ocfweb.stats.plot import plot_to_image_bytes
 
 
 # Binomial-shaped weights for moving average
 AVERAGE_WEIGHTS = tuple(zip(range(-2, 3), (n / 16 for n in (1, 4, 6, 4, 1))))
+
+
+@periodic(60)
+def _daily_graph_image(day=None):
+    if not day:
+        day = date.today()
+
+    return HttpResponse(
+        plot_to_image_bytes(get_daily_plot(day), format='svg'),
+        content_type='image/svg+xml',
+    )
 
 
 def daily_graph_image(request):
@@ -32,10 +44,10 @@ def daily_graph_image(request):
             urllib.parse.urlencode({'date': day.isoformat()}),
         ))
 
-    return HttpResponse(
-        plot_to_image_bytes(get_daily_plot(day), format='svg'),
-        content_type='image/svg+xml',
-    )
+    if day == date.today():
+        return _daily_graph_image()
+    else:
+        return _daily_graph_image(day=day)
 
 
 def get_open_close(day):

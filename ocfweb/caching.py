@@ -188,13 +188,16 @@ class PeriodicFunction(namedtuple('PeriodicFunction', [
         last_update = self.last_update() or datetime.fromtimestamp(0)
         return (datetime.now() - last_update).total_seconds()
 
-    def result(self):
+    def result(self, **kwargs):
         """Return the result of this periodic function.
 
         In most cases, we can read it from the cache and so it is nearly
         instant. If for some reason it isn't in the cache, we execute it (and
         then stick it in the cache for next time).
         """
+        if kwargs:
+            return self.function(**kwargs)
+
         timestamp, result = cache_lookup_with_fallback(
             self.function_call_key,
             self.function_with_timestamp,
