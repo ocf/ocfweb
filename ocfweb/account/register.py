@@ -2,6 +2,7 @@ import ocflib.account.search as search
 import ocflib.account.validators as validators
 import ocflib.misc.validators
 import ocflib.ucb.directory as directory
+from Crypto.PublicKey import RSA
 from django import forms
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -11,8 +12,8 @@ from django.shortcuts import render
 from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest
 from ocflib.account.submission import NewAccountResponse
+from ocflib.constants import CREATE_PUBLIC_KEY
 
-from ocfweb.account.constants import PASSWORD_ENCRYPTION_PUBKEY
 from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
 from ocfweb.component.celery import celery_app
@@ -50,7 +51,7 @@ def request_account(request):
                 email=form.cleaned_data['contact_email'],
                 encrypted_password=encrypt_password(
                     form.cleaned_data['password'],
-                    PASSWORD_ENCRYPTION_PUBKEY,
+                    RSA.importKey(CREATE_PUBLIC_KEY),
                 ),
                 handle_warnings=NewAccountRequest.WARNINGS_WARN,
             )

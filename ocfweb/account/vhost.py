@@ -138,6 +138,7 @@ def request_vhost_success(request):
     )
 
 
+# TODO: use ipware which we already dep
 # http://stackoverflow.com/a/5976065/450164
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')

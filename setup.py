@@ -31,6 +31,7 @@ setup(
         'mistune',
         'numpy',
         'ocflib',
+        'pycrypto',
         'pygments',
         'python-dateutil',
     ],
