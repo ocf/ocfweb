@@ -46,3 +46,9 @@ Otherwise, use the following information in your SFTP client.
 * Protocol: SFTP (or SSH)
 * Host Name: `ssh.ocf.berkeley.edu`
 * Port: 22
+
+## Disk quotas
+
+Currently, accounts are limited to 5 GB of disk usage under the home and web
+directories. You can check your disk usage by running `quota -v` over SSH or
+[from your browser](https://accounts.ocf.berkeley.edu/commands).
