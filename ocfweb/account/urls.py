@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^commands/$', commands, name='commands'),
 
     # account creation
-    url(r'^register/$', request_account, name='request_account'),
+    url(r'^register/$', request_account, name='register'),
     url(r'^register/wait/$', wait_for_account, name='wait_for_account'),
     url(r'^register/created/$', account_created, name='account_created'),
     url(r'^register/pending/$', account_pending, name='account_pending'),

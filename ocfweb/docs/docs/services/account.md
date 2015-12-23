@@ -21,8 +21,8 @@ us!
 
 #### Using CalNet
 
-You can [find your username or reset your password
-online](https://accounts.ocf.berkeley.edu/change-password) using CalNet
+You can [[find your username or reset your password
+online|change_password]] using CalNet
 (assuming you have CalNet access).
 
 To reset the password for a group account, you need to be a registered

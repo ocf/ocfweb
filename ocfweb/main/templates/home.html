@@ -15,7 +15,7 @@
                 <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
                 <p class="ocf-button-holder">
                 <a href="{% url 'about-staff' %}" class="btn btn-lg">Learn what we do</a>
-                    <a href="https://accounts.ocf.berkeley.edu/request-account" class="btn btn-lg">Create an account</a>
+                <a href="{% url 'register' %}" class="btn btn-lg">Create an account</a>
                 </p>
             </div>
         </div>
@@ -97,8 +97,8 @@
 
         <p><strong>Account Tools</strong></p>
         <ul>
-            <li><a href="https://accounts.ocf.berkeley.edu/commands">Check Account</a></li>
-            <li><a href="https://accounts.ocf.berkeley.edu/change-password">Reset Password</a></li>
+            <li><a href="{% url 'commands' %}">Check Account</a></li>
+            <li><a href="{% url 'change_password' %}">Reset Password</a></li>
 
             {% if is_ocf_ip %}
                 <li><a href="https://printhost.ocf.berkeley.edu/jobs/">View Print Queue</a></li>

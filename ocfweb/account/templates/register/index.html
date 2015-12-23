@@ -56,7 +56,7 @@
 <p class="warning-text">Your account has been flagged for the following reasons:</p>
 {% endif %}
 
-<form method="post" action="{% url 'request_account' %}" id="request-account-form">{% csrf_token %}
+<form method="post" action="{% url 'register' %}" id="request-account-form">{% csrf_token %}
     {{ form.non_field_errors }}
 
     {% if status == 'has_errors' %}

@@ -16,7 +16,7 @@ like this:
     calnetUid: 123456
 
 Save the file to update LDAP. Now, the user can update the account password at
-the usual URL: [https://accounts.ocf.berkeley.edu/change-password](https://accounts.ocf.berkeley.edu/change-password)
+[[the usual URL|change_password]].
 
 CalNet association is only meant to be temporary and must be reverted once the
 password has been reset by removing this line. It can cause problems with

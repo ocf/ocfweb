@@ -9,7 +9,7 @@ If you are looking for a familiar phpMyAdmin interface, visit <https://pma.ocf.b
 ## Creating a MySQL database
 We have two options to create a database using the terminal or our web management tool.
 ### Web-based tool
-Go to the website <https://accounts.ocf.berkeley.edu/commands> and type in your username and password. Select the option: `makemysql — reset your MySQL database password, or create a new MySQL database` and run the command. Note your password in a safe place.
+[[Click here|commands]] and type in your username and password. Select the option: `makemysql — reset your MySQL database password, or create a new MySQL database` and run the command. Note your password in a safe place.
 ### SSH Terminal
 Log into the OCF via [[SSH|doc services/shell]], at the terminal prompt enter the command `makemysql`. Hit yes to confirm the operation. Note your password in a safe place.
 

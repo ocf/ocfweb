@@ -14,7 +14,7 @@
 * Individual accounts are **not** eligible for [[virtual hosting|doc services/vhost]].
 * Individual accounts are eligible for [[printing|doc services/lab/printing]].
 
-**[Request an account online](https://accounts.ocf.berkeley.edu/request-account)**
+**[[Request an account online|register]]**
 
   You will be prompted to log in with CalNet. Then follow the instructions to make your request. Your account name must be based on your real name.
 
