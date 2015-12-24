@@ -59,7 +59,7 @@ def run_periodic_functions():
 
                         Periodic function:
                           * Key: {pf.function_call_key}
-                          * Last Update: {pf.last_update} ({pf.seconds_since_last_update} seconds ago)
+                          * Last Update: {last_update} ({seconds_since_last_update} seconds ago)
                           * Period: {pf.period}
                           * TTL: {pf.ttl}
 
@@ -68,6 +68,8 @@ def run_periodic_functions():
                     ).format(
                         traceback=format_exc(),
                         pf=pf,
+                        last_update=pf.last_update(),
+                        seconds_since_last_update=pf.seconds_since_last_update(),
                         delay=delay_on_error,
                     ))
                     _logger.error(format_exc())
