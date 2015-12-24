@@ -20,7 +20,7 @@ In rough order of importance:
 
 * Each virtual user has its own password (not the same as the account password)
 
-* Simple admin panel built into atool for admins to set passwords for emails.
+* Simple admin panel built into ocfweb for admins to set passwords for emails.
   It might also be cool if you could change your own password (without having
   the group password), but that's low priority.
 
@@ -53,7 +53,7 @@ This satisfies all features except mailing lists, which we might not do.
         change_password(cred, domain, user, new_password)
 
    ...which accept `cred` (MySQL credentials), which will be stored in the
-   `atool` config (and maybe on `supernova` readable by `ocfstaff`, if we write
+   `ocfweb` config (and maybe on `supernova` readable by `ocfstaff`, if we write
    simple command-line tools for adding vhosts).
 
 4. Create `/services/mail/` (on NFS) to hold Maildirs. Suggested layout is like
@@ -65,7 +65,7 @@ This satisfies all features except mailing lists, which we might not do.
 
 6. Set up Roundcube on `death` (webmail)
 
-7. Set up simple web UI for the ocflib functions as part of `atool`. We already
+7. Set up simple web UI for the ocflib functions as part of `ocfweb`. We already
    have most of the hard bits (like authenticating users), so we just need to
    write a little CRUD.
 

@@ -85,8 +85,8 @@ pop out in your parent directory.
 
 ## Step 7: Test and upload to our apt repo
 
-If this is something that we will be building often (e.g. atool or ocflib), you
-probably want to set it up inside Jenkins to automatically upload to apt.
+If this is something that we will be building often (e.g. ocfweb or ocflib),
+you probably want to set it up inside Jenkins to automatically upload to apt.
 
 For one-off uploads:
 
