@@ -2,6 +2,7 @@ from django import forms
 from django.shortcuts import render
 from ocflib.account.search import user_exists
 from ocflib.account.search import users_by_calnet_uid
+from ocflib.ucb.directory import name_by_calnet_uid
 from ocflib.ucb.groups import groups_by_student_signat
 
 from ocfweb.account.constants import TEST_OCF_ACCOUNTS
@@ -49,16 +50,20 @@ def change_password(request):
             password = form.cleaned_data['new_password']
 
             try:
-                task = change_password_task.delay(account, password)
+                calnet_name = name_by_calnet_uid(calnet_uid)
+                task = change_password_task.delay(
+                    account,
+                    password,
+                    comment='Your password was reset online by {}.'.format(calnet_name),
+                )
                 result = task.wait(timeout=5)
                 if isinstance(result, Exception):
                     raise result
             except ValueError as ex:
                 error = str(ex)
             else:
-                # deleting this session variable will force
-                # the next change_password request to
-                # reauthenticate with CalNet
+                # deleting this session variable will force the next
+                # change_password request to reauthenticate with CalNet
                 del request.session['calnet_uid']
 
                 return render(
