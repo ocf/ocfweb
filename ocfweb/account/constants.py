@@ -6,9 +6,9 @@ TEST_OCF_ACCOUNTS = (
 )
 
 TESTER_CALNET_UIDS = (
-    '872544',   # daradib
-    '1034192',  # ckuehl
-    '869331',   # tzhu
+    872544,   # daradib
+    1034192,  # ckuehl
+    869331,   # tzhu
 )
 
 # comma separated tuples of CalLink OIDs and student group names
