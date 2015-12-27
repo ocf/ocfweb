@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest
+from ocflib.account.search import user_attrs_ucb
 from ocflib.account.submission import NewAccountResponse
 from ocflib.constants import CREATE_PUBLIC_KEY
 
@@ -27,7 +28,6 @@ def request_account(request):
     status = 'new_request'
 
     existing_accounts = search.users_by_calnet_uid(calnet_uid)
-    real_name = directory.name_by_calnet_uid(calnet_uid)
 
     if calnet_uid not in TESTER_CALNET_UIDS and existing_accounts:
         return render(
@@ -38,6 +38,20 @@ def request_account(request):
                 'calnet_url': settings.LOGOUT_URL
             },
         )
+
+    # ensure we can even find them in university LDAP
+    # (alumni etc. might not be readable in LDAP but can still auth via CalNet)
+    if not user_attrs_ucb(calnet_uid):
+        return render(
+            request,
+            'register/cant-find-in-ldap.html',
+            {
+                'calnet_uid': calnet_uid,
+                'calnet_url': settings.LOGOUT_URL
+            },
+        )
+
+    real_name = directory.name_by_calnet_uid(calnet_uid)
 
     if request.method == 'POST':
         form = ApproveForm(request.POST)
