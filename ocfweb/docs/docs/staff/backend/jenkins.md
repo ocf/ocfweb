@@ -59,3 +59,72 @@ jobs that might e.g. delete files or crash processes.
 Of course, in many cases once code builds successfully, we ship it off
 somewhere where it gets effectively run as root anyway. But this feels a little
 safer.
+
+
+## Jenkins for GitHub projects
+### On the master branch
+
+To test GitHub projects when you push to master:
+
+1. Configure the "GitHub Project" URL to point to the main page of the project
+   (for example, https://github.com/ocf/puppet/).
+
+2. Under "Source Code Management", select "Git" and add the repository URL (for
+   example, https://github.com/ocf/puppet/).
+
+3. Under "Build Triggers", check "Build when a change is pushed to GitHub".
+
+4. On GitHub, go to "Settings" then "Webhooks & services". Add a new "Jenkins
+   (GitHub Plugin)" service with URL
+   `https://jenkins.ocf.berkeley.edu/github-webhook/`.
+
+You can create additional steps or organize pipelines if desired (for example,
+if you'd like to first test and then deploy).
+
+
+#### Adding a "Build Status" badge to the README
+
+You might like to add a fancy "Build Status" badge to the README. From the
+project page, choose the "Embeddable Build Status" icon, then choose "Markdown
+(with view), unprotected". You can optionally change the link to point to the
+pipeline view rather ther than just the individual job.
+
+
+### Building and tagging pull requests
+
+Jenkins can build and tag pull requests with their build status, similar to
+Travis. To configure this for a repository, create a new job specifically for
+testing pull requests. For example, `puppet-test-pr`.
+
+1. Configure the "GitHub Project" URL to point to the main page of the project
+   (for example, https://github.com/ocf/puppet/).
+
+2. Under "Source Code Management", select "Git" and add the repository URL (for
+   example, https://github.com/ocf/puppet/).
+
+3. Under "Source Code Management", change "Branch Specifier" to `${sha1}`.
+
+4. Also under "Source Code Management", change "Refspec" (it's under Advanced)
+   to `+refs/pull/*:refs/remotes/origin/pr/*`.
+
+5. Under "Build Triggers", check "GitHub Pull Request Builder", and then check
+   "Use github hooks for build triggering".
+
+6. Under "GitHub Pull Request Builder", delete all lines under "Admin List" (if
+   there are any). Add "ocf" as the only line to the "List of organizations" box.
+
+7. On GitHub, under "Settings" and "Webhooks & services", add a new webhook
+   with payload URL `https://jenkins.ocf.berkeley.edu/ghprbhook/`, content type
+   `application/json`, and the secret (it's in `supernova:/opt/adm/passwords`).
+   Choose to trigger only on certain events:
+
+   * Commit comment
+   * Issue comment
+   * Issues
+   * Pull Request
+   * Pull Request view comment
+
+   (These might not all be necessary, but I don't know the exact list.)
+
+8. On GitHub, add the "Bots" group admin access to the repository. This is
+   necessary so that it can set commit statuses.
