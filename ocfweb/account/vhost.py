@@ -1,4 +1,5 @@
 import datetime
+import re
 import socket
 
 from django import forms
@@ -14,6 +15,14 @@ from ocflib.misc.validators import valid_email
 
 from ocfweb.auth import group_account_required
 from ocfweb.auth import login_required
+
+
+def valid_domain(domain):
+    if not re.match('^[a-zA-Z]+\.berkeley\.edu$', domain):
+        return False
+    if domain.count('.') != 2:
+        return False
+    return not host_exists(domain)
 
 
 @login_required
@@ -46,7 +55,7 @@ def request_vhost(request):
             full_domain = '{}.berkeley.edu'.format(requested_subdomain)
 
             # verify that the requested domain is available
-            if host_exists(full_domain):
+            if not valid_domain(full_domain):
                 error = 'The domain you requested is not available. ' + \
                     'Please select a different one.'
 
