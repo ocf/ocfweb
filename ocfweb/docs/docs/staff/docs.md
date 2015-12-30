@@ -32,18 +32,18 @@ Once you make a pull request, it will automatically be tested by
 [Jenkins][jenkins], the build server. Jenkins will also deploy your changes
 once they have been merged.
 
-The repository's readme file has instructions for testing and building the
-website so you can preview your edits before making the commit. Also see [[our
-page on Git|doc staff/backend/git]] for further info on working with OCF repos.
+For simple changes, you can just click "Edit this Page" in the sidebar. This
+will open the file in GitHub, and walk you through the steps for either
+commiting on master or making a pull request.
 
-## The old wiki
+For more complicated ones, the repository's readme file has instructions for
+testing and building the website so you can preview your edits before making
+the commit. Also see [[our page on Git|doc staff/backend/git]] for further info
+on working with OCF repos.
 
-The old wiki is stored on [[blight|doc staff/backend/servers]] under
-`/srv/wiki`.  You can find the pages on its [GitHub repo][oldgithub].
 
 [markdown]: https://daringfireball.net/projects/markdown/syntax
 [ocfweb]: https://github.com/ocf/ocfweb
 [mistune]: https://github.com/lepture/mistune
 [pygments]: http://pygments.org/
 [jenkins]: https://jenkins.ocf.berkeley.edu
-[oldgithub]: https://github.com/ocf/wiki
