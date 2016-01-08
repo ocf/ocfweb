@@ -3,11 +3,11 @@ from datetime import date
 from datetime import datetime
 from datetime import timedelta
 
-import matplotlib.pyplot as plt
 import numpy as np
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from matplotlib.figure import Figure
 from ocflib.lab.hours import Day
 from ocflib.lab.stats import list_desktops
 from ocflib.lab.stats import UtilizationProfile
@@ -104,20 +104,22 @@ def get_daily_plot(day):
     p = lambda h: 'am' if h <= 11 else 'pm'
     hours = ['{}{}'.format(h(hour), p(hour)) for hour in range(start.hour, start.hour + minutes // 60)]
 
+    fig = Figure(figsize=(10, 6))
+    ax = fig.add_subplot(1, 1, 1)
+
     x = list(range(minutes))
-    plt.figure(figsize=(10, 6))
-    plt.grid(True)
-    plt.plot(x, processed, color='k', linewidth=1.5)
+    ax.grid(True)
+    ax.plot(x, processed, color='k', linewidth=1.5)
 
     # Draw a vertical line, if applicable, showing current time
     if minute_now:
-        plt.axvline(minute_now, linewidth=1.5)
+        ax.axvline(minute_now, linewidth=1.5)
 
-    plt.xlim(0, minutes)
-    plt.xticks(np.arange(0, minutes, 60), hours)
-    plt.xlabel('Time')
-    plt.ylim(0, len(profiles))
-    plt.ylabel('Computers in Use')
+    ax.set_xlim(0, minutes)
+    ax.set_xticks(np.arange(0, minutes, 60), hours)
+    ax.set_xlabel('Time')
+    ax.set_ylim(0, len(profiles))
+    ax.set_ylabel('Computers in Use')
 
-    plt.title('Lab Utilization {}'.format(day.strftime('%a %b %d, %Y')))
-    return plt
+    ax.set_title('Lab Utilization {}'.format(day.strftime('%a %b %d, %Y')))
+    return fig

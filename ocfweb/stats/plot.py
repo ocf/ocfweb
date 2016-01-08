@@ -1,9 +1,10 @@
 import io
 
+from matplotlib.backends.backend_agg import FigureCanvasAgg
 
-def plot_to_image_bytes(plt, format='svg', **kwargs):
+
+def plot_to_image_bytes(fig, format='svg', **kwargs):
     """Return bytes representing the plot image."""
     buf = io.BytesIO()
-    plt.gcf().savefig(buf, format=format, **kwargs)
-    buf.seek(0)
-    return buf.read()
+    FigureCanvasAgg(fig).print_figure(buf, format=format, **kwargs)
+    return buf.getvalue()
