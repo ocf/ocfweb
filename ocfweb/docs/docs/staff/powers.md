@@ -53,33 +53,17 @@ the General Manager may also act as a Deputy Manager.
 
 ### `ocfroot` group
 
-The ability to become root via sudo first requires the existence of a `/root` principal (see above).
+The ability to become root via sudo first requires the existence of a `/root`
+principal (see above), with the exception of staff VMs where nobody needs a
+`/root` (but it must either be *your VM* or you must be in group `ocfroot`).
 
-This originates from PAM configuration at `/etc/pam.d/sudo` and `/etc/sudoers`.
+Once that's satisfied, you must also be in the `ocfroot` LDAP group in order to
+use `sudo` on most servers. (Exceptions: desktops, print server, and your staff
+VM don't require you to be in ocfroot.)
 
-`/etc/pam.d/sudo`:
-
-    auth required pam_krb5.so minimum_uid=1000 alt_auth_map=%s/root only_alt_auth
-
-`/etc/sudoers`:
-
-    %ocfroot ALL=(ALL) ALL
 
 ### `/admin` principal
 
-This principal can be used to modify LDAP and Kerberos.
-
-#### ldapmodify
-
-The ability to write to LDAP originates in OpenLDAP configuration
-(`ldap:/etc/ldap/slapd.conf`):
-
-    # Allow read over SSL or Kerberos, and write by only admins
-    access to * by sasl_ssf=56 dn.regex="^uid=[^,/]+/admin,cn=GSSAPI,cn=auth$$" write
-
-#### kadmin
-
-The ability to write to Kerberos originates in the Kerberos administrative ACL
-(`kerberos:/etc/heimdal-kdc/kadmind.acl`):
-
-    username/admin@OCF.BERKELEY.EDU all
+In order to modify LDAP or Kerberos, staff must possess a `/admin` principal
+and it must be granted [Kerberos-editing rights in
+Puppet](https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl).
