@@ -3,22 +3,25 @@ import re
 import socket
 
 from django import forms
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
+from ipware.ip import get_real_ip
 from ocflib.account.search import user_attrs
 from ocflib.account.utils import has_vhost
 from ocflib.misc.mail import send_mail
 from ocflib.misc.validators import host_exists
 from ocflib.misc.validators import valid_email
+from ocflib.misc.whoami import current_user_formatted_email
 
 from ocfweb.auth import group_account_required
 from ocfweb.auth import login_required
 
 
 def valid_domain(domain):
-    if not re.match('^[a-zA-Z]+\.berkeley\.edu$', domain):
+    if not re.match(r'^[a-zA-Z]+\.berkeley\.edu$', domain):
         return False
     if domain.count('.') != 2:
         return False
@@ -65,7 +68,7 @@ def request_vhost(request):
 
             if not error:
                 # send email to hostmaster@ocf and redirect to success page
-                ip_addr = get_client_ip(request)
+                ip_addr = get_real_ip(request)
 
                 try:
                     ip_reverse = socket.gethostbyaddr(ip_addr)[0]
@@ -112,9 +115,15 @@ def request_vhost(request):
                         full_path=request.build_absolute_uri())
 
                 try:
-                    send_mail('hostmaster@ocf.berkeley.edu', subject, message, sender=your_email)
+                    send_mail(
+                        'hostmaster@ocf.berkeley.edu' if not settings.DEBUG else current_user_formatted_email(),
+                        subject,
+                        message,
+                        sender=your_email,
+                    )
                     return redirect(reverse('request_vhost_success'))
                 except Exception as ex:
+                    # TODO: report via ocflib
                     print(ex)
                     print('Failed to send vhost request email!')
                     error = \
@@ -145,19 +154,6 @@ def request_vhost_success(request):
         'vhost/success.html',
         {},
     )
-
-
-# TODO: use ipware which we already dep
-# http://stackoverflow.com/a/5976065/450164
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[-1].strip()
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-
-    return ip
 
 
 class VirtualHostForm(forms.Form):
