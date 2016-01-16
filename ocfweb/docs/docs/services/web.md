@@ -10,8 +10,6 @@ All accounts include hosting with a web address at:
 
 where `user` is the account name.
 
-If the "www." or "~" (tilde) are omitted, they will automatically be added.
-
 Group accounts may also request a [[virtual host|doc services/vhost]] for another domain (e.g., group.berkeley.edu).
 
 ## Setting up web space
