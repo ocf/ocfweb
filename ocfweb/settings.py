@@ -18,6 +18,7 @@ ALLOWED_HOSTS = [
 ]
 
 INSTALLED_APPS = (
+    'bootstrapform',
     'django.contrib.humanize',
     'django.contrib.messages',
     'django.contrib.sessions',

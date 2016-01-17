@@ -20,6 +20,7 @@ setup(
         # Celery 3.1.19 has a bug with Redis UNIX sockets that breaks ocfweb:
         # https://github.com/celery/celery/issues/2903
         'celery[redis]<3.1.18',
+        'django-bootstrap-form',
         'django-ipware',
         'django-mathfilters',
         'django-redis',

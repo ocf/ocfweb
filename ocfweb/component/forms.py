@@ -1,4 +1,12 @@
+from django import forms
 from django.core.exceptions import ValidationError
+
+
+class Form(forms.Form):
+    """An OCF-flavored Django form that works well with Bootstrap."""
+
+    error_css_class = 'error'
+    required_css_class = 'required'
 
 
 def wrap_validator(validator):

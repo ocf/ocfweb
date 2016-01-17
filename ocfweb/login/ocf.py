@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from ocfweb.auth import login_required
+from ocfweb.component.forms import Form
 
 
 def login(request):
@@ -37,6 +38,7 @@ def login(request):
         request,
         'ocf/login.html',
         {
+            'title': 'OCF Login',
             'form': form,
             'error': error,
         },
@@ -73,7 +75,8 @@ def redirect_back(request):
     return HttpResponseRedirect(request.session['login_return_path'])
 
 
-class LoginForm(forms.Form):
+class LoginForm(Form):
+    # TODO: change this when we increase max username size
     username = forms.CharField(label='OCF username',
                                min_length=3,
                                max_length=8)
