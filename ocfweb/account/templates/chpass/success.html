@@ -1,17 +1,29 @@
 {% extends "base.html" %}
 
-{% block title %}Change Password{% endblock %}
-
 {% block content %}
-You've successfully changed the password of the account: <emph>{{ user_account }}</emph><br />
-Please <a href="{% url 'calnet_logout' %}" id="calnet_logout">logout</a>.<br />
-You should be automatically logged out in 5 seconds.
+    <div class="ocf-content-block">
+        <p>
+            You've successfully changed the password of account
+            <strong>{{account}}</strong>.
+        </p>
+        <p>
+            Password resets take effect immediately, so you can go ahead and
+            log in right away!
+        </p>
+        <p>
+            <a class="btn btn-primary" href="{% url 'calnet_logout' %}"
+                id="calnet_logout">Log out from CalNet</a>
+            <p>(You'll be logged out in 15 seconds automatically.)</p>
+        </p>
+    </div>
+{% endblock %}
 
-<script type="text/javascript">
-    function redirect_to_calnet_logout(){
-        calnet_logout_url = document.getElementById("calnet_logout");
-        window.location = calnet_logout_url;
-    }
-    window.setTimeout("redirect_to_calnet_logout()", 5000);
-</script>
+{% block inline_js %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            window.setTimeout(function() {
+                window.location = $('#calnet_logout').attr('href');
+            }, 15000);
+        });
+    </script>
 {% endblock %}
