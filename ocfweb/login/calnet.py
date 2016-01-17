@@ -68,15 +68,10 @@ def login(request, next_page=None):
         if 'calnet_uid' in request.session and request.session['calnet_uid']:
             return _next_page_response(next_page)
         else:
-            error = '<h1>Forbidden</h1><p>CalNet login failed.</p>'
-            return HttpResponseForbidden(error)
-    return render(
-        request,
-        'calnet/redirecting_to_calnet.html',
-        {
-            'calnet_url': _login_url(service)
-        },
-    )
+            return HttpResponseForbidden(
+                '<h1>Forbidden</h1><p>CalNet login failed.</p>'
+            )
+    return HttpResponseRedirect(_login_url(service))
 
 
 def logout(request, next_page=None):
