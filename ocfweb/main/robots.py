@@ -8,6 +8,7 @@ def robots_dot_txt(request):
     return HttpResponse(
         dedent("""\
             User-Agent: *
+            Disallow: /login/calnet/
             Disallow: /test/
         """),
         content_type='text/plain',
