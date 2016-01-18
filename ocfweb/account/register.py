@@ -161,7 +161,8 @@ class ApproveForm(forms.Form):
         label='OCF login name',
         validators=[wrap_validator(validators.validate_username)],
         min_length=3,
-        max_length=8)
+        max_length=16,
+    )
 
     # password is validated in clean since we need the username as part of the
     # password validation (to compare similarity)
@@ -169,7 +170,7 @@ class ApproveForm(forms.Form):
         widget=forms.PasswordInput(render_value=True),
         label='New password',
         min_length=8,
-        max_length=64,
+        max_length=256,
     )
 
     verify_password = forms.CharField(

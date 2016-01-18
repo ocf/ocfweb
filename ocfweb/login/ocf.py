@@ -25,8 +25,9 @@ def login(request):
                     request.session['ocf_user'] = username
                     return redirect_back(request)
                 else:
-                    error = 'Authentication failed. Did you type the wrong ' + \
-                        'username or password?'
+                    error = (
+                        'Authentication failed. Did you type the wrong username or password?'
+                    )
             except ValueError as ex:
                 error = 'Authentication failed: {error}'.format(
                     error=str(ex),
@@ -68,7 +69,8 @@ def logout(request):
 
 def redirect_back(request):
     """Return the user to the page they were trying to access, or the commands
-    page if we don't know what they were trying to access."""
+    page if we don't know what they were trying to access.
+    """
     if 'login_return_path' not in request.session:
         request.session['login_return_path'] = reverse('commands')
 
@@ -76,14 +78,17 @@ def redirect_back(request):
 
 
 class LoginForm(Form):
-    # TODO: change this when we increase max username size
-    username = forms.CharField(label='OCF username',
-                               min_length=3,
-                               max_length=8)
-    password = forms.CharField(widget=forms.PasswordInput,
-                               label='Password',
-                               min_length=8,
-                               max_length=64)
+    username = forms.CharField(
+        label='OCF username',
+        min_length=3,
+        max_length=16,
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput,
+        label='Password',
+        min_length=8,
+        max_length=64,
+    )
 
     def clean_username(self):
         username = self.cleaned_data.get('username', '')

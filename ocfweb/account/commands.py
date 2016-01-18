@@ -59,13 +59,17 @@ def commands(request):
 
 
 class CommandForm(forms.Form):
-    username = forms.CharField(label='OCF username',
-                               min_length=3,
-                               max_length=8)
-    password = forms.CharField(widget=forms.PasswordInput,
-                               label='Password',
-                               min_length=8,
-                               max_length=64)
+    username = forms.CharField(
+        label='OCF username',
+        min_length=3,
+        max_length=16,
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput,
+        label='Password',
+        min_length=8,
+        max_length=256,
+    )
 
     COMMAND_CHOICES = (
         ('/opt/ocf/bin/paper',
