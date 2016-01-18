@@ -15,16 +15,24 @@
 * Add vhost: edit `~staff/vhost/vhost.conf`.
 * Update vhost configuration and restart Apache: run `sudo ~staff/vhost/web.sh` on death.
 
-Request the following DNS record from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/) (unless mail is also requested, in that case, skip to the next section):
+If mail is also requested, skip to the next section. Otherwise, request the following DNS record from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/):
 
-    vhost.berkeley.edu. IN CNAME death.ocf.berkeley.edu.
+    hostname.berkeley.edu. IN CNAME death.ocf.berkeley.edu.
+
+Use the domain requested by the group in place of `hostname`. We have a [reusable email template](http://templates.ocf.berkeley.edu/#hostmaster-new-domain) for making new DNS requests.
 
 ### Mail (if requested)
 
 * Add vhost: edit `~staff/vhost/vhost-mail.conf`.
 * Update vhost configuration: Run `sudo ~staff/vhost/mail.sh` on sandstorm.
 
-Request the following DNS records from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/):
+If the group already has virtual hosting for their website, which is likely the case, request from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/) that the following DNS record be dropped:
 
-    vhost.berkeley.edu. IN A 169.229.10.23
-    vhost.berkeley.edu. IN MX 5 sandstorm.ocf.berkeley.edu.
+    hostname.Berkeley.EDU. IN CNAME death.OCF.Berkeley.EDU.
+
+Then, whether or not the group has web virtual hosting, request the following DNS records:
+
+    hostname.Berkeley.EDU. IN A 169.229.226.23
+    hostname.Berkeley.EDU. IN MX 5 sandstorm.OCF.Berkeley.EDU.
+
+Use the domain requested by the group in place of `hostname`. We have a [reusable email template](http://templates.ocf.berkeley.edu/#hostmaster-add-mail) for making DNS mail requests.

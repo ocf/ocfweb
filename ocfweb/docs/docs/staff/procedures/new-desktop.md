@@ -20,7 +20,7 @@ The CA lives on dementors, so that's where you'll make the key and sign it.
     ssh lightning
     sudo mkdir /opt/puppet/shares/private/whatever/stats
     sudo mv /tmp/whatever.ocf.berkeley.edu.{key,crt} /opt/puppet/shares/private/whatever/stats/
-    sudo chown -R puppet:pupept /opt/puppet/shares/private/whatever/
+    sudo chown -R puppet:puppet /opt/puppet/shares/private/whatever/
 
 A potential future improvement would be to use some kind of authentication
 based on the Kerberos host keys so we don't have to generate extra keys/certs
