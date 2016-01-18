@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="ocf-content-block">
+    <p>
+      Here you can find contact info for the OCF's current officers as well as
+      a listing of past officers by election term.
+    </p>
+    <h2>Current Officers ({{ current_term.name }})</h2>
+      <h3>Faculty advisor</h3>
+        <p>
+          <strong><a href="https://www.cs.berkeley.edu/~bh">Dr. Brian
+          Harvey</a></strong>
+        &lt;<a href="mailto:bhocfofficerspage@cs.berkeley.edu"
+         k>bhocfofficerspage@cs.berkeley.edu</a>&gt;</p>
+        <p>
+          Our faculty advisor provides us official sponsorship as a registered
+          student organization.
+        </p>
+      <h3>
+        Board of Directors
+        &lt;<a href="mailto:bod@ocf.berkeley.edu">bod@ocf.berkeley.edu</a>&gt;
+      </h3>
+        <pl><strong>See <a href="/~staff/bod/">minutes</a> for
+          attendance.</strong></p>
+        <p>
+          The Board of Directors is the decision-making entity behind the OCF's
+          operations. The Board is appointed based on attendance at our <a
+          href="/about/staff">weekly meetings</a>.
+        </p>
+      <h3>
+        General managers
+        &lt;<a href="mailto:gm@ocf.berkeley.edu">gm@ocf.berkeley.edu</a>&gt;
+      </h3>
+        {% for gm in current_term.gms %}
+          <p><strong>{{ gm.name }}</strong> &lt;{{ gm.uid }}&gt;</p>
+        {% endfor %}
+        <p>
+          General managers handle the organizational activities of the OCF and
+          lead the Board of Directors meetings. They are elected by the popular
+          vote of the Board of Directors.
+        </p>
+      <h3>
+        Site managers
+        &lt;<a href="mailto:sm@ocf.berkeley.edu">sm@ocf.berkeley.edu</a>&gt;
+      </h3>
+        {% for sm in current_term.sms %}
+          <p><strong>{{ sm.name }}</strong> &lt;{{ sm.uid }}&gt;</p>
+        {% endfor %}
+        <p>
+          Site managers lie behind the technical work involved in maintaining
+          the OCF lab and other services. They are elected by the popular
+          vote of the Board of Directors.
+        </p>
+    <h2>Previous officers</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Term</th>
+          <th>General managers</th>
+          <th>Site managers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for term in previous_terms %}
+          <tr>
+            <td>{{ term.name }}</td>
+            <td>
+              {% for gm in term.gms %}
+                <p>{{ gm.name }} &lt;{{ gm.uid }}&gt;</p>
+              {% endfor %}
+            </td>
+            <td>
+              {% for sm in term.sms %}
+                <p>{{ sm.name }} &lt;{{ sm.uid }}&gt;</p>
+              {% endfor %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
