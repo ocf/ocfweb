@@ -9,6 +9,7 @@ from ocfweb.account.constants import TEST_OCF_ACCOUNTS
 from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
 from ocfweb.component.celery import change_password as change_password_task
+from ocfweb.component.forms import Form
 
 
 def _get_accounts_signatory_for(calnet_uid):
@@ -70,7 +71,8 @@ def change_password(request):
                     request,
                     'chpass/success.html',
                     {
-                        'user_account': account
+                        'account': account,
+                        'title': 'Password Changed Successfully',
                     },
                 )
     else:
@@ -80,14 +82,15 @@ def change_password(request):
         request,
         'chpass/index.html',
         {
-            'form': form,
             'calnet_uid': calnet_uid,
             'error': error,
+            'form': form,
+            'title': 'Reset Password',
         },
     )
 
 
-class ChpassForm(forms.Form):
+class ChpassForm(Form):
 
     def __init__(self, ocf_accounts, calnet_uid, *args, **kwargs):
         super(ChpassForm, self).__init__(*args, **kwargs)
