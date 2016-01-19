@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Already Requested Account{% endblock %}
-
 {% block content %}
-<p>This CalNet account has already submitted a request for approval.</p>
-<p>If you believe this is an error, please <a href="http://wiki.ocf.berkeley.edu/contact/">contact us</a> with your CalNet UID: {{ calnet_uid }}.
+    <div class="ocf-content-block">
+        <p>This CalNet account has already submitted a request for approval.</p>
+        <p>If you believe this is an error, please <a href="{% url 'contact' %}">
+            contact us</a> with your CalNet UID: <tt>{{calnet_uid}}</tt>.
 
-<p>Please logout <a href="{% url 'calnet_logout' %}" id="calnet_url">here</a>.</p>
+        <p>Please logout <a href="{% url 'calnet_logout' %}" id="calnet_url">here</a>.</p>
+    </div>
 {% endblock %}

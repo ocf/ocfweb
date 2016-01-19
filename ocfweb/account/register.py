@@ -19,6 +19,7 @@ from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
 from ocfweb.component.celery import celery_app
 from ocfweb.component.celery import validate_then_create_account
+from ocfweb.component.forms import Form
 from ocfweb.component.forms import wrap_validator
 
 
@@ -29,13 +30,14 @@ def request_account(request):
 
     existing_accounts = search.users_by_calnet_uid(calnet_uid)
 
-    if calnet_uid not in TESTER_CALNET_UIDS and existing_accounts:
+    if existing_accounts and calnet_uid not in TESTER_CALNET_UIDS:
         return render(
             request,
             'register/already-has-account.html',
             {
                 'calnet_uid': calnet_uid,
-                'calnet_url': settings.LOGOUT_URL
+                'calnet_url': settings.LOGOUT_URL,
+                'title': 'You already have an account',
             },
         )
 
@@ -47,7 +49,8 @@ def request_account(request):
             'register/cant-find-in-ldap.html',
             {
                 'calnet_uid': calnet_uid,
-                'calnet_url': settings.LOGOUT_URL
+                'calnet_url': settings.LOGOUT_URL,
+                'title': 'Unable to read account information',
             },
         )
 
@@ -102,6 +105,7 @@ def request_account(request):
             'form': form,
             'real_name': real_name,
             'status': status,
+            'title': 'Request an OCF account',
         },
     )
 
@@ -110,7 +114,8 @@ def wait_for_account(request):
     if 'approve_task_id' not in request.session:
         return render(
             request,
-            'register/wait/error-no-task-id.html', {},
+            'register/wait/error-no-task-id.html',
+            {'title': 'Account request error'},
         )
 
     task = celery_app.AsyncResult(request.session['approve_task_id'])
@@ -123,6 +128,7 @@ def wait_for_account(request):
             request,
             'register/wait/wait.html',
             {
+                'title': 'Creating account...',
                 'status': status,
             },
         )
@@ -132,33 +138,22 @@ def wait_for_account(request):
     elif isinstance(task.result, Exception):
         raise task.result
 
-    return render(
-        request,
-        'register/wait/error-probably-not-created.html', {},
-    )
+    return render(request, 'register/wait/error-probably-not-created.html', {})
 
 
 def account_pending(request):
-    return render(
-        request,
-        'register/pending.html', {},
-    )
+    return render(request, 'register/pending.html', {'title': 'Account request pending'})
 
 
 def account_created(request):
-    return render(
-        request,
-        'register/success.html', {},
-    )
+    return render(request, 'register/success.html', {'title': 'Account request successful'})
 
 
-class ApproveForm(forms.Form):
-
-    def __init__(self, *args, **kwargs):
-        super(ApproveForm, self).__init__(*args, **kwargs)
+class ApproveForm(Form):
 
     ocf_login_name = forms.CharField(
-        label='OCF login name',
+        label='OCF account name',
+        widget=forms.TextInput(attrs={'placeholder': 'jsmith'}),
         validators=[wrap_validator(validators.validate_username)],
         min_length=3,
         max_length=16,
@@ -168,7 +163,7 @@ class ApproveForm(forms.Form):
     # password validation (to compare similarity)
     password = forms.CharField(
         widget=forms.PasswordInput(render_value=True),
-        label='New password',
+        label='Password',
         min_length=8,
         max_length=256,
     )
@@ -179,16 +174,22 @@ class ApproveForm(forms.Form):
         min_length=8,
         max_length=64,
     )
+
     contact_email = forms.EmailField(
         label='Contact e-mail',
-        validators=[wrap_validator(ocflib.misc.validators.valid_email)])
+        validators=[wrap_validator(ocflib.misc.validators.valid_email)],
+        widget=forms.EmailInput(attrs={'placeholder': 'jsmith@berkeley.edu'}),
+    )
 
-    verify_contact_email = forms.EmailField(label='Confirm contact e-mail')
+    verify_contact_email = forms.EmailField(
+        label='Confirm contact e-mail',
+        widget=forms.EmailInput(attrs={'placeholder': 'jsmith@berkeley.edu'}),
+    )
 
     disclaimer_agreement = forms.BooleanField(
-        label='You have read, understood, and agreed to our policies.',
+        label='I agree with the above statement.',
         error_messages={
-            'required': 'You did not agree to our policies.'
+            'required': 'You must agree to our policies.'
         })
 
     def clean_verify_password(self):

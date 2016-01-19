@@ -1,24 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}Your Account is Being Created{% endblock %}
-
-{% block meta %}
-<!-- TODO: javascript this, make it prettier/ajaxy -->
-<meta http-equiv="refresh" content="1">
+{% block content %}
+    <div class="ocf-content-block">
+        <p><strong>Please wait, your account is being created.</strong></p>
+        <p>Current Status:</p>
+        <ul>
+            {% for line in status %}
+                <li>{{ line }}</li>
+            {% endfor %}
+        </ul>
+        <p><em>This page should automatically refresh.</em></p>
+    </div>
 {% endblock %}
 
-{% block content %}
-<h1>Please wait, your account is being created.</h1>
-<p>Current Status:</p>
-<ul>
-    {% for line in status %}
-        <li>{{ line }}</li>
-    {% endfor %}
-</ul>
-<p><em>This page should automatically refresh.</em></p>
-
-<hr />
-<p>OCF &hearts; GNU/Linux, Python, Ruby, Puppet, Free &amp; Open-Source Software!
-Does this sound interesting to you? <a href="http://hello.ocf.berkeley.edu/">Learn more about joining the staff team!</a></p>
-
+<!-- TODO: AJAX this and make it pretty -->
+{% block inline_js %}
+    <script>
+        $(document).ready(function() {
+            window.setTimeout(window.location.reload, 1000);
+        });
+    </script>
 {% endblock %}
