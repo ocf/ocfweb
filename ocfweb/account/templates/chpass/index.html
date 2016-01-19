@@ -2,9 +2,9 @@
 {% load bootstrap %}
 
 {% block content %}
-    <div class="ocf-content-block">
+    <div>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-8 ocf-content-block">
                 {% if error %}
                     <div class="alert alert-danger" role="alert">
                         {{ error }}
@@ -21,21 +21,7 @@
                 </form>
             </div>
             <div class="col-sm-4">
-                <h3>Password requirements</h3>
-                <p>Your password should be:</p>
-                <ul>
-                    <li>At least 8 characters long (preferably much longer)</li>
-                    <li>Reasonably complex</li>
-                    <li>Not based on your username</li>
-                    <li>Not based on a single dictionary word</li>
-                </ul>
-
-                <p>
-                    <strong>Suggestion!</strong>
-                    <a href="https://xkcd.com/936/">String together 4 words
-                        randomly</a> for a secure and easy-to-remember
-                    password.
-                </p>
+                {% include "partials/password-requirements-sidebar.html" %}
 
                 <h4>Don't see your account listed?</h4>
                 <p>
