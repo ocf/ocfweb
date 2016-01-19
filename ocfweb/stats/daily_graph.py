@@ -84,8 +84,7 @@ def get_daily_plot(day):
     for minute in range(minutes):
         instant15 = start + timedelta(minutes=minute, seconds=15)
         instant45 = start + timedelta(minutes=minute, seconds=45)
-        in_use = sum(1 if profile.in_use(instant15)
-                     or profile.in_use(instant45) else 0 for profile in profiles)
+        in_use = sum(1 if profile.in_use(instant15) or profile.in_use(instant45) else 0 for profile in profiles)
         sums.append(in_use)
 
     # Do a weighted moving average to smooth out the data
@@ -100,8 +99,13 @@ def get_daily_plot(day):
                 processed[i] = 0
             else:
                 processed[i] += weight * sums[m]
-    h = lambda h: h if h <= 12 else h - 12
-    p = lambda h: 'am' if h <= 11 else 'pm'
+
+    def h(h):
+        lambda h: h if h <= 12 else h - 12
+
+    def p(h):
+        lambda h: 'am' if h <= 11 else 'pm'
+
     hours = ['{}{}'.format(h(hour), p(hour)) for hour in range(start.hour, start.hour + minutes // 60)]
 
     fig = Figure(figsize=(10, 6))
@@ -116,7 +120,8 @@ def get_daily_plot(day):
         ax.axvline(minute_now, linewidth=1.5)
 
     ax.set_xlim(0, minutes)
-    ax.set_xticks(np.arange(0, minutes, 60), hours)
+    ax.set_xticks(np.arange(0, minutes, 60))
+    ax.set_xticklabels(hours)
     ax.set_xlabel('Time')
     ax.set_ylim(0, len(profiles))
     ax.set_ylabel('Computers in Use')
