@@ -9,6 +9,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from matplotlib.figure import Figure
 from ocflib.lab.hours import Day
+from ocflib.lab.hours import REGULAR_HOURS
 from ocflib.lab.stats import list_desktops
 from ocflib.lab.stats import UtilizationProfile
 
@@ -53,8 +54,7 @@ def daily_graph_image(request):
 def get_open_close(day):
     """Return datetime objects representing open and close for a day.
 
-    If the lab is closed all day (e.g. holiday), we just return midnight of the
-    current and next day (i.e. all 24 hours).
+    If the lab is closed all day (e.g. holiday), just return our weekday hours.
     """
     d = Day.from_date(day)
 
@@ -62,8 +62,8 @@ def get_open_close(day):
         start = datetime(day.year, day.month, day.day, min(h.open for h in d.hours))
         end = datetime(day.year, day.month, day.day, max(h.close for h in d.hours))
     else:
-        start = datetime(day.year, day.month, day.day)
-        end = start + timedelta(days=1)
+        start = datetime(day.year, day.month, day.day, min(h.open for h in REGULAR_HOURS[None]))
+        end = datetime(day.year, day.month, day.day, max(h.close for h in REGULAR_HOURS[None]))
 
     return start, end
 
@@ -101,10 +101,10 @@ def get_daily_plot(day):
                 processed[i] += weight * sums[m]
 
     def h(h):
-        lambda h: h if h <= 12 else h - 12
+        return h if h <= 12 else h - 12
 
     def p(h):
-        lambda h: 'am' if h <= 11 else 'pm'
+        return 'am' if h <= 11 else 'pm'
 
     hours = ['{}{}'.format(h(hour), p(hour)) for hour in range(start.hour, start.hour + minutes // 60)]
 
