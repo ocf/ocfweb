@@ -54,9 +54,9 @@ disabled.
 
 Our address is:
 
-    ASUC / Open Computing Facility
+    Open Computing Facility
+    171 MLK Student Union MC#4520
     University of California, Berkeley
-    171 MLK Student Union
     Berkeley, CA 94720
 
 ## Legal
