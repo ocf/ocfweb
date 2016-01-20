@@ -28,7 +28,7 @@ ply==3.8
 pyasn1==0.1.9
 pycrypto==2.6.1
 Pygments==2.1
-PyMySQL==0.7.1
+PyMySQL==0.6.6
 pyparsing==2.0.7
 pysmi==0.0.6
 pysnmp==4.3.1
