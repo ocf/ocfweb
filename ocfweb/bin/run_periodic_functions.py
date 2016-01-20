@@ -84,15 +84,12 @@ def run_periodic_functions():
                     ).format(traceback=format_exc()))
                     raise
 
-                # pause for 60 seconds to avoid spamming root with multiple
-                # emails per second if an error is persistent
-                time.sleep(60)
-
         else:
             _logger.debug(bold(yellow('Not updating periodic function: {}'.format(pf))))
 
     if was_error:
         delay_on_error = min(DELAY_ON_ERROR_MAX, delay_on_error * 2)
+        time.sleep(delay_on_error)
     else:
         delay_on_error = max(DELAY_ON_ERROR_MIN, delay_on_error / 2)
 
