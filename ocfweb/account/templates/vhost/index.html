@@ -36,7 +36,24 @@
                     </div>
                 {% endif %}
 
-                {{form|bootstrap}}
+                {{form.requested_subdomain|bootstrap}}
+                {{form.requested_why|bootstrap}}
+
+                <p><strong>Website requirements:</strong></p>
+                <p>
+                    Please read and confirm your understanding of each of the
+                    following website requirements.
+                </p>
+                {{form.website_complete|bootstrap}}
+                {{form.website_hosted_by_ocf|bootstrap}}
+                {{form.website_ocf_banner|bootstrap}}
+                {{form.website_disclaimer_text|bootstrap}}
+                {{form.website_updated_software|bootstrap}}
+
+                {{form.your_name|bootstrap}}
+                {{form.your_email|bootstrap}}
+                {{form.your_position|bootstrap}}
+                {{form.comments|bootstrap}}
 
                 <hr />
                 <p>

@@ -175,7 +175,7 @@ class VirtualHostForm(Form):
         min_length=1,
         max_length=1024)
 
-    # web site requirements
+    # website requirements
     website_complete = forms.BooleanField(
         label='Our site is already complete and uploaded to the OCF \
                server. The website is not just a placeholder.')
