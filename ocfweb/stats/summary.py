@@ -46,12 +46,12 @@ def staff_in_lab():
     return real_staff_in_lab()
 
 
-@periodic(30)
+@periodic(300)
 def top_staff_alltime():
     return real_top_staff_alltime()
 
 
-@periodic(30)
+@periodic(300)
 def top_staff_semester():
     return real_top_staff_semester()
 

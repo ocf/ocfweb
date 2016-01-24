@@ -37,41 +37,45 @@
         </div>
 
         <h3>Top Staff</h3>
-        <h4>This Semester</h4>
-        <table class="table table-striped table-hover">
-            <tr>
-                <th>User</th>
-                <th>Time</th>
-            </tr>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>This Semester</h4>
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th>User</th>
+                        <th>Time</th>
+                    </tr>
 
-            {% for staff in top_staff_semester %}
-                <tr>
-                    <td>{{staff.user}}</td>
-                    <td>{{staff.time}}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <p>(Since the semester started on {{current_semester_start}}.)</p>
+                    {% for staff in top_staff_semester %}
+                        <tr>
+                            <td>{{staff.user}}</td>
+                            <td>{{staff.time}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <p>(Since the semester started on {{current_semester_start}}.)</p>
+            </div>
+            <div class="col-sm-6">
+                <h4>All-Time</h4>
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th>User</th>
+                        <th>Time</th>
+                    </tr>
 
-        <h4>All-Time</h4>
-        <table class="table table-striped table-hover">
-            <tr>
-                <th>User</th>
-                <th>Time</th>
-            </tr>
-
-            {% for staff in top_staff_alltime %}
-                <tr>
-                    <td>{{staff.user}}</td>
-                    <td>{{staff.time}}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <p>(Since records began on {{stats_epoch}}.)</p>
+                    {% for staff in top_staff_alltime %}
+                        <tr>
+                            <td>{{staff.user}}</td>
+                            <td>{{staff.time}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <p>(Since records began on {{stats_epoch}}.)</p>
+            </div>
+        </div>
 
 
         <h3>Today's Lab Utilization</h3>
-
         <table class="table table-striped table-hover">
             <tr>
                 <th>Desktop</th>
