@@ -111,8 +111,8 @@ def get_sessions_plot(start_day, end_day):
         day += ONE_DAY
 
     ax.grid(True)
-    ax.plot(x, logins, color='b', linewidth=1.5, label='Logins')
-    ax.plot(x, unique_logins, color='r', linewidth=2, label='Unique Logins')
+    ax.plot(x, logins, color='b', marker='o', linewidth=1.5, label='Logins')
+    ax.plot(x, unique_logins, color='r', marker='o', linewidth=2, label='Unique Logins')
     ax.set_xlim(x[0], x[-1])
 
     skip = max(1, len(x) // 5)  # target 5 labels
