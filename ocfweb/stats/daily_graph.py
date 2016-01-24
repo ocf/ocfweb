@@ -108,7 +108,7 @@ def get_daily_plot(day):
 
     hours = ['{}{}'.format(h(hour), p(hour)) for hour in range(start.hour, start.hour + minutes // 60)]
 
-    fig = Figure(figsize=(10, 6))
+    fig = Figure(figsize=(10, 4))
     ax = fig.add_subplot(1, 1, 1)
 
     x = list(range(minutes))
@@ -122,7 +122,6 @@ def get_daily_plot(day):
     ax.set_xlim(0, minutes)
     ax.set_xticks(np.arange(0, minutes, 60))
     ax.set_xticklabels(hours)
-    ax.set_xlabel('Time')
     ax.set_ylim(0, len(profiles))
     ax.set_ylabel('Computers in Use')
 

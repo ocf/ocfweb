@@ -16,6 +16,7 @@ from ocfweb.main.move_to_mlk import move_to_mlk
 from ocfweb.main.robots import robots_dot_txt
 from ocfweb.main.staff_hours import staff_hours
 from ocfweb.stats.daily_graph import daily_graph_image
+from ocfweb.stats.sessions import sessions_image
 from ocfweb.stats.summary import summary
 from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
@@ -47,6 +48,7 @@ urlpatterns = [
     # stats
     url(r'^stats/$', summary, name='stats'),
     url(r'^stats/daily-graph/graph$', daily_graph_image, name='daily_graph_image'),
+    url(r'^stats/sessions/graph$', sessions_image, name='sessions_image'),
 
     # legacy redirects
     url(r'^index\.s?html$', lambda _: redirect(reverse('home'), permanent=True)),
