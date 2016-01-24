@@ -1,16 +1,28 @@
 from collections import namedtuple
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from ocflib.account.search import user_attrs
 
 
-class Term(namedtuple('Term', ['name', 'gms', 'sms'])):
-    pass
+_Term = namedtuple('Term', ['name', 'gms', 'sms'])
+
+
+def Term(*args, **kwargs):
+    term = _Term(*args, **kwargs)
+    return term._replace(
+        gms=list(map(Officer.from_uid, term.gms)),
+        sms=list(map(Officer.from_uid, term.sms)),
+    )
 
 
 class Officer(namedtuple('Officer', ['uid', 'name'])):
-    pass
+
+    @classmethod
+    def from_uid(cls, uid):
+        name = MISSING_NAMES.get(uid)
+        if not name:
+            name, = user_attrs(uid)['cn']
+        return cls(uid=uid, name=name)
 
 
 # Some of the earliest officers' accounts are nonexistant or belong to
@@ -28,22 +40,7 @@ MISSING_NAMES = {
 }
 
 
-def fill_officers(term):
-    return Term(
-        term.name,
-        gms=list(map(officer_from_uid, term.gms)),
-        sms=list(map(officer_from_uid, term.sms)),
-    )
-
-
-def officer_from_uid(uid):
-    if uid in MISSING_NAMES:
-        return Officer(uid, MISSING_NAMES[uid])
-    else:
-        return Officer(uid, user_attrs(uid)['cn'][0])
-
-
-BOD_TERMS = list(map(fill_officers, [
+BOD_TERMS = [
     Term('Spring 1989', gms=['psb'], sms=['shipley']),
     Term('Fall 1989', gms=['psb'], sms=['ctl']),
     Term('Spring 1999', gms=['ctl'], sms=['sls']),
@@ -106,19 +103,21 @@ BOD_TERMS = list(map(fill_officers, [
     Term('Summer 2013', gms=['daradib'], sms=['tzhu']),
     Term('Fall 2013', gms=['daradib'], sms=['tzhu']),
     Term('Spring 2014', gms=['nickimp'], sms=['ckuehl']),
+    Term('Summer 2014', gms=['nickimp'], sms=['ckuehl']),
     Term('Fall 2014', gms=['nickimp'], sms=['ckuehl']),
     Term('Spring 2015', gms=['nickimp'], sms=['ckuehl']),
+    Term('Summer 2015', gms=['nickimp'], sms=['ckuehl']),
     Term('Fall 2015', gms=['nickimp'], sms=['ckuehl']),
-]))
+]
 
 
 def officers(doc, request):
-    return render_to_response(
+    return render(
+        request,
         'officers.html',
         {
             'title': doc.title,
             'current_term': BOD_TERMS[-1],
             'previous_terms': BOD_TERMS[:-1],
         },
-        context_instance=RequestContext(request),
     )
