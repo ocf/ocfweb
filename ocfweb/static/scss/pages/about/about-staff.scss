@@ -72,18 +72,9 @@ $color-blue3: #29D9C2;
         background-color: $color-blue1;
         color: white;
 
-        .ocf-rsvp a {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            background-color: $color-white;
-            color: $color-blue1;
-
-            @media (max-width: 767px) {
-                font-size: 14px;
-            }
+        a {
+            color: #ddd;
+            text-decoration: underline;
         }
 
         h2 {
@@ -266,6 +257,10 @@ $color-blue3: #29D9C2;
             h2,
             p {
                 margin-bottom: 5px;
+            }
+
+            a {
+                color: #333;
             }
 
             .btn {
