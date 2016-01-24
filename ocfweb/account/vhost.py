@@ -1,6 +1,7 @@
 import datetime
 import re
 import socket
+from textwrap import dedent
 
 from django import forms
 from django.conf import settings
@@ -18,10 +19,11 @@ from ocflib.misc.whoami import current_user_formatted_email
 
 from ocfweb.auth import group_account_required
 from ocfweb.auth import login_required
+from ocfweb.component.forms import Form
 
 
 def valid_domain(domain):
-    if not re.match(r'^[a-zA-Z]+\.berkeley\.edu$', domain):
+    if not re.match(r'^[a-zA-Z0-9]+\.berkeley\.edu$', domain):
         return False
     if domain.count('.') != 2:
         return False
@@ -40,7 +42,8 @@ def request_vhost(request):
             request,
             'vhost/already_have_vhost.html',
             {
-                'user': user
+                'title': 'You already have virtual hosting',
+                'user': user,
             },
         )
 
@@ -55,17 +58,6 @@ def request_vhost(request):
             your_email = form.cleaned_data['your_email']
             your_position = form.cleaned_data['your_position']
 
-            full_domain = '{}.berkeley.edu'.format(requested_subdomain)
-
-            # verify that the requested domain is available
-            if not valid_domain(full_domain):
-                error = 'The domain you requested is not available. ' + \
-                    'Please select a different one.'
-
-            if not valid_email(your_email):
-                error = "The email you entered doesn't appear to be " + \
-                    'valid. Please double-check it.'
-
             if not error:
                 # send email to hostmaster@ocf and redirect to success page
                 ip_addr = get_real_ip(request)
@@ -76,43 +68,49 @@ def request_vhost(request):
                     ip_reverse = 'unknown'
 
                 subject = 'Virtual Hosting Request: {} ({})'.format(
-                    full_domain, user)
-                message = (
-                    'Virtual Hosting Request:\n' +
-                    '  - OCF Account: {user}\n' +
-                    '  - OCF Account Title: {title}\n' +
-                    '  - Requested Subdomain: {full_domain}\n' +
-                    '  - Current URL: https://ocf.io/{user}/\n' +
-                    '\n' +
-                    'Request Reason:\n' +
-                    '{requested_why}\n\n' +
-                    'Comments/Special Requests:\n' +
-                    '{comments}\n\n' +
-                    'Requested by:\n' +
-                    '  - Name: {your_name}\n' +
-                    '  - Position: {your_position}\n' +
-                    '  - Email: {your_email}\n' +
-                    '  - IP Address: {ip_addr} ({ip_reverse})\n' +
-                    '  - User Agent: {user_agent}\n' +
-                    '\n\n' +
-                    '--------\n' +
-                    'Request submitted to ocfweb ({hostname}) on {now}.\n' +
-                    '{full_path}').format(
-                        user=user,
-                        title=attrs['cn'][0],
-                        full_domain=full_domain,
-                        requested_why=requested_why,
-                        comments=comments,
-                        your_name=your_name,
-                        your_position=your_position,
-                        your_email=your_email,
-                        ip_addr=ip_addr,
-                        ip_reverse=ip_reverse,
-                        user_agent=request.META.get('HTTP_USER_AGENT'),
-                        now=datetime.datetime.now().strftime(
-                            '%A %B %e, %Y @ %I:%M:%S %p'),
-                        hostname=socket.gethostname(),
-                        full_path=request.build_absolute_uri())
+                    requested_subdomain,
+                    user,
+                )
+                message = dedent('''\
+                    Virtual Hosting Request:
+                      - OCF Account: {user}
+                      - OCF Account Title: {title}
+                      - Requested Subdomain: {requested_subdomain}
+                      - Current URL: https://www.ocf.berkeley.edu/~{user}/
+
+                    Request Reason:
+                    {requested_why}
+
+                    Comments/Special Requests:
+                    {comments}
+
+                    Requested by:
+                      - Name: {your_name}
+                      - Position: {your_position}
+                      - Email: {your_email}
+                      - IP Address: {ip_addr} ({ip_reverse})
+                      - User Agent: {user_agent}
+
+                    --------
+                    Request submitted to ocfweb ({hostname}) on {now}.
+                    {full_path}''').format(
+                    user=user,
+                    title=attrs['cn'][0],
+                    requested_subdomain=requested_subdomain,
+                    requested_why=requested_why,
+                    comments=comments,
+                    your_name=your_name,
+                    your_position=your_position,
+                    your_email=your_email,
+                    ip_addr=ip_addr,
+                    ip_reverse=ip_reverse,
+                    user_agent=request.META.get('HTTP_USER_AGENT'),
+                    now=datetime.datetime.now().strftime(
+                        '%A %B %e, %Y @ %I:%M:%S %p',
+                    ),
+                    hostname=socket.gethostname(),
+                    full_path=request.build_absolute_uri(),
+                )
 
                 try:
                     send_mail(
@@ -121,7 +119,6 @@ def request_vhost(request):
                         message,
                         sender=your_email,
                     )
-                    return redirect(reverse('request_vhost_success'))
                 except Exception as ex:
                     # TODO: report via ocflib
                     print(ex)
@@ -130,20 +127,23 @@ def request_vhost(request):
                         'We were unable to submit your virtual hosting ' + \
                         'request. Please try again or email us at ' + \
                         'hostmaster@ocf.berkeley.edu'
+                else:
+                    return redirect(reverse('request_vhost_success'))
     else:
-        form = VirtualHostForm(initial={'requested_subdomain': user})
+        form = VirtualHostForm(initial={'requested_subdomain': user + '.berkeley.edu'})
 
-    group_url = 'http://www.ocf.berkeley.edu/~{0}/'.format(user)
+    group_url = 'https://www.ocf.berkeley.edu/~{0}/'.format(user)
 
     return render(
         request,
         'vhost/index.html',
         {
-            'form': form,
-            'user': user,
             'attrs': attrs,
+            'error': error,
+            'form': form,
             'group_url': group_url,
-            'error': error
+            'title': 'Request berkeley.edu virtual hosting',
+            'user': user,
         },
     )
 
@@ -152,16 +152,20 @@ def request_vhost_success(request):
     return render(
         request,
         'vhost/success.html',
-        {},
+        {
+            'title': 'Virtual host successfully submitted',
+        },
     )
 
 
-class VirtualHostForm(forms.Form):
+class VirtualHostForm(Form):
     # requested subdomain
     requested_subdomain = forms.CharField(
         label='Requested domain:',
         min_length=1,
-        max_length=32)
+        max_length=32,
+        widget=forms.TextInput(attrs={'placeholder': 'mysite.berkeley.edu'}),
+    )
 
     requested_why = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}),
@@ -171,7 +175,7 @@ class VirtualHostForm(forms.Form):
         min_length=1,
         max_length=1024)
 
-    # web site requirements
+    # website requirements
     website_complete = forms.BooleanField(
         label='Our site is already complete and uploaded to the OCF \
                server. The website is not just a placeholder.')
@@ -181,15 +185,10 @@ class VirtualHostForm(forms.Form):
                don't use frames, redirects, proxies, or other tricks to \
                circumvent this policy.")
 
-    website_ocf_banner = forms.BooleanField(
-        label=mark_safe("We have placed a \
-                <a href=\"http://www.ocf.berkeley.edu/images/hosted-logos/\">\
-                Hosted by the OCF</a> banner image on our site."))
+    # see __init__ method below for the labels on these
+    website_ocf_banner = forms.BooleanField()
 
-    website_disclaimer_text = forms.BooleanField(
-        label=mark_safe("We have placed the \
-               <a href=\"http://ocf.io/vhost#disclaimer\">\
-               university-required disclaimer</a> on each page of our site."))
+    website_disclaimer_text = forms.BooleanField()
 
     website_updated_software = forms.BooleanField(
         label='Any software (such as WordPress, Joomla, Drupal, etc.) \
@@ -212,7 +211,9 @@ class VirtualHostForm(forms.Form):
     your_position = forms.CharField(
         label='Your position in group:',
         min_length=1,
-        max_length=64)
+        max_length=64,
+        widget=forms.TextInput(attrs={'placeholder': 'Webmaster'}),
+    )
 
     comments = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}),
@@ -220,3 +221,47 @@ class VirtualHostForm(forms.Form):
         required=False,
         min_length=1,
         max_length=1024)
+
+    def __init__(self, *args, **kwargs):
+        super(Form, self).__init__(*args, **kwargs)
+
+        # It's pretty derpy that we have to set the labels here, but we can't
+        # use `reverse` during import time since URLs aren't configured yet
+        # (this module gets imported as part of the URL configuration).
+        #
+        # Normally using `reverse_lazy` would fix that, but we can't use that
+        # either because `mark_safe` isn't lazy.
+        self.fields['website_disclaimer_text'].label = mark_safe((
+            'We have placed the <a href="{}">university-mandated disclaimer</a> '
+            'on each page of our site.'
+        ).format(reverse('doc', args=('services/vhost',))))
+
+        self.fields['website_ocf_banner'].label = mark_safe((
+            'We have placed a <a href="{}">Hosted by the OCF</a> banner image on our site.'
+        ).format(reverse('doc', args=('services/vhost/badges',))))
+
+    def clean_requested_subdomain(self):
+        requested_subdomain = self.cleaned_data['requested_subdomain'].lower().strip()
+
+        if not requested_subdomain.endswith('.berkeley.edu'):
+            raise forms.ValidationError(
+                'The domain you entered does not end in ".berkeley.edu". '
+                'Maybe add ".berkeley.edu" to the end?'
+            )
+
+        if not valid_domain(requested_subdomain):
+            raise forms.ValidationError(
+                'The domain you requested is not available. '
+                'Please select a different one.'
+            )
+
+        return requested_subdomain
+
+    def clean_your_email(self):
+        your_email = self.cleaned_data['your_email']
+        if not valid_email(your_email):
+            raise forms.ValidationError(
+                "The email you entered doesn't appear to be "
+                'valid. Please double-check it.'
+            )
+        return your_email
