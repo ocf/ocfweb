@@ -3,12 +3,29 @@ from collections import namedtuple
 import dns.resolver
 from cached_property import cached_property
 from django.shortcuts import render
+from ocflib.infra.hosts import hosts_by_filter
 from ocflib.lab.stats import list_desktops
 
-from ocfweb.caching import cache
+from ocfweb.caching import periodic
 
 
 class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
+
+    # TODO: don't hard-code host types or children
+
+    @classmethod
+    def from_ldap(cls, hostname, type='vm'):
+        host, = hosts_by_filter('(cn={})'.format(hostname))
+        if 'description' in host:
+            description, = host['description']
+        else:
+            description = ''
+        return Host(
+            hostname=hostname,
+            type=type,
+            description=description,
+            children=[],
+        )
 
     @cached_property
     def ip(self):
@@ -30,7 +47,7 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
         return self.type in {'hypervisor', 'vm', 'server', 'desktop'}
 
 
-@cache(ttl=300)
+@periodic(120)
 def get_hosts():
     return [
         Host(
@@ -38,10 +55,9 @@ def get_hosts():
             type='hypervisor',
             description='KVM hypervisor for staff/testing VMs',
             children=[
-                Host('dev-death', 'vm', 'Web server (staging environment)', []),
-                Host('dev-earthquake', 'vm', 'atool (accounts.ocf Django app) (staging environment)', []),
-                Host('supernova', 'vm', 'Staff login server, create worker host', []),
-            ]
+                Host.from_ldap(hostname)
+                for hostname in ['dev-death', 'supernova']
+            ],
         ),
 
         Host(
@@ -49,20 +65,22 @@ def get_hosts():
             type='hypervisor',
             description='KVM hypervisor for most production VMs',
             children=[
-                Host('anthrax', 'vm', 'postfix (OCF staff/system mail)', []),
-                Host('coma', 'vm', 'ocfweb (ocf.berkeley.edu website)', []),
-                Host('dementors', 'vm', 'munin, lab stats (stats.ocf)', []),
-                Host('earthquake', 'vm', 'atool (accounts.ocf Django app)', []),
-                Host('firestorm', 'vm', 'Kerberos and LDAP', []),
-                Host('flood', 'vm', 'IRC host', []),
-                Host('lightning', 'vm', 'Puppet host', []),
-                Host('maelstrom', 'vm', 'MySQL host', []),
-                Host('pestilence', 'vm', 'DNS, DHCP, and PXE', []),
-                Host('pollution', 'vm', 'Print server (CUPS, PyKota)', []),
-                Host('reaper', 'vm', 'Jenkins', []),
-                Host('sandstorm', 'vm', 'Legacy mail server (student groups)', []),
-                Host('typhoon', 'vm', 'Request Tracker', []),
-                Host('zombies', 'vm', 'CS:GO server', []),
+                Host.from_ldap(hostname)
+                for hostname in [
+                    'anthrax',
+                    'coma',
+                    'dementors',
+                    'firestorm',
+                    'flood',
+                    'lightning',
+                    'maelstrom',
+                    'pestilence',
+                    'pollution',
+                    'reaper',
+                    'sandstorm',
+                    'typhoon',
+                    'zombies',
+                ]
             ],
         ),
 
@@ -71,20 +89,19 @@ def get_hosts():
             type='hypervisor',
             description='NFS host, KVM hypervisor for most NFS-using VMs',
             children=[
-                Host('biohazard', 'vm', 'Application hosting server (public)', []),
-                Host('death', 'vm', 'Web server (public)', []),
-                Host('tsunami', 'vm', 'Login server (SSH, public)', []),
+                Host.from_ldap(hostname)
+                for hostname in ['biohazard', 'death', 'tsunami']
             ],
         ),
 
-        Host('fallingrocks', 'server', 'Open-source software mirror, apt repo', []),
+        Host.from_ldap('fallingrocks'),
 
         Host('blackhole', 'network', 'Managed Cisco Catalyst 2960S-48TS-L Switch', []),
 
         Host('deforestation', 'printer', '', []),
         Host('logjam', 'printer', '', []),
     ] + [
-        Host(desktop, 'desktop', '', [])
+        Host.from_ldap(desktop, type='desktop')
         for desktop in list_desktops()
     ]
 
