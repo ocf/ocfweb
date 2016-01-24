@@ -12,7 +12,6 @@ from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
-from ocfweb.main.move_to_mlk import move_to_mlk
 from ocfweb.main.robots import robots_dot_txt
 from ocfweb.main.staff_hours import staff_hours
 from ocfweb.stats.daily_graph import daily_graph_image
@@ -32,8 +31,6 @@ urlpatterns = [
     url(r'^robots\.txt$', robots_dot_txt, name='robots.txt'),
     url(r'^favicon.ico$', favicon, name='favicon'),
     url(r'^staff-hours$', staff_hours, name='staff-hours'),
-
-    url(r'^mlk$', move_to_mlk, name='move-to-mlk'),
 
     # about pages
     url(r'^about/staff$', about_staff, name='about-staff'),
@@ -63,8 +60,8 @@ urlpatterns = [
     url(r'^OCF/policies(?:/|$)', lambda _: redirect(reverse('docs'), permanent=True)),
     url(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(reverse('doc', args=('faq',)), permanent=True)),
     url(r'^OCF/officers_.*\.s?html$', lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True)),
-    url(r'^OCF/staff/how-to-join\.shtml$',
-        lambda _: redirect(reverse('about-staff'), permanent=True)),
+    url(r'^OCF/staff/how-to-join\.shtml$', lambda _: redirect(reverse('about-staff'), permanent=True)),
+    url(r'^mlk$', lambda _: redirect(reverse('doc', args=('services/lab',)), permanent=True)),
 
     url(r'^docs/', include(docs)),
 
