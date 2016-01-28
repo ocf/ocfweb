@@ -1,3 +1,4 @@
+import logging
 from datetime import date
 from datetime import datetime
 from operator import attrgetter
@@ -17,6 +18,9 @@ from ocflib.lab.stats import UtilizationProfile
 
 from ocfweb.caching import periodic
 from ocfweb.stats.daily_graph import get_open_close
+
+
+_logger = logging.getLogger(__name__)
 
 
 @periodic(60)
@@ -63,8 +67,17 @@ def users_in_lab_count():
 
 @periodic(60)
 def printers():
+    def silence(f):
+        def inner(*args, **kwargs):
+            try:
+                return f(*args, **kwargs)
+            except OSError as ex:
+                _logger.warn('Silencing exception reading printer data: {}'.format(ex))
+                return None
+        return inner
+
     return sorted(
-        (printer, get_toner(printer), get_maintkit(printer))
+        (printer, silence(get_toner)(printer), silence(get_maintkit)(printer))
         for printer in PRINTERS
     )
 
