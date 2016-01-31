@@ -26,7 +26,7 @@ setup(
         'django-redis',
         'django>=1.9,<1.9.999',
         'gunicorn',
-        'libsass',
+        'libsass<=0.10.0',
         'lxml',
         'matplotlib',
         'mistune',
