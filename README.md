@@ -3,7 +3,7 @@ ocfweb
 [![Build Status](https://jenkins.ocf.berkeley.edu/buildStatus/icon?job=ocfweb-test)](https://jenkins.ocf.berkeley.edu/job/ocfweb-test/)
 [![Coverage Status](https://coveralls.io/repos/ocf/ocfweb/badge.svg?branch=HEAD&service=github)](https://coveralls.io/github/ocf/ocfweb?branch=HEAD)
 
-The main ocf website.
+[The main ocf website.](https://www.ocf.berkeley.edu/)
 
 
 ## Working on `ocfweb`
