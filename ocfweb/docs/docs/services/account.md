@@ -28,7 +28,7 @@ online|change_password]] using CalNet
 To reset the password for a group account, you need to be a registered
 signatory for the group. If your group isn't registered with the LEAD Center
 (e.g. if it's a department-sponsored group), you will need to come in during
-staff hours instead to reset the password.
+[[staff hours|staff-hours]] instead to reset the password.
 
 #### Over SSH
 
@@ -101,7 +101,7 @@ Some common reasons accounts are disabled:
 
 Accounts may also be disabled if OCF staff need to contact you but cannot do so.
 
-To re-enable your account, you will need to see a Manager (gm, sm, or dm after the staff member's name) during [[staff hours|staff_hours).
+To re-enable your account, you will need to see a Manager (gm, sm, or dm after the staff member's name) during [[staff hours|staff-hours]].
 
 If you want to disable your OCF account, please [[contact us|doc contact]] and provide your OCF username. If your account appears to still be active, we may ask for some evidence that you are the account owner. Currently, disabled accounts are stored or archived and can be *re-enabled* by request at a later date. Disabled accounts may eventually be scheduled for deletion.
 

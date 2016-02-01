@@ -26,7 +26,7 @@ practice most staff members are Directors and vice versa.
 * have sudo access (root privileges) on the print server
 * can edit shared staff files such as `User_Info` and `motd` (message of the day)
 * can edit the [[wiki|doc staff/docs]] and are expected to help maintain it
-* must hold staff hours, often alongside others
+* must hold [[staff hours|staff-hours]], often alongside others
 
 
 ### `/root` principal
