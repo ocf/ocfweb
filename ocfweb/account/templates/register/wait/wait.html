@@ -17,7 +17,9 @@
 {% block inline_js %}
     <script>
         $(document).ready(function() {
-            window.setTimeout(window.location.reload, 1000);
+            window.setTimeout(function() {
+                window.location.reload();
+            }, 1000);
         });
     </script>
 {% endblock %}
