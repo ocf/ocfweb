@@ -82,13 +82,7 @@ DATABASES = {}
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 # XXX: DO NOT CHANGE
-# Ensure cookies can't be read by JavaScript or users.
-# Our proxy filters cookies starting with "OCFWEB_" when going to user sites,
-# so it's important our cookies match this pattern.
-CSRF_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = False
-CSRF_COOKIE_PATH = '/'
-CSRF_COOKIE_NAME = 'OCFWEB_CSRF_TOKEN'
+# Ensure cookies can't be read by JavaScript.
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_PATH = '/'
@@ -162,8 +156,6 @@ if getuser() == 'ocfweb':
         }
     }
 
-    CSRF_COOKIE_SECURE = True
-    CSRF_COOKIE_DOMAIN = 'www.ocf.berkeley.edu'
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_DOMAIN = 'www.ocf.berkeley.edu'
 else:
