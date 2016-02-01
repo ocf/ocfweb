@@ -35,10 +35,10 @@ Follow this procedure to get a group account:
    documents and identification you will be asked to present for verification
    at the time you submit your account form.
 
-2. **Have the authorized person come to staff hours.** For groups registered
-   with the LEAD Center, that means a signatory. Otherwise, it's the person
-   named in the documentation letter (and yes, you must bring documentation!).
-   The account will be created during your visit.
+2. **Have the authorized person come to [[staff hours|staff-hours]].** For
+   groups registered with the LEAD Center, that means a signatory. Otherwise,
+   it's the person named in the documentation letter (and yes, you must bring
+   documentation!).  The account will be created during your visit.
 
 
 ## Account life
