@@ -79,7 +79,7 @@ Use a command like:
 
 ## Step 6: Build the package
 
-Build the package with `dpkg-buildpackage -us -uc -b`. The `.deb` file will
+Build the package with `dpkg-buildpackage -us -uc -sa`. The `.deb` file will
 pop out in your parent directory.
 
 
@@ -90,7 +90,8 @@ you probably want to set it up inside Jenkins to automatically upload to apt.
 
 For one-off uploads:
 
-1. `scp` the file to fallingrocks
-2. `sudo -u ocfapt /opt/apt/bin/reprepro includedeb jessie /tmp/mydeb.deb`
+1. `scp` the `.orig.tar.gz`, `.debian.tar.xz`, `.dsc`, `.changes`, and `.deb`
+   files to fallingrocks
+2. `sudo -u ocfapt /opt/apt/bin/reprepro include jessie /tmp/mypackage.changes`
 
 (For more options for `reprepro`, see the comments at the top of that file.)
