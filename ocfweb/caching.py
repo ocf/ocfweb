@@ -110,13 +110,15 @@ def _make_key(key):
     The returned key prepends a version tag so that we don't share the cache
     across ocfweb versions. This prevents strange behavior (e.g. if you change
     the return type of a function which was cached on the previous version).
+    The cache keys have spaces removed and are limited to under 250 characters
+    to preserve portability with memcached.
 
     :param key: some iterable key (e.g. a tuple or list)
     """
-    return tuple(chain(
+    return str(tuple(chain(
         [ocfweb_version()],
         key,
-    ))
+    ))).replace(' ', '')[:240]
 
 
 def _make_function_call_key(fn, args, kwargs):
