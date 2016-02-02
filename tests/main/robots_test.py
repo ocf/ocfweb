@@ -8,4 +8,4 @@ def tests_robots_dot_txt(running_server):
 
     lines = resp.text.splitlines()
     assert 2 <= len(lines) <= 50
-    assert 'Disallow: /test/' in lines
+    assert 'Disallow: /' in lines
