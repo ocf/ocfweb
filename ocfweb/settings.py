@@ -1,7 +1,9 @@
 import configparser
 import os
+import warnings
 from getpass import getuser
 
+from django.core.cache import CacheKeyWarning
 from django.template.base import TemplateSyntaxError
 
 
@@ -106,6 +108,10 @@ CACHES = {  # sessions are stored here
         'MAX_ENTRIES': 1000,
     },
 }
+
+# Silence cache key warnings, since we are using redis and not memcached.
+# https://docs.djangoproject.com/en/1.9/topics/cache/#cache-key-warnings
+warnings.simplefilter('ignore', CacheKeyWarning)
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Los_Angeles'
