@@ -22,4 +22,3 @@ def robots_dot_txt(request):
         dedent(resp),
         content_type='text/plain',
     )
-
