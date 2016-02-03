@@ -20,12 +20,12 @@ We have a handy script, `makevm`, that:
 * Creates a logical volume (disk) for the new VM
 * Adds a new VM using virt-install and PXE boots it
 * Waits for the Debian installer to finish
-* SSHs to the new server, sets its IP, and starts Puppet
+* SSHs to the new server and sets its IP
 
 To use it, log on to the target physical server (`hal`, `pandemic`, or `jaws`),
 and run `makevm --help`. A typical invocation looks something like:
 
-    makevm -m 4096 -c 2 -s 15 arsenic 169.229.10.47
+    makevm -m 4096 -c 2 -s 15 arsenic 169.229.226.47
 
 ## Run the Debian installer (physical only)
 
@@ -40,7 +40,7 @@ We preseed a bunch of settings (random questions, mirror locations, packages,
 etc.). The install should be completely hands-free, and will restart to a login
 tty.
 
-## Log in and start Puppet (physical only)
+## Log in and start Puppet (physical)
 
 1. Log in as `root:r00tme`. You can change the password if you want, but don't
    have to (Puppet will change it soon anyway).
@@ -52,6 +52,11 @@ tty.
 4. `puppet agent --enable`
 5. `puppet agent --debug --no-daemonize`.
 
+## Log in and start Puppet (virtual)
+
+1. Log in as `root:r00tme`
+2. `puppet agent --enable`.
+
 ## Create Kerberos keytab and LDAP entry
 
 Only do these if a server with this hostname has never existed before.
@@ -59,10 +64,11 @@ Only do these if a server with this hostname has never existed before.
 1. On supernova, `kinit $USER/admin ldap-add-host <hostname> <ip>`.
 2. On the puppetmaster, run `/opt/puppet/scripts/gen-keytab`
 
-## Sign the Puppet cert
+## Sign the Puppet cert and run Puppet
 
-On the puppetmaster, `puppet ca --list` to see pending requests. When you see
+On the puppetmaster, `puppet ca list` to see pending requests. When you see
 yours, use `puppet ca sign hostname.ocf.berkeley.edu`.
 
-Puppet should run after a few minutes (it's probably still looping on the
-server), but you could restart it manually if you want it to happen faster.
+Log back into the host and do `systemctl restart puppet` to start the Puppet
+run. Monitor the run with `journalctl -f`. Restart Puppet once or twice more
+until the configuration converges.
