@@ -42,6 +42,23 @@ great for the printers, though.)
 Replacing maintenance kits is best done after lab hours, since it requires
 access to the back of the printer (and can be disruptive).
 
+The instructions provided with the maintenance kits are quite nice and have
+diagrams to follow showing where to replace the different parts in the printer.
+Gloves are provided with the kit, but using them is not necessary. However,
+they are good to use when replacing parts that have ink on them though to
+protect your hands and the part being replaced. The maintenance kits have more
+rollers provided than the printers use, so don't worry if you have a lot of
+them left over after replacing the kit.
+
+The most complicated part of the kit replacement is actually resetting the
+maintenance kit warning on the printer after it is all installed. To reset the
+warning, turn off the printer using the power switch on the lower right. Then,
+turn on the printer and hold down the `OK` button while the printer is starting.
+Once the printer stops loading any further, release the `OK` button and a
+startup menu should appear. In this menu, select `NEW MAINTENANCE KIT` and press
+the `OK` button and the printer should proceed to start normally with the
+warning reset.
+
 Our printers use [CB388A maintenance kits][maintkit].
 
 ## Stats
