@@ -82,7 +82,7 @@ def get_sessions_plot(start_day, end_day):
 
     with get_connection() as c:
         query = '''
-            SELECT `date`, `logins`, `unique_logins`
+            SELECT `date`, `unique_logins`
             FROM `daily_sessions_public`
             WHERE `date` BETWEEN %s AND %s
         '''
@@ -93,7 +93,6 @@ def get_sessions_plot(start_day, end_day):
     ax = fig.add_subplot(1, 1, 1)
 
     x = []
-    logins = []
     unique_logins = []
 
     day = start_day
@@ -101,26 +100,26 @@ def get_sessions_plot(start_day, end_day):
         x.append(time.mktime(day.timetuple()))
 
         row = days.get(day)
-        if row:
-            logins.append(row['logins'])
-            unique_logins.append(row['unique_logins'])
-        else:
-            logins.append(0)
-            unique_logins.append(0)
+        unique_logins.append(row['unique_logins'] if row else 0)
 
         day += ONE_DAY
 
     ax.grid(True)
-    ax.plot(x, logins, color='b', marker='o', linewidth=1.5, label='Logins')
-    ax.plot(x, unique_logins, color='r', marker='o', linewidth=2, label='Unique Logins')
+
+    # we want to show an "o" marker to suggest the data points are discrete,
+    # but it harms readability with too much data
+    kwargs = {'marker': 'o'}
+    if end_day - start_day > timedelta(days=60):
+        del kwargs['marker']
+    ax.plot(x, unique_logins, linewidth=2, **kwargs)
+
     ax.set_xlim(x[0], x[-1])
 
     skip = max(1, len(x) // 5)  # target 5 labels
     ax.set_xticks(x[::skip])
     ax.set_xticklabels(list(map(date.fromtimestamp, x))[::skip])
     ax.set_ylim(ymin=0)
-    ax.legend(loc='best', shadow=True)
-    ax.set_title('Lab sessions {} to {}'.format(
+    ax.set_title('Unique lab logins {} to {}'.format(
         start_day.isoformat(),
         end_day.isoformat(),
     ))
