@@ -3,7 +3,12 @@ from collections import namedtuple
 from cached_property import cached_property
 
 
-class Document(namedtuple('Document', ['name', 'title', 'render'])):
+class Document(namedtuple('Document', ['name', 'title', 'render', 'path'])):
+
+    # namedtuple with optional keyword arguments,
+    # credit to http://stackoverflow.com/a/16721002
+    def __new__(cls, name, title, render, path=None):
+        return super(Document, cls).__new__(cls, name, title, render, path)
 
     @cached_property
     def category(self):
