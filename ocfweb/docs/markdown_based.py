@@ -27,11 +27,11 @@ from ocfweb.docs.doc import Document
 DOCS_DIR = Path(__file__).parent.joinpath('docs')
 
 
-def render_markdown_doc(meta, text, doc, request):
+def render_markdown_doc(path, meta, text, doc, request):
 
     # Reload markdown docs if in development
     if settings.DEBUG:
-        with doc.path.open() as f:
+        with path.open() as f:
             text, meta = text_and_meta(f)
 
     html, toc = markdown_and_toc(text)
@@ -64,6 +64,5 @@ def get_markdown_docs():
         yield Document(
             name='/' + name,
             title=meta['title'],
-            render=partial(render_markdown_doc, meta, text),
-            path=path,
+            render=partial(render_markdown_doc, path, meta, text),
         )
