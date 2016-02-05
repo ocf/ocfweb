@@ -10,7 +10,8 @@ All accounts include hosting with a web address at:
 
 where `user` is the account name.
 
-Group accounts may also request a [[virtual host|doc services/vhost]] for another domain (e.g., group.berkeley.edu).
+Group accounts may also request a [[virtual host|doc services/vhost]] for
+another domain (e.g., group.berkeley.edu).
 
 ## Setting up web space
 
@@ -35,22 +36,31 @@ Group accounts may also request a [[virtual host|doc services/vhost]] for anothe
 
 ## Uploading Files
 
-Upload files to your web space the same way you [[upload files to your OCF account|doc services/shell]] (typically SFTP if used remotely). The only difference is that files for your web space are placed in your `public_html` directory.
+Upload files to your web space the same way you [[upload files to your OCF
+account|doc services/shell]] (typically SFTP if used remotely). The only
+difference is that files for your web space are placed in your `public_html`
+directory.
 
 ## Additional details
 
-The web server runs Apache 2.2 with FastCGI (mod_fcgid), suEXEC, and suPHP. Access and error logs are accessible in `/opt/httpd` using [[SSH|doc services/shell]].
+The web server runs Apache 2.4 with FastCGI (mod_fcgid), suEXEC, and suPHP.
+Access and error logs are accessible in `/opt/httpd` using [[SSH|doc
+services/shell]].
 
-The web server itself runs as a dedicated user. If your .htaccess file is not world-readable (e.g., `chmod 644`), the web server will return the error "401 Forbidden".
+The web server itself runs as a dedicated user. If your .htaccess file is not
+world-readable (e.g., `chmod 644`), the web server will return the error "401
+Forbidden".
 
-PHP/CGI/FastCGI scripts are executed as your user, so they do not need to be world-readable. If they contain sensitive information (such as database passwords), you should make them private (e.g., `chmod 600` or `chmod 700`).
+PHP/CGI/FastCGI scripts are executed as your user, so they do not need to be
+world-readable. If they contain sensitive information (such as database
+passwords), you should make them private (e.g., `chmod 600` or `chmod 700`).
 
 ### Supported languages
 
-* PHP 5.4
-* Perl 5.14
-* Python 2.6, 2.7, and 3.2; Django 1.4; Flask 0.8
-* Ruby 1.9; Rails 3.2.6
+* PHP 5.6
+* Perl 5.20.2
+* Python 2.7, and 3.4; Django 1.7.7; Flask 0.10.1
+* Ruby 2.1.5; Rails 4.1.8
 
 Other flavors of the day may work but are not currently supported. We may be
 able to install additional packages on request, but will generally advise

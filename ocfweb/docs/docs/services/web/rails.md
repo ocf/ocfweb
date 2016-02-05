@@ -7,19 +7,19 @@ Ruby on Rails is a popular web framework for Ruby applications.
 
 OCF servers currently run the following:
 
-* Ruby 1.9
-* Rails 3.2.6
+* Ruby 2.1.5
+* Rails 4.1.8
 
-If you'd like, you can install Rails 4 in your home directory using `gem`.  The
-installed version of Ruby should be sufficient. The following steps, which
-should all take place over [[SSH|doc services/shell]], will set up a gem directory
-inside your home directory and installs Rails.
+If you'd like, you can install a newer version of Rails in your home directory
+using `gem`. The installed version of Ruby should be sufficient. The following
+steps, which should all take place over [[SSH|doc services/shell]], will set up
+a gem directory inside your home directory and installs Rails.
 
 1. Set up relevant environment variables on login:
 
-       echo "export PATH=~/.gem/ruby/1.9.1/bin:\$PATH" >> ~/.bash_profile
-       echo "export GEM_HOME=~/.gem/ruby/1.9.1/gems" >> ~/.bash_profile
-       echo "export GEM_PATH=~/.gem/ruby/1.9.1" >> ~/.bash_profile
+       echo "export PATH=~/.gem/ruby/2.1.5/bin:\$PATH" >> ~/.bash_profile
+       echo "export GEM_HOME=~/.gem/ruby/2.1.5/gems" >> ~/.bash_profile
+       echo "export GEM_PATH=~/.gem/ruby/2.1.5" >> ~/.bash_profile
 
 2. Create a `gemrc` file specifying default installation optipns:
 
@@ -40,7 +40,7 @@ inside your home directory and installs Rails.
        rails -v
 
    You should see output indicating the new Rails version. If you see an old
-   version (like 3.2.6), your PATH is probably wrong. Make sure you followed step
+   version (like 4.1.8), your PATH is probably wrong. Make sure you followed step
    1 and try reconnecting to SSH.
 
 ## Creating a New Application
@@ -72,8 +72,8 @@ To host your application, create a file called `dispatch.fcgi` in your web root
 
     #!/usr/bin/ruby
     ENV['HOME'] = `/bin/bash -c "echo ~"`
-    ENV['GEM_HOME'] = ENV['HOME'] + '/.gem/ruby/1.9.1/gems'
-    ENV['GEM_PATH'] = ENV['HOME'] + '/.gem/ruby/1.9.1'
+    ENV['GEM_HOME'] = ENV['HOME'] + '/.gem/ruby/2.1.5/gems'
+    ENV['GEM_PATH'] = ENV['HOME'] + '/.gem/ruby/2.1.5'
 
     APP_PATH = ENV['HOME'] + '/foo'
 
