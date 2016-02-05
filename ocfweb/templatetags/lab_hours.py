@@ -13,19 +13,8 @@ def lab_hours_holiday(hours):
 @register.filter
 def lab_hours_time(hours):
     if hours:
-        def format_hour(hour):
-            """Format an hour with am / pm."""
-            if hour == 0:
-                return '12am'
-            elif hour < 12:
-                return str(hour) + 'am'
-            elif hour == 12:
-                return '12pm'
-            else:
-                return str(hour % 12) + 'pm'
-
         return ',\xa0\xa0'.join(  # two non-breaking spaces
-            '{}–{}'.format(format_hour(hours.open), format_hour(hours.close))
+            '{:%-I%P}–{:%-I%P}'.format(hours.open, hours.close)
             for hours in hours
         )
     else:
