@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 ocf-content-block">
+            <img class="img-responsive" src="{% static 'img/about/staff-bonding.jpg' %}" />
+            <h3>
+                We're changing our printing policies to match
+                our new lab space.
+                <br/>
+                Here are the details about how and why.
+            </h3>
+            <p>
+                Last semester, we moved from our trusty old space in 6A Hearst
+                Gym into our shiny new home in 171 MLK, more than twice the
+                size and conveniently located in the ASUC Student Union.
+            </p>
+            <p>
+                The new lab is great: it's larger, more accessible, and has
+                allowed us to serve many more users than in previous semesters,
+                especially with the lab being open later.
+            </p>
+            <p>
+                However, coupled with the lab being open later, we've seen huge
+                jumps in overall lab traffic. We're breaking records for the
+                number of people in the lab and the number of pages being
+                printed nearly every day. Even with the increased capacity,
+                we're filling the lab nearly every day.
+            </p>
+
+            <p><strong>We want the lab to be a great place to work.</strong></p>
+
+            <p>
+                The lab is our most important asset, and we want it to be a
+                great place for students to work, study, and collaborate. It
+                doesn't serve its purpose when there's 15-person long line to
+                sit at a computer because people are waiting on printers.
+            </p>
+            <p>
+                Our vision for the lab is for it to be a collaborative space,
+                not just the campus free printing hub. Printing is an
+                important service, and we're not ending it. But we're expecting
+                to spend over $13,000 on printing alone this year, and we just
+                don't have the money to continue printing at the current level.
+            </p>
+
+            <hr />
+            <p><img class="img-responsive" src="{% static 'img/announcements/random-day.svg' %}" /></p>
+            <p class="text-center">
+                <small>
+                    Lab usage from a busy day this semester. There are 27 computers in the lab.
+                </small>
+            </p>
+            <hr />
+
+            <p>
+                We've spent a lot of time trying to figure out how best to meet
+                our budget while impacting the fewest people. Below we'll
+                describe the changes we're making and our rationale for them.
+            </p>
+
+            <p><strong>The daily quota is decreasing to 8 on weekdays, and 16 on weekends.</strong></p>
+            <p>
+                So far this semester, we've had an average of about 750 users
+                in the lab each day. That's a huge jump from last semester,
+                where the average was closer to 500.
+            </p>
+            <p>
+                Unfortunately, our resources haven't kept up with the increased
+                demand. When you subtract out moving expenses, such as
+                purchasing another 15 computers, monitors, and peripherals, our
+                budget this year is less than it was last year in a space half
+                the size.
+            </p>
+            <p>
+                Not only are we facing budget troubles, but our printers are
+                starting to fail. They've both now printed
+                <a href="http://stats.ocf.berkeley.edu/printing/historacle/">over a million pages</a>.
+                They're several years old and starting to show it. The
+                near-doubling of printing this semester has greatly increased
+                the frequency of paper jams and other technical glitches (just
+                ask the front desk staff).
+            </p>
+
+            <hr />
+            <p><img class="img-responsive" src="{% static 'img/announcements/unique-lab.svg' %}" /></p>
+            <p class="text-center">
+                <small>
+                    The number of students using the lab each day has greatly
+                    increased since 2014, with an especially large jump after
+                    the move to MLK (last semester, around November 16, 2015).
+                </small>
+            </p>
+
+            <p><img class="img-responsive" src="{% static 'img/announcements/printing-per-week.svg' %}" /></p>
+            <p class="text-center">
+                <small>
+                    Since 2013, we've gone from printing about 10,000 pages per
+                    week, up to almost 40,000 pages per week this semester.
+                </small>
+            </p>
+            <hr />
+
+            <p>
+                We're running the printers at more than four times the
+                manufacturer's recommended maximum pages per month.  We don't
+                have much of a choice; we have to limit the pages printed per
+                day, or we risk breaking our printers beyond repair.
+            </p>
+            <p>
+                Historically, we've implemented a number of measures to manage
+                our levels of printing, including draft-quality printing,
+                lower-quality paper, and third-party toner. However, the OCF
+                has never faced such a massive increase in number of users, lab
+                usage, and printing before. Long-term members of the OCF will
+                remember that the weekday printing limit was 10 pages per day
+                in 2014. Our budget back then allowed us to increase the limit
+                to the limit announced at the beginning of the school year, but
+                we have to reverse this decision.
+            </p>
+            <p>
+                We're continuing the tradition of allowing double the number of
+                pages on weekends. While we understand this is less convenient,
+                we hope this will help strike a balance between the needs of
+                our members and the physical limits of our printers.
+            </p>
+
+            <p><strong>The semesterly quota is decreasing to 100 pages per semester.</strong></p>
+            <p>
+                We spent a lot of effort trying to find ways to cut costs while
+                affecting the least number of people. The semesterly quota
+                turns out to be one of the best places we can make that happen.
+            </p>
+            <p>
+                The average user prints only 61 pages per semester, while a
+                very small number of users (about 7%) actually come close to
+                exceeding their semesterly quota (printing more than 200
+                pages). These users have a disproportionate impact on our
+                printing costs, so we're decreasing the semesterly quota to
+                help limit that expense.
+            </p>
+
+            <hr />
+            <p><img class="img-responsive" src="{% static 'img/announcements/semester-histogram.svg' %}" /></p>
+            <p class="text-center">
+                <small>
+                    The decrease to 100 pages per semester will affect only about
+                    20% of our users.
+                </small>
+            </p>
+            <hr />
+
+            <p>
+                Of course, we know that many people pace their printing
+                throughout the semester, and we want to ensure we're being
+                fair. As such, we're not taking into account the number of
+                pages you've already printed this semester<a href="#exception-printed-150">*</a>.
+            </p>
+            <p>
+                This means that you'll still have a full quota of 100 pages to
+                work with for the rest of the semester, starting today.
+            </p>
+
+            <p><strong>Daily quota changes will take effect on Tuesday. Semesterly quotas have already been changed.</strong></p>
+            <p>
+                Starting on Tuesday, February 16th, the new daily quotas will
+                be enforced. The grace period is intended to avoid penalizing
+                people who had already planned to print large jobs in the next
+                few days.
+            </p>
+            <p>
+                The semesterly quota change has already taken effect. We feel
+                this is fair, as we're not affecting anyone's short-term plans.
+                The reason for the immediate implementation is that it helps to
+                avoid a rush to print in the coming days before a semesterly
+                quota reset.
+            </p>
+
+            <p><strong>We know printing changes are inconvenient.</strong></p>
+            <p>
+                It's unfortunate that we have to make these changes, and we
+                hope that in future semesters we can find the resources to
+                raise quotas again.
+            </p>
+            <p>
+                In addition the the OCF lab, we'd also like to remind you that
+                there are other places to print on campus, such as the
+                libraries, the ResComp-run labs in the dorms, and your
+                program's computer labs (e.g. Dwinelle Language Lab, Athlete's
+                Printing Room, Soda Hall).
+            </p>
+            <p>
+                In the mean time, we hope you'll continue to use the OCF lab in
+                its entirety; the convenient location, open space, and comfy
+                furniture make it a great place to work between classes or late
+                at night.
+            </p>
+            <p>
+                Our volunteer student staff are always open to hearing your
+                thoughts. If you'd like to get in touch, feel free to
+                <a href="{% url 'doc' 'contact' %}">contact us </a>.
+            </p>
+
+            <hr />
+            <p id="exception-printed-150">
+                <small>
+                    * We won't take into account pages you've already printed
+                    this semester, with the exception of members who have
+                    already have a balance of less than 100 pages; for these
+                    members (only about 15 of them), we won't modify or lower
+                    your balance at all.
+                </small>
+            </p>
+        </div>
+
+        <div class="col-sm-4 ocf-sidebar">
+            <hr class="visible-sm" />
+            <h3>Adjusted printing limits</h3>
+            <p>
+                Starting Tuesday, Feb 16th, the following daily printing limits
+                will be in effect:
+            </p>
+            <ul>
+                <li><strong>On weekdays,</strong> 8 pages per day.</li>
+                <li><strong>On weekends,</strong> 16 pages per day.</li>
+                <li><strong>Per semester,</strong> 100 pages<a href="#exception-printed-150">*</a>.
+                </li>
+            </ul>
+            </p>
+            <hr />
+            <h4>About the Open Computing Facility</h4>
+            <p><strong>The OCF is an all-volunteer student organization.</strong></p>
+            <p>
+                Our staff work hard to provide valuable services to the
+                campus community:
+            </p>
+            <ul>
+                <li>
+                    <a href="{% url 'doc' 'services/lab' %}">
+                        A spiffy computer lab in 171 MLK</a>
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/web' %}">Web, application,
+                        and email hosting</a>
+                    for 500 student groups and thousands of student users.
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/lab/printing' %}">Free
+                        printing</a>, used by over 5,000 students per semester.
+                </li>
+            </ul>
+<p>
+                Our volunteers work within their limited budget to try to offer
+                valuable services.
+                <br />
+                <a href="{% url 'about-staff' %}">Learn more about the OCF volunteers.</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

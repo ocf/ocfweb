@@ -12,6 +12,7 @@ from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
+from ocfweb.main.printing_announcement import printing_announcement
 from ocfweb.main.robots import robots_dot_txt
 from ocfweb.main.staff_hours import staff_hours
 from ocfweb.stats.daily_graph import daily_graph_image
@@ -31,6 +32,9 @@ urlpatterns = [
     url(r'^robots\.txt$', robots_dot_txt, name='robots.txt'),
     url(r'^favicon.ico$', favicon, name='favicon'),
     url(r'^staff-hours$', staff_hours, name='staff-hours'),
+
+    # announcements
+    url(r'^announcements/2016-02-09/printing$', printing_announcement, name='printing-announcement'),
 
     # about pages
     url(r'^about/staff$', about_staff, name='about-staff'),
