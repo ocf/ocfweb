@@ -10,9 +10,7 @@ We don't list the desktops (all are jessie already).
 
 Server         | Status | Comment
 ---------------|--------|---------------
-death          | wheezy | rebuild - complicated (rt#3524)
-tsunami        | wheezy | rebuild - same time as death (public)
-biohazard      | wheezy | rebuild - same time as death (public)
+biohazard      | wheezy | rebuild - same time as death (public); currently being slowly retired
 pollution      | wheezy | rebuild - pykota not compatible with jessie on last attempt, not well puppeted
 
 ## Already upgraded:
@@ -50,3 +48,5 @@ quicksand      | jessie | upgrade - hozer
 raptors        | jessie | upgrade - hozer
 revolution     | jessie | upgrade - hozer
 smallpox       | jessie | upgrade - hozer
+death          | jessie | rebuild - complicated (rt#3524)
+tsunami        | jessie | rebuild - same time as death (public)
