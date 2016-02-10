@@ -4,9 +4,9 @@ The OCF offers a certain amount of printing to individual members. You don't hav
 
 Printing is currently limited to:
 
- * 250 pages per semester
- * 15 pages per day on weekdays
- * 30 pages per day on weekends
+ * 100 pages per semester
+ * 8 pages per day on weekdays
+ * 16 pages per day on weekends
 
 Please note:
 
