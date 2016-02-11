@@ -43,7 +43,7 @@ MISSING_NAMES = {
 BOD_TERMS = [
     Term('Spring 1989', gms=['psb'], sms=['shipley']),
     Term('Fall 1989', gms=['psb'], sms=['ctl']),
-    Term('Spring 1999', gms=['ctl'], sms=['sls']),
+    Term('Spring 1990', gms=['ctl'], sms=['sls']),
     Term('Summer 1990', gms=['psb'], sms=['glass']),
     Term('Fall 1990', gms=['appel'], sms=['rgm']),
     Term('Spring 1991', gms=['appel'], sms=['dpassage']),
