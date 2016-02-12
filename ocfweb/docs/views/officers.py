@@ -73,7 +73,7 @@ BOD_TERMS = [
     Term('Spring 2000', gms=['smcc'], sms=['akopps']),
     Term('Fall 2000', gms=['cpfeyh', 'smcc'], sms=['akopps']),
     Term('Spring 2001', gms=['gmg'], sms=['smcc', 'akopps']),
-    Term('Fall 2001', gms=['gmg'], sms=['smcc', 'ajan']),
+    Term('Fall 2001', gms=['gmg'], sms=['smcc', 'ajani']),
     Term('Spring 2002', gms=['calman'], sms=['smcc', 'wyc']),
     Term('Fall 2002', gms=['ewhatt', 'wyc'], sms=['akopps', 'dwc']),
     Term('Spring 2003', gms=['jeffe', 'cpfeyh'], sms=['dwc', 'aoshi']),
