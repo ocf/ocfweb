@@ -102,7 +102,7 @@ def get_hosts():
         Host('logjam', 'printer', '', []),
     ] + [
         Host.from_ldap(desktop, type='desktop')
-        for desktop in list_desktops(public_only=True)
+        for desktop in list_desktops()
     ]
 
 
