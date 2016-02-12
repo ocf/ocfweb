@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% load common %}
 {% load mathfilters %}
+{% load stats %}
 {% load ui_components %}
 
 {% block content %}
     <div class="ocf-content-block">
+        {% stats_navbar %}
         <p>
             <img class="img-responsive" src="{% url 'daily_graph_image' %}" />
             <img class="img-responsive" src="{% url 'sessions_image' %}" />

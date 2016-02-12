@@ -34,6 +34,7 @@ setup(
         'ocflib',
         'pycrypto',
         'pygments',
+        'pymysql',
         'python-dateutil',
     ],
     sass_manifests={
