@@ -3,6 +3,7 @@
     hooks:
     -   id: autopep8-wrapper
         language_version: python3
+        exclude: ^vendor/
     -   id: check-added-large-files
     -   id: check-docstring-first
         language_version: python3
@@ -19,6 +20,7 @@
         exclude: ^ocfweb/static/fonts/bootstrap/
     -   id: flake8
         language_version: python3
+        exclude: ^vendor/
     -   id: name-tests-test
     -   id: requirements-txt-fixer
     -   id: trailing-whitespace

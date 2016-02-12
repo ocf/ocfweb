@@ -1,6 +1,7 @@
 ## ocfweb stuff
 /.version
 /ocfweb/static/scss/**/*.css
+/venv
 /virtualenv_run
 
 /debian/ocfweb/
