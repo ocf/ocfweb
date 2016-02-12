@@ -1,10 +1,10 @@
-BIN := virtualenv_run/bin
+BIN := venv/bin
 PYTHON := $(BIN)/python
 SHELL := /bin/bash
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
 
 .PHONY: test
-test: virtualenv_run/
+test: venv
 	$(BIN)/coverage erase
 	COVERAGE_PROCESS_START=$(PWD)/.coveragerc \
 		$(BIN)/py.test -v tests/
@@ -14,34 +14,33 @@ test: virtualenv_run/
 
 # first set COVERALLS_REPO_TOKEN=<repo token> environment variable
 .PHONY: coveralls
-coveralls: virtualenv_run/ test
+coveralls: venv test
 	$(BIN)/coveralls
 
 .PHONY: dev
-dev: virtualenv_run/ scss
+dev: venv scss
 	@echo -e "\e[1m\e[93mRunning on http://$(shell hostname -f ):$(RANDOM_PORT)/\e[0m"
 	$(PYTHON) ./manage.py runserver 0.0.0.0:$(RANDOM_PORT)
 
-virtualenv_run/: requirements.txt requirements-dev.txt
-	python ./bin/venv-update ==venv virtualenv_run -ppython3 ==install -r requirements.txt -r requirements-dev.txt
+venv: requirements.txt requirements-dev.txt
+	python ./bin/venv-update ==venv venv -ppython3 ==install -r requirements.txt -r requirements-dev.txt
 
 .PHONY: clean
 clean:
-	rm -rf *.egg-info
-	rm -rf virtualenv_run
+	rm -rf *.egg-info venv
 
 # closer to prod
 .PHONY: gunicorn
-gunicorn: virtualenv_run/
+gunicorn: venv
 	@echo "Running on port $(RANDOM_PORT)"
 	$(BIN)/gunicorn -b 0.0.0.0:$(RANDOM_PORT) ocfweb.wsgi
 
 .PHONY: scss
-scss: virtualenv_run/
+scss: venv
 	$(PYTHON) setup.py build_sass
 
 .PHONY: watch-scss
-watch-scss: scss virtualenv_run
+watch-scss: scss venv
 	while :; do \
 		find ocfweb/static -type f -name '*.scss' | \
 			inotifywait --fromfile - -e modify; \
