@@ -23,7 +23,7 @@ dev: virtualenv_run/ scss
 	$(PYTHON) ./manage.py runserver 0.0.0.0:$(RANDOM_PORT)
 
 virtualenv_run/: requirements.txt requirements-dev.txt
-	python ./bin/venv-update -ppython3 virtualenv_run requirements.txt requirements-dev.txt
+	python ./bin/venv-update ==venv virtualenv_run -ppython3 ==install -r requirements.txt -r requirements-dev.txt
 
 .PHONY: clean
 clean:
@@ -51,13 +51,9 @@ watch-scss: scss virtualenv_run
 .PHONY: update-requirements
 update-requirements:
 	$(eval TMP := $(shell mktemp -d))
-	awk '/^\s*install_requires=\[$$/,/^\s*],$$/' setup.py | \
-		tail -n +2 | head -n -1 | \
-		grep -oE "'[^']+'" | \
-		cut -c 2- | rev | cut -c 2- | rev > $(TMP)/requirements.txt
-	python ./bin/venv-update -ppython3 $(TMP)/venv $(TMP)/requirements.txt
-	. $(TMP)/venv/bin/activate && \
-		pip freeze | sort | grep -vE '^(wheel|ocfweb)==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
+	python ./bin/venv-update ==venv $(TMP) -ppython3 ==install .
+	. $(TMP)/bin/activate && \
+		pip freeze | sort | grep -vE '^(wheel|pip-faster|ocfweb)==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
 	rm -rf $(TMP)
 
 .PHONY: builddeb

@@ -34,7 +34,7 @@ setup(
         'ocflib',
         'pycrypto',
         'pygments',
-        'pymysql',
+        'pymysql<0.6.7',  # ocflib requires this version and pip sucks (creates version conflict)
         'python-dateutil',
     ],
     sass_manifests={
