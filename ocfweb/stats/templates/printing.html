@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load stats %}
+
+{% block content %}
+    <div class="ocf-content-block">
+        {% stats_navbar %}
+        <p>
+            <img class="img-responsive" src="{% url 'semester_histogram' %}" />
+        </p>
+    </div>
+{% endblock %}
