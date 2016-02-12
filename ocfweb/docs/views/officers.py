@@ -33,7 +33,6 @@ MISSING_NAMES = {
     'ctl': 'Case Larsen',
     'dpassage': 'David Paschich',
     'glass': 'Adam Glass',
-    'jenni': 'Jennifer Snider',
     'rgm': 'Rob Menke',
     'shipley': 'Peter Shipley',
     'sls': 'Sam Shen',
