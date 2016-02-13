@@ -18,6 +18,10 @@ def stats_navbar(context):
                 active=context['request'].resolver_match.url_name == name,
             )
             for name, title in
-            [('stats', 'Lab Summary'), ('stats_printing', 'Printing')]
+            [
+                ('stats', 'Summary'),
+                ('stats_printing', 'Printing'),
+                ('stats_accounts', 'Accounts'),
+            ]
         ],
     }

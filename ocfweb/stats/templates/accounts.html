@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load stats %}
+
+{% block content %}
+    <div class="ocf-content-block">
+        {% stats_navbar %}
+        <p>
+            <img class="img-responsive" src="{% url 'cumulative_accounts_graph' %}" />
+        </p>
+        <p>
+            <img class="img-responsive" src="{% url 'cumulative_group_accounts_graph' %}" />
+        </p>
+        <p>
+            <img class="img-responsive" src="{% url 'accounts_created_each_day_graph' %}" />
+        </p>
+    </div>
+{% endblock %}
