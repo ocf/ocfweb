@@ -53,7 +53,7 @@ def run_periodic_functions():
                 try:
                     send_problem_report(dedent(
                         """\
-                        An exception occured in an ocfweb periodic function:
+                        An exception occurred in an ocfweb periodic function:
 
                         {traceback}
 

@@ -6,14 +6,13 @@ import yaml
 from ocfweb.caching import periodic
 
 
-class LabStatus(namedtuple('LabStatus', [
+LabStatus = namedtuple('LabStatus', [
     'force_lab_closed',
     'banner_html',
-])):
-    pass
+])
 
 
-@periodic(60)
+@periodic(60, ttl=86400)
 def get_lab_status():
     """Get the front page banner message from the default location."""
     try:
