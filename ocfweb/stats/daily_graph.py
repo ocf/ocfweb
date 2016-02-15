@@ -63,9 +63,18 @@ def get_open_close(day):
         start = datetime(day.year, day.month, day.day, min(h.open.hour for h in d.hours))
         end = datetime(day.year, day.month, day.day, max(h.close.hour for h in d.hours))
     else:
-        start = datetime(day.year, day.month, day.day, min(h.open for h in
-                                                           REGULAR_HOURS[None].hour))
-        end = datetime(day.year, day.month, day.day, max(h.close for h in REGULAR_HOURS[None].hour))
+        start = datetime(
+            day.year,
+            day.month,
+            day.day,
+            min(h.open.hour for h in REGULAR_HOURS[None]),
+        )
+        end = datetime(
+            day.year,
+            day.month,
+            day.day,
+            max(h.close.hour for h in REGULAR_HOURS[None]),
+        )
 
     return start, end
 
