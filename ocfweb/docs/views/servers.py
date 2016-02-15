@@ -56,7 +56,10 @@ def get_hosts():
             description='KVM hypervisor for staff/testing VMs',
             children=[
                 Host.from_ldap(hostname)
-                for hostname in ['dev-death', 'supernova']
+                for hostname in [
+                    'maelstrom',
+                    'supernova',
+                ]
             ],
         ),
 
@@ -68,31 +71,29 @@ def get_hosts():
                 Host.from_ldap(hostname)
                 for hostname in [
                     'anthrax',
+                    'biohazard',
                     'coma',
+                    'death',
                     'dementors',
+                    'dev-death',
+                    'dev-pollution',
+                    'dev-werewolves',
                     'firestorm',
                     'flood',
                     'lightning',
-                    'maelstrom',
                     'pestilence',
                     'pollution',
                     'reaper',
                     'sandstorm',
+                    'tsunami',
                     'typhoon',
+                    'werewolves',
                     'zombies',
                 ]
             ],
         ),
 
-        Host(
-            hostname='pandemic',
-            type='hypervisor',
-            description='NFS host, KVM hypervisor for most NFS-using VMs',
-            children=[
-                Host.from_ldap(hostname)
-                for hostname in ['biohazard', 'death', 'tsunami']
-            ],
-        ),
+        Host.from_ldap('pandemic', type='hypervisor'),
 
         Host.from_ldap('fallingrocks'),
 
