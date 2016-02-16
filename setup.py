@@ -45,4 +45,7 @@ setup(
             'ocfweb-run-periodic-functions = ocfweb.bin.run_periodic_functions:main',
         ],
     },
+    classifiers=[
+        'Programming Language :: Python :: 3',
+    ],
 )
