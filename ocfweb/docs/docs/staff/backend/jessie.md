@@ -10,7 +10,6 @@ We don't list the desktops (all are jessie already).
 
 Server         | Status | Comment
 ---------------|--------|---------------
-biohazard      | wheezy | rebuild - same time as death (public); currently being slowly retired
 pollution      | wheezy | rebuild - pykota not compatible with jessie on last attempt, not well puppeted
 
 ## Already upgraded:

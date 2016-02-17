@@ -66,7 +66,7 @@ below, but if you know what you're doing, you needn't follow them.
 
 ### Connecting to the application server
 
-We provide a separate server (currently named `biohazard`), for hosting
+We provide a separate server (currently named `werewolves`), for hosting
 applications. **You should connect to this server**, not to the public login
 server.
 

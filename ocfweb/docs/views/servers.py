@@ -71,7 +71,6 @@ def get_hosts():
                 Host.from_ldap(hostname)
                 for hostname in [
                     'anthrax',
-                    'biohazard',
                     'coma',
                     'death',
                     'dementors',
