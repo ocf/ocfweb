@@ -1,20 +1,14 @@
 import re
 from datetime import date
 from ipaddress import ip_address
-from ipaddress import ip_network
 
 from django.core.urlresolvers import reverse
 from ipware.ip import get_real_ip
-from ocflib.constants import OCF_SUBNET_V4
+from ocflib.infra.net import is_ocf_ip
 from ocflib.lab.hours import Day
 
 from ocfweb.component.lab_status import get_lab_status
 from ocfweb.environment import ocfweb_version
-
-
-def is_ocf_ip(ip):
-    # TODO: move this entire function to ocflib when it drops Python 3.2 support
-    return ip_address(ip) in ip_network(OCF_SUBNET_V4)
 
 
 def get_base_css_classes(request):
@@ -35,7 +29,7 @@ def ocf_template_processor(request):
         'current_lab_hours': hours,
         'lab_status': get_lab_status(),
         'base_css_classes': ' '.join(get_base_css_classes(request)),
-        'is_ocf_ip': is_ocf_ip(real_ip) if real_ip else True,
+        'is_ocf_ip': is_ocf_ip(ip_address(real_ip)) if real_ip else True,
         'join_staff_url': request.build_absolute_uri(reverse('about-staff')),
         'ocfweb_version': ocfweb_version(),
     }
