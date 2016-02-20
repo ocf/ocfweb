@@ -61,7 +61,8 @@ def login(request, next_page=None):
     ticket = request.GET.get('ticket')
     service = _service_url(request, next_page)
     if ticket:
-        verified_uid = int(cas.verify_ticket(ticket, service))
+        verify_result = cas.verify_ticket(ticket, service)
+        verified_uid = int(verify_result) if verify_result else 0
         if verified_uid:
             request.session['calnet_uid'] = verified_uid
         if 'calnet_uid' in request.session and request.session['calnet_uid']:
