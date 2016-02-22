@@ -1,10 +1,13 @@
 [[!meta title="Munin"]]
 
 We use [Munin](http://munin.ocf.berkeley.edu) to provide real-time monitoring
-on all our machines. The master is [[dementors|doc staff/backend/servers]]
-which runs a cron job every five minutes to collect data from the node server
-running on each machine. A [custom script][gen-munin-nodes] periodically
-generates the list of available nodes from LDAP.
+of our hardware. The master is [[dementors|doc staff/backend/servers]] which
+runs a cron job every five minutes to collect data from the node server running
+on each machine. A [custom script][gen-munin-nodes] periodically generates the
+list of available nodes from LDAP.
+
+We monitor servers, desktops, and staff VMs, but not the hozer boxes.
+Additionally, we don't receive email alerts for staff VMs.
 
 ## Automated alerts
 
