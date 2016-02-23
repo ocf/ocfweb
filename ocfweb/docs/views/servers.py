@@ -13,8 +13,8 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
 
     # TODO: don't hard-code host types or children
 
-    @classmethod
-    def from_ldap(cls, hostname, type='vm'):
+    @staticmethod
+    def from_ldap(hostname, type='vm'):
         host, = hosts_by_filter('(cn={})'.format(hostname))
         if 'description' in host:
             description, = host['description']
@@ -53,12 +53,13 @@ def get_hosts():
         Host(
             hostname='hal',
             type='hypervisor',
-            description='KVM hypervisor for staff/testing VMs',
+            description='KVM hypervisor mostly for staff/testing VMs',
             children=[
                 Host.from_ldap(hostname)
                 for hostname in [
                     'maelstrom',
-                    'supernova',
+                    'pollution',
+                    'zombies',
                 ]
             ],
         ),
@@ -66,28 +67,35 @@ def get_hosts():
         Host(
             hostname='jaws',
             type='hypervisor',
-            description='KVM hypervisor for most production VMs',
+            description='KVM hypervisor for production VMs which use NFS',
+            children=[
+                Host.from_ldap(hostname)
+                for hostname in [
+                    'death',
+                    'reaper',
+                    'sandstorm',
+                    'supernova',
+                    'tsunami',
+                    'werewolves',
+                ]
+            ],
+        ),
+
+        Host(
+            hostname='pandemic',
+            type='hypervisor',
+            description='KVM hypervisor for most production VMs not using NFS',
             children=[
                 Host.from_ldap(hostname)
                 for hostname in [
                     'anthrax',
                     'coma',
-                    'death',
                     'dementors',
-                    'dev-death',
-                    'dev-pollution',
-                    'dev-werewolves',
                     'firestorm',
                     'flood',
                     'lightning',
                     'pestilence',
-                    'pollution',
-                    'reaper',
-                    'sandstorm',
-                    'tsunami',
                     'typhoon',
-                    'werewolves',
-                    'zombies',
                 ]
             ],
         ),
