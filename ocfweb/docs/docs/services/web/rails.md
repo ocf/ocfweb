@@ -3,46 +3,6 @@
 
 Ruby on Rails is a popular web framework for Ruby applications.
 
-## Installing Rails 4
-
-OCF servers currently run the following:
-
-* Ruby 2.1.5
-* Rails 4.1.8
-
-If you'd like, you can install a newer version of Rails in your home directory
-using `gem`. The installed version of Ruby should be sufficient. The following
-steps, which should all take place over [[SSH|doc services/shell]], will set up
-a gem directory inside your home directory and installs Rails.
-
-1. Set up relevant environment variables on login:
-
-       echo "export PATH=~/.gem/ruby/2.1.5/bin:\$PATH" >> ~/.bash_profile
-       echo "export GEM_HOME=~/.gem/ruby/2.1.5/gems" >> ~/.bash_profile
-       echo "export GEM_PATH=~/.gem/ruby/2.1.5" >> ~/.bash_profile
-
-2. Create a `gemrc` file specifying default installation optipns:
-
-       echo "gem: --user-install" > ~/.gemrc
-
-3. Disconnect and reconnect to SSH, or re-source your profile:
-
-       . ~/.bash_profile
-
-4. Install `rails` via `gem`:
-
-       gem install --no-rdoc --no-ri rails
-
-   This may take some time.
-
-5. Verify that Rails is installed:
-
-       rails -v
-
-   You should see output indicating the new Rails version. If you see an old
-   version (like 4.1.8), your PATH is probably wrong. Make sure you followed step
-   1 and try reconnecting to SSH.
-
 ## Creating a New Application
 
 To create a new Rails application, use the `rails` command-line interface. For example,
