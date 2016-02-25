@@ -5,8 +5,6 @@ All accounts include hosting with a web address at:
 
 * **`www.ocf.berkeley.edu/~user`** (canonical version)
 * **`ocf.io/user`** (shorter version)
-* **`ocf.sexy/user`** (unofficial)
-* **`open.cf/user`** (unofficial)
 
 where `user` is the account name.
 
