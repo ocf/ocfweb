@@ -28,8 +28,15 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
         )
 
     @cached_property
-    def ip(self):
+    def ipv4(self):
         return str(dns.resolver.query(self.hostname, 'A')[0])
+
+    @cached_property
+    def ipv6(self):
+        try:
+            return str(dns.resolver.query(self.hostname, 'AAAA')[0])
+        except dns.resolver.NoAnswer:
+            return 'No IPv6 address'
 
     @cached_property
     def english_type(self):
