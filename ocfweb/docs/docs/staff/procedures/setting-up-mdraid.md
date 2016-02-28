@@ -43,11 +43,12 @@ the operational benefits of never having to touch MegaCLI again).
 These assume you're willing to destroy all the data on the server and rebuild
 it. They also assume you're currently using MegaRAID.
 
-They work pretty reliably but you should still think before pressing entire,
+They work pretty reliably but you should still think before pressing enter,
 because they might need some adjustment.
 
 1. On boot, enter the LSI pre-boot CLI (press `Ctrl-Y` at the right time). The
    syntax in the pre-boot CLI seems to be the same as MegaCLI.
+
 2. Remove all logical drives and put the physical drives in JBOD mode:
 
        $ -CfgLdDel -LALL -aALL
@@ -57,6 +58,7 @@ because they might need some adjustment.
 *note: I got an error on jaws on the `PDMakeJBOD`, but it worked anyway*
 
 3. Reboot into finnix and figure out which drives you want in the RAID.
+
 4. Make new partition tables on each drive and one large partition to hold the
    data.
 
@@ -71,7 +73,8 @@ because they might need some adjustment.
        parted "$device" mkpart primary 10MB 510GB
    done
    ```
-6. Pick one disk to hold GRUB (I usually do `/dev/sda`) and do:
+
+5. Pick one disk to hold GRUB (I usually do `/dev/sda`) and do:
 
    ```bash
    parted /dev/sda mkpart primary ext4 1 5
@@ -83,6 +86,7 @@ because they might need some adjustment.
    ```bash
    parted /dev/sda set 2 bios_grub on
    ```
+
 6. Set up RAID 10, and make sure to use the data partitions (like `/dev/sda1`
    and not the entire drive).
 
@@ -90,6 +94,7 @@ because they might need some adjustment.
    mdadm --create -v /dev/md0 --level=raid10 --raid-devices=4 \
        /dev/sda1 /dev/sdb1 /dev/sdc1 /dev/sdd1
    ```
+
 7. Set up a GPT partition table on the new RAID volume. **Don't forget this or
    you'll be sorry when you have to abandon the Debian install.**
 
