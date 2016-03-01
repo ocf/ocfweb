@@ -14,7 +14,7 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
     # TODO: don't hard-code host types or children
 
     @staticmethod
-    def from_ldap(hostname, type='vm'):
+    def from_ldap(hostname, type='vm', children=()):
         host, = hosts_by_filter('(cn={})'.format(hostname))
         if 'description' in host:
             description, = host['description']
@@ -24,7 +24,7 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
             hostname=hostname,
             type=type,
             description=description,
-            children=[],
+            children=children,
         )
 
     @cached_property
@@ -51,16 +51,15 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
 
     @cached_property
     def has_munin(self):
-        return self.type in {'hypervisor', 'vm', 'server', 'desktop'}
+        return self.type in ('hypervisor', 'vm', 'server', 'desktop')
 
 
 @periodic(120)
 def get_hosts():
     return [
-        Host(
+        Host.from_ldap(
             hostname='hal',
             type='hypervisor',
-            description='KVM hypervisor mostly for staff/testing VMs',
             children=[
                 Host.from_ldap(hostname)
                 for hostname in [
@@ -71,10 +70,9 @@ def get_hosts():
             ],
         ),
 
-        Host(
+        Host.from_ldap(
             hostname='jaws',
             type='hypervisor',
-            description='KVM hypervisor for production VMs which use NFS',
             children=[
                 Host.from_ldap(hostname)
                 for hostname in [
@@ -88,10 +86,9 @@ def get_hosts():
             ],
         ),
 
-        Host(
+        Host.from_ldap(
             hostname='pandemic',
             type='hypervisor',
-            description='KVM hypervisor for most production VMs not using NFS or lots of CPU',
             children=[
                 Host.from_ldap(hostname)
                 for hostname in [
@@ -108,7 +105,7 @@ def get_hosts():
             ],
         ),
 
-        Host('blackhole', 'network', 'Managed Cisco Catalyst 2960S-48TS-L Switch', []),
+        Host('blackhole', 'network', 'Managed Cisco Catalyst 2960S-48TS-L Switch.', []),
 
         Host('deforestation', 'printer', '', []),
         Host('logjam', 'printer', '', []),
