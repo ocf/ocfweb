@@ -91,13 +91,14 @@ def get_hosts():
         Host(
             hostname='pandemic',
             type='hypervisor',
-            description='KVM hypervisor for most production VMs not using NFS',
+            description='KVM hypervisor for most production VMs not using NFS or lots of CPU',
             children=[
                 Host.from_ldap(hostname)
                 for hostname in [
                     'anthrax',
                     'coma',
                     'dementors',
+                    'fallingrocks',
                     'firestorm',
                     'flood',
                     'lightning',
@@ -106,10 +107,6 @@ def get_hosts():
                 ]
             ],
         ),
-
-        Host.from_ldap('pandemic', type='hypervisor'),
-
-        Host.from_ldap('fallingrocks'),
 
         Host('blackhole', 'network', 'Managed Cisco Catalyst 2960S-48TS-L Switch', []),
 
