@@ -72,14 +72,14 @@ class CommandForm(forms.Form):
     )
 
     COMMAND_CHOICES = (
-        ('/opt/ocf/bin/paper',
+        ('/opt/share/utils/bin/paper',
          'paper quota -- how many pages you have remaining this semester'),
         ('/usr/bin/quota -svQ',
          'disk quota -- how much disk space you have used and how much you ' +
          'have left'),
-        ('/opt/ocf/bin/makehttp',
+        ('/opt/share/utils/bin/makehttp',
          'makehttp -- set up the web space for your OCF account'),
-        ('echo yes | /opt/ocf/bin/makemysql',
+        ('echo yes | /opt/share/utils/bin/makemysql',
          'makemysql -- reset your MySQL database password, or create a new ' +
          'MySQL database (copy down the password somewhere secure)'),
     )

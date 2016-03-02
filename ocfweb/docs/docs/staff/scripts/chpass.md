@@ -16,7 +16,7 @@ Changes user andromeda's password
 
 ## Sample Use Case
 
-You can run chpass on any device that mounts /opt/ocf
+You can run chpass on any server.
 
     raphtown@pileup:~$ chpass andromeda
     OCF Change Password Program
@@ -25,7 +25,7 @@ You can run chpass on any device that mounts /opt/ocf
     you acknowledge that you may potentially modify some of the privileges that the staff
     member may have.
 
-    Changing password for: andromeda:*:1615:20:Andromeda Centauri,The OCF,,:/home/a/an/andromeda:/opt/ocf/bin/sorry
+    Changing password for: andromeda:*:1615:20:Andromeda Centauri,The OCF,,:/home/a/an/andromeda:/opt/share/utils/bin/sorried
 Let the user type in his new password (and verify it).  Requirements are for passwords to be at least 8 characters long.  It is helpful to indicate that nothing will show up when the user starts typing.
 
     Enter New Password:

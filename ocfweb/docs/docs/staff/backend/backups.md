@@ -36,7 +36,7 @@ Backups currently include:
 
 * Everything on NFS
   * User home and web directories
-  * `/opt/ocf` (some scripts and common environment settings)
+  * Cronjobs on supported servers (tsunami, supernova, biohazard, etc.)
 * MySQL databases (including user databases, stats, RT, print quotas)
 * Everything on GitHub (probably very unnecessary)
 * A [smattering of random files on random servers][backed-up-files]
