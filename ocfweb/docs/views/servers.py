@@ -13,14 +13,14 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
 
     # TODO: don't hard-code host types or children
 
-    @staticmethod
-    def from_ldap(hostname, type='vm', children=()):
+    @classmethod
+    def from_ldap(cls, hostname, type='vm', children=()):
         host, = hosts_by_filter('(cn={})'.format(hostname))
         if 'description' in host:
             description, = host['description']
         else:
             description = ''
-        return Host(
+        return cls(
             hostname=hostname,
             type=type,
             description=description,
