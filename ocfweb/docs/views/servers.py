@@ -47,6 +47,7 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
             'printer': 'Printer',
             'network': 'Networking Gear',
             'desktop': 'Desktop',
+            'nuc': 'NUC',
         }[self.type]
 
     @cached_property
@@ -109,6 +110,7 @@ def get_hosts():
 
         Host('deforestation', 'printer', '', []),
         Host('logjam', 'printer', '', []),
+        Host.from_ldap('tornado', type='nuc'),
     ] + [
         Host.from_ldap(desktop, type='desktop')
         for desktop in list_desktops()
