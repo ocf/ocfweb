@@ -62,7 +62,7 @@ Once the cronjob completes, the application will be available at:
 
 VHOST_NAME is the configured name from above.
 
-Once the website is developed and meets policy checklist, request the following DNS record from the University hostmaster:
+Once the website is developed and meets policy checklist, request the following DNS record from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/):
 
     hostname.berkeley.edu. IN CNAME werewolves.OCF.Berkeley.EDU
 
