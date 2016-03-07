@@ -42,18 +42,25 @@ The group website should be reasonably developed (can be offsite during review o
 
 You will need a `/admin` principle to modify apphosting entries.
 
-* Add the group account to the ocf LDAP group:
+* Add the group account to the ocfdev LDAP group:
 
       $ ldapvi cn=ocfdev
       memberUid: ggroup
       memberUid: GROUP_USERNAME
 
-* Add apphost entry: edit `~staff/vhost/vhost-app.conf`.
+* Add apphost entry: edit `~staff/vhost/vhost-app.conf`. The file syntax is
+
+      account vhost_name socket_name ssl_name
+
+  The config file contains examples and more documentation.
+
 * Wait for cronjob to update configurations (runs every 10 minutes).
 
 Once the cronjob completes, the application will be available at:
 
     VHOST_NAME-berkeley-edu.apphost.ocf.berkeley.edu
+
+VHOST_NAME is the configured name from above.
 
 Once the website is developed and meets policy checklist, request the following DNS record from the University hostmaster:
 
