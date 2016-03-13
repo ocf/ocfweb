@@ -13,6 +13,10 @@ from ocfweb.component.forms import Form
 
 
 def _get_accounts_signatory_for(calnet_uid):
+    # XXX: disabled by ckuehl on 2016-03-13 because studentservices.berkeley.edu is down
+    # TODO: re-enable after back up
+    return []
+
     def flatten(lst):
         return [item for sublist in lst for item in sublist]
 
