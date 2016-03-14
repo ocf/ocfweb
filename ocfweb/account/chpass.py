@@ -4,6 +4,7 @@ from ocflib.account.search import user_exists
 from ocflib.account.search import users_by_calnet_uid
 from ocflib.ucb.directory import name_by_calnet_uid
 from ocflib.ucb.groups import groups_by_student_signat
+from requests.exceptions import ConnectionError
 
 from ocfweb.account.constants import TEST_OCF_ACCOUNTS
 from ocfweb.account.constants import TESTER_CALNET_UIDS
@@ -12,11 +13,11 @@ from ocfweb.component.celery import change_password as change_password_task
 from ocfweb.component.forms import Form
 
 
-def _get_accounts_signatory_for(calnet_uid):
-    # XXX: disabled by ckuehl on 2016-03-13 because studentservices.berkeley.edu is down
-    # TODO: re-enable after back up
-    return []
+CALLINK_ERROR_MSG = ("Couldn't connect to CalLink API. Resetting group "
+                     'account passwords online is unavailable.')
 
+
+def get_accounts_signatory_for(calnet_uid):
     def flatten(lst):
         return [item for sublist in lst for item in sublist]
 
@@ -31,9 +32,8 @@ def _get_accounts_signatory_for(calnet_uid):
     return group_accounts
 
 
-def get_authorized_accounts_for(calnet_uid):
-    accounts = users_by_calnet_uid(calnet_uid) + \
-        _get_accounts_signatory_for(calnet_uid)
+def get_accounts_for(calnet_uid):
+    accounts = users_by_calnet_uid(calnet_uid)
 
     if calnet_uid in TESTER_CALNET_UIDS:
         # these test accounts don't have to exist in in LDAP
@@ -45,8 +45,12 @@ def get_authorized_accounts_for(calnet_uid):
 @calnet_required
 def change_password(request):
     calnet_uid = request.session['calnet_uid']
-    accounts = get_authorized_accounts_for(calnet_uid)
     error = None
+    accounts = get_accounts_for(calnet_uid)
+    try:
+        accounts += get_accounts_signatory_for(calnet_uid)
+    except ConnectionError:
+        error = CALLINK_ERROR_MSG
 
     if request.method == 'POST':
         form = ChpassForm(accounts, calnet_uid, request.POST)
@@ -123,11 +127,17 @@ class ChpassForm(Form):
         if not user_exists(data):
             raise forms.ValidationError('OCF user account does not exist.')
 
-        ocf_accounts = get_authorized_accounts_for(self.calnet_uid)
+        extra = ''
+
+        ocf_accounts = get_accounts_for(self.calnet_uid)
+        try:
+            ocf_accounts += get_accounts_signatory_for(self.calnet_uid)
+        except ConnectionError:
+            extra = CALLINK_ERROR_MSG + '\n'
 
         if data not in ocf_accounts:
             raise forms.ValidationError(
-                'OCF user account and CalNet UID mismatch.')
+                extra + 'OCF user account and CalNet UID mismatch.')
 
         return data
 
