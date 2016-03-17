@@ -115,7 +115,7 @@ testing pull requests. For example, `puppet-test-pr`.
 
 7. On GitHub, under "Settings" and "Webhooks & services", add a new webhook
    with payload URL `https://jenkins.ocf.berkeley.edu/ghprbhook/`, content type
-   `application/json`, and the secret (it's in `supernova:/opt/adm/passwords`).
+   `application/json`, and the secret (it's in `supernova:/opt/passwords`).
    Choose to trigger only on certain events:
 
    * Commit comment
