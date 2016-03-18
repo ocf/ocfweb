@@ -17,7 +17,7 @@ gunicorn==19.4.5
 kombu==3.0.34
 ldap3==1.1.2
 libsass==0.10.0
-lxml==3.5.0
+lxml==3.6.0
 matplotlib==1.5.1
 mistune==0.7.2
 numpy==1.10.4
@@ -33,8 +33,8 @@ PyMySQL==0.6.6
 pyparsing==2.1.0
 pysmi==0.0.7
 pysnmp==4.3.2
-python-dateutil==2.5.0
-pytz==2015.7
+python-dateutil==2.5.1
+pytz==2016.1
 PyYAML==3.11
 redis==2.10.5
 requests==2.9.1
