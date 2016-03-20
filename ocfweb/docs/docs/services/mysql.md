@@ -4,6 +4,11 @@ The OCF provides each user with a MySQL database. Read the following sections
 for information about performing common MySQL tasks, and our rules and policies
 regarding MySQL.
 
+The actual server runs [MariaDB 10.0.23](https://mariadb.org/), which is an
+active community-driven fork of MySQL. In practice, you shouldn't notice any
+important differences between the two, though MariaDB does contain [some
+improvements](https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-features/).
+
 
 ## Policies
 
