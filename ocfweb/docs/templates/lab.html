@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load google_maps %}
+{% load lab_hours %}
+{% load common %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ocf-content-block">
+                <p>
+                    The OCF computer lab consists of 29 workstations running
+                    <a href="https://debian.org/">Debian Linux</a>. They are maintained by
+                    <a href="{% url 'about-staff' %}">OCF volunteer staff</a> who
+                    operate the servers, workstations, and networking gear that helps the
+                    lab run.
+                </p>
+
+                <p>
+                    OCF computers include free and open-source software such as
+                    <a href="https://www.libreoffice.org/">LibreOffice</a> (similar to
+                    Microsoft Office), <a href="http://www.gimp.org/">GIMP</a> (similar
+                    to Adobe Photoshop), and more.
+                </p>
+
+                <p>
+                    For details about printing in the lab, see
+                    <a href="{% url 'doc' 'services/lab/printing' %}">Printing</a>.
+                </p>
+
+
+                <h2>Location</h2>
+                <p>
+                    The OCF computer lab is located in 171 MLK Student Union.
+                    It can be accessed through the main MLK building or via the
+                    tunnel by the stairs between Upper and Lower Sproul.
+                </p>
+                <p>
+                    To enter the lab, bring a valid student identification card; you
+                    will be asked to show it.
+                </p>
+                <div class="ocf-content-block">
+                    <p>{% google_map '100%' '300px' %}</p>
+                </div>
+
+
+                <h2>Hours</h2>
+                <p>Hours for the next week are:</p>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <table class="table table-striped table-hover">
+                            {% for hour in hours_this_week %}
+                                <tr>
+                                    <th>
+                                        {{hour.weekday}},
+                                        {{hour.date | date:'M d'}}
+                                    </th>
+                                    <td>{{hour.hours | lab_hours_time}} {{hour | lab_hours_holiday}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+
+
+                <h3>Regular Weekly Hours</h3>
+                <p>The regular OCF hours are:</p>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <table class="table table-striped table-hover">
+                            <tr><th>Sunday</th><td>{{regular_hours | getitem:SUNDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Monday</th><td>{{regular_hours | getitem:MONDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Tuesday</th><td>{{regular_hours | getitem:TUESDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Wednesday</th><td>{{regular_hours | getitem:WEDNESDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Thursday</th><td>{{regular_hours | getitem:THURSDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Friday</th><td>{{regular_hours | getitem:FRIDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Saturday</th><td>{{regular_hours | getitem:SATURDAY | lab_hours_time}}</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <h3>Spring 2016 Holidays</h3>
+                <p>
+                    Remaining holidays this semester are listed below. Note that
+                    holiday hours may change, so you should check back closer to
+                    the holiday.
+                </p>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <table class="table table-striped table-hover">
+                            {% for day, name, hours in holidays %}
+                                <tr>
+                                    <th>{{day}}</th>
+                                    <td>{{name}}</td>
+                                    <td>{{hours | lab_hours_time}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 ocf-sidebar">
+            <h3>Need help from an OCF staffer?</h3>
+            <p>OCF staff are student volunteers who are <strong>usually not present in the lab</strong>.</p>
+            <p>
+                The front desk is staffed by Publications Center
+                employees. While they can help with basic troubleshooting, for
+                technical or organization-related questions, it would be better to
+                either chat with an OCF volunteer staffer during
+                <a href="{% url 'staff-hours' %}">staff hours</a> or contact us
+                <a href="{% url 'doc' 'contact' %}">via email</a>.
+            </p>
+
+            <h4>Having trouble finding the entrance?</h4>
+            <p>
+                Here's how to get there, starting from Upper Sproul:
+            </p>
+            <video width="100%" controls autoplay>
+                <source src="https://fat.gfycat.com/DefiniteEquatorialAtlanticblackgoby.webm" type="video/webm">
+                <source src="https://giant.gfycat.com/DefiniteEquatorialAtlanticblackgoby.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+{% endblock %}

@@ -234,11 +234,11 @@ class VirtualHostForm(Form):
         self.fields['website_disclaimer_text'].label = mark_safe((
             'We have placed the <a href="{}">university-mandated disclaimer</a> '
             'on each page of our site.'
-        ).format(reverse('help', args=('services/vhost',))))
+        ).format(reverse('doc', args=('services/vhost',))))
 
         self.fields['website_ocf_banner'].label = mark_safe((
             'We have placed a <a href="{}">Hosted by the OCF</a> banner image on our site.'
-        ).format(reverse('help', args=('services/vhost/badges',))))
+        ).format(reverse('doc', args=('services/vhost/badges',))))
 
     def clean_requested_subdomain(self):
         requested_subdomain = self.cleaned_data['requested_subdomain'].lower().strip()

@@ -63,15 +63,15 @@ class DjangoLinkInlineLexerMixin:
 
     In Django templates, we can use `url` tags, such as:
         {% url 'staff-hours' %}
-        {% url 'help' 'staff/backend/backups' %}
+        {% url 'doc' 'staff/backend/backups' %}
 
     In Markdown, we use the following fake syntax to generate Django links:
         [[human readable name|staff-hours]]
-        [[human readable name|help staff/backend/backups]]
+        [[human readable name|doc staff/backend/backups]]
 
     You can link to fragments with a # at the very end:
         [[human readable name|staff-hours#something]]
-        [[human readable name|help staff/backend/backups#something]]
+        [[human readable name|doc staff/backend/backups#something]]
     """
 
     split_words = re.compile('((?:\S|\\\\ )+)')

@@ -56,37 +56,37 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{% url 'register' %}">Join</a></li>
                         <li class="dropdown">
-                            <a href="{% url 'help' 'about' %}" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="{% url 'doc' 'about' %}" class="dropdown-toggle" data-toggle="dropdown">
                                 About Us <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{% url 'help' 'about' %}">Our Organization</a></li>
+                                <li><a href="{% url 'doc' 'about' %}">Our Organization</a></li>
                                 <li><a href="{% url 'about-staff' %}">Joining the Staff Team</a></li>
                                 <li><a href="{% url 'stats' %}">Lab Statistics</a></li>
-                                <li><a href="{% url 'help' 'staff/backend' %}">Backend Infrastructure</a></li>
+                                <li><a href="{% url 'doc' 'staff/backend' %}">Backend Infrastructure</a></li>
                             </ul>
                         </li>
 
                         <li class="dropdown">
-                            <a href="{% url 'help' 'services' %}" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="{% url 'doc' 'services' %}" class="dropdown-toggle" data-toggle="dropdown">
                                 Services <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{% url 'help' 'services/lab' %}">Computer Lab</a></li>
-                                <li><a href="{% url 'help' 'services/lab/printing' %}">Printing</a></li>
-                                <li><a href="{% url 'help' 'services/web' %}">Web Hosting</a></li>
-                                <li><a href="{% url 'help' 'services/webapps' %}">Application Hosting</a></li>
-                                <li><a href="{% url 'help' 'services/shell' %}">SSH/SFTP (Shell)</a></li>
-                                <li><a href="{% url 'help' 'services/mail' %}">Email Hosting</a></li>
-                                <li><a href="{% url 'help' 'services/mysql' %}">MySQL Database</a></li>
+                                <li><a href="{% url 'doc' 'services/lab' %}">Computer Lab</a></li>
+                                <li><a href="{% url 'doc' 'services/lab/printing' %}">Printing</a></li>
+                                <li><a href="{% url 'doc' 'services/web' %}">Web Hosting</a></li>
+                                <li><a href="{% url 'doc' 'services/webapps' %}">Application Hosting</a></li>
+                                <li><a href="{% url 'doc' 'services/shell' %}">SSH/SFTP (Shell)</a></li>
+                                <li><a href="{% url 'doc' 'services/mail' %}">Email Hosting</a></li>
+                                <li><a href="{% url 'doc' 'services/mysql' %}">MySQL Database</a></li>
                             </ul>
                         </li>
 
                         <li><a href="{% url 'staff-hours' %}">Staff Hours</a></li>
-                        <li><a href="{% url 'help' '' %}">Help</a></li>
-                        <li><a href="{% url 'help' 'contact' %}">Contact Us</a></li>
+                        <li><a href="{% url 'docs' %}">Documentation</a></li>
+                        <li><a href="{% url 'doc' 'contact' %}">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                             {% endif %}
                             {{current_lab_hours.hours|lab_hours_time}}
                             on {{current_lab_hours.weekday}} {{current_lab_hours | lab_hours_holiday}}
-                            <a class="subtle" href="{% url 'help' 'services/lab' %}">more &raquo;</a>
+                            <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
                         </span>
                     {% else %}
                         <strong>Lab Temporarily Closed</strong>
@@ -148,9 +148,9 @@
                         <div class="col-sm-3">
                             <h5>About the OCF</h5>
                             <ul class="list-unstyled">
-                                <li><a href="{% url 'help' 'about' %}">Overview</a></li>
-                                <li><a href="{% url 'help' 'about/officers' %}">Current Officers</a></li>
-                                <li><a href="{% url 'help' 'docs' %}">Official Documents</a></li>
+                                <li><a href="{% url 'doc' 'about' %}">Overview</a></li>
+                                <li><a href="{% url 'doc' 'about/officers' %}">Current Officers</a></li>
+                                <li><a href="{% url 'doc' 'docs' %}">Official Documents</a></li>
                                 <li><a href="https://www.ocf.berkeley.edu/~staff/bod/">Board Meeting Minutes</a></li>
                             </ul>
                         </div>
@@ -167,10 +167,10 @@
                         <div class="col-sm-3">
                             <h5>Services</h5>
                             <ul class="list-unstyled">
-                                <li><a href="{% url 'help' 'services/lab' %}">Computer Lab &amp; Printing</a></li>
-                                <li><a href="{% url 'help' 'services/web' %}">Web Hosting</a></li>
-                                <li><a href="{% url 'help' 'services/mail' %}">Email Hosting</a></li>
-                                <li><a href="{% url 'help' 'services/shell' %}">SSH/Remote Shell</a></li>
+                                <li><a href="{% url 'doc' 'services/lab' %}">Computer Lab &amp; Printing</a></li>
+                                <li><a href="{% url 'doc' 'services/web' %}">Web Hosting</a></li>
+                                <li><a href="{% url 'doc' 'services/mail' %}">Email Hosting</a></li>
+                                <li><a href="{% url 'doc' 'services/shell' %}">SSH/Remote Shell</a></li>
                             </ul>
                         </div>
 
@@ -178,9 +178,9 @@
                             <h5>Help and Support</h5>
                             <ul class="list-unstyled">
                                 <li><a href="http://status.ocf.berkeley.edu/">Status Blog</a></li>
-                                <li><a href="{% url 'help' '' %}">User Documentation</a></li>
-                                <li><a href="{% url 'help' 'staff' %}">Staff Documentation</a></li>
-                                <li><a href="{% url 'help' 'contact' %}">Contact Us</a></li>
+                                <li><a href="{% url 'docs' %}">User Documentation</a></li>
+                                <li><a href="{% url 'doc' 'staff' %}">Staff Documentation</a></li>
+                                <li><a href="{% url 'doc' 'contact' %}">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
 
         <!-- Hack to make browsers load glyphicons immediately.
 
-             Without this, there is awkward flashing on some pages (e.g. help)
+             Without this, there is awkward flashing on some pages (e.g. docs)
              when hovering over something and a glyphicon appears.
         -->
         <span style="font-family: 'Glyphicons Halflings';"></span>

@@ -1,0 +1,72 @@
+@import '../../ocf';
+
+.page-doc-staff-backend-servers {
+    .host-list {
+        margin: 10px 15px;
+
+        // embedded host lists (for hypervisors)
+        .host-list {
+            margin: 0;
+            margin-left: 40px;
+
+            > .host:nth-child(even) {
+                background-color: #F9F9F9;
+            }
+        }
+
+        .host-hypervisor {
+            background-color: #F1FFB2;
+        }
+
+        .host-network {
+            background-color: #FFF299;
+        }
+
+        .host-printer {
+            background-color: #F1F1F1;
+        }
+
+        .host-server {
+            background-color: #F9E8E8;
+        }
+
+        .host-desktop {
+            background-color: #DFEFF3;
+        }
+
+        .host-nuc {
+            background-color: #F1DFF3;
+        }
+
+        .host {
+            margin-top: -1px;
+            border: solid 1px #e2e2e2;
+
+            > div {
+                padding: 12px;
+
+                > p {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+
+            .hostname {
+                font-weight: bold;
+                font-size: 18px;
+            }
+
+            .links {
+                text-align: right;
+
+                > a {
+                    opacity: 0.6;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
