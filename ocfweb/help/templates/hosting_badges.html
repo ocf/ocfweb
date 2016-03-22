@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load pygments %}
+
+{% block content %}
+    <div class="ocf-content-block">
+        <p>
+            These logos are for organizations that have requested
+            <a href="{% url 'help' 'services/vhost' %}">virtual hosting</a>
+            with the OCF, or for anyone else that wants to use them.  You can
+            either use the images hosted on our site, or you can download them
+            and place them under your own. You're welcome to design your own
+            too, but please
+            <a href="{% url 'help' 'contact' %}">contact us</a> first.
+        </p>
+
+        <h2>Logos and HTML</h2>
+        {% for badge_name, badge_url in badges %}
+            <h4>{{badge_name}}</h4>
+            <p><img src="{{badge_url}}" /></p>
+            {% pygments html %}
+                <a href="https://www.ocf.berkeley.edu">
+                    <img src="{{badge_url}}"
+                        alt="Hosted by the OCF" style="border: 0;" />
+                </a>
+            {% endpygments %}
+        {% endfor %}
+
+        <h3>About these logos</h3>
+        <p>
+            The "silver", "mini", "platinum" edition logos were original logos
+            created by gordeon in 2007.
+        </p>
+        <p>
+            The "blue" logo is based off the "silver" logo and was contributed by
+            the student group Ensorcelled in 2008.
+        </p>
+    </div>
+{% endblock %}

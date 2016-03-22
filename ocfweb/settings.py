@@ -29,7 +29,7 @@ INSTALLED_APPS = (
     'ocfweb',
     'ocfweb.about',
     'ocfweb.account',
-    'ocfweb.docs',
+    'ocfweb.help',
     'ocfweb.login',
     'ocfweb.main',
     'ocfweb.middleware',

@@ -36,11 +36,11 @@
         </p>
         <p>Our volunteers maintain services for the Berkeley community. Among others, we offer:</p>
         <ul>
-            <li><a href="{% url 'doc' 'services/lab' %}">A spiffy computer lab</a> in 171 MLK Student Union</li>
-            <li><a href="{% url 'doc' 'services/web' %}">Web &amp; email hosting</a> for thousands of student groups and individuals</li>
-            <li><a href="{% url 'doc' 'services/lab/printing' %}">Free printing</a> for all UC Berkeley students</li>
-            <li><a href="{% url 'doc' 'services/shell' %}">Shell accounts</a> on our powerful on-campus servers</li>
-            <li>...and <a href="{% url 'doc' 'services' %}">lots more!</a></li>
+            <li><a href="{% url 'help' 'services/lab' %}">A spiffy computer lab</a> in 171 MLK Student Union</li>
+            <li><a href="{% url 'help' 'services/web' %}">Web &amp; email hosting</a> for thousands of student groups and individuals</li>
+            <li><a href="{% url 'help' 'services/lab/printing' %}">Free printing</a> for all UC Berkeley students</li>
+            <li><a href="{% url 'help' 'services/shell' %}">Shell accounts</a> on our powerful on-campus servers</li>
+            <li>...and <a href="{% url 'help' 'services' %}">lots more!</a></li>
         </ul>
         <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop by to ask questions or just to hang out!</p>
 
@@ -70,7 +70,7 @@
         <h3>OCF Computer Lab</h3>
         <p>
             The lab is located in
-            <a href="{% url 'doc' 'services/lab' %}">171 MLK Student Union</a>.
+            <a href="{% url 'help' 'services/lab' %}">171 MLK Student Union</a>.
         </p>
         {% google_map '100%' '151px' show_info=False %}
 
@@ -94,7 +94,7 @@
                 </div>
             {% endfor %}
         </div>
-        <p><a href="{% url 'doc' 'services/lab' %}" class="see-more">See more lab hours &raquo;</a></p>
+        <p><a href="{% url 'help' 'services/lab' %}" class="see-more">See more lab hours &raquo;</a></p>
 
         <p><strong>Account Tools</strong></p>
         <ul>

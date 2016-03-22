@@ -6,9 +6,9 @@ from django.shortcuts import redirect
 
 from ocfweb.about.lab import lab_open_source
 from ocfweb.about.staff import about_staff
-from ocfweb.account.urls import urlpatterns as account
-from ocfweb.docs.urls import urlpatterns as docs
-from ocfweb.login.urls import urlpatterns as login
+from ocfweb.account.urls import urlpatterns as account_urlpatterns
+from ocfweb.help.urls import urlpatterns as help_urlpatterns
+from ocfweb.login.urls import urlpatterns as login_urlpatterns
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
@@ -48,7 +48,7 @@ urlpatterns = [
 
     # hosting logos
     url(r'^images/hosted-logos/(?:index\.shtml)?$',
-        lambda _: redirect(reverse('doc', args=('services/vhost/badges',)), permanent=True)),
+        lambda _: redirect(reverse('help', args=('services/vhost/badges',)), permanent=True)),
     url(r'^images/hosted-logos/(.*)$', lambda _, image: redirect('hosting-logo', image, permanent=True)),
     url(r'^hosting-logos/(.*)$', hosting_logo, name='hosting-logo'),
 
@@ -71,21 +71,23 @@ urlpatterns = [
     url(r'^index\.s?html$', lambda _: redirect(reverse('home'), permanent=True)),
     url(r'^staff_hours(?:\.cgi)?$', lambda _: redirect(reverse('staff-hours'), permanent=True)),
     url(r'^staff-hours\.cgi$', lambda _: redirect(reverse('staff-hours'), permanent=True)),
-    url(r'^OCF/(?:index\.shtml)?$', lambda _: redirect(reverse('doc', args=('about',)), permanent=True)),
+    url(r'^OCF/(?:index\.shtml)?$', lambda _: redirect(reverse('help', args=('about',)), permanent=True)),
     url(r'^OCF/(?:past_)?officers.shtml$',
-        lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True)),
-    url(r'^OCF/staff/(?:index\.shtml)?$', lambda _: redirect(reverse('doc', args=('staff',)), permanent=True)),
+        lambda _: redirect(reverse('help', args=('about/officers',)), permanent=True)),
+    url(r'^OCF/staff/(?:index\.shtml)?$', lambda _: redirect(reverse('help', args=('staff',)), permanent=True)),
     url(r'^OCF/staff/where-now\.shtml$',
-        lambda _: redirect(reverse('doc', args=('about/formerstaff',)), permanent=True)),
-    url(r'^OCF/policies(?:/|$)', lambda _: redirect(reverse('docs'), permanent=True)),
-    url(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(reverse('doc', args=('faq',)), permanent=True)),
-    url(r'^OCF/officers_.*\.s?html$', lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True)),
+        lambda _: redirect(reverse('help', args=('about/formerstaff',)), permanent=True)),
+    url(r'^OCF/policies(?:/|$)', lambda _: redirect(reverse('help'), permanent=True)),
+    url(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(reverse('help', args=('faq',)), permanent=True)),
+    url(r'^OCF/officers_.*\.s?html$', lambda _: redirect(reverse('help', args=('about/officers',)), permanent=True)),
     url(r'^OCF/staff/how-to-join\.shtml$', lambda _: redirect(reverse('about-staff'), permanent=True)),
-    url(r'^mlk$', lambda _: redirect(reverse('doc', args=('services/lab',)), permanent=True)),
+    url(r'^mlk$', lambda _: redirect(reverse('help', args=('services/lab',)), permanent=True)),
+    url(r'^docs/?$', lambda _: redirect(reverse('help', args=('',)), permanent=True)),
+    url(r'^docs/(.+?)/?$', lambda _, doc: redirect(reverse('help', args=(doc,)), permanent=True)),
 
-    url(r'^docs/', include(docs)),
+    url(r'^help/', include(help_urlpatterns)),
 
-    url(r'^account/', include(account)),
+    url(r'^account/', include(account_urlpatterns)),
 
-    url(r'^login/', include(login)),
+    url(r'^login/', include(login_urlpatterns)),
 ]
