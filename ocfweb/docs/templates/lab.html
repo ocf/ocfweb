@@ -78,25 +78,27 @@
                     </div>
                 </div>
 
-                <h3>Spring 2016 Holidays</h3>
-                <p>
-                    Remaining holidays this semester are listed below. Note that
-                    holiday hours may change, so you should check back closer to
-                    the holiday.
-                </p>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <table class="table table-striped table-hover">
-                            {% for day, name, hours in holidays %}
-                                <tr>
-                                    <th>{{day}}</th>
-                                    <td>{{name}}</td>
-                                    <td>{{hours | lab_hours_time}}</td>
-                                </tr>
-                            {% endfor %}
-                        </table>
+                {% if holidays %}
+                    <h3>Spring 2016 Holidays</h3>
+                    <p>
+                        Remaining holidays this semester are listed below. Note that
+                        holiday hours may change, so you should check back closer to
+                        the holiday.
+                    </p>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <table class="table table-striped table-hover">
+                                {% for day, name, hours in holidays %}
+                                    <tr>
+                                        <th>{{day}}</th>
+                                        <td>{{name}}</td>
+                                        <td>{{hours | lab_hours_time}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-sm-4 ocf-sidebar">
