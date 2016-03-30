@@ -94,7 +94,7 @@ It's useful along with [[OCF's IRC server|doc contact/irc]].
        User=<YOUR_USER>
        ExecStart=/usr/bin/znc --foreground
        ExecReload=/bin/kill -HUP $MAINPID
-       Restart=always
+       Restart=on-failure
        KillSignal=SIGINT
        SuccessExitStatus=2
 
