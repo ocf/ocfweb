@@ -12,11 +12,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'not_a_secret'
 DEBUG = True
 
+# we validate this in nginx
 ALLOWED_HOSTS = [
-    'www.ocf.berkeley.edu',
-    'dev.ocf.berkeley.edu',
-    'dev-www.ocf.berkeley.edu',
-    'ocfweb.ocf.berkeley.edu',
+    '*',
 ]
 
 INSTALLED_APPS = (
