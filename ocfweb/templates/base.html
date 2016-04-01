@@ -18,6 +18,13 @@
             <meta name="description" content="{{description}}">
         {% endif %}
 
+        {% if og_title %}
+            <meta property="og:title" content="{{og_title}}" />
+        {% endif %}
+        {% if og_image %}
+            <meta property="og:image" content="{{og_image}}" />
+        {% endif %}
+
         <link rel="canonical" href="https://www.ocf.berkeley.edu{{ request.path }}" />
 
         <title>
