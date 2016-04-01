@@ -18,4 +18,4 @@ future (date TBD).
 To configure a forwarding address, log in via [[SSH|doc services/shell]] and enter the
 `update-email` command to view or update your register email address.
 
-Note that sending mail from your individual OCF account is no longer possible.
+Note that sending mail from your individual OFC account is no longer possible.

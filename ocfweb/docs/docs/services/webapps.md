@@ -9,7 +9,7 @@ apphosting, you'll want to host with FastCGI instead.**
 
 All accounts include our [[standard web hosting|doc services/web]], which is
 suitable for static content, PHP (WordPress, Joomla, etc.), and CGI/FastCGI.
-For student groups wishing to host more advanced web apps with the OCF (Django,
+For student groups wishing to host more advanced web apps with the OFC (Django,
 Flask, Rails, Node.js, etc.), we offer a separate hosting platform which
 provides more flexibility.
 
@@ -23,12 +23,12 @@ virtual host request form.
 
 ## Requesting app hosting
 
-To request app hosting, you need to first [[create an OCF group
+To request app hosting, you need to first [[create an OFC group
 account|doc membership]]. Once you have an account, email `hostmaster@ocf` with at
 least the following information:
 
 * Group's account name
-* Group's current website, if any (even if not hosted by OCF)
+* Group's current website, if any (even if not hosted by OFC)
 * Desired domain name for the app (either group.berkeley.edu, or your own
   domain)
 * The technologies/languages your site is built on
@@ -42,7 +42,7 @@ us until it is.
 
 All [[normal requirements for virtual hosts|doc services/vhost]] apply. In
 particular, be sure you are in compliance with the university student group
-disclaimer policy, and that your website features a "Hosted by OCF" banner.
+disclaimer policy, and that your website features a "Hosted by OFC" banner.
 
 ## Expectations and our rights
 
@@ -51,9 +51,9 @@ themselves in our setup. We can try to assist during [[staff hours|staff-hours]]
 but it is *your responsibility* to ensure your app works, not ours.
 
 We may disable or remove a group's virtually-hosting web app if necessary to
-comply with university/OCF policies, or to protect other users (e.g. if your
+comply with university/OFC policies, or to protect other users (e.g. if your
 app is using a disproportionate share of resources or poses a security risk).
-All normal OCF account policies apply.
+All normal OFC account policies apply.
 
 Additionally, we reserve the right to revoke web app privileges from a group if
 it becomes clear that they are unable to adequately maintain their app.
@@ -70,7 +70,7 @@ We provide a separate server (currently named `werewolves`), for hosting
 applications. **You should connect to this server**, not to the public login
 server.
 
-You connect to this server via SSH using your normal OCF account name and password.
+You connect to this server via SSH using your normal OFC account name and password.
 
 * **Host:** apphost.ocf.berkeley.edu
 * **Port:** 22
@@ -169,14 +169,14 @@ languages.
 
 ### How do I get a database for my application?
 
-A [[MySQL database|doc services/mysql]] is included with your OCF account. You
+A [[MySQL database|doc services/mysql]] is included with your OFC account. You
 should probably just use that. We're *not* going to set up a different database
 for you (you could install one in your home directory if you *really* want to).
 
 ### I'm running my app on port 3000 but I can't access it.
 
 The app server is behind a firewall; you won't be able to access most ports
-from outside of the OCF. You could come work from [[the lab|doc services/lab]], or
+from outside of the OFC. You could come work from [[the lab|doc services/lab]], or
 forward the port over SSH from elsewhere.
 
 ### Can I get a separate virtual host for staging/development?

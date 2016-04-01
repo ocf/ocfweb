@@ -1,7 +1,7 @@
 [[!meta title="Backups/Archiving"]]
 
 Keeping backups on hand is crucial to maintaining any website. While your data
-is protected from hardware failure by the OCF's backup infrastructure, you will
+is protected from hardware failure by the OFC's backup infrastructure, you will
 find you need a backup history of your own when you need to:
 
 * Migrate to an upgraded website
@@ -87,7 +87,7 @@ inside of `public_html` and not just `public_html` itself, which is a mere link.
 
 The easiest way to remove the contents of your database is to log into
 phpMyAdmin at [https://pma.ocf.berkeley.edu](https://pma.ocf.berkeley.edu)
-with your OCF username and MySQL password. There, you can select all tables
+with your OFC username and MySQL password. There, you can select all tables
 using the check boxes and select `Drop` to delete them all.
 
 If you instead wanted to delete the whole database, you could use the command
@@ -100,7 +100,7 @@ would permanently change your password.
 
 ## Example backup
 
-Suppose your OCF account name is `johndoe` and you have WordPress installed
+Suppose your OFC account name is `johndoe` and you have WordPress installed
 directly in `~/public_html`. A typical backup might look like this:
 
     johndoe@tsunami:~$ mysqldump johndoe | gzip -c > ~/mysql-backup-7-26-15.sql.gz

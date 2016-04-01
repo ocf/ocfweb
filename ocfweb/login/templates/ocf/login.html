@@ -13,7 +13,7 @@
 
                 <p>
                     Sorry! Before you can proceed, we need to know who you are.
-                    Please enter your OCF username and password below to continue.
+                    Please enter your OFC username and password below to continue.
                 </p>
                 <form action="{% url 'login' %}" method="post">
                     {% csrf_token %}
@@ -24,14 +24,14 @@
                 </form>
             </div>
             <div class="col-sm-4">
-                <h3>OCF Accounts</h3>
+                <h3>OFC Accounts</h3>
                 <p>
-                    Your OCF account is specific to the Open Computing
+                    Your OFC account is specific to the Open Computing
                     Facility; it's <em>not</em> the same as your university
                     CalNet account or your email account.
                 </p>
                 <p>
-                    If you've never used OCF services before, it's possible you
+                    If you've never used OFC services before, it's possible you
                     might not have an account at all. If that's the case, <a
                     href="{% url 'register' %}">how about joining</a>?
                 </p>

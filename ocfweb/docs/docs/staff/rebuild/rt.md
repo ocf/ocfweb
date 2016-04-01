@@ -1,7 +1,7 @@
 [[!meta title="Request Tracker"]]
 
 **Note:** RT is now fully-Puppeted, so these instructions aren't super useful
-for OCF staff. This page is kept as a reference for others who might come
+for OFC staff. This page is kept as a reference for others who might come
 across it (it ranks pretty highly on Google). If you're one of these people,
 you might also find [our Puppet code for installing
 RT](https://github.com/ocf/puppet/tree/master/modules/ocf_rt) useful.
@@ -221,7 +221,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
   Remove extraneous newlines inserted by ikiwiki.
 
-8. **Apache 2 only:** Obtain a keytab for the principal HTTP/typhoon.ocf.berkeley.edu@OCF.BERKELEY.EDU (replace typhoon.ocf.berkeley.edu with the FQDN reported by `hostname -f`) and place it into `/etc/apache2/sites-available/rt.keytab`. Make sure it's only readable by www-data.
+8. **Apache 2 only:** Obtain a keytab for the principal HTTP/typhoon.ocf.berkeley.edu@OFC.BERKELEY.EDU (replace typhoon.ocf.berkeley.edu with the FQDN reported by `hostname -f`) and place it into `/etc/apache2/sites-available/rt.keytab`. Make sure it's only readable by www-data.
 
 8. mod_auth_kerb/ngx_http_auth_pam uses HTTP Basic authorization which has no concept of login/logout. Emulate logout behavior by changing the Logout page to send a 401 (works for Chrome), run proprietary IE code (works for IE), and make an Ajax call to a non-existing page with bad credentials (works for Firefox).
 
@@ -379,9 +379,9 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
 3. Miscellaneous configuration
 
-  Change RT root's info so he can be a front for staff@. (Tools > Configuration > Users > Select, click root, change email to staff@ocf.berkeley.edu and Real Name to OCF Staff).
+  Change RT root's info so he can be a front for staff@. (Tools > Configuration > Users > Select, click root, change email to staff@ocf.berkeley.edu and Real Name to OFC Staff).
 
-  Make the General queue sound better: Tools > Configuration > Queues > Select, click General, change Description to "OCF Staff". (I think changing the Queue Name would be nice too. If you do that, remember to change the parameters to rt-mailgate in `/var/mail/aliases/aliases` and re-run newaliases on sandstorm.)
+  Make the General queue sound better: Tools > Configuration > Queues > Select, click General, change Description to "OFC Staff". (I think changing the Queue Name would be nice too. If you do that, remember to change the parameters to rt-mailgate in `/var/mail/aliases/aliases` and re-run newaliases on sandstorm.)
 
   Add root as a watcher for General so staff@ gets automatically Cc'ed to new tickets. Click Watchers in the upper right corner and add root.
 

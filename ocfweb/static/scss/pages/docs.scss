@@ -18,7 +18,7 @@
 
 
         // hack to make anchors jump to 60px above the actual header so that
-        // they aren't blocked by the fixed OCF navbar
+        // they aren't blocked by the fixed OFC navbar
         &:before {
             content: '';
             display: block;

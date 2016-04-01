@@ -2,7 +2,7 @@
 
 WordPress is a popular CMS (content management system) on the Web.
 
-OCF's [[web hosting|doc services/web]] supports local WordPress installations,
+OFC's [[web hosting|doc services/web]] supports local WordPress installations,
 and groups using WordPress are eligible for [[virtual hosting|doc
 services/vhost]] (mygroup.berkeley.edu names).
 
@@ -51,13 +51,13 @@ Your WordPress installation is now ready! You can log in using the username and
 password you created and start configuring your site.
 
 
-## Migrating from WordPress.com to OCF
+## Migrating from WordPress.com to OFC
 
 If you already have a site hosted at WordPress.com and you'd like to move it to
-OCF web hosting, for example, to become eligible for [[virtual
+OFC web hosting, for example, to become eligible for [[virtual
 hosting|doc services/vhost]], you can move most of your website's functionality and
-content to the OCF's servers. Generally, the process is simple and sites
-migrated from WordPress.com hosting to the OCF function quite well, apart from
+content to the OFC's servers. Generally, the process is simple and sites
+migrated from WordPress.com hosting to the OFC function quite well, apart from
 possible minor differences in the appearance of themes.
 
 If you have an old WordPress installation lying around -- if you are replacing
@@ -67,7 +67,7 @@ easily make a backup over SSH.
 
 The basic steps to migration are as follows:
 
-1. Follow the steps above to install WordPress on your OCF account.
+1. Follow the steps above to install WordPress on your OFC account.
 
 2. Use the web admin dashboard to install all the themes and plugins you were
    using at WordPress.com
@@ -75,7 +75,7 @@ The basic steps to migration are as follows:
 3. Log into your WordPress.com dashboard and go to `Tools > Export` to download
    and XML file with all your site's posts and content.
 
-4. Log into the dashboard at your OCF WordPress installation and go to `Tools >
+4. Log into the dashboard at your OFC WordPress installation and go to `Tools >
    Import > WordPress`, then upload the XMl file with all your content.
 
 Further details can be found at [the support page by WordPress.com][1].

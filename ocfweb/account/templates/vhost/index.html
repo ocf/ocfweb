@@ -4,13 +4,13 @@
 {% block content %}
     <div class="ocf-content-block">
         <p>
-            One of the benefits of hosting your student group's site with the OCF is that you have the option of using an address like "mygroup.berkeley.edu" to access your site.
-        However, in order to obtain a berkeley.edu name for your site, you must meet both university policies regarding acceptable use of berkeley.edu names, as well as OCF policies for virtual hosting.
+            One of the benefits of hosting your student group's site with the OFC is that you have the option of using an address like "mygroup.berkeley.edu" to access your site.
+        However, in order to obtain a berkeley.edu name for your site, you must meet both university policies regarding acceptable use of berkeley.edu names, as well as OFC policies for virtual hosting.
         </p>
-        <p>Please start by reading the <a href="http://wiki.ocf.berkeley.edu/services/vhost/">OCF Virtual Hosting documentation</a>. If you believe your group satisfies all requirements listed, you may complete the form below to request for us to set up a virtual host for your account.</p>
+        <p>Please start by reading the <a href="http://wiki.ocf.berkeley.edu/services/vhost/">OFC Virtual Hosting documentation</a>. If you believe your group satisfies all requirements listed, you may complete the form below to request for us to set up a virtual host for your account.</p>
 
         <p>
-            You are currently logged in using the OCF account
+            You are currently logged in using the OFC account
             <strong>{{user}}</strong>. If this is not the group you wish to
             request a virtual hosting for, please <a href="{% url 'logout' %}">
             log out</a> and log back in.
@@ -20,9 +20,9 @@
             <h3 style="margin-top: 0;">Virtual Hosting Request Form</h3>
             <ul>
                 <li><strong>Group Name:</strong> {{attrs.cn.0}}</li>
-                <li><strong>Group OCF Account:</strong> {{user}}</li>
+                <li><strong>Group OFC Account:</strong> {{user}}</li>
                 <li>
-                    <strong>Current OCF-Hosted Group Website:</strong>
+                    <strong>Current OFC-Hosted Group Website:</strong>
                     <a href="{{group_url}}">{{group_url}}</a>
                 </li>
             </ul>
@@ -58,8 +58,8 @@
                 <hr />
                 <p>
                     All virtual hosting requests are subject to both university and
-                    OCF approval. Once we have verified that you are in compliance
-                    with OCF policies, we will submit a name request to the
+                    OFC approval. Once we have verified that you are in compliance
+                    with OFC policies, we will submit a name request to the
                     university on your behalf using the information you provided.
                 </p>
                 <p>

@@ -105,7 +105,7 @@ class ChpassForm(Form):
         self.calnet_uid = calnet_uid
         self.fields['ocf_account'] = forms.ChoiceField(choices=[
             (x, x) for x in ocf_accounts],
-            label='OCF account')
+            label='OFC account')
         self.fields.keyOrder = [
             'ocf_account',
             'new_password',
@@ -125,7 +125,7 @@ class ChpassForm(Form):
     def clean_ocf_account(self):
         data = self.cleaned_data['ocf_account']
         if not user_exists(data):
-            raise forms.ValidationError('OCF user account does not exist.')
+            raise forms.ValidationError('OFC user account does not exist.')
 
         extra = ''
 
@@ -137,7 +137,7 @@ class ChpassForm(Form):
 
         if data not in ocf_accounts:
             raise forms.ValidationError(
-                extra + 'OCF user account and CalNet UID mismatch.')
+                extra + 'OFC user account and CalNet UID mismatch.')
 
         return data
 

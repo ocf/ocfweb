@@ -3,9 +3,9 @@
 ## Introduction
 The Lightweight Directory Access Protocol accesses a directory service over a network. We currently use OpenLDAP to store information about accounts (except password hashes which are in [[Kerberos|doc staff/backend/kerberos]]).
 
-## Definition of an OCF account
+## Definition of an OFC account
 
-Attributes that define an OCF account:
+Attributes that define an OFC account:
 
 > * dn: distinguished name; primary key for the entry
 > * cn: common name; full name
@@ -37,7 +37,7 @@ For most staff, their primary interface to LDAP will be `ldapsearch`. `ldapsearc
 Searching for an account:
 
     $ ldapsearch -x uid=sanjayk
-    dn: uid=sanjayk,ou=People,dc=OCF,dc=Berkeley,dc=EDU
+    dn: uid=sanjayk,ou=People,dc=OFC,dc=Berkeley,dc=EDU
     objectClass: ocfAccount
     objectClass: account
     objectClass: posixAccount
@@ -61,7 +61,7 @@ Searching for an account in a group:
 `ldapvi` is a "text editor" for LDAP which can generate LDIF change records to pass to `ldapadd` (or modify directly if you have the proper [[permissions|doc staff/powers]]).
 
     $ ldapvi uid=daradib
-    0 uid=daradib,ou=People,dc=OCF,dc=Berkeley,dc=EDU
+    0 uid=daradib,ou=People,dc=OFC,dc=Berkeley,dc=EDU
     objectClass: ocfAccount
     objectClass: account
     objectClass: posixAccount
@@ -81,7 +81,7 @@ Now if you make changes to some attributes (say, change the shell to `tcsh`) and
 
 You can enter "v" to view the LDIF change record (or "?" for help).
 
-    dn: uid=daradib,ou=People,dc=OCF,dc=Berkeley,dc=EDU
+    dn: uid=daradib,ou=People,dc=OFC,dc=Berkeley,dc=EDU
     changetype: modify
     replace: loginShell
     loginShell: /bin/tcsh
@@ -94,7 +94,7 @@ You can enter "y" to apply changes, "q" to save the LDIF change record as a file
 
 To add an account, first create a file (we call it `user_file`):
 
-    dn: uid=asdf,ou=People,dc=OCF,dc=Berkeley,dc=EDU
+    dn: uid=asdf,ou=People,dc=OFC,dc=Berkeley,dc=EDU
     objectClass: ocfAccount
     objectClass: account
     objectClass: posixAccount

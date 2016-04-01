@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Your OCF account is both proof of your [[membership|doc membership]] and the means by which you authenticate to the variety of [[services|doc services]] operated by OCF [[staff|doc staff]]. Your OCF account is independent from CalNet. (Technical info: public account information and salted password hashes are stored in [[LDAP|doc staff/backend/ldap]] and [[Kerberos|doc staff/backend/kerberos]] databases, respectively.)
+Your OFC account is both proof of your [[membership|doc membership]] and the means by which you authenticate to the variety of [[services|doc services]] operated by OFC [[staff|doc staff]]. Your OFC account is independent from CalNet. (Technical info: public account information and salted password hashes are stored in [[LDAP|doc staff/backend/ldap]] and [[Kerberos|doc staff/backend/kerberos]] databases, respectively.)
 
 Accounts are not normally deactivated after your membership
 [[eligibility|doc membership/eligibility]] expires (e.g., graduation). In fact, we have active
@@ -11,7 +11,7 @@ accounts dating back to at least 1995.
 
 ## Passwords
 
-OCF staff members **do not need to know your password**. In fact, we can't "look it up" either since we don't store your password directly but rather a salted [cryptographic hash](https://en.wikipedia.org/wiki/Cryptographic_hash_function).
+OFC staff members **do not need to know your password**. In fact, we can't "look it up" either since we don't store your password directly but rather a salted [cryptographic hash](https://en.wikipedia.org/wiki/Cryptographic_hash_function).
 
 Email is generally insecure, so please **do not send passwords over email**. We
 don't want to know it, and we have to disable your account if you tell it to
@@ -37,7 +37,7 @@ You can change your password over SSH if you know your current password.
 Use [[SSH|doc services/shell]] to run the command `passwd` and follow the prompts as shown below. No text will appear when you are entering in a password, just press enter when done after each prompt.
 
     $ passwd
-    myusername@OCF.BERKELEY.EDU's Password: <my current password>
+    myusername@OFC.BERKELEY.EDU's Password: <my current password>
     New password: <my new password>
     Verifying - New password: <my new password>
     Success : Password changed
@@ -77,7 +77,7 @@ For security purposes, please include the following with your request:
 * a second piece of supporting ID (such as driver's license)
 
 * a signed, dated statement to the effect of:
-> I, John Doe, authorize Open Computing Facility staff to reset my password. Enclosed is a copy of my ID.
+> I, John Doe, authorize Open Facility for Computing staff to reset my password. Enclosed is a copy of my ID.
 
 * contact information so that we can notify you when your password reset has been processed
 
@@ -89,7 +89,7 @@ Access to your [[MySQL database|doc services/mysql]], if you have one, is protec
 
 ## After graduation
 
-Currently, we don't actively disable accounts, so you are free to use your account until that policy changes. We can't promise all of your OCF account privileges into perpetuity, however.  We are run by students volunteers using student money.
+Currently, we don't actively disable accounts, so you are free to use your account until that policy changes. We can't promise all of your OFC account privileges into perpetuity, however.  We are run by students volunteers using student money.
 
 ## Disabled accounts
 
@@ -99,10 +99,10 @@ Some common reasons accounts are disabled:
  * security (e.g., account hijacked)
  * misuse (e.g., excessive use of resources, violation of University policies)
 
-Accounts may also be disabled if OCF staff need to contact you but cannot do so.
+Accounts may also be disabled if OFC staff need to contact you but cannot do so.
 
 To re-enable your account, you will need to see a Manager (gm, sm, or dm after the staff member's name) during [[staff hours|staff-hours]].
 
-If you want to disable your OCF account, please [[contact us|doc contact]] and provide your OCF username. If your account appears to still be active, we may ask for some evidence that you are the account owner. Currently, disabled accounts are stored or archived and can be *re-enabled* by request at a later date. Disabled accounts may eventually be scheduled for deletion.
+If you want to disable your OFC account, please [[contact us|doc contact]] and provide your OFC username. If your account appears to still be active, we may ask for some evidence that you are the account owner. Currently, disabled accounts are stored or archived and can be *re-enabled* by request at a later date. Disabled accounts may eventually be scheduled for deletion.
 
 To permanently delete the contents of your account, you will need to have access to your account.

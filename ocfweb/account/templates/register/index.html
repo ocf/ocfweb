@@ -43,7 +43,7 @@
                 <p>
                     This form is <strong>only</strong> for requesting
                     individual accounts. If you want to request an account for
-                    a student group, please visit a staff member in the OCF lab
+                    a student group, please visit a staff member in the OFC lab
                     during <a href="{% url 'staff-hours' %}">staff hours</a>.
                 </p>
 
@@ -60,10 +60,10 @@
                 <hr />
 
                 <p>
-                    Your password should be unique to your OCF account and not
+                    Your password should be unique to your OFC account and not
                     shared with any other accounts, including your Berkeley
                     CalNet account. <em>Never share your password with anyone,
-                    including OCF staff members.</em>
+                    including OFC staff members.</em>
                 </p>
                 {{form.password|bootstrap}}
                 {{form.verify_password|bootstrap}}
@@ -87,13 +87,13 @@
                         I have read, understood, and agreed to follow the above
                         policies. In addition, I agree not to hold the University
                         of California, the Associated Students of the University of
-                        California, or the Open Computing Facility (OCF)
+                        California, or the Open Facility for Computing (OFC)
                         responsible for lost files or other misfortunes which may
-                        result from my use of the OCF's facilities.
+                        result from my use of the OFC's facilities.
 
-                        Additionally, I certify that I am eligible for an OCF
+                        Additionally, I certify that I am eligible for an OFC
                         account according to the
-                        <a href="{% url 'doc' 'membership/eligibility' %}">OCF account eligibility policy</a>.
+                        <a href="{% url 'doc' 'membership/eligibility' %}">OFC account eligibility policy</a>.
                     </strong></p>
                     {{form.disclaimer_agreement|bootstrap}}
                 </div>
@@ -108,11 +108,11 @@
         <div class="col-md-4">
             <hr class="visible-sm" />
             <div class="welcome-penguin">
-                <h2>Welcome to the OCF!</h2>
+                <h2>Welcome to the OFC!</h2>
                 <p><img src="{% static 'img/penguin.svg' %}" width="100" height="132" /></p>
-                <h4>OCF &hearts; Python, Linux, Open Source</h4>
+                <h4>OFC &hearts; Python, Linux, Open Source</h4>
                 <p>
-                    The OCF is provided for students, by students. Sound interesting?
+                    The OFC is provided for students, by students. Sound interesting?
                     <br />
                     <a href="{% url 'about-staff' %}">Learn about getting involved!</a>
                 </p>

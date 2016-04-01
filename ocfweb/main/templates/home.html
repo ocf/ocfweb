@@ -11,8 +11,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <h1>Welcome to the Open Computing Facility!</h1>
-                <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
+                <h1>Welcome to the Open Facility for Computing!</h1>
+                <p>The Open Facility for Computing (OFC) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
                 <p class="ocf-button-holder">
                 <a href="{% url 'about-staff' %}" class="btn btn-lg">Learn what we do</a>
                 <a href="{% url 'register' %}" class="btn btn-lg">Create an account</a>
@@ -30,7 +30,7 @@
         {{lab_status.banner_html | safe}}
 
         <p>
-            The Open Computing Facility is an all-volunteer student
+            The Open Facility for Computing is an all-volunteer student
             organization located at the University of California, Berkeley.
             We're passionate about open source and free software.
         </p>
@@ -42,13 +42,13 @@
             <li><a href="{% url 'doc' 'services/shell' %}">Shell accounts</a> on our powerful on-campus servers</li>
             <li>...and <a href="{% url 'doc' 'services' %}">lots more!</a></li>
         </ul>
-        <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop by to ask questions or just to hang out!</p>
+        <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OFC services. Drop by to ask questions or just to hang out!</p>
 
         <hr />
         <div class="row">
             <div class="col-sm-6">
                 <h4>Interested in free &amp; open-source software?</h4>
-                <p>Our volunteer staff team helps create and mantain the OCF services you use.</p>
+                <p>Our volunteer staff team helps create and mantain the OFC services you use.</p>
                 <p>We're always on the lookout for new members interested in
                 learning more about technology and open source!</p>
                 <p><a href="{% url 'about-staff' %}">Learn more about getting involved!</a></p>
@@ -61,13 +61,13 @@
                         {{blog_post.published | naturaltime}}
                     </p>
                 {% endfor %}
-                <p><a href="http://status.ocf.berkeley.edu/">More updates from the OCF &raquo;</a></p>
+                <p><a href="http://status.ocf.berkeley.edu/">More updates from the OFC &raquo;</a></p>
             </div>
         </div>
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
-        <h3>OCF Computer Lab</h3>
+        <h3>OFC Computer Lab</h3>
         <p>
             The lab is located in
             <a href="{% url 'doc' 'services/lab' %}">171 MLK Student Union</a>.

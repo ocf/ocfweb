@@ -27,9 +27,9 @@ def lab(doc, request):
         {
             'title': doc.title,
             'description': (
-                'The Open Computing Facility computer lab is a '
+                'The Open Facility for Computing computer lab is a '
                 'free and open-source computer lab located on the '
-                'UC Berkeley campus, maintained by OCF volunteers.'
+                'UC Berkeley campus, maintained by OFC volunteers.'
             ),
             'hours_this_week': [
                 Day.from_date(date.today() + timedelta(days=i))
