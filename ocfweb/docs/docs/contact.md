@@ -7,25 +7,25 @@
 > *Interested in [[joining staff|about-staff]]? Feel free to
 > attend our meetings or contact us by email!*
 
-There are several ways to contact the student volunteers who keep the OCF
-running (hereafter referred to as OCF staff). If your question cannot be
+There are several ways to contact the student volunteers who keep the OFC
+running (hereafter referred to as OFC staff). If your question cannot be
 answered by the **[[FAQ|doc faq]]**, we ask that you try coming to **[[staff
 hours|staff-hours]]** before contacting us by
 email.
 
-When contacting OCF staff, please reference
+When contacting OFC staff, please reference
 
- * your OCF account name (if known)
+ * your OFC account name (if known)
  * the software you are using and any error messages encountered
 
 ## In person
 
-The OCF lab is located on the ground level of MLK Student Union (entrance on
+The OFC lab is located on the ground level of MLK Student Union (entrance on
 Lower Sproul), Room 171. You will need to show your student ID to the
 publications staff on desk when you enter the lab.
 
-OCF staff members are usually **not present** during lab open hours. To talk
-with an OCF volunteer staffer, check the [[posted staff hours|staff-hours]].
+OFC staff members are usually **not present** during lab open hours. To talk
+with an OFC volunteer staffer, check the [[posted staff hours|staff-hours]].
 
 ## Email
 
@@ -34,9 +34,9 @@ disabled.
 
 * [help@ocf.berkeley.edu](mailto:help@ocf.berkeley.edu)
 
-  If you have questions about your OCF account, services we offer, or about
+  If you have questions about your OFC account, services we offer, or about
   joining the staff team, this is the best address to use. Mail sent here
-  generates a help ticket which can be seen by all OCF staff.
+  generates a help ticket which can be seen by all OFC staff.
 
 * [devnull@ocf.berkeley.edu](mailto:devnull@ocf.berkeley.edu)
 
@@ -54,21 +54,21 @@ disabled.
 
 Our address is:
 
-    Open Computing Facility
+    Open Facility for Computing
     171 MLK Student Union MC#4520
     University of California, Berkeley
     Berkeley, CA 94720
 
 ## Legal
 
-Use of OCF resources in violation of applicable
+Use of OFC resources in violation of applicable
 [university policies][usepolicy] and laws, including copyright, spam, and
 fraud, is not allowed. Accounts of repeat infringers will be disabled in
 accordance with university policies.
 
 DMCA takedown notices must comply with [17 U.S.C. § 512(c)(3)][dmca] and be
 sent to the [designated agent at UC Berkeley][dmca] We recommend also sending a
-copy of the notice to the OCF directly
+copy of the notice to the OFC directly
 ([security@ocf.berkeley.edu](mailto:security@ocf.berkeley.edu)) for faster
 response.
 

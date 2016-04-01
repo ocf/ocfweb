@@ -27,7 +27,7 @@
                 {% if title %}
                     {{title}} &ndash;
                 {% endif %}
-                Open Computing Facility
+                Open Facility for Computing
             {% endif %}
         </title>
 
@@ -52,7 +52,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'home' %}">Open Computing Facility</a>
+                    <a class="navbar-brand" href="{% url 'home' %}">Open Facility for Computing</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -140,7 +140,7 @@
                 {% block footer-top %}
                     <div class="ocf-footer-top">
                         <div class="container">
-                            <p class="text-center">OCF &hearts; Linux, Python, Puppet, Ruby, and Free/Open-Source Software. <span class="nowrap">Sound like you? <a href="{% url 'about-staff' %}">Join the staff team!</a></span></p>
+                            <p class="text-center">OFC &hearts; Linux, Python, Puppet, Ruby, and Free/Open-Source Software. <span class="nowrap">Sound like you? <a href="{% url 'about-staff' %}">Join the staff team!</a></span></p>
                         </div>
                     </div>
                 {% endblock %}
@@ -148,7 +148,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-3">
-                            <h5>About the OCF</h5>
+                            <h5>About the OFC</h5>
                             <ul class="list-unstyled">
                                 <li><a href="{% url 'doc' 'about' %}">Overview</a></li>
                                 <li><a href="{% url 'doc' 'about/officers' %}">Current Officers</a></li>
@@ -160,7 +160,7 @@
                         <div class="col-sm-3">
                             <h5>Account Tools</h5>
                             <ul class="list-unstyled">
-                                <li><a href="{% url 'register' %}">Join the OCF</a></li>
+                                <li><a href="{% url 'register' %}">Join the OFC</a></li>
                                 <li><a href="{% url 'change_password' %}">Reset Password</a></li>
                                 <li><a href="{% url 'commands' %}">Manage My Account</a></li>
                             </ul>
@@ -188,8 +188,8 @@
                     </div>
 
                     <div class="ocf-copyright">
-                        <p>The Open Computing Facility is run entirely by student volunteers.</p>
-                        <p>Copyright &copy; 1989&ndash;{% now 'Y' %} Board of Directors of the Open Computing Facility</p>
+                        <p>The Open Facility for Computing is run entirely by student volunteers.</p>
+                        <p>Copyright &copy; 1989&ndash;{% now 'Y' %} Board of Directors of the Open Facility for Computing</p>
                     </div>
                 </div>
             </div>

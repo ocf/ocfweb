@@ -1,13 +1,13 @@
-[[!meta title="approve: record an OCF account request"]]
-This page explains the OCF account approval procedure and the usage of
+[[!meta title="approve: record an OFC account request"]]
+This page explains the OFC account approval procedure and the usage of
 the `approve` script.
 
 ## When to use approve
-OCF group accounts need to be manually approved by staff in the lab. All
+OFC group accounts need to be manually approved by staff in the lab. All
 members requesting individual accounts should be directed to the online
 approval page. If a member requesting an individual account cannot use
 the online approval system (likely because of an invalid/unacceptable
-CalNet UID), direct them to an OCF officer.
+CalNet UID), direct them to an OFC officer.
 
 ## Approving a request
 
@@ -16,7 +16,7 @@ CalNet UID), direct them to an OCF officer.
 ### Before approve
 
 * SSH into supernova.ocf.berkeley.edu
-* For registered student groups, the OCF requires that a signatory
+* For registered student groups, the OFC requires that a signatory
   authorize the approval of the account. If the account is not a
   registered student, group check with the [[membership eligibility|doc
   membership/eligibility]] to see what constitutes acceptable
@@ -33,7 +33,7 @@ CalNet UID), direct them to an OCF officer.
   ==================================
   Group                    Accounts                       OID
   -----------------------  ---------------------------  -----
-  Open Computing Facility  decal, linux, ggroup, group  46187
+  Open Facility for Computing  decal, linux, ggroup, group  46187
   ```
   Copy the group's OID, as you will need it when running approve.
 * If the group is not a student group, the requester will need official

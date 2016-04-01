@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 ocf-content-block">
+            <p>
+                <img class="img-responsive" src="{% static 'img/announcements/thanks-for-flying-ofc.png' %}" />
+            </p>
+            <h3>Board announces new name for the OCF.</h3>
+            <p>March 31, 2016</p>
+            <hr />
+            <p>
+                Late Thursday night, the Board of Directors of the Open Computing
+                Facility voted to rename the organization to the Open Facility
+                for Computing (OFC).
+            </p>
+            <p>
+                "After seeing 'OCF' written as 'OFC' by people on Facebook,
+                Twitter, and even by the Daily Cal's writers all in the same
+                day, I decided it was worth bringing up at one of our
+                meetings," said Chris Kuehl, the organization's former Site
+                Manager. (Chris recently stepped down to focus on his studies.)
+            </p>
+            <p>
+                After a heated discussion (and short break to get boba), the
+                members of the Board voted unanimously to adopt the new name
+                and acronym.
+            </p>
+            <p>
+                "I try really hard to stay away from social media like Reddit
+                and Facebook," said Nick Impicciche, the OFC's current General
+                Manager. "Still, we're pretty strong believers in democracy,
+                and it's clear what the people wanted."
+            </p>
+            <p>
+                After the decision was announced, <strike>OCF</strike> OFC
+                technicians worked into the night to get the website moved from
+                <tt>ocf.berkeley.edu</tt> to its new home at
+                <tt>ofc.berkeley.edu</tt>.
+            </p>
+            <p>
+                In the coming days, we'll be reaching out to student groups
+                using our web hosting to ask them to replace their now-outdated
+                "Hosted by OCF" web banners. We're also working with facilities
+                to get some stickers printed to cover up the signs in the
+                hallways of MLK.
+            </p>
+
+            <hr />
+            <p><em>
+                The Open Facility for Computing is an all-volunteer, student-run
+                organization. It was founded in 1989 to serve the interests of
+                the UC Berkeley campus community.
+            </em></p>
+            <p><em>
+                Questions about this change? Please reach out to
+                <a href="mailto:devnull@ocf.berkeley.edu">devnull@ofc.berkeley.edu</a>.
+            </em></p>
+        </div>
+
+        <div class="col-sm-4 ocf-sidebar">
+            <hr class="visible-sm" />
+            <h3>About our organization</h3>
+            <p>
+                Founded back in 1989 by an agile team of Node.js developers
+                disillusioned by a lack of free campus printing, the OFC
+                (formerly OCF) has established itself as an important stop
+                along the day of any busy undergrad.
+            </p>
+            <p>
+                Our staff work hard to provide valuable services to the
+                campus community:
+            </p>
+            <ul>
+                <li>
+                    <a href="{% url 'doc' 'services/lab/printing' %}">Free
+                        printing</a>, used by over 5,000 students per semester
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/lab' %}">
+                        A spiffy computer lab in 171 MLK</a>
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/lab/printing' %}">Free
+                        printing</a>
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/web' %}">Web, application,
+                        and email hosting</a>
+                    for over 80% of student groups and thousands of individual
+                    students
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/lab/printing' %}">Free
+                        printing</a>
+                </li>
+            </ul>
+            <p>
+                With the change in name, our volunteer staffers hope to spend
+                less time correcting usage of our acronym, and more time trying
+                to figure out why your paper didn't come out of the printer.
+            </p>
+
+            <hr />
+            <p class="text-center">
+                <img src="{% static 'img/penguin.svg' %}" />
+            </p>
+        </div>
+
+        </div>
+    </div>
+{% endblock %}

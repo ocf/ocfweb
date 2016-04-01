@@ -45,7 +45,7 @@ class Post(namedtuple('Post', [
 
 @periodic(60)
 def get_blog_posts():
-    """Parse the beautiful OCF status blog atom feed into a list of Posts.
+    """Parse the beautiful OFC status blog atom feed into a list of Posts.
 
     Unfortunately Blogger is hella flakey so we use it inside a loop and fail
     silently if it doesn't succeed.

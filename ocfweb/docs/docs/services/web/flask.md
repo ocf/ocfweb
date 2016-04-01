@@ -1,6 +1,6 @@
 [[!meta title="Flask"]]
 
-Flask is a popular microframework for Python web development. Using it on the OCF servers requires only just a little extra configuration.
+Flask is a popular microframework for Python web development. Using it on the OFC servers requires only just a little extra configuration.
 
 
 ## Starting a Flask project

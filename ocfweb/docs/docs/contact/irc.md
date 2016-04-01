@@ -1,12 +1,12 @@
 [[!meta title="Internet Relay Chat (IRC)"]]
 
 
-OCF staff often use IRC to communicate. If you have questions, feel free to
+OFC staff often use IRC to communicate. If you have questions, feel free to
 drop by -- it's often faster than emailing us, especially for discussion-type
 questions.
 
 We normally chat in the `#rebuild` channel. For historical reasons, `#ocf` is
-mostly for non-OCF-related discussion.
+mostly for non-OFC-related discussion.
 
 You have two simple options for chatting:
 
@@ -22,7 +22,7 @@ open source, and generally easy to use. Our server settings are listed below:
 
 ### Option 2: Over SSH
 
-If you're logged in to the OCF login server via [[SSH|doc services/shell]], you
+If you're logged in to the OFC login server via [[SSH|doc services/shell]], you
 can use the pyrc script to easily connect to IRC. It will automatically launch
 a tmux session to contain your IRC session, so that you aren't disconnected when
 you close the terminal.
@@ -50,7 +50,7 @@ If you are [[using ZNC|doc staff/staffvm/znc]], load the
 [NickServ module](http://wiki.znc.in/Nickserv) by running `/znc LoadMod nickserv`
 while connected to your ZNC server. Then, in your ZNC web admin interface, log in
 and go to `Your Settings` under either the global or user modules links. Under
-the Networks section, click on the `Edit` link next to the OCF network and
+the Networks section, click on the `Edit` link next to the OFC network and
 scroll down to the Modules section. Enable the `nickserv` module and type the
 password you used to register with NickServ into the arguments box. Then save
 your changes using the button at the bottom of the page and ZNC should

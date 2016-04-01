@@ -1,6 +1,6 @@
 [[!meta title="Shell (SSH/SFTP)"]]
 
-A shell account refers to a text-mode interface where commands can be run interactively. All OCF accounts include shell account access. You can access your shell account over an encrypted connection in the OCF lab or remotely via SSH/SFTP.
+A shell account refers to a text-mode interface where commands can be run interactively. All OFC accounts include shell account access. You can access your shell account over an encrypted connection in the OFC lab or remotely via SSH/SFTP.
 
 We support the following commonly used shell account tools (to name a few):
 

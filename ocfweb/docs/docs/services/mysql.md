@@ -1,6 +1,6 @@
 [[!meta title="Database (MySQL)"]]
 
-The OCF provides each user with a MySQL database. Read the following sections
+The OFC provides each user with a MySQL database. Read the following sections
 for information about performing common MySQL tasks, and our rules and policies
 regarding MySQL.
 
@@ -40,7 +40,7 @@ database` and run the command. Note your password in a safe place.
 
 ### SSH Terminal
 
-Log into the OCF via [[SSH|doc services/shell]], at the terminal prompt enter
+Log into the OFC via [[SSH|doc services/shell]], at the terminal prompt enter
 the command `makemysql`. Hit yes to confirm the operation. Note your password
 in a safe place.
 
@@ -57,16 +57,16 @@ Assuming your database is set up, in order to access it (or allow a web
 application to access it), you will need 4 pieces of information:
 
 * Database Host: mysql
-* Database Name: {your OCF username}
-* Database User: {your OCF username}
+* Database Name: {your OFC username}
+* Database User: {your OFC username}
 * Database password: {your database password}
 
-Note: Your database password is not the same as your OCF account password. It
+Note: Your database password is not the same as your OFC account password. It
 is a randomly generated password that was created when your database was
-created. To use your OCF MySQL database with a web application, enter the above
+created. To use your OFC MySQL database with a web application, enter the above
 information during the application's installation process.
 
-To connect to the OCF's MySQL server using the MySQL client on an OCF machine, simply run the command:
+To connect to the OFC's MySQL server using the MySQL client on an OFC machine, simply run the command:
 `mysql`
 
 This command will prompt you for your MySQL database password.
@@ -78,7 +78,7 @@ To backup your database (which you should probably do regularly), the basic comm
 
     mysqldump [username] > backup
 
-where username denotes your OCF username and `backup` is the name of the file
+where username denotes your OFC username and `backup` is the name of the file
 you want to dump the contents of your database into. This command will prompt
 you for your MySQL password.
 
@@ -104,7 +104,7 @@ this command will prompt you for your MySQL password.
 If you are using MySQL in a script or in another program, you will probably
 want to set it up so that the `mysql` call does not prompt for your password.
 While passing the -p option is the obvious way to achieve this, it is also
-*very insecure* because anyone on OCF can see the password while the mysql
+*very insecure* because anyone on OFC can see the password while the mysql
 command is running. A better approach is to create a `~/.my.cnf` file with
 proper permissions that contains your MySQL password. To do this, enter the
 following commands: make sure you replace dbpasswd with the MySQL password
