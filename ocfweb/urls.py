@@ -43,6 +43,7 @@ urlpatterns = [
     # announcements
     url(r'^announcements/2016-02-09/printing$', printing_announcement, name='printing-announcement'),
     url(r'^announcements/2016-04-01/renaming-ocf$', renaming_announcement, name='renaming-announcement'),
+    url(r'^rename$', lambda _: redirect(reverse('renaming-announcement'), permanent=False)),
 
     # about pages
     url(r'^about/staff$', about_staff, name='about-staff'),
