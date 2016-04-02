@@ -21,9 +21,9 @@ def home(request):
         request,
         'home.html',
         {
-            'fulltitle': 'Open Facility for Computing at UC Berkeley',
+            'fulltitle': 'Open Computing Facility at UC Berkeley',
             'description': (
-                'The Open Facility for Computing is an all-volunteer student '
+                'The Open Computing Facility is an all-volunteer student '
                 'organization dedicated to free and open-source computing for all UC '
                 'Berkeley students.'
             ),

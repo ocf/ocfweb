@@ -73,8 +73,8 @@ def request_vhost(request):
                 )
                 message = dedent('''\
                     Virtual Hosting Request:
-                      - OFC Account: {user}
-                      - OFC Account Title: {title}
+                      - OCF Account: {user}
+                      - OCF Account Title: {title}
                       - Requested Subdomain: {requested_subdomain}
                       - Current URL: https://www.ocf.berkeley.edu/~{user}/
 
@@ -177,11 +177,11 @@ class VirtualHostForm(Form):
 
     # website requirements
     website_complete = forms.BooleanField(
-        label='Our site is already complete and uploaded to the OFC \
+        label='Our site is already complete and uploaded to the OCF \
                server. The website is not just a placeholder.')
 
     website_hosted_by_ocf = forms.BooleanField(
-        label="Our site is substantially hosted by the OFC. We \
+        label="Our site is substantially hosted by the OCF. We \
                don't use frames, redirects, proxies, or other tricks to \
                circumvent this policy.")
 
@@ -237,7 +237,7 @@ class VirtualHostForm(Form):
         ).format(reverse('doc', args=('services/vhost',))))
 
         self.fields['website_ocf_banner'].label = mark_safe((
-            'We have placed a <a href="{}">Hosted by the OFC</a> banner image on our site.'
+            'We have placed a <a href="{}">Hosted by the OCF</a> banner image on our site.'
         ).format(reverse('doc', args=('services/vhost/badges',))))
 
     def clean_requested_subdomain(self):

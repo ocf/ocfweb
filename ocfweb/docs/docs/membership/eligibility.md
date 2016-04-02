@@ -3,7 +3,7 @@
 The following individuals and groups are eligible for [[membership|doc membership]]:
 
 
-The Open Facility for Computing provides accounts and services to members. Members must meet at least one of the following eligibility criteria during account creation as verified electronically **or** by presentation of the specified documentation:
+The Open Computing Facility provides accounts and services to members. Members must meet at least one of the following eligibility criteria during account creation as verified electronically **or** by presentation of the specified documentation:
 
 ## Individuals
 

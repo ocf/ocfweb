@@ -28,7 +28,7 @@ servers which mount NFS.
 
 Sometimes we want to set a custom disk quota for a staff member or other
 special snowflake (e.g. perhaps a user wants to host their research or
-something on OFC, which we encourage).
+something on OCF, which we encourage).
 
 To make an exception, just change their quota individually using `edquota -u
 {username}`. This will open a file in your editor showing their quota. Change

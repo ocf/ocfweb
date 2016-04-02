@@ -105,7 +105,7 @@ def request_account(request):
             'form': form,
             'real_name': real_name,
             'status': status,
-            'title': 'Request an OFC account',
+            'title': 'Request an OCF account',
         },
     )
 
@@ -152,7 +152,7 @@ def account_created(request):
 class ApproveForm(Form):
 
     ocf_login_name = forms.CharField(
-        label='OFC account name',
+        label='OCF account name',
         widget=forms.TextInput(attrs={'placeholder': 'jsmith'}),
         validators=[wrap_validator(validators.validate_username)],
         min_length=3,

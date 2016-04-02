@@ -8,7 +8,7 @@ We maintain two mail servers:
   Received mail to @ocf.berkeley.edu is looked up via LDAP (or the aliases
   table) and forwarded or rejected; nothing is stored.
 
-  Mail originating anywhere inside OFC relays through anthrax.
+  Mail originating anywhere inside OCF relays through anthrax.
 
 * **sandstorm**, used for receiving and forwarding mail for groups with virtual
   hosts. sandstorm sends no mail itself; even forwarded mail gets relayed

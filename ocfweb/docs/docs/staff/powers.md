@@ -1,8 +1,8 @@
 [[!meta title="Staff privileges"]]
 
 
-OFC staff are members of the OFC who contribute their time as volunteers, and
-are given responsibilities and privileges to maintain and improve the OFC's
+OCF staff are members of the OCF who contribute their time as volunteers, and
+are given responsibilities and privileges to maintain and improve the OCF's
 infrastructure. There are many powers granted to staff, which for
 simplification have been consolidated into a tiered structure.
 
@@ -37,7 +37,7 @@ because chpass requires the Kerberos `change-password` privilege. The
 permission to do this originates in the Kerberos administrative ACL
 (`kerberos:/etc/heimdal-kdc/kadmind.acl`):
 
-    username/root@OFC.BERKELEY.EDU change-password *@OFC.BERKELEY.EDU
+    username/root@OCF.BERKELEY.EDU change-password *@OCF.BERKELEY.EDU
 
 This is usually given to staff after a semester of demonstrated interest.
 

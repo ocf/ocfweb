@@ -115,7 +115,7 @@ because they might need some adjustment.
 
 8. Reboot and launch debian installer.
 
-9. Make sure not to "OFC Automated Install" at PXE, do a manual install
+9. Make sure not to "OCF Automated Install" at PXE, do a manual install
    instead. sorry.
 
 10. When you get to partitioning, use common sense. I recommend switching to

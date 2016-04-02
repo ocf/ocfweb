@@ -62,7 +62,7 @@ integer starting at 1. The final version might look like `4.3.0-1~ocf1`.
 
 Use a command like:
 
-    dch --local ~ocf --distribution jessie-backports "Backported by OFC for jessie."
+    dch --local ~ocf --distribution jessie-backports "Backported by OCF for jessie."
 
 The squiggly makes your backport inferior to the official package, so that it
 will be replaced during an upgrade. This is desired.
@@ -74,7 +74,7 @@ similar to what Ubuntu does. The final version might look like `1.3.1-7ocf1`.
 
 Use a command like:
 
-    dch --local ocf --distribution jessie 'Patched by OFC to not recursively delete $HOME on login.'
+    dch --local ocf --distribution jessie 'Patched by OCF to not recursively delete $HOME on login.'
 
 
 ## Step 6: Build the package

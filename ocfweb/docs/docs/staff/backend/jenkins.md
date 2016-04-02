@@ -1,21 +1,21 @@
 [[!meta title="Jenkins"]]
 
 [Jenkins](https://jenkins.ocf.berkeley.edu/) is the tool we use for continuous
-integration and continuous delivery (TM) at OFC. All that means is that when
+integration and continuous delivery (TM) at OCF. All that means is that when
 you push code,
 
 * Jenkins will test that code,
 * Jenkins will build that code (if applicable),
 * and then Jenkins will deploy that code.
 
-Ideally all projects at OFC will go through this pipeline of being tested
+Ideally all projects at OCF will go through this pipeline of being tested
 before deployed, though currently some don't (or some only use some portion,
 such as deploying without any tests).
 
 
 ## Making changes to Jenkins
 
-Anyone in group `ocfroot` can log in to Jenkins (using their OFC username and
+Anyone in group `ocfroot` can log in to Jenkins (using their OCF username and
 password) and will have full access to Jenkins.
 
 Sadly, while the installation of Jenkins is controlled via Puppet, its

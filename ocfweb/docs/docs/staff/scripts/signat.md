@@ -12,7 +12,7 @@ it also gives all the information needed to create group accounts with
 
 `signat` is an interface to the [`ocflib`][ocflib] functions to query
 the [CalLink API][callinkapi] for group signatories. `ocflib` is also
-used to look up UIDs and OIDs in OFC [[LDAP|doc staff/backend/ldap]] and
+used to look up UIDs and OIDs in OCF [[LDAP|doc staff/backend/ldap]] and
 names in the university's [LDAP directory service][berkeleyldap].
 
 [ocflib]: github.com/ocf/ocflib
@@ -37,13 +37,13 @@ subcommands:
   {uid,oid,user,name,group}
     uid                 Look up the signatory status of a person by CalNet UID
     oid                 Look up the signatories of a group by CalLink OID
-    user                Look up the signatory status of an OFC user
+    user                Look up the signatory status of an OCF user
     name                Look up the signatory status of a person by name
     group               Look up the signatories of a group by group name
 ```
 
 `group` and `name` are the easiest queries to use when a group or
-signatory doesn't already have an OFC account. These perform a keyword
+signatory doesn't already have an OCF account. These perform a keyword
 search for people or groups by name.
 
 ```text
@@ -55,7 +55,7 @@ NICHOLAS DANIEL IMPICCICHE (1032668)
 ====================================
 Group                    Accounts                       OID
 -----------------------  ---------------------------  -----
-Open Facility for Computing  decal, linux, ggroup, group  46187
+Open Computing Facility  decal, linux, ggroup, group  46187
 
 $ signat group free
 Searching for groups... Found 2 entries.
@@ -81,7 +81,7 @@ DORJEE TASHI        1110958
 TENZING DOLMA       1027935
 ```
 
-`user` looks up an OFC account and prints the signatories for a group
+`user` looks up an OCF account and prints the signatories for a group
 account or the signatory status of an individual account.
 
 ```text
@@ -90,7 +90,7 @@ NICHOLAS DANIEL IMPICCICHE (1032668)
 ====================================
 Group                    Accounts                       OID
 -----------------------  ---------------------------  -----
-Open Facility for Computing  decal, linux, ggroup, group  46187
+Open Computing Facility  decal, linux, ggroup, group  46187
 
 $ signat user free
 Free Ventures (91915)
@@ -113,7 +113,7 @@ NICHOLAS DANIEL IMPICCICHE (1032668)
 ====================================
 Group                    Accounts                       OID
 -----------------------  ---------------------------  -----
-Open Facility for Computing  decal, linux, ggroup, group  46187
+Open Computing Facility  decal, linux, ggroup, group  46187
 
 $ signat oid 91915
 Free Ventures (91915)

@@ -16,7 +16,7 @@ another domain (e.g., group.berkeley.edu).
 ### via the web interface
 
 1. Open the [[web commands interface|commands]] in your web browser.
-2. Select the "makehttp" option. Enter your OFC username and password, and choose "Run command". You should see something like this in the output, assuming you entered your username and password correctly:
+2. Select the "makehttp" option. Enter your OCF username and password, and choose "Run command". You should see something like this in the output, assuming you entered your username and password correctly:
 
         public_html folder has been created successfully.
 
@@ -34,7 +34,7 @@ another domain (e.g., group.berkeley.edu).
 
 ## Uploading Files
 
-Upload files to your web space the same way you [[upload files to your OFC
+Upload files to your web space the same way you [[upload files to your OCF
 account|doc services/shell]] (typically SFTP if used remotely). The only
 difference is that files for your web space are placed in your `public_html`
 directory.

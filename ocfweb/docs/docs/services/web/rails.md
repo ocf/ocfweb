@@ -14,7 +14,7 @@ This may take some time.
 
 ## Hosting Your Application
 
-OFC allows hosting of Rails applications via FastCGI. This requires you to install the
+OCF allows hosting of Rails applications via FastCGI. This requires you to install the
 `fcgi` gem and create a FastCGI wrapper script.
 
 ### Install `fcgi` gem

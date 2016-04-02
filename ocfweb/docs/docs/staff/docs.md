@@ -1,23 +1,23 @@
 [[!meta title="Editing docs"]]
 
-The OFC's documentation (formerly known as "the wiki") is a part of the OFC
+The OCF's documentation (formerly known as "the wiki") is a part of the OCF
 website built with [Markdown][markdown] where we provide technical support for
 users and documentation for fellow staff.
 
 ## Overview
 
-Docs is currently a part of the OFC's main website, known as [ocfweb][ocfweb].
+Docs is currently a part of the OCF's main website, known as [ocfweb][ocfweb].
 Markdown syntax is parsed by [Mistune][mistune] with syntax highlighting done
 by [Pygments][pygments].
 
 We use a wiki-like syntax for making links within documentation and the
 website, e.g. from [[Virtual Hosting|doc services/vhost#h4_hosting-badge]]:
 
-    All virtual hosts on the OFC must include an [[OFC banner|doc services/vhost/badges]] on the front page that links to the [[OFC home page|home]].
+    All virtual hosts on the OCF must include an [[OCF banner|doc services/vhost/badges]] on the front page that links to the [[OCF home page|home]].
 
 ## Editing docs
 
-Edits to the documentation are made via the OFC website's Git repository on
+Edits to the documentation are made via the OCF website's Git repository on
 GitHub. The editing process is like our other Git workflows:
 
 1. Fork [the repository on GitHub][ocfweb].
@@ -39,7 +39,7 @@ commiting on master or making a pull request.
 For more complicated ones, the repository's readme file has instructions for
 testing and building the website so you can preview your edits before making
 the commit. Also see [[our page on Git|doc staff/backend/git]] for further info
-on working with OFC repos.
+on working with OCF repos.
 
 
 [markdown]: https://daringfireball.net/projects/markdown/syntax

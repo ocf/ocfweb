@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 
 
 class Form(forms.Form):
-    """An OFC-flavored Django form that works well with Bootstrap."""
+    """An OCF-flavored Django form that works well with Bootstrap."""
 
     error_css_class = 'error'
     required_css_class = 'required'

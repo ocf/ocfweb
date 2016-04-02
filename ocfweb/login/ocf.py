@@ -39,7 +39,7 @@ def login(request):
         request,
         'ocf/login.html',
         {
-            'title': 'OFC Login',
+            'title': 'OCF Login',
             'form': form,
             'error': error,
         },
@@ -79,7 +79,7 @@ def redirect_back(request):
 
 class LoginForm(Form):
     username = forms.CharField(
-        label='OFC username',
+        label='OCF username',
         min_length=3,
         max_length=16,
     )

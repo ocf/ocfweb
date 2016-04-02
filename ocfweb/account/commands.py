@@ -60,7 +60,7 @@ def commands(request):
 
 class CommandForm(forms.Form):
     username = forms.CharField(
-        label='OFC username',
+        label='OCF username',
         min_length=3,
         max_length=16,
     )
@@ -78,7 +78,7 @@ class CommandForm(forms.Form):
          'disk quota -- how much disk space you have used and how much you ' +
          'have left'),
         ('/opt/share/utils/bin/makehttp',
-         'makehttp -- set up the web space for your OFC account'),
+         'makehttp -- set up the web space for your OCF account'),
         ('echo yes | /opt/share/utils/bin/makemysql',
          'makemysql -- reset your MySQL database password, or create a new ' +
          'MySQL database (copy down the password somewhere secure)'),

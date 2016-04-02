@@ -1,15 +1,15 @@
 [[!meta title="Previous staff"]]
 
-## Where have OFC staffers gone after leaving the OFC?
+## Where have OCF staffers gone after leaving the OCF?
 
-Many OFC staffers have found the skills and experience they gained from being
-OFC staff have been useful after leaving us. While we obviously can't claim
+Many OCF staffers have found the skills and experience they gained from being
+OCF staff have been useful after leaving us. While we obviously can't claim
 credit for everyone or being the sole source of experience for people, we'd
 like to think everyone who has donated time to help us has gained something in
 return, whether it be skills, experience, new friends, or just the satisfaction
 of making a difference helping your fellow students.
 
-Some of the places OFC staffers have gone on to work at:
+Some of the places OCF staffers have gone on to work at:
 
 ### On the Berkeley Campus
 
@@ -100,8 +100,8 @@ Taos or MindSource.)
 
 ## Other groups
 
-Other groups that OFC members have joined and helped using the skills they
-gained as OFC staff:
+Other groups that OCF members have joined and helped using the skills they
+gained as OCF staff:
 
 ### On the Berkeley Campus
 

@@ -6,8 +6,8 @@
 <div class="row">
     <div class="col-sm-8 ocf-content-block">
         <h2>Have questions? Drop by for help from a friendly volunteer staffer!</h2>
-        <p>OFC staff members hold regular drop-in staff hours to provide assistance with account issues or with OFC services. We're always happy to help troubleshoot account or service issues!</p>
-        <p>Keep in mind the OFC volunteers sometimes have last-minute conflicts, so it's a good idea to check this page before coming in for cancellations.</p>
+        <p>OCF staff members hold regular drop-in staff hours to provide assistance with account issues or with OCF services. We're always happy to help troubleshoot account or service issues!</p>
+        <p>Keep in mind the OCF volunteers sometimes have last-minute conflicts, so it's a good idea to check this page before coming in for cancellations.</p>
         {% for staff_hour in staff_hours %}
             <div class="hour {% if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %} cancelled {% endif %}">
                 <div class="title">
@@ -33,9 +33,9 @@
     </div>
 
     <div class="col-sm-4 ocf-sidebar">
-        <h4>Open Facility for Computing Lab</h4>
+        <h4>Open Computing Facility Lab</h4>
         <p>{% google_map '100%' '250px' %}</p>
-        <p><strong>The OFC lab is located on the ground level of MLK Student Union (entrance on Lower Sproul), Room 171.</strong></p>
+        <p><strong>The OCF lab is located on the ground level of MLK Student Union (entrance on Lower Sproul), Room 171.</strong></p>
         <p>You will need to show your student ID when you pass the Publications Center staff on desk at the entrance.</p>
         <p>All staff hours are held in the lab&mdash;feel free to drop by!</p>
 
