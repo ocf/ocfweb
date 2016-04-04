@@ -5,6 +5,8 @@ from paramiko import AuthenticationException
 from paramiko import SSHClient
 from paramiko.hostkeys import HostKeyEntry
 
+from ocfweb.component.forms import Form
+
 
 def commands(request):
     command_to_run = ''
@@ -37,8 +39,7 @@ def commands(request):
                     password=password,
                 )
             except AuthenticationException:
-                error = 'Authentication failed. Did you type the wrong ' + \
-                    'username or password?'
+                error = 'Authentication failed. Did you type the wrong username or password?'
 
             if not error:
                 _, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run)
@@ -50,6 +51,7 @@ def commands(request):
     return render(
         request,
         'commands/index.html', {
+            'title': 'Account commands',
             'form': form,
             'command': command_to_run,
             'output': output,
@@ -58,7 +60,7 @@ def commands(request):
     )
 
 
-class CommandForm(forms.Form):
+class CommandForm(Form):
     username = forms.CharField(
         label='OCF username',
         min_length=3,
