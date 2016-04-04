@@ -1,50 +1,48 @@
 {% extends "base.html" %}
-{% block title %}Account Commands{% endblock %}
+{% load bootstrap %}
 
 {% block content %}
-<p><strong>Note</strong>: You may find that running these commands via SSH is more convenient and secure.
-SSH also allows you access to the full range of account management tools and other services we offer.
-For more information, see <a href="http://wiki.ocf.berkeley.edu/">our documentation</a>.</p>
+    <div class="row">
+        <div class="col-md-8 ocf-content-block">
+            <h3>Run an account command over the web.</h3>
+            <p>
+                The commands you see listed below are all available to run via
+                <a href="{% url 'doc' 'services/shell' %}">SSH</a>. For convenience, we
+                also let you run them from the web.
+            </p>
 
-<form action="{% url 'commands' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Run Command" />
-    <input type="reset" value="Reset" />
-</form>
+            <form action="{% url 'commands' %}" method="post">
+                {% csrf_token %}
+                {{form | bootstrap}}
+                <input class="btn btn-primary" type="submit" value="Run Command" />
+            </form>
 
-{% if command %}
-<hr />
-<p><emph>Command being run</emph>: <pre>{{ command }}</pre></p>
-{% endif %}
+            {% if command %}
+                <hr />
+                <p>Command being run: <pre>{{command}}</pre></p>
+            {% endif %}
 
-<style type="text/css">
-.cmds-output, .cmds-error{
-    line-height: 1.4em;
-    font-size: 110%;
-    margin: 10px;
-    padding: 6px;
-    font-family: courier new, serif;
-}
-.cmds-output{
-    color: #111;
-    border: 1px solid #ddee99;
-    background-color: #fdfefa;
-}
-.cmds-error{
-    border:1px solid #850e0e;
-    background-color:#f55858;
-}
-</style>
+            {% if output %}
+                <div class="well">
+                    {{ output|linebreaks }}
+                </div>
+            {% endif %}
 
-{% if output %}
-<div class="cmds-output">
-{{ output|linebreaks }}
-</div>
-{% endif %}
-{% if error %}
-<div class="cmds-error">
-{{ error|linebreaks }}
-</div>
-{% endif %}
+            {% if error %}
+                <p><strong>{{ error|linebreaks }}</strong></p>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4 ocf-content-block">
+            <p>
+                <strong>Note:</strong> You may find that running these commands
+                via SSH is more convenient and secure.  SSH also allows you
+                access to the full range of account management tools and other
+                services we offer.
+            </p>
+            <p>
+                For more information, see <a href="{% url 'doc' 'services/shell' %}">our documentation</a>.</p>
+            </p>
+        </div>
+    </div>
 {% endblock %}
