@@ -21,7 +21,7 @@ OCF_COMMANDS = [
     Command(
         'makemysql', None,
         desc='Generates a new random password for your database, creating the '
-             'database if it does no exist',
+             'database if it does not exist',
         doc='services/mysql', doc_anchor='h3_ssh-terminal',
     ),
     Command(
