@@ -1,4 +1,4 @@
-[[!meta title="Previous staff"]]
+[[!meta title="Where alumni have gone"]]
 
 ## Where have OCF staffers gone after leaving the OCF?
 
@@ -19,7 +19,7 @@ Some of the places OCF staffers have gone on to work at:
 * [Campus Information Systems & Technology (IS&T)](http://ist.berkeley.edu/)
 * [Haas School of Business](http://www.haas.berkeley.edu/)
 * InfoPad Research Group, Electrical Engineering
-* [Lawrence Berkeley National Labs](http://www.lbl.gov/)
+* [Lawrence Berkeley National Lab](http://www.lbl.gov/)
 * [Letters & Science Computer Resources](http://ls.berkeley.edu/lscr/)
 * [Molecular & Cell Biology](https://mcb.berkeley.edu)
 * [Residential Computing Services, Housing and Dining](http://www.rescomp.berkeley.edu)
@@ -50,7 +50,7 @@ Some of the places OCF staffers have gone on to work at:
 * [Drogin, Kakigi, & Assoc.](http://www.dkstat.com/)
 * [Eventbrite](https://www.eventbrite.com)
 * [Facebook](https://www.facebook.com)
-* [Forte Software](http://www.forte.com/) (now part of [Sun Microsystems](http://www.sun.com/ ))
+* [Forte Software](http://www.forte.com/) (now part of [Sun Microsystems](http://www.sun.com/))
 * [Fry's Electronics](http://www.outpost.com/)
 * Global Network Navigator, Inc.
 * [Google](https://www.google.com)
@@ -78,7 +78,7 @@ Some of the places OCF staffers have gone on to work at:
 * [Palantir](https://www.palantir.com)
 * [Rackspace](http://www.rackspace.com)
 * [7M Consulting](http://www.7mconsulting.com)
-* [SiByte, Inc](http://sibyte.broadcom.com) (acquired by [Broadcom](http://www.broadcom.com)]
+* [SiByte, Inc](http://sibyte.broadcom.com) (acquired by [Broadcom](http://www.broadcom.com))
 * [Silicon Graphics (SGI)](http://www.sgi.com/)
 * [Snapfish](http://www.snapfish.com/)
 * [StarNine Technologies](http://www.starnine.com/)
