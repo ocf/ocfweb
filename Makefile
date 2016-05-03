@@ -23,7 +23,7 @@ dev: venv scss
 	$(PYTHON) ./manage.py runserver 0.0.0.0:$(RANDOM_PORT)
 
 venv: requirements.txt requirements-dev.txt
-	python ./vendor/venv-update ==venv venv -ppython3 ==install -r requirements.txt -r requirements-dev.txt
+	python ./vendor/venv-update venv= venv -ppython3 install= -r requirements.txt -r requirements-dev.txt
 
 .PHONY: clean
 clean:
@@ -50,7 +50,7 @@ watch-scss: scss venv
 .PHONY: update-requirements
 update-requirements:
 	$(eval TMP := $(shell mktemp -d))
-	python ./vendor/venv-update ==venv $(TMP) -ppython3 ==install .
+	python ./vendor/venv-update venv= $(TMP) -ppython3 ==install .
 	. $(TMP)/bin/activate && \
 		pip freeze | sort | grep -vE '^(wheel|pip-faster|ocfweb)==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
 	rm -rf $(TMP)
