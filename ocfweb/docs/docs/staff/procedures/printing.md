@@ -4,7 +4,7 @@
 Ideally, printers shouldn't ever be turned off. Instead, they should be removed
 from the CUPS classes:
 
-1. Go to https://pollution.ocf.berkeley.edu/ (works only in lab)
+1. Go to https://printhost.ocf.berkeley.edu/ (works only in lab)
 2. Go to Classes > `double` > Modify Class
 3. Remove the offending printer from the list of selected printers
 4. GOTO 2, repeat for the `single` class
