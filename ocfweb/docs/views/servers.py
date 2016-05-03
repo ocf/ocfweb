@@ -61,14 +61,7 @@ def get_hosts():
         Host.from_ldap(
             hostname='hal',
             type='hypervisor',
-            children=[
-                Host.from_ldap(hostname)
-                for hostname in [
-                    'maelstrom',
-                    'pollution',
-                    'zombies',
-                ]
-            ],
+            children=[],
         ),
 
         Host.from_ldap(
@@ -77,12 +70,23 @@ def get_hosts():
             children=[
                 Host.from_ldap(hostname)
                 for hostname in [
+                    'anthrax',
+                    'coma',
                     'death',
+                    'dementors',
+                    'fallingrocks',
+                    'firestorm',
+                    'flood',
+                    'lightning',
+                    'maelstrom',
+                    'pestilence',
                     'reaper',
                     'sandstorm',
                     'supernova',
                     'tsunami',
+                    'typhoon',
                     'werewolves',
+                    'whiteout',
                 ]
             ],
         ),
@@ -93,15 +97,7 @@ def get_hosts():
             children=[
                 Host.from_ldap(hostname)
                 for hostname in [
-                    'anthrax',
-                    'coma',
-                    'dementors',
-                    'fallingrocks',
-                    'firestorm',
-                    'flood',
-                    'lightning',
-                    'pestilence',
-                    'typhoon',
+                    'zombies',
                 ]
             ],
         ),
