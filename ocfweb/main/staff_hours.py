@@ -15,7 +15,7 @@ def get_staff_hours():
 def staff_hours(request):
     return render(
         request,
-        'staff-hours.html',
+        'main/staff-hours.html',
         {
             'title': 'Staff Hours',
             'staff_hours': get_staff_hours(),

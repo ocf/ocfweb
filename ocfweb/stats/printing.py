@@ -11,7 +11,7 @@ from ocfweb.stats.plot import plot_to_image_bytes
 def stats_printing(request):
     return render(
         request,
-        'printing.html',
+        'stats/printing.html',
         {
             'title': 'Printing Statistics',
         },

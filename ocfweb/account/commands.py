@@ -50,7 +50,7 @@ def commands(request):
 
     return render(
         request,
-        'commands/index.html', {
+        'account/commands/index.html', {
             'title': 'Account commands',
             'form': form,
             'command': command_to_run,

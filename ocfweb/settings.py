@@ -26,9 +26,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'mathfilters',
+
     'ocfweb',
     'ocfweb.about',
     'ocfweb.account',
+    'ocfweb.announcements',
     'ocfweb.docs',
     'ocfweb.login',
     'ocfweb.main',

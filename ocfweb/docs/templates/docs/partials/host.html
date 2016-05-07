@@ -27,7 +27,7 @@
 {% if host.children %}
     <div class="host-list">
         {% for child in host.children %}
-            {% include 'partials/host.html' with host=child only %}
+            {% include 'docs/partials/host.html' with host=child only %}
         {% endfor %}
     </div>
 {% endif %}

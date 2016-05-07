@@ -18,7 +18,7 @@ class Node(namedtuple('Node', ['path', 'title', 'children'])):
 register = template.Library()
 
 
-@register.inclusion_tag('partials/doc-tree.html')
+@register.inclusion_tag('docs/partials/doc-tree.html')
 def doc_tree(root='/', suppress_root=True, cur_path=None, exclude='$^'):
     # root is expected to be like '/' or '/services/' or '/services/web/'
     assert root.startswith('/')
@@ -53,7 +53,7 @@ def doc_tree(root='/', suppress_root=True, cur_path=None, exclude='$^'):
     }
 
 
-@register.inclusion_tag('partials/doc-toc.html')
+@register.inclusion_tag('docs/partials/doc-toc.html')
 def doc_toc(toc, collapsible=False):
     if len(toc) > 3:  # heuristic to avoid dumb tables of contents
         levels = list(sorted({entry[0] for entry in toc}))

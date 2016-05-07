@@ -8,7 +8,7 @@ Markdown documents can specify the meta attributes:
     - [[!meta title="Page title"]]
       Changes the page title; all templates must specify this.
 
-    - [[!meta template="my_template.html"]]
+    - [[!meta template="docs/my_template.html"]]
       Changes the page template; most templates should *not* specify this,
       unless they want to customize something (e.g. the sidebar)
 """
@@ -38,7 +38,7 @@ def render_markdown_doc(path, meta, text, doc, request):
 
     return render(
         request,
-        meta.get('template', 'doc.html'),
+        meta.get('template', 'docs/doc.html'),
         {
             'title': meta['title'],
             'doc': doc,

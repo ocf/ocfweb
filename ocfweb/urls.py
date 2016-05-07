@@ -7,13 +7,12 @@ from django.shortcuts import redirect
 from ocfweb.about.lab import lab_open_source
 from ocfweb.about.staff import about_staff
 from ocfweb.account.urls import urlpatterns as account
+from ocfweb.announcements.urls import urlpatterns as announcements
 from ocfweb.docs.urls import urlpatterns as docs
 from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
-from ocfweb.main.printing_announcement import printing_announcement
-from ocfweb.main.renaming_announcement import renaming_announcement
 from ocfweb.main.robots import robots_dot_txt
 from ocfweb.main.staff_hours import staff_hours
 from ocfweb.stats.accounts import accounts_created_each_day_graph
@@ -41,8 +40,7 @@ urlpatterns = [
     url(r'^staff-hours$', staff_hours, name='staff-hours'),
 
     # announcements
-    url(r'^announcements/2016-02-09/printing$', printing_announcement, name='printing-announcement'),
-    url(r'^announcements/2016-04-01/renaming-ocf$', renaming_announcement, name='renaming-announcement'),
+    url(r'^announcements/', include(announcements)),
 
     # about pages
     url(r'^about/staff$', about_staff, name='about-staff'),

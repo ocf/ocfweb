@@ -114,7 +114,7 @@ BOD_TERMS = [
 def officers(doc, request):
     return render(
         request,
-        'officers.html',
+        'docs/officers.html',
         {
             'title': doc.title,
             'current_term': BOD_TERMS[-1],

@@ -33,7 +33,7 @@ def request_account(request):
     if existing_accounts and calnet_uid not in TESTER_CALNET_UIDS:
         return render(
             request,
-            'register/already-has-account.html',
+            'account/register/already-has-account.html',
             {
                 'calnet_uid': calnet_uid,
                 'calnet_url': settings.LOGOUT_URL,
@@ -46,7 +46,7 @@ def request_account(request):
     if not user_attrs_ucb(calnet_uid):
         return render(
             request,
-            'register/cant-find-in-ldap.html',
+            'account/register/cant-find-in-ldap.html',
             {
                 'calnet_uid': calnet_uid,
                 'calnet_url': settings.LOGOUT_URL,
@@ -100,7 +100,7 @@ def request_account(request):
 
     return render(
         request,
-        'register/index.html',
+        'account/register/index.html',
         {
             'form': form,
             'real_name': real_name,
@@ -114,7 +114,7 @@ def wait_for_account(request):
     if 'approve_task_id' not in request.session:
         return render(
             request,
-            'register/wait/error-no-task-id.html',
+            'account/register/wait/error-no-task-id.html',
             {'title': 'Account request error'},
         )
 
@@ -126,7 +126,7 @@ def wait_for_account(request):
             status.extend(meta['status'])
         return render(
             request,
-            'register/wait/wait.html',
+            'account/register/wait/wait.html',
             {
                 'title': 'Creating account...',
                 'status': status,
@@ -138,15 +138,15 @@ def wait_for_account(request):
     elif isinstance(task.result, Exception):
         raise task.result
 
-    return render(request, 'register/wait/error-probably-not-created.html', {})
+    return render(request, 'account/register/wait/error-probably-not-created.html', {})
 
 
 def account_pending(request):
-    return render(request, 'register/pending.html', {'title': 'Account request pending'})
+    return render(request, 'account/register/pending.html', {'title': 'Account request pending'})
 
 
 def account_created(request):
-    return render(request, 'register/success.html', {'title': 'Account request successful'})
+    return render(request, 'account/register/success.html', {'title': 'Account request successful'})
 
 
 class ApproveForm(Form):

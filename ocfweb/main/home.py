@@ -19,7 +19,7 @@ def home(request):
     hours = [Day.from_date(date.today() + timedelta(days=i)) for i in range(3)]
     return render(
         request,
-        'home.html',
+        'main/home.html',
         {
             'fulltitle': 'Open Computing Facility at UC Berkeley',
             'description': (

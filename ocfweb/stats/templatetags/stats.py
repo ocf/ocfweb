@@ -8,7 +8,7 @@ register = template.Library()
 _NavItem = namedtuple('NavItem', ['url', 'title', 'active'])
 
 
-@register.inclusion_tag('partials/stats-navbar.html', takes_context=True)
+@register.inclusion_tag('stats/partials/stats-navbar.html', takes_context=True)
 def stats_navbar(context):
     return {
         'navbar': [

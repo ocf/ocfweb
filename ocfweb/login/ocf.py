@@ -37,7 +37,7 @@ def login(request):
 
     return render(
         request,
-        'ocf/login.html',
+        'login/ocf/login.html',
         {
             'title': 'OCF Login',
             'form': form,
@@ -59,7 +59,7 @@ def logout(request):
 
     return render(
         request,
-        'ocf/logout.html',
+        'login/ocf/logout.html',
         {
             'form': form,
             'user': request.session['ocf_user']

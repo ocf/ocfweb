@@ -23,7 +23,7 @@ def get_holidays():
 def lab(doc, request):
     return render(
         request,
-        'lab.html',
+        'docs/lab.html',
         {
             'title': doc.title,
             'description': (

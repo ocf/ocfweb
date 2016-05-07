@@ -17,7 +17,7 @@ def hosting_badges(doc, request):
 
     return render(
         request,
-        'hosting_badges.html',
+        'docs/hosting_badges.html',
         {
             'title': doc.title,
             'badges': badges,

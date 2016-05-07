@@ -18,7 +18,7 @@ from ocfweb.stats.plot import plot_to_image_bytes
 def stats_accounts(request):
     return render(
         request,
-        'accounts.html',
+        'stats/accounts.html',
         {
             'title': 'Account Statistics',
         },

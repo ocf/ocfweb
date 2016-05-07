@@ -79,7 +79,7 @@ FILE_COMMANDS = [
 def commands(doc, request):
     return render(
         request,
-        'commands.html',
+        'docs/commands.html',
         {
             'title': doc.title,
             'ocf_commands': OCF_COMMANDS,

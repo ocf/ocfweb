@@ -40,7 +40,7 @@ def request_vhost(request):
     if has_vhost(user):
         return render(
             request,
-            'vhost/already_have_vhost.html',
+            'account/vhost/already_have_vhost.html',
             {
                 'title': 'You already have virtual hosting',
                 'user': user,
@@ -136,7 +136,7 @@ def request_vhost(request):
 
     return render(
         request,
-        'vhost/index.html',
+        'account/vhost/index.html',
         {
             'attrs': attrs,
             'error': error,
@@ -151,7 +151,7 @@ def request_vhost(request):
 def request_vhost_success(request):
     return render(
         request,
-        'vhost/success.html',
+        'account/vhost/success.html',
         {
             'title': 'Virtual host successfully submitted',
         },

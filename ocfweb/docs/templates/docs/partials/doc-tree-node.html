@@ -11,7 +11,7 @@
 
 <ul>
     {% for child in node.children %}
-        {% include 'partials/doc-tree-node.html' with node=child cur_path=cur_path only %}
+        {% include 'docs/partials/doc-tree-node.html' with node=child cur_path=cur_path only %}
     {% endfor %}
 </ul>
 

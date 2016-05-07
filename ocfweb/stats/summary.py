@@ -85,7 +85,7 @@ def printers():
 def summary(request):
     return render(
         request,
-        'summary.html',
+        'stats/summary.html',
         {
             'title': 'Lab Statistics',
             'desktop_profiles': desktop_profiles(),

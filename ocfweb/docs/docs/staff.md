@@ -1,5 +1,5 @@
 [[!meta title="Staff documentation"]]
-[[!meta template="staff_index.html"]]
+[[!meta template="docs/staff_index.html"]]
 
 Find out what we're all about, and [[come join us|about-staff]]!
 

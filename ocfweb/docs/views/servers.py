@@ -116,7 +116,7 @@ def get_hosts():
 def servers(doc, request):
     return render(
         request,
-        'servers.html',
+        'docs/servers.html',
         {
             'title': doc.title,
             'hosts': get_hosts(),

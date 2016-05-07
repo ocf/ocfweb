@@ -77,7 +77,7 @@ def change_password(request):
 
                 return render(
                     request,
-                    'chpass/success.html',
+                    'account/chpass/success.html',
                     {
                         'account': account,
                         'title': 'Password Changed Successfully',
@@ -88,7 +88,7 @@ def change_password(request):
 
     return render(
         request,
-        'chpass/index.html',
+        'account/chpass/index.html',
         {
             'calnet_uid': calnet_uid,
             'error': error,
