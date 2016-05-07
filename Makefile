@@ -50,9 +50,9 @@ watch-scss: scss venv
 .PHONY: update-requirements
 update-requirements:
 	$(eval TMP := $(shell mktemp -d))
-	python ./vendor/venv-update venv= $(TMP) -ppython3 ==install .
+	python ./vendor/venv-update venv= $(TMP) -ppython3 install= .
 	. $(TMP)/bin/activate && \
-		pip freeze | sort | grep -vE '^(wheel|pip-faster|ocfweb)==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
+		pip freeze | sort | grep -vE '^(wheel|venv-update|ocfweb)==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
 	rm -rf $(TMP)
 
 .PHONY: builddeb
