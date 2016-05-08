@@ -76,6 +76,7 @@ Some of the places OCF staffers have gone on to work at:
 * [Okta](https://www.okta.com)
 * [Oracle](http://www.oracle.com/)
 * [Palantir](https://www.palantir.com)
+* [Patreon](https://www.patreon.com/)
 * [Rackspace](http://www.rackspace.com)
 * [7M Consulting](http://www.7mconsulting.com)
 * [SiByte, Inc](http://sibyte.broadcom.com) (acquired by [Broadcom](http://www.broadcom.com))
