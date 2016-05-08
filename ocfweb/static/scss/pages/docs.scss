@@ -56,8 +56,7 @@
         font-size: 10px;
     }
 
-    .edit-this-page {
-        display: block;
+    .edit-this-page, .page-history {
         padding: 5px;
         font-size: 13px;
 
@@ -73,8 +72,9 @@
         }
     }
 
-    .edit-page-border {
-        margin-top: 0;
+    .page-github-icons {
+        border-bottom: solid 1px $hr-border;
+        padding-bottom: 10px;
     }
 }
 
