@@ -36,3 +36,12 @@ class Document(namedtuple('Document', ['name', 'title', 'render'])):
             self.name +
             '.md'
         )
+
+    @cached_property
+    def history_url(self):
+        """Return a GitHub history URL for this page."""
+        return (
+            'https://github.com/ocf/ocfweb/commits/master/ocfweb/docs/docs' +
+            self.name +
+            '.md'
+        )
