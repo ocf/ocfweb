@@ -27,7 +27,22 @@ Check out [[our staff recruitment website|about-staff]]!
 
 #### It's been a week since I requested an account, what happened!
 
-Please be patient. Accounts are processed every 1-2 weeks during semesters. See [[Join the OCF|doc membership]].
+Accounts are typically processed immediately. If your account requires
+additional approval by staff, it may take a few days (usually less) to be
+manually approved. If this was the case, you will have been informed during
+account creation.
+
+In most cases when people think their account has not been created, the email
+landed in their spam folder. Check that first, or try to
+[[reset your password|change_password]] to see if your account has been
+created.
+
+#### I think I left something in the lab, can you tell me if it's there?
+
+**Please do not email us about items lost in the lab.** The front desk is
+staffed by paid employees, not by OCF volunteers. If you email us, the front
+desk staff *will not see it*. If you've lost something, you should instead stop
+by in-person to ask for it.
 
 #### I have an account. Does it expire? Will it still work?
 

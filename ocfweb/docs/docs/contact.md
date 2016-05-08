@@ -32,6 +32,12 @@ with an OCF volunteer staffer, check the [[posted staff hours|staff-hours]].
 Please do **not** send us your password over email, or your account will be
 disabled.
 
+**Do not email us about items lost in the lab.** The front desk is staffed
+by paid employees, not by OCF volunteers. If you email us, the front desk staff
+*will not see it*. If you've lost something, you should instead stop by
+in-person to ask for it.
+
+
 * [help@ocf.berkeley.edu](mailto:help@ocf.berkeley.edu)
 
   If you have questions about your OCF account, services we offer, or about
