@@ -35,6 +35,7 @@ def request_account(request):
             request,
             'account/register/already-has-account.html',
             {
+                'account': ', '.join(existing_accounts),
                 'calnet_uid': calnet_uid,
                 'calnet_url': settings.LOGOUT_URL,
                 'title': 'You already have an account',
