@@ -2,7 +2,11 @@
 
 {% block content %}
     <div class="ocf-content-block">
-        <p>This CalNet account has already submitted a request for approval.</p>
+        <p>
+            You already have an OCF account! Your username is
+            <strong>{{account}}</strong>. If you can't remember your password,
+            you can reset it <a href="{% url 'change_password' %}">here</a>.
+        </p>
         <p>If you believe this is an error, please <a href="{% url 'doc' 'contact' %}">
             contact us</a> with your CalNet UID: <tt>{{calnet_uid}}</tt>.
 
