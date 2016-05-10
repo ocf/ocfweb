@@ -1,29 +1,18 @@
 import time
-import urllib.parse
 from datetime import date
-from datetime import datetime
 from datetime import timedelta
 
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import redirect
 from matplotlib.figure import Figure
 from ocflib.lab.stats import get_connection
 
 from ocfweb.caching import periodic
-from ocfweb.stats.plot import plot_to_image_bytes
+from ocfweb.component.graph import canonical_graph
+from ocfweb.component.graph import current_start_end
+from ocfweb.component.graph import plot_to_image_bytes
 
 
-DEFAULT_DAYS = 14
-MIN_DAYS = 1
-MAX_DAYS = 365 * 5
 ONE_DAY = timedelta(days=1)
-
-
-def current_start_end():
-    """Return current default start and end date."""
-    end = date.today()
-    return end - timedelta(days=DEFAULT_DAYS), end
 
 
 @periodic(60)
@@ -31,49 +20,16 @@ def _todays_session_image():
     return _sessions_image(*current_start_end())
 
 
+@canonical_graph(hot_path=_todays_session_image)
+def session_count_image(request, start_day, end_day):
+    return _sessions_image(start_day, end_day)
+
+
 def _sessions_image(start_day, end_day):
     return HttpResponse(
         plot_to_image_bytes(get_sessions_plot(start_day, end_day), format='svg'),
         content_type='image/svg+xml',
     )
-
-
-def sessions_image(request):
-    def get_day_from_params(param, default):
-        try:
-            return datetime.strptime(request.GET.get(param, ''), '%Y-%m-%d').date()
-        except ValueError:
-            return default
-
-    default_start, default_end = current_start_end()
-
-    start_day = get_day_from_params('start', default_start)
-    end_day = get_day_from_params('end', default_end)
-
-    if end_day <= start_day:
-        return HttpResponse(
-            'end_day must be after start_day',
-            status=400,
-        )
-
-    # redirect to canonical url
-    if (
-            request.GET.get('start') != start_day.isoformat() or
-            request.GET.get('end') != end_day.isoformat()
-    ):
-        return redirect('{}?{}'.format(
-            reverse('sessions_image'),
-            urllib.parse.urlencode({
-                'start': start_day.isoformat(),
-                'end': end_day.isoformat(),
-            }),
-        ))
-
-    if start_day == default_start and end_day == default_end:
-        # hot path: cached image
-        return _todays_session_image()
-    else:
-        return _sessions_image(start_day, end_day)
 
 
 def get_sessions_plot(start_day, end_day):

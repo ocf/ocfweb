@@ -12,7 +12,7 @@ from ocflib.infra.ldap import ldap_ocf
 
 from ocfweb.caching import cache
 from ocfweb.caching import periodic
-from ocfweb.stats.plot import plot_to_image_bytes
+from ocfweb.component.graph import plot_to_image_bytes
 
 
 def stats_accounts(request):

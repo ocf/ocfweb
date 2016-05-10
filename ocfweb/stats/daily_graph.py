@@ -14,7 +14,7 @@ from ocflib.lab.stats import list_desktops
 from ocflib.lab.stats import UtilizationProfile
 
 from ocfweb.caching import periodic
-from ocfweb.stats.plot import plot_to_image_bytes
+from ocfweb.component.graph import plot_to_image_bytes
 
 
 # Binomial-shaped weights for moving average

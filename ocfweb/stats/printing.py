@@ -5,7 +5,7 @@ from ocflib.printing.quota import get_connection
 from ocflib.printing.quota import SEMESTERLY_QUOTA
 
 from ocfweb.caching import periodic
-from ocfweb.stats.plot import plot_to_image_bytes
+from ocfweb.component.graph import plot_to_image_bytes
 
 
 def stats_printing(request):

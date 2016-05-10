@@ -7,14 +7,14 @@ from ocfweb.stats.accounts import stats_accounts
 from ocfweb.stats.daily_graph import daily_graph_image
 from ocfweb.stats.printing import semester_histogram
 from ocfweb.stats.printing import stats_printing
-from ocfweb.stats.sessions import sessions_image
+from ocfweb.stats.session_count import session_count_image
 from ocfweb.stats.summary import summary
 
 
 urlpatterns = [
     url(r'^$', summary, name='stats'),
     url(r'^daily-graph/graph$', daily_graph_image, name='daily_graph_image'),
-    url(r'^sessions/graph$', sessions_image, name='sessions_image'),
+    url(r'^session-count/graph$', session_count_image, name='session_count_image'),
     url(r'^printing/$', stats_printing, name='stats_printing'),
     url(r'^accounts/$', stats_accounts, name='stats_accounts'),
     url(r'^accounts/cumulative/graph$', cumulative_accounts_graph, name='cumulative_accounts_graph'),
