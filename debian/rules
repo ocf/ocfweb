@@ -16,7 +16,7 @@ unexport LDFLAGS
 override_dh_virtualenv:
 	# XXX: pip 8.1.0 breaks our build
 	# https://github.com/ocf/ocfweb/issues/159
-	dh_virtualenv --python=/usr/bin/python3 --extra-pip-arg='--upgrade' --preinstall=pip==8.0.3 --preinstall=wheel
+	dh_virtualenv --python=/usr/bin/python3 --preinstall=pip==8.0.3 --preinstall=wheel==0.29.0
 
 	# build sass, output static files
 	$(PYTHON) setup.py build_sass
