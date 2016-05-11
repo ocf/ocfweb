@@ -104,8 +104,9 @@ def get_hosts():
 
         Host('blackhole', 'network', 'Managed Cisco Catalyst 2960S-48TS-L Switch.', []),
 
-        Host('deforestation', 'printer', '', []),
         Host('logjam', 'printer', '', []),
+        Host('pagefault', 'printer', '', []),
+        Host('papercut', 'printer', '', []),
         Host.from_ldap('tornado', type='nuc'),
     ] + [
         Host.from_ldap(desktop, type='desktop')
