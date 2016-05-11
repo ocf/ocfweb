@@ -26,7 +26,10 @@ def _todays_session_image():
     return _sessions_image(*current_start_end())
 
 
-@canonical_graph(hot_path=_todays_session_image)
+@canonical_graph(
+    hot_path=_todays_session_image,
+    default_start_end=current_start_end,
+)
 def session_length_image(request, start_day, end_day):
     return _sessions_image(start_day, end_day)
 
@@ -49,7 +52,7 @@ def get_sessions_plot(start_day, end_day):
             AVG(TIME_TO_SEC(duration)) as mean_duration_seconds
           FROM session_duration_public
           WHERE
-            start BETWEEN %s AND %s
+            CAST(start AS DATE) BETWEEN %s AND %s
             AND end IS NOT NULL
           GROUP BY date
         '''
