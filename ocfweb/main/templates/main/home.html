@@ -55,13 +55,14 @@
             </div>
             <div class="col-sm-6">
                 <h4>News from the staff team</h4>
-                {% for blog_post in blog_posts %}
+
+                {% for announcement in announcements %}
                     <p>
-                        <a href="{{blog_post.link}}">{{blog_post.title}}</a><br />
-                        {{blog_post.published | naturaltime}}
+                        <a href="{{announcement.link}}">{{announcement.title}}</a><br />
+                        {{announcement.datetime | naturaltime}}
                     </p>
                 {% endfor %}
-                <p><a href="http://status.ocf.berkeley.edu">More updates from the OCF &raquo;</a></p>
+                <p><a href="{% url 'announcements' %}">More updates from the OCF &raquo;</a></p>
             </div>
         </div>
     </div>

@@ -1,10 +1,12 @@
 from datetime import date
 from datetime import timedelta
+from operator import attrgetter
 
 from django.shortcuts import render
 from ocflib.lab.hours import Day
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
 
+from ocfweb.announcements.announcements import announcements
 from ocfweb.caching import periodic
 from ocfweb.component.blog import get_blog_posts
 from ocfweb.component.lab_status import get_lab_status
@@ -29,8 +31,11 @@ def home(request):
             ),
             'staff_hours': get_staff_hours(),
             'hours': hours,
+            'announcements': sorted(
+                get_blog_posts() + list(announcements), key=attrgetter('datetime'),
+                reverse=True,
+            )[:2],
             'today': hours[0],
-            'blog_posts': get_blog_posts()[:2],
             'lab_status': get_lab_status(),
         },
     )

@@ -2,6 +2,7 @@ from collections import namedtuple
 
 import dateutil.parser
 import requests
+from cached_property import cached_property
 from lxml import etree
 from requests.exceptions import RequestException
 
@@ -21,6 +22,10 @@ class Post(namedtuple('Post', [
     'author_email',
     'link',
 ])):
+
+    @cached_property
+    def datetime(self):
+        return self.published
 
     @classmethod
     def from_element(cls, element):

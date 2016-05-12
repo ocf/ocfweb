@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 ocf-content-block">
+            <h3>Board of Directors vote to support Electronic Frontier Alliance</h3>
+            <p><em>May 12, 2016</em></p>
+            <hr />
+            <p>
+                Back in March, the Electronic Frontier Foundation launched the
+                <a href="https://www.eff.org/deeplinks/2016/03/launching-efa">
+                Electronic Frontier Alliance</a>, designed to bring
+                together groups which support digital freedom, security,
+                privacy, creativity, and access to knowledge.
+            </p>
+
+            <p>
+                The Open Computing Facility, a student organization founded in
+                1989 at the University of California, Berkeley, believes
+                strongly in the mission of the Electronic Frontier Alliance and
+                of the EFF in general.
+            </p>
+
+            <p>
+                Since its inception, the OCF's all-volunteer staff base has
+                worked hard to provide free and fair access to technology at UC
+                Berkeley.
+            </p>
+
+            <p>
+                We hope to help others recognize the importance of digital
+                rights, and their relation to free and open-source software.
+            </p>
+        </div>
+
+        <div class="col-sm-4 ocf-sidebar">
+            <hr class="visible-sm" />
+            <h4>About the Open Computing Facility</h4>
+            <p><strong>The OCF is an all-volunteer student organization.</strong></p>
+            <p>
+                Our staff work hard to provide valuable services to the
+                campus community:
+            </p>
+            <ul>
+                <li>
+                    <a href="{% url 'doc' 'services/lab' %}">
+                        A spiffy computer lab in 171 MLK</a>
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/web' %}">Web, application,
+                        and email hosting</a>
+                    for over 80% of student groups and thousands of individual
+                    students.
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/lab/printing' %}">Free
+                        printing</a>, used by over 5,000 students per semester.
+                </li>
+            </ul>
+            <p>
+                Our volunteers work within their limited budget to try to offer
+                valuable services.
+                <br />
+                <a href="{% url 'about-staff' %}">Learn more about the OCF volunteers.</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
