@@ -97,51 +97,61 @@ We may restart the application server as part of regular maintenance, and
 you'll want your app to start again when we do. You'll also want your app to
 automatically restart if it crashes.
 
-We highly recommend to use daemontools to supervise your app. Our recommended
+We highly recommend to use systemd to supervise your app. Our recommended
 setup is:
 
-1. Create a directory `~/apps` and a subdirectory for your app `~/apps/myapp`.
+1. Create a directory for your app `~/myapp`.
 
-2. Place a startup script at `~/apps/myapp/run`. Your script should end by
-   `exec`ing the server process. If you followed one of the guides for Node.js,
-   Rails, or Django, you've already created this file, so can move on to the next step.
+2. Place a startup script at `~/myapp/run`. Your script should end by `exec`ing
+   the server process. If you followed one of the guides for [[Node.js|doc
+   services/webapps/nodejs]], [[Rails|doc services/webapps/rails]], or
+   [[Django|doc services/webapps/python]], you've already created this file, so
+   can move on to the next step.
 
    Otherwise, an example would be:
 
        #!/bin/sh -e
-       exec ~/apps/myapp/run-server
+       exec ~/myapp/run-server
 
    Your server should run in the *foreground* (it should not daemonize), and
    the `run` script should end with an `exec` line so that signals are sent to
    the server (and not to the shell that started it).
 
    Once you've written the script, make it executable
-   (`chmod +x ~/apps/myapp/run`). Test it by executing it in your terminal
+   (`chmod +x ~/myapp/run`). Test it by executing it in your terminal
    before moving on; it will be easier to debug problems.
 
-3. Use daemontools to supervise the app at startup. Edit your crontab
-   (`crontab -e`), and add the following line at the bottom:
+3. Write a systemd service file so your app will be supervised on startup.
+   Save the following to the file `~/.config/systemd/user/myapp.service`:
 
-       @reboot svscan ~/apps > /dev/null 2>&1
+       [Unit]
+       Description={YOUR GROUP NAME} Webapp
+       ConditionHost=werewolves
 
-   When the server reboots, daemontools will start your app (and restart it if
-   it later dies).
+       [Install]
+       WantedBy=default.target
 
-4. You'll need to start daemontools once (on future reboots, it will be started
-   for you). To do that, run `svscan ~/apps &` from your terminal.
+       [Service]
+       ExecStart=/home/{U}/{UU}/{USERNAME}/myapp/run
+       Restart=always
 
-To control your app, you can use the `svc` tool. See `man svc` for full
-details. In summary,
+   Make sure to replace `{YOUR GROUP NAME}` above with your actual group name,
+   and also replace `{U}` with the first letter of your username, `{UU}` with
+   the first two letters of your username, and `{USERNAME}` with your username.
 
-* **Restart an app.** `svc -t ~/apps/myapp` (sends SIGTERM)
-* **Force restart an app.** `svc -k ~/apps/myapp` (sends SIGKILL; note that if
-  you need to do this, your `run` script is probably not properly `exec`ing the
-  server process).
-* **Bring an app offline.** `svc -d ~/apps/myapp`
-* **Bring an app back online.** `svc -u ~/apps/myapp`
+4. Tell systemd to start your app on startup, by running `systemctl --user
+   enable myapp`.
 
-### Example setups for common platforms
+5. You'll need to start your app manually once (on future reboots, it will be
+   started for you). To do that, run `systemctl --user start myapp`.
 
+To control your app, you can use the `systemctl` tool. See `man systemctl` for
+full details. In summary,
+
+* **Restart an app.** `systemctl --user restart myapp`
+* **Bring an app offline.** `systemctl --user stop myapp`
+* **Bring an app back online.** `systemctl --user start myapp`
+* **Check the status of an app.** `systemctl --user status myapp`
 
 ## Frequently asked questions
 ### Can you install a package on the app server?

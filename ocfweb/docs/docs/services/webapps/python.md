@@ -12,8 +12,8 @@ easily install and manage dependencies and versions.
 
 1. Create a directory for your app to live in:
 
-       mkdir -p ~/apps/myapp
-       cd ~/apps/myapp
+       mkdir -p ~/myapp
+       cd ~/myapp
 
 2. Set up a virtualenv:
 
@@ -26,7 +26,7 @@ easily install and manage dependencies and versions.
    You should do this step every time before running your app or managing
    installed packages.
 
-4. Copy your code to `~/apps/myapp/src` or similar, and install any
+4. Copy your code to `~/myapp/src` or similar, and install any
    dependencies using `pip`.
 
 ## Installing gunicorn
@@ -40,33 +40,38 @@ this][lol-syntax].
 
 ## Preparing your app to be supervised
 
-Create a file at `~/apps/myapp/run` with content like:
+Create a file at `~/myapp/run` with content like:
 
     #!/bin/bash -e
-    . ~/apps/myapp/venv/bin/activate
-    PYTHONPATH=~/apps/myapp/src:$PYTHONPATH \
+    . ~/myapp/venv/bin/activate
+    PYTHONPATH=~/myapp/src:$PYTHONPATH \
         exec gunicorn -w 2 -b unix:/srv/apps/$(whoami)/$(whoami).sock \
         --log-file - main:app
 
 Replace `main:app` with the module containing the app, and name of your app,
 then make `run` executable:
 
-    chmod +x ~/apps/myapp/run
+    chmod +x ~/myapp/run
 
 Test executing the run script. You should be able to access your website while
 running it (or see any errors in your terminal).
 
-## Supervise your app with daemontools
+## Supervise your app with systemd
 
-Cool, your app works. [[Set up daemontools|doc services/webapps#supervise]] to
+Cool, your app works. [[Set up systemd|doc services/webapps#supervise]] to
 supervise your app (so that it starts and restarts automatically).
 
 ### Bonus Gunicorn tip: reloading your app
 
-Gunicorn will reload your app if you send it SIGHUP. You can do that using
-daemontools:
+Gunicorn will reload your app if you send it SIGHUP. You can teach systemd that
+fact by adding the following line under `[Service]` in your systemd unit file:
 
-    svc -h ~/apps/myapp
+    ExecReload=/bin/kill -HUP $MAINPID
+
+and then running `systemctl --user daemon-reload`. After that, you can use
+`systemctl` to reload your app:
+
+    systemctl --user reload myapp
 
 ## Suggestions/improvements?
 

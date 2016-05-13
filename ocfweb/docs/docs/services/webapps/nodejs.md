@@ -11,8 +11,8 @@ install and manage dependencies and versions.
 
 1. Create a directory for your app to live in:
 
-       mkdir -p ~/apps/myapp
-       cd ~/apps/myapp
+       mkdir -p ~/myapp
+       cd ~/myapp
 
 2. Install nvm in your home directory. Note that `nvm` is terrible and will
    modify your shell config files without asking. But maybe that's what you
@@ -31,32 +31,33 @@ install and manage dependencies and versions.
        nvm install 0.10
        nvm alias default 0.10
 
-4. Copy your code to `~/apps/myapp/src` or similar, and install any
+4. Copy your code to `~/myapp/src` or similar, and install any
    dependencies using `npm`.
 
 ## Preparing your app to be supervised
 
-Create a file at `~/apps/myapp/run` with content like:
+Create a file at `~/myapp/run` with content like:
 
     #!/bin/bash -e
-    [ -e /srv/apps/celli/celli.sock ] && rm /srv/apps/celli/celli.sock
+    USER="$(whoami)"
+    [ -e "/srv/apps/$USER/$USER.sock" ] && rm "/srv/apps/$USER/$USER.sock"
     umask 0
 
     . ~/.nvm/nvm.sh
-    NODE_ENV=production PORT=/srv/apps/$(whoami)/$(whoami).sock \
-        exec ~/apps/myapp/src/bin/www
+    NODE_ENV=production PORT="/srv/apps/$USER/$USER.sock" \
+        exec ~/myapp/src/bin/www
 
-Replace `~/apps/myapp/src/bin/www` with the path to your app, then make `run`
+Replace `~/myapp/src/bin/www` with the path to your app, then make `run`
 executable:
 
-    chmod +x ~/apps/myapp/run
+    chmod +x ~/myapp/run
 
 Test executing the run script. You should be able to access your website while
 running it (or see any errors in your terminal).
 
-## Supervise your app with daemontools
+## Supervise your app with systemd
 
-Cool, your app works. [[Set up daemontools|doc services/webapps#supervise]] to
+Cool, your app works. [[Set up systemd|doc services/webapps#supervise]] to
 supervise your app (so that it starts and restarts automatically).
 
 ## Suggestions/improvements?
