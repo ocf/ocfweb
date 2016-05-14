@@ -10,10 +10,10 @@ This document records the '''Constitution of the Open Computing Facility''', as 
 4. [February 8, 2000](#amended-2000-02-08)
 5. [September 29, 2014](#amended-2014-09-29)
 6. September 1, 2015 ([part 0](#amended-2015-09-01-part0), [part
-   1](#amended-2015-09-01-part1), [part 2](#amended-2016-05-xx-part0))
+   1](#amended-2015-09-01-part1), [part 2](#amended-2016-05-13-part0))
 7. [September 22, 2015](#amended-2015-09-22)
-8. May xx, 2016 ([part 0](#amended-2016-05-xx-part0), [part
-   1](#amended-2016-05-xx-part1))
+8. May 13, 2016 ([part 0](#amended-2016-05-13-part0), [part
+   1](#amended-2016-05-13-part1))
 
 ## Preamble
 
@@ -242,19 +242,19 @@ constitution into compliance with requirements set by the University.
 ##### 8.1.2 Annotation
 Whenever this Constitution is amended, an annotation of the date of ratification shall be added to the beginning of this document and shall be further noted immediately following the new amendment.
 
-##### 8.1.3 LEAD Center records    {amended-2016-05-xx-part0}
+##### 8.1.3 LEAD Center records    {amended-2016-05-13-part0}
 All amendments, additions or deletions to this document must be filed with the
 LEAD Center in 432 Eshleman Hall.
 
 *[Originally amended at the General Meeting of September 1, 2015, with effect from June 26, 2015.]*
 
-*[This section was modified by amendment on May xx, 2016.]*
+*[This section was amended on May 13, 2016.]*
 
 #### 8.2 Bylaws
 Bylaws may be created or modified as needed, through the [OCF Decision Making Process](#ocf_decision_making_process).
 
 
-### 9  Dissolution    {amended-2016-05-xx-part1}
+### 9  Dissolution    {amended-2016-05-13-part1}
 The assets of the OCF constitute a continuing trust for the benefit of all members of the Berkeley campus community interested in open computing facilities.
 
 If the organization is ASUC or GA Sponsored, all unspent ASUC funds shall
@@ -267,4 +267,4 @@ Frontier Foundation](https://www.eff.org/about).
 In the event that the designated nonprofit organization no longer exists or has
 ceased to be a nonprofit, then the unspent funds shall be donated to the ASUC.
 
-*[This section was modified by amendment on May xx, 2016.]*
+*[This section was amended on May 13, 2016.]*
