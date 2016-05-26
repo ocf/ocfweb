@@ -153,6 +153,10 @@ full details. In summary,
 * **Bring an app back online.** `systemctl --user start myapp`
 * **Check the status of an app.** `systemctl --user status myapp`
 
+Your app's standard output and error streams are sent to systemd's journal (by
+default). You can view them using `journalctl --user -n`. See `man journalctl`
+for more options.
+
 ## Frequently asked questions
 ### Can you install a package on the app server?
 
