@@ -27,7 +27,6 @@ setup(
         'django>=1.9,<1.9.999',
         'gunicorn',
         'libsass<=0.10.0',
-        'lxml',
         'matplotlib',
         'mistune',
         'numpy',

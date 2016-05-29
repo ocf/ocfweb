@@ -1,9 +1,9 @@
 from collections import namedtuple
+from xml.etree import ElementTree as etree
 
 import dateutil.parser
 import requests
 from cached_property import cached_property
-from lxml import etree
 from requests.exceptions import RequestException
 
 from ocfweb.caching import periodic
@@ -41,10 +41,10 @@ class Post(namedtuple('Post', [
         }
         attrs['updated'] = dateutil.parser.parse(attrs['updated'])
         attrs['published'] = dateutil.parser.parse(attrs['published'])
-        attrs['link'] = element.xpath(
-            'atom:link[@type="text/html"]',
+        attrs['link'] = element.find(
+            './/atom:link[@type="text/html"]',
             namespaces=_namespaces,
-        )[0].get('href')
+        ).get('href')
         return cls(**attrs)
 
 
@@ -73,8 +73,8 @@ def get_blog_posts():
 
     return [
         Post.from_element(post)
-        for post in tree.xpath(
-            '//atom:entry',
+        for post in tree.findall(
+            './/atom:entry',
             namespaces=_namespaces,
         )
     ]
