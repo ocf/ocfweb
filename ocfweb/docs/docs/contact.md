@@ -73,15 +73,14 @@ fraud, is not allowed. Accounts of repeat infringers will be disabled in
 accordance with university policies.
 
 DMCA takedown notices must comply with [17 U.S.C. § 512(c)(3)][dmca] and be
-sent to the [designated agent at UC Berkeley][dmca] We recommend also sending a
+sent to the [designated agent at UC Berkeley][dmca]. We recommend also sending a
 copy of the notice to the OCF directly
 ([security@ocf.berkeley.edu](mailto:security@ocf.berkeley.edu)) for faster
 response.
 
 Please note that any cease and desist notices may be forwarded to the
-[Chilling Effects project][chilling-effects] for publication and annotation.
-Chilling Effects will redact personal contact information.
+[Lumen database][lumen] for publication and annotation.
 
-[chilling-effects]: https://www.chillingeffects.org/
-[dmca]: http://www.copyright.gov/onlinesp/agents/u/univ_ca_berkeley.pdf
+[lumen]: https://lumendatabase.org/
+[dmca]: https://security.berkeley.edu/digital-millennium-copyright-act-dmca-uc-berkeley
 [usepolicy]: https://security.berkeley.edu/policy/usepolicy.html
