@@ -77,7 +77,7 @@ def renaming_announcement(title, request):
 @announcement(
     'Unveiling a new name for the Open Computing Facility',
     date(2016, 4, 1),
-    'printing',
+    'renaming',
 )
 def renaming_announcement(title, request):
     return render(
@@ -98,7 +98,7 @@ def renaming_announcement(title, request):
 @announcement(
     'Changes to printing policies',
     date(2016, 2, 9),
-    'renaming',
+    'printing',
 )
 def printing_announcement(title, request):
     return render(
