@@ -64,7 +64,7 @@ def index(request):
     date(2016, 5, 12),
     'ocf-eff-alliance',
 )
-def renaming_announcement(title, request):
+def eff_alliance(title, request):
     return render(
         request,
         'announcements/2016-05-12-ocf-eff-alliance.html',
@@ -77,7 +77,7 @@ def renaming_announcement(title, request):
 @announcement(
     'Unveiling a new name for the Open Computing Facility',
     date(2016, 4, 1),
-    'renaming',
+    'renaming-ocf',
 )
 def renaming_announcement(title, request):
     return render(
