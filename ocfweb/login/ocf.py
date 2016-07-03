@@ -1,3 +1,5 @@
+import re
+
 import ocflib.account.utils as utils
 import ocflib.account.validators as validators
 from django import forms
@@ -7,10 +9,25 @@ from django.shortcuts import render
 
 from ocfweb.auth import login_required
 from ocfweb.component.forms import Form
+from ocfweb.component.session import logged_in_user
+from ocfweb.component.session import login as session_login
+from ocfweb.component.session import logout as session_logout
+
+
+def _valid_return_path(return_to):
+    """Make sure this is a valid relative path to prevent redirect attacks."""
+    return re.match(
+        '^/[^/]',
+        return_to,
+    )
 
 
 def login(request):
     error = None
+
+    return_to = request.GET.get('next')
+    if return_to and _valid_return_path(return_to):
+        request.session['login_return_path'] = return_to
 
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -20,9 +37,11 @@ def login(request):
             password = form.cleaned_data['password']
 
             try:
-                if (validators.user_exists(username) and
-                        utils.password_matches(username, password)):
-                    request.session['ocf_user'] = username
+                if (
+                        validators.user_exists(username) and
+                        utils.password_matches(username, password)
+                ):
+                    session_login(request, username)
                     return redirect_back(request)
                 else:
                     error = (
@@ -48,11 +67,15 @@ def login(request):
 
 @login_required
 def logout(request):
+    return_to = request.GET.get('next')
+    if return_to and _valid_return_path(return_to):
+        request.session['login_return_path'] = return_to
+
     if request.method == 'POST':
         form = forms.Form(request.POST)
 
         if form.is_valid():
-            del request.session['ocf_user']
+            session_logout(request)
             return redirect_back(request)
     else:
         form = forms.Form()
@@ -62,19 +85,18 @@ def logout(request):
         'login/ocf/logout.html',
         {
             'form': form,
-            'user': request.session['ocf_user']
+            'user': logged_in_user(request),
         },
     )
 
 
 def redirect_back(request):
-    """Return the user to the page they were trying to access, or the commands
+    """Return the user to the page they were trying to access, or the home
     page if we don't know what they were trying to access.
     """
-    if 'login_return_path' not in request.session:
-        request.session['login_return_path'] = reverse('commands')
-
-    return HttpResponseRedirect(request.session['login_return_path'])
+    return HttpResponseRedirect(
+        request.session.pop('login_return_path', reverse('home')),
+    )
 
 
 class LoginForm(Form):

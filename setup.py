@@ -10,7 +10,7 @@ except IOError:
 setup(
     name='ocfweb',
     version=VERSION,
-    packages=find_packages(exclude=['debian', 'virtualenv_run']),
+    packages=find_packages(exclude=['debian', 'venv']),
     include_package_data=True,
     url='https://www.ocf.berkeley.edu/',
     author='Open Computing Facility',

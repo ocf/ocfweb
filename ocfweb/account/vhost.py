@@ -20,6 +20,7 @@ from ocflib.misc.whoami import current_user_formatted_email
 from ocfweb.auth import group_account_required
 from ocfweb.auth import login_required
 from ocfweb.component.forms import Form
+from ocfweb.component.session import logged_in_user
 
 
 def valid_domain(domain):
@@ -33,7 +34,7 @@ def valid_domain(domain):
 @login_required
 @group_account_required
 def request_vhost(request):
-    user = request.session['ocf_user']
+    user = logged_in_user(request)
     attrs = user_attrs(user)
     error = None
 

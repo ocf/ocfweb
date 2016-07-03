@@ -8,6 +8,7 @@ from ocflib.infra.net import is_ocf_ip
 from ocflib.lab.hours import Day
 
 from ocfweb.component.lab_status import get_lab_status
+from ocfweb.component.session import logged_in_user
 from ocfweb.environment import ocfweb_version
 
 
@@ -25,11 +26,13 @@ def ocf_template_processor(request):
     hours = Day.from_date(date.today())
     real_ip = get_real_ip(request)
     return {
-        'lab_is_open': hours.is_open(),
-        'current_lab_hours': hours,
-        'lab_status': get_lab_status(),
         'base_css_classes': ' '.join(get_base_css_classes(request)),
+        'current_lab_hours': hours,
         'is_ocf_ip': is_ocf_ip(ip_address(real_ip)) if real_ip else True,
         'join_staff_url': request.build_absolute_uri(reverse('about-staff')),
+        'lab_is_open': hours.is_open(),
+        'lab_status': get_lab_status(),
         'ocfweb_version': ocfweb_version(),
+        'request_full_path': request.get_full_path(),
+        'user': logged_in_user(request),
     }

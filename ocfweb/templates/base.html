@@ -99,19 +99,28 @@
                                 Contact <span class="hidden-sm">Us</span>
                         </a></li>
 
-                        <li class="dropdown">
-                            <a class="ocf-account-dropdown dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                christopherkuehl
-                                <span class="caret"></span>
-                            </a>
+                        {% if user %}
+                            <li class="dropdown">
+                                <a class="ocf-account-dropdown dropdown-toggle" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    {{user}}
+                                    <span class="caret"></span>
+                                </a>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{% url 'commands' %}">Commands</a></li>
-                                <li><a href="{% url 'change_password' %}">Change Password</a></li>
-                                <li><a href="{% url 'logout' %}">Log Out</a></li>
-                            </ul>
-                        </li>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{% url 'commands' %}">Commands</a></li>
+                                    <li><a href="{% url 'change_password' %}">Change Password</a></li>
+                                    <li><a href="{% url 'logout' %}?next={{request_full_path}}">Log Out</a></li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'login' %}?next={{request_full_path}}" class="ocf-account-dropdown">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    Log In
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

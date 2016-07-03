@@ -92,12 +92,16 @@ h6 {
     .ocf-account-dropdown {
         font-size: 12px !important;
         padding-left: 10px;
-        padding-right: 10px;
+        padding-right: 15px;
         background-color: rgba(100, 100, 100, 0.1);
         cursor: pointer;
 
         span {
-            margin: 0 5px;
+            margin-left: 5px;
+        }
+
+        .glyphicon {
+            margin-right: 5px;
         }
     }
 

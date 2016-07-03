@@ -1,3 +1,4 @@
+# TODO: move this file into ocfweb.component.session?
 from urllib.parse import urlencode
 
 from django.contrib.auth import REDIRECT_FIELD_NAME
@@ -6,10 +7,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from ocflib.account.search import user_is_group
 
+from ocfweb.component.session import is_logged_in
+from ocfweb.component.session import logged_in_user
+
 
 def login_required(function):
     def _decorator(request, *args, **kwargs):
-        if 'ocf_user' in request.session:
+        if is_logged_in(request):
             return function(request, *args, **kwargs)
 
         request.session['login_return_path'] = request.get_full_path()
@@ -20,11 +24,16 @@ def login_required(function):
 
 def group_account_required(function):
     def _decorator(request, *args, **kwargs):
-        if user_is_group(request.session['ocf_user']):
+        try:
+            user = logged_in_user(request)
+        except KeyError:
+            user = None
+
+        if user and user_is_group(logged_in_user(request)):
             return function(request, *args, **kwargs)
 
         return render(request, 'group_accounts_only.html', {
-            'user': request.session['ocf_user']
+            'user': user,
         }, status=403)
 
     return _decorator
