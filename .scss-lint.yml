@@ -37,3 +37,6 @@ linters:
 
     HexNotation:
         enabled: false
+
+    ImportantRule:
+        enabled: false

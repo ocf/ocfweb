@@ -14,7 +14,7 @@ $(document).ready(function() {
     updateFooterHeight();
 
     // Close dropdown menu if clicked/tapped outside of
-    $(document).click(function (event) {
+    $(document).click(function(event) {
         var menuOpen = $(".navbar-collapse").hasClass("in");
 
         // If the menu is open and the click occurred somewhere
