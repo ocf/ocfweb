@@ -77,7 +77,8 @@ h6 {
     }
 
     .navbar-brand,
-    .navbar-nav > li > a {
+    .navbar-nav > li > a,
+    .ocf-account-dropdown {
         font-size: 16px;
         color: #000;
         height: $navbar-height;
@@ -85,6 +86,18 @@ h6 {
 
         @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
             font-size: 14px;
+        }
+    }
+
+    .ocf-account-dropdown {
+        font-size: 12px !important;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: rgba(100, 100, 100, 0.1);
+        cursor: pointer;
+
+        span {
+            margin: 0 5px;
         }
     }
 
