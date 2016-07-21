@@ -17,7 +17,7 @@ we recommend using [Hexchat](https://hexchat.github.io/) because it is free,
 open source, and generally easy to use. Our server settings are listed below:
 
 * **Server:** `irc.ocf.berkeley.edu`
-* **Port:** `6667` (non-SSL), `6697` (SSL)
+* **Port:** `6697` (requires SSL/TLS)
 * **Channels:** `#rebuild` (best to reach staff), `#ocf` (best for off-topic)
 
 ### Option 2: Over SSH
