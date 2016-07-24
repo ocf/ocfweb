@@ -43,7 +43,7 @@ You can transfer files to your account using [SFTP](https://en.wikipedia.org/wik
 
 Otherwise, use the following information in your SFTP client.
 
-![SFTP Screenshot](img/ssh/sftp.png)
+![SFTP Screenshot](../../../static/img/ssh/sftp.png)
 Format: ![SFTP Screenshot](url)
 
 * Protocol: SFTP (or SSH)
