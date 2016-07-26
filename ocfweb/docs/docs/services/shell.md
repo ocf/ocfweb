@@ -31,15 +31,23 @@ On Mac OS X or Linux, enter in the terminal:
     ssh username@ssh.ocf.berkeley.edu
 
 #### Windows
-On Windows, use [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) (download the `putty.exe` file):
+On Windows, use [PuTTY][putty] (download the `putty.exe` file):
 
 * Host Name: `ssh.ocf.berkeley.edu`
 * Port: 22
 
+[putty]: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 
 ## SFTP
 
-You can transfer files to your account using [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol). To transfer files, you'll need another program, such as [FileZilla](https://filezilla-project.org/), [WinSCP](http://winscp.net/) (Windows), or [Cyberduck](https://cyberduck.io/) (Mac OS X, Windows).
+You can transfer files to your account using [SFTP][sftp]. To transfer files,
+you'll need another program, such as [FileZilla][filezilla] (Linux, Mac,
+Windows), [WinSCP][winscp] (Windows), or [Cyberduck][cyberduck] (Mac, Windows).
+
+[sftp]: https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol
+[filezilla]: https://filezilla-project.org/
+[winscp]: http://winscp.net/
+[cyberduck]: https://cyberduck.io/
 
 Otherwise, use the following information in your SFTP client.
 

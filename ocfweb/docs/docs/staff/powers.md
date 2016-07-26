@@ -20,19 +20,21 @@ practice most staff members are Directors and vice versa.
 * receive `staff@ocf` mail (including staff discussions and announcements)
 * can process group account requests
 * can access and process [Request Tracker](https://rt.ocf.berkeley.edu/) tickets
-* receive `wheel@ocf` mail (including cron spam and discussions that include mundane technical jargon)
+* receive `wheel@ocf` mail (including cron spam and discussions with technical
+  jargon)
 * can change print quotas
 * can login to all servers
 * have sudo access (root privileges) on the print server
-* can edit shared staff files such as `User_Info` and `motd` (message of the day)
+* can edit shared staff files such as `User_Info` and `motd` (message of the
+  day on public servers)
 * can edit the [[wiki|doc staff/docs]] and are expected to help maintain it
-* must hold [[staff hours|staff-hours]], often alongside others
+* must hold [[staff hours|staff-hours]], alongside other staffers
 
 
 ### `/root` principal
 
-In order to reset user passwords, staff must possess a `/root` principal.  This
-principal grants the staffer the user the ability to change passwords.  This is
+In order to reset user passwords, staff must possess a `/root` principal. This
+principal grants the staffer the user the ability to change passwords. This is
 because chpass requires the Kerberos `change-password` privilege. The
 permission to do this originates in the Kerberos administrative ACL
 (`kerberos:/etc/heimdal-kdc/kadmind.acl`):
