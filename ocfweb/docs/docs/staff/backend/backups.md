@@ -1,19 +1,14 @@
 [[!meta title="Backups"]]
 ## Backup Storage
 
-We have two sources of storage for on-site backups:
-
-* `pandemic:/opt/backups` (2 TiB usable; 2x 2-TiB WD RE drives in RAID 1)
-
-  These drives serve as the primary backup location. New backups are saved
-  here.
+We currently store our on-site backups across a couple drives on `hal`:
 
 * `hal:/opt/backups` (6 TiB usable; 2x 3-TiB WD RE drives in an LVM volume group)
 
-  This volume group provides `/dev/vg-backups/backups-mirror` which is cloned
-  daily from `/opt/backups` on pandemic, as well as
+  This volume group provides `/dev/vg-backups/backups-live` which contains
+  recent daily, weekly, and monthly backups, and
   `/dev/vg-backups/backups-scratch`, which is scratch space for holding
-  compressed and encrypted backups while we upload them to off-site storage.
+  compressed and encrypted backups which we then upload to off-site storage.
 
 ## Off-Site Backups
 
@@ -37,23 +32,25 @@ Backups currently include:
 * Everything on NFS
   * User home and web directories
   * Cronjobs on supported servers (tsunami, supernova, biohazard, etc.)
-* MySQL databases (including user databases, stats, RT, print quotas)
+* MySQL databases (including user databases, stats, RT, print quotas, IRC data)
 * Everything on GitHub (probably very unnecessary)
+* LDAP and Kerberos data
 * A [smattering of random files on random servers][backed-up-files]
 
 ## Backup Procedures
 
-Backups are currently made daily via a cronjob on `pandemic` which calls
-rsnapshot. The current settings are to retain 7 daily backups, 4 weekly
-backups, and 6 monthly backups, but we might adjust this as we find out how
-much space that takes.
+Backups are currently made daily via a cronjob on `hal` which calls rsnapshot.
+The current settings are to retain 7 daily backups, 4 weekly backups, and 6
+monthly backups, but we might adjust this as it takes more space or we get
+larger backup drives.
 
 We use `rsnapshot` to make incremental backups. Typically, each new backup
 takes an additional ~3GiB of space (but this will vary based on how many
-files actually changed). A full backup is about ~700GiB of space.
+files actually changed). A full backup is about ~1.3TiB of space and growing.
 
 (The incremental file backups are only about ~300 MiB, but since mysqldump
-files can't be incrementally backed up, those take a whole ~2 GiB each time.)
+files can't be incrementally backed up, those take a whole ~2 GiB each time,
+so the total backup grows by ~3GiB each time.)
 
 #### Request Tracker
 
@@ -101,6 +98,7 @@ Some general ideas for improving backups:
    SM, and one is in server room. This makes it easier to keep the off-site
    backup relatively recent.
 
-7. Automate offsite backups to either Google Nearline or possibly Box.
+8. **In progress.** Automate offsite backups to either Google Nearline or
+   possibly Box.
 
 [backed-up-files]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/rsnapshot.conf#L53
