@@ -1,4 +1,4 @@
-[[!meta title="chpass (reset a user's password)"]]
+[[!meta title="chpass: reset a user's password"]]
 
 The preferred way of changing passwords is to [[do it online|change_password]].
 This does not require a staffer to be present to change the user's password.

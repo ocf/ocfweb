@@ -1,4 +1,4 @@
-[[!meta title="ssh-list (run command via SSH in parallel)"]]
+[[!meta title="ssh-list: run command via SSH in parallel"]]
 
 `ssh-list` is a small wrapper around `parallel-ssh` which reads lists of hosts
 from LDAP.
