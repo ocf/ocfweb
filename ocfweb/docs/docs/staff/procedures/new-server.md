@@ -4,9 +4,10 @@ Bringing up new servers is pretty easy, but has a few easy-to-miss steps. This
 process requires both root and a `/admin` principal.
 
 It's preferable to not bring up servers at a whim, but if you must, you should
-use hostnames of the form `hozer-{50..89}` and their corresponding IP addresses
-(rather than allocating new ones). Please clean up (remove the VMs and logical
-volumes) when you're finished.
+use hostnames of the form `hozer-{60..89}` and their corresponding IP addresses
+(rather than allocating new ones). Please clean up when you're finished by
+running `virsh undefine hozer-{num}` to remove the VM and `lvremove
+/dev/vg/hozer-{num}` to remove the logical volume.
 
 ## Pick a hostname and IP
 
