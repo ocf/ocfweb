@@ -12,18 +12,22 @@ We currently store our on-site backups across a couple drives on `hal`:
 
 ## Off-Site Backups
 
-There is a single 2-TiB WD RE drive used for off-site backup storage. It's
-encrypted (`LUKS`) and stored in the SM's apartment (with a password known only
-to the GM/SM).
-
-A more sophisticated scheme for off-site backups might be preferable at some
-point. Cloud-based storage is usually far too expensive (e.g. Glacier can
-easily cost thousands of dollars, see rt#253).
+Our main off-site backup location is [Box][box]. Students automatically get an
+"unlimited" plan, so it provides a nice and free location to store encrypted
+backups. We currently have a weekly cronjob that [makes an encrypted
+backup][create-encrypted-backup] using GPG keys and then [uploads it to
+Box.com][upload-to-box]. This takes about 20 hours combined to make and upload,
+and will probably take even longer in the future as backups grow. An email is
+sent out once the backup files are uploaded, and the link provided is shared
+with only OCF officers to make sure the backups are kept as secure as possible,
+since they contain all of the OCF's important data.  The backups are already
+encrypted, but it doesn't hurt to add a little extra security to that.
 
 We also use Google Nearline on an ad-hoc basis (i.e. we have scripts to make
 the backup, but they only upload and don't remove the old backups). They're
 not yet executed automatically and require some human care to ensure things
 work properly.
+
 
 ## Backup Contents
 
@@ -94,11 +98,16 @@ Some general ideas for improving backups:
 
 6. **Done.** Automate the backups and rotation.
 
-7. Come up with some rotation for off-site backups so at all times one is with
-   SM, and one is in server room. This makes it easier to keep the off-site
-   backup relatively recent.
+7. **Done.** Automate weekly offsite backups to Box.
 
-8. **In progress.** Automate offsite backups to either Google Nearline or
-   possibly Box.
+8. Automate backup testing, so have some system for periodically checking that
+   backups can be restored from, whether they are offsite or onsite.
 
+9. Possibly automate offsite backups to Google Nearline? This is probably
+   unnecessary given that there are already offsite backups on Box and we'd
+   have to pay for this.
+
+[box]: https://www.box.com
+[create-encrypted-backup]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/create-encrypted-backup
+[upload-to-box]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/upload-to-box
 [backed-up-files]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/rsnapshot.conf#L53
