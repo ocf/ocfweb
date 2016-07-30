@@ -32,31 +32,12 @@ least the following information:
 * Desired domain name for the app (either group.berkeley.edu, or your own
   domain)
 * The technologies/languages your site is built on
-* Who will be responsible for deploying and maintaining the app? Do they have
-  adequate experience to handle that task? Provide name(s) and email(s).
-
-If your app is not already built and ready to be deployed, please don't email
-us until it is.
 
 ## Requirements for virtually-hosted apps
 
 All [[normal requirements for virtual hosts|doc services/vhost]] apply. In
 particular, be sure you are in compliance with the university student group
 disclaimer policy, and that your website features a "Hosted by OCF" banner.
-
-## Expectations and our rights
-
-We expect all groups request app hosting to be able to deploy their app by
-themselves in our setup. We can try to assist during [[staff hours|staff-hours]]
-but it is *your responsibility* to ensure your app works, not ours.
-
-We may disable or remove a group's virtually-hosting web app if necessary to
-comply with university/OCF policies, or to protect other users (e.g. if your
-app is using a disproportionate share of resources or poses a security risk).
-All normal OCF account policies apply.
-
-Additionally, we reserve the right to revoke web app privileges from a group if
-it becomes clear that they are unable to adequately maintain their app.
 
 ## Technical documentation
 
@@ -192,10 +173,5 @@ for you (you could install one in your home directory if you *really* want to).
 The app server is behind a firewall; you won't be able to access most ports
 from outside of the OCF. You could come work from [[the lab|doc services/lab]], or
 forward the port over SSH from elsewhere.
-
-### Can I get a separate virtual host for staging/development?
-
-If you really need one, we might be able to work something out. Email
-`hostmaster@ocf` with details.
 
 [dpkg]: https://www.debian.org/distrib/packages#search_packages
