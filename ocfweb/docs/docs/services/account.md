@@ -101,8 +101,6 @@ Some common reasons accounts are disabled:
 
 Accounts may also be disabled if OCF staff need to contact you but cannot do so.
 
-To re-enable your account, you will need to see a Manager (gm, sm, or dm after the staff member's name) during [[staff hours|staff-hours]].
+To re-enable your account, you will need to see a Manager during [[staff hours|staff-hours]].
 
 If you want to disable your OCF account, please [[contact us|doc contact]] and provide your OCF username. If your account appears to still be active, we may ask for some evidence that you are the account owner. Currently, disabled accounts are stored or archived and can be *re-enabled* by request at a later date. Disabled accounts may eventually be scheduled for deletion.
-
-To permanently delete the contents of your account, you will need to have access to your account.
