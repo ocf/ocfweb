@@ -3,8 +3,8 @@
 
 All accounts include hosting with a web address at:
 
-* **`www.ocf.berkeley.edu/~user`** (canonical version)
-* **`ocf.io/user`** (shorter version)
+* **`https://www.ocf.berkeley.edu/~user`** (canonical version)
+* **`https://ocf.io/user`** (shorter version)
 
 where `user` is the account name.
 
