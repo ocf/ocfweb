@@ -242,7 +242,7 @@ constitution into compliance with requirements set by the University.
 ##### 8.1.2 Annotation
 Whenever this Constitution is amended, an annotation of the date of ratification shall be added to the beginning of this document and shall be further noted immediately following the new amendment.
 
-##### 8.1.3 LEAD Center records    {amended-2016-05-13-part0}
+##### 8.1.3 LEAD Center Records    {amended-2016-05-13-part0}
 All amendments, additions or deletions to this document must be filed with the
 LEAD Center in 432 Eshleman Hall.
 
