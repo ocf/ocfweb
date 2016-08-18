@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load common %}
+{% load vhost_mail %}
+
+{% block content %}
+    <div class="ocf-content-block">
+        {% if not vhosts %}
+            <h3>You don't currently have mail virtual hosting.</h3>
+        {% endif %}
+        <p>
+            Mail virtual hosting lets you receive mail at a domain like
+            <tt>@mygroup.berkeley.edu</tt>. You can create as many
+            addresses as you'd like&ndash;for your officers, members,
+            committees, and more.
+        </p>
+
+        {% if vhosts %}
+            {% for vhost in vhosts %}
+                <hr />
+                <h3>{{vhost.domain}}</h3>
+                {% with vhost|forwarding_addresses:c as forwarding_addresses %}
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Email address</th>
+                            <th>Forward to</th>
+                            <th>Password<small>*</small></th>
+                            <th>Last updated</th>
+                            <th>&nbsp;</th>
+                        </tr>
+
+                        {% if forwarding_addresses %}
+                            {% for addr in forwarding_addresses %}
+                                <tr>
+                                    <td>
+                                        <!-- pardon long line, must avoid spacing -->
+                                        {{addr.address|address_to_parts|getitem:0}}<span class="subtle">@{{addr.address|address_to_parts|getitem:1}}</span>
+                                    </td>
+                                    <td>{{addr.forward_to}}</td>
+                                    <td>
+                                        <button class="btn btn-link btn-small">
+                                            {% if addr.crypt_password %}
+                                                Change
+                                            {% else %}
+                                                Set
+                                            {% endif %}
+                                        </button>
+                                    </td>
+                                    <td><em>idk</em></td>
+                                    <td>
+                                        <button class="btn btn-link">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="5">
+                                    <em>You don't have any forwarding addresses defined yet.</em>
+                                </td>
+                            <tr>
+                        {% endif %}
+                    </table>
+
+                    <button type="submit" class="btn btn-small btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Add address
+                    </button>
+                {% endwith %}
+            {% endfor %}
+            <hr />
+            <small>
+                * Passwords can't be retrieved after being set, but you can always change them again.
+            </small>
+        {% else %}
+            <p>
+                Mail virtual hosting is a free service from the friendly
+                student volunteers of the Open Computing Facility. Interested
+                in signing up?
+                <a href="{% url 'doc' 'contact' %}">Get in touch with us!</a>
+        {% endif %}
+
+    </div>
+{% endblock %}

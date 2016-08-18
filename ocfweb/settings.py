@@ -161,6 +161,10 @@ if getuser() == 'ocfweb':
     CELERY_BROKER = conf.get('celery', 'broker')
     CELERY_BACKEND = conf.get('celery', 'backend')
 
+    # TODO: read from config file
+    OCFMAIL_USER = 'ocfmail'
+    OCFMAIL_PASSWORD = 'notthepassword'
+
     # on prod, we use Redis as a cache
     CACHES['default'] = {
         'BACKEND': 'django_redis.cache.RedisCache',
@@ -187,3 +191,7 @@ else:
         CELERY_BACKEND = conf.get('celery', 'backend')
     except configparser.NoSectionError:
         pass
+
+    # TODO: read from config file
+    OCFMAIL_USER = 'ocfmail'
+    OCFMAIL_PASSWORD = 'notthepassword'
