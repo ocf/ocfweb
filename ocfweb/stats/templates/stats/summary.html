@@ -29,7 +29,7 @@
         <h3>Printers</h3>
         <div class="row">
             {% for printer, toner, maintkit in printers %}
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <h4>{{printer}}</h4>
                     {% if toner %}
                         <p><strong>Toner: </strong> {% widthratio toner|getitem:0 toner|getitem:1 100 %}% remaining</p>
