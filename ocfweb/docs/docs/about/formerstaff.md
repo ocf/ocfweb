@@ -82,6 +82,7 @@ Some of the places OCF staffers have gone on to work at:
 * [SiByte, Inc](http://sibyte.broadcom.com) (acquired by [Broadcom](http://www.broadcom.com))
 * [Silicon Graphics (SGI)](http://www.sgi.com/)
 * [Snapfish](http://www.snapfish.com/)
+* [Splunk](http://www.splunk.com/)
 * [StarNine Technologies](http://www.starnine.com/)
 * [Sun Microsystems](http://www.sun.com/)
 * [Taos Mountain Software](http://www.taos.com)
