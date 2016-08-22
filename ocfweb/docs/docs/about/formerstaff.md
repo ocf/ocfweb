@@ -92,7 +92,7 @@ Some of the places OCF staffers have gone on to work at:
 * [Walmart.com](http://www.walmart.com/)
 * [Wells Fargo Bank](http://www.wellsfargo.com/)
 * [The White House](https://www.whitehouse.gov)
-* [Yelp](http://www.yelp.com/)
+* [Yelp](https://www.yelp.com/)
 * [Yggdrasil Computing, Inc.](http://www.yggdrasil.com/)
 * Z-Code Software (acquired by [Microfocus](http://www.microfocus.com))
 
