@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load common %}
 {% load vhost_mail %}
+{% load humanize %}
 
 {% block content %}
     <div class="ocf-content-block">
@@ -13,6 +14,30 @@
             addresses as you'd like&ndash;for your officers, members,
             committees, and more.
         </p>
+
+        <h4>add address</h4>
+        <form method="POST" action="{% url 'vhost_mail_add_address' %}" target="_blank">
+            <input type="text" name="addr" placeholder="addr" />
+            <input type="text" name="forward_to" placeholder="forward_to" />
+            <input type="password" name="password" placeholder="password" />
+            <input type="submit" />
+            {% csrf_token %}
+        </form>
+
+        <h4>change password</h4>
+        <form method="POST" action="{% url 'vhost_mail_update_password' %}" target="_blank">
+            <input type="text" name="addr" placeholder="addr" />
+            <input type="password" name="password" placeholder="password" />
+            <input type="submit" />
+            {% csrf_token %}
+        </form>
+
+        <h4>remove address</h4>
+        <form method="POST" action="{% url 'vhost_mail_remove_address' %}" target="_blank">
+            <input type="text" name="addr" placeholder="addr" />
+            <input type="submit" />
+            {% csrf_token %}
+        </form>
 
         {% if vhosts %}
             {% for vhost in vhosts %}
@@ -45,7 +70,7 @@
                                             {% endif %}
                                         </button>
                                     </td>
-                                    <td><em>idk</em></td>
+                                    <td title="{{addr.last_updated}}">{{addr.last_updated|naturaltime}}</td>
                                     <td>
                                         <button class="btn btn-link">
                                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
