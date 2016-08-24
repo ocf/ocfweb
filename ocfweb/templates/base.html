@@ -227,6 +227,9 @@
             </div>
         {% endblock %}
 
+        <!-- Block intended to be overidden later for stuff like modals that should be under <body> -->
+        {% block body_custom %}{% endblock %}
+
         <!-- Hack to make browsers load glyphicons immediately.
 
              Without this, there is awkward flashing on some pages (e.g. docs)

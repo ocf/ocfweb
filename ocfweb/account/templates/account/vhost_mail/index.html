@@ -15,6 +15,10 @@
             committees, and more.
         </p>
 
+        <button class="btn btn-large" data-toggle="modal" data-target="#myModal">
+            wat
+        </button>
+
         <h4>add address</h4>
         <form method="POST" action="{% url 'vhost_mail_add_address' %}" target="_blank">
             <input type="text" name="addr" placeholder="addr" />
@@ -106,4 +110,17 @@
         {% endif %}
 
     </div>
+{% endblock %}
+
+
+{% block body_custom %}
+    <!-- change password modal -->
+    {% include 'partials/modal-0.html' with id="myModal" %}
+    <h4 class="modal-title">herp derp</h4>
+    {% include 'partials/modal-1.html' %}
+    merp derp
+    {% include 'partials/modal-2.html' %}
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary">Save changes</button>
+    {% include 'partials/modal-3.html' %}
 {% endblock %}
