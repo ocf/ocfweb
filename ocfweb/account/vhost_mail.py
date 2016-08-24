@@ -4,7 +4,6 @@ from contextlib import contextmanager
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
@@ -141,7 +140,9 @@ def vhost_mail_add_address(request):
                 last_updated=None,
             ),
         )
-    return HttpResponse('Okay!')
+
+    messages.add_message(request, messages.SUCCESS, 'Address added successfully!')
+    return _redirect_back()
 
 
 @login_required
@@ -163,7 +164,8 @@ def vhost_mail_remove_address(request):
         addr_obj = _find_addr(request, c, vhost, addr)
         vhost.remove_forwarding_address(c, addr_obj.address)
 
-    return HttpResponse('Okay!')
+    messages.add_message(request, messages.SUCCESS, 'Address deleted successfully!')
+    return _redirect_back()
 
 
 @login_required

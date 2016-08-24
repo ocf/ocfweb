@@ -229,3 +229,8 @@ h6 {
 .alert-error {
     @extend .alert-danger;
 }
+
+.form-group label .desc {
+    font-weight: normal;
+    font-size: 90%;
+}
