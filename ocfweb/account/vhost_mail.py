@@ -2,9 +2,10 @@ import re
 from contextlib import contextmanager
 
 from django.conf import settings
+from django.contrib import messages
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.http import HttpResponseBadRequest
-from django.http import HttpResponseForbidden
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
 from ocflib.account.validators import validate_password
@@ -66,39 +67,40 @@ def _txn(**kwargs):
             c.connection.commit()
 
 
-def _get_vhost(user, domain):
+def _get_vhost(request, user, domain):
     vhosts = vhosts_for_user(user)
     for vhost in vhosts:
         if vhost.domain == domain:
             return vhost
     else:
-        raise ResponseException(
-            HttpResponseForbidden('Invalid virtual host.'),
-        )
+        messages.add_message(request, messages.ERROR, 'Invalid virtual host.')
+        raise ResponseException(_redirect_back())
 
 
-def _hash_password(name, password):
+def _hash_password(request, name, password):
     if password is not None:
         try:
             validate_password(name, password, strength_check=True)
         except ValueError as ex:
-            raise ResponseException(
-                HttpResponseBadRequest(ex.args[0]),
-            )
+            messages.add_message(request, messages.ERROR, ex.args[0])
+            raise ResponseException(_redirect_back())
         return crypt_password(password)
     else:
         return None
 
 
-def _find_addr(c, vhost, addr, raise_on_error=True):
+def _find_addr(request, c, vhost, addr, raise_on_error=True):
     for addr_obj in vhost.get_forwarding_addresses(c):
         if addr_obj.address == addr:
             return addr_obj
     else:
         if raise_on_error:
-            raise ResponseException(
-                HttpResponseBadRequest('Address does not exist.'),
-            )
+            messages.add_message(request, messages.ERROR, 'That address does not exist.')
+            raise ResponseException(_redirect_back())
+
+
+def _redirect_back():
+    return redirect(reverse('vhost_mail'))
 
 
 @login_required
@@ -113,19 +115,22 @@ def vhost_mail_add_address(request):
     try:
         name, domain = _parse_addr(addr)
     except ValueError:
-        return HttpResponseBadRequest('Invalid email address')
+        messages.add_message(request, messages.ERROR, 'Invalid email address.')
+        return _redirect_back()
 
     try:
         _parse_addr(forward_to)
     except ValueError:
-        return HttpResponseBadRequest('Invalid forwarding address')
+        messages.add_message(request, messages.ERROR, 'Invalid forwarding address.')
+        return _redirect_back()
 
-    vhost = _get_vhost(user, domain)
-    pw_hash = _hash_password(name, password)
+    vhost = _get_vhost(request, user, domain)
+    pw_hash = _hash_password(request, name, password)
 
     with _txn() as c:
-        if _find_addr(c, vhost, addr, raise_on_error=False):
-            return HttpResponseBadRequest('Address already exists')
+        if _find_addr(request, c, vhost, addr, raise_on_error=False):
+            messages.add_message(request, messages.ERROR, 'Address already exists.')
+            return _redirect_back()
 
         vhost.add_forwarding_address(
             c,
@@ -149,12 +154,13 @@ def vhost_mail_remove_address(request):
     try:
         _, domain = _parse_addr(addr)
     except ValueError:
-        return HttpResponseBadRequest('Invalid email address')
+        messages.add_message(request, messages.ERROR, 'Invalid email address.')
+        return _redirect_back()
 
-    vhost = _get_vhost(user, domain)
+    vhost = _get_vhost(request, user, domain)
 
     with _txn() as c:
-        addr_obj = _find_addr(c, vhost, addr)
+        addr_obj = _find_addr(request, c, vhost, addr)
         vhost.remove_forwarding_address(c, addr_obj.address)
 
     return HttpResponse('Okay!')
@@ -171,13 +177,14 @@ def vhost_mail_update_password(request):
     try:
         name, domain = _parse_addr(addr)
     except ValueError:
-        return HttpResponseBadRequest('Invalid email address')
+        messages.add_message(request, messages.ERROR, 'Invalid email address.')
+        return _redirect_back()
 
-    vhost = _get_vhost(user, domain)
-    pw_hash = _hash_password(name, password)
+    vhost = _get_vhost(request, user, domain)
+    pw_hash = _hash_password(request, name, password)
 
     with _txn() as c:
-        addr_obj = _find_addr(c, vhost, addr)
+        addr_obj = _find_addr(request, c, vhost, addr)
         vhost.remove_forwarding_address(c, addr_obj.address)
         vhost.add_forwarding_address(
             c,
@@ -186,4 +193,5 @@ def vhost_mail_update_password(request):
             ),
         )
 
-    return HttpResponse('Okay!')
+    messages.add_message(request, messages.SUCCESS, 'Password changed successfully!')
+    return _redirect_back()

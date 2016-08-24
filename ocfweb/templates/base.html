@@ -163,6 +163,15 @@
 
         {% block container %}
         <div class="ocf-content container">
+            {% block messages %}
+                {% if messages %}
+                    <div class="ocf-messages">
+                        {% for message in messages %}
+                            <div class="alert alert-{{message.level_tag}}">{{message}}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endblock %}
             {% block content %}{% endblock %}
         </div>
         {% endblock %}

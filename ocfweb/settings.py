@@ -48,6 +48,9 @@ MIDDLEWARE_CLASSES = (
     'ocfweb.middleware.errors.OcflibErrorMiddleware',
 )
 
+# write flash messages into the session
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ROOT_URLCONF = 'ocfweb.urls'
 
