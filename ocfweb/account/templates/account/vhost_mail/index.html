@@ -140,7 +140,7 @@
             <div class="alert alert-danger js-warn-addr" style="display: none;">
                 Don't include an "@" sign or the domain name!
             </div>
-            <input type="text" class="form-control" name="addr" placeholder="john" id="add-modal-addr" />
+            <input type="text" class="form-control" name="name" placeholder="john" id="add-modal-addr" />
         </div>
         <div class="form-group">
             <label for="add-modal-forward-to">
@@ -166,6 +166,7 @@
 
         {% include 'partials/modal-2.html' %}
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="hidden" name="domain" class="js-domain" />
         <button type="submit" class="btn btn-primary">Add address</button>
         {% include 'partials/modal-3.html' %}
         {% csrf_token %}
@@ -205,9 +206,9 @@
                 $('.js-add-address').click(function() {
                     var modal = $('#js-modal-add-address');
                     setTextOrValue(modal.find('.js-domain'), $(this).data('domain'));
-                    modal.find('input[name=password],input[name=forward_to],input[name=addr]').val('');
+                    modal.find('input[name=password],input[name=forward_to],input[name=name]').val('');
                     modal.find('button').removeAttr('disabled');
-                    modal.find('input[name=addr]').on('input', function() {
+                    modal.find('input[name=name]').on('input', function() {
                         if ($(this).val().indexOf('@') !== -1) {
                             modal.find('.js-warn-addr').show();
                             modal.find('button').attr('disabled', 'disabled');

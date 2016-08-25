@@ -106,7 +106,9 @@ def _redirect_back():
 @group_account_required
 @require_POST
 def vhost_mail_add_address(request):
-    addr = request.POST.get('addr')
+    addr_name = request.POST.get('name')
+    addr_domain = request.POST.get('domain')
+    addr = '{}@{}'.format(addr_name, addr_domain)
     forward_to = request.POST.get('forward_to')
     password = request.POST.get('password') or None
     user = logged_in_user(request)
@@ -114,7 +116,7 @@ def vhost_mail_add_address(request):
     try:
         name, domain = _parse_addr(addr)
     except ValueError:
-        messages.add_message(request, messages.ERROR, 'Invalid email address.')
+        messages.add_message(request, messages.ERROR, 'Invalid email address: {}'.format(addr))
         return _redirect_back()
 
     try:
