@@ -33,10 +33,7 @@ def vhost_mail(request):
     user = logged_in_user(request)
     vhosts = vhosts_for_user(user)
 
-    with get_connection(
-        user=settings.OCFMAIL_USER,
-        password=settings.OCFMAIL_PASSWORD,
-    ) as c:
+    with _txn() as c:
         return render(
             request,
             'account/vhost_mail/index.html',
@@ -54,6 +51,7 @@ def _txn(**kwargs):
     with get_connection(
         user=settings.OCFMAIL_USER,
         password=settings.OCFMAIL_PASSWORD,
+        db=settings.OCFMAIL_DB,
         autocommit=False,
         **kwargs
     ) as c:

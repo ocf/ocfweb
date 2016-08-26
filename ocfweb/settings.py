@@ -9,9 +9,6 @@ from django.template.base import TemplateSyntaxError
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'not_a_secret'
-DEBUG = True
-
 ALLOWED_HOSTS = [
     'www.ocf.berkeley.edu',
     'dev.ocf.berkeley.edu',
@@ -93,21 +90,13 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 # Our proxy filters cookies starting with "OCFWEB_" when going to user sites,
 # so it's important our cookies match this pattern.
 CSRF_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_PATH = '/'
 CSRF_COOKIE_NAME = 'OCFWEB_CSRF_TOKEN'
 SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_PATH = '/'
 SESSION_COOKIE_NAME = 'OCFWEB_SESSIONID'
 
 CACHES = {  # sessions are stored here
-    'default': {
-        # on dev, we use a file-backed cache so that you don't get logged out
-        # every time you update code and the server restarts.
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': os.path.expanduser('~/.ocfweb-cache'),
-    },
     'TIMEOUT': 60 * 60 * 12,  # 12 hours
     'OPTIONS': {
         'MAX_ENTRIES': 1000,
@@ -123,10 +112,6 @@ TIME_ZONE = 'America/Los_Angeles'
 USE_I18N = False
 USE_L10N = False
 USE_TZ = True
-
-STATIC_URL = '/static/'
-os.environ.setdefault('OCFWEB_STATIC_ROOT', '')
-STATIC_ROOT = os.environ['OCFWEB_STATIC_ROOT']
 
 X_FRAME_OPTIONS = 'DENY'
 
@@ -147,28 +132,27 @@ LOGGING = {
     },
 }
 
-CELERY_BROKER = 'redis://create'
-CELERY_BACKEND = 'redis://create'
+# Load the rest of the config from a file.
+# We populate this file in dev with fake values or values for development
+# databases, so this still works (as long as you're on supernova).
+conf = configparser.ConfigParser()
+conf.read('/etc/ocfweb/ocfweb.conf')
+
+SECRET_KEY = conf.get('django', 'secret')
+DEBUG = conf.getboolean('django', 'debug')
+
+STATIC_URL = conf.get('django', 'static_url')
+STATIC_ROOT = os.environ.get('OCFWEB_STATIC_ROOT') or conf.get('django', 'static_root')
+
+CELERY_BROKER = conf.get('celery', 'broker')
+CELERY_BACKEND = conf.get('celery', 'backend')
+
+OCFMAIL_USER = conf.get('ocfmail', 'user')
+OCFMAIL_PASSWORD = conf.get('ocfmail', 'password')
+OCFMAIL_DB = conf.get('ocfmail', 'db')
 
 if getuser() == 'ocfweb':
-    # not running in development, override options from config file
-    conf = configparser.ConfigParser()
-    conf.read('/etc/ocfweb/ocfweb.conf')
-
-    SECRET_KEY = conf.get('django', 'secret')
-    DEBUG = conf.getboolean('django', 'debug')
-
-    STATIC_URL = conf.get('django', 'static_url')
-    STATIC_ROOT = conf.get('django', 'static_root')
-
-    CELERY_BROKER = conf.get('celery', 'broker')
-    CELERY_BACKEND = conf.get('celery', 'backend')
-
-    # TODO: read from config file
-    OCFMAIL_USER = 'ocfmail'
-    OCFMAIL_PASSWORD = 'notthepassword'
-
-    # on prod, we use Redis as a cache
+    # Prod-only settings.
     CACHES['default'] = {
         'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': 'redis://localhost:6379/0',
@@ -183,18 +167,12 @@ if getuser() == 'ocfweb':
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_DOMAIN = 'www.ocf.berkeley.edu'
 else:
-    # running in development
-
-    # try to read celery values used by approve
-    # (only works on supernova by staff members)
-    try:
-        conf = configparser.ConfigParser()
-        conf.read('/etc/ocf-create/ocf-create.conf')
-        CELERY_BROKER = conf.get('celery', 'broker')
-        CELERY_BACKEND = conf.get('celery', 'backend')
-    except configparser.NoSectionError:
-        pass
-
-    # TODO: read from config file
-    OCFMAIL_USER = 'ocfmail'
-    OCFMAIL_PASSWORD = 'notthepassword'
+    # Dev-only settings.
+    CACHES['default'] = {
+        # On dev, we use a file-backed cache so that you don't get logged out
+        # every time you update code and the server restarts.
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.expanduser('~/.ocfweb-cache'),
+    }
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
