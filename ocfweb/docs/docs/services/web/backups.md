@@ -23,15 +23,16 @@ each; otherwise, you can just back up `public_html`.
 
 To save on storage space, you should archive and compress these backups as
 either `.zip` or `.tar.gz` files. If you have a folder `~/backups` created, you
-can save your website `~/public_html/website` there with the following command:
+can save your website `~/public_html` there with the following command:
 
-    tar czhf ~/backups/backup.tar.gz -C ~/public_html website
+    tar czhf ~/backups/backup.tar.gz ~/public_html
 
 To restore the backup, you would first remove the contents of
-`~/public_html/website` (i.e. `rm -r ~/public_html/website`) and then extract
-the compressed file by changing `tar c` to `tar x`:
+`~/public_html` (i.e. `rm -r ~/public_html`) and then extract the compressed
+file.
 
-    tar xzhf ~/backups/backup.tar.gz -C ~/public_html website
+    cd ~/public_html
+    tar xzhf ~/backups/backup.tar.gz
 
 ### WARNING
 
