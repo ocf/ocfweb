@@ -58,7 +58,10 @@ OCF web hosting, for example, to become eligible for [[virtual
 hosting|doc services/vhost]], you can move most of your website's functionality and
 content to the OCF's servers. Generally, the process is simple and sites
 migrated from WordPress.com hosting to the OCF function quite well, apart from
-possible minor differences in the appearance of themes.
+possible minor differences in the appearance of themes. However, if you're looking 
+to create your website from scratch, in most cases it will be much easier to just 
+install WordPress on your OCF account and start editing it here, rather than creating it locally
+or on another provider like WordPress.com and transferring things over.
 
 If you have an old WordPress installation lying around -- if you are replacing
 an old student group website, for example -- you should archive it before
@@ -72,11 +75,18 @@ The basic steps to migration are as follows:
 2. Use the web admin dashboard to install all the themes and plugins you were
    using at WordPress.com
 
-3. Log into your WordPress.com dashboard and go to `Tools > Export` to download
-   and XML file with all your site's posts and content.
+3. Log into your WordPress.com dashboard and go to `Settings > Export` to download
+   a zipped XML file with all your site's posts and content. Note that this export
+   usually will not include all of your media content.
 
-4. Log into the dashboard at your OCF WordPress installation and go to `Tools >
-   Import > WordPress`, then upload the XMl file with all your content.
+4. Unzip this file and change the file extension of all .xml files to .wxr
+
+5. Log into the dashboard at your OCF WordPress installation and go to `Tools >
+   Import > WordPress`, then upload the .wxr file with all your content.
+
+6. You will have to re-upload most of your media files to your OCF WordPress
+   installation. Additionally, you should try and go through most of your posts
+   and pages with images, as you may need to relink things again.
 
 Further details can be found at [the support page by WordPress.com][1].
 
