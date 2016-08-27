@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+{% load common %}
+{% load vhost_mail %}
+{% load humanize %}
+
+{% block content %}
+    <div class="ocf-content-block">
+        {% if not vhosts %}
+            <h3>You don't currently have mail virtual hosting.</h3>
+        {% endif %}
+        <p>
+            Mail virtual hosting lets you receive mail at a domain like
+            <tt>@mygroup.berkeley.edu</tt>. You can create as many
+            addresses as you'd like&ndash;for your officers, members,
+            committees, and more.
+        </p>
+
+        {% if vhosts %}
+            {% for vhost in vhosts %}
+                <hr />
+                <h3>{{vhost.domain}}</h3>
+                {% with vhost|forwarding_addresses:c as forwarding_addresses %}
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Email address</th>
+                            <th>Forward to</th>
+                            <th>Password<small>*</small></th>
+                            <th>Last updated</th>
+                            <th>&nbsp;</th>
+                        </tr>
+
+                        {% if forwarding_addresses %}
+                            {% for addr in forwarding_addresses %}
+                                <tr>
+                                    <td>
+                                        <!-- pardon long line, must avoid spacing -->
+                                        {{addr.address|address_to_parts|getitem:0}}<span class="subtle">@{{addr.address|address_to_parts|getitem:1}}</span>
+                                    </td>
+                                    <td>{{addr.forward_to}}</td>
+                                    <td>
+                                        <button data-addr="{{addr.address}}" class="btn btn-link btn-small js-change-password">
+                                            {% if addr.crypt_password %}
+                                                Change
+                                            {% else %}
+                                                Set
+                                            {% endif %}
+                                        </button>
+                                    </td>
+                                    <td title="{{addr.last_updated}}">{{addr.last_updated|naturaltime}}</td>
+                                    <td>
+                                        <button class="btn btn-link js-remove-address" data-addr="{{addr.address}}">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="5">
+                                    <em>You don't have any forwarding addresses defined yet.</em>
+                                </td>
+                            <tr>
+                        {% endif %}
+                    </table>
+
+                    <button type="submit" class="btn btn-small btn-default js-add-address" data-domain="{{vhost.domain}}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Add address
+                    </button>
+                {% endwith %}
+            {% endfor %}
+            <hr />
+            <small>
+                * Passwords can't be retrieved after being set, but you can always change them again.
+            </small>
+        {% else %}
+            <p>
+                Mail virtual hosting is a free service from the friendly
+                student volunteers of the Open Computing Facility. Interested
+                in signing up?
+                <a href="{% url 'doc' 'contact' %}">Get in touch with us!</a>
+        {% endif %}
+
+    </div>
+{% endblock %}
+
+
+{% block body_custom %}
+    <!-- change password modal -->
+    <form method="POST" action="{% url 'vhost_mail_update_password' %}">
+        {% include 'partials/modal-0.html' with id="js-modal-change-password" %}
+        <h4 class="modal-title">Change Password</h4>
+        {% include 'partials/modal-1.html' %}
+        <div class="well">
+            {% include "account/partials/password-requirements-sidebar.html" with omit_header=True %}
+        </div>
+        <p>Enter a new password for <strong class="js-email"></strong>:</p>
+        <input type="hidden" name="addr" class="js-email" />
+        <p>
+            <input name="password" type="password" class="form-control" placeholder="Password" />
+        </p>
+        {% include 'partials/modal-2.html' %}
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Change password</button>
+        {% include 'partials/modal-3.html' %}
+        {% csrf_token %}
+    </form>
+
+    <!-- remove address modal -->
+    <form method="POST" action="{% url 'vhost_mail_remove_address' %}">
+        {% include 'partials/modal-0.html' with id="js-modal-remove-address" %}
+        <h4 class="modal-title">Remove Address</h4>
+        {% include 'partials/modal-1.html' %}
+        <p>Are you sure you want to delete <strong class="js-email"></strong>?</p>
+        <input type="hidden" name="addr" class="js-email" />
+        {% include 'partials/modal-2.html' %}
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger">Delete address</button>
+        {% include 'partials/modal-3.html' %}
+        {% csrf_token %}
+    </form>
+
+    <!-- add address modal -->
+    <form method="POST" action="{% url 'vhost_mail_add_address' %}">
+        {% include 'partials/modal-0.html' with id="js-modal-add-address" %}
+        <h4 class="modal-title">Add Address</h4>
+        {% include 'partials/modal-1.html' %}
+
+        <p>Add a new address for <strong class="js-domain"></strong>.</p>
+        <hr />
+
+        <div class="form-group">
+            <label for="add-modal-addr">
+                Incoming address<br />
+                <span class="desc">
+                    This is the receiving address. Only include the part before
+                    the "@" sign.
+                </span>
+            </label>
+            <div class="alert alert-danger js-warn-addr" style="display: none;">
+                Don't include an "@" sign or the domain name!
+            </div>
+            <input type="text" class="form-control" name="name" placeholder="john" id="add-modal-addr" />
+        </div>
+        <div class="form-group">
+            <label for="add-modal-forward-to">
+                Forwarding address<br />
+                <span class="desc">
+                    This is the address to forward incoming mail to. Use a full
+                    email address here.
+                </span>
+            </label>
+            <input type="email" class="form-control" name="forward_to" placeholder="john@gmail.com" id="add-modal-forward-to" />
+        </div>
+        <div class="form-group">
+            <label for="add-modal-password">
+                Password<br />
+                <span class="desc">
+                    If you want to send email from this account, you'll need to
+                    set a password. If you don't want to send mail, you can
+                    leave this blank.
+                </span>
+            </label>
+            <input type="password" class="form-control" name="password" id="add-modal-password" />
+        </div>
+
+        {% include 'partials/modal-2.html' %}
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="hidden" name="domain" class="js-domain" />
+        <button type="submit" class="btn btn-primary">Add address</button>
+        {% include 'partials/modal-3.html' %}
+        {% csrf_token %}
+    </form>
+{% endblock %}
+
+{% block inline_js %}
+    <script>
+        (function() {
+            function setTextOrValue(ctrls, val) {
+                /**
+                 * Set text or value appropriately for each control.
+                 */
+                ctrls.each(function(i, el) {
+                    el = $(el);
+                    if (el.is('input'))
+                        el.val(val);
+                    else
+                        el.text(val);
+                });
+            }
+
+            $(document).ready(function() {
+                $('.js-change-password').click(function() {
+                    var modal = $('#js-modal-change-password');
+                    setTextOrValue(modal.find('.js-email'), $(this).data('addr'));
+                    modal.find('input[name=password]').val('');
+                    modal.modal();
+                });
+
+                $('.js-remove-address').click(function() {
+                    var modal = $('#js-modal-remove-address');
+                    setTextOrValue(modal.find('.js-email'), $(this).data('addr'));
+                    modal.modal();
+                });
+
+                $('.js-add-address').click(function() {
+                    var modal = $('#js-modal-add-address');
+                    setTextOrValue(modal.find('.js-domain'), $(this).data('domain'));
+                    modal.find('input[name=password],input[name=forward_to],input[name=name]').val('');
+                    modal.find('button').removeAttr('disabled');
+                    modal.find('input[name=name]').on('input', function() {
+                        if ($(this).val().indexOf('@') !== -1) {
+                            modal.find('.js-warn-addr').show();
+                            modal.find('button').attr('disabled', 'disabled');
+                        } else {
+                            modal.find('.js-warn-addr').hide();
+                            modal.find('button').removeAttr('disabled');
+                        }
+                    });
+                    modal.modal();
+                });
+            });
+        })();
+    </script>
+{% endblock %}

@@ -220,3 +220,17 @@ h6 {
 .nowrap {
     white-space: nowrap;
 }
+
+.ocf-messages {
+    margin-top: 20px;
+}
+
+/* for the benefit of django message labels */
+.alert-error {
+    @extend .alert-danger;
+}
+
+.form-group label .desc {
+    font-weight: normal;
+    font-size: 90%;
+}

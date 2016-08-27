@@ -163,6 +163,15 @@
 
         {% block container %}
         <div class="ocf-content container">
+            {% block messages %}
+                {% if messages %}
+                    <div class="ocf-messages">
+                        {% for message in messages %}
+                            <div class="alert alert-{{message.level_tag}}">{{message}}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endblock %}
             {% block content %}{% endblock %}
         </div>
         {% endblock %}
@@ -226,6 +235,9 @@
                 </div>
             </div>
         {% endblock %}
+
+        <!-- Block intended to be overidden later for stuff like modals that should be under <body> -->
+        {% block body_custom %}{% endblock %}
 
         <!-- Hack to make browsers load glyphicons immediately.
 

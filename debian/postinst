@@ -11,8 +11,13 @@ static_url = https://static.ocf.berkeley.edu/
 static_root = /usr/share/ocfweb/static
 
 [celery]
-broker=redis://create
-backend=redis://create
+broker = redis://create
+backend = redis://create
+
+[ocfmail]
+user = ocfmail
+password = not_a_secret
+db = ocfmail
 EOF
 fi
 

@@ -6,10 +6,16 @@ from django.conf import settings
 from django.http.response import Http404
 from ocflib.misc.mail import send_problem_report
 
+from ocfweb.component.errors import ResponseException
+
 
 class OcflibErrorMiddleware:
 
     def process_exception(self, request, exception):
+        if isinstance(exception, ResponseException):
+            return exception.response
+
+        # maybe it's a real exception?
         if settings.DEBUG:
             return
 
