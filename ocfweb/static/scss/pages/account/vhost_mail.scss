@@ -1,0 +1,20 @@
+.page-vhost_mail {
+    $spacing: 5px;
+
+    .js-forward-to-addresses .row {
+        margin-bottom: $spacing;
+    }
+
+    .forward-to-input-col {
+        padding-right: $spacing;
+    }
+
+    .forward-to-remove-col {
+        padding-left: 0;
+
+        button {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}

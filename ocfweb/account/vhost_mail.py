@@ -1,3 +1,4 @@
+import json
 import re
 from contextlib import contextmanager
 
@@ -118,9 +119,38 @@ def vhost_mail_add_address(request):
         return _redirect_back()
 
     try:
-        _parse_addr(forward_to)
-    except ValueError:
-        messages.add_message(request, messages.ERROR, 'Invalid forwarding address.')
+        forward_to = json.loads(forward_to)
+        assert type(forward_to) is list, type(forward_to)
+    except (ValueError, AssertionError):
+        messages.add_message(
+            request,
+            messages.ERROR,
+            'Unable to parse JSON, something is broken: {}'.format(forward_to),
+        )
+        return _redirect_back()
+
+    parsed_addrs = frozenset()
+    for forward_addr in forward_to:
+        try:
+            assert type(forward_addr) is str, type(forward_addr)
+            forward_addr = forward_addr.strip()
+            if forward_addr != '':
+                _parse_addr(forward_addr)
+                parsed_addrs |= {forward_addr}
+        except (ValueError, AssertionError):
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Invalid forwarding address: {}'.format(forward_addr),
+            )
+            return _redirect_back()
+
+    if len(parsed_addrs) < 1:
+        messages.add_message(
+            request,
+            messages.ERROR,
+            'You must provide at least one address to forward to.',
+        )
         return _redirect_back()
 
     vhost = _get_vhost(request, user, domain)
@@ -136,7 +166,7 @@ def vhost_mail_add_address(request):
             MailForwardingAddress(
                 address=addr,
                 crypt_password=pw_hash,
-                forward_to=forward_to,
+                forward_to=parsed_addrs,
                 last_updated=None,
             ),
         )

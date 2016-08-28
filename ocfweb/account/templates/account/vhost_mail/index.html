@@ -33,24 +33,34 @@
                             {% for addr in forwarding_addresses %}
                                 <tr>
                                     <td>
-                                        <!-- pardon long line, must avoid spacing -->
-                                        {{addr.address|address_to_parts|getitem:0}}<span class="subtle">@{{addr.address|address_to_parts|getitem:1}}</span>
+                                        <p>
+                                            <!-- pardon long line, must avoid spacing -->
+                                            {{addr.address|address_to_parts|getitem:0}}<span class="subtle">@{{addr.address|address_to_parts|getitem:1}}</span>
+                                        </p>
+                                        <small><a role="button">Edit</a></small>
                                     </td>
-                                    <td>{{addr.forward_to}}</td>
                                     <td>
-                                        <button data-addr="{{addr.address}}" class="btn btn-link btn-small js-change-password">
+                                        <ul class="list-unstyled">
+                                            {% for to in addr.forward_to|sort %}
+                                                <li>{{to}}</li>
+                                            {% endfor %}
+                                        </ul>
+                                        <small><a role="button">Edit</a></small>
+                                    </td>
+                                    <td>
+                                        <small><a role="button" data-addr="{{addr.address}}" class="js-change-password">
                                             {% if addr.crypt_password %}
                                                 Change
                                             {% else %}
                                                 Set
                                             {% endif %}
-                                        </button>
+                                        </a></small>
                                     </td>
                                     <td title="{{addr.last_updated}}">{{addr.last_updated|naturaltime}}</td>
                                     <td>
-                                        <button class="btn btn-link js-remove-address" data-addr="{{addr.address}}">
-                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                        </button>
+                                        <small><a role="button" class="js-remove-address" data-addr="{{addr.address}}">
+                                            Remove
+                                        </a></small>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -143,14 +153,21 @@
             <input type="text" class="form-control" name="name" placeholder="john" id="add-modal-addr" />
         </div>
         <div class="form-group">
-            <label for="add-modal-forward-to">
+            <label>
                 Forwarding address<br />
                 <span class="desc">
-                    This is the address to forward incoming mail to. Use a full
-                    email address here.
+                    These are the addresses to forward incoming mail to. Use a full
+                    email address here. You can add as many as you'd like; every
+                    incoming email will be forwarded to each.
                 </span>
             </label>
-            <input type="email" class="form-control" name="forward_to" placeholder="john@gmail.com" id="add-modal-forward-to" />
+            <div class="js-forward-to-addresses"></div>
+            <p>
+                <button type="button" class="btn btn-small btn-default js-add-another">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add Another
+                </button>
+            </p>
         </div>
         <div class="form-group">
             <label for="add-modal-password">
@@ -166,6 +183,7 @@
 
         {% include 'partials/modal-2.html' %}
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="hidden" name="forward_to" class="js-forward-to" />
         <input type="hidden" name="domain" class="js-domain" />
         <button type="submit" class="btn btn-primary">Add address</button>
         {% include 'partials/modal-3.html' %}
@@ -189,6 +207,62 @@
                 });
             }
 
+            function addForwardingAddress(isFirst) {
+                if (isFirst === true)
+                    this.empty();
+
+                var input = $('<input type="email" />');
+                input.addClass('form-control');
+                input.attr('placeholder', 'john@gmail.com');
+                var emailCol = $('<div />');
+                emailCol.addClass('col-xs-11 forward-to-input-col');
+                emailCol.append(input);
+
+                var removeButton = $('<button type="button" />');
+                removeButton.addClass('btn btn-small btn-block btn-default');
+                removeButton.attr('disabled', 'disabled');
+                var removeIcon = $('<span />');
+                removeIcon.attr('aria-hidden', 'true');
+                removeIcon.addClass('glyphicon glyphicon-minus');
+                removeButton.append(removeIcon);
+                removeButton.click(function() {
+                    if (row.attr('data-hiding') !== 'true') {
+                        row.attr('data-hiding', 'true').stop(true).slideUp(200, function() {
+                            row.remove();
+                        });
+                        updateDisabledButtons(this);
+                    }
+                }.bind(this));
+                var removeCol = $('<div />');
+                removeCol.addClass('forward-to-remove-col col-xs-1');
+                removeCol.append(removeButton);
+
+                var row = $('<div class="row" />');
+                row.hide();
+                row.append(emailCol);
+                row.append(removeCol);
+                this.append(row);
+                row.slideDown(200);
+
+                updateDisabledButtons(this);
+            }
+
+            function updateDisabledButtons(ctrl) {
+                if (ctrl.find('.row[data-hiding!="true"]').length > 1)
+                    ctrl.find('button').removeAttr('disabled');
+                else
+                    ctrl.find('button').attr('disabled', 'disabled');
+            }
+
+            function updateForwardToValue() {
+                var addrs = [];
+                this.find('.js-forward-to-addresses input').each(function(i, el) {
+                    el = $(el);
+                    addrs.push(el.val());
+                });
+                this.find('.js-forward-to').val(JSON.stringify(addrs));
+            }
+
             $(document).ready(function() {
                 $('.js-change-password').click(function() {
                     var modal = $('#js-modal-change-password');
@@ -206,7 +280,7 @@
                 $('.js-add-address').click(function() {
                     var modal = $('#js-modal-add-address');
                     setTextOrValue(modal.find('.js-domain'), $(this).data('domain'));
-                    modal.find('input[name=password],input[name=forward_to],input[name=name]').val('');
+                    modal.find('input[name=password],input[name=name]').val('');
                     modal.find('button').removeAttr('disabled');
                     modal.find('input[name=name]').on('input', function() {
                         if ($(this).val().indexOf('@') !== -1) {
@@ -217,6 +291,11 @@
                             modal.find('button').removeAttr('disabled');
                         }
                     });
+
+                    var addAddress = addForwardingAddress.bind(modal.find('.js-forward-to-addresses'));
+                    addAddress(true);
+                    modal.find('.js-add-another').click(addAddress);
+                    modal.find('button[type=submit]').click(updateForwardToValue.bind(modal));
                     modal.modal();
                 });
             });
