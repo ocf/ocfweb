@@ -58,8 +58,8 @@ OCF web hosting, for example, to become eligible for [[virtual
 hosting|doc services/vhost]], you can move most of your website's functionality and
 content to the OCF's servers. Generally, the process is simple and sites
 migrated from WordPress.com hosting to the OCF function quite well, apart from
-possible minor differences in the appearance of themes. However, if you're looking 
-to create your website from scratch, in most cases it will be much easier to just 
+possible minor differences in the appearance of themes. However, if you're looking
+to create your website from scratch, in most cases it will be much easier to just
 install WordPress on your OCF account and start editing it here, rather than creating it locally
 or on another provider like WordPress.com and transferring things over.
 
