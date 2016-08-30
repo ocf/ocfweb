@@ -13,7 +13,6 @@
 ### Web
 
 * Add vhost: edit `~staff/vhost/vhost.conf`.
-* Update vhost configuration and restart Apache: run `sudo ~staff/vhost/web.sh` on death.
 
 If mail is also requested, skip to the next section. Otherwise, request the following DNS record from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/):
 
@@ -24,7 +23,6 @@ Use the domain requested by the group in place of `hostname`. We have a [reusabl
 ### Mail (if requested)
 
 * Add vhost: edit `~staff/vhost/vhost-mail.conf`.
-* Update vhost configuration: Run `sudo ~staff/vhost/mail.sh` on sandstorm.
 
 If the group already has virtual hosting for their website, which is likely the case, request from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/) that the following DNS record be dropped:
 
