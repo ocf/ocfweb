@@ -23,6 +23,7 @@ Use the domain requested by the group in place of `hostname`. We have a [reusabl
 ### Mail (if requested)
 
 * Add vhost: edit `~staff/vhost/vhost-mail.conf`.
+* Update vhost configuration: Run `sudo ~staff/vhost/mail.sh` on sandstorm.
 
 If the group already has virtual hosting for their website, which is likely the case, request from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/) that the following DNS record be dropped:
 
