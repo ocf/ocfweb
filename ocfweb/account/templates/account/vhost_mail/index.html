@@ -45,7 +45,9 @@
                                                 <li>{{to}}</li>
                                             {% endfor %}
                                         </ul>
-                                        <small><a role="button">Edit</a></small>
+                                        <small>
+                                            <a role="button" data-forward-to="{{addr.forward_to|sort|json}}" data-addr="{{addr.address}}" class="js-edit-forward-to">Edit</a>
+                                        </small>
                                     </td>
                                     <td>
                                         <small><a role="button" data-addr="{{addr.address}}" class="js-change-password">
@@ -189,6 +191,41 @@
         {% include 'partials/modal-3.html' %}
         {% csrf_token %}
     </form>
+
+    <!-- edit forward to modal -->
+    <form method="POST" action="{% url 'vhost_mail_edit_forward_to' %}">
+        {% include 'partials/modal-0.html' with id="js-modal-edit-forward-to" %}
+        <h4 class="modal-title">Edit Forward To</h4>
+        {% include 'partials/modal-1.html' %}
+
+        <p>Modify forwarding addresses for <strong class="js-email"></strong>.</p>
+        <hr />
+        <div class="form-group">
+            <label>
+                Forwarding address<br />
+                <span class="desc">
+                    These are the addresses to forward incoming mail to. Use a full
+                    email address here. You can add as many as you'd like; every
+                    incoming email will be forwarded to each.
+                </span>
+            </label>
+            <div class="js-forward-to-addresses"></div>
+            <p>
+                <button type="button" class="btn btn-small btn-default js-add-another">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add Another
+                </button>
+            </p>
+        </div>
+
+        {% include 'partials/modal-2.html' %}
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="hidden" name="forward_to" class="js-forward-to" />
+        <input type="hidden" name="addr" class="js-email" />
+        <button type="submit" class="btn btn-primary">Save</button>
+        {% include 'partials/modal-3.html' %}
+        {% csrf_token %}
+    </form>
 {% endblock %}
 
 {% block inline_js %}
@@ -207,13 +244,12 @@
                 });
             }
 
-            function addForwardingAddress(isFirst) {
-                if (isFirst === true)
-                    this.empty();
-
+            function addForwardingAddress(addr) {
                 var input = $('<input type="email" />');
                 input.addClass('form-control');
                 input.attr('placeholder', 'john@gmail.com');
+                if (addr)
+                    input.val(addr);
                 var emailCol = $('<div />');
                 emailCol.addClass('col-xs-11 forward-to-input-col');
                 emailCol.append(input);
@@ -292,10 +328,33 @@
                         }
                     });
 
-                    var addAddress = addForwardingAddress.bind(modal.find('.js-forward-to-addresses'));
-                    addAddress(true);
+                    var container = modal.find('.js-forward-to-addresses');
+                    var addAddress = addForwardingAddress.bind(container);
+                    container.empty();
+                    addAddress();
+
                     modal.find('.js-add-another').click(addAddress);
                     modal.find('button[type=submit]').click(updateForwardToValue.bind(modal));
+                    modal.modal();
+                });
+
+                $('.js-edit-forward-to').click(function() {
+                    var modal = $('#js-modal-edit-forward-to');
+                    setTextOrValue(modal.find('.js-email'), $(this).data('addr'));
+
+                    var container = modal.find('.js-forward-to-addresses');
+                    var addAddress = addForwardingAddress.bind(container);
+                    container.empty();
+
+                    // jQuery magically parses this as JSON if it looks like JSON.
+                    // Terrifying.
+                    var forwardTo = $(this).data('forward-to');
+                    for (var i = 0; i < forwardTo.length; i++)
+                        addAddress(forwardTo[i]);
+
+                    modal.find('.js-add-another').click(addAddress);
+                    modal.find('button[type=submit]').click(updateForwardToValue.bind(modal));
+
                     modal.modal();
                 });
             });

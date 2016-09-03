@@ -33,4 +33,5 @@ urlpatterns = [
     url(r'^vhost/mail/add_address/$', vhost_mail_add_address, name='vhost_mail_add_address'),
     url(r'^vhost/mail/remove_address/$', vhost_mail_remove_address, name='vhost_mail_remove_address'),
     url(r'^vhost/mail/update_password/$', vhost_mail_update_password, name='vhost_mail_update_password'),
+    url(r'^vhost/mail/edit_forward_to/$', vhost_mail_update_password, name='vhost_mail_edit_forward_to'),
 ]
