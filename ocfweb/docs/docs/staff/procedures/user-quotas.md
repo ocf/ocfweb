@@ -5,7 +5,7 @@ We use the standard Unix quota utilities to set disk quotas.
 
 ### Summary of useful commands
 
-All of these can be executed on `pandemic`. Some of them also work on other
+All of these can be executed on `jaws`. Some of them also work on other
 servers which mount NFS.
 
 
