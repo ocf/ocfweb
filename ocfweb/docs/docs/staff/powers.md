@@ -24,7 +24,6 @@ practice most staff members are Directors and vice versa.
   jargon)
 * can change print quotas
 * can login to all servers
-* have sudo access (root privileges) on the print server
 * can edit shared staff files such as `User_Info` and `motd` (message of the
   day on public servers)
 * can edit the [[wiki|doc staff/docs]] and are expected to help maintain it
@@ -60,8 +59,8 @@ principal (see above), with the exception of staff VMs where nobody needs a
 `/root` (but it must either be *your VM* or you must be in group `ocfroot`).
 
 Once that's satisfied, you must also be in the `ocfroot` LDAP group in order to
-use `sudo` on most servers. (Exceptions: desktops, print server, and your staff
-VM don't require you to be in ocfroot.)
+use `sudo` on most servers. (Exceptions: desktops and your staff VM don't
+require you to be in ocfroot.)
 
 
 ### `/admin` principal
