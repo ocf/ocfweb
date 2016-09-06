@@ -58,6 +58,9 @@ in-person to ask for it.
 
 ## Snail mail
 
+**We do not check our mailbox.** Please don't mail us anything that you'd like
+to ever be read.
+
 Our address is:
 
     Open Computing Facility
