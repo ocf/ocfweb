@@ -101,7 +101,7 @@
             container.empty();
             addAddress();
 
-            modal.find('.js-add-another').click(addAddress);
+            modal.find('.js-add-another').click(function() { addAddress(); });
             modal.find('button[type=submit]').click(updateForwardToValue.bind(modal));
             modal.modal();
         });
@@ -120,7 +120,7 @@
             for (var i = 0; i < forwardTo.length; i++)
                 addAddress(forwardTo[i]);
 
-            modal.find('.js-add-another').click(addAddress);
+            modal.find('.js-add-another').click(function() { addAddress(); });
             modal.find('button[type=submit]').click(updateForwardToValue.bind(modal));
 
             modal.modal();

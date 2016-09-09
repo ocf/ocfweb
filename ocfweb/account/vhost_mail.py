@@ -101,23 +101,7 @@ def _redirect_back():
     return redirect(reverse('vhost_mail'))
 
 
-@login_required
-@group_account_required
-@require_POST
-def vhost_mail_add_address(request):
-    addr_name = request.POST.get('name')
-    addr_domain = request.POST.get('domain')
-    addr = '{}@{}'.format(addr_name, addr_domain)
-    forward_to = request.POST.get('forward_to')
-    password = request.POST.get('password') or None
-    user = logged_in_user(request)
-
-    try:
-        name, domain = _parse_addr(addr)
-    except ValueError:
-        messages.add_message(request, messages.ERROR, 'Invalid email address: {}'.format(addr))
-        return _redirect_back()
-
+def _parse_forward_to(request, forward_to):
     try:
         forward_to = json.loads(forward_to)
         assert type(forward_to) is list, type(forward_to)
@@ -152,6 +136,28 @@ def vhost_mail_add_address(request):
             'You must provide at least one address to forward to.',
         )
         return _redirect_back()
+
+    return parsed_addrs
+
+
+@login_required
+@group_account_required
+@require_POST
+def vhost_mail_add_address(request):
+    addr_name = request.POST.get('name')
+    addr_domain = request.POST.get('domain')
+    addr = '{}@{}'.format(addr_name, addr_domain)
+    forward_to = request.POST.get('forward_to')
+    password = request.POST.get('password') or None
+    user = logged_in_user(request)
+
+    try:
+        name, domain = _parse_addr(addr)
+    except ValueError:
+        messages.add_message(request, messages.ERROR, 'Invalid email address: {}'.format(addr))
+        return _redirect_back()
+
+    parsed_addrs = _parse_forward_to(request, forward_to)
 
     vhost = _get_vhost(request, user, domain)
     pw_hash = _hash_password(request, name, password)
@@ -226,4 +232,35 @@ def vhost_mail_update_password(request):
         )
 
     messages.add_message(request, messages.SUCCESS, 'Password changed successfully!')
+    return _redirect_back()
+
+
+@login_required
+@group_account_required
+@require_POST
+def vhost_mail_edit_forward_to(request):
+    addr = request.POST.get('addr')
+    forward_to = request.POST.get('forward_to')
+    user = logged_in_user(request)
+
+    try:
+        name, domain = _parse_addr(addr)
+    except ValueError:
+        messages.add_message(request, messages.ERROR, 'Invalid email address.')
+        return _redirect_back()
+
+    parsed_addrs = _parse_forward_to(request, forward_to)
+    vhost = _get_vhost(request, user, domain)
+
+    with _txn() as c:
+        addr_obj = _find_addr(request, c, vhost, addr)
+        vhost.remove_forwarding_address(c, addr_obj.address)
+        vhost.add_forwarding_address(
+            c,
+            addr_obj._replace(
+                forward_to=parsed_addrs,
+            ),
+        )
+
+    messages.add_message(request, messages.SUCCESS, 'Forward edited successfully!')
     return _redirect_back()
