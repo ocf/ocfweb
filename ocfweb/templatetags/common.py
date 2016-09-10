@@ -1,3 +1,5 @@
+import json
+
 from django import template
 
 register = template.Library()
@@ -24,3 +26,16 @@ def sort(items):
     call `sorted` yourself from inside a template).
     """
     return sorted(items)
+
+
+@register.filter('json')
+def json_(obj):
+    """Output JSON.
+
+    Be warned that this can safely be used in HTML (as long as you use regular
+    escaping and don't mark it as safe), but *cannot* be used safely in
+    <script> tags in any context.
+
+    https://code.djangoproject.com/ticket/17419
+    """
+    return json.dumps(obj)

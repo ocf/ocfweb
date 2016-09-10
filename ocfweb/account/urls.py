@@ -10,6 +10,7 @@ from ocfweb.account.vhost import request_vhost
 from ocfweb.account.vhost import request_vhost_success
 from ocfweb.account.vhost_mail import vhost_mail
 from ocfweb.account.vhost_mail import vhost_mail_add_address
+from ocfweb.account.vhost_mail import vhost_mail_edit_forward_to
 from ocfweb.account.vhost_mail import vhost_mail_remove_address
 from ocfweb.account.vhost_mail import vhost_mail_update_password
 
@@ -33,4 +34,5 @@ urlpatterns = [
     url(r'^vhost/mail/add_address/$', vhost_mail_add_address, name='vhost_mail_add_address'),
     url(r'^vhost/mail/remove_address/$', vhost_mail_remove_address, name='vhost_mail_remove_address'),
     url(r'^vhost/mail/update_password/$', vhost_mail_update_password, name='vhost_mail_update_password'),
+    url(r'^vhost/mail/edit_forward_to/$', vhost_mail_edit_forward_to, name='vhost_mail_edit_forward_to'),
 ]

@@ -1,0 +1,12 @@
+<form method="POST" action="{% url 'vhost_mail_remove_address' %}">
+    {% include 'partials/modal-0.html' with id="js-modal-remove-address" %}
+    <h4 class="modal-title">Remove Address</h4>
+    {% include 'partials/modal-1.html' %}
+    <p>Are you sure you want to delete <strong class="js-email"></strong>?</p>
+    <input type="hidden" name="addr" class="js-email" />
+    {% include 'partials/modal-2.html' %}
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-danger">Delete address</button>
+    {% include 'partials/modal-3.html' %}
+    {% csrf_token %}
+</form>
