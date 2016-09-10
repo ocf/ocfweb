@@ -60,11 +60,12 @@
 
     function updateForwardToValue() {
         var addrs = [];
+        // TODO: use _.pluck or something
         this.find('.js-forward-to-addresses input').each(function(i, el) {
             el = $(el);
             addrs.push(el.val());
         });
-        this.find('.js-forward-to').val(JSON.stringify(addrs));
+        this.find('.js-forward-to').val(addrs.join(','));
     }
 
     $(document).ready(function() {
@@ -83,7 +84,8 @@
 
         $('.js-add-address').click(function() {
             var modal = $('#js-modal-add-address');
-            setTextOrValue(modal.find('.js-domain'), $(this).data('domain'));
+            var domain = $(this).data('domain');
+            setTextOrValue(modal.find('.js-domain'), domain);
             modal.find('input[name=password],input[name=name]').val('');
             modal.find('button').removeAttr('disabled');
             modal.find('input[name=name]').on('input', function() {
@@ -91,6 +93,7 @@
                     modal.find('.js-warn-addr').show();
                     modal.find('button').attr('disabled', 'disabled');
                 } else {
+                    modal.find('.js-addr').val($(this).val() + '@' + domain);
                     modal.find('.js-warn-addr').hide();
                     modal.find('button').removeAttr('disabled');
                 }
@@ -102,6 +105,7 @@
             addAddress();
 
             modal.find('.js-add-another').click(function() { addAddress(); });
+            // TODO: what if they submit another way
             modal.find('button[type=submit]').click(updateForwardToValue.bind(modal));
             modal.modal();
         });
@@ -114,9 +118,7 @@
             var addAddress = addForwardingAddress.bind(container);
             container.empty();
 
-            // jQuery magically parses this as JSON if it looks like JSON.
-            // Terrifying.
-            var forwardTo = $(this).data('forward-to');
+            var forwardTo = $(this).data('forward-to').split(',');
             for (var i = 0; i < forwardTo.length; i++)
                 addAddress(forwardTo[i]);
 

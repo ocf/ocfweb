@@ -1,8 +1,11 @@
-<!-- edit forward to modal -->
-<form method="POST" action="{% url 'vhost_mail_edit_forward_to' %}">
+<form method="POST" action="{% url 'vhost_mail_update' %}">
     {% include 'partials/modal-0.html' with id="js-modal-edit-forward-to" %}
     <h4 class="modal-title">Edit Forward To</h4>
     {% include 'partials/modal-1.html' %}
+
+    <input type="hidden" name="action" value="update" />
+    <input type="hidden" name="addr" value="" class="js-email" />
+    <input type="hidden" name="forward_to" class="js-forward-to" />
 
     <p>Modify forwarding addresses for <strong class="js-email"></strong>.</p>
     <hr />
@@ -26,8 +29,6 @@
 
     {% include 'partials/modal-2.html' %}
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <input type="hidden" name="forward_to" class="js-forward-to" />
-    <input type="hidden" name="addr" class="js-email" />
     <button type="submit" class="btn btn-primary">Save</button>
     {% include 'partials/modal-3.html' %}
     {% csrf_token %}

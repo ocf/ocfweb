@@ -24,5 +24,4 @@ def test_parse_addr_success(addr, expected):
     '@ocf.berkeley.edu',
 ])
 def test_parse_addr_failure(addr):
-    with pytest.raises(ValueError):
-        _parse_addr(addr)
+    assert _parse_addr(addr) is None

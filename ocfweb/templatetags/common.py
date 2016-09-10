@@ -1,5 +1,3 @@
-import json
-
 from django import template
 
 register = template.Library()
@@ -28,14 +26,11 @@ def sort(items):
     return sorted(items)
 
 
-@register.filter('json')
-def json_(obj):
-    """Output JSON.
+@register.filter
+def join(items, s):
+    """Join items (probably of an array).
 
-    Be warned that this can safely be used in HTML (as long as you use regular
-    escaping and don't mark it as safe), but *cannot* be used safely in
-    <script> tags in any context.
-
-    https://code.djangoproject.com/ticket/17419
+    Example usage:
+        myArray|join:','
     """
-    return json.dumps(obj)
+    return s.join(items)

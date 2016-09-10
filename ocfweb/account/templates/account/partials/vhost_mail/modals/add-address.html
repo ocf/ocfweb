@@ -1,7 +1,11 @@
-<form method="POST" action="{% url 'vhost_mail_add_address' %}">
+<form method="POST" action="{% url 'vhost_mail_update' %}">
     {% include 'partials/modal-0.html' with id="js-modal-add-address" %}
     <h4 class="modal-title">Add Address</h4>
     {% include 'partials/modal-1.html' %}
+
+    <input type="hidden" name="action" value="add" />
+    <input type="hidden" name="addr" class="js-addr" />
+    <input type="hidden" name="forward_to" class="js-forward-to" />
 
     <p>Add a new address for <strong class="js-domain"></strong>.</p>
     <hr />
@@ -50,8 +54,6 @@
 
     {% include 'partials/modal-2.html' %}
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <input type="hidden" name="forward_to" class="js-forward-to" />
-    <input type="hidden" name="domain" class="js-domain" />
     <button type="submit" class="btn btn-primary">Add address</button>
     {% include 'partials/modal-3.html' %}
     {% csrf_token %}

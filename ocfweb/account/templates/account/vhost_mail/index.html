@@ -47,7 +47,7 @@
                                             {% endfor %}
                                         </ul>
                                         <small>
-                                            <a role="button" data-forward-to="{{addr.forward_to|sort|json}}" data-addr="{{addr.address}}" class="js-edit-forward-to">Edit</a>
+                                            <a role="button" data-forward-to="{{addr.forward_to|sort|join:','}}" data-addr="{{addr.address}}" class="js-edit-forward-to">Edit</a>
                                         </small>
                                     </td>
                                     <td>
