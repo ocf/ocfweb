@@ -121,10 +121,12 @@ def _get_action(request):
 
 def _parse_addr(addr):
     """Safely parse an email, returning first component and domain."""
-    m = re.match('([a-zA-Z0-9\-_\+\.]+)@([a-zA-Z0-9\-_\+\.]+)$', addr)
+    m = re.match(r'([a-zA-Z0-9\-_\+\.]+)@([a-zA-Z0-9\-_\+\.]+)$', addr)
     if not m:
         return None
-    return m.group(1), m.group(2)
+    name, domain = m.group(1), m.group(2)
+    if '.' in domain:
+        return name, domain
 
 
 def _get_addr(request, user, field, required=True):
@@ -141,7 +143,7 @@ def _get_addr(request, user, field, required=True):
             if vhost is not None:
                 return name, domain, vhost
             else:
-                _error('You cannot use the domain: "{}"'.format(domain))
+                _error(request, 'You cannot use the domain: "{}"'.format(domain))
     elif required:
         _error(request, 'You must provide an address!')
 
