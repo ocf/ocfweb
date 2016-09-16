@@ -1,9 +1,12 @@
 from contextlib import contextmanager
+from datetime import datetime
 
 import mock
 import pytest
 from django.contrib import messages
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from ocflib.vhost.mail import MailForwardingAddress
 
 from ocfweb.account import vhost_mail
 from ocfweb.account.vhost_mail import _error
@@ -17,6 +20,237 @@ from ocfweb.account.vhost_mail import _parse_addr
 from ocfweb.account.vhost_mail import _redirect_back
 from ocfweb.account.vhost_mail import _txn
 from ocfweb.component.errors import ResponseException
+
+
+ALL_VIEWS = ('vhost_mail', 'vhost_mail_update')
+
+
+@pytest.mark.parametrize('view', ALL_VIEWS)
+def test_view_requires_login(view, client):
+    """Logged out users should get redirected to login."""
+    resp = client.get(reverse(view))
+    assert resp.status_code == 302
+    assert resp.url == reverse('login')
+
+
+@pytest.mark.parametrize('view', ALL_VIEWS)
+def test_view_requires_group_account(view, client_guser):
+    """Individual accounts should get an error."""
+    resp = client_guser.get(reverse(view))
+    assert resp.status_code == 403
+
+
+def test_main_view_works(client_ggroup):
+    """Smoke test with a valid user."""
+    with mock.patch.object(vhost_mail, 'vhosts_for_user', return_value=[]):
+        resp = client_ggroup.get(reverse('vhost_mail'))
+        assert resp.status_code == 200
+
+
+@pytest.yield_fixture
+def mock_ggroup_vhost():
+    mocked_vhost = mock.Mock(user='ggroup', domain='vhost.com')
+    mocked_vhost2 = mock.Mock(user='ggroup', domain='vhost2.com')
+    mocked_vhost.get_forwarding_addresses.return_value = {
+        MailForwardingAddress(
+            address='exists@vhost.com',
+            crypt_password='crypt',
+            forward_to=frozenset(('bob@gmail.com', 'tom@gmail.com')),
+            last_updated=datetime(2000, 1, 1),
+        ),
+    }
+    with mock.patch.object(vhost_mail, 'vhosts_for_user', return_value={
+        mocked_vhost, mocked_vhost2,
+    }):
+        yield mocked_vhost
+
+
+@pytest.yield_fixture
+def mock_txn():
+    with mock.patch.object(vhost_mail, '_txn') as m:
+        yield m
+
+
+@pytest.yield_fixture
+def mock_messages():
+    with mock.patch.object(vhost_mail.messages, 'add_message') as m:
+        yield m
+
+
+def test_update_add_new_addr(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'add',
+        'addr': 'john@vhost.com',
+        'forward_to': 'john@gmail.com,bob@gmail.com',
+        'password': 'nice password bro',
+    })
+    mock_ggroup_vhost.add_forwarding_address.assert_called_once_with(
+        mock_txn().__enter__(),
+        MailForwardingAddress(
+            address='john@vhost.com',
+            forward_to=frozenset(('john@gmail.com', 'bob@gmail.com')),
+            crypt_password=mock.ANY,
+            last_updated=None,
+        ),
+    )
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.SUCCESS,
+        'Update successful!',
+    )
+
+
+def test_update_add_new_addr_already_exists(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'add',
+        'addr': 'exists@vhost.com',
+        'forward_to': 'john@gmail.com,bob@gmail.com',
+        'password': 'nice password bro',
+    })
+    assert not mock_ggroup_vhost.add_forwarding_address.called
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.ERROR,
+        'The address "exists@vhost.com" already exists!',
+    )
+
+
+def test_update_fails_to_add_addr_to_bad_vhost(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'add',
+        'addr': 'john@bad-vhost.com',
+        'forward_to': 'john@gmail.com,bob@gmail.com',
+        'password': 'nice password bro',
+    })
+    mock_ggroup_vhost.add_forwarding_address.called
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.ERROR,
+        'You cannot use the domain: "bad-vhost.com"',
+    )
+
+
+def test_update_delete_addr(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'delete',
+        'addr': 'exists@vhost.com',
+    })
+    assert not mock_ggroup_vhost.add_forwarding_address.called
+    mock_ggroup_vhost.remove_forwarding_address.assert_called_once_with(
+        mock_txn().__enter__(),
+        'exists@vhost.com',
+    )
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.SUCCESS,
+        'Update successful!',
+    )
+
+
+def test_update_delete_addr_nonexistent(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'delete',
+        'addr': 'john@vhost.com',
+    })
+    assert not mock_ggroup_vhost.add_forwarding_address.called
+    assert not mock_ggroup_vhost.remove_forwarding_address.called
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.ERROR,
+        'The address "john@vhost.com" does not exist!',
+    )
+
+
+def test_update_replace_some_stuff(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'update',
+        'addr': 'exists@vhost.com',
+        'new_addr': 'john@vhost.com',
+        'forward_to': 'john@gmail.com,bob@gmail.com',
+        'password': 'nice password bro',
+    })
+    mock_ggroup_vhost.remove_forwarding_address.assert_called_once_with(
+        mock_txn().__enter__(),
+        'exists@vhost.com',
+    )
+    mock_ggroup_vhost.add_forwarding_address.assert_called_once_with(
+        mock_txn().__enter__(),
+        MailForwardingAddress(
+            address='john@vhost.com',
+            forward_to=frozenset(('john@gmail.com', 'bob@gmail.com')),
+            crypt_password=mock.ANY,
+            last_updated=mock.ANY,
+        ),
+    )
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.SUCCESS,
+        'Update successful!',
+    )
+
+
+def test_update_replace_noop(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'update',
+        'addr': 'exists@vhost.com',
+    })
+    mock_ggroup_vhost.remove_forwarding_address.assert_called_once_with(
+        mock_txn().__enter__(),
+        'exists@vhost.com',
+    )
+    mock_ggroup_vhost.add_forwarding_address.assert_called_once_with(
+        mock_txn().__enter__(),
+        MailForwardingAddress(
+            address='exists@vhost.com',
+            forward_to=frozenset(('bob@gmail.com', 'tom@gmail.com')),
+            crypt_password=mock.ANY,
+            last_updated=mock.ANY,
+        ),
+    )
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.SUCCESS,
+        'Update successful!',
+    )
+
+
+def test_update_replace_addr_nonexistent(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'update',
+        'addr': 'john@vhost.com',
+        'password': 'some great password',
+    })
+    assert not mock_ggroup_vhost.add_forwarding_address.called
+    assert not mock_ggroup_vhost.remove_forwarding_address.called
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.ERROR,
+        'The address "john@vhost.com" does not exist!',
+    )
+
+
+def test_update_cant_move_addr_across_vhosts(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'update',
+        'addr': 'john@vhost.com',
+        'new_addr': 'john@vhost2.com',
+    })
+    assert not mock_ggroup_vhost.add_forwarding_address.called
+    assert not mock_ggroup_vhost.remove_forwarding_address.called
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.ERROR,
+        'You cannot change an address from "vhost.com" to "vhost2.com"!',
+    )
 
 
 def fake_request(**post_params):

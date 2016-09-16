@@ -16,7 +16,7 @@ class OcflibErrorMiddleware:
             return exception.response
 
         # maybe it's a real exception?
-        if settings.DEBUG:
+        if settings.DEBUG or settings.TESTING:
             return
 
         if isinstance(exception, Http404):

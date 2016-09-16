@@ -8,6 +8,7 @@ from django.template.base import TemplateSyntaxError
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TESTING = False
 
 ALLOWED_HOSTS = [
     'www.ocf.berkeley.edu',
