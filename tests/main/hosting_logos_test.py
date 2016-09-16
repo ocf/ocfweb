@@ -1,5 +1,4 @@
 import pytest
-import requests
 
 
 @pytest.mark.parametrize('path', [
@@ -31,16 +30,16 @@ import requests
     'ocfbadge_platinum.png',
     'ocfbadge_silver8.png',
 ])
-def test_images_load(path, image, running_server):
+def test_images_load(path, image, client):
     """This is a sanity check that old and new images all eventually load.
 
     I know, it looks silly to list them all above. But we want to be extra
     careful we don't accidentally break old links by removing images we think
     are unused, hence we duplicate them in tests.
     """
-    resp = requests.get(running_server + path + image, allow_redirects=True)
+    resp = client.get(path + image, follow=True)
     assert resp.status_code == 200
-    assert resp.headers['Content-Type'] == 'image/png'
+    assert resp.get('Content-Type') == 'image/png'
 
 
 @pytest.mark.parametrize('image', [
@@ -53,8 +52,8 @@ def test_images_load(path, image, running_server):
     'metal177x48.gif',
     'metal202x54.gif',
 ])
-def test_legacy_images_redirect(image, running_server):
+def test_legacy_images_redirect(image, client):
     """Legacy images (non-PNG) should redirect to the PNG versions."""
-    resp = requests.get(running_server + '/hosting-logos/' + image, allow_redirects=False)
+    resp = client.get('/hosting-logos/' + image, allow_redirects=False)
     assert resp.status_code == 301
-    assert resp.headers['Location'].endswith('.png')
+    assert resp.get('Location').endswith('.png')

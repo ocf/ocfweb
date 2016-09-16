@@ -5,10 +5,7 @@ RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
 
 .PHONY: test
 test: venv
-	$(BIN)/coverage erase
-	COVERAGE_PROCESS_START=$(PWD)/.coveragerc \
-		$(BIN)/py.test -v tests/
-	$(BIN)/coverage combine
+	$(BIN)/coverage run -m py.test -v tests/
 	$(BIN)/coverage report
 	$(BIN)/pre-commit run --all-files
 
