@@ -4,7 +4,6 @@ import ocflib.misc.validators
 import ocflib.ucb.directory as directory
 from Crypto.PublicKey import RSA
 from django import forms
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.forms.forms import NON_FIELD_ERRORS
 from django.http import HttpResponseRedirect
@@ -37,7 +36,6 @@ def request_account(request):
             {
                 'account': ', '.join(existing_accounts),
                 'calnet_uid': calnet_uid,
-                'calnet_url': settings.LOGOUT_URL,
                 'title': 'You already have an account',
             },
         )
@@ -50,7 +48,6 @@ def request_account(request):
             'account/register/cant-find-in-ldap.html',
             {
                 'calnet_uid': calnet_uid,
-                'calnet_url': settings.LOGOUT_URL,
                 'title': 'Unable to read account information',
             },
         )
