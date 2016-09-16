@@ -22,7 +22,7 @@ setup(
         'django-ipware',
         'django-mathfilters',
         'django-redis',
-        'django>=1.9,<1.9.999',
+        'django>=1.10,<1.10.999',
         'gunicorn',
         'libsass<=0.10.0',  # https://github.com/ocf/ocfweb/issues/128
         'matplotlib',
