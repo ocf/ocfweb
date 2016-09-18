@@ -59,13 +59,57 @@
     }
 
     function updateForwardToValue() {
+        var modal = $(this);
         var addrs = [];
         // TODO: use _.pluck or something
-        this.find('.js-forward-to-addresses input').each(function(i, el) {
+        modal.find('.js-forward-to-addresses input').each(function(i, el) {
             el = $(el);
             addrs.push(el.val());
         });
-        this.find('.js-forward-to').val(addrs.join(','));
+        modal.find('.js-forward-to').val(addrs.join(','));
+    }
+
+    function updateForwardToAddr() {
+        var modal = $(this);
+        var name = modal.find('input[name=name]').val();
+        var domain = modal.data('domain');
+
+        if (name.indexOf('@') !== -1) {
+            modal.find('.js-warn-addr').show();
+            modal.find('button').attr('disabled', 'disabled');
+        } else {
+            modal.find('.js-addr').val(name + '@' + domain);
+            modal.find('.js-warn-addr').hide();
+            modal.find('button').removeAttr('disabled');
+        }
+    }
+
+    function showAddAddressModal(domain, isWildcard) {
+        var modal = $('#js-modal-add-address');
+        modal.data('domain', domain);
+        setTextOrValue(modal.find('.js-domain'), domain);
+
+        if (isWildcard) {
+            modal.addClass('js-wildcard');
+        } else {
+            modal.removeClass('js-wildcard');
+        }
+
+        modal.find('input[name=password],input[name=name]').val('');
+        modal.find('button').removeAttr('disabled');
+        modal.find('input[name=name]').unbind('input').on('input', updateForwardToAddr.bind(modal));
+
+        var container = modal.find('.js-forward-to-addresses');
+        var addAddress = addForwardingAddress.bind(container);
+        container.empty();
+        addAddress();
+
+        modal.find('.js-add-another').unbind('click').click(function() { addAddress(); });
+        modal.parent('form').unbind('submit').submit(function() {
+            updateForwardToValue.bind(this)();
+            updateForwardToAddr.bind(this)();
+        }.bind(modal));
+        modal.modal();
     }
 
     $(document).ready(function() {
@@ -83,31 +127,7 @@
         });
 
         $('.js-add-address').click(function() {
-            var modal = $('#js-modal-add-address');
-            var domain = $(this).data('domain');
-            setTextOrValue(modal.find('.js-domain'), domain);
-            modal.find('input[name=password],input[name=name]').val('');
-            modal.find('button').removeAttr('disabled');
-            modal.find('input[name=name]').on('input', function() {
-                if ($(this).val().indexOf('@') !== -1) {
-                    modal.find('.js-warn-addr').show();
-                    modal.find('button').attr('disabled', 'disabled');
-                } else {
-                    modal.find('.js-addr').val($(this).val() + '@' + domain);
-                    modal.find('.js-warn-addr').hide();
-                    modal.find('button').removeAttr('disabled');
-                }
-            });
-
-            var container = modal.find('.js-forward-to-addresses');
-            var addAddress = addForwardingAddress.bind(container);
-            container.empty();
-            addAddress();
-
-            modal.find('.js-add-another').click(function() { addAddress(); });
-            // TODO: what if they submit another way
-            modal.find('button[type=submit]').click(updateForwardToValue.bind(modal));
-            modal.modal();
+            showAddAddressModal($(this).data('domain'), false);
         });
 
         $('.js-edit-forward-to').click(function() {
@@ -126,6 +146,35 @@
             modal.find('button[type=submit]').click(updateForwardToValue.bind(modal));
 
             modal.modal();
+        });
+
+        var catchallTitle = '<strong>Catch-all forwarding addresses</strong>';
+        var catchallContent = ' \
+            <p>A catch-all address is used when a message arrives that doesn\'t match any other forwarding rule.</p> \
+            <p>You\'re not required to have one, but you can use one if you\'d like.</p> \
+        ';
+
+
+        $('.js-catchall-whats-this').popover({
+            'title': catchallTitle,
+            'content': catchallContent,
+            'html': true
+        }).click(function() {
+            $(this).popover('toggle');
+        });
+
+        $('.js-add-catchall').popover({
+            'title': catchallTitle,
+            'content': catchallContent + ' \
+                <a class="btn btn-large btn-block btn-success js-add-catchall-btn">Add a catch-all address</a> \
+            ',
+            'html': true
+        }).click(function() {
+            $(this).popover('toggle');
+            $('.js-add-catchall-btn').click(function() {
+                $(this).popover('hide');
+                showAddAddressModal($(this).data('domain'), true);
+            }.bind(this));
         });
     });
 })();
