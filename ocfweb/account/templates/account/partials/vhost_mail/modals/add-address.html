@@ -13,15 +13,23 @@
     <div class="form-group">
         <label for="add-modal-addr">
             Incoming address<br />
-            <span class="desc">
-                This is the receiving address. Only include the part before
-                the "@" sign.
-            </span>
+            <div class="hide-wildcard">
+                <span class="desc">
+                    This is the receiving address. Only include the part before
+                    the "@" sign.
+                </span>
+                <div class="alert alert-danger js-warn-addr" style="display: none;">
+                    Don't include an "@" sign or the domain name!
+                </div>
+                <input type="text" class="form-control" name="name" placeholder="john" id="add-modal-addr" />
+            </div>
+            <div class="show-wildcard">
+                <span class="desc">
+                    Catch-all address. All emails to <tt>{anything}@<span class="js-domain"></span></tt>
+                    which don't match any other address will go here.
+                </span>
+            </div>
         </label>
-        <div class="alert alert-danger js-warn-addr" style="display: none;">
-            Don't include an "@" sign or the domain name!
-        </div>
-        <input type="text" class="form-control" name="name" placeholder="john" id="add-modal-addr" />
     </div>
     <div class="form-group">
         <label>
@@ -40,7 +48,7 @@
             </button>
         </p>
     </div>
-    <div class="form-group">
+    <div class="form-group hide-wildcard">
         <label for="add-modal-password">
             Password<br />
             <span class="desc">

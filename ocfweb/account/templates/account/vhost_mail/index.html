@@ -20,7 +20,7 @@
             {% for vhost in vhosts %}
                 <hr />
                 <h3>{{vhost.domain}}</h3>
-                {% with vhost|forwarding_addresses:c as forwarding_addresses %}
+                {% with vhost.addresses as forwarding_addresses %}
                     <table class="table table-striped">
                         <tr>
                             <th>Email address</th>
@@ -30,15 +30,42 @@
                             <th>&nbsp;</th>
                         </tr>
 
+                        {% if not vhost.has_wildcard %}
+                            <tr class="no-catchall">
+                                <td colspan="5">
+                                    <strong>You don't have a catch-all address set.</strong>
+                                    <a
+                                        role="button"
+                                        class="js-add-catchall"
+                                        data-toggle="popover"
+                                        data-trigger="focus"
+                                        data-placement="bottom"
+                                        data-domain="{{vhost.domain}}"
+                                    >More details.</a>
+                                </td>
+                            <tr>
+                        {% endif %}
+
                         {% if forwarding_addresses %}
                             {% for addr in forwarding_addresses %}
                                 <tr>
                                     <td>
-                                        <p>
-                                            <!-- pardon long line, must avoid spacing -->
-                                            {{addr.address|address_to_parts|getitem:0}}<span class="subtle">@{{addr.address|address_to_parts|getitem:1}}</span>
-                                        </p>
-                                        <small><a role="button">Edit</a></small>
+                                        {% if not addr.is_wildcard %}
+                                            <p>
+                                                <!-- pardon long line, must avoid spacing -->
+                                                {{addr.address|address_to_parts|getitem:0}}<span class="subtle">@{{addr.address|address_to_parts|getitem:1}}</span>
+                                            </p>
+                                            <small><a role="button">Edit</a></small>
+                                        {% else %}
+                                            Catch-all address<br />
+                                            <a
+                                                role="button"
+                                                class="small js-catchall-whats-this"
+                                                data-toggle="popover"
+                                                data-trigger="focus"
+                                                data-placement="bottom"
+                                            >What's this?</a>
+                                        {% endif %}
                                     </td>
                                     <td>
                                         <ul class="list-unstyled">
@@ -51,13 +78,17 @@
                                         </small>
                                     </td>
                                     <td>
-                                        <small><a role="button" data-addr="{{addr.address}}" class="js-change-password">
-                                            {% if addr.crypt_password %}
-                                                Change
-                                            {% else %}
-                                                Set
-                                            {% endif %}
-                                        </a></small>
+                                        {% if not addr.is_wildcard %}
+                                            <small><a role="button" data-addr="{{addr.address}}" class="js-change-password">
+                                                {% if addr.crypt_password %}
+                                                    Change
+                                                {% else %}
+                                                    Set
+                                                {% endif %}
+                                            </a></small>
+                                        {% else %}
+                                            n/a
+                                        {% endif %}
                                     </td>
                                     <td title="{{addr.last_updated}}">{{addr.last_updated|naturaltime}}</td>
                                     <td>

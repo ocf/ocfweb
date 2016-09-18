@@ -77,17 +77,21 @@ def mock_messages():
         yield m
 
 
-def test_update_add_new_addr(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+@pytest.mark.parametrize('addr', (
+    'john@vhost.com',
+    '@vhost.com',
+))
+def test_update_add_new_addr(addr, client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
     resp = client_ggroup.post(reverse('vhost_mail_update'), {
         'action': 'add',
-        'addr': 'john@vhost.com',
+        'addr': addr,
         'forward_to': 'john@gmail.com,bob@gmail.com',
         'password': 'nice password bro',
     })
     mock_ggroup_vhost.add_forwarding_address.assert_called_once_with(
         mock_txn().__enter__(),
         MailForwardingAddress(
-            address='john@vhost.com',
+            address=addr,
             forward_to=frozenset(('john@gmail.com', 'bob@gmail.com')),
             crypt_password=mock.ANY,
             last_updated=None,
@@ -237,6 +241,34 @@ def test_update_replace_addr_nonexistent(client_ggroup, mock_ggroup_vhost, mock_
     )
 
 
+@pytest.mark.parametrize('forward_to,expected_error', (
+    ('', 'You must provide at least one address to forward to!'),
+    ('@gmail.com', 'Invalid forwarding address: "@gmail.com"'),
+    ('bob@gmail.com,@berkeley.edu', 'Invalid forwarding address: "@berkeley.edu"'),
+))
+def test_update_replace_addr_bad_forward_to(
+        forward_to,
+        expected_error,
+        client_ggroup,
+        mock_ggroup_vhost,
+        mock_messages,
+        mock_txn,
+):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'update',
+        'addr': 'john@vhost.com',
+        'forward_to': forward_to,
+    })
+    assert not mock_ggroup_vhost.add_forwarding_address.called
+    assert not mock_ggroup_vhost.remove_forwarding_address.called
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.ERROR,
+        expected_error,
+    )
+
+
 def test_update_cant_move_addr_across_vhosts(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
     resp = client_ggroup.post(reverse('vhost_mail_update'), {
         'action': 'update',
@@ -308,8 +340,9 @@ def test_get_action_invalid(action, fake_error):
     ('ckuehl+yolo1._2+3@ocf.berkeley.edu', ('ckuehl+yolo1._2+3', 'ocf.berkeley.edu')),
     ('a@a.a', ('a', 'a.a')),
 ])
-def test_parse_addr_success(addr, expected):
-    assert _parse_addr(addr) == expected
+@pytest.mark.parametrize('allow_wildcard', (True, False))
+def test_parse_addr_success(addr, expected, allow_wildcard):
+    assert _parse_addr(addr, allow_wildcard=allow_wildcard) == expected
 
 
 @pytest.mark.parametrize('addr', [
@@ -321,16 +354,28 @@ def test_parse_addr_success(addr, expected):
     'ckuehl\t@ocf.berkeley.edu',
     'ckuehl@',
     '@',
-    '@ocf.berkeley.edu',
     'asdf@asdf',
+    '@wat',
 ])
-def test_parse_addr_invalid(addr):
+@pytest.mark.parametrize('allow_wildcard', (True, False))
+def test_parse_addr_invalid(addr, allow_wildcard):
+    assert _parse_addr(addr, allow_wildcard=allow_wildcard) is None
+
+
+@pytest.mark.parametrize('addr', (
+    '@ocf.berkeley.edu',
+    '@vhost.com',
+    '@a-b-c.e.f-gh.net',
+))
+def test_parse_addr_wildcards(addr):
     assert _parse_addr(addr) is None
+    assert _parse_addr(addr, allow_wildcard=True) == (None, addr[1:])
 
 
 @pytest.mark.parametrize(('addr', 'name', 'domain'), (
     ('ckuehl@ocf.berkeley.edu', 'ckuehl', 'ocf.berkeley.edu'),
     ('john.doe+test@gmail.com', 'john.doe+test', 'gmail.com'),
+    ('@gmail.com', None, 'gmail.com'),
 ))
 @pytest.mark.parametrize('required', (False, True))
 def test_get_addr_valid(addr, name, domain, required):
@@ -433,6 +478,10 @@ def test_get_forward_to_invalid_addrs_provided(forward_to, first_invalid, fake_e
     with pytest.raises(fake_error) as ex:
         _get_forward_to(fake_request(forward_to=forward_to))
     assert ex.value.args[0] == 'Invalid forwarding address: "{}"'.format(first_invalid)
+
+
+def test_get_password_no_name():
+    assert _get_password(fake_request(password='password'), None) is None
 
 
 def test_get_password_valid(fake_error):

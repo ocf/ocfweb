@@ -23,18 +23,25 @@ from ocfweb.component.session import logged_in_user
 @group_account_required
 def vhost_mail(request):
     user = logged_in_user(request)
-    vhosts = vhosts_for_user(user)
+    vhosts = []
+
     with _txn() as c:
-        return render(
-            request,
-            'account/vhost_mail/index.html',
-            {
-                'title': 'Mail Virtual Hosting',
-                # TODO: we should not pass a db connection into a template lmao
-                'c': c,
-                'vhosts': sorted(vhosts),
-            },
-        )
+        for vhost in sorted(vhosts_for_user(user)):
+            addresses = sorted(vhost.get_forwarding_addresses(c))
+            vhosts.append({
+                'domain': vhost.domain,
+                'addresses': addresses,
+                'has_wildcard': any(address.is_wildcard for address in addresses),
+            })
+
+    return render(
+        request,
+        'account/vhost_mail/index.html',
+        {
+            'title': 'Mail Virtual Hosting',
+            'vhosts': vhosts,
+        },
+    )
 
 
 @login_required
@@ -46,16 +53,16 @@ def vhost_mail_update(request):
     # All requests are required to have these
     action = _get_action(request)
     addr_name, addr_domain, addr_vhost = _get_addr(request, user, 'addr', required=True)
-    addr = addr_name + '@' + addr_domain
+    addr = (addr_name or '') + '@' + addr_domain
 
     # These fields are optional; some might be None
     forward_to = _get_forward_to(request)
-    password_hash = _get_password(request, addr_name)
 
     new_addr = _get_addr(request, user, 'new_addr', required=False)
+    new_addr_name = None
     if new_addr is not None:
         new_addr_name, new_addr_domain, new_addr_vhost = new_addr
-        new_addr = new_addr_name + '@' + new_addr_domain
+        new_addr = (new_addr_name or '') + '@' + new_addr_domain
 
         # Sanity check: can't move addresses across vhosts
         if new_addr_vhost != addr_vhost:
@@ -65,6 +72,8 @@ def vhost_mail_update(request):
                     addr_domain, new_addr_domain,
                 ),
             )
+
+    password_hash = _get_password(request, new_addr_name or addr_name)
 
     # Perform the add/update
     with _txn() as c:
@@ -119,9 +128,16 @@ def _get_action(request):
         return action
 
 
-def _parse_addr(addr):
+def _parse_addr(addr, allow_wildcard=False):
     """Safely parse an email, returning first component and domain."""
-    m = re.match(r'([a-zA-Z0-9\-_\+\.]+)@([a-zA-Z0-9\-_\+\.]+)$', addr)
+    m = re.match(
+        (
+            r'([a-zA-Z0-9\-_\+\.]+)' +
+            ('?' if allow_wildcard else '') +
+            r'@([a-zA-Z0-9\-_\+\.]+)$'
+        ),
+        addr,
+    )
     if not m:
         return None
     name, domain = m.group(1), m.group(2)
@@ -132,7 +148,7 @@ def _parse_addr(addr):
 def _get_addr(request, user, field, required=True):
     addr = request.POST.get(field)
     if addr is not None:
-        parsed = _parse_addr(addr)
+        parsed = _parse_addr(addr, allow_wildcard=True)
         if not parsed:
             _error(request, 'Invalid address: "{}"'.format(addr))
         else:
@@ -172,6 +188,11 @@ def _get_forward_to(request):
 
 
 def _get_password(request, addr_name):
+    # If addr_name is None, then this is a wildcard address, and those can't
+    # have passwords.
+    if addr_name is None:
+        return None
+
     password = request.POST.get('password', '').strip() or None
     if password is not None:
         try:

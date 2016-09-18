@@ -17,4 +17,28 @@
             padding-right: 0;
         }
     }
+
+    .no-catchall {
+        background-color: #fdfdde;
+        font-size: 14px;
+
+        td {
+            padding: 15px;
+        }
+    }
+
+
+    .js-wildcard {
+        .hide-wildcard {
+            display: none;
+        }
+
+        .show-wildcard {
+            display: block;
+        }
+    }
+
+    .show-wildcard {
+        display: none;
+    }
 }
