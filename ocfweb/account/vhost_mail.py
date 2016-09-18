@@ -19,6 +19,10 @@ from ocfweb.component.errors import ResponseException
 from ocfweb.component.session import logged_in_user
 
 
+class REMOVE_PASSWORD:
+    """Singleton to represent a password should be removed."""
+
+
 @login_required
 @group_account_required
 def vhost_mail(request):
@@ -99,7 +103,9 @@ def vhost_mail_update(request):
                 new = existing
                 if forward_to:
                     new = new._replace(forward_to=forward_to)
-                if password_hash:
+                if password_hash is REMOVE_PASSWORD:
+                    new = new._replace(crypt_password=None)
+                elif password_hash:
                     new = new._replace(crypt_password=password_hash)
                 if new_addr:
                     new = new._replace(address=new_addr)
@@ -191,10 +197,13 @@ def _get_password(request, addr_name):
     # If addr_name is None, then this is a wildcard address, and those can't
     # have passwords.
     if addr_name is None:
-        return None
+        return REMOVE_PASSWORD
 
-    password = request.POST.get('password', '').strip() or None
+    password = request.POST.get('password')
     if password is not None:
+        password = password.strip()
+        if not password:
+            return REMOVE_PASSWORD
         try:
             validate_password(addr_name, password, strength_check=True)
         except ValueError as ex:

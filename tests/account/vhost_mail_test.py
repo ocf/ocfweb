@@ -19,6 +19,7 @@ from ocfweb.account.vhost_mail import _get_vhost
 from ocfweb.account.vhost_mail import _parse_addr
 from ocfweb.account.vhost_mail import _redirect_back
 from ocfweb.account.vhost_mail import _txn
+from ocfweb.account.vhost_mail import REMOVE_PASSWORD
 from ocfweb.component.errors import ResponseException
 
 
@@ -42,7 +43,23 @@ def test_view_requires_group_account(view, client_guser):
 
 def test_main_view_works(client_ggroup):
     """Smoke test with a valid user."""
-    with mock.patch.object(vhost_mail, 'vhosts_for_user', return_value=[]):
+    fake_vhosts = {
+        mock.Mock(
+            user='ggroup',
+            domain='vhost.com',
+            **{
+                'get_forwarding_addresses.return_value': {
+                    MailForwardingAddress(
+                        address='bob@vhost.com',
+                        crypt_password=None,
+                        forward_to=frozenset(('a@gmail.com', 'b@gmail.com')),
+                        last_updated=datetime.now(),
+                    ),
+                },
+            }
+        ),
+    }
+    with mock.patch.object(vhost_mail, 'vhosts_for_user', return_value=fake_vhosts):
         resp = client_ggroup.get(reverse('vhost_mail'))
         assert resp.status_code == 200
 
@@ -199,6 +216,33 @@ def test_update_replace_some_stuff(client_ggroup, mock_ggroup_vhost, mock_messag
     )
 
 
+def test_update_remove_password(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'update',
+        'addr': 'exists@vhost.com',
+        'password': '',
+    })
+    mock_ggroup_vhost.remove_forwarding_address.assert_called_once_with(
+        mock_txn().__enter__(),
+        'exists@vhost.com',
+    )
+    mock_ggroup_vhost.add_forwarding_address.assert_called_once_with(
+        mock_txn().__enter__(),
+        MailForwardingAddress(
+            address='exists@vhost.com',
+            forward_to=frozenset(('tom@gmail.com', 'bob@gmail.com')),
+            crypt_password=None,
+            last_updated=mock.ANY,
+        ),
+    )
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.SUCCESS,
+        'Update successful!',
+    )
+
+
 def test_update_replace_noop(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
     resp = client_ggroup.post(reverse('vhost_mail_update'), {
         'action': 'update',
@@ -213,7 +257,7 @@ def test_update_replace_noop(client_ggroup, mock_ggroup_vhost, mock_messages, mo
         MailForwardingAddress(
             address='exists@vhost.com',
             forward_to=frozenset(('bob@gmail.com', 'tom@gmail.com')),
-            crypt_password=mock.ANY,
+            crypt_password='crypt',
             last_updated=mock.ANY,
         ),
     )
@@ -481,7 +525,7 @@ def test_get_forward_to_invalid_addrs_provided(forward_to, first_invalid, fake_e
 
 
 def test_get_password_no_name():
-    assert _get_password(fake_request(password='password'), None) is None
+    assert _get_password(fake_request(password='password'), None) is REMOVE_PASSWORD
 
 
 def test_get_password_valid(fake_error):
@@ -505,8 +549,14 @@ def test_get_password_fails_strength_check(fake_error):
     m.assert_called_once_with('ckuehl', 'password', strength_check=True)
 
 
-def test_get_password_empty():
+def test_get_password_not_present():
+    """If "password" is not present, just do nothing."""
     assert _get_password(fake_request(), 'ckuehl') is None
+
+
+def test_get_password_empty():
+    """If password is present and an empty string, remove it."""
+    assert _get_password(fake_request(password=''), 'ckuehl') is REMOVE_PASSWORD
 
 
 @pytest.yield_fixture
