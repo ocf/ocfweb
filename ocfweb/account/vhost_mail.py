@@ -90,8 +90,8 @@ def vhost_mail_update(request):
 
             new = MailForwardingAddress(
                 address=addr,
-                crypt_password=password_hash,
-                forward_to=forward_to,
+                crypt_password=None,
+                forward_to=None,
                 last_updated=None,
             )
         else:
@@ -99,16 +99,16 @@ def vhost_mail_update(request):
                 _error(request, 'The address "{}" does not exist!'.format(addr))
             addr_vhost.remove_forwarding_address(c, existing.address)
 
-            if action == 'update':
-                new = existing
-                if forward_to:
-                    new = new._replace(forward_to=forward_to)
-                if password_hash is REMOVE_PASSWORD:
-                    new = new._replace(crypt_password=None)
-                elif password_hash:
-                    new = new._replace(crypt_password=password_hash)
-                if new_addr:
-                    new = new._replace(address=new_addr)
+        if action != 'delete':
+            new = new or existing
+            if forward_to:
+                new = new._replace(forward_to=forward_to)
+            if password_hash is REMOVE_PASSWORD:
+                new = new._replace(crypt_password=None)
+            elif password_hash:
+                new = new._replace(crypt_password=password_hash)
+            if new_addr:
+                new = new._replace(address=new_addr)
 
         if new is not None:
             addr_vhost.add_forwarding_address(c, new)

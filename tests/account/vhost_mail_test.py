@@ -1,3 +1,4 @@
+import crypt
 from contextlib import contextmanager
 from datetime import datetime
 
@@ -94,11 +95,32 @@ def mock_messages():
         yield m
 
 
-@pytest.mark.parametrize('addr', (
-    'john@vhost.com',
-    '@vhost.com',
+class VerifyPassword:
+
+    def __init__(self, password):
+        self.password = password
+
+    def __eq__(self, other):
+        if self.password is None:
+            return other is None
+        else:
+            return crypt.crypt(self.password, salt=other)
+
+
+@pytest.mark.parametrize(('addr', 'password', 'expected_password'), (
+    ('john@vhost.com', 'nice password bro', VerifyPassword('nice password bro')),
+    ('@vhost.com', 'nice password bro', VerifyPassword(None)),
+    ('@vhost.com', None, VerifyPassword(None)),
 ))
-def test_update_add_new_addr(addr, client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+def test_update_add_new_addr(
+        addr,
+        password,
+        expected_password,
+        client_ggroup,
+        mock_ggroup_vhost,
+        mock_messages,
+        mock_txn,
+):
     resp = client_ggroup.post(reverse('vhost_mail_update'), {
         'action': 'add',
         'addr': addr,
@@ -110,7 +132,7 @@ def test_update_add_new_addr(addr, client_ggroup, mock_ggroup_vhost, mock_messag
         MailForwardingAddress(
             address=addr,
             forward_to=frozenset(('john@gmail.com', 'bob@gmail.com')),
-            crypt_password=mock.ANY,
+            crypt_password=expected_password,
             last_updated=None,
         ),
     )
@@ -204,7 +226,7 @@ def test_update_replace_some_stuff(client_ggroup, mock_ggroup_vhost, mock_messag
         MailForwardingAddress(
             address='john@vhost.com',
             forward_to=frozenset(('john@gmail.com', 'bob@gmail.com')),
-            crypt_password=mock.ANY,
+            crypt_password=VerifyPassword('nice password bro'),
             last_updated=mock.ANY,
         ),
     )
