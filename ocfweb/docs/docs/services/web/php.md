@@ -24,7 +24,7 @@ from another server. Instead, we advise you to create an empty `.user.ini` and
 add only the settings you wish to change.
 
 Note that `.user.ini` filename should be used, as our webserver will not look for 
-(per-user) php.ini files.
+(per-user) `php.ini` files.
 
 ### Example `.user.ini` file
 
