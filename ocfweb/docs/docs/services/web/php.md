@@ -23,7 +23,7 @@ recommend *not* copying an entire `php.ini`* or `.user.ini` file from the web or
 from another server. Instead, we advise you to create an empty `.user.ini` and
 add only the settings you wish to change.
 
-Note that `.user.ini` filename should be used, as our webserver will not look for 
+Note that `.user.ini` filename should be used, as our webserver will not look for
 (per-user) `php.ini` files.
 
 ### Example `.user.ini` file
