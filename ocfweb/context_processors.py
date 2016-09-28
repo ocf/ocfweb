@@ -4,6 +4,7 @@ from ipaddress import ip_address
 
 from django.core.urlresolvers import reverse
 from ipware.ip import get_real_ip
+from ocflib.account.search import user_is_group
 from ocflib.infra.net import is_ocf_ip
 from ocflib.lab.hours import Day
 
@@ -25,6 +26,7 @@ def get_base_css_classes(request):
 def ocf_template_processor(request):
     hours = Day.from_date(date.today())
     real_ip = get_real_ip(request)
+    user = logged_in_user(request)
     return {
         'base_css_classes': ' '.join(get_base_css_classes(request)),
         'current_lab_hours': hours,
@@ -34,5 +36,6 @@ def ocf_template_processor(request):
         'lab_status': get_lab_status(),
         'ocfweb_version': ocfweb_version(),
         'request_full_path': request.get_full_path(),
-        'user': logged_in_user(request),
+        'user': user,
+        'user_is_group': user is not None and user_is_group(user),
     }
