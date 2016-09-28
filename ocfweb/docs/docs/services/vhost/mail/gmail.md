@@ -78,9 +78,3 @@ As a last resort, you can also [[email us|doc contact]] for assistance. If you
 do this, please provide as much detail as possible, including screenshots, the
 email you're trying to use, and the steps you took. (But please *do not* send
 us your password!)
-
-
-## Creating mail addresses
-
-Once your domain is configured for mail hosting, head over to our [[mail
-virtual hosting page|vhost_mail]] to modify the addresses.
