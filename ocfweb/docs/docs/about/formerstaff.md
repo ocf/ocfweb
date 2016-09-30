@@ -115,6 +115,7 @@ gained as OCF staff:
 * [Experimental Computing Facility](https://callink.berkeley.edu/organization/xcf)
 * Students Improving Campus Online Services
 * [U. C. Society of Electrical Engineers](https://ieee.berkeley.edu) (IEEE Student Chapter)
+* [Upsilon Pi Epsilon](http://upe.berkeley.edu/) (CS Honor Society)
 
 ### Elsewhere
 
