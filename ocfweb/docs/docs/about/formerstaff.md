@@ -53,6 +53,7 @@ Some of the places OCF staffers have gone on to work at:
 * [Forte Software](http://www.forte.com/) (now part of [Sun Microsystems](http://www.sun.com/))
 * [Fry's Electronics](http://www.outpost.com/)
 * Global Network Navigator, Inc.
+* [Goldman Sachs](http://www.goldmansachs.com/)
 * [Google](https://www.google.com)
 * [HotWired](http://www.hotwired.com/)
 * [Howard Hughes Medical Institute](http://www.hhmi.org/)
