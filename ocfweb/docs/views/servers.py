@@ -86,7 +86,6 @@ def get_hosts():
                     'maelstrom',
                     'pestilence',
                     'reaper',
-                    'sandstorm',
                     'supernova',
                     'thunder',
                     'tsunami',
