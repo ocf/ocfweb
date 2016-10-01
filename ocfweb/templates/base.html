@@ -107,7 +107,12 @@
                                     <span class="caret"></span>
                                 </a>
 
+                                <!-- TODO: refactor this -->
                                 <ul class="dropdown-menu" role="menu">
+                                    {% if user_is_group %}
+                                        <li><a href="{% url 'vhost_mail' %}">Mail Virtual Hosting</a></li>
+                                    {% endif %}
+
                                     <li><a href="{% url 'commands' %}">Commands</a></li>
                                     <li><a href="{% url 'change_password' %}">Change Password</a></li>
                                     <li><a href="{% url 'logout' %}?next={{request_full_path}}">Log Out</a></li>

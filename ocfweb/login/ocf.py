@@ -104,6 +104,7 @@ class LoginForm(Form):
         label='OCF username',
         min_length=3,
         max_length=16,
+        widget=forms.TextInput(attrs={'autofocus': True}),
     )
     password = forms.CharField(
         widget=forms.PasswordInput,

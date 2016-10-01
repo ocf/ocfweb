@@ -77,24 +77,8 @@ All virtual hosts on the OCF must include an [[OCF banner|doc services/vhost/bad
 
 ## Email Forwarding    {email}
 
-By default, email forwarding is not provided for virtually-hosted group
-accounts. Groups can request this service, but should be prepared to deal with an
-increase in email spam as a result.
+Want to send and receive email from `@mygroup.berkeley.edu` addresses? You can
+do that!
 
-To request email forwarding, email `hostmaster@ocf.berkeley.edu`.
-
-### Configuring Forwarding Addresses
-
-In order to tell the mail server where to forward mail, you must create
-`.forward` files (note the leading dot). These files contain a list of email
-addresses to forward mail to, specified one per line.
-
-The easiest way to create forward files is to log in via
-[[SSH|doc services/shell]]. Once logged in, you can create the files by executing a
-command like:
-
-    echo "my_email@example.com" > ~/.forward+officer
-
-This command will create a text file called `.forward+officer` in your home directory which contains only the line `my_email@example.com`. This will forward email going to the new address `officer@group.berkeley.edu` to the existing email address `my_email@example.com`. You should substitute your real email for `my_email@example.com` and whatever group-related email address you'd like to use for the `officer` in `.forward+officer`.
-
-You can create as many of these files as you like. Each file should be named `.forward+name` where `name` is the part before the `@` sign in the new address you want (i.e., `name@group.berkeley.edu`).
+We call this *mail virtual hosting*. To learn more, [[check out our page about
+that|doc services/vhost/mail]].
