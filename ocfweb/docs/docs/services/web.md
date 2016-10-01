@@ -11,27 +11,6 @@ where `user` is the account name.
 Group accounts may also request a [[virtual host|doc services/vhost]] for
 another domain (e.g., group.berkeley.edu).
 
-## Setting up web space
-
-### via the web interface
-
-1. Open the [[web commands interface|commands]] in your web browser.
-2. Select the "makehttp" option. Enter your OCF username and password, and choose "Run command". You should see something like this in the output, assuming you entered your username and password correctly:
-
-        public_html folder has been created successfully.
-
-### via SSH
-
-1. Login to your account via [[SSH|doc services/shell]].
-2. After you go past all system messages, you will see prompt:
-
-        tsunami$
-
-    At this prompt, type `makehttp`. This command will create your web directory. Here's a sample screen output:
-
-        tsunami$ makehttp
-        public_html folder has been created successfully.
-
 ## Uploading Files
 
 Upload files to your web space the same way you [[upload files to your OCF
@@ -64,3 +43,38 @@ Other flavors of the day may work but are not currently supported. We may be
 able to install additional packages on request, but will generally advise
 you to use alternatives instead (such as installing in a virtualenv or inside
 your home directory).
+
+
+## FAQ
+### My `public_html` directory is missing, how do I fix that?
+
+We automatically create the `public_html` symlink for all new accounts, but
+it's possible that it was accidentally removed (or that you have an older
+account from before we started the practice).
+
+Keep in mind that just recreating the directory is *not* sufficient; it must be
+a symbolic link to your actual web space. If you simply make a directory named
+`public_html`, it won't be used for your website.
+
+Here are two easy ways to re-create the symlink:
+
+
+#### via the web interface
+
+1. Open the [[web commands interface|commands]] in your web browser.
+2. Select the "makehttp" option. Enter your OCF username and password, and choose "Run command". You should see something like this in the output, assuming you entered your username and password correctly:
+
+        public_html folder has been created successfully.
+
+
+#### via SSH
+
+1. Login to your account via [[SSH|doc services/shell]].
+2. After you go past all system messages, you will see prompt:
+
+        tsunami$
+
+    At this prompt, type `makehttp`. This command will create your web directory. Here's a sample screen output:
+
+        tsunami$ makehttp
+        public_html folder has been created successfully.
