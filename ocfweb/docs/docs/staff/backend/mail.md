@@ -1,23 +1,18 @@
 [[!meta title="Mail"]]
 
-We maintain two mail servers:
+**anthrax** is our mail server. It is used for sending and receiving all
+OCF mail, excluding staff use of Google Apps. Mail sent by users, websites,
+virtual hosts, or basically anything else goes through here.
 
-* **anthrax**, used for sending and receiving nearly all mail. Mail sent by
-  users, websites, or basically anything else goes through here.
+Received mail to @ocf.berkeley.edu is looked up via LDAP (or the aliases
+table) and forwarded or rejected; nothing is stored.
 
-  Received mail to @ocf.berkeley.edu is looked up via LDAP (or the aliases
-  table) and forwarded or rejected; nothing is stored.
+Received virtual host mail is looked up in a MySQL table and forwarded to the
+correct place. Outgoing virtual host mail is also via anthrax, which uses SMTP
+authentication (passwords checked against `crypt(3)`'d passwords in a MySQL
+table). [[There's a whole page with more details about vhost mail.|doc staff/backend/mail/vhost]]
 
-  Mail originating anywhere inside OCF relays through anthrax.
-
-* **sandstorm**, used for receiving and forwarding mail for groups with virtual
-  hosts. sandstorm sends no mail itself; even forwarded mail gets relayed
-  through anthrax.
-
-  Originally, sandstorm handled all mail. But the config was scary and not
-  documented or in Puppet (this is still the case). We hope to eventually
-  change this (unsure whether that means consolidating to a single server or
-  not, though).
+Mail originating anywhere inside the OCF relays through anthrax.
 
 
 ## External relations

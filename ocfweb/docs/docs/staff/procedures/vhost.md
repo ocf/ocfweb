@@ -20,21 +20,32 @@ If mail is also requested, skip to the next section. Otherwise, request the foll
 
 Use the domain requested by the group in place of `hostname`. We have a [reusable email template](http://templates.ocf.berkeley.edu/#hostmaster-new-domain) for making new DNS requests.
 
-### Mail (if requested)
+### Mail (if requested)    {mail}
 
-* Add vhost: edit `~staff/vhost/vhost-mail.conf`.
-* Update vhost configuration: Run `sudo ~staff/vhost/mail.sh` on sandstorm.
+Edit the file `~staff/vhost/vhost-mail.conf`, adding a new line for the group.
+The format is simply:
 
-If the group already has virtual hosting for their website, which is likely the case, request from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/) that the following DNS record be dropped:
+    groupname domainname
+
+This immediately takes effect, allowing the group to [[edit their email config|vhost_mail]]
+(and the mail server will start accepting incoming/outgoing mail), but you
+still need to update the DNS so that they can actually receive mail.
+
+If the group already has virtual hosting for their website, which is likely the
+case, request from the [University hostmaster](http://www.net.berkeley.edu/hostmaster/)
+that the following DNS record be dropped:
 
     hostname.Berkeley.EDU. IN CNAME death.OCF.Berkeley.EDU.
 
 Then, whether or not the group has web virtual hosting, request the following DNS records:
 
     hostname.Berkeley.EDU. IN A 169.229.226.23
-    hostname.Berkeley.EDU. IN MX 5 sandstorm.OCF.Berkeley.EDU.
+    hostname.Berkeley.EDU. IN MX 5 anthrax.OCF.Berkeley.EDU.
 
-Use the domain requested by the group in place of `hostname`. We have a [reusable email template](http://templates.ocf.berkeley.edu/#hostmaster-add-mail) for making DNS mail requests.
+Use the domain requested by the group in place of `hostname`. We have a
+[reusable email template](http://templates.ocf.berkeley.edu/#hostmaster-add-mail)
+for making DNS mail requests.
+
 
 ### Application hosting
 The group website should be reasonably developed (can be offsite during review only for this request) before approving it.
