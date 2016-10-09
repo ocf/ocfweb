@@ -1,6 +1,6 @@
 [[!meta title="Munin"]]
 
-We use [Munin](http://munin.ocf.berkeley.edu) to provide real-time monitoring
+We use [Munin](https://munin.ocf.berkeley.edu) to provide real-time monitoring
 of our hardware. The master is [[dementors|doc staff/backend/servers]] which
 runs a cron job every five minutes to collect data from the node server running
 on each machine. A [custom script][gen-munin-nodes] periodically generates the
