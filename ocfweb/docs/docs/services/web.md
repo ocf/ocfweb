@@ -32,6 +32,9 @@ PHP/CGI/FastCGI scripts are executed as your user, so they do not need to be
 world-readable. If they contain sensitive information (such as database
 passwords), you should make them private (e.g., `chmod 600` or `chmod 700`).
 
+Both individual hosting and student group hosting are done entirely over HTTPS.
+
+
 ### Supported languages
 
 * PHP 5.6

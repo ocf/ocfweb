@@ -61,6 +61,6 @@ the University of California.  We take full responsibility for our
 organization and this website.
 
 [berkeley]: http://berkeley.edu
-[decal]: http://decal.ocf.berkeley.edu
+[decal]: https://decal.ocf.berkeley.edu
 [csua]: http://csua.berkeley.edu
 [minutes]: https://www.ocf.berkeley.edu/~staff/bod/

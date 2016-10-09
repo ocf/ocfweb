@@ -26,7 +26,7 @@ following DNS record from the
     hostname.berkeley.edu. IN CNAME death.ocf.berkeley.edu.
 
 Use the domain requested by the group in place of `hostname`. We have a
-[reusable email template](http://templates.ocf.berkeley.edu/#hostmaster-new-domain)
+[reusable email template](https://templates.ocf.berkeley.edu/#hostmaster-new-domain)
 for making new DNS requests.
 
 ### Mail (if requested)    {mail}
@@ -52,7 +52,7 @@ Then, whether or not the group has web virtual hosting, request the following DN
     hostname.Berkeley.EDU. IN MX 5 anthrax.OCF.Berkeley.EDU.
 
 Use the domain requested by the group in place of `hostname`. We have a
-[reusable email template](http://templates.ocf.berkeley.edu/#hostmaster-add-mail)
+[reusable email template](https://templates.ocf.berkeley.edu/#hostmaster-add-mail)
 for making DNS mail requests.
 
 
