@@ -29,7 +29,7 @@ These are the official **Bylaws of the Open Computing Facility**, as last amende
 
    1. Deputy Managers shall be appointed and removed by the General Manager or Site Manager, subject to the OCF Decision Making Process.
 
-   2. Deputy General Managers and Deputy Site Managers shall be ex officio Deputy Managers.
+   2. Deputy General Managers and Deputy Site Managers shall be _ex officio_ Deputy Managers.
 
    3. The authority of Deputy Managers derives jointly from the General Manager and Site Manager, and their actions can be overruled by either the General Manager or the Site Manager.
 
