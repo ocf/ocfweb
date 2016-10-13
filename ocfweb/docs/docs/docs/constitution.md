@@ -1,6 +1,6 @@
 [[!meta title="Constitution"]]
 
-This document records the **Constitution of the Open Computing Facility**, as ratified or amended by votes of the OCF membership:
+This document records the **Constitution of the Open Computing Facility**, as ratified or amended by votes of the OCF membership or by the Board of Directors:
 
 * ratified on February 3, 1989;
 * and amended on:
