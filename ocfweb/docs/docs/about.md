@@ -13,7 +13,7 @@ place for those interested in computing to fully explore that interest.
 ## What do we do?
 
 The Open Computing Facility provides free computing services to student,
-faculty, and staff, ranging from free printing to expiration-free web
+faculty, and staff, ranging from printing to expiration-free web
 space to Unix shell accounts to email. Furthermore, the OCF operates a
 highly frequented long-hours computing lab with a generally high
 volunteer-staff-to-user ratio for accessible in-person support, as well
