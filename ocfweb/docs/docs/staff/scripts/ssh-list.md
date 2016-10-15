@@ -10,8 +10,8 @@ The usage of ssh-list looks like:
 The arguments before the `--` are interpreted by `ssh-list`, and the arguments
 after are passed verbatim to `parallel-ssh`.
 
-In most cases, you want at least `-i` in the arguments to parallel-ssh. For
-example:
+In most cases, you want at least `-i` in the arguments to parallel-ssh. `-i` prints
+out the stdout and stderr for each host you are running the command on. For example:
 
     ssh-list all -- -i whoami
 
