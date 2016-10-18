@@ -1,7 +1,7 @@
 [[!meta title="Bylaws"]]
 
 
-These are the official **Bylaws of the Open Computing Facility**, as last amended at the Board meeting of October 10, 2016.
+These are the official **Bylaws of the Open Computing Facility**, as last amended at the Board meeting of October 17, 2016.
 
 1. The General Manager and the Site Managers cannot appoint directors unless: (a) the OCF is not formally in session, and (b) the Board of Directors cannot achieve quorum because there are fewer than five directors in town.
 
@@ -61,4 +61,10 @@ These are the official **Bylaws of the Open Computing Facility**, as last amende
 
    3. Officers appointed under subsection 2 of this title shall be removed from office if they miss two consecutive Officers’ Meetings without an excuse approved by the General Manager.
 
-Bylaws 1-4 amended at the general meeting of March 21, 2008. Bylaws 5-7 from the revision of the bylaws last amended February 7, 1995. Bylaw 8 added at the Board meeting of April 30, 2014. Bylaws 9-13 added at the Board meeting of October 10, 2016.
+14. No person shall be appointed as a Director unless they have served previously on the Board of Directors or have attended at least four Board meetings in the semester in which they are to be appointed.
+
+    Any non-Director member who attends four Board meetings in the same semester can request to be appointed as a Director; they shall be automatically appointed unless a Director moves for a vote on their appointment, in which case the candidate will be appointed upon gaining a majority vote.
+
+    Directors not in good standing shall be disqualified from the Board until they are in good standing again.
+
+Bylaws 1-4 amended at the general meeting of March 21, 2008. Bylaws 5-7 from the revision of the bylaws last amended February 7, 1995. Bylaw 8 added at the Board meeting of April 30, 2014. Bylaws 9-13 added at the Board meeting of October 10, 2016. Bylaw 14 added at the Board meeting of October 17, 2016.
