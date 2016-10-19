@@ -11,7 +11,7 @@ usability advantages over using password-based authentication over the network.
 ### Security advantages
 
 One major security advantage of using Kerberos is that if a ticket is stolen
-from a host, it will expire, so damange is minimized compared to being able to
+from a host, it will expire, so damage is minimized compared to being able to
 steal a password or long-lived ticket. Kerberos also assumes that the network
 that is being used for communication could be compromised and has malicious
 users who could be listening to network traffic and stealing any data sent from
@@ -53,7 +53,8 @@ mean:
 - **KDC** (**K**ey **D**istribution **C**enter): The central server that issues
   tickets for Kerberos communication and stores all user's keys. If the KDC is
   compromised, you are going to have a very bad time and [will not go to space
-  today][xkcd-space].
+  today][xkcd-space]. Our current KDC is firestorm, but that could change in the
+  future, as servers are moved around or rebuilt.
 
 - **Realm**: A kerberos domain, usually identified with the domain name in all
   caps (e.g. `OCF.BERKELEY.EDU`). Two hosts are in the same realm if they share
@@ -141,7 +142,7 @@ All conveniently prefixed with the letter `k`.
 
 - `kimpersonate`: Used for impersonating another user using their keytab.
 
-There's more commands, but they aren't used so often, and can be searched if
+There are more commands, but they aren't used so often, and can be searched if
 needed.
 
 
@@ -160,7 +161,7 @@ Next, to give the principal actual privileges, add the principals and
 privileges assigned to the [kadmind.acl file][2] used by Puppet. Notice that
 the `all` privilege does not actually give *all* privileges, since the
 `get-keys` privilege is separate.  The `get-keys` privilege is used to fetch
-pricipals' keys, which is equivalent to knowing the password hash in other
+principals' keys, which is equivalent to knowing the password hash in other
 authentication systems, so it is not a privilege to be handed out lightly.
 
 [2]: https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl
