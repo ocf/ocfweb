@@ -18,7 +18,7 @@ CalNet UID), direct them to an OCF officer.
 * SSH into supernova.ocf.berkeley.edu
 * For registered student groups, the OCF requires that a signatory
   authorize the approval of the account. If the account is not a
-  registered student, group check with the [[membership eligibility|doc
+  registered student group, check with the [[membership eligibility|doc
   membership/eligibility]] to see what constitutes acceptable
   documentation.
 * If the group is a registered student group, you can look up the
