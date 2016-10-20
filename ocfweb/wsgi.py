@@ -12,3 +12,6 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ocfweb.settings')
 application = get_wsgi_application()
+
+# warm up this worker by importing most of the code
+import ocfweb.urls  # noqa
