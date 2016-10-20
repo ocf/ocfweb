@@ -1,0 +1,5 @@
+debian
+venv
+.tox
+.git
+*.swp
