@@ -5,6 +5,7 @@ if [ ! -f /etc/ocfweb/ocfweb.conf ]; then
 [django]
 secret = not_a_secret
 debug = false
+redis_uri = redis://localhost:6379/0
 
 # static assets
 static_url = https://static.ocf.berkeley.edu/

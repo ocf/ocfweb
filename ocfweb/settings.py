@@ -1,14 +1,13 @@
 import configparser
 import os
 import warnings
-from getpass import getuser
 
 from django.core.cache import CacheKeyWarning
 from django.template.base import TemplateSyntaxError
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TESTING = False
+TESTING = os.environ.get('OCFWEB_TESTING') == '1'
 
 ALLOWED_HOSTS = [
     'www.ocf.berkeley.edu',
@@ -152,11 +151,11 @@ OCFMAIL_USER = conf.get('ocfmail', 'user')
 OCFMAIL_PASSWORD = conf.get('ocfmail', 'password')
 OCFMAIL_DB = conf.get('ocfmail', 'db')
 
-if getuser() == 'ocfweb':
+if not DEBUG:
     # Prod-only settings.
     CACHES['default'] = {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://localhost:6379/0',
+        'LOCATION': conf.get('django', 'redis_uri'),
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }

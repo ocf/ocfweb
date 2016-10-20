@@ -2,12 +2,21 @@ BIN := venv/bin
 PYTHON := $(BIN)/python
 SHELL := /bin/bash
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
+DOCKER_TAG ?= ocfweb-dev-$(USER)
 
 .PHONY: test
 test: venv
 	$(BIN)/coverage run -m py.test -v tests/
 	$(BIN)/coverage report
 	$(BIN)/pre-commit run --all-files
+
+.PHONY: cook-image
+cook-image:
+	docker build -t $(DOCKER_TAG) .
+
+.PHONY: push-image
+push-image: cook-image
+	docker push $(DOCKER_TAG)
 
 # first set COVERALLS_REPO_TOKEN=<repo token> environment variable
 .PHONY: coveralls
