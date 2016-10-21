@@ -23,12 +23,25 @@ node('slave') {
     }
 }
 
+// cook images
+stage name: 'test-cook-image'
+
+node('slave') {
+    unstash 'src'
+    dir('src') {
+        sh 'make cook-image'
+    }
+}
+
 
 // deploy to prod
 if (env.BRANCH_NAME == 'master') {
     def version = new Date().format("yyyy-MM-dd-'T'HH-mm-ss")
-    withEnv(["DOCKER_TAG=docker-push.ocf.berkeley.edu/ocfweb:${version}"]) {
-        stage name: 'build-prod-image'
+    withEnv([
+        'DOCKER_REPO=docker-push.ocf.berkeley.edu/',
+        "DOCKER_REVISION=${version}",
+    ]) {
+        stage name: 'cook-prod-image'
         node('slave') {
             unstash 'src'
             dir('src') {
@@ -46,8 +59,13 @@ if (env.BRANCH_NAME == 'master') {
     }
 
     stage name: 'deploy-to-prod'
+    // TODO: make these deploy and roll back together!
     build job: 'marathon-deploy-app', parameters: [
-        [$class: 'StringParameterValue', name: 'app', value: 'ocfweb'],
+        [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/web'],
+        [$class: 'StringParameterValue', name: 'version', value: version],
+    ]
+    build job: 'marathon-deploy-app', parameters: [
+        [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/worker'],
         [$class: 'StringParameterValue', name: 'version', value: version],
     ]
 }
