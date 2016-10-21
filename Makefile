@@ -2,7 +2,11 @@ BIN := venv/bin
 PYTHON := $(BIN)/python
 SHELL := /bin/bash
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
-DOCKER_TAG ?= ocfweb-dev-$(USER)
+DOCKER_REPO ?=
+DOCKER_REVISION ?= testing-$(USER)
+DOCKER_TAG_BASE = ocfweb-base-$(USER)
+DOCKER_TAG_WEB = $(DOCKER_REPO)ocfweb-web:$(DOCKER_REVISION)
+DOCKER_TAG_WORKER = $(DOCKER_REPO)ocfweb-worker:$(DOCKER_REVISION)
 
 .PHONY: test
 test: venv
@@ -10,13 +14,20 @@ test: venv
 	$(BIN)/coverage report
 	$(BIN)/pre-commit run --all-files
 
+.PHONY: Dockerfile.%
+Dockerfile.%: Dockerfile.%.in
+	sed 's/{tag}/$(DOCKER_TAG_BASE)/g' "$<" > "$@"
+
 .PHONY: cook-image
-cook-image:
-	docker build -t $(DOCKER_TAG) .
+cook-image: Dockerfile.web Dockerfile.worker
+	docker build -t $(DOCKER_TAG_BASE) .
+	docker build -t $(DOCKER_TAG_WEB) -f Dockerfile.web .
+	docker build -t $(DOCKER_TAG_WORKER) -f Dockerfile.worker .
 
 .PHONY: push-image
 push-image: cook-image
-	docker push $(DOCKER_TAG)
+	docker push $(DOCKER_TAG_WEB)
+	docker push $(DOCKER_TAG_WORKER)
 
 # first set COVERALLS_REPO_TOKEN=<repo token> environment variable
 .PHONY: coveralls

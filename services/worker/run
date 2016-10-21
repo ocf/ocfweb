@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euxo pipefail
+cd /opt/ocfweb
+exec /opt/ocfweb/venv/bin/python -m ocfweb.bin.run_periodic_functions

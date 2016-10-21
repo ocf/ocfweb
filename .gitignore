@@ -1,4 +1,7 @@
 ## ocfweb stuff
+/Dockerfile.web
+/Dockerfile.worker
+
 /.version
 /ocfweb/static/scss/**/*.css
 /venv

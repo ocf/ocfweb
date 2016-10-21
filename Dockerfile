@@ -1,3 +1,5 @@
+# A base ocfweb Dockerfile containing the code and dependencies.
+# This doesn't run the website or the background worker; see Dockerfile.* for those.
 FROM docker.ocf.berkeley.edu/theocf/debian:jessie
 
 RUN apt-get update \
@@ -33,7 +35,6 @@ RUN virtualenv -ppython3 /opt/ocfweb/venv \
         -r /opt/ocfweb/requirements.txt
 
 COPY ocfweb /opt/ocfweb/ocfweb/
-COPY services /opt/ocfweb/services/
 COPY conf /etc/ocfweb/
 ENV MATPLOTLIBRC /etc/ocfweb
 
@@ -41,9 +42,9 @@ ENV MATPLOTLIBRC /etc/ocfweb
 # locally to prevent ocflib report emails.
 ENV OCFWEB_TESTING 1
 
-# Some files need to be writable.
-RUN chown -R nobody:nogroup /opt/ocfweb/services
+# Add services common to all the images. Other images might add more.
+COPY services/redis-tunnel /opt/ocfweb/services/redis-tunnel
 
 WORKDIR /opt/ocfweb
-USER nobody
+
 CMD ["runsvdir", "/opt/ocfweb/services"]
