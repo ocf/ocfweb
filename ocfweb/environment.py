@@ -14,7 +14,8 @@ def ocfweb_version():
     """
     # On Marathon, read it out of environ
     try:
-        return os.environ['MARATHON_APP_DOCKER_IMAGE']
+        docker_image, tag = os.environ['MARATHON_APP_DOCKER_IMAGE'].split(':', 1)
+        return tag
     except KeyError:
         pass
 
