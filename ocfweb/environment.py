@@ -1,4 +1,5 @@
 """Introspection into the current environment."""
+import os
 from functools import lru_cache
 
 import pkg_resources
@@ -11,8 +12,17 @@ def ocfweb_version():
     In dev, returns 'dev'. In prod, returns a version
     similar to '2015.12.06.02.25-gitb98c8cb6'.
     """
+    # On Marathon, read it out of environ
+    try:
+        return os.environ['MARATHON_APP_DOCKER_IMAGE']
+    except KeyError:
+        pass
+
+    # If it's installed (legacy), read it from setuptools
     try:
         return pkg_resources.get_distribution('ocfweb').version
     except pkg_resources.DistributionNotFound:
-        # in dev, the ocfweb package isn't actually installed via setuptools
-        return 'dev'
+        pass
+
+    # Otherwise, we must be in dev.
+    return 'dev'
