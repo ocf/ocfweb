@@ -233,8 +233,8 @@ class VirtualHostForm(Form):
         # Normally using `reverse_lazy` would fix that, but we can't use that
         # either because `mark_safe` isn't lazy.
         self.fields['website_disclaimer_text'].label = mark_safe((
-            'We have placed the <a href="{}">university-mandated disclaimer</a> '
-            'on each page of our site.'
+            'If we are a student group, we have placed the <a href="{}">university-mandated '
+            'disclaimer</a> on each page of our site.'
         ).format(reverse('doc', args=('services/vhost',))))
 
         self.fields['website_ocf_banner'].label = mark_safe((
