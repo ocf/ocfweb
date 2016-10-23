@@ -5,6 +5,8 @@ FROM docker.ocf.berkeley.edu/theocf/debian:jessie
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         build-essential \
+        cracklib-runtime \
+        libcrack2 \
         libcrack2-dev \
         libffi-dev \
         libfreetype6-dev \
