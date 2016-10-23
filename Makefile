@@ -20,12 +20,12 @@ Dockerfile.%: Dockerfile.%.in
 
 .PHONY: cook-image
 cook-image: Dockerfile.web Dockerfile.worker
-	docker build -t $(DOCKER_TAG_BASE) .
-	docker build -t $(DOCKER_TAG_WEB) -f Dockerfile.web .
-	docker build -t $(DOCKER_TAG_WORKER) -f Dockerfile.worker .
+	docker build --no-cache -t $(DOCKER_TAG_BASE) .
+	docker build --no-cache -t $(DOCKER_TAG_WEB) -f Dockerfile.web .
+	docker build --no-cache -t $(DOCKER_TAG_WORKER) -f Dockerfile.worker .
 
 .PHONY: push-image
-push-image: cook-image
+push-image:
 	docker push $(DOCKER_TAG_WEB)
 	docker push $(DOCKER_TAG_WORKER)
 
