@@ -1,73 +1,73 @@
-stage name: 'clean-workspace'
 node('slave') {
     step([$class: 'WsCleanup'])
-}
 
-// check out code
-stage name: 'check-out-code'
-node('slave') {
-    dir('src') {
-        checkout scm
+    stage('check-out-code') {
+        // TODO: I think we can factor out the "src" subdirectory now that we
+        // don't build a Debian package?
+        dir('src') {
+            checkout scm
+        }
     }
+
+    stage('test') {
+        dir('src') {
+            sh 'make test'
+        }
+    }
+
+    stage('test-cook-image') {
+        dir('src') {
+            sh 'make cook-image'
+        }
+    }
+
     stash 'src'
 }
 
 
-// run tests
-stage name: 'test'
-
-node('slave') {
-    unstash 'src'
-    dir('src') {
-        sh 'make test'
-    }
-}
-
-// cook images
-stage name: 'test-cook-image'
-
-node('slave') {
-    unstash 'src'
-    dir('src') {
-        sh 'make cook-image'
-    }
-}
-
-
-// deploy to prod
 if (env.BRANCH_NAME == 'master') {
     def version = new Date().format("yyyy-MM-dd-'T'HH-mm-ss")
     withEnv([
         'DOCKER_REPO=docker-push.ocf.berkeley.edu/',
         "DOCKER_REVISION=${version}",
     ]) {
-        stage name: 'cook-prod-image'
         node('slave') {
+            step([$class: 'WsCleanup'])
             unstash 'src'
-            dir('src') {
-                sh 'make cook-image'
+
+            stage('cook-prod-image') {
+                dir('src') {
+                    sh 'make cook-image'
+                }
             }
+
+            stash 'src'
         }
 
-        stage name: 'push-to-registry'
         node('deploy') {
+            step([$class: 'WsCleanup'])
             unstash 'src'
-            dir('src') {
-                sh 'make push-image'
+
+            stage('push-to-registry') {
+                dir('src') {
+                    sh 'make push-image'
+                }
+            }
+
+            stage('deploy-to-prod') {
+                // TODO: make these deploy and roll back together!
+                build job: 'marathon-deploy-app', parameters: [
+                    [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/web'],
+                    [$class: 'StringParameterValue', name: 'version', value: version],
+                ]
+                build job: 'marathon-deploy-app', parameters: [
+                    [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/worker'],
+                    [$class: 'StringParameterValue', name: 'version', value: version],
+                ]
+
             }
         }
     }
-
-    stage name: 'deploy-to-prod'
-    // TODO: make these deploy and roll back together!
-    build job: 'marathon-deploy-app', parameters: [
-        [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/web'],
-        [$class: 'StringParameterValue', name: 'version', value: version],
-    ]
-    build job: 'marathon-deploy-app', parameters: [
-        [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/worker'],
-        [$class: 'StringParameterValue', name: 'version', value: version],
-    ]
 }
 
 
