@@ -1,6 +1,8 @@
 #!/usr/bin/make -f
-PYTHON := debian/ocfweb/usr/share/python/ocfweb/bin/python
+BIN := debian/ocfweb/usr/share/python/ocfweb/bin
+PYTHON := $(BIN)/python
 STATIC_DIR := debian/ocfweb/usr/share/ocfweb/static
+ASSET_DIR := debian/ocfweb/usr/share/python/ocfweb/lib/python3.4/site-packages/ocfweb/static
 
 # XXX: We have to unexport LDFLAGS to avoid breaking the numpy build;
 # alternatively, we can add `-shared` to LDFLAGS, but then that breaks
@@ -19,7 +21,7 @@ override_dh_virtualenv:
 	dh_virtualenv --python=/usr/bin/python3 --preinstall=pip==8.0.3 --preinstall=wheel==0.29.0
 
 	# build sass, output static files
-	$(PYTHON) setup.py build_sass
+	$(PYTHON) $(BIN)/sassc $(ASSET_DIR)/scss/site.scss $(ASSET_DIR)/scss/site.scss.css
 	mkdir -p "$(STATIC_DIR)"
 	OCFWEB_STATIC_ROOT="$(STATIC_DIR)" \
 		$(PYTHON) manage.py collectstatic --noinput
