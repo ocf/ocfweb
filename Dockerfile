@@ -28,14 +28,13 @@ RUN apt-get update \
 RUN install -d --owner=nobody /opt/ocfweb /opt/ocfweb/venv /etc/ocfweb
 
 COPY requirements.txt /opt/ocfweb/
-# TODO: We can't use libsass==0.11.1 in the Debian packaging yet, but we can here.
-# We go to the pain of sed-ing it out because 0.11.1 has a manylinux wheel.
-RUN sed -i 's/^libsass==.*/libsass==0.11.1/' /opt/ocfweb/requirements.txt
 RUN virtualenv -ppython3 /opt/ocfweb/venv \
     && /opt/ocfweb/venv/bin/pip install pip==8.1.2 \
     && /opt/ocfweb/venv/bin/pip install \
         -r /opt/ocfweb/requirements.txt
 
+COPY bootstrap-scss /opt/ocfweb/bootstrap-scss/
+COPY manage.py /opt/ocfweb/
 COPY ocfweb /opt/ocfweb/ocfweb/
 COPY conf /etc/ocfweb/
 ENV MATPLOTLIBRC /etc/ocfweb

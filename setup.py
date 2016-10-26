@@ -24,7 +24,7 @@ setup(
         'django-redis',
         'django>=1.10,<1.10.999',
         'gunicorn',
-        'libsass<=0.10.0',  # https://github.com/ocf/ocfweb/issues/128
+        'libsass',
         'matplotlib',
         'mistune',
         'numpy',
@@ -34,9 +34,6 @@ setup(
         'pymysql',
         'python-dateutil',
     ],
-    sass_manifests={
-        'ocfweb': ('static/scss',),  # XXX: must be tuple
-    },
     entry_points={
         'console_scripts': [
             'ocfweb-run-periodic-functions = ocfweb.bin.run_periodic_functions:main',

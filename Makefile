@@ -35,7 +35,7 @@ coveralls: venv test
 	$(BIN)/coveralls
 
 .PHONY: dev
-dev: venv scss
+dev: venv ocfweb/static/scss/site.scss.css
 	@echo -e "\e[1m\e[93mRunning on http://$(shell hostname -f ):$(RANDOM_PORT)/\e[0m"
 	$(PYTHON) ./manage.py runserver 0.0.0.0:$(RANDOM_PORT)
 
@@ -52,16 +52,17 @@ gunicorn: venv
 	@echo "Running on port $(RANDOM_PORT)"
 	$(BIN)/gunicorn -b 0.0.0.0:$(RANDOM_PORT) ocfweb.wsgi
 
-.PHONY: scss
-scss: venv
-	$(PYTHON) setup.py build_sass
+# phony because it depends on other files, too many to express
+.PHONY: ocfweb/static/scss/site.scss.css
+ocfweb/static/scss/site.scss.css: ocfweb/static/scss/site.scss venv
+	$(BIN)/sassc "$<" "$@"
 
 .PHONY: watch-scss
-watch-scss: scss venv
+watch-scss: venv
 	while :; do \
+		make ocfweb/static/scss/site.scss.css; \
 		find ocfweb/static -type f -name '*.scss' | \
 			inotifywait --fromfile - -e modify; \
-			$(PYTHON) setup.py build_sass; \
 	done
 
 .PHONY: update-requirements
