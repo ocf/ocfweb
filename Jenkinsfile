@@ -6,6 +6,9 @@ node('slave') {
         // don't build a Debian package?
         dir('src') {
             checkout scm
+
+            // TODO: figure out how to get the git plugin to do this for us
+            sh 'git submodule update --init'
         }
     }
 
@@ -64,7 +67,10 @@ if (env.BRANCH_NAME == 'master') {
                     [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/worker'],
                     [$class: 'StringParameterValue', name: 'version', value: version],
                 ]
-
+                build job: 'marathon-deploy-app', parameters: [
+                    [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/static'],
+                    [$class: 'StringParameterValue', name: 'version', value: version],
+                ]
             }
         }
     }
