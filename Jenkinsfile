@@ -18,12 +18,6 @@ node('slave') {
         }
     }
 
-    stage('test-cook-image') {
-        dir('src') {
-            sh 'make cook-image'
-        }
-    }
-
     stash 'src'
 }
 
@@ -71,6 +65,18 @@ if (env.BRANCH_NAME == 'master') {
                     [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/static'],
                     [$class: 'StringParameterValue', name: 'version', value: version],
                 ]
+            }
+        }
+    }
+} else {
+    // TODO: figure out how to do this in parallel with the previous step
+    node('slave') {
+        step([$class: 'WsCleanup'])
+        unstash 'src'
+
+        stage('test-cook-image') {
+            dir('src') {
+                sh 'make cook-image'
             }
         }
     }
