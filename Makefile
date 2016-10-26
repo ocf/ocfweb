@@ -30,6 +30,7 @@ cook-image: Dockerfile.web Dockerfile.worker Dockerfile.static
 push-image:
 	docker push $(DOCKER_TAG_WEB)
 	docker push $(DOCKER_TAG_WORKER)
+	docker push $(DOCKER_TAG_STATIC)
 
 # first set COVERALLS_REPO_TOKEN=<repo token> environment variable
 .PHONY: coveralls
