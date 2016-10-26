@@ -12,13 +12,14 @@ django-bootstrap-form==3.2.1
 django-ipware==1.1.6
 django-mathfilters==0.4.0
 django-redis==4.5.0
+dnspython==1.15.0
 dnspython3==1.15.0
 gunicorn==19.6.0
 idna==2.1
 Jinja2==2.8
 kombu==3.0.37
 ldap3==1.4.0
-libsass==0.10.0
+libsass==0.11.2
 MarkupSafe==0.23
 matplotlib==1.5.3
 mistune==0.7.3
@@ -29,7 +30,7 @@ pexpect==4.2.1
 ply==3.9
 ptyprocess==0.5.1
 pyasn1==0.1.9
-pycparser==2.14
+pycparser==2.16
 pycrypto==2.6.1
 Pygments==2.1.3
 PyMySQL==0.7.9
