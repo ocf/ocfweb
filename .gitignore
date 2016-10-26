@@ -1,4 +1,5 @@
 ## ocfweb stuff
+/Dockerfile.static
 /Dockerfile.web
 /Dockerfile.worker
 

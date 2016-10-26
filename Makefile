@@ -7,6 +7,7 @@ DOCKER_REVISION ?= testing-$(USER)
 DOCKER_TAG_BASE = ocfweb-base-$(USER)
 DOCKER_TAG_WEB = $(DOCKER_REPO)ocfweb-web:$(DOCKER_REVISION)
 DOCKER_TAG_WORKER = $(DOCKER_REPO)ocfweb-worker:$(DOCKER_REVISION)
+DOCKER_TAG_STATIC = $(DOCKER_REPO)ocfweb-static:$(DOCKER_REVISION)
 
 .PHONY: test
 test: venv
@@ -19,10 +20,11 @@ Dockerfile.%: Dockerfile.%.in
 	sed 's/{tag}/$(DOCKER_TAG_BASE)/g' "$<" > "$@"
 
 .PHONY: cook-image
-cook-image: Dockerfile.web Dockerfile.worker
+cook-image: Dockerfile.web Dockerfile.worker Dockerfile.static
 	docker build --no-cache -t $(DOCKER_TAG_BASE) .
 	docker build --no-cache -t $(DOCKER_TAG_WEB) -f Dockerfile.web .
 	docker build --no-cache -t $(DOCKER_TAG_WORKER) -f Dockerfile.worker .
+	docker build --no-cache -t $(DOCKER_TAG_STATIC) -f Dockerfile.static .
 
 .PHONY: push-image
 push-image:

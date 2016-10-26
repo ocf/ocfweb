@@ -15,6 +15,7 @@ RUN apt-get update \
         libxft-dev \
         libxml2-dev \
         locales \
+        nginx \
         python3 \
         python3-dev \
         python3-pip \
@@ -42,9 +43,6 @@ ENV MATPLOTLIBRC /etc/ocfweb
 # Marathon will set this to 0, but we set it to 1 in case staff run this
 # locally to prevent ocflib report emails.
 ENV OCFWEB_TESTING 1
-
-# Add services common to all the images. Other images might add more.
-COPY services/redis-tunnel /opt/ocfweb/services/redis-tunnel
 
 WORKDIR /opt/ocfweb
 

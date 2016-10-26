@@ -1,0 +1,13 @@
+FROM {tag}
+
+RUN /opt/ocfweb/venv/bin/sassc /opt/ocfweb/ocfweb/static/scss/site.scss /opt/ocfweb/ocfweb/static/scss/site.scss.css
+RUN mkdir /opt/ocfweb/static
+ENV OCFWEB_STATIC_ROOT /opt/ocfweb/static
+RUN /opt/ocfweb/venv/bin/python /opt/ocfweb/manage.py collectstatic --noinput
+
+COPY services/nginx /opt/ocfweb/services/nginx
+RUN chown -R nobody:nogroup /opt/ocfweb/services
+
+USER nobody
+
+# vim: ft=Dockerfile

@@ -1,5 +1,6 @@
 FROM {tag}
 
+COPY services/redis-tunnel /opt/ocfweb/services/redis-tunnel
 COPY services/web /opt/ocfweb/services/web
 RUN chown -R nobody:nogroup /opt/ocfweb/services
 
