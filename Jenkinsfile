@@ -6,6 +6,9 @@ node('slave') {
         // don't build a Debian package?
         dir('src') {
             checkout scm
+
+            # TODO: figure out how to get the git plugin to do this for us
+            sh 'git submodule update --init'
         }
     }
 
