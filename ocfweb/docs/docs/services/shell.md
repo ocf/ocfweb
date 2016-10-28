@@ -40,9 +40,10 @@ On Windows, use [PuTTY][putty] (download the `putty.exe` file):
 
 ## SFTP
 
-You can transfer files to your account using [SFTP][sftp]. To transfer files,
-you'll need another program, such as [FileZilla][filezilla] (Linux, Mac,
-Windows), [WinSCP][winscp] (Windows), or [Cyberduck][cyberduck] (Mac, Windows).
+You can transfer files to your account using [SFTP][sftp]. To transfer files
+you can use the command line utility `sftp`, or a graphical program such as
+[FileZilla][filezilla] (Linux, Mac, Windows), [WinSCP][winscp] (Windows),
+or [Cyberduck][cyberduck] (Mac, Windows).
 
 [sftp]: https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol
 [filezilla]: https://filezilla-project.org/
