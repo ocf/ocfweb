@@ -4,10 +4,10 @@
 Your vm's environment is determined by the puppet entry for the machine.
 ```
 johnsnow@~$ kinit johnsnow/admin ldapvi cn=whitewalker
-### ...LDOF
+### ...LDIF
 #...
 # whitewalker, Hosts, OCF.Berkeley.EDU
-dn: cn=pox,ou=Hosts,dc=OCF,dc=Berkeley,dc=EDU
+dn: cn=whitewalker,ou=Hosts,dc=OCF,dc=Berkeley,dc=EDU
 objectClass: device
 objectClass: ocfDevice
 cn: whitewalker
