@@ -1,7 +1,7 @@
 [[!meta title="Useful staff VM tricks"]]
 
 ## Essentials
-Your vm's environment is determined by the puppet entry for the machine.
+Your vm's environment is determined by the ldap entry for the machine.
 ```
 johnsnow@~$ kinit johnsnow/admin ldapvi cn=whitewalker
 ### ...LDIF
