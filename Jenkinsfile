@@ -1,3 +1,14 @@
+properties([
+    pipelineTriggers([
+        triggers: [
+            [
+                $class: 'jenkins.triggers.ReverseBuildTrigger',
+                upstreamProjects: 'ocflib-upload-pypi', threshold: hudson.model.Result.SUCCESS
+            ]
+        ]
+    ]),
+])
+
 node('slave') {
     step([$class: 'WsCleanup'])
 
