@@ -36,11 +36,13 @@ You can change your password over SSH if you know your current password.
 
 Use [[SSH|doc services/shell]] to run the command `passwd` and follow the prompts as shown below. No text will appear when you are entering in a password, just press enter when done after each prompt.
 
-    $ passwd
-    myusername@OCF.BERKELEY.EDU's Password: <my current password>
-    New password: <my new password>
-    Verifying - New password: <my new password>
-    Success : Password changed
+```text
+$ passwd
+myusername@OCF.BERKELEY.EDU's Password: <my current password>
+New password: <my new password>
+Verifying - New password: <my new password>
+Success : Password changed
+```
 
 #### In person
 
