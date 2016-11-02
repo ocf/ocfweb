@@ -15,7 +15,7 @@ These are the official **Bylaws of the Open Computing Facility**, as last amende
 
 6. Attendance lists and minutes for all OCF meetings shall be maintained for the decisions of that meeting to be valid.
 
-7. BoD elections will take effect at 12:00 midnight after the conclusion of the meeting at which the election took place, with the exception of an Election Meeting.
+7. BoD appointments will take effect at 12:00 midnight after the conclusion of the meeting at which the appointment took place, with the exception of an Election Meeting.
 
 8. _Ex officio_ members of the Board, with the exception of elected Managers, shall not be included when calculating the necessary number of Directors present to reach quorum.
 
@@ -67,4 +67,4 @@ These are the official **Bylaws of the Open Computing Facility**, as last amende
 
     Directors not in good standing shall be disqualified from the Board until they are in good standing again.
 
-Bylaws 1-4 amended at the general meeting of March 21, 2008. Bylaws 5-7 from the revision of the bylaws last amended February 7, 1995. Bylaw 8 added at the Board meeting of April 30, 2014. Bylaws 9-13 added at the Board meeting of October 10, 2016. Bylaw 14 added at the Board meeting of October 17, 2016.
+Bylaws 1-4 amended at the general meeting of March 21, 2008. Bylaws 5-6 from the revision of the bylaws last amended February 7, 1995. Bylaw 8 added at the Board meeting of April 30, 2014. Bylaws 9-13 added at the Board meeting of October 10, 2016. Bylaw 14 added at the Board meeting of October 17, 2016. Bylaw 7 amended at the Board meeting of October 31, 2016.
