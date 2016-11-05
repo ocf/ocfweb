@@ -2,8 +2,6 @@
 import os
 from functools import lru_cache
 
-import pkg_resources
-
 
 @lru_cache()
 def ocfweb_version():
@@ -17,12 +15,6 @@ def ocfweb_version():
         docker_image, tag = os.environ['MARATHON_APP_DOCKER_IMAGE'].split(':', 1)
         return tag
     except KeyError:
-        pass
-
-    # If it's installed (legacy), read it from setuptools
-    try:
-        return pkg_resources.get_distribution('ocfweb').version
-    except pkg_resources.DistributionNotFound:
         pass
 
     # Otherwise, we must be in dev.

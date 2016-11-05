@@ -34,7 +34,7 @@
     sha: cb3b03ba29a70be8ff4702429ea331cfc61b87c8
     hooks:
     -   id: remove-tabs
-        exclude: (Makefile|debian/rules)$
+        exclude: ^Makefile$
         language_version: python2.7
 -   repo: https://github.com/pre-commit/mirrors-scss-lint
     sha: 3eb13b9647543ad4d6a62c8be8a9131e3b99b96a
