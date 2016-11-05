@@ -1,5 +1,5 @@
 cached-property
-celery[redis]
+celery[redis]<3.999
 django-bootstrap-form
 django-ipware
 django-mathfilters
