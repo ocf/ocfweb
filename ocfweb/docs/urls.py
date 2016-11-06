@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 
 from ocfweb.docs.doc import Document
 from ocfweb.docs.markdown_based import get_markdown_docs
+from ocfweb.docs.views.account_policies import account_policies
 from ocfweb.docs.views.commands import commands
 from ocfweb.docs.views.hosting_badges import hosting_badges
 from ocfweb.docs.views.index import docs_index
@@ -22,6 +23,7 @@ DOCS = {
         (
             Document(name='/about/officers', title='Officers', render=officers),
             Document(name='/staff/backend/servers', title='Servers', render=servers),
+            Document(name='/services/account/account-policies', title='Account policies', render=account_policies),
             Document(name='/services/vhost/badges', title='Hosting badges', render=hosting_badges),
             Document(name='/services/lab', title='Computer lab', render=lab),
             Document(name='/services/shell/commands', title='Command reference', render=commands),
