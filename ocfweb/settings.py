@@ -1,5 +1,6 @@
 import configparser
 import os
+import socket
 import warnings
 
 from django.core.cache import CacheKeyWarning
@@ -176,3 +177,4 @@ else:
     }
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
+    ALLOWED_HOSTS.append(socket.getfqdn())
