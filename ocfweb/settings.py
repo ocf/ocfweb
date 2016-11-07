@@ -177,4 +177,11 @@ else:
     }
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
-    ALLOWED_HOSTS.append(socket.getfqdn())
+    ALLOWED_HOSTS += [
+        socket.getfqdn(),
+        socket.gethostname(),
+        socket.gethostname() + '.ocf.io',
+        'localhost',
+        '127.0.0.1',
+        '::1',
+    ]
