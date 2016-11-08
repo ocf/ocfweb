@@ -3,7 +3,8 @@
 
 We currently store our on-site backups across a couple drives on `hal`:
 
-* `hal:/opt/backups` (6 TiB usable; 2x 3-TiB WD RE drives in an LVM volume group)
+* `hal:/opt/backups` (6 TiB usable; 2x 6-TiB Seagate drives in RAID 1 in an LVM
+  volume group)
 
   This volume group provides `/dev/vg-backups/backups-live` which contains
   recent daily, weekly, and monthly backups, and
