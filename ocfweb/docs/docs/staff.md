@@ -3,7 +3,8 @@
 
 Find out what we're all about, and [[come join us|about-staff]]!
 
-Feel free to attend our meetings or [[contact us|doc contact]] by email.
+Feel free to attend our meetings, visit us during [[staff hours|staff-hours]],
+or [[contact us|doc contact]] by email.
 
 ### Documentation
 
