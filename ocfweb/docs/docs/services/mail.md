@@ -8,8 +8,10 @@ To configure a forwarding address, log in via [[SSH|doc services/shell]] and
 enter the `update-email` command to view or update your contact email address.
 
 Note that you are required to keep your contact address up-to-date for as long
-as you continue to use your account. If you cannot be reached by your contact
-address, your account is liable to be disabled.
+as you continue to use your account. While we do not proactively disable
+accounts without emails, if we need to contact you for any reason and cannot,
+your account will be disabled. This is true for both individual and group
+accounts.
 
 ## Student groups
 
