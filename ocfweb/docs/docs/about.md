@@ -66,4 +66,3 @@ organization and this website.
 [decal]: https://decal.ocf.berkeley.edu
 [csua]: http://csua.berkeley.edu
 [minutes]: https://www.ocf.berkeley.edu/~staff/bod/
-
