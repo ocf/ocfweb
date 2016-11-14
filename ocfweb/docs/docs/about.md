@@ -2,7 +2,8 @@
 
 ## The mission
 
-The OCF is an all-volunteer, student-run, student-initiated service group
+The OCF is an all-volunteer, student-run, Chartered Program of the 
+[Associated Students of the University of California (ASUC)][asuc] 
 dedicated to free computing for all [University of California at
 Berkeley][berkeley] students, faculty, and staff.  The mission of the OCF is to
 provide an environment where no member of Berkeley's campus community is denied
@@ -60,7 +61,9 @@ The Open Computing Facility is a student group acting independently of
 the University of California.  We take full responsibility for our
 organization and this website.
 
+[asuc]: http://asuc.org
 [berkeley]: http://berkeley.edu
 [decal]: https://decal.ocf.berkeley.edu
 [csua]: http://csua.berkeley.edu
 [minutes]: https://www.ocf.berkeley.edu/~staff/bod/
+
