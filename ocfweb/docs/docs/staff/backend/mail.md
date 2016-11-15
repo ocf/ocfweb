@@ -1,16 +1,17 @@
 [[!meta title="Mail"]]
 
-**anthrax** is our mail server. It is used for sending and receiving all
-OCF mail, excluding staff use of Google Apps. Mail sent by users, websites,
-virtual hosts, or basically anything else goes through here.
+**anthrax** is our mail server. It is used for sending and receiving all OCF
+mail, excluding staff use of Google Apps. Mail sent by users, websites, virtual
+hosts, or basically anything else goes through here.
 
-Received mail to @ocf.berkeley.edu is looked up via LDAP (or the aliases
-table) and forwarded or rejected; nothing is stored.
+Received mail to @ocf.berkeley.edu is looked up via LDAP (or the aliases table)
+and forwarded or rejected; nothing is stored.
 
 Received virtual host mail is looked up in a MySQL table and forwarded to the
 correct place. Outgoing virtual host mail is also via anthrax, which uses SMTP
 authentication (passwords checked against `crypt(3)`'d passwords in a MySQL
-table). [[There's a whole page with more details about vhost mail.|doc staff/backend/mail/vhost]]
+table). [[There's a whole page with more details about vhost mail.|doc
+staff/backend/mail/vhost]]
 
 Mail originating anywhere inside the OCF relays through anthrax.
 
@@ -19,15 +20,14 @@ Mail originating anywhere inside the OCF relays through anthrax.
 
 We maintain relations with external groups for two reasons.
 
- 1. To monitor our mail server reputation and prevent outgoing mail from
-    being blocked by external service providers.
+ 1. To monitor our mail server reputation and prevent outgoing mail from being
+    blocked by external service providers.
  2. To monitor abuse and disable compromised accounts.
 
 When our IP addresses change, we need to update our registrations.
 
-We have
-[feedback loops](https://en.wikipedia.org/wiki/Feedback_loop_%28email%29)
-with
+We have [feedback
+loops](https://en.wikipedia.org/wiki/Feedback_loop_%28email%29) with
 
  - AOL (out-of-date)
  - Comcast (out-of-date)

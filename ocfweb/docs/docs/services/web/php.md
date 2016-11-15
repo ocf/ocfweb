@@ -19,12 +19,12 @@ require larger than normal file uploads), you can customize the PHP settings
 used by creating [a `.user.ini` file][.user.ini] inside your web root.
 
 In order to maintain compatibility with the OCF's PHP settings, we highly
-recommend *not* copying an entire `php.ini`* or `.user.ini` file from the web or
-from another server. Instead, we advise you to create an empty `.user.ini` and
-add only the settings you wish to change.
+recommend *not* copying an entire `php.ini`* or `.user.ini` file from the web
+or from another server. Instead, we advise you to create an empty `.user.ini`
+and add only the settings you wish to change.
 
-Note that `.user.ini` filename should be used, as our webserver will not look for
-(per-user) `php.ini` files.
+Note that `.user.ini` filename should be used, as our webserver will not look
+for (per-user) `php.ini` files.
 
 ### Example `.user.ini` file
 

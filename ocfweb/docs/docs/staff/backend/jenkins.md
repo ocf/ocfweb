@@ -62,6 +62,7 @@ safer.
 
 
 ## Jenkins for GitHub projects
+
 ### On the master branch
 
 To test GitHub projects when you push to master:
@@ -111,7 +112,8 @@ testing pull requests. For example, `puppet-test-pr`.
    "Use github hooks for build triggering".
 
 6. Under "GitHub Pull Request Builder", delete all lines under "Admin List" (if
-   there are any). Add "ocf" as the only line to the "List of organizations" box.
+   there are any). Add "ocf" as the only line to the "List of organizations"
+   box.
 
 7. On GitHub, under "Settings" and "Webhooks & services", add a new webhook
    with payload URL `https://jenkins.ocf.berkeley.edu/ghprbhook/`, content type

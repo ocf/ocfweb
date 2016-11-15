@@ -9,9 +9,12 @@ More specifically, we have a [[list of services|doc services]].
 
 #### Who are you?
 
-The largest(\*) student organization on campus (\*by membership count). OCF is completely administered and operated by student volunteers ("staff"). [[About the OCF|doc about]].
+The largest(\*) student organization on campus (\*by membership count). OCF is
+completely administered and operated by student volunteers ("staff"). [[About
+the OCF|doc about]].
 
-Interested in [[joining staff|about-staff]]? Feel free to attend our meetings or [[contact us|doc contact]] by email.
+Interested in [[joining staff|about-staff]]? Feel free to attend our meetings
+or [[contact us|doc contact]] by email.
 
 #### Where is the lab? What are the hours?
 
@@ -33,9 +36,8 @@ manually approved. If this was the case, you will have been informed during
 account creation.
 
 In most cases when people think their account has not been created, the email
-landed in their spam folder. Check that first, or try to
-[[reset your password|change_password]] to see if your account has been
-created.
+landed in their spam folder. Check that first, or try to [[reset your
+password|change_password]] to see if your account has been created.
 
 #### I think I left something in the lab, can you tell me if it's there?
 
@@ -46,7 +48,8 @@ by in-person to ask for it.
 
 #### I have an account. Does it expire? Will it still work?
 
-It should still work. Our current policy is to leave accounts alone after graduation. See [[account|doc services/account]].
+It should still work. Our current policy is to leave accounts alone after
+graduation. See [[account|doc services/account]].
 
 #### My account is disabled. Or, I want to disable or delete my account.
 
@@ -58,7 +61,9 @@ See [[account|doc services/account]].
 
 #### [[Web hosting|doc services/web]]: How do I get group.berkeley.edu ([[virtual hosting|doc services/vhost]])?
 
-First, you need to have a group [[account|doc membership]] and a working [[website|doc services/web]]. Then, request [[virtual hosting|doc services/vhost]].
+First, you need to have a group [[account|doc membership]] and a working
+[[website|doc services/web]]. Then, request [[virtual hosting|doc
+services/vhost]].
 
 #### [[Printing|doc services/lab/printing]]: I have a printing question/problem.
 

@@ -2,18 +2,18 @@
 
 ## Introduction
 
-The `signat` script is used to look up the signatory status of people
-and student groups. This allows us to verify that the people who email
-us or come in to [[staff hours|staff-hours]] are really signatories for their group, and
+The `signat` script is used to look up the signatory status of people and
+student groups. This allows us to verify that the people who email us or come
+in to [[staff hours|staff-hours]] are really signatories for their group, and
 it also gives all the information needed to create group accounts with
 [[approve|doc staff/scripts/approve]].
 
 ## How it works
 
-`signat` is an interface to the [`ocflib`][ocflib] functions to query
-the [CalLink API][callinkapi] for group signatories. `ocflib` is also
-used to look up UIDs and OIDs in OCF [[LDAP|doc staff/backend/ldap]] and
-names in the university's [LDAP directory service][berkeleyldap].
+`signat` is an interface to the [`ocflib`][ocflib] functions to query the
+[CalLink API][callinkapi] for group signatories. `ocflib` is also used to look
+up UIDs and OIDs in OCF [[LDAP|doc staff/backend/ldap]] and names in the
+university's [LDAP directory service][berkeleyldap].
 
 [ocflib]: github.com/ocf/ocflib
 [callinkapi]: https://studentservices.berkeley.edu/WebServices/StudentGroupServiceV2/Service.asmx
@@ -42,9 +42,9 @@ subcommands:
     group               Look up the signatories of a group by group name
 ```
 
-`group` and `name` are the easiest queries to use when a group or
-signatory doesn't already have an OCF account. These perform a keyword
-search for people or groups by name.
+`group` and `name` are the easiest queries to use when a group or signatory
+doesn't already have an OCF account. These perform a keyword search for people
+or groups by name.
 
 ```text
 $ signat name N Impicciche
@@ -81,8 +81,8 @@ DORJEE TASHI        1110958
 TENZING DOLMA       1027935
 ```
 
-`user` looks up an OCF account and prints the signatories for a group
-account or the signatory status of an individual account.
+`user` looks up an OCF account and prints the signatories for a group account
+or the signatory status of an individual account.
 
 ```text
 $ signat user nickimp
@@ -104,8 +104,8 @@ Jasmine Chiman STOY      995773
 AMRIT MAHADEVAN AYALUR  1027142
 ```
 
-The other two queries, `uid` and `oid`, don't offer much convenience,
-but complete the spectrum of useful queries.
+The other two queries, `uid` and `oid`, don't offer much convenience, but
+complete the spectrum of useful queries.
 
 ```text
 $ signat uid 1032668

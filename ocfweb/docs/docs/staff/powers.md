@@ -19,7 +19,8 @@ practice most staff members are Directors and vice versa.
 
 * receive `staff@ocf` mail (including staff discussions and announcements)
 * can process group account requests
-* can access and process [Request Tracker](https://rt.ocf.berkeley.edu/) tickets
+* can access and process [Request Tracker](https://rt.ocf.berkeley.edu/)
+  tickets
 * receive `wheel@ocf` mail (including  discussions with technical jargon)
 * can change print quotas
 * can login to all servers
@@ -43,6 +44,7 @@ This is usually given to staff after a semester of demonstrated interest.
 
 
 ## Technical managers
+
 *group ocfroot*
 
 The most technical and "on-call" staff members are given sudo access (root

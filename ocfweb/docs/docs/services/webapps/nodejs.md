@@ -31,8 +31,8 @@ install and manage dependencies and versions.
        nvm install 0.10
        nvm alias default 0.10
 
-4. Copy your code to `~/myapp/src` or similar, and install any
-   dependencies using `npm`.
+4. Copy your code to `~/myapp/src` or similar, and install any dependencies
+   using `npm`.
 
 ## Preparing your app to be supervised
 
@@ -63,7 +63,7 @@ supervise your app (so that it starts and restarts automatically).
 ## Suggestions/improvements?
 
 If you have a better way to host Node.js-based apps on the app server (or a
-suggestion for how we could improve this documentation),
-[[send us an email|doc contact]]!
+suggestion for how we could improve this documentation), [[send us an email|doc
+contact]]!
 
 [nvm-github]: https://github.com/creationix/nvm

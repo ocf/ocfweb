@@ -25,14 +25,14 @@ virtual hosting page|vhost_mail]] to add and remove addresses.
 ## How sending and receiving mail works
 
 In the past, we provided a full mail service, including storing mail on our
-servers. However, we found that few groups actually wanted this. Most people are
-already juggling multiple email addresses, and don't particularly want another
-mailbox to monitor.
+servers. However, we found that few groups actually wanted this. Most people
+are already juggling multiple email addresses, and don't particularly want
+another mailbox to monitor.
 
 Instead, we now provide *mail forwarding* for incoming mail, and *mail sending*
 for outgoing mail. This means that incoming mail will always be forwarded to
-some other address (such as your berkeley.edu address or your personal
-Gmail), but you can always send mail using your `@mygroup.berkeley.edu` address.
+some other address (such as your berkeley.edu address or your personal Gmail),
+but you can always send mail using your `@mygroup.berkeley.edu` address.
 
 This is super convenient: you don't have to manage a separate inbox, but you
 can still compose mail or reply to mail as your fancy group email, even from
@@ -44,7 +44,8 @@ providers and clients offer similar options.
 
 #### How can I use Gmail to send and receive email?
 
-[[We have an entire page about that — click here!|doc services/vhost/mail/gmail]]
+[[We have an entire page about that — click here!|doc
+services/vhost/mail/gmail]]
 
 
 #### How can I use an email client besides Gmail to send and receive email?

@@ -37,8 +37,8 @@ admin passwords.
 
 Some handy commands (first run `enable` and enter your password again):
 
-These commands are similar to the commands used for the
-[[firewall|doc staff/backend/firewall]], so have a look there for more details.
+These commands are similar to the commands used for the [[firewall|doc
+staff/backend/firewall]], so have a look there for more details.
 
 * Show the running config: `show running-config`
 
@@ -52,8 +52,8 @@ These commands are similar to the commands used for the
 ## Automatic config diffs
 
 We use [rancid](http://www.shrubbery.net/rancid/) to both back up and send us
-email diffs of the switch's config. This is managed through the
-[`ocf_rancid` puppet module][ocf_rancid].
+email diffs of the switch's config. This is managed through the [`ocf_rancid`
+puppet module][ocf_rancid].
 
 
 [switch]: http://www.cisco.com/c/en/us/support/switches/catalyst-2960s-48ts-l-switch/model.html

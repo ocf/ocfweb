@@ -10,8 +10,9 @@ The usage of ssh-list looks like:
 The arguments before the `--` are interpreted by `ssh-list`, and the arguments
 after are passed verbatim to `parallel-ssh`.
 
-In most cases, you want at least `-i` in the arguments to parallel-ssh. `-i` prints
-out the stdout and stderr for each host you are running the command on. For example:
+In most cases, you want at least `-i` in the arguments to parallel-ssh. `-i`
+prints out the stdout and stderr for each host you are running the command on.
+For example:
 
     ssh-list all -- -i whoami
 
@@ -22,7 +23,6 @@ If you get a ton of authentication errors, don't provide your password, just do
 
 Some useful commands are below (please add more!):
 
-
 ### Run puppet once
 
 Anyone in `ocfroot` can call `sudo puppet-trigger` without providing a
@@ -30,13 +30,11 @@ password.
 
     ssh-list desktop -- -i 'sudo puppet-trigger'
 
-
 ### Restart unused desktops
 
 Anyone in `ocfroot` can call `sudo shutdown` without providing a password.
 
     ssh-list desktop -- -i '[ $(who | wc -l) -eq 0 ] && sudo shutdown -r now'
-
 
 ### Run `apt-get update` to clear apt caches
 

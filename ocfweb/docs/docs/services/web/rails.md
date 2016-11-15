@@ -5,8 +5,9 @@ Ruby on Rails is a popular web framework for Ruby applications.
 
 ## Creating a New Application
 
-To create a new Rails application, use the `rails` command-line interface. For example,
-to create an application called `foo` in your home directory, run the command:
+To create a new Rails application, use the `rails` command-line interface. For
+example, to create an application called `foo` in your home directory, run the
+command:
 
     rails new foo
 
@@ -14,8 +15,8 @@ This may take some time.
 
 ## Hosting Your Application
 
-OCF allows hosting of Rails applications via FastCGI. This requires you to install the
-`fcgi` gem and create a FastCGI wrapper script.
+OCF allows hosting of Rails applications via FastCGI. This requires you to
+install the `fcgi` gem and create a FastCGI wrapper script.
 
 ### Install `fcgi` gem
 

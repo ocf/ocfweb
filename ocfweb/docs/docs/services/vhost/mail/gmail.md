@@ -18,7 +18,8 @@ or Berkeley email for these steps.
 2. **Set a password for the email.** From the same page as before, make sure
    you've set a secure password for the email address.
 
-   This is the password you'll use when configuring Gmail to send as your account.
+   This is the password you'll use when configuring Gmail to send as your
+   account.
 
 3. **From Gmail, go to the settings page and start adding a new address.**
 
@@ -43,7 +44,8 @@ or Berkeley email for these steps.
    Use the following settings:
 
      * **SMTP Server:** `smtp.ocf.berkeley.edu`
-     * **Username:** The *full email address*, including `@mygroup.berkeley.edu` at the end.
+     * **Username:** The *full email address*, including
+       `@mygroup.berkeley.edu` at the end.
      * **Password:** The password you chose in step 2.
      * **Port:** 587 (the default)
      * **Secured connection:** Using TLS (the default)

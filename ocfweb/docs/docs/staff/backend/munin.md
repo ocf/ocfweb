@@ -13,8 +13,8 @@ Additionally, we don't receive email alerts for staff VMs.
 
 Munin sends mail to root whenever certain stats run out of bounds for a
 machine, e.g. if disk usage goes above 92%. Some plugins have configurable
-warning and critical levels for each field, which are usually set in
-the node config like so:
+warning and critical levels for each field, which are usually set in the node
+config like so:
 
 ```text
 [pluginname]

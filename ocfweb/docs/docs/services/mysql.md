@@ -28,7 +28,8 @@ If you are looking for a familiar phpMyAdmin interface, visit
 
 ## Creating a MySQL database
 
-We have two options to create a database using the terminal or our web management tool.
+We have two options to create a database using the terminal or our web
+management tool.
 
 
 ### Web-based tool
@@ -66,15 +67,16 @@ is a randomly generated password that was created when your database was
 created. To use your OCF MySQL database with a web application, enter the above
 information during the application's installation process.
 
-To connect to the OCF's MySQL server using the MySQL client on an OCF machine, simply run the command:
-`mysql`
+To connect to the OCF's MySQL server using the MySQL client on an OCF machine,
+simply run the command: `mysql`
 
 This command will prompt you for your MySQL database password.
 
 
 ## Backing up a MySQL database
 
-To backup your database (which you should probably do regularly), the basic command to use is
+To backup your database (which you should probably do regularly), the basic
+command to use is
 
     mysqldump [username] > backup
 

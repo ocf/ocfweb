@@ -1,6 +1,7 @@
 [[!meta title="Flask"]]
 
-Flask is a popular microframework for Python web development. Using it on the OCF servers requires only just a little extra configuration.
+Flask is a popular microframework for Python web development. Using it on the
+OCF servers requires only just a little extra configuration.
 
 
 ## Starting a Flask project
@@ -9,7 +10,8 @@ Flask is a popular microframework for Python web development. Using it on the OC
 
           $ mkdir ~/public_html/flasky
 
-1.    Go into the directory you just created, and create two files: *.htaccess* (note the dot), and *run.fcgi*.
+1.    Go into the directory you just created, and create two files: *.htaccess*
+      (note the dot), and *run.fcgi*.
 
 * .htaccess:
 
@@ -28,7 +30,8 @@ Flask is a popular microframework for Python web development. Using it on the OC
       if __name__ == '__main__':
           WSGIServer(app).run()
 
-1.    Either add your application as a module in this folder or a subdirectory that will be treated as a python package:
+1.    Either add your application as a module in this folder or a subdirectory
+      that will be treated as a python package:
 
 * Case 1:
 

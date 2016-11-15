@@ -5,8 +5,8 @@ We use the standard Unix quota utilities to set disk quotas.
 
 ### Summary of useful commands
 
-All of these can be executed on `jaws`. Some of them also work on other
-servers which mount NFS.
+All of these can be executed on `jaws`. Some of them also work on other servers
+which mount NFS.
 
 
 #### View your own quota
@@ -46,12 +46,12 @@ instead.
 
 Are you trying to raise disk quotas for every user? Congratulations on finding
 this page! The SM who wrote this section spent a couple of hours trying to
-figure out *how in the hell* our automatic disk quotas were working, despite all
-internet documentation claiming there is no way to set default disk quotas.
+figure out *how in the hell* our automatic disk quotas were working, despite
+all internet documentation claiming there is no way to set default disk quotas.
 
 Indeed, you cannot configure a default quota. You can, however, set quotas for
-non-existent users! We've set quotas for user IDs 1000 through 99999 in order to
-mimic default users.
+non-existent users! We've set quotas for user IDs 1000 through 99999 in order
+to mimic default users.
 
 To raise disk quotas, you can use a command like:
 
