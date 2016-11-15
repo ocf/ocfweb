@@ -2,8 +2,8 @@
 
 ## The mission
 
-The OCF is an all-volunteer, student-run, Chartered Program of the 
-[Associated Students of the University of California (ASUC)][asuc] 
+The OCF is an all-volunteer, student-run, Chartered Program of the
+[Associated Students of the University of California (ASUC)][asuc]
 dedicated to free computing for all [University of California at
 Berkeley][berkeley] students, faculty, and staff.  The mission of the OCF is to
 provide an environment where no member of Berkeley's campus community is denied
