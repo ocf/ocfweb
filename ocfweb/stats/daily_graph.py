@@ -85,9 +85,10 @@ def get_daily_plot(day):
     start, end = get_open_close(day)
     profiles = UtilizationProfile.from_hostnames(list_desktops(public_only=True), start, end).values()
 
-    minute = timedelta(minutes=1)
-    times = [start + i * minute for i in range((end - start) // minute + 1)]
     now = datetime.now()
+    latest = min(end, now)
+    minute = timedelta(minutes=1)
+    times = [start + i * minute for i in range((latest - start) // minute + 1)]
     if now >= end or now <= start:
         now = None
     sums = []
@@ -122,6 +123,7 @@ def get_daily_plot(day):
         ax.axvline(now, linewidth=1.5)
 
     ax.xaxis.set_major_formatter(DateFormatter('%-I%P'))
+    ax.set_xlim(start, end)
 
     ax.set_ylim(0, len(profiles))
     ax.set_ylabel('Computers in Use')
