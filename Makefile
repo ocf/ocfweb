@@ -10,6 +10,7 @@ DOCKER_TAG_WORKER = $(DOCKER_REPO)ocfweb-worker:$(DOCKER_REVISION)
 DOCKER_TAG_STATIC = $(DOCKER_REPO)ocfweb-static:$(DOCKER_REVISION)
 
 .PHONY: test
+test: export OCFWEB_TESTING ?= 1
 test: venv
 	$(BIN)/coverage run -m py.test -v tests/
 	$(BIN)/coverage report

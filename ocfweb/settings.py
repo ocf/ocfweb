@@ -1,6 +1,7 @@
 import configparser
 import os
 import socket
+import tempfile
 import warnings
 
 from django.core.cache import CacheKeyWarning
@@ -173,8 +174,17 @@ else:
         # On dev, we use a file-backed cache so that you don't get logged out
         # every time you update code and the server restarts.
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': os.path.expanduser('~/.ocfweb-cache'),
     }
+    if not TESTING:
+        CACHES['default']['LOCATION'] = os.path.expanduser('~/.ocfweb-cache')
+    else:
+        # Use a temporary directory to prevent races where multiple tests
+        # simultaneously try to write to the same cache directory.
+        # Save this directory in a variable so it doesn't get deleted until
+        # the app exits.
+        cache_dir = tempfile.TemporaryDirectory()
+        CACHES['default']['LOCATION'] = cache_dir.name
+
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
     ALLOWED_HOSTS += [
