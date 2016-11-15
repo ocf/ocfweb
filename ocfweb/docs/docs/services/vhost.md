@@ -6,7 +6,7 @@ different domain, typically under berkeley.edu. For example, a group's site can
 be made available at `yourgroup.berkeley.edu` in addition to the standard
 address under `ocf.berkeley.edu`.
 
-OCF provides two separate (but related) virtual hosting services:
+The OCF provides two separate (but related) virtual hosting services:
 
 * **Web hosting**, where your group's OCF-hosted website becomes available
   under the new name
@@ -80,21 +80,28 @@ domain. For such domains, the group account must:
 #### University policies
 
 Virtual web sites, just like other OCF user accounts, must comply with the
-relevant UC Berkeley [computer use
-policy](https://security.berkeley.edu/policy/usepolicy.html) and [DNS
-policy](https://security.berkeley.edu/policy/dns).
+relevant UC Berkeley [computer use policy][computer-use] and [DNS
+policy][dns-policy]. The LEAD Center's [Student Org Domain Name
+Guidelines][rso-domains] presents the most relevant information to student
+groups.
+
+[computer-use]: https://security.berkeley.edu/policy/usepolicy.html
+[dns-policy]: https://security.berkeley.edu/policy/dns
+[rso-domains]: http://lead.berkeley.edu/wp-content/uploads/2014/12/student-org-domain-guidelines.pdf
 
 In particular,
 
 * **No off-site (third-party) hosting**: Circumventions around off-site
   hosting, including (but not limited to) proxies, redirects, and substantial
-  inline frames (iframes) of non-berkeley.edu domains are not allowed. OCF does
-  not process or advise off-site hosting requests, which can be [submitted
-  directly to the university](https://offsitehosting.berkeley.edu/) (however,
-  feel free to keep us informed if you have an existing OCF account).
+  inline frames (iframes) of non-berkeley.edu domains are not allowed. The OCF
+  does not process nor advise off-site hosting requests, which can be
+  [submitted directly to the university][offsite] (however, feel free to keep
+  us informed if you have an existing OCF account).
 
-  In other words, to comply with university policy, OCF will only provide
+  In other words, to comply with university policy, the OCF will only provide
   virtual hosting for websites that are substantially hosted on OCF servers.
+
+[offsite]: https://offsitehosting.berkeley.edu/
 
 #### Hosting badge
 
@@ -104,7 +111,7 @@ page|home]]. The banner need not be displayed extremely prominently, but it
 must be noticeable without undue effort. If the banner is removed or misplaced,
 the OCF reserves the right to terminate the virtual hosting service. The
 hosting badge not only attributes the OCF but also distinguishes it from sites
-hosted by other University departments.
+hosted by University departments.
 
 ## Email Forwarding    {email}
 
