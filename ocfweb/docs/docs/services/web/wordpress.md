@@ -12,8 +12,8 @@ during staff hours|staff-hours]] for in-person assistance.
 
 ## Installing WordPress
 
-The easiest way to set up WordPress is via [[SSH|doc services/shell]]. Some simple
-instructions:
+The easiest way to set up WordPress is via [[SSH|doc services/shell]]. Some
+simple instructions:
 
 1. Go to our [web-based SSH client](https://ssh.ocf.berkeley.edu/) and sign in
    with your username and password.
@@ -54,14 +54,15 @@ password you created and start configuring your site.
 ## Migrating from WordPress.com to OCF
 
 If you already have a site hosted at WordPress.com and you'd like to move it to
-OCF web hosting, for example, to become eligible for [[virtual
-hosting|doc services/vhost]], you can move most of your website's functionality and
-content to the OCF's servers. Generally, the process is simple and sites
-migrated from WordPress.com hosting to the OCF function quite well, apart from
-possible minor differences in the appearance of themes. However, if you're looking
-to create your website from scratch, in most cases it will be much easier to just
-install WordPress on your OCF account and start editing it here, rather than creating it locally
-or on another provider like WordPress.com and transferring things over.
+OCF web hosting, for example, to become eligible for [[virtual hosting|doc
+services/vhost]], you can move most of your website's functionality and content
+to the OCF's servers. Generally, the process is simple and sites migrated from
+WordPress.com hosting to the OCF function quite well, apart from possible minor
+differences in the appearance of themes. However, if you're looking to create
+your website from scratch, in most cases it will be much easier to just install
+WordPress on your OCF account and start editing it here, rather than creating
+it locally or on another provider like WordPress.com and transferring things
+over.
 
 If you have an old WordPress installation lying around -- if you are replacing
 an old student group website, for example -- you should archive it before
@@ -75,9 +76,9 @@ The basic steps to migration are as follows:
 2. Use the web admin dashboard to install all the themes and plugins you were
    using at WordPress.com
 
-3. Log into your WordPress.com dashboard and go to `Settings > Export` to download
-   a zipped XML file with all your site's posts and content. Note that this export
-   usually will not include all of your media content.
+3. Log into your WordPress.com dashboard and go to `Settings > Export` to
+   download a zipped XML file with all your site's posts and content. Note that
+   this export usually will not include all of your media content.
 
 4. Unzip this file and change the file extension of all .xml files to .wxr
 
@@ -133,7 +134,8 @@ hours|staff-hours]] instead.
    cd ~/public_html
    ```
 
-3. Figure out your username using the command `wp user list`. You should see output like the below:
+3. Figure out your username using the command `wp user list`. You should see
+   output like the below:
 
    ```shell
    $ wp user list

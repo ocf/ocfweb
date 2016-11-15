@@ -1,8 +1,8 @@
 [[!meta title="Virtual hosted mail"]]
 
 **Note: This page is designed for OCF staffers and is a technical description
-of the service. For information or help using it, see
-[[our page about it|doc services/vhost/mail]].**
+of the service. For information or help using it, see [[our page about it|doc
+services/vhost/mail]].**
 
 Virtual hosting mail allows groups to receive mail at `@group.b.e` addresses,
 and send from those same addresses. It complements our web hosting nicely.
@@ -23,8 +23,8 @@ and send from those same addresses. It complements our web hosting nicely.
 
 ## Technical implementation
 
-There is a database on our MySQL host for storing email vhost information.
-It has one table, `addresses`, with columns for the incoming address, password,
+There is a database on our MySQL host for storing email vhost information. It
+has one table, `addresses`, with columns for the incoming address, password,
 and forwarding addresses (among others).
 
 It has one view, `domains`, which is generated from the `addresses` table. This

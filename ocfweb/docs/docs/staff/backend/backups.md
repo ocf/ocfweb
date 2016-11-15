@@ -25,9 +25,9 @@ since they contain all of the OCF's important data.  The backups are already
 encrypted, but it doesn't hurt to add a little extra security to that.
 
 We also use Google Nearline on an ad-hoc basis (i.e. we have scripts to make
-the backup, but they only upload and don't remove the old backups). They're
-not yet executed automatically and require some human care to ensure things
-work properly.
+the backup, but they only upload and don't remove the old backups). They're not
+yet executed automatically and require some human care to ensure things work
+properly.
 
 
 ## Backup Contents
@@ -50,18 +50,18 @@ monthly backups, but we might adjust this as it takes more space or we get
 larger backup drives.
 
 We use `rsnapshot` to make incremental backups. Typically, each new backup
-takes an additional ~3GiB of space (but this will vary based on how many
-files actually changed). A full backup is about ~1.3TiB of space and growing.
+takes an additional ~3GiB of space (but this will vary based on how many files
+actually changed). A full backup is about ~1.3TiB of space and growing.
 
 (The incremental file backups are only about ~300 MiB, but since mysqldump
-files can't be incrementally backed up, those take a whole ~2 GiB each time,
-so the total backup grows by ~3GiB each time.)
+files can't be incrementally backed up, those take a whole ~2 GiB each time, so
+the total backup grows by ~3GiB each time.)
 
 #### Request Tracker
 
 The RT database is stored in the `ocfrt` database on the MySQL host. It is
-possible to restore RT using just the database; in fact, simply running
-puppet is now sufficient to bring up a fully-functioning RT server.
+possible to restore RT using just the database; in fact, simply running puppet
+is now sufficient to bring up a fully-functioning RT server.
 
 ## Ideas for backup improvements
 
@@ -76,8 +76,8 @@ Some general ideas for improving backups:
 
 2. **Done.** Make the backup on hal automatically clone the backup on pandemic
    periodically. Should find a way to make it happen only when no backups are
-   going on (which might be hard, since copying all the files takes a long
-   time -- about 7.25 hours).
+   going on (which might be hard, since copying all the files takes a long time
+   -- about 7.25 hours).
 
    Currently there is a script `hal:/opt/copy-backups.sh`, but we need some
    more complicated setup than just putting it in cron (it requires SSHing to

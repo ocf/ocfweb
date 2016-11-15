@@ -16,6 +16,7 @@ reverse DNS record.
 
 
 ## Step 2. Create the host, run Debian installer
+
 ### Virtual hosts
 
 We have a handy script, `makevm`, that:
@@ -46,6 +47,7 @@ tty.
 
 
 ## Step 3. Log in and run Puppet
+
 ### Virtual hosts
 
 1. Log in as `root:r00tme`

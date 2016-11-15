@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Check allows a staffer to get all the usage details of a user. Some information may only be accessible to privileged users or root, and dependent on local machine, so the output may differ accordingly.
+Check allows a staffer to get all the usage details of a user. Some information
+may only be accessible to privileged users or root, and dependent on local
+machine, so the output may differ accordingly.
 
 ## Usage/Example
 

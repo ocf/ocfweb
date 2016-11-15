@@ -53,11 +53,11 @@ them left over after replacing the kit.
 The most complicated part of the kit replacement is actually resetting the
 maintenance kit warning on the printer after it is all installed. To reset the
 warning, turn off the printer using the power switch on the lower right. Then,
-turn on the printer and hold down the `OK` button while the printer is starting.
-Once the printer stops loading any further, release the `OK` button and a
-startup menu should appear. In this menu, select `NEW MAINTENANCE KIT` and press
-the `OK` button and the printer should proceed to start normally with the
-warning reset.
+turn on the printer and hold down the `OK` button while the printer is
+starting. Once the printer stops loading any further, release the `OK` button
+and a startup menu should appear. In this menu, select `NEW MAINTENANCE KIT`
+and press the `OK` button and the printer should proceed to start normally with
+the warning reset.
 
 Our printers use [CB388A maintenance kits][maintkit].
 

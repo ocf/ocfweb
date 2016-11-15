@@ -26,8 +26,8 @@ easily install and manage dependencies and versions.
    You should do this step every time before running your app or managing
    installed packages.
 
-4. Copy your code to `~/myapp/src` or similar, and install any
-   dependencies using `pip`.
+4. Copy your code to `~/myapp/src` or similar, and install any dependencies
+   using `pip`.
 
 ## Installing gunicorn
 
@@ -76,7 +76,7 @@ and then running `systemctl --user daemon-reload`. After that, you can use
 ## Suggestions/improvements?
 
 If you have a better way to host Python-based apps on the app server (or a
-suggestion for how we could improve this documentation),
-[[send us an email|doc contact]]!
+suggestion for how we could improve this documentation), [[send us an email|doc
+contact]]!
 
 [lol-syntax]: https://stackoverflow.com/a/25611194

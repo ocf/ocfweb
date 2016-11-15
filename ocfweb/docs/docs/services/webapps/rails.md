@@ -39,18 +39,18 @@ install and manage dependencies and versions.
        echo "export PATH=~/.rvm/gems/ruby-2.1.2/bin:\$PATH" >> ~/.bash_profile
        export PATH=~/.rvm/gems/ruby-2.1.2/bin:$PATH
 
-4. Copy your code to `~/myapp/src` or similar, and install any
-   dependencies using `bundle install` (or `gem` manually, if you aren't using
-   bundler).
+4. Copy your code to `~/myapp/src` or similar, and install any dependencies
+   using `bundle install` (or `gem` manually, if you aren't using bundler).
 
    This will download and build many gems. We've tried to install all the
    headers (dev packages) needed for building common gems, but if building a
-   gem fails due to a missing header, just [[send us an email|doc contact]] so we
-   can add it.
+   gem fails due to a missing header, just [[send us an email|doc contact]] so
+   we can add it.
 
 ## Installing unicorn
 
-We recommend using unicorn to serve your application. After setting up rvm, add a line to you app's Gemfile:
+We recommend using unicorn to serve your application. After setting up rvm, add
+a line to you app's Gemfile:
 
     'unicorn'
 
@@ -67,8 +67,7 @@ Create a file at `~/myapp/run` with content like:
           exec ~/.rvm/gems/ruby-2.1.2/bin/unicorn_rails \
           -l /srv/apps/$(whoami)/$(whoami).sock
 
-Replace `~/myapp/src` with the path to your app, then make `run`
-executable:
+Replace `~/myapp/src` with the path to your app, then make `run` executable:
 
     chmod +x ~/myapp/run
 
@@ -92,7 +91,7 @@ supervise your app (so that it starts and restarts automatically).
 ## Suggestions/improvements?
 
 If you have a better way to host Rails-based apps on the app server (or a
-suggestion for how we could improve this documentation),
-[[send us an email|doc contact]]!
+suggestion for how we could improve this documentation), [[send us an email|doc
+contact]]!
 
 [rvm]: https://rvm.io/

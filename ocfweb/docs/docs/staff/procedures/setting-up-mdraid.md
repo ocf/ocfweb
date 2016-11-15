@@ -55,7 +55,8 @@ because they might need some adjustment.
        $ -PDMakeGood -PhysDrv[252:0,252:1,252:2,252:3] -force -a0
        $ -AdpSetProp EnableJBOD 1 -aALL
        $ -PDMakeJBOD -PhysDrv[252:0,252:1,252:2,252:3] -a0
-*note: I got an error on jaws on the `PDMakeJBOD`, but it worked anyway*
+
+   *note: I got an error on jaws on the `PDMakeJBOD`, but it worked anyway*
 
 3. Reboot into finnix and figure out which drives you want in the RAID.
 
@@ -135,4 +136,5 @@ because they might need some adjustment.
     need to try all of them in your new array until it works, sorry.
 
 14. Undo everything from step 8 on `pestilence`.
+
 15. You're done!

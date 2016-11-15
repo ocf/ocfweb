@@ -23,9 +23,9 @@ virtual host request form.
 
 ## Requesting app hosting
 
-To request app hosting, you need to first [[create an OCF group
-account|doc membership]]. Once you have an account, email `hostmaster@ocf` with at
-least the following information:
+To request app hosting, you need to first [[create an OCF group account|doc
+membership]]. Once you have an account, email `hostmaster@ocf` with at least
+the following information:
 
 * Group's account name
 * Group's current website, if any (even if not hosted by OCF)
@@ -51,7 +51,8 @@ We provide a separate server (currently named `werewolves`), for hosting
 applications. **You should connect to this server**, not to the public login
 server.
 
-You connect to this server via SSH using your normal OCF account name and password.
+You connect to this server via SSH using your normal OCF account name and
+password.
 
 * **Host:** apphost.ocf.berkeley.edu
 * **Port:** 22
@@ -78,8 +79,8 @@ We may restart the application server as part of regular maintenance, and
 you'll want your app to start again when we do. You'll also want your app to
 automatically restart if it crashes.
 
-We highly recommend to use systemd to supervise your app. Our recommended
-setup is:
+We highly recommend to use systemd to supervise your app. Our recommended setup
+is:
 
 1. Create a directory for your app `~/myapp`.
 
@@ -98,12 +99,12 @@ setup is:
    the `run` script should end with an `exec` line so that signals are sent to
    the server (and not to the shell that started it).
 
-   Once you've written the script, make it executable
-   (`chmod +x ~/myapp/run`). Test it by executing it in your terminal
-   before moving on; it will be easier to debug problems.
+   Once you've written the script, make it executable (`chmod +x ~/myapp/run`).
+   Test it by executing it in your terminal before moving on; it will be easier
+   to debug problems.
 
-3. Write a systemd service file so your app will be supervised on startup.
-   Save the following to the file `~/.config/systemd/user/myapp.service`:
+3. Write a systemd service file so your app will be supervised on startup. Save
+   the following to the file `~/.config/systemd/user/myapp.service`:
 
        [Unit]
        Description={YOUR GROUP NAME} Webapp
@@ -141,9 +142,9 @@ for more options.
 ## Frequently asked questions
 ### Can you install a package on the app server?
 
-Probably. [[Send us an email|doc contact]], and be sure to provide the name of the
-[Debian package][dpkg] you want us to install. Keep in mind we'll probably be
-installing the stable version of the package, so it might be old.
+Probably. [[Send us an email|doc contact]], and be sure to provide the name of
+the [Debian package][dpkg] you want us to install. Keep in mind we'll probably
+be installing the stable version of the package, so it might be old.
 
 You might prefer to install the package locally. See below.
 
@@ -171,7 +172,7 @@ for you (you could install one in your home directory if you *really* want to).
 ### I'm running my app on port 3000 but I can't access it.
 
 The app server is behind a firewall; you won't be able to access most ports
-from outside of the OCF. You could come work from [[the lab|doc services/lab]], or
-forward the port over SSH from elsewhere.
+from outside of the OCF. You could come work from [[the lab|doc services/lab]],
+or forward the port over SSH from elsewhere.
 
 [dpkg]: https://www.debian.org/distrib/packages#search_packages

@@ -53,8 +53,8 @@ mean:
 - **KDC** (**K**ey **D**istribution **C**enter): The central server that issues
   tickets for Kerberos communication and stores all user's keys. If the KDC is
   compromised, you are going to have a very bad time and [will not go to space
-  today][xkcd-space]. Our current KDC is firestorm, but that could change in the
-  future, as servers are moved around or rebuilt.
+  today][xkcd-space]. Our current KDC is firestorm, but that could change in
+  the future, as servers are moved around or rebuilt.
 
 - **Realm**: A kerberos domain, usually identified with the domain name in all
   caps (e.g. `OCF.BERKELEY.EDU`). Two hosts are in the same realm if they share
@@ -126,8 +126,8 @@ All conveniently prefixed with the letter `k`.
 
 - `kadmin`: Administration utility for Kerberos to make changes to the Kerberos
   database, either locally (with `-l`), or remotely by connecting to the KDC.
-  Can retrieve information about principals, modify principal attributes, change
-  principal passwords, show privileges allowed, etc.
+  Can retrieve information about principals, modify principal attributes,
+  change principal passwords, show privileges allowed, etc.
 
 - `kdestroy`: Remove a principal or ticket file. This is essentially the
   opposite of `kinit`, so it invalidates tickets you have, logging you out from
@@ -184,9 +184,9 @@ depth than the rather cursory overview found here:
    KDC).
 
 3. The client gets the encrypted TGT and decrypts it with the user's entered
-   password. Note the user's password was never directly sent across the network
-   at any stage in the process. Then the TGT is stored in the cache on the
-   client machine until it expires, when it is requested again if needed.
+   password. Note the user's password was never directly sent across the
+   network at any stage in the process. Then the TGT is stored in the cache on
+   the client machine until it expires, when it is requested again if needed.
 
 4. The user can then use this TGT to make requests for service tickets from the
    KDC.
@@ -211,9 +211,9 @@ or a HTTP Kerberos login, then they make more requests to the KDC:
    contacting a service and authenticating until the service ticket expires.
 
 2. The client can then use this service ticket to send with requests to
-   Kerberos-enabled services, like SSH, as user authentication. The service will
-   verify the ticket with the KDC when used, to make sure it is valid for the
-   user issuing the request.
+   Kerberos-enabled services, like SSH, as user authentication. The service
+   will verify the ticket with the KDC when used, to make sure it is valid for
+   the user issuing the request.
 
 [eli5]: http://www.roguelynn.com/words/explain-like-im-5-kerberos/
 [kdc]: https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kdc.conf#L13

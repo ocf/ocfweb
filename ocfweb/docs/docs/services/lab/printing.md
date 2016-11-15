@@ -1,6 +1,8 @@
 [[!meta title="Printing"]]
 
-The OCF offers a certain amount of printing to individual members. You don't have to request a new account each semester - the quota is refreshed at the start of each semester.
+The OCF offers a certain amount of printing to individual members. You don't
+have to request a new account each semester - the quota is refreshed at the
+start of each semester.
 
 Printing is currently limited to:
 
@@ -11,7 +13,8 @@ Printing is currently limited to:
 Please note:
 
  * Each **printed side** of a sheet counts as a page.
- * Jobs take time to process proportional to the job size.  If you submit a large job, please be patient while the print server processes it.
+ * Jobs take time to process proportional to the job size.  If you submit a
+   large job, please be patient while the print server processes it.
 
 
 ## Remaining quota

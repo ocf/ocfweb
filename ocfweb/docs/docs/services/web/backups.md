@@ -9,9 +9,9 @@ find you need a backup history of your own when you need to:
 * Regress to a previous state due to a bug
 * Recover from a security breach
 
-You can make easy-to-restore backups over [[SSH|doc services/shell]] by following
-the examples on this page. You could alternatively use SFTP, but this wouldn't
-allow you to back up a database.
+You can make easy-to-restore backups over [[SSH|doc services/shell]] by
+following the examples on this page. You could alternatively use SFTP, but this
+wouldn't allow you to back up a database.
 
 
 ## Backing up a web directory
@@ -27,9 +27,8 @@ can save your website `~/public_html` there with the following command:
 
     tar czhf ~/backups/backup.tar.gz ~/public_html
 
-To restore the backup, you would first remove the contents of
-`~/public_html` (i.e. `rm -r ~/public_html`) and then extract the compressed
-file.
+To restore the backup, you would first remove the contents of `~/public_html`
+(i.e. `rm -r ~/public_html`) and then extract the compressed file.
 
     cd ~/public_html
     tar xzhf ~/backups/backup.tar.gz
@@ -84,12 +83,13 @@ allow you to use MySQL without entering the password by hand.
 If you have an old website you want to archive and remove from public view, you
 can make a backup of it using the above instructions and then delete your
 webiste files and database. When deleting files, be sure to delete the contents
-inside of `public_html` and not just `public_html` itself, which is a mere link.
+inside of `public_html` and not just `public_html` itself, which is a mere
+link.
 
 The easiest way to remove the contents of your database is to log into
-phpMyAdmin at [https://pma.ocf.berkeley.edu](https://pma.ocf.berkeley.edu)
-with your OCF username and MySQL password. There, you can select all tables
-using the check boxes and select `Drop` to delete them all.
+phpMyAdmin at [https://pma.ocf.berkeley.edu](https://pma.ocf.berkeley.edu) with
+your OCF username and MySQL password. There, you can select all tables using
+the check boxes and select `Drop` to delete them all.
 
 If you instead wanted to delete the whole database, you could use the command
 
@@ -114,7 +114,8 @@ while a restore would look like this:
     Enter password:
     johndoe@tsunami:~$ tar xzhf ~/site-backup-7-26-15.tar.gz -C ~/ public_html
 
-If you were using `.my.cnf`, you wouldn't even have to enter your database password.
+If you were using `.my.cnf`, you wouldn't even have to enter your database
+password.
 
 
 ## Security

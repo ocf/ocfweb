@@ -8,9 +8,9 @@ that is also checked to make sure users have enough print quota before sending
 their document(s) to the printer. This database can be queried and modified by
 the `paper` script, which internally uses `ocflib` to access the database.
 
-The `paper` script can be used from anywhere to list pages remaining per day and
-per semester, but can currently only be used to change print quotas by issuing
-refunds from `supernova`.
+The `paper` script can be used from anywhere to list pages remaining per day
+and per semester, but can currently only be used to change print quotas by
+issuing refunds from `supernova`.
 
 ## Usage Scenarios
 
@@ -19,7 +19,6 @@ refunds from `supernova`.
     $ paper -h
     $ paper view -h
     $ paper refund -h
-
 
 ### View balances
 

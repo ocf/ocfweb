@@ -1,6 +1,9 @@
 [[!meta title="Shell (SSH/SFTP)"]]
 
-A shell account refers to a text-mode interface where commands can be run interactively. All OCF accounts include shell account access. You can access your shell account over an encrypted connection in the OCF lab or remotely via SSH/SFTP.
+A shell account refers to a text-mode interface where commands can be run
+interactively. All OCF accounts include shell account access. You can access
+your shell account over an encrypted connection in the OCF lab or remotely via
+SSH/SFTP.
 
 We support the following commonly used shell account tools (to name a few):
 
@@ -8,7 +11,9 @@ We support the following commonly used shell account tools (to name a few):
 *   cron and at: execute commands on a periodic or scheduled basis
 *   vim and emacs: powerful and extensible text editors
 
-Most SSH/SFTP clients will prompt you to accept an unknown key when you first connect. Our SSH fingerprint can be used to verify that you're connecting to the correct server:
+Most SSH/SFTP clients will prompt you to accept an unknown key when you first
+connect. Our SSH fingerprint can be used to verify that you're connecting to
+the correct server:
 
     2048 55:0a:e3:4f:4b:2c:15:f8:d4:7d:f9:93:bf:a0:41:21 tsunami.ocf.berkeley.edu (RSA)
     1024 7e:19:bc:fd:b5:cd:5c:e3:42:a4:a5:74:eb:ce:5d:2e tsunami.ocf.berkeley.edu (DSA)
@@ -22,7 +27,9 @@ Your shell account can be controlled remotely using
 `ssh.ocf.berkeley.edu` (`tsunami`).
 
 #### From your browser
-If you just need to access SSH quickly, you can use our [web-based SSH interface](https://ssh.ocf.berkeley.edu/) from your web browser.
+
+If you just need to access SSH quickly, you can use our [web-based SSH
+interface](https://ssh.ocf.berkeley.edu/) from your web browser.
 
 #### Mac OS X or Linux
 
@@ -31,6 +38,7 @@ On Mac OS X or Linux, enter in the terminal:
     ssh username@ssh.ocf.berkeley.edu
 
 #### Windows
+
 On Windows, use [PuTTY][putty] (download the `putty.exe` file):
 
 * Host Name: `ssh.ocf.berkeley.edu`
@@ -42,8 +50,8 @@ On Windows, use [PuTTY][putty] (download the `putty.exe` file):
 
 You can transfer files to your account using [SFTP][sftp]. To transfer files
 you can use the command line utility `sftp`, or a graphical program such as
-[FileZilla][filezilla] (Linux, Mac, Windows), [WinSCP][winscp] (Windows),
-or [Cyberduck][cyberduck] (Mac, Windows).
+[FileZilla][filezilla] (Linux, Mac, Windows), [WinSCP][winscp] (Windows), or
+[Cyberduck][cyberduck] (Mac, Windows).
 
 [sftp]: https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol
 [filezilla]: https://filezilla-project.org/

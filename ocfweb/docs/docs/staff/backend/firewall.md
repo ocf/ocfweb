@@ -19,8 +19,8 @@ reload. However, changes will revert on restart unless they are saved to the
 startup config (see below):
 
 * To show a list of available commands, append `?` after the command: For
-  example, use `?` by itself to show all possible starts to commands or `show ?`
-  to list just the sub-commands under `show`.
+  example, use `?` by itself to show all possible starts to commands or `show
+  ?` to list just the sub-commands under `show`.
 
 * Show the running config: `show running-config`
 
@@ -54,8 +54,8 @@ startup config (see below):
 
   (always do this after testing your changes, or they'll revert upon restart!)
 
-(These commands are similar to the commands used for the
-[[switch|doc staff/backend/switch]].)
+(These commands are similar to the commands used for the [[switch|doc
+staff/backend/switch]].)
 
 
 ### Option 2: Using the Java GUI
