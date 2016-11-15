@@ -4,9 +4,7 @@
 These are the official **Bylaws of the Open Computing Facility**, as last
 amended at the Board meeting of October 17, 2016.
 
-1. The General Manager and the Site Managers cannot appoint directors unless:
-   (a) the OCF is not formally in session, and (b) the Board of Directors
-   cannot achieve quorum because there are fewer than five directors in town.
+1. [Repealed]
 
 2. The OCF Board of Directors shall meet at least once every two weeks while
    the OCF is formally in session.
@@ -29,12 +27,9 @@ amended at the Board meeting of October 17, 2016.
    the decisions of that meeting to be valid.
 
 7. BoD appointments will take effect at 12:00 midnight after the conclusion of
-   the meeting at which the appointment took place, with the exception of an
-   Election Meeting.
+   the meeting at which the appointment took place.
 
-8. _Ex officio_ members of the Board, with the exception of elected Managers,
-   shall not be included when calculating the necessary number of Directors
-   present to reach quorum.
+8. [Repealed]
 
 9. The Cabinet
 
@@ -108,8 +103,12 @@ amended at the Board meeting of October 17, 2016.
     Directors not in good standing shall be disqualified from the Board until
     they are in good standing again.
 
-Bylaws 1--4 amended at the general meeting of March 21, 2008. Bylaws 5--6 from
+15. The Board of Directors may select and recall a Faculty Sponsor for the OCF.
+
+Bylaws 1–4 amended at the general meeting of March 21, 2008. Bylaws 5–6 from
 the revision of the bylaws last amended February 7, 1995. Bylaw 8 added at the
-Board meeting of April 30, 2014. Bylaws 9--13 added at the Board meeting of
+Board meeting of April 30, 2014. Bylaws 9–13 added at the Board meeting of
 October 10, 2016. Bylaw 14 added at the Board meeting of October 17, 2016.
-Bylaw 7 amended at the Board meeting of October 31, 2016.
+Bylaw 7 amended at the Board meeting of October 31, 2016. Bylaws 1 and 8
+repealed, bylaw 7 amended, and bylaw 15 added at the general meeting of
+November 14, 2016.
