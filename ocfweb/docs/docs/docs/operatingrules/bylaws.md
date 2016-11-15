@@ -2,7 +2,7 @@
 
 
 These are the official **Bylaws of the Open Computing Facility**, as last
-amended at the Board meeting of October 17, 2016.
+amended at the general meeting of November 14, 2016.
 
 1. [Repealed]
 
