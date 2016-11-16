@@ -1,10 +1,17 @@
 [[!meta title="Request Tracker"]]
 
-**Note:** RT is now fully-Puppeted, so these instructions aren't super useful
-for OCF staff. This page is kept as a reference for others who might come
-across it (it ranks pretty highly on Google). If you're one of these people,
-you might also find [our Puppet code for installing
-RT](https://github.com/ocf/puppet/tree/master/modules/ocf_rt) useful.
+**Note:** RT is now deployed as a Marathon service running in Docker, so these
+instructions aren't super useful for OCF staff. This page is kept as a
+reference for others who might come across it (it ranks pretty highly on
+Google). If you're one of these people, you might find one of these useful:
+
+  * [Our Puppet code for installing RT.][rt-puppet]
+    We don't actually use this anymore, but it should be reasonably modern and
+    worked well for us for a long time.
+
+  * [Our Dockerized RT service.][rt-docker]
+    We run this on Marathon, but you should easily be able to get it running on
+    something like Kubernates or Docker Swarm, too.
 
 ## Installation
 
@@ -48,44 +55,44 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 1. Copy site-specific RT configuration into
    `/etc/request-tracker4/RT_SiteConfig.d/99-ocf`: (this should be puppeted)
 
-       # Debug - commented out for now
-       #Set($LogToSTDERR, "debug");
-       #Set($LogToSyslog, "debug");
+   ```perl
+   # Debug - commented out for now
+   #Set($LogToSTDERR, "debug");
+   #Set($LogToSyslog, "debug");
 
-       Set($WebDomain, 'rt.ocf.berkeley.edu');
-       Set($WebBaseURL , "https://rt.ocf.berkeley.edu");
-       Set($WebPort, 443);
+   Set($WebDomain, 'rt.ocf.berkeley.edu');
+   Set($WebBaseURL , "https://rt.ocf.berkeley.edu");
+   Set($WebPort, 443);
 
-       # Use external authentication provided by mod_auth_kerb
-       Set($WebExternalAuth , 1);
-       Set($WebFallbackToInternalAuth, 1);
-       # tells RT to create users automatically if no user matching REMOTE_USER is found
-       Set($WebExternalAuto, 1);
-       Set($WebExternalGecos, undef);
+   # Use external authentication provided by mod_auth_kerb
+   Set($WebExternalAuth , 1);
+   Set($WebFallbackToInternalAuth, 1);
+   # tells RT to create users automatically if no user matching REMOTE_USER is found
+   Set($WebExternalAuto, 1);
+   Set($WebExternalGecos, undef);
 
-       # Plugins
-       Set(@MailPlugins, qw(Auth::MailFrom Filter::TakeAction));
-       Set(@Plugins,(qw(RT::Extension::CommandByMail RT::Extension::MergeUsers)));
+   # Plugins
+   Set(@MailPlugins, qw(Auth::MailFrom Filter::TakeAction));
+   Set(@Plugins,(qw(RT::Extension::CommandByMail RT::Extension::MergeUsers)));
 
-       # Make links clicky
-       Set(@Active_MakeClicky, qw(httpurl_overwrite));
+   # Make links clicky
+   Set(@Active_MakeClicky, qw(httpurl_overwrite));
 
-       # Non-fail To addresses
-       Set($UseFriendlyToLine, 1);
+   # Non-fail To addresses
+   Set($UseFriendlyToLine, 1);
 
-       # Enable fulltext
-       Set( %FullTextSearch,
-           Enable     => 1,
-           Indexed    => 1,
-           Table      => 'AttachmentsIndex',
-           MaxMatches => '10000',
-       );
+   # Enable fulltext
+   Set( %FullTextSearch,
+       Enable     => 1,
+       Indexed    => 1,
+       Table      => 'AttachmentsIndex',
+       MaxMatches => '10000',
+   );
 
-       # Use plain text instead of HTML email
-       Set($MessageBoxRichText, undef);
-       Set($PreferRichText, undef);
-
-   Remove excess newlines courtesy of ikiwiki.
+   # Use plain text instead of HTML email
+   Set($MessageBoxRichText, undef);
+   Set($PreferRichText, undef);
+   ```
 
    Regenerate the resultant `RT_SiteConfig.pm` file:
 
@@ -106,128 +113,127 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
    `/etc/apache2/sites-enabled` (replace typhoon.ocf.berkeley.edu with the FQDN
    reported by `hostname -f`):
 
-       # Apache configuration file for RT
+   ```apache
+   # Apache configuration file for RT
 
-       <VirtualHost *:80>
-               ServerName rt.ocf.berkeley.edu
-               RewriteEngine On
-               RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-       </VirtualHost>
+   <VirtualHost *:80>
+           ServerName rt.ocf.berkeley.edu
+           RewriteEngine On
+           RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+   </VirtualHost>
 
-       <VirtualHost *:443>
-               ServerName rt.ocf.berkeley.edu
+   <VirtualHost *:443>
+           ServerName rt.ocf.berkeley.edu
 
-               SSLEngine on
-               SSLCertificateFile /etc/ssl/private/rt_ocf_berkeley_edu.crt
-               SSLCertificateChainFile /etc/ssl/private/incommon.crt
-               SSLCertificateKeyFile /etc/ssl/private/rt_ocf_berkeley_edu.key
+           SSLEngine on
+           SSLCertificateFile /etc/ssl/private/rt_ocf_berkeley_edu.crt
+           SSLCertificateChainFile /etc/ssl/private/incommon.crt
+           SSLCertificateKeyFile /etc/ssl/private/rt_ocf_berkeley_edu.key
 
-               Alias /rt /usr/share/request-tracker4/html
-               RedirectMatch ^/$ /rt
+           Alias /rt /usr/share/request-tracker4/html
+           RedirectMatch ^/$ /rt
 
-               <Location /rt>
-                       SetHandler modperl
-                       PerlResponseHandler Plack::Handler::Apache2
-                       PerlSetVar psgi_app /usr/share/request-tracker4/libexec/rt-server
+           <Location /rt>
+                   SetHandler modperl
+                   PerlResponseHandler Plack::Handler::Apache2
+                   PerlSetVar psgi_app /usr/share/request-tracker4/libexec/rt-server
 
-                       # Comment this to enable RT-local root
-                       AuthType Kerberos
-                       Require valid-user
-                       KrbMethodNegotiate On
-                       KrbMethodK5Passwd On
-                       KrbLocalUserMapping On
-                       KrbServiceName HTTP/typhoon.ocf.berkeley.edu
-                       Krb5KeyTab /etc/apache2/sites-available/rt.keytab
-               </Location>
+                   # Comment this to enable RT-local root
+                   AuthType Kerberos
+                   Require valid-user
+                   KrbMethodNegotiate On
+                   KrbMethodK5Passwd On
+                   KrbLocalUserMapping On
+                   KrbServiceName HTTP/typhoon.ocf.berkeley.edu
+                   Krb5KeyTab /etc/apache2/sites-available/rt.keytab
+           </Location>
 
-               <Location /rt/REST/1.0/NoAuth>
-                       # No Kerberos - for rt-mailgate
-                       Satisfy Any
-                       Order Allow,Deny
-                       Allow from 128.32.129.218 # sandstorm.ocf.berkeley.edu
-               </Location>
+           <Location /rt/REST/1.0/NoAuth>
+                   # No Kerberos - for rt-mailgate
+                   Satisfy Any
+                   Order Allow,Deny
+                   Allow from 128.32.129.218 # sandstorm.ocf.berkeley.edu
+           </Location>
 
-               <Location /rt/NoAuth>
-                       # No Kerberos - login/logout pages
-                       Satisfy Any
-                       Order Allow,Deny
-                       Allow from All
-               </Location>
+           <Location /rt/NoAuth>
+                   # No Kerberos - login/logout pages
+                   Satisfy Any
+                   Order Allow,Deny
+                   Allow from All
+           </Location>
 
-               <Perl>
-                       use Plack::Handler::Apache2;
-                       Plack::Handler::Apache2->preload("/usr/share/request-tracker4/libexec/rt-server");
-               </Perl>
+           <Perl>
+                   use Plack::Handler::Apache2;
+                   Plack::Handler::Apache2->preload("/usr/share/request-tracker4/libexec/rt-server");
+           </Perl>
 
-       </VirtualHost>
-
-   I would like to sincerely apologize for the terrible job ikiwiki has done of
-   mangling this and promise it will look better soon.
+   </VirtualHost>
+   ```
 
    **For Nginx:** Copy the following RT configuration file `rt` into
    `/etc/nginx/sites-available` and link to it from `/etc/nginx/sites-enabled`:
 
-       # Configuration for RT on Nginx
-       # rt.ocf.berkeley.edu
+   ```nginx
+   # Configuration for RT on Nginx
+   # rt.ocf.berkeley.edu
 
-       server {
-               listen 80;
-               server_name rt.ocf.berkeley.edu;
-               rewrite ^ https://$server_name$request_uri? permanent;
-       }
+   server {
+           listen 80;
+           server_name rt.ocf.berkeley.edu;
+           rewrite ^ https://$server_name$request_uri? permanent;
+   }
 
-       server {
-               listen 443;
-               server_name rt.ocf.berkeley.edu;
-               rewrite ^/$ /rt;
+   server {
+           listen 443;
+           server_name rt.ocf.berkeley.edu;
+           rewrite ^/$ /rt;
 
-               root /usr/share/request-tracker4;
+           root /usr/share/request-tracker4;
 
-               location /rt {
-                       # See /usr/share/doc/rt4-fcgi/examples/request-tracker4.conf
-                       expires epoch;
+           location /rt {
+                   # See /usr/share/doc/rt4-fcgi/examples/request-tracker4.conf
+                   expires epoch;
 
-                       # Require the default authentication on typhoon (pam_krb5)
-                       auth_pam "RT";
-                       auth_pam_service_name "common-password";
+                   # Require the default authentication on typhoon (pam_krb5)
+                   auth_pam "RT";
+                   auth_pam_service_name "common-password";
 
-                       # Proxy over to rt4.
-                       fastcgi_pass unix:/var/run/rt4-fcgi.sock;
-                       include /etc/nginx/fastcgi_params;
-                       fastcgi_param REMOTE_USER $remote_user;
-                       fastcgi_param SCRIPT_NAME "/rt";
-               }
+                   # Proxy over to rt4.
+                   fastcgi_pass unix:/var/run/rt4-fcgi.sock;
+                   include /etc/nginx/fastcgi_params;
+                   fastcgi_param REMOTE_USER $remote_user;
+                   fastcgi_param SCRIPT_NAME "/rt";
+           }
 
-               # Bypass FastCGI for images
-               location /rt/NoAuth/images {
-                       alias           /usr/share/request-tracker4/html/NoAuth/images/;
-               }
+           # Bypass FastCGI for images
+           location /rt/NoAuth/images {
+                   alias           /usr/share/request-tracker4/html/NoAuth/images/;
+           }
 
-               location /rt/REST/1.0/NoAuth {
-                       allow           128.32.129.218; # sandstorm.ocf.berkeley.edu
-                       deny            all;
+           location /rt/REST/1.0/NoAuth {
+                   allow           128.32.129.218; # sandstorm.ocf.berkeley.edu
+                   deny            all;
 
-                       fastcgi_pass unix:/var/run/rt4-fcgi.sock;
-                       include /etc/nginx/fastcgi_params;
-                       fastcgi_param REMOTE_USER $remote_user;
-                       fastcgi_param SCRIPT_NAME "/rt";
-               }
+                   fastcgi_pass unix:/var/run/rt4-fcgi.sock;
+                   include /etc/nginx/fastcgi_params;
+                   fastcgi_param REMOTE_USER $remote_user;
+                   fastcgi_param SCRIPT_NAME "/rt";
+           }
 
-               ssl on;
+           ssl on;
 
-               # Same as apache
-               ssl_certificate /etc/ssl/private/rt_ocf_berkeley_edu.chained.crt;
-               ssl_certificate_key /etc/ssl/private/rt_ocf_berkeley_edu.key;
+           # Same as apache
+           ssl_certificate /etc/ssl/private/rt_ocf_berkeley_edu.chained.crt;
+           ssl_certificate_key /etc/ssl/private/rt_ocf_berkeley_edu.key;
 
-               ssl_session_timeout 5m;
-               ssl_session_cache shared:SSL:10m;
+           ssl_session_timeout 5m;
+           ssl_session_cache shared:SSL:10m;
 
-               ssl_protocols SSLv3 TLSv1;
-               ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
-               ssl_prefer_server_ciphers on;
-       }
-
-   Remove extraneous newlines inserted by ikiwiki.
+           ssl_protocols SSLv3 TLSv1;
+           ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+           ssl_prefer_server_ciphers on;
+   }
+   ```
 
 8. **Apache 2 only:** Obtain a keytab for the principal
    HTTP/typhoon.ocf.berkeley.edu@OCF.BERKELEY.EDU (replace
@@ -444,8 +450,6 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
        {$Transaction->Content()}
 
-   Remove the second newline caused by using ikiwiki.
-
    Save changes.
 
    Modify the scrip "On Create Notify AdminCcs" to use the template "Global Template: Correspondence Creation".
@@ -500,3 +504,6 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 ## References
 
 * http://requesttracker.wikia.com/wiki/HomePage
+
+[rt-puppet]: https://github.com/ocf/puppet/tree/fc6d4242ba773cefbc9e7c1ea542f8f7de3e8785/modules/ocf_rt
+[rt-docker]: https://github.com/ocf/rt
