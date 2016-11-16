@@ -51,8 +51,9 @@ with approval from the OCF (see instructions above).
 
 ### Including the University Student Group Disclaimer    {disclaimer}
 
-The university requires that all student group websites on a subdomain of
-berkeley.edu contain the following text on each page:
+The university [requires][rso-domains] that all student group websites on a
+subdomain of berkeley.edu (other than those of university-sponsored student
+groups) contain the following text on each page:
 
 > We are a student group acting independently of the University of California.
 > We take full responsibility for our organization and this web site.
