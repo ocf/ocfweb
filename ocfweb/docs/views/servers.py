@@ -77,7 +77,6 @@ def get_hosts():
                 for hostname in (
                     'anthrax',
                     'biohazard',
-                    'coma',
                     'death',
                     'dementors',
                     'firestorm',
@@ -89,7 +88,6 @@ def get_hosts():
                     'supernova',
                     'thunder',
                     'tsunami',
-                    'typhoon',
                     'werewolves',
                     'whirlwind',
                     'whiteout',
