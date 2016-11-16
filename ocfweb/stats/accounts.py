@@ -2,7 +2,6 @@ from collections import defaultdict
 from datetime import date
 from datetime import timedelta
 
-from dateutil.parser import parse
 from django.http import HttpResponse
 from django.shortcuts import render
 from matplotlib.dates import DateFormatter
@@ -35,14 +34,13 @@ def _get_account_stats():
     # increase, so does time. We use this assumption to fill in the gaps.
     start_date = date(1989, 1, 1)
     last_creation_time = start_date
-    sorted_accounts = sorted(response, key=lambda record: record['attributes']['uidNumber'][0])
+    sorted_accounts = sorted(response, key=lambda record: record['attributes']['uidNumber'])
     counts = defaultdict(int)
     group_counts = defaultdict(int)
 
     for account in sorted_accounts:
-        creation_time, = account['attributes'].get('creationTime', [None])
+        creation_time = account['attributes'].get('creationTime', None)
         if creation_time:
-            creation_time = parse(creation_time).date()
             last_creation_time = creation_time
         else:
             creation_time = last_creation_time
