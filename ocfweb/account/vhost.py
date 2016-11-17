@@ -11,11 +11,11 @@ from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from ipware.ip import get_real_ip
 from ocflib.account.search import user_attrs
-from ocflib.account.utils import has_vhost
 from ocflib.misc.mail import send_mail
 from ocflib.misc.validators import host_exists
 from ocflib.misc.validators import valid_email
 from ocflib.misc.whoami import current_user_formatted_email
+from ocflib.vhost.web import has_vhost
 
 from ocfweb.auth import group_account_required
 from ocfweb.auth import login_required
