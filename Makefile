@@ -22,10 +22,11 @@ Dockerfile.%: Dockerfile.%.in
 
 .PHONY: cook-image
 cook-image: Dockerfile.web Dockerfile.worker Dockerfile.static
-	docker build --no-cache -t $(DOCKER_TAG_BASE) .
-	docker build --no-cache -t $(DOCKER_TAG_WEB) -f Dockerfile.web .
-	docker build --no-cache -t $(DOCKER_TAG_WORKER) -f Dockerfile.worker .
-	docker build --no-cache -t $(DOCKER_TAG_STATIC) -f Dockerfile.static .
+	$(eval OCFLIB_VERSION := ==$(shell curl https://pypi.python.org/pypi/ocflib/json | jq -r .info.version))
+	docker build --pull --build-arg ocflib_version=$(OCFLIB_VERSION) -t $(DOCKER_TAG_BASE) .
+	docker build -t $(DOCKER_TAG_WEB) -f Dockerfile.web .
+	docker build -t $(DOCKER_TAG_WORKER) -f Dockerfile.worker .
+	docker build -t $(DOCKER_TAG_STATIC) -f Dockerfile.static .
 
 .PHONY: push-image
 push-image:
