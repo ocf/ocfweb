@@ -34,6 +34,9 @@ RUN virtualenv -ppython3 /opt/ocfweb/venv \
     && /opt/ocfweb/venv/bin/pip install \
         -r /opt/ocfweb/requirements.txt
 
+ARG ocflib_version=
+RUN /opt/ocfweb/venv/bin/pip install ocflib${ocflib_version}
+
 COPY bootstrap-scss /opt/ocfweb/bootstrap-scss/
 COPY manage.py /opt/ocfweb/
 COPY ocfweb /opt/ocfweb/ocfweb/
