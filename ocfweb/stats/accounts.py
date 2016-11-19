@@ -41,6 +41,7 @@ def _get_account_stats():
     for account in sorted_accounts:
         creation_time = account['attributes'].get('creationTime', None)
         if creation_time:
+            creation_time = creation_time.date()
             last_creation_time = creation_time
         else:
             creation_time = last_creation_time
