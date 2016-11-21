@@ -41,13 +41,14 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
     @cached_property
     def english_type(self):
         return {
-            'hypervisor': 'Hypervisor',
-            'vm': 'Virtual Machine',
-            'server': 'Physical Server',
-            'printer': 'Printer',
-            'network': 'Networking Gear',
             'desktop': 'Desktop',
+            'hypervisor': 'Hypervisor',
+            'network': 'Networking Gear',
             'nuc': 'NUC',
+            'printer': 'Printer',
+            'server': 'Physical Server',
+            'vip': 'Virtual IP',
+            'vm': 'Virtual Machine',
         }[self.type]
 
     @cached_property
