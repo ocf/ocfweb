@@ -28,14 +28,14 @@ it's been long enough that some of these steps have never been done before).
 Unfortunately, these steps tend to change a lot as our infrastructure evolves.
 
 
-## Step 1.1. Add the LDAP entry
+### Step 1.1. Add the LDAP entry
 
 On supernova, `kinit $USER/admin ldap-add-host <hostname> <ip>`. If setting up
 a desktop, also do `kinit $USER/admin ldapvi cn=<hostname>` and set the `type`
 attribute to `desktop`. If doing a staff VM, set it to `staffvm` instead.
 
 
-## Step 1.2. Add the DNS record
+### Step 1.2. Add the DNS record
 
 Clone the [DNS repo][github-dns] from GitHub, run `make`, and push a commit
 with the new records.
@@ -46,7 +46,7 @@ hostmaster.
 [github-dns]: https://github.com/ocf/dns
 
 
-## Step 1.3. Add node config to Puppet
+### Step 1.3. Add node config to Puppet
 
 Only do this if you are creating a staff VM, a server which will run a service,
 or a special snowflake. Make a commit to the [Puppet repo][github-puppet] which
@@ -56,7 +56,7 @@ example of a similar node's `host.yaml` file.
 [github-puppet]: https://github.com/ocf/puppet
 
 
-## Step 1.4. Create the Kerberos keytab
+### Step 1.4. Create the Kerberos keytab
 
 On the puppetmaster, run `/opt/puppet/scripts/gen-keytab`.
 
