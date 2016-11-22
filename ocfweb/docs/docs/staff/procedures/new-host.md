@@ -9,13 +9,60 @@ use hostnames of the form `hozer-{60..89}` and their corresponding IP addresses
 running `virsh undefine hozer-{num}` to remove the VM and `lvremove
 /dev/vg/hozer-{num}` to remove the logical volume.
 
-## Step 1. Pick a hostname and IP
 
-Add the hostname to the DNS. Contact the University hostmaster to request the
-reverse DNS record.
+## Step 0. Pick a hostname and IP
+
+If you are creating a brand-new host, you can find a list of IP addresses
+already in use in our [DNS repo on GitHub][github-ip-list]. Hostnames must be
+based on (un)natural disasters; a few previously used ones may be listed at the
+bottom of [our DNS template][github-dns-template].
+
+[github-ip-list]: https://github.com/ocf/dns/blob/master/etc/zones/db.ocf.in-addr.arpa
+[github-dns-template]: https://github.com/ocf/dns/blob/master/templates/db.ocf.tmpl
+
+
+## Step 1. (New hosts only) Add to LDAP, DNS, Puppet, Kerberos
+
+Only do these if a server with this hostname has never existed before (or if
+it's been long enough that some of these steps have never been done before).
+Unfortunately, these steps tend to change a lot as our infrastructure evolves.
+
+
+## Step 1.1. Add the LDAP entry
+
+On supernova, `kinit $USER/admin ldap-add-host <hostname> <ip>`. If setting up
+a desktop, also do `kinit $USER/admin ldapvi cn=<hostname>` and set the `type`
+attribute to `desktop`. If doing a staff VM, set it to `staffvm` instead.
+
+
+## Step 1.2. Add the DNS record
+
+Clone the [DNS repo][github-dns] from GitHub, run `make`, and push a commit
+with the new records.
+
+Run `dns-reconcile` and request the needed DNS changes from the University
+hostmaster.
+
+[github-dns]: https://github.com/ocf/dns
+
+
+## Step 1.3. Add node config to Puppet
+
+Only do this if you are creating a staff VM, a server which will run a service,
+or a special snowflake. Make a commit to the [Puppet repo][github-puppet] which
+adds a file `hieradata/nodes/<hostname>.yaml` for the new host. Follow the
+example of a similar node's `host.yaml` file.
+
+[github-puppet]: https://github.com/ocf/puppet
+
+
+## Step 1.4. Create the Kerberos keytab
+
+On the puppetmaster, run `/opt/puppet/scripts/gen-keytab`.
 
 
 ## Step 2. Create the host, run Debian installer
+
 
 ### Virtual hosts
 
@@ -46,12 +93,13 @@ etc.). The install should be completely hands-free, and will restart to a login
 tty.
 
 
-## Step 3. Log in and run Puppet
+## Step 3. Log in and start Puppet
 
 ### Virtual hosts
 
 1. Log in as `root:r00tme`
 2. `puppet agent --enable`.
+
 
 ### Physical hosts
 
@@ -66,15 +114,7 @@ tty.
 5. `puppet agent --debug --no-daemonize`.
 
 
-## Step 4. Create Kerberos keytab and LDAP entry
-
-Only do these if a server with this hostname has never existed before.
-
-1. On supernova, `kinit $USER/admin ldap-add-host <hostname> <ip>`.
-2. On the puppetmaster, run `/opt/puppet/scripts/gen-keytab`
-
-
-## Step 5. Sign the Puppet cert and run Puppet
+## Step 4. Sign the Puppet cert and run Puppet
 
 On the puppetmaster, `puppet ca list` to see pending requests. When you see
 yours, use `puppet ca sign hostname.ocf.berkeley.edu`.
