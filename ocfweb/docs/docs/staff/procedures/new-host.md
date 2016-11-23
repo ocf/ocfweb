@@ -122,3 +122,10 @@ yours, use `puppet ca sign hostname.ocf.berkeley.edu`.
 Log back into the host and do `systemctl restart puppet` to start the Puppet
 run. Monitor the run with `journalctl -f`. Restart Puppet once or twice more
 until the configuration converges.
+
+
+### Step 4.1. Upgrade packages
+
+The first Puppet run and various other things may be broken if one or more
+packages are out of date, e.g. Puppet. Remedy this with an `apt-get update &&
+apt-get upgrade`.
