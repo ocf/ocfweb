@@ -110,6 +110,7 @@ BOD_TERMS = [
     Term('Spring 2016', gms=['nickimp'], sms=['jvperrin', 'mattmcal']),
     Term('Summer 2016', gms=['nickimp'], sms=['jvperrin', 'mattmcal']),
     Term('Fall 2016', gms=['nickimp'], sms=['jvperrin', 'mattmcal']),
+    Term('Spring 2017', gms=['nickimp','baisang'], sms=['jvperrin', 'mattmcal']),
 ]
 
 
