@@ -80,6 +80,7 @@ def get_hosts():
                     'biohazard',
                     'death',
                     'dementors',
+                    'democracy',
                     'firestorm',
                     'flood',
                     'lightning',
