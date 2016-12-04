@@ -1,3 +1,5 @@
 #!/bin/bash
 set -euo pipefail
+exec 2>&1
+
 exec nginx -c nginx.conf -p $(pwd)

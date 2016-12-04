@@ -1,0 +1,3 @@
+#!/bin/bash
+set -euo pipefail
+exec /opt/share/utils/sbin/stdin2syslog ocfweb-nginx

@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
+exec 2>&1
 
 if [ "$OCFWEB_TESTING" == "1" ]; then
     echo 'Warning! This will probably fail in dev!'
