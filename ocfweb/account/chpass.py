@@ -11,7 +11,6 @@ from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
 from ocfweb.component.celery import change_password as change_password_task
 from ocfweb.component.forms import Form
-from ocfweb.component.lab_status import create_required
 
 
 CALLINK_ERROR_MSG = ("Couldn't connect to CalLink API. Resetting group "
@@ -44,7 +43,6 @@ def get_accounts_for(calnet_uid):
 
 
 @calnet_required
-@create_required
 def change_password(request):
     calnet_uid = request.session['calnet_uid']
     error = None

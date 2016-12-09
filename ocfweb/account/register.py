@@ -20,11 +20,9 @@ from ocfweb.component.celery import celery_app
 from ocfweb.component.celery import validate_then_create_account
 from ocfweb.component.forms import Form
 from ocfweb.component.forms import wrap_validator
-from ocfweb.component.lab_status import create_required
 
 
 @calnet_required
-@create_required
 def request_account(request):
     calnet_uid = request.session['calnet_uid']
     status = 'new_request'
@@ -110,7 +108,6 @@ def request_account(request):
     )
 
 
-@create_required
 def wait_for_account(request):
     if 'approve_task_id' not in request.session:
         return render(
