@@ -57,6 +57,7 @@ def doc_name(doc_name):
     assert re.match(r'^/[a-zA-Z\-/]+$', doc_name), 'Bad document name: ' + doc_name
     return doc_name[1:].replace('-', '\-')
 
+
 doc_names = '|'.join(map(doc_name, DOCS.keys()))
 redir_names = '|'.join(map(doc_name, REDIRECTS.keys()))
 
