@@ -2,8 +2,9 @@
 
 [**Request Tracker**](https://rt.ocf.berkeley.edu/) is the ticketing system
 used by the OCF. It is the main way of keeping track of OCF-related activity.
-Tickets are currently made either by staff to propose things to talk about
-or by emails from the Hostmaster or Help mailing lists.
+Some tickets are automatically created when emails are received at the queue's
+name (e.g. help@, devnull@, etc.). Staff can also create tickets by logging in
+directly to the web UI.
 
 ## Queues
 Tickets are assigned to queues, or organized boards. Manually-created
@@ -14,14 +15,6 @@ tickets are found under:
 - *projects* for long-term activities
 - *techtalks* for Tech Talk ideas and organization
 - *todo* for shorter-term items
-
-Other tickets are created automatically from emails:
-- *devnull* for devnull@ emails
-- *help* for questions from users (help@)
-- *hostmaster* for requests for virtual hosting ([form](https://www.ocf.berkeley.edu/account/vhost/))
-- *security* for vulnerability detections from ISP
-
-All of these queues are also associated with a mailing alias.
 
 ## Tickets
 ### Comment vs Reply
@@ -35,7 +28,9 @@ make sure the trimmed comment is all the information you want released.
 
 ### Creation
 They can be manually created through the *New Ticket in* button on the top right of the page. If doing
-so to communicate to people outside of the OCF, add their email to the requestors field of the ticket.
+so to communicate to people outside of the OCF, add their email to the requestors field of the ticket and
+leave the body blank. Afterwards, reply to the ticket to actually communicate with the person as the ticket
+creation doesn't send emails to the requestor but does to staff.
 Staff mailing lists are attached to the queue, so they usually don't have to be CC'd (i.e. *help* to help@).
 You can set people to be owner, allowing people to keep track of assignments better.
 
@@ -48,7 +43,13 @@ can be modified through *People*.
 Tickets may reference each other or there may be redundant tickets. If so, ticket relationships and merging
 can be done under *Links* for the ticket you want to keep/set relations for.
 
-Tickets are to be as *resolved* if done, *rejected* if not done for reasons, *new* on creation, and *open* otherwise.
+#### Statuses
+- *new*: New tickets without staff responses
+- *open*: Responded tickets
+- *stalled*: Held back due to other things. Turns to open on thread update.
+- *resolved*: Manual resolution
+- *rejected*: Rejection usually without comments
+- *deleted*: Use sparingly, and generally used on obvious spam.
 
 ### Searching
 By default, the queues only show *open* or *new* tickets. To see other tickets, either search the ticket number in the
