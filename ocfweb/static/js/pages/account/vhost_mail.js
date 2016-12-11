@@ -61,7 +61,6 @@
     function updateForwardToValue() {
         var modal = $(this);
         var addrs = [];
-        // TODO: use _.pluck or something
         modal.find('.js-forward-to-addresses input').each(function(i, el) {
             el = $(el);
             addrs.push(el.val());

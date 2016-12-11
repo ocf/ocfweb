@@ -42,11 +42,6 @@
         <link href="{% static 'scss/site.scss.css' %}" rel="stylesheet" />
         <link rel="icon" href="{% static 'img/favicon/favicon-16.png' %}" sizes="16x16" />
         <link rel="icon" href="{% static 'img/favicon/favicon-32.png' %}" sizes="32x32" />
-
-        <!--[if lt IE 9]>
-            <script src="{% static 'js/html5shiv-3.7.3.min.js' %}"></script>
-            <script src="{% static 'js/respond-1.4.2.min.js' %}"></script>
-        <![endif]-->
     </head>
 
     <body>
@@ -252,9 +247,8 @@
         -->
         <span style="font-family: 'Glyphicons Halflings';"></span>
 
-        <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
-        <script src="{% static 'js/underscore-1.8.3.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap-3.3.5.min.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="{% static 'js/site.js' %}"></script>
 
         {% include "partials/google-analytics.html" %}
