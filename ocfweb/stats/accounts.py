@@ -48,7 +48,7 @@ def _get_account_stats():
         assert creation_time is not None
 
         counts[creation_time] += 1
-        if 'callinkOid' in account['attributes']:
+        if account['attributes']['callinkOid']:
             group_counts[creation_time] += 1
 
     one_day = timedelta(days=1)
@@ -57,7 +57,6 @@ def _get_account_stats():
     dates = []
     cumulative_accounts = []
     cumulative_group_accounts = []
-    accounts_each_day = []
     while cur <= date.today():
         total += counts[cur]
         group_total += group_counts[cur]
@@ -65,7 +64,6 @@ def _get_account_stats():
 
         cumulative_accounts.append(total)
         cumulative_group_accounts.append(group_total)
-        accounts_each_day.append(counts[cur])
 
         cur += one_day
 
@@ -73,7 +71,6 @@ def _get_account_stats():
         'dates': dates,
         'cumulative_accounts': cumulative_accounts,
         'cumulative_group_accounts': cumulative_group_accounts,
-        'accounts_each_day': accounts_each_day,
     }
 
 
@@ -127,29 +124,5 @@ def _cumulative_group_accounts_graph():
     ax.set_ylabel('Number of group accounts')
     ax.set_xlabel('Date')
     ax.set_title('Total OCF group accounts')
-
-    return fig
-
-
-def accounts_created_each_day_graph(request):
-    """Graph of accounts created each day."""
-    return HttpResponse(
-        plot_to_image_bytes(_accounts_created_each_day_graph(), format='svg'),
-        content_type='image/svg+xml',
-    )
-
-
-@periodic(300)
-def _accounts_created_each_day_graph():
-    stats = _get_account_stats()
-
-    fig = Figure(figsize=(10, 5))
-    ax = fig.add_subplot(1, 1, 1)
-    ax.plot_date(stats['dates'], stats['accounts_each_day'], fmt='b-', color='b', linewidth=2.5)
-    ax.xaxis.set_major_formatter(DateFormatter('%b %Y'))
-    ax.grid(True)
-    ax.set_ylabel('Number of accounts')
-    ax.set_xlabel('Date')
-    ax.set_title('Accounts created each day')
 
     return fig

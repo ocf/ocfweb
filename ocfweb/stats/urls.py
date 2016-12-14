@@ -1,6 +1,5 @@
 from django.conf.urls import url
 
-from ocfweb.stats.accounts import accounts_created_each_day_graph
 from ocfweb.stats.accounts import cumulative_accounts_graph
 from ocfweb.stats.accounts import cumulative_group_accounts_graph
 from ocfweb.stats.accounts import stats_accounts
@@ -25,6 +24,5 @@ urlpatterns = [
         cumulative_group_accounts_graph,
         name='cumulative_group_accounts_graph',
     ),
-    url(r'^accounts/daily/graph$', accounts_created_each_day_graph, name='accounts_created_each_day_graph'),
     url(r'^printing/semester-histogram/graph$', semester_histogram, name='semester_histogram'),
 ]
