@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load common %}
 {% load stats %}
 
 {% block content %}
@@ -7,6 +8,29 @@
         <p>
             <img class="img-responsive" src="{% url 'semester_histogram' %}" />
         </p>
+
+        <h2>Pages printed per day</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-condensed table-hover">
+                    <tr>
+                        <th>Date</th>
+                        {% for printer in current_printers %}
+                            <th>{{printer}}</th>
+                        {% endfor %}
+                    </tr>
+
+                    {% for day in last_month %}
+                        <tr>
+                            <td>{{day|date:'D M d'}}</td>
+                            {% for printer in current_printers %}
+                                <td>{{pages_per_day|getitem:day|getitem:printer}}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
 
         <h2>Toner changes</h2>
         <p>
