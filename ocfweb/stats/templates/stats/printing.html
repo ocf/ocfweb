@@ -15,6 +15,7 @@
                 <table class="table table-condensed table-hover">
                     <tr>
                         <th>Date</th>
+                        <th>Total</th>
                         {% for printer in current_printers %}
                             <th>{{printer}}</th>
                         {% endfor %}
@@ -23,6 +24,7 @@
                     {% for day in last_month %}
                         <tr>
                             <td>{{day|date:'D M d'}}</td>
+                            <td>{{pages_per_day|getitem:day|sum_values}}</td>
                             {% for printer in current_printers %}
                                 <td>{{pages_per_day|getitem:day|getitem:printer}}</td>
                             {% endfor %}
