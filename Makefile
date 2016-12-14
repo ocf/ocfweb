@@ -71,9 +71,6 @@ watch-scss: venv
 	done
 
 .PHONY: update-requirements
-update-requirements:
-	$(eval TMP := $(shell mktemp -d))
-	python ./vendor/venv-update venv= $(TMP) -ppython3 install= -r requirements-minimal.txt
-	. $(TMP)/bin/activate && \
-		pip freeze | sort | grep -vE '^(wheel|venv-update)==' | sed 's/^ocflib==.*/ocflib/' > requirements.txt
-	rm -rf $(TMP)
+update-requirements: venv
+	$(BIN)/upgrade-requirements
+	sed -i 's/^ocflib==.*/ocflib/' requirements.txt
