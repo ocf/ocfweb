@@ -48,7 +48,7 @@ def _get_account_stats():
         assert creation_time is not None
 
         counts[creation_time] += 1
-        if account['attributes']['callinkOid']:
+        if isinstance(account['attributes']['callinkOid'], int):
             group_counts[creation_time] += 1
 
     one_day = timedelta(days=1)
