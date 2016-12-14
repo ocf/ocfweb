@@ -1,7 +1,12 @@
+from collections import defaultdict
+from datetime import date
+from datetime import timedelta
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from matplotlib.figure import Figure
 from ocflib.lab import stats
+from ocflib.printing.printers import PRINTERS
 from ocflib.printing.quota import get_connection
 from ocflib.printing.quota import SEMESTERLY_QUOTA
 
@@ -15,7 +20,14 @@ def stats_printing(request):
         'stats/printing.html',
         {
             'title': 'Printing Statistics',
+            'current_printers': PRINTERS,
             'toner_changes': _toner_changes(),
+
+            'last_month': [
+                date.today() - timedelta(days=i)
+                for i in range(30)
+            ],
+            'pages_per_day': _pages_per_day(),
         },
     )
 
@@ -54,6 +66,30 @@ def _toner_changes():
         (printer, _toner_changes_for_printer(printer))
         for printer in ('papercut', 'pagefault', 'logjam', 'deforestation')
     ]
+
+
+@periodic(120)
+def _pages_per_day():
+    with stats.get_connection() as cursor:
+        cursor.execute('''
+            SELECT max(value) as value, cast(date as date) as date, printer
+                FROM printer_pages_public
+                GROUP BY cast(date as date), printer
+                ORDER BY date ASC, printer ASC
+        ''')
+
+        last_seen = {}
+        pages_printed = {}
+
+        for row in cursor:
+            if row['printer'] in last_seen:
+                pages_printed.setdefault(row['date'], defaultdict(int))
+                pages_printed[row['date']][row['printer']] = (
+                    row['value'] - last_seen[row['printer']]
+                )
+            last_seen[row['printer']] = row['value']
+
+    return pages_printed
 
 
 def _toner_changes_for_printer(printer):

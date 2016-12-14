@@ -14,6 +14,12 @@ def getitem(obj, item):
 
 
 @register.filter
+def sum_values(obj):
+    """Return sum of the object's values."""
+    return sum(obj.values())
+
+
+@register.filter
 def sort(items):
     """Sort items.
 
