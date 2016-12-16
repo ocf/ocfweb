@@ -1,3 +1,5 @@
+def sha
+
 node('slave') {
     step([$class: 'WsCleanup'])
 
@@ -6,7 +8,7 @@ node('slave') {
         // don't build a Debian package?
         dir('src') {
             checkout scm
-            def sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true)
+            sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true)
 
             // TODO: figure out how to get the git plugin to do this for us
             sh 'git submodule update --init'
