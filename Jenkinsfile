@@ -36,7 +36,8 @@ node('slave') {
 
 
 if (env.BRANCH_NAME == 'master') {
-    def version = new Date().format("yyyy-MM-dd-'T'HH-mm-ss")
+    def sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true)
+    def version = "${new Date().format("yyyy-MM-dd-'T'HH-mm-ss")}-git${sha}"
     withEnv([
         'DOCKER_REPO=docker-push.ocf.berkeley.edu/',
         "DOCKER_REVISION=${version}",
