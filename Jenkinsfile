@@ -21,7 +21,7 @@ node('slave') {
         // don't build a Debian package?
         dir('src') {
             checkout scm
-            sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true)
+            sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
 
             // TODO: figure out how to get the git plugin to do this for us
             sh 'git submodule update --init'
