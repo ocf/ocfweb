@@ -11,6 +11,8 @@ if (env.BRANCH_NAME == 'master') {
     ])
 }
 
+def sha
+
 node('slave') {
     step([$class: 'WsCleanup'])
 
@@ -19,6 +21,7 @@ node('slave') {
         // don't build a Debian package?
         dir('src') {
             checkout scm
+            def sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true)
 
             // TODO: figure out how to get the git plugin to do this for us
             sh 'git submodule update --init'
@@ -36,7 +39,6 @@ node('slave') {
 
 
 if (env.BRANCH_NAME == 'master') {
-    def sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true)
     def version = "${new Date().format("yyyy-MM-dd-'T'HH-mm-ss")}-git${sha}"
     withEnv([
         'DOCKER_REPO=docker-push.ocf.berkeley.edu/',
