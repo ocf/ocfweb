@@ -3,6 +3,7 @@ from django.conf.urls import url
 from ocfweb.stats.accounts import cumulative_accounts_graph
 from ocfweb.stats.accounts import cumulative_group_accounts_graph
 from ocfweb.stats.accounts import stats_accounts
+from ocfweb.stats.api import api_staff_in_lab
 from ocfweb.stats.daily_graph import daily_graph_image
 from ocfweb.stats.printing import semester_histogram
 from ocfweb.stats.printing import stats_printing
@@ -25,4 +26,5 @@ urlpatterns = [
         name='cumulative_group_accounts_graph',
     ),
     url(r'^printing/semester-histogram/graph$', semester_histogram, name='semester_histogram'),
+    url(r'^api/staff-in-lab$', api_staff_in_lab, name='api_staff_in_lab'),
 ]
