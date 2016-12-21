@@ -15,7 +15,7 @@ ordereddict==1.1
 pbr==1.10.0
 pickleshare==0.7.4
 prompt-toolkit==1.0.9
-py==1.4.31
+py==1.4.32
 pytest==3.0.5
 pytest-django==3.1.2
 requirements-tools==0.1.0
