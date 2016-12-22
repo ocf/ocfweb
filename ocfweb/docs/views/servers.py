@@ -94,6 +94,7 @@ def get_hosts():
                     'werewolves',
                     'whirlwind',
                     'whiteout',
+                    'zombies',
                 )
             ],
         ),
@@ -106,7 +107,6 @@ def get_hosts():
                 for hostname in (
                     'fallingrocks',
                     'pileup',
-                    'zombies',
                 )
             ],
         ),
