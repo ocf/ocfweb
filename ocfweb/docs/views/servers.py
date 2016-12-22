@@ -46,6 +46,7 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
             'network': 'Networking Gear',
             'nuc': 'NUC',
             'printer': 'Printer',
+            'raspi': 'Raspberry Pi',
             'server': 'Physical Server',
             'vip': 'Virtual IP',
             'vm': 'Virtual Machine',
@@ -115,6 +116,7 @@ def get_hosts():
         Host('logjam', 'printer', '', []),
         Host('pagefault', 'printer', '', []),
         Host('papercut', 'printer', '', []),
+        Host.from_ldap('overheat', type='raspi'),
         Host.from_ldap('tornado', type='nuc'),
     ] + [
         Host.from_ldap(desktop, type='desktop')
