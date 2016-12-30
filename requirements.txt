@@ -16,7 +16,7 @@ dnspython==1.15.0
 dnspython3==1.15.0
 gunicorn==19.6.0
 idna==2.2
-Jinja2==2.8
+Jinja2==2.8.1
 kombu==3.0.37
 ldap3==2.1.1
 libsass==0.12.1
@@ -42,6 +42,6 @@ pytz==2016.10
 PyYAML==3.12
 redis==2.10.5
 requests==2.12.4
-setuptools==32.1.2
+setuptools==32.3.1
 six==1.10.0
 SQLAlchemy==1.1.4

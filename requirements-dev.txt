@@ -1,7 +1,7 @@
 argparse==1.4.0
 aspy.yaml==0.2.2
 ckuehl-pre-commit-types==0.7.6.dev1
-coverage==4.2
+coverage==4.3.1
 coveralls==1.1
 decorator==4.0.10
 docopt==0.6.2
