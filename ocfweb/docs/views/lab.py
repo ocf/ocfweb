@@ -5,6 +5,7 @@ from django.shortcuts import render
 from ocflib.lab.hours import Day
 from ocflib.lab.hours import HOLIDAYS
 from ocflib.lab.hours import REGULAR_HOURS
+from ocflib.lab.stats import current_semester_start
 
 
 def get_holidays():
@@ -18,6 +19,13 @@ def get_holidays():
             if date.today() <= day:
                 yield (day, name, hours)
             day += timedelta(days=1)
+
+
+def get_semester():
+    """Get the current semester (Fall 2016, Spring 2018, etc.)"""
+    start = current_semester_start()
+    semester = 'Fall' if start.month > 6 else 'Spring'
+    return '{} {}'.format(semester, start.year)
 
 
 def lab(doc, request):
@@ -37,6 +45,7 @@ def lab(doc, request):
             ],
             'regular_hours': REGULAR_HOURS,
             'holidays': list(get_holidays()),
+            'semester': get_semester(),
             'SUNDAY': Day.SUNDAY,
             'MONDAY': Day.MONDAY,
             'TUESDAY': Day.TUESDAY,
