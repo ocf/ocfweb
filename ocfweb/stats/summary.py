@@ -4,10 +4,10 @@ from datetime import datetime
 from operator import attrgetter
 
 from django.shortcuts import render
-from ocflib.constants import CURRENT_SEMESTER_START
 from ocflib.lab.printing import get_maintkit
 from ocflib.lab.printing import get_toner
 from ocflib.lab.printing import PRINTERS
+from ocflib.lab.stats import current_semester_start
 from ocflib.lab.stats import list_desktops
 from ocflib.lab.stats import staff_in_lab as real_staff_in_lab
 from ocflib.lab.stats import STATS_EPOCH
@@ -89,7 +89,7 @@ def summary(request):
         {
             'title': 'Lab Statistics',
             'desktop_profiles': desktop_profiles(),
-            'current_semester_start': CURRENT_SEMESTER_START,
+            'current_semester_start': current_semester_start(),
             'stats_epoch': STATS_EPOCH,
             'staff_in_lab': staff_in_lab(),
             'top_staff_alltime': top_staff_alltime()[:15],
