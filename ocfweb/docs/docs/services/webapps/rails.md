@@ -80,8 +80,10 @@ Some things to keep in mind:
 * Make sure you've set secret keys for the app and any gems that need them
   (e.g. devise).
 * Static file serving is off by default in production, but you'll want to turn
-  it on (set both `config.serve_static_assets` and `config.assets.compile` to
-  true in `config/environments/production.rb`)
+  it on: set both `config.assets.compile` and `config.serve_static_assets`
+  (rails 4.1), `config.serve_static_files` (rails 4.2), or
+  `config.public_file_server.enabled` (rails 5) to true in
+  `config/environments/production.rb`.
 
 ## Supervise your app with systemd
 
