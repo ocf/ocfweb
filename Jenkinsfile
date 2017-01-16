@@ -4,7 +4,7 @@ if (env.BRANCH_NAME == 'master') {
             triggers: [
                 [
                     $class: 'jenkins.triggers.ReverseBuildTrigger',
-                    upstreamProjects: 'ocflib-upload-pypi', threshold: hudson.model.Result.SUCCESS
+                    upstreamProjects: 'ocflib/master', threshold: hudson.model.Result.SUCCESS
                 ]
             ]
         ]),
