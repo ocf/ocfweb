@@ -49,24 +49,25 @@ config|vhost_mail]] (and the mail server will start accepting incoming/outgoing
 mail), but you still need to update the DNS so that they can actually receive
 mail.
 
-If the group already has virtual hosting for their website, which is likely the
-case, request from the [University
-hostmaster](http://www.net.berkeley.edu/hostmaster/) that the following DNS
-record be dropped:
+We request the same DNS records for mail hosting as for web hosting. First,
+check if any DNS records already exist with
+
+    dig hostname.berkeley.edu [A|AAA|MX]
+
+for IPv4/IPv6/mail records, respectively. If they have all the records from the
+previous section, you don't have to do anything else.
+
+If not, make the same request to the University hostmaster as in the previous
+section. If you see this record:
 
     hostname.Berkeley.EDU. IN CNAME death.OCF.Berkeley.EDU.
 
-Then, whether or not the group has web virtual hosting, request the following
-DNS records:
+then include in your request to the hostmaster that it be dropped.
 
-    hostname.Berkeley.EDU. IN A 169.229.226.23
-    hostname.Berkeley.EDU. IN AAAA 2607:f140:8801::1:23
-    hostname.Berkeley.EDU. IN MX 5 anthrax.OCF.Berkeley.EDU.
-
-Use the domain requested by the group in place of `hostname`. We have a
+We have a
 [reusable email
 template](https://templates.ocf.berkeley.edu/#hostmaster-add-mail) for making
-DNS mail requests.
+DNS mail requests for groups that have old `CNAME` records.
 
 
 ### Application hosting
@@ -104,6 +105,7 @@ hostmaster](http://www.net.berkeley.edu/hostmaster/):
     hostname.Berkeley.EDU. IN AAAA 2607:f140:8801::1:49
     hostname.Berkeley.EDU. IN MX 5 anthrax.OCF.Berkeley.EDU.
 
-Remember to request that any existing records be dropped as well. The nginx
-running on apphosting server will return a `502 Bad Gateway` or actual content
-if the apphost is configured properly, and a `403 Forbidden` otherwise.
+Remember to request that any existing records be dropped as well. You can check
+for records with `dig hostname.berkeley.edu [A|AAAA|MX]`. The nginx running on
+apphosting server will return a `502 Bad Gateway` or actual content if the
+apphost is configured properly, and a `403 Forbidden` otherwise.
