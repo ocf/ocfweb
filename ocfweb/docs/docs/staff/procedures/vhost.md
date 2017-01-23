@@ -25,11 +25,12 @@ This takes effect at the top of every hour when a cronjob runs. HTTPS takes
 about an additional hour to take effect (for the first hour, it will be
 HTTP-only).
 
-If mail is also requested, skip to the next section. Otherwise, request the
-following DNS record from the [University
+Next, request the following DNS records from the [University
 hostmaster](http://www.net.berkeley.edu/hostmaster/):
 
-    hostname.berkeley.edu. IN CNAME death.ocf.berkeley.edu.
+    hostname.Berkeley.EDU. IN A 169.229.226.23
+    hostname.Berkeley.EDU. IN AAAA 2607:f140:8801::1:23
+    hostname.Berkeley.EDU. IN MX 5 anthrax.OCF.Berkeley.EDU.
 
 Use the domain requested by the group in place of `hostname`. We have a
 [reusable email
@@ -59,6 +60,7 @@ Then, whether or not the group has web virtual hosting, request the following
 DNS records:
 
     hostname.Berkeley.EDU. IN A 169.229.226.23
+    hostname.Berkeley.EDU. IN AAAA 2607:f140:8801::1:23
     hostname.Berkeley.EDU. IN MX 5 anthrax.OCF.Berkeley.EDU.
 
 Use the domain requested by the group in place of `hostname`. We have a
@@ -92,14 +94,16 @@ Once the cronjob completes, the application will be available at:
 
     VHOST_NAME-berkeley-edu.apphost.ocf.berkeley.edu
 
-VHOST_NAME is the configured name from above.
+`VHOST_NAME` is the configured name from above.
 
 Once the website is developed and meets policy checklist, request the following
 DNS record from the [University
 hostmaster](http://www.net.berkeley.edu/hostmaster/):
 
-    hostname.berkeley.edu. IN CNAME werewolves.OCF.Berkeley.EDU
+    hostname.Berkeley.EDU. IN A 169.229.226.49
+    hostname.Berkeley.EDU. IN AAAA 2607:f140:8801::1:49
+    hostname.Berkeley.EDU. IN MX 5 anthrax.OCF.Berkeley.EDU.
 
-The nginx running on apphosting server will return a `502 Bad Gateway` or
-actual content if the apphost is configured properly, and a `403 Forbidden`
-otherwise.
+Remember to request that any existing records be dropped as well. The nginx
+running on apphosting server will return a `502 Bad Gateway` or actual content
+if the apphost is configured properly, and a `403 Forbidden` otherwise.
