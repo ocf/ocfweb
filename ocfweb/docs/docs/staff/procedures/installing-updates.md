@@ -14,7 +14,9 @@ root.
 
 To install updates:
 
-1. From `supernova`, run:
+1. Make sure the desktops are not [suspended](https://github.com/ocf/puppet/blob/master/modules/ocf_desktop/files/suspend/ocf-suspend), and that you aren't trying to install updates near a 15-minute boundary when the desktops auto-suspend. See [lab-wakeup](https://github.com/ocf/ocfweb/tree/master/ocfweb/docs/docs/staff/scripts/lab-wakeup.md) to wake up the desktops prior to updating.
+
+2. From `supernova`, run:
 
        sudo apt-dater-ocf
 
@@ -25,10 +27,10 @@ To install updates:
 
    Once apt-dater opens, proceed to the next step.
 
-2. Select the "Updates pending" row at the top, and hit `u`. You'll be asked if
+3. Select the "Updates pending" row at the top, and hit `u`. You'll be asked if
    you wish to upgrade the entire group. Press `y` to confirm.
 
-3. All the hosts will now be in the "Sessions" category. Expand it (select then
+4. All the hosts will now be in the "Sessions" category. Expand it (select then
    hit enter), then attach to each host one-by-one (hit `a` when you're over a
    host). You'll attach to a tmux session where the updates are being
    installed.
