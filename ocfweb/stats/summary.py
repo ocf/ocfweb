@@ -14,6 +14,7 @@ from ocflib.lab.stats import STATS_EPOCH
 from ocflib.lab.stats import top_staff_alltime as real_top_staff_alltime
 from ocflib.lab.stats import top_staff_semester as real_top_staff_semester
 from ocflib.lab.stats import users_in_lab_count as real_users_in_lab_count
+from ocflib.lab.stats import staff_in_lab_count as real_staff_in_lab_count
 from ocflib.lab.stats import UtilizationProfile
 
 from ocfweb.caching import periodic
@@ -64,6 +65,9 @@ def top_staff_semester():
 def users_in_lab_count():
     return real_users_in_lab_count()
 
+@periodic(30)
+def staff_in_lab_count():
+    return real_staff_in_lab_count()
 
 @periodic(60)
 def printers():
@@ -95,6 +99,7 @@ def summary(request):
             'top_staff_alltime': top_staff_alltime()[:15],
             'top_staff_semester': top_staff_semester()[:15],
             'users_in_lab_count': users_in_lab_count(),
+            'staff_in_lab_count': staff_in_lab_count(),
             'printers': printers(),
         },
     )
