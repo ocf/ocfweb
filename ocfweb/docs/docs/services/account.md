@@ -55,8 +55,8 @@ Success : Password changed
 
 #### In person
 
-If you are not able to use CalNet or SSH, if you are a group and forgot your
-current password), you can meet a staff member in person during [[staff
+If you are not able to use CalNet or SSH, or if you are a group and forgot your
+current password, you can meet a staff member in person during [[staff
 hours|staff-hours]].
 
 Please bring sufficient documentation as listed on the [[membership
