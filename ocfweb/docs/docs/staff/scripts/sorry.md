@@ -19,12 +19,18 @@ they were sorried) to ~user/.sorry, `chmod 000`'s the user's httpdir, `chmod
 emailing them with the reason they were sorried. If a sorried user attempts to 
 log in, they will be rebuffed.
 
-All sorry files are also stored in `/opt/share/utils/staff/acct/sorry/`.
+All sorry files are stored in [ocf/utils](https://github.com/ocf/utils) under
+`staff/acct/sorry/`, which is where they should be edited if necessary.
 
 After sorrying a user, make sure to run the `note` command to document the 
 reasoning to ~staff/User_Info. This reason will be read to future users running 
 `check` on the sorried user. 
 
-Unsorrying a user is also possible.
+[Unsorrying](https://ocf.io/docs/staff/scripts/unsorry/) a user is also possible.
+
+If a user is sending too much mail, it may be easier to `nomail` the user instead
+of sorrying their account. This involves adding the user to `/etc/postfix/ocf/nomail`
+on anthrax, at which point their ability to send mail will be removed.
 
 See `how sorry` for more information on the sorry command itself.
+([how]((https://ocf.io/docs/staff/scripts/how) views the script source)
