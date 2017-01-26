@@ -2,7 +2,7 @@
 
 ## Introduction
 
-`how` displays the source of a script in the PATH in a pager (usually `less`)
+`how` displays the source of a script in the `PATH` in a pager (usually `less`)
 
 It's very simple.
 
