@@ -19,12 +19,19 @@ they were sorried) to ~user/.sorry, `chmod 000`'s the user's httpdir, `chmod
 emailing them with the reason they were sorried. If a sorried user attempts to
 log in, they will be rebuffed.
 
+You will need an admin and root principal (or, atleast, ocfroot membership) in
+order to run this command, which should preferably be run on supernova in order
+to find all the appropriate files.
+
 All sorry files are stored in [ocf/utils](//github.com/ocf/utils) under
-`staff/acct/sorry/`, which is where they should be edited if necessary.
+`staff/acct/sorry/`, which is where they should be edited if necessary. Puppet
+clones this repo to `/opt/share/utils/` on all the computers.
 
 After sorrying a user, make sure to run the `note` command to document the
 reasoning to ~staff/User_Info. This reason will be read to future users running
 `check` on the sorried user.
+
+
 
 [Unsorrying](//ocf.io/docs/staff/scripts/unsorry/) a user is also possible.
 
