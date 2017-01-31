@@ -71,10 +71,12 @@
             }
 
             .server-anchor {
-                display: block;
-                position: relative;
-                top: -75px;
-                visibility: hidden;
+                &:before {
+                    content: '';
+                    display: block;
+                    height: 60px;
+                    margin-top: -60px;
+                }
             }
         }
     }
