@@ -17,10 +17,10 @@ If you'd like to get started using mail virtual hosting, send us an email at
 know you'd like to enable email virtual hosting. Be sure to include both the
 domain name, and your OCF account name.
 
-If you are not a public signatory for your group according to CalLink, we'll
-request to meet with or receive an email from one of the public signatories
-of the group to fulfill the request. If you have your group's account
-password, you may instead request virtual hosting at
+If you are not a public signatory for your group according to CalLink, we'll 
+request to meet with or receive an email from one of the public signatories 
+of the group to fulfill the request. If you have your group's account 
+password, you may instead request virtual hosting at 
 [[web form|account/vhost/mail/]]
 
 Once your domain is configured for mail hosting, head over to our [[mail
