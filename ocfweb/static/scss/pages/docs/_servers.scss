@@ -69,6 +69,15 @@
                     }
                 }
             }
+
+            .server-anchor {
+                &:before {
+                    content: '';
+                    display: block;
+                    height: 60px;
+                    margin-top: -60px;
+                }
+            }
         }
     }
 }
