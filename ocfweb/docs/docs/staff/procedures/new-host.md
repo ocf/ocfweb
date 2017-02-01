@@ -58,7 +58,7 @@ example of a similar node's `host.yaml` file.
 
 ### Step 1.4. Create the Kerberos keytab
 
-On the puppetmaster, run `/opt/puppet/scripts/gen-keytab`.
+On the puppetmaster, run `gen-keytab`.
 
 
 ## Step 2. Create the host, run Debian installer
