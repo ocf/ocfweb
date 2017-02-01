@@ -39,6 +39,21 @@ University, which describes the procedure that we should follow:
 
 (More details on each step are in the document.)
 
-You can adapt the DMCA takedown procedure to other takedown or cease
-and desist notices like trademark claims. Be sure to always provide
-adequate notice to our users.
+For other takedown or cease and desist notices like trademark claims,
+you should provide similar notification to our users, but consult
+with the University.
+
+In general, for all takedown or cease and desist notices
+(DMCA or otherwise):
+
+ * If the request originates from outside the University,
+   consult with the LEAD Center and/or the DMCA designated agent
+   (IT Policy). For DMCA notices, the designated agent should
+   be telling us what to do.
+ * If the request originates from within the University,
+   for example a professor, also consult with our Faculty Advisor
+   and/or the ASUC.
+ * Regardless of action, be sure to always provide adequate notice
+   to our users and offer to assist them
+   (of course, we cannot provide legal advice, but the University
+   or ASUC may be able to).
