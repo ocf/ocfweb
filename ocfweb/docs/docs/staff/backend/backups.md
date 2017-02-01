@@ -24,12 +24,6 @@ with only OCF officers to make sure the backups are kept as secure as possible,
 since they contain all of the OCF's important data.  The backups are already
 encrypted, but it doesn't hurt to add a little extra security to that.
 
-We also use Google Nearline on an ad-hoc basis (i.e. we have scripts to make
-the backup, but they only upload and don't remove the old backups). They're not
-yet executed automatically and require some human care to ensure things work
-properly.
-
-
 ## Backup Contents
 
 Backups currently include:
@@ -103,10 +97,6 @@ Some general ideas for improving backups:
 
 8. Automate backup testing, so have some system for periodically checking that
    backups can be restored from, whether they are offsite or onsite.
-
-9. Possibly automate offsite backups to Google Nearline? This is probably
-   unnecessary given that there are already offsite backups on Box and we'd
-   have to pay for this.
 
 [box]: https://www.box.com
 [create-encrypted-backup]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/create-encrypted-backup
