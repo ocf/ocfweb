@@ -71,7 +71,7 @@
             }
 
             .server-anchor {
-                &:before {
+                &::before {
                     content: '';
                     display: block;
                     height: 60px;
