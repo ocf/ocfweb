@@ -3,7 +3,7 @@
 `ssh-list` is a small wrapper around `parallel-ssh` which reads lists of hosts
 from LDAP.
 
-The usage of ssh-list looks like:
+The usage of `ssh-list` looks like:
 
     ssh-list [type] -- [arguments to parallel-ssh]
 
