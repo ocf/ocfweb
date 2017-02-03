@@ -46,3 +46,7 @@ coverage.xml
 *.log
 docs/_build/
 target/
+
+# emacs
+\#*\#
+*~
