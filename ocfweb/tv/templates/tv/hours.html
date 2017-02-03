@@ -3,7 +3,7 @@
 
 {% block tv-body %}
 <div class="page-tv-hours">
-  <p> Hours for {{ hours.date | date:'M d' }} </p>
+  <p> Hours for {{ hours.date | date:'l, M j' }} </p>
   <div class="hours-container">
     {% for hour in hours.hours %}
     <p class="hours"> {{ hour | tv_lab_hours }} </p>
