@@ -1,0 +1,35 @@
+.page-tv {
+    $base-font-size: 5em;
+
+
+}
+
+.page-tv-hours {
+    .hour {
+        border: solid 1px #ddd;
+        margin-bottom: 15px;
+
+        .title {
+            font-size: 16px;
+            padding: 7px 10px 5px;
+            border-bottom: solid 1px #ddd;
+            background-color: #eee;
+
+            strong {
+                margin-right: 3px;
+            }
+
+            span {
+                margin-left: 3px;
+            }
+        }
+
+        .content {
+            padding: 13px;
+        }
+
+        &.cancelled .title {
+            color: #999;
+        }
+    }
+}

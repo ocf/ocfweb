@@ -1,0 +1,5 @@
+{% load lab_hours %}
+<div class="page-tv-hours">
+  <p> Hours for {{ hours.date | date:'M d' }} </p>
+  <p> {{ hours.hours | lab_hours_time }} </p>
+</div>

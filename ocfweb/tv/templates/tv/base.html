@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+<!doctype html>
+
+<html class="{{ base_css_classes }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if description %}
+    <meta name="description" content="{{description}}">
+    {% endif description %}
+
+    <title>
+      {% if fulltitle %}
+      {{ fulltitle }}
+      {% else %}
+      {% if title %}
+      {{ title }} &ndash;
+      {% endif %}
+      Open Computing Facility
+      {% endif %}
+    </title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic,500,500italic" rel="stylesheet" />
+    <link href="{% static 'scss/site.scss.css' %}" rel="stylesheet" />
+    <link rel="icon" href="{% static 'img/favicon/favicon-16.png' %}" sizes="16x16" />
+    <link rel="icon" href="{% static 'img/favicon/favicon-32.png' %}" sizes="32x32" />
+  </head>
+
+  <body>
+    <div class="page-tv">
+      {% block tv-body %}
+    </div>
+  </body>
+</html>

@@ -18,7 +18,7 @@ from ocfweb.main.staff_hours import staff_hours
 from ocfweb.stats.urls import urlpatterns as stats
 from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
-
+from ocfweb.tv.tv_hours import tv_hours
 
 urlpatterns = [
     # test pages
@@ -41,6 +41,8 @@ urlpatterns = [
     # about pages
     url(r'^about/staff$', about_staff, name='about-staff'),
     url(r'^about/lab/open-source$', lab_open_source, name='lab-open-source'),
+
+    url(r'^tv/hours$', tv_hours, name='tv-hours'),
 
     # hosting logos
     url(r'^images/hosted-logos/(?:index\.shtml)?$',
