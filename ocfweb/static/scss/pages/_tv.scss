@@ -1,35 +1,17 @@
+$base-font-size: 8vw;
+
 .page-tv {
-    $base-font-size: 5em;
 
+    .page-tv-hours {
+        font-size: $base-font-size;
 
-}
-
-.page-tv-hours {
-    .hour {
-        border: solid 1px #ddd;
-        margin-bottom: 15px;
-
-        .title {
-            font-size: 16px;
-            padding: 7px 10px 5px;
-            border-bottom: solid 1px #ddd;
-            background-color: #eee;
-
-            strong {
-                margin-right: 3px;
-            }
-
-            span {
-                margin-left: 3px;
-            }
+        p {
+            @extend .text-center;
         }
 
-        .content {
-            padding: 13px;
-        }
-
-        &.cancelled .title {
-            color: #999;
+        .hours-container {
+            font-size: $base-font-size + 12;
+            line-height: 0.9em;
         }
     }
 }
