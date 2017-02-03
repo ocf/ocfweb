@@ -10,6 +10,7 @@ from ocflib.lab.printing import PRINTERS
 from ocflib.lab.stats import current_semester_start
 from ocflib.lab.stats import list_desktops
 from ocflib.lab.stats import staff_in_lab as real_staff_in_lab
+from ocflib.lab.stats import staff_in_lab_count as real_staff_in_lab_count
 from ocflib.lab.stats import STATS_EPOCH
 from ocflib.lab.stats import top_staff_alltime as real_top_staff_alltime
 from ocflib.lab.stats import top_staff_semester as real_top_staff_semester
@@ -65,6 +66,11 @@ def users_in_lab_count():
     return real_users_in_lab_count()
 
 
+@periodic(30)
+def staff_in_lab_count():
+    return real_staff_in_lab_count()
+
+
 @periodic(60)
 def printers():
     def silence(f):
@@ -95,6 +101,7 @@ def summary(request):
             'top_staff_alltime': top_staff_alltime()[:15],
             'top_staff_semester': top_staff_semester()[:15],
             'users_in_lab_count': users_in_lab_count(),
+            'staff_in_lab_count': staff_in_lab_count(),
             'printers': printers(),
         },
     )
