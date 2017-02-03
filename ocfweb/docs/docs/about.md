@@ -1,5 +1,6 @@
 [[!meta title="About us"]]
 
+
 ## The mission
 
 The OCF is an all-volunteer, student-run, Chartered Program of the [Associated
@@ -13,7 +14,7 @@ computing to fully explore that interest.
 
 ## What do we do?
 
-The Open Computing Facility provides free computing services to student,
+The Open Computing Facility provides free computing services to students,
 faculty, and staff, ranging from printing to expiration-free web space to Unix
 shell accounts to email. Furthermore, the OCF operates a highly frequented
 long-hours computing lab with a generally high volunteer-staff-to-user ratio
@@ -32,19 +33,22 @@ resources available, the OCF also provides a variety of educational services.
 We used to co-sponsor a series of Help Sessions, short classes taught
 throughout the semester on a wide range of computing topics, from beginner to
 advanced levels, and focusing on resources available to the Berkeley campus
-community.  These now take the form of [DeCal courses][decal] offered by us. We
-also offer e-mail and in-person consulting with our volunteer staff members, as
-well as online sources of information about computing on the Berkeley campus
-and how to use the available resources.  Additionally, the OCF has conducted
-career fairs in the past with its sister organization, the [Computer Science
-Undergraduate Association][csua].
+community.  We also used to host the UNIX SysAdmin [DeCal courses][decal]. Now,
+we host regular Tech Talks that explore new technologies and how they might
+apply to elements of the OCF infrastructure. We also offer e-mail and in-person
+consulting with our volunteer staff members, as well as online sources of information
+about computing on the Berkeley campus and how to use the available resources.
+Additionally, the OCF has conducted career fairs in the past with its sister
+organization, the [Computer Science Undergraduate Association][csua].
 
 Policies for this cluster and decisions for the OCF organization are made by
-the OCF Board of Directors, a group of students elected each semester by the
-OCF membership.  The Board meetings, held at least once every two weeks when
-classes are in session, are open to the public and provide a chance for any
-user to express their concerns or opinions about the OCF. [Minutes of previous
-meetings][minutes] are also available online.
+the OCF Board of Directors, an open body composed of OCF members who are interested
+in participating in the OCF decision-making process. The Board convenes at General
+Meetings, held at least every week when classes are in session, which are open to the
+public and provide a chance for any user to express their concerns or opinions about
+the OCF. All OCF members are welcome to join the Board of Directors, and all persons
+are welcome to attend General Meetings. [Minutes of previous meetings][minutes]
+are also available online.
 
 ## How to find us
 
