@@ -43,7 +43,7 @@ organization, the [Computer Science Undergraduate Association][csua].
 
 Policies for this cluster and decisions for the OCF organization are made by
 the OCF Board of Directors, an open body composed of OCF members who are interested
-in participating in the OCF decision-making process. The Board convenes at General
+in participating in the OCF decision-making process. The Board convenes at BoD
 Meetings, held at least every week when classes are in session, which are open to the
 public and provide a chance for any user to express their concerns or opinions about
 the OCF. All OCF members are welcome to join the Board of Directors, and all persons
