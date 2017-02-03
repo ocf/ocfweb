@@ -22,8 +22,8 @@
         &::before {
             content: '';
             display: block;
-            height: 60px; // height of ocf navbar
-            margin-top: -60px; // negative navbar height
+            height: $navbar-height; // height of ocf navbar
+            margin-top: -$navbar-height; // negative navbar height
         }
 
         .anchor {

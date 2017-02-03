@@ -74,8 +74,8 @@
                 &::before {
                     content: '';
                     display: block;
-                    height: 60px;
-                    margin-top: -60px;
+                    height: $navbar-height;
+                    margin-top: -$navbar-height;
                 }
             }
         }
