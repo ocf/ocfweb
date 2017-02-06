@@ -4,11 +4,12 @@
 {% block tv-body %}
 <div class="page-tv-hours">
   <p> Hours for {{ hours.date | date:'l, M j' }} </p>
-  <div class="hours-container">
+  <div class="hours-container {{ hours.hours | tv_lab_hours_css }}">
     {% for hour in hours.hours %}
-    <p class="hours"> {{ hour | tv_lab_hours }} </p>
+    <p> {{ hour | tv_lab_hours }} </p>
+    <hr />
     {% empty %}
-    <p class="hours"> Closed All Day </p>
+    <p> Closed All Day </p>
     {% endfor %}
   </div>
 </div>
