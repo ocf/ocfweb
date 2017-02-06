@@ -36,7 +36,7 @@ security.
 ## Versions
 
 There are two major free versions of Kerberos: MIT and Heimdal Kerberos. At the
-OCF, we use Heimdal Kerberos, so if you look up documentation, it might instead
+OCF, we use Heimdal Kerberos; if you look up documentation, it might instead
 be for the MIT version, so be careful to make sure the commands work. Kerberos
 also has 2 main versions that are still used: version 4 and version 5. Version
 5 fixes a lot of the security and design flaws of version 4, so we use version
@@ -51,7 +51,7 @@ when reading about or working on Kerberos and an attempt to explain what they
 mean:
 
 - **KDC** (**K**ey **D**istribution **C**enter): The central server that issues
-  tickets for Kerberos communication and stores all user's keys. If the KDC is
+  tickets for Kerberos communication and stores all users' keys. If the KDC is
   compromised, you are going to have a very bad time and [will not go to space
   today][xkcd-space]. Our current KDC is firestorm, but that could change in
   the future, as servers are moved around or rebuilt.
