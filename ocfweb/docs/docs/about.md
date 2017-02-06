@@ -31,24 +31,24 @@ the ground floor of MLK Student Union.
 To help people explore the field of computing and educate them about the
 resources available, the OCF also provides a variety of educational services.
 We used to co-sponsor a series of Help Sessions, short classes taught
-throughout the semester on a wide range of computing topics, from beginner to
-advanced levels, and focusing on resources available to the Berkeley campus
-community.  We also used to host the UNIX SysAdmin [DeCal courses][decal]. Now,
-we host regular Tech Talks that explore new technologies and how they might
-apply to elements of the OCF infrastructure. We also offer e-mail and in-person
-consulting with our volunteer staff members, as well as online sources of information
-about computing on the Berkeley campus and how to use the available resources.
-Additionally, the OCF has conducted career fairs in the past with its sister
-organization, the [Computer Science Undergraduate Association][csua].
+throughout the semester on a wide range of computing topics (focusing on
+resources available to the Berkeley campus community), along with hosting the
+[UNIX SysAdmin DeCal][decal]. Additionally, the OCF used to conduct
+career fairs in the past with its sister organization, the
+[Computer Science Undergraduate Association][csua]. Now, we host regular Tech
+Talks that explore new technologies and how they might  to elements of the
+OCF infrastructure. We also offer e-mail and in-person with our volunteer
+staff members, as well as online sources of information about computing on the
+Berkeley campus and how to use the available resources.
 
 Policies for this cluster and decisions for the OCF organization are made by
-the OCF Board of Directors, an open body composed of OCF members who are interested
-in participating in the OCF decision-making process. The Board convenes at BoD
-Meetings, held at least every week when classes are in session, which are open to the
-public and provide a chance for any user to express their concerns or opinions about
-the OCF. All OCF members are welcome to join the Board of Directors, and all persons
-are welcome to attend General Meetings. [Minutes of previous meetings][minutes]
-are also available online.
+the OCF Board of Directors, an open body composed of OCF members who are
+interested in participating in the decision-making process. The Board
+convenes at BoD Meetings, held at least every week when classes are in session,
+which are open to the public and provide a chance for any user to express their
+concerns or opinions about the OCF. All OCF members are welcome to join the
+Board of Directors, and the general public is welcome to attend BoD Meetings.
+[Minutes of all previous meetings][minutes] are available online.
 
 ## How to find us
 
