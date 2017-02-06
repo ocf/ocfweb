@@ -12,6 +12,7 @@ $base-font-size: 8vw;
         .hours-container {
             font-size: $base-font-size + 12;
             line-height: 1em;
+            text-wrap: none;
         }
     }
 }
