@@ -1,4 +1,4 @@
-[[!meta title="checkacct: search full names"]]
+[[!meta title="checkacct: find accounts by full name"]]
 
 ## Introduction
 
