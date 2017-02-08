@@ -1,6 +1,6 @@
-$base-font-size: 8vw;
+$base-font-size: 6vw;
 $tv-hours-large: 12;
-$tv-hours-small: 4;
+$tv-hours-small: 6;
 
 .page-tv {
 
@@ -10,7 +10,7 @@ $tv-hours-small: 4;
         font-size: $base-font-size;
 
         .hours-container > p {
-            line-height: 0.8em;
+            line-height: 1em;
         }
 
         .hours-large {
