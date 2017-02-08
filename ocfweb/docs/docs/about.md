@@ -44,7 +44,7 @@ Berkeley campus and how to use the available resources.
 Policies for this cluster and decisions for the OCF organization are made by
 the OCF Board of Directors, an open body composed of OCF members who are
 interested in participating in the decision-making process. The Board
-convenes at BoD Meetings, held at least every week when classes are in session,
+convenes at BoD Meetings, held every week when classes are in session,
 which are open to the public and provide a chance for any user to express their
 concerns or opinions about the OCF. All OCF members are welcome to join the
 Board of Directors, and the general public is welcome to attend BoD Meetings.
