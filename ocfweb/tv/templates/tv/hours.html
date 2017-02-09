@@ -1,0 +1,16 @@
+{% extends 'tv/base.html' %}
+{% load tv_formatting %}
+
+{% block tv-body %}
+<div class="page-tv-hours">
+  <p> Hours for {{ hours.date | date:'l, M j' }} </p>
+  <div class="hours-container {{ hours.hours | tv_lab_hours_css }}">
+    {% for hour in hours.hours %}
+    <p> {{ hour | tv_lab_hours }} </p>
+    <hr />
+    {% empty %}
+    <p> Closed All Day </p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+$base-font-size: 6vw;
+$tv-hours-large: 12;
+$tv-hours-small: 6;
+
+.page-tv {
+
+    .page-tv-hours {
+        @extend .text-center;
+
+        font-size: $base-font-size;
+
+        .hours-container > p {
+            line-height: 1em;
+        }
+
+        .hours-large {
+            font-size: $base-font-size + $tv-hours-large;
+        }
+
+        .hours-small {
+            font-size: $base-font-size + $tv-hours-small;
+        }
+    }
+}
