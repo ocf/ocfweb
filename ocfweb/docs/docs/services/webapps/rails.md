@@ -5,56 +5,56 @@ have applied for apphosting. For normal user accounts or for groups without
 apphosting, you'll want to host with FastCGI instead. See our instructions for
 that [[here|doc services/web/rails]].**
 
-You will want to deploy your application using rvm so that you can easily
+You will want to deploy your application using [RVM][rvm] so that you can easily
 install and manage dependencies and versions.
 
-## Setting up rvm
+## Setting up RVM
 
 1. Create a directory for your app to live in:
 
        mkdir -p ~/myapp
        cd ~/myapp
 
-2. Install rvm in your home directory. Note that `rvm` is terrible and will
-   modify your shell config files without asking. But maybe that's what you
-   want?
+2. Install RVM in your home directory. Note that `rvm` is terrible and will
+   modify your shell config files without asking, but that's probably what you
+   want, since it will make using and managing Ruby/Rails easier.
 
-   Go find [the RVM one-liner][rvm] appropriate for your app, and copy the
-   nasty one-liner straight into your shell to install it. At the time of
-   writing, it looks like this:
+   Go find [the RVM commands][rvm] appropriate for your app, and copy the
+   lines straight into your shell to install it. In general this is a bad way
+   to install things, but it only has to be done once. At the time of writing,
+   it looks like this:
 
+       gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
        curl -sSL https://get.rvm.io | bash -s stable
 
-   Go ahead and run it, and source rvm:
+   Go ahead and run it, and source `rvm`:
 
        . ~/.rvm/scripts/rvm
 
-3. Install whatever version of Ruby you want.
+3. Install whatever version of Ruby you want. (Newer is better).
 
-       rvm install 2.1.2
-       rvm use 2.1.2
-
-4. Include gems in your PATH on login (and for the current session):
-
-       echo "export PATH=~/.rvm/gems/ruby-2.1.2/bin:\$PATH" >> ~/.bash_profile
-       export PATH=~/.rvm/gems/ruby-2.1.2/bin:$PATH
+       rvm install ruby-2.4.0
+       rvm use ruby-2.4.0
 
 4. Copy your code to `~/myapp/src` or similar, and install any dependencies
    using `bundle install` (or `gem` manually, if you aren't using bundler).
 
-   This will download and build many gems. We've tried to install all the
-   headers (dev packages) needed for building common gems, but if building a
-   gem fails due to a missing header, just [[send us an email|doc contact]] so
-   we can add it.
+   This will download and build whatever gems you have in your `Gemfile`. We've
+   tried to install all the headers (dev packages) needed for building common
+   gems, but if building a gem fails due to a missing header, just [[send us an
+   email|doc contact]] so we can add it.
 
 ## Installing unicorn
 
-We recommend using unicorn to serve your application. After setting up rvm, add
-a line to you app's Gemfile:
+We recommend using unicorn to serve your application. After setting up RVM, add
+a few lines to your app's `Gemfile` (or add a single line if you already have a
+`:production` group):
 
-    'unicorn'
+    group :production do
+      gem 'unicorn'
+    end
 
-and run `bundle install` to install it.
+and run `bundle install` to install it, as with any new gems.
 
 ## Preparing your app to be supervised
 
@@ -64,14 +64,15 @@ Create a file at `~/myapp/run` with content like:
     . ~/.rvm/scripts/rvm
     cd ~/myapp/src
     RAILS_ENV=production \
-          exec ~/.rvm/gems/ruby-2.1.2/bin/unicorn_rails \
+          exec ~/.rvm/gems/ruby-2.4.0/bin/unicorn_rails \
           -l /srv/apps/$(whoami)/$(whoami).sock
 
-Replace `~/myapp/src` with the path to your app, then make `run` executable:
+Replace `~/myapp/src` with the path to your app (make sure the path is
+correct for the version of Ruby you are using), then make `run` executable:
 
     chmod +x ~/myapp/run
 
-Test executing the run script. You should be able to access your website while
+Test executing the `run` script. You should be able to access your website while
 running it (or see any errors in your terminal).
 
 Some things to keep in mind:

@@ -22,14 +22,14 @@ install and manage dependencies and versions.
    nasty one-liner straight into your shell to install it. At the time of
    writing, it looks like this:
 
-       curl https://raw.githubusercontent.com/creationix/nvm/v0.17.3/install.sh | bash
+       curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
 
    Go ahead and run it, and close/re-open your terminal as it suggests.
 
 3. Install whatever version of Node.js you want.
 
-       nvm install 0.10
-       nvm alias default 0.10
+       nvm install 6
+       nvm alias default 6
 
 4. Copy your code to `~/myapp/src` or similar, and install any dependencies
    using `npm`.
