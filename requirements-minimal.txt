@@ -13,6 +13,8 @@ matplotlib
 mistune
 numpy
 ocflib
+# TODO: pysnmp==4.3.2 can't work with newer pyasn1; one we upgrade, delete this
+pyasn1==0.1.9
 pycrypto
 pygments
 pymysql

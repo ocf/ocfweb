@@ -29,7 +29,7 @@ paramiko==2.1.1
 pexpect==4.2.1
 ply==3.10
 ptyprocess==0.5.1
-pyasn1==0.2.2
+pyasn1==0.1.9
 pycparser==2.17
 pycrypto==2.6.1
 Pygments==2.2.0
