@@ -1,5 +1,7 @@
 cached-property
-celery[redis]<3.999
+# TODO: stop using our fork
+# https://github.com/celery/celery/pull/3831
+ckuehl-celery[redis]==4.0.2.post1
 django-bootstrap-form
 django-ipware
 django-mathfilters
