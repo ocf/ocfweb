@@ -21,7 +21,6 @@ RUN apt-get update \
         python3-pip \
         redis-tools \
         runit \
-        spiped \
         virtualenv \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
