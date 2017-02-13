@@ -62,7 +62,7 @@ def _get_servers():
             comments='no puppetlabs packages yet',
         ),
         ThingToUpgrade.from_hostname('whiteout'),
-        ThingToUpgrade.from_hostname('reaper'),
+        ThingToUpgrade.from_hostname('reaper', upgraded=True),
         ThingToUpgrade.from_hostname('democracy'),
         ThingToUpgrade.from_hostname(
             'zombies',
