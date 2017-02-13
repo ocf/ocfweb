@@ -92,6 +92,12 @@ def _get_servers():
             comments='no mesos packages yet',
         ),
 
+        # raspberry pi
+        ThingToUpgrade.from_hostname(
+            'overheat',
+            comments='Not puppeted, needs to be rebuilt to fix networking (attempted upgrade in-place before)',
+        ),
+
         # physical servers
         ThingToUpgrade.from_hostname(
             'riptide',
@@ -104,11 +110,11 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'pandemic',
-            comments='probably in-place, too hard to move stuff around',
+            comments='probably in-place, too hard to move stuff around unless installing new drives too',
         ),
         ThingToUpgrade.from_hostname(
             'hal',
-            comments='probably in-place, too hard to move stuff around',
+            comments='probably in-place, too hard to move stuff around unless installing new drives too',
         ),
     )
 
