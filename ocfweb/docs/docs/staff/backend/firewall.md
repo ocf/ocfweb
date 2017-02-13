@@ -1,17 +1,17 @@
 [[!meta title="Firewall"]]
 
-We use a Cisco ASA firewall provided by IST. We have one network port in the
-server room which is activated and behind the firewall; we have another network
-port activated in the lab behind the television which is also behind the
-firewall. All the ports the desktops use are also behind the firewall.
+We use a Cisco ASA 5585 firewall provided by IST. We have one network port in
+the server room which is activated and behind the firewall; we have another
+network port activated in the lab behind the television which is also behind
+the firewall. All the ports the desktops use are also behind the firewall.
 
 
 ## Administering the firewall
 
 ### Option 1: Over SSH
 
-To connect, use `ssh -4 you@firewall`. Use your **CalNet ID and password**
-(you'll need to get permission if you haven't already).
+To connect, use `ssh you@firewall`. Use your **CalNet ID and password** (you'll
+need to get permission if you haven't already).
 
 Some handy commands (first run `enable` and enter your password again). Note
 that any new config is applied immediately without any need to restart or
@@ -62,13 +62,15 @@ staff/backend/switch]].)
 
 This works best on-site, though it sometimes works using X forwarding as well.
 
-We have a handy script which handles downloading a recent Java and starting the
-app, located `/opt/share/utils/sbin/firewall`. It should be sufficient to just
-launch this script.
+We have a handy script (just run `firewall`) which handles downloading a recent
+Java and starting the app. It should be sufficient to just launch this script.
+However, the Cisco cert provided is out of date, so you will likely have to
+click through some security warnings to get it to start.
 
 
 ## Automatic config diffs
 
 IST has configured [rancid](http://www.shrubbery.net/rancid/) to both back up
-and send us email diffs of the firewall's config. We also get a weekly dump of
-the entire config over email.
+and send us email diffs of the firewall's config, however it has been broken
+since 11/21/2016. We also typically get a weekly dump of the entire config over
+email (if it wasn't broken currently).
