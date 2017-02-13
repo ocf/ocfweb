@@ -76,6 +76,7 @@ def _get_servers():
             'fallingrocks',
             comments='probably either in-place, or rebuild and manually re-mount /opt/mirrors',
         ),
+        ThingToUpgrade.from_hostname('tornado', upgraded=True),
 
         # mesos servers
         ThingToUpgrade.from_hostname(
