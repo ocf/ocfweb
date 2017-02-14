@@ -129,4 +129,5 @@ Advanced:
 ## Recommended reading
 
 * [A Visual Git Reference](https://marklodato.github.io/visual-git-guide/)
+* [Git Immersion](http://www.gitimmersion.com/)
 * [The Case for Git Rebase](http://darwinweb.net/articles/the-case-for-git-rebase)
