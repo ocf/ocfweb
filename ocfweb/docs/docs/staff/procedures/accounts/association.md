@@ -1,7 +1,7 @@
 [[!meta title="LDAP Association"]]
 
 New individual accounts have a `calnetUid` attribute in
-[[LDAP|doc staff/backend/ldap]] which is used for 
+[[LDAP|doc staff/backend/ldap]] which is used for
 [[changing passwords online|change_password]], querying CalNet when running
 [`check`|doc staff/scripts/check], and producing aggregate counts of
 the number of members by university affiliation.
@@ -28,7 +28,7 @@ directory](http://www.berkeley.edu/directory), add it to the record with a line
 like this:
 
     calnetUid: 6081
-    
+
 If the `mail` attribute is missing, but you know of a contact email address for
 the account, please add it as well.
 
