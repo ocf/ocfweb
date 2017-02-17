@@ -10,14 +10,19 @@
         </p>
 
         <p>
-            Desktops and staff VMs are not listed.
+            Desktops and staff VMs are not listed. All desktops are already
+            upgraded, and staff VMs are being upgraded in-place by VM owners or
+            SMs.
         </p>
-
     </div>
 
     <table class="table">
         {% for server in servers %}
-            <tr {% if server.upgraded %}style="background-color: #d3ffd3;"{% endif %}>
+            <tr {% if server.status == upgraded %}
+                style="background-color: #d3ffd3;"
+              {% elif server.status == blocked %}
+                style="background-color: #ffd3d3;"
+              {% endif %}>
                 <th>
                     {{server.host.hostname}}
                     {% if server.has_dev %}
@@ -34,8 +39,10 @@
                     {% endif %}
                 </td>
                 <th>
-                    {% if server.upgraded %}
+                    {% if server.status == upgraded %}
                         Done!
+                    {% elif server.status == blocked %}
+                        Blocked!
                     {% endif %}
                 </th>
             </tr>

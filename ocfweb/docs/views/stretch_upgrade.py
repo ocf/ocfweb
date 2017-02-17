@@ -9,17 +9,20 @@ from ocfweb.docs.views.servers import Host
 
 class ThingToUpgrade(namedtuple('ThingToUpgrade', (
     'host',
-    'upgraded',
+    'status',
     'comments',
     'has_dev',
 ))):
+    NEEDS_UPGRADE = 1
+    BLOCKED = 2
+    UPGRADED = 3
 
     @classmethod
-    def from_hostname(cls, hostname, upgraded=False, comments=None):
+    def from_hostname(cls, hostname, status=NEEDS_UPGRADE, comments=None):
         has_dev = host_exists('dev-' + hostname + '.ocf.berkeley.edu')
         return cls(
             host=Host.from_ldap(hostname),
-            upgraded=upgraded,
+            status=status,
             has_dev=has_dev,
             comments=comments,
         )
@@ -59,10 +62,11 @@ def _get_servers():
         ThingToUpgrade.from_hostname('pestilence'),
         ThingToUpgrade.from_hostname(
             'thunder',
+            status=ThingToUpgrade.BLOCKED,
             comments='no puppetlabs packages yet',
         ),
         ThingToUpgrade.from_hostname('whiteout'),
-        ThingToUpgrade.from_hostname('reaper', upgraded=True),
+        ThingToUpgrade.from_hostname('reaper', status=ThingToUpgrade.UPGRADED),
         ThingToUpgrade.from_hostname('democracy'),
         ThingToUpgrade.from_hostname(
             'zombies',
@@ -70,39 +74,43 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'lightning',
+            status=ThingToUpgrade.BLOCKED,
             comments='no puppetlabs packages yet',
         ),
         ThingToUpgrade.from_hostname(
             'fallingrocks',
             comments='probably either in-place, or rebuild and manually re-mount /opt/mirrors',
         ),
-        ThingToUpgrade.from_hostname('tornado', upgraded=True),
+        ThingToUpgrade.from_hostname('tornado', status=ThingToUpgrade.UPGRADED),
 
         # mesos servers
         ThingToUpgrade.from_hostname(
             'whirlwind',
+            status=ThingToUpgrade.BLOCKED,
             comments='no mesos packages yet',
         ),
         ThingToUpgrade.from_hostname(
             'pileup',
+            status=ThingToUpgrade.BLOCKED,
             comments='no mesos packages yet',
         ),
         ThingToUpgrade.from_hostname(
             'monsoon',
+            status=ThingToUpgrade.BLOCKED,
             comments='no mesos packages yet',
         ),
 
         # raspberry pi
         ThingToUpgrade.from_hostname(
             'overheat',
-            upgraded=True,
+            status=ThingToUpgrade.UPGRADED,
             comments='not puppeted, still needs ocflib and a wrapper around the LED sign',
         ),
 
         # physical servers
         ThingToUpgrade.from_hostname(
             'riptide',
-            upgraded=True,
+            status=ThingToUpgrade.UPGRADED,
             comments='it was made this way',
         ),
         ThingToUpgrade.from_hostname(
@@ -127,5 +135,7 @@ def stretch_upgrade(doc, request):
         {
             'title': doc.title,
             'servers': _get_servers(),
+            'blocked': ThingToUpgrade.BLOCKED,
+            'upgraded': ThingToUpgrade.UPGRADED,
         },
     )
