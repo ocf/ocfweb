@@ -1,10 +1,12 @@
 [[!meta title="Firewall"]]
 
-We use a Cisco ASA 5585 firewall provided by IST. We have one network port in
-the server room which is activated and behind the firewall; we have another
-network port activated in the lab behind the television which is also behind
-the firewall. All the ports the desktops use are also behind the firewall.
+We use a [Cisco ASA 5585-X firewall (SSP-20)][asa-5585] provided by IST. We
+have one network port in the server room which is activated and behind the
+firewall; we have another network port activated in the lab behind the
+television which is also behind the firewall. All the ports the desktops use
+are also behind the firewall.
 
+[asa-5585]: http://www.cisco.com/c/en/us/products/collateral/security/asa-5500-series-next-generation-firewalls/product_bulletin_c25-614415.html
 
 ## Administering the firewall
 
