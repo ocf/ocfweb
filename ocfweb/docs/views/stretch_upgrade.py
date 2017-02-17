@@ -95,7 +95,8 @@ def _get_servers():
         # raspberry pi
         ThingToUpgrade.from_hostname(
             'overheat',
-            comments='Not puppeted, needs to be rebuilt to fix networking (attempted upgrade in-place before)',
+            upgraded=True,
+            comments='not puppeted, still needs ocflib and a wrapper around the LED sign',
         ),
 
         # physical servers
@@ -114,7 +115,7 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'hal',
-            comments='probably in-place, too hard to move stuff around unless installing new drives too',
+            comments='changing soon when installing new drives, so it will be upgraded with replacement',
         ),
     )
 
