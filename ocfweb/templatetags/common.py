@@ -1,3 +1,5 @@
+import json as json_
+
 from django import template
 
 register = template.Library()
@@ -40,3 +42,8 @@ def join(items, s):
         myArray|join:','
     """
     return s.join(items)
+
+
+@register.filter
+def json(obj):
+    return json_.dumps(obj)

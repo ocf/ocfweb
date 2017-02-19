@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load common %}
+{% load stats %}
+
+{% block content %}
+    <div class="ocf-content-block">
+        {% stats_navbar %}
+        <div id="chart"></div>
+    </div>
+{% endblock %}
+
+{% block inline_js %}
+    <script src="https://code.highcharts.com/5.0.7/highcharts.js"></script>
+    <script>
+        $(document).ready(function () {
+            // User browser time
+            Highcharts.setOptions({
+                global: {
+                    useUTC: false
+                }
+            });
+
+            options = {
+                chart: {
+                    renderTo: 'chart',
+                    defaultSeriesType: 'line',
+                    backgroundColor: null,
+                    height: document.documentElement.clientHeight,
+                    zoomType: 'x'
+                },
+                xAxis: {
+                    type: "datetime"
+                },
+                yAxis: {
+                    title: {
+                        text: "Lifetime pages printed"
+                    },
+                    min: 0
+                },
+                title: {
+                    text: "Printer Historacle"
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    line: {
+                        step: true
+                    }
+                },
+                series: {{data|json|safe}},
+            };
+            chart = new Highcharts.Chart(options);
+        });
+    </script>
+{% endblock %}

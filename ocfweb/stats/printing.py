@@ -1,3 +1,4 @@
+import time
 from collections import defaultdict
 from datetime import date
 from datetime import timedelta
@@ -12,6 +13,9 @@ from ocflib.printing.quota import SEMESTERLY_QUOTA
 
 from ocfweb.caching import periodic
 from ocfweb.component.graph import plot_to_image_bytes
+
+
+ALL_PRINTERS = ('papercut', 'pagefault', 'logjam', 'deforestation')
 
 
 def stats_printing(request):
@@ -64,7 +68,7 @@ def _semester_histogram():
 def _toner_changes():
     return [
         (printer, _toner_changes_for_printer(printer))
-        for printer in ('papercut', 'pagefault', 'logjam', 'deforestation')
+        for printer in ALL_PRINTERS
     ]
 
 
@@ -132,3 +136,50 @@ def _toner_changes_for_printer(printer):
                     A.value > 0
         ''')
         return reversed(list(cursor))
+
+
+def _pages_printed_for_printer(printer, resolution=100):
+    with stats.get_connection() as cursor:
+        cursor.execute('''
+            SELECT Z.date, Z.value FROM (
+                SELECT
+                    T.*,
+                    @rownum := @rownum + 1 AS position
+                FROM (
+                    (
+                        SELECT * FROM printer_pages_public
+                        WHERE printer = %s
+                        ORDER BY date
+                    ) AS T,
+                    (SELECT @rownum := 0) AS r
+                )
+            ) as Z
+            WHERE Z.position mod %s = 0
+        ''', (printer, resolution))
+        return [
+            (time.mktime(row['date'].timetuple()), row['value'])
+            for row in cursor
+        ]
+
+
+@periodic(3600)
+def _pages_printed_data():
+    return [
+        {
+            'name': printer,
+            'animation': False,
+            'data': _pages_printed_for_printer(printer),
+        }
+        for printer in ALL_PRINTERS
+    ]
+
+
+def pages_printed(request):
+    return render(
+        request,
+        'stats/printing/pages-printed.html',
+        {
+            'title': 'Pages Printed',
+            'data': _pages_printed_data(),
+        },
+    )
