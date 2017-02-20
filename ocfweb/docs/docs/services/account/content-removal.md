@@ -3,12 +3,15 @@
 
 ## Introduction
 
-Most of the content on [ocf.berkeley.edu](https://ocf.berkeley.edu)
-is created and owned by OCF users, not the OCF itself.
+Most of the content on [www.ocf.berkeley.edu](https://www.ocf.berkeley.edu)
+is created and owned by OCF members, not the OCF itself. This user-generated
+content is not endorsed or supported by the OCF nor is the OCF responsible
+for content posted by OCF members.
 
 The OCF maintains a strict policy not to remove or modify data
 hosted by members unless legally compelled to do so, or if such
-data is in violation of existing OCF [account policies][policy].
+data is in violation of existing OCF
+[[account policies|doc services/account/account-policies]].
 
 This means the OCF will not change or remove any text, pictures,
 information, or other data hosted by an OCF member. We do however
@@ -29,15 +32,23 @@ associated with their OCF account. If the website in question is
 <username>@ocf.berkeley.edu.
 
 If repeated attempts to contact the owner of the account have failed,
-you may [contact us](//ocf.io/contact) and request the website be
+you may [[contact us|doc contact]] and request the website be
 disabled due to inactivity. If we attempt to contact the website owner
 and fail to get a response, we may disable their account as per our
-[account policies][policy]
+[[account policies|doc services/account/account-policies]].
 
-Please note that, if the above steps fail, the website owner is maintaining
-their website in compliance with our policies. There is nothing the OCF can
-do to change this outcome. Please do not assume that we support or endorse
-information posted by our members.
+However, if the website owner responds and refuses your removal request,
+the OCF cannot take any further action on your behalf unless the website
+is in violation of our
+[[account policies|doc services/account/account-policies]]. If you believe
+this is the case, you may notify us of the exact policy you believe to have
+been breached, and if we determine the complaint to be valid, we will take
+appropriate action on our end.
+
+Please note that, if the above steps fail, the website is being maintained
+in compliance with our policies. There is nothing the OCF can do to change
+this outcome. Please do not assume that we support or endorse information
+posted by our members.
 
 ### DMCA considerations
 
@@ -48,7 +59,5 @@ act on them if they are sent to our designated agent. You must certify under
 penalty of perjury that your request is valid, that you are the rightsholder
 for the content in question, and that the use of the content does not fall
 under fair use exemptions to the DMCA. If you believe you have a valid DMCA
-claim against an OCF member, please seek legal advice prior to filing a
-takedown notice.
-
-[policy]: //ocf.io/docs/services/account/account-policies/
+claim against an OCF member, we suggest you seek actual legal advice prior to
+filing a takedown notice.
