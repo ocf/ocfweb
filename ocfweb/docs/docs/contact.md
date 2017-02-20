@@ -84,6 +84,10 @@ response.
 Please note that any cease and desist notices may be forwarded to the [Lumen
 database][lumen] for publication and annotation.
 
+Please take note of our
+[[content removal policy|doc services/account/content-removal]] policy prior
+to contacting us about taking down user content.
+
 [lumen]: https://lumendatabase.org/
 [dmca]: https://security.berkeley.edu/digital-millennium-copyright-act-dmca-uc-berkeley
 [usepolicy]: https://security.berkeley.edu/policy/usepolicy.html
