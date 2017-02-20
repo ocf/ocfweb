@@ -157,7 +157,7 @@ def _pages_printed_for_printer(printer, resolution=100):
             WHERE Z.position mod %s = 0
         ''', (printer, resolution))
         return [
-            (time.mktime(row['date'].timetuple())*1000, row['value'])
+            (time.mktime(row['date'].timetuple()) * 1000, row['value'])
             for row in cursor
         ]
 
