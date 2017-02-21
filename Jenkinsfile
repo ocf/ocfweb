@@ -28,35 +28,41 @@ node('slave') {
         }
     }
 
-    stage('test') {
-        dir('src') {
-            sh 'make test'
-        }
-    }
-
     stash 'src'
 }
 
-
-if (env.BRANCH_NAME == 'master') {
-    def version = "${new Date().format("yyyy-MM-dd-'T'HH-mm-ss")}-git${sha}"
-    withEnv([
-        'DOCKER_REPO=docker-push.ocf.berkeley.edu/',
-        "DOCKER_REVISION=${version}",
-    ]) {
-        node('slave') {
-            step([$class: 'WsCleanup'])
-            unstash 'src'
-
-            stage('cook-prod-image') {
-                dir('src') {
-                    sh 'make cook-image'
+def version = "${new Date().format("yyyy-MM-dd-'T'HH-mm-ss")}-git${sha}"
+withEnv([
+    'DOCKER_REPO=docker-push.ocf.berkeley.edu/',
+    "DOCKER_REVISION=${version}",
+]) {
+    parallel(
+        test: {
+            node('slave') {
+                unstash 'src'
+                stage('test') {
+                    dir('src') {
+                        sh 'make test'
+                    }
                 }
             }
+        },
 
-            stash 'src'
-        }
+        cook_image: {
+            node('slave') {
+                step([$class: 'WsCleanup'])
+                unstash 'src'
+                stage('cook-image') {
+                    dir('src') {
+                        sh 'make cook-image'
+                    }
+                }
+            }
+        },
+    )
 
+
+    if (env.BRANCH_NAME == 'master') {
         node('deploy') {
             step([$class: 'WsCleanup'])
             unstash 'src'
@@ -81,18 +87,6 @@ if (env.BRANCH_NAME == 'master') {
                     [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/static'],
                     [$class: 'StringParameterValue', name: 'version', value: version],
                 ]
-            }
-        }
-    }
-} else {
-    // TODO: figure out how to do this in parallel with the previous step
-    node('slave') {
-        step([$class: 'WsCleanup'])
-        unstash 'src'
-
-        stage('test-cook-image') {
-            dir('src') {
-                sh 'make cook-image'
             }
         }
     }
