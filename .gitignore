@@ -7,6 +7,7 @@
 /ocfweb/static/scss/**/*.css
 /venv
 /virtualenv_run
+/ocflib
 
 ## generic python stuff below
 __pycache__/
