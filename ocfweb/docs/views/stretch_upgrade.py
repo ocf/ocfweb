@@ -82,6 +82,7 @@ def _get_servers():
         ThingToUpgrade.from_hostname('democracy'),
         ThingToUpgrade.from_hostname(
             'zombies',
+            status=ThingToUpgrade.UPGRADED,
             comments='in-place (not well puppeted)',
         ),
         ThingToUpgrade.from_hostname(
