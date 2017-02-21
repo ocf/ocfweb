@@ -11,7 +11,7 @@ Google). If you're one of these people, you might find one of these useful:
 
   * [Our Dockerized RT service.][rt-docker]
     We run this on Marathon, but you should easily be able to get it running on
-    something like Kubernates or Docker Swarm, too.
+    something like Kubernetes or Docker Swarm, too.
 
 ## Installation
 
