@@ -1,8 +1,8 @@
-ckuehl-pre-commit-types==0.7.6.dev1
 coverage
 coveralls
 ipdb
 mock
+pre-commit
 pytest
 pytest-django
 requirements-tools

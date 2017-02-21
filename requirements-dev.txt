@@ -1,6 +1,4 @@
-argparse==1.4.0
 aspy.yaml==0.2.2
-ckuehl-pre-commit-types==0.7.6.dev1
 coverage==4.3.4
 coveralls==1.1
 decorator==4.0.11
@@ -11,9 +9,9 @@ ipython-genutils==0.1.0
 jsonschema==2.6.0
 mock==2.0.0
 nodeenv==1.1.2
-ordereddict==1.1
 pbr==1.10.0
 pickleshare==0.7.4
+pre-commit==0.13.2
 prompt-toolkit==1.0.13
 py==1.4.32
 pytest==3.0.6

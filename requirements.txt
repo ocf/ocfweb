@@ -17,7 +17,7 @@ gunicorn==19.6.0
 idna==2.2
 Jinja2==2.9.5
 kombu==4.0.2
-ldap3==2.2.0
+ldap3==2.2.1
 libsass==0.12.3
 MarkupSafe==0.23
 matplotlib==2.0.0
@@ -33,7 +33,7 @@ pyasn1==0.1.9
 pycparser==2.17
 pycrypto==2.6.1
 Pygments==2.2.0
-PyMySQL==0.7.9
+PyMySQL==0.7.10
 pyparsing==2.1.10
 pysmi==0.0.7
 pysnmp==4.3.2
@@ -42,7 +42,7 @@ pytz==2016.10
 PyYAML==3.12
 redis==2.10.5
 requests==2.13.0
-setuptools==34.1.1
+setuptools==34.2.0
 six==1.10.0
 SQLAlchemy==1.1.5
 vine==1.1.3
