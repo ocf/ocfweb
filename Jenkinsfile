@@ -4,8 +4,12 @@ if (env.BRANCH_NAME == 'master') {
             triggers: [
                 [
                     $class: 'jenkins.triggers.ReverseBuildTrigger',
-                    upstreamProjects: 'ocflib/master', threshold: hudson.model.Result.SUCCESS
-                ]
+                    upstreamProjects: 'ocflib/master', threshold: hudson.model.Result.SUCCESS,
+                ],
+                [
+                    $class: 'jenkins.triggers.ReverseBuildTrigger',
+                    upstreamProjects: 'dockers/master', threshold: hudson.model.Result.SUCCESS,
+                ],
             ]
         ]),
     ])
