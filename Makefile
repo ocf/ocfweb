@@ -47,6 +47,10 @@ dev: venv ocfweb/static/scss/site.scss.css
 venv: requirements.txt requirements-dev.txt
 	python ./vendor/venv-update venv= venv -ppython3 install= -r requirements.txt -r requirements-dev.txt
 
+.PHONY: install-hooks
+install-hooks: venv
+	$(BIN)/pre-commit install -f --install-hooks
+
 .PHONY: clean
 clean:
 	rm -rf *.egg-info venv

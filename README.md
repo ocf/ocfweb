@@ -45,7 +45,7 @@ We use [pre-commit](http://pre-commit.com/) to lint our code before commiting.
 While some of the rules might seem a little arbitrary, it helps keep the style
 consistent, and ensure annoying things like trailing whitespace don't creep in.
 
-You can simply run `pre-commit install` to install the necessary git hooks;
+You can simply run `make install-hooks` to install the necessary git hooks;
 once installed, pre-commit will run every time you commit.
 
 Alternatively, if you'd rather not install any hooks, you can simply use `make
