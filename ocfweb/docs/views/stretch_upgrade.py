@@ -31,7 +31,10 @@ class ThingToUpgrade(namedtuple('ThingToUpgrade', (
 @cache()
 def _get_servers():
     return (
-        ThingToUpgrade.from_hostname('firestorm'),
+        ThingToUpgrade.from_hostname(
+            'firestorm',
+            status=ThingToUpgrade.UPGRADED,
+        ),
         ThingToUpgrade.from_hostname(
             'anthrax',
             comments='maybe move to marathon instead?',
