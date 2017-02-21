@@ -58,8 +58,14 @@ def _get_servers():
             'maelstrom',
             status=ThingToUpgrade.UPGRADED,
         ),
-        ThingToUpgrade.from_hostname('supernova'),
-        ThingToUpgrade.from_hostname('biohazard'),
+        ThingToUpgrade.from_hostname(
+            'supernova',
+            status=ThingToUpgrade.UPGRADED,
+        ),
+        ThingToUpgrade.from_hostname(
+            'biohazard',
+            status=ThingToUpgrade.UPGRADED,
+        ),
         ThingToUpgrade.from_hostname('dementors'),
         ThingToUpgrade.from_hostname('flood'),
         ThingToUpgrade.from_hostname('pestilence'),
