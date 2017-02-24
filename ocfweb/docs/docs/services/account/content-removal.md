@@ -45,10 +45,10 @@ this is the case, you may notify us of the exact policy you believe to have
 been breached, and if we determine the complaint to be valid, we will take
 appropriate action on our end.
 
-Please note that, if the above steps fail, the website is being maintained
-in compliance with our policies. There is nothing the OCF can do to change
-this outcome. Please do not assume that we support or endorse information
-posted by our members.
+Please note that, if the above steps fail, the website is likely being
+maintained in compliance with our policies. There is nothing the OCF can
+do to change this outcome. Please do not assume that we support or endorse
+information posted by our members.
 
 ### DMCA considerations
 
