@@ -69,6 +69,10 @@ services/vhost]].
 
 See [[Printing|doc services/lab/printing]].
 
+#### There is some content on your website I want removed.
+
+See our [[content removal policy|doc services/account/content-removal]].
+
 #### I need to talk to a human.
 
 See [[contact|doc contact]].
