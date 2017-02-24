@@ -10,6 +10,8 @@
 * Request is made by a registered and active student organization in CalLink
   (LEAD Center) or request is sponsored by an [administrative
   official](http://compliance.berkeley.edu/delegation/principles)
+* Request is made by a signatory of the group in question
+  (use `signat group <group>` to see signatories)
 * Group does not already have a virtual host, or has an exception from the
   Board of Directors
 
