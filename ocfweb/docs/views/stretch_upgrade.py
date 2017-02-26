@@ -93,7 +93,8 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'fallingrocks',
-            comments='probably either in-place, or rebuild and manually re-mount /opt/mirrors',
+            status=ThingToUpgrade.UPGRADED,
+            comments='rebuilt, with the old /opt/mirrors drive mounted in-place',
         ),
         ThingToUpgrade.from_hostname('tornado', status=ThingToUpgrade.UPGRADED),
 
