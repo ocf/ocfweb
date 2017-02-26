@@ -6,7 +6,6 @@ ocfweb
 
 [The main ocf website.](https://www.ocf.berkeley.edu/)
 
-
 ## Working on `ocfweb`
 
 Clone the repo, and be sure to check out submodules:
@@ -14,12 +13,14 @@ Clone the repo, and be sure to check out submodules:
     $ git clone git@github.com:ocf/ocfweb.git
     $ git submodule update --init
 
+If you run into problems with scss where it can't import bootstrap, it's
+because you forgot to run the second command.
 
 ### Running in development mode
 
-Either on supernova, or on your own staff VM, run `make dev`. The first time
-will take a while, but future runs will be almost instant thanks to
-[pip-faster](https://github.com/Yelp/pip-faster).
+Either on supernova, or on your own staff VM<sup>[0]</sup>, run `make dev`.
+The first time will take a while, but future runs will be almost instant
+thanks to [pip-faster](https://github.com/Yelp/pip-faster).
 
 It will start listening on a deterministically random port (really, 8000 plus
 the last 3 digits of your user id) which is printed to you. You can then view
@@ -50,3 +51,15 @@ once installed, pre-commit will run every time you commit.
 
 Alternatively, if you'd rather not install any hooks, you can simply use `make
 test` as usual, which will also run the hooks.
+
+-----
+
+[0]: In order to run ocfweb on your staffvm without running into problems,
+you will have to add the ocf_ocfweb::dev_config class to your
+[Hiera node config](https://github.com/ocf/puppet/tree/master/hieradata/nodes).
+Specifically, add:
+
+    classes:
+        - ocf_ocfweb::dev_config
+        
+It's probably easier to just run everything on `supernova`.
