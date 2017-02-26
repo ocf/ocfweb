@@ -43,7 +43,8 @@ def _get_servers():
         # login servers
         ThingToUpgrade.from_hostname(
             'death',
-            comments='same time as all login servers',
+            comments='same time as all login servers; need to forward-port '
+                     'suPHP or replace it',
         ),
         ThingToUpgrade.from_hostname(
             'tsunami',

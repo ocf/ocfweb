@@ -21,15 +21,15 @@ from ocfweb.docs.views.stretch_upgrade import stretch_upgrade
 DOCS = {
     doc.name: doc
     for doc in chain(
-        (
+        [
             Document(name='/about/officers', title='Officers', render=officers),
             Document(name='/staff/backend/servers', title='Servers', render=servers),
-            Document(name='/staff/backend/stretch', title='Debian Stretch Upgrade', render=stretch_upgrade),
+            Document(name='/staff/backend/stretch', title='Debian Stretch upgrade', render=stretch_upgrade),
             Document(name='/services/account/account-policies', title='Account policies', render=account_policies),
             Document(name='/services/vhost/badges', title='Hosting badges', render=hosting_badges),
             Document(name='/services/lab', title='Computer lab', render=lab),
             Document(name='/services/shell/commands', title='Command reference', render=commands),
-        ),
+        ],
         get_markdown_docs(),
     )
 }
