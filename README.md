@@ -39,6 +39,11 @@ To run tests locally, run `make test`. Please don't push to master with
 failing tests—Jenkins will refuse to deploy your code, and nobody will be able
 to deploy until fixing it.
 
+If you make a pull request to the OCF GitHub organization from your fork of
+ocfweb, Jenkins will attempt to build your branch, and if your build fails,
+you can log into [Jenkins](https://jenkins.ocf.berkeley.edu) with your OCF
+account credentials to see which tests you've failed and fix them. Almost
+invariably it's something `pre-commit` would have caught.
 
 ### Running pre-commit
 
@@ -61,5 +66,5 @@ Specifically, add:
 
     classes:
         - ocf_ocfweb::dev_config
-        
+
 It's probably easier to just run everything on `supernova`.
