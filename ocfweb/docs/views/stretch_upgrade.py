@@ -71,14 +71,20 @@ def _get_servers():
             status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname('dementors'),
-        ThingToUpgrade.from_hostname('flood'),
+        ThingToUpgrade.from_hostname(
+            'flood',
+            comments='will be easier to upgrade once the Slack to IRC bridge is moved to Marathon',
+        ),
         ThingToUpgrade.from_hostname('pestilence'),
         ThingToUpgrade.from_hostname(
             'thunder',
             status=ThingToUpgrade.BLOCKED,
             comments='no puppetlabs packages yet',
         ),
-        ThingToUpgrade.from_hostname('whiteout'),
+        ThingToUpgrade.from_hostname(
+            'whiteout',
+            comments='waiting for dev-whiteout (on stretch) to replace whiteout',
+        ),
         ThingToUpgrade.from_hostname('reaper', status=ThingToUpgrade.UPGRADED),
         ThingToUpgrade.from_hostname('democracy'),
         ThingToUpgrade.from_hostname(
