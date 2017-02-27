@@ -52,8 +52,8 @@ install-hooks: venv
 	$(BIN)/pre-commit install -f --install-hooks
 
 .PHONY: lint
-lint:
-	pre-commit run --all-files
+lint: venv
+	$(BIN)/pre-commit run --all-files
 
 .PHONY: clean
 clean:
