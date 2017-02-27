@@ -30,6 +30,17 @@ OCF servers requires only just a little extra configuration.
       if __name__ == '__main__':
           WSGIServer(app).run()
 
+1.     Make a virtualenv.  This will allow you to *pip install* any python packages
+that you need that the OCF does not already have.  The benefit of having a virtualenv
+is that you can decide the dependencies you want, without being tied to the OCF defaults:
+```
+    $ virtualenv -p python3.5 venv
+    $ . venv/bin/activate
+    $ pip install flask
+    $ pip install flup6
+    $ pip install <YOUR PACKAGE>
+```
+
 1.    Either add your application as a module in this folder or a subdirectory
       that will be treated as a python package:
 
