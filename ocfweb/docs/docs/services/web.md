@@ -1,7 +1,7 @@
 [[!meta title="Web hosting"]]
 
 
-All accounts include hosting with a web address at:
+All OCF accounts include web hosting with an address at:
 
 * **`https://www.ocf.berkeley.edu/~user`** (canonical version)
 * **`https://ocf.io/user`** (shorter version)
@@ -10,6 +10,30 @@ where `user` is the account name.
 
 Group accounts may also request a [[virtual host|doc services/vhost]] for
 another domain (e.g., group.berkeley.edu).
+
+#### Off-site hosting
+
+One question that often comes up is if the OCF is able to  websites from
+services such as Squarespace, Wix, Weebly, Tumblr, etc. Unfortunately
+due to logistical considerations and University policy, the OCF is
+unable to do so.
+
+First, University policy prohibits campus DNS from redirection to off-site
+hosts without explicit permission from the University. This means the OCF
+is not the appropriate point of contact in cases like this where providers
+allow you to use custom domains, or other such things - one would have to
+[contact the university](https://offsitehosting.berkeley.edu/) directly
+to request permission. This is primarily relevant to student groups.
+
+Second, many website building services like Wix and Weebly make their money
+by using a proprietary product to allow users to build their sites, and
+subsequently charging users to host those sites. Obviously, the OCF is
+unable to access these proprietary backends and is therefore unable to host
+sites developed using them. However, the OCF is capable of hosting anything
+developed using the free and open-source software we support, including
+Wordpress, Django, Ruby on Rails, Node.js, PHP, and others. You may wish
+to consider building your website with those if you desire to host with the
+OCF.
 
 ## Uploading Files
 
