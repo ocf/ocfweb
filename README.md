@@ -40,10 +40,9 @@ failing tests—Jenkins will refuse to deploy your code, and nobody will be able
 to deploy until fixing it.
 
 If you make a pull request to the OCF GitHub organization from your fork of
-ocfweb, Jenkins will attempt to build your branch, and if your build fails,
-you can log into [Jenkins](https://jenkins.ocf.berkeley.edu) with your OCF
-account credentials to see which tests you've failed and fix them. Almost
-invariably it's something `pre-commit` would have caught.
+ocfweb, Jenkins will attempt to build and test your branch automatically.
+If your build fails, you can log into Jenkins to see which tests you've failed
+and fix them, if running `make test` locally didn't already tell you.
 
 ### Running pre-commit
 
@@ -56,6 +55,9 @@ once installed, pre-commit will run every time you commit.
 
 Alternatively, if you'd rather not install any hooks, you can simply use `make
 test` as usual, which will also run the hooks.
+
+Almost all build failures of ocfweb can be tied to something `pre-commit`
+probably would have caught.
 
 -----
 
