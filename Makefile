@@ -51,6 +51,10 @@ venv: requirements.txt requirements-dev.txt
 install-hooks: venv
 	$(BIN)/pre-commit install -f --install-hooks
 
+.PHONY: lint
+lint:
+	pre-commit run --all-files
+
 .PHONY: clean
 clean:
 	rm -rf *.egg-info venv
