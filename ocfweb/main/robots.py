@@ -17,6 +17,7 @@ def robots_dot_txt(request):
             Disallow: /login/calnet/
             Disallow: /test/
             Disallow: /tv/
+            Disallow: /api/
         """
 
     return HttpResponse(

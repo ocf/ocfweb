@@ -8,6 +8,7 @@ from ocfweb.about.lab import lab_open_source
 from ocfweb.about.staff import about_staff
 from ocfweb.account.urls import urlpatterns as account
 from ocfweb.announcements.urls import urlpatterns as announcements
+from ocfweb.api.urls import urlpatterns as api
 from ocfweb.docs.urls import urlpatterns as docs
 from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
@@ -42,7 +43,11 @@ urlpatterns = [
     url(r'^about/staff$', about_staff, name='about-staff'),
     url(r'^about/lab/open-source$', lab_open_source, name='lab-open-source'),
 
+    # tv urls
     url(r'^tv/hours$', tv_hours, name='tv-hours'),
+
+    # API endpoints
+    url(r'^api/', include(api)),
 
     # hosting logos
     url(r'^images/hosted-logos/(?:index\.shtml)?$',
