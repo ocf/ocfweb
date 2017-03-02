@@ -83,7 +83,7 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'whiteout',
-            comments='waiting for dev-whiteout (on stretch) to replace whiteout',
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname('reaper', status=ThingToUpgrade.UPGRADED),
         ThingToUpgrade.from_hostname('democracy'),
