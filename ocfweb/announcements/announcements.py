@@ -108,3 +108,18 @@ def printing_announcement(title, request):
             'title': title,
         },
     )
+
+
+@announcement(
+    'OCF seeking interest in high-performance computing service',
+    date(2017, 3, 1),
+    'hpc-survey',
+)
+def hpc_survey(title, request):
+    return render(
+        request,
+        'announcements/2017-03-01-hpc-survey.html',
+        {
+            'title': title,
+        },
+    )

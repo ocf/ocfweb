@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 ocf-content-block">
+            <h3></h3>
+            <p><em>March 1, 2017</em></p>
+            <hr />
+            <p>
+              The OCF wants to hear from anyone who is interested in the
+              possibility of participating in a free high-performance computing
+              (HPC) service that we will be offering starting next academic
+              year. Our eventual goal is to make intensive computational
+              facilities student-run and freely avilable for all students and
+              researchers in the UC Berkeley community.
+            </p>
+            <p>
+              Our current, tentative itinerary is to make an initial hardware
+              purchase by the end of the spring 2017 semester, then purchase
+              additional hardware in the fall based on input from interested
+              parties and feedback from a trial run in the summer or early
+              fall. Depending on the success of the service after it launches
+              for the entire campus, we will consider expanding it in future
+              years to accommodate even more projects of varying sizes and
+              needs. To that end, we have created a survey for those who might
+              like to see their project run on OCF hardware:
+            </p>
+            <p><a href="https://goo.gl/forms/ZqC69uhQuUzj9LjK2">
+              OCF HPC interest form
+            </a></p>
+            <p>
+              To anyone who may consider hosting a current or future project on
+              our open computer infrastructure, we urge you to fill out this
+              survey as best as you can, using estimations if you do not have
+              all the hard data. We want to see the full breadth of projects on
+              campus that have unmet computing needs. Our first server is
+              planned to feature multiple high-end graphics cards, a many-core
+              CPU, and spacious quantities of RAM and storage, but we will need
+              as much input as we can get to make informed decisions if we want
+              to make high-performance computing a reality for as many as
+              possible.
+            </p>
+            <p>
+              To student groups in particular, we would like to select a few
+              candidates for our trial run on limited hardware. We will use our
+              experience on this outing to iron out wrinkles and anticipate
+              obstacles that may come up during a full run. If this sounds
+              interesting to you, please let us know in your response.
+            </p>
+            <p>
+              If you have any questions, don't hesitate to <a href="{% url
+              'doc' 'contact' %}">contact us</a>!
+            </p>
+        </div>
+    </div>
+{% endblock %}
