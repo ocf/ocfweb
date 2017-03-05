@@ -1,4 +1,4 @@
-[[!meta title="Constitution (1989–2016)"]]
+[[!meta title="Old Constitution (1989–2016)"]]
 
 _Note:_ This document is no longer in force. It has been superseded by the
 [[new constitution|doc docs/operatingrules/constitution]].
