@@ -2,7 +2,7 @@ if (env.BRANCH_NAME == 'master') {
     properties([
         pipelineTriggers([
             upstream(
-                upstreamProjects: ['ocflib/master', 'dockers/master'],
+                upstreamProjects: 'ocflib/master,dockers/master',
                 threshold: hudson.model.Result.SUCCESS,
             ),
         ]),
