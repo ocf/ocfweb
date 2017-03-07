@@ -12,6 +12,7 @@ def hosting_badges(doc, request):
             'ocfbadge_platinum.png',
             'ocfbadge_silver8.png',
             'ocfbadge_blue8.png',
+            'ocf-hosted-penguin.svg',
         ]
     ]
 

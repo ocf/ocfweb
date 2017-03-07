@@ -28,8 +28,12 @@ HOSTING_LOGOS_PATH = join(dirname(dirname(__file__)), 'static', 'img', 'hosting-
 
 @cache()
 def get_image(image):
-    if not re.match(r'^[a-z0-9_\-]+\.png$', image):
+    match = re.match(r'^[a-z0-9_\-]+\.(png|svg)$', image)
+    if not match:
         raise Http404()
+
+    # 'image/png' or 'image/svg'
+    content_type = 'image/png' if match.group(1) == 'png' else 'image/svg+xml'
 
     path = join(HOSTING_LOGOS_PATH, image)
 
@@ -40,7 +44,7 @@ def get_image(image):
         raise Http404()
 
     with open(path, 'rb') as f:
-        return f.read()
+        return f.read(), content_type
 
 
 def hosting_logo(request, image):
@@ -50,7 +54,8 @@ def hosting_logo(request, image):
     if image in LEGACY_IMAGES:
         return redirect('hosting-logo', re.sub('\.[a-z]+$', '.png', image), permanent=True)
 
+    content, content_type = get_image(image)
     return HttpResponse(
-        get_image(image),
-        content_type='image/png',
+        content,
+        content_type=content_type,
     )
