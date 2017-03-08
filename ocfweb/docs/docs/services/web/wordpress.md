@@ -194,8 +194,8 @@ If that's the case, you can fix it by:
 3. Run the following commands, substituting the correct URL for `example.com`:
 
    ```shell
-   $ wp option update home 'http://example.com'
-   $ wp option update siteurl 'http://example.com'
+   $ wp option update home 'https://example.com'
+   $ wp option update siteurl 'https://example.com'
    ```
 
 
