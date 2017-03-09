@@ -5,4 +5,13 @@ and try and teach others how the OCF works, and how to contribute to it.
 
 We will be recording these talks and make them available publicly, along with slides.
 
-- **[Contributing to the OCF by nickimp - February 13 2017 (audio is kinda loud, beware)](https://www.youtube.com/watch?v=qLFSHZYj8Qw)** ([slides](https://drive.google.com/file/d/0B6qdeEJcBKpMVkpoQlItSzJJQzlUd3RtczQxZ0o5Y28xcGJj/view?pageId=102810939765485425803))
+| Date                | Title                         | Staff Member | Video                  | Slides                   |
+|---------------------|-------------------------------|--------------|------------------------|--------------------------|
+| February 13th, 2017 | Contributing to the OCF       | nickimp      | [video][contrib-video] | [slides][contrib-slides] |
+| February 27th, 2017 | Free and Open Source Software | baisang      | [video][foss-video]    | [slides][foss-slides]    |
+| March 13th, 2017    | Puppet (TBA)                  | jvperrin     | TBA                    | TBA                      |
+
+[contrib-video]: https://www.youtube.com/watch?v=qLFSHZYj8Qw
+[contrib-slides]: https://drive.google.com/file/d/0B6qdeEJcBKpMVkpoQlItSzJJQzlUd3RtczQxZ0o5Y28xcGJj/view
+[foss-video]: https://www.youtube.com/watch?v=uXfosiVuB64
+[foss-slides]: https://docs.google.com/presentation/d/1ppPxTzhIVjqixdb40ft4YDx_gZXsN7sDhbF9SKAWXkM/edit
