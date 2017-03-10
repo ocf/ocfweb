@@ -26,7 +26,12 @@
         General Managers
       </h3>
         {% for gm in current_term.gms %}
-          <p><strong>{{ gm.name }}</strong> &lt;{{ gm.uid }}&gt;</p>
+          {% if gm.end is None %}
+            <p>
+              <strong>{{ gm.name }}</strong> &lt;{{ gm.uid }}&gt;
+              {% if gm.acting %} (acting) {% endif %}
+            </p>
+          {% endif %}
         {% endfor %}
         <p>
           General Managers handle the organizational activities of the OCF and
@@ -37,7 +42,12 @@
         Site Managers
       </h3>
         {% for sm in current_term.sms %}
-          <p><strong>{{ sm.name }}</strong> &lt;{{ sm.uid }}&gt;</p>
+          {% if sm.end is None %}
+            <p>
+              <strong>{{ sm.name }}</strong> &lt;{{ sm.uid }}&gt;
+              {% if sm.acting %} (acting) {% endif %}
+            </p>
+          {% endif %}
         {% endfor %}
         <p>
           Site Managers lie behind the technical work involved in maintaining
@@ -65,12 +75,12 @@
             <td>{{ term.name }}</td>
             <td>
               {% for gm in term.gms %}
-                <p>{{ gm.name }} &lt;{{ gm.uid }}&gt;</p>
+                <p>{{ gm }}</p>
               {% endfor %}
             </td>
             <td>
               {% for sm in term.sms %}
-                <p>{{ sm.name }} &lt;{{ sm.uid }}&gt;</p>
+                <p>{{ sm }}</p>
               {% endfor %}
             </td>
           </tr>
