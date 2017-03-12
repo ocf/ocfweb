@@ -5,15 +5,15 @@ from django.shortcuts import render
 from ocflib.account.search import user_attrs
 
 
-_Term = namedtuple('Term', ['name', 'gms', 'sms'])
+_Term = namedtuple('Term', ['name', 'gms', 'sms', 'dgms', 'dsms'])
 
 
-def Term(*args, **kwargs):
-    term = _Term(*args, **kwargs)
-    return term._replace(
-        gms=list(map(Officer.from_uid_or_info, term.gms)),
-        sms=list(map(Officer.from_uid_or_info, term.sms)),
-    )
+def Term(name, gms, sms, dgms=None, dsms=None):
+    gms = list(map(Officer.from_uid_or_info, gms))
+    sms = list(map(Officer.from_uid_or_info, sms))
+    dgms = list(map(Officer.from_uid_or_info, dgms or []))
+    dsms = list(map(Officer.from_uid_or_info, dsms or []))
+    return _Term(name, gms, sms, dgms, dsms)
 
 
 class Officer(namedtuple('Officer', ['uid', 'name', 'start', 'end', 'acting'])):
@@ -160,8 +160,13 @@ BOD_TERMS = [
     Term('Fall 2015', gms=['nickimp'], sms=['ckuehl']),
     Term('Spring 2016', gms=['nickimp'], sms=['jvperrin', 'mattmcal']),
     Term('Summer 2016', gms=['nickimp'], sms=['jvperrin', 'mattmcal']),
-    Term('Fall 2016', gms=['nickimp'], sms=['jvperrin', 'mattmcal']),
-    Term('Spring 2017', gms=['nickimp', 'baisang'], sms=['jvperrin', 'mattmcal']),
+    Term('Fall 2016',
+         gms=['nickimp'],
+         sms=['jvperrin', 'mattmcal'],
+         dgms=[('baisang', date(2016, 9, 26), date(2016, 11, 28)),
+               ('shasan', date(2016, 10, 24), date(2016, 11, 28))]),
+    Term('Spring 2017', gms=['nickimp', 'baisang'], sms=['jvperrin', 'mattmcal'],
+         dgms=['shasan'], dsms=['kpengboy']),
 ]
 
 
