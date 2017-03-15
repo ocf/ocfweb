@@ -8,7 +8,7 @@ discussion-type questions.
 We normally chat in the `#rebuild` channel. For historical reasons, `#ocf` is
 mostly for non-OCF-related discussion.
 
-You have three simple options for chatting:
+You have four simple options for chatting:
 
 ### Option 1: Use our web client
 
@@ -40,6 +40,10 @@ when you close the terminal.
 To do so, just type `pyrc` and hit enter. irssi will launch; press alt +
 left/right to switch which channel you're viewing.
 
+### Option 4: via Slack
+
+The OCF maintains a Slack team at [fco.slack.com][slack] that mirrors our IRC server through the [slackbridge][slackbridge]. You can create an account with an @ocf.berkeley.edu email address and join the conversation over Slack, if you so prefer.
+
 ## Authenticating with NickServ
 
 To make sure that you can keep the same username, even after being disconnected
@@ -70,3 +74,5 @@ authenticate with NickServ if you get disconnected from ZNC.
 [thelounge]: https://thelounge.github.io
 [hexchat]: https://hexchat.github.io
 [nickserv]: http://wiki.znc.in/Nickserv
+[slack]: https://fco.slack.com
+[slackbridge]: https://github.com/ocf/slackbridge
