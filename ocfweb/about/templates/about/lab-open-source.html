@@ -7,16 +7,7 @@
         <div class="row lab-intro">
             <h3>Did you know?</h3>
             <h2>This computer lab is open-source and student-run.</h2>
-            <p class="ocf-logos">
-                <img src="{% static 'img/about/logos/linux.png' %}" alt="linux" />
-                <img src="{% static 'img/about/logos/debian.png' %}" alt="debian" />
-                <img src="{% static 'img/about/logos/puppet.png' %}" alt="puppet" />
-                <img src="{% static 'img/about/logos/python.png' %}" alt="python" />
-                <img src="{% static 'img/about/logos/apache.png' %}" alt="apache" />
-                <img src="{% static 'img/about/logos/mariadb.png' %}" alt="mariadb" />
-                <img src="{% static 'img/about/logos/xfce.png' %}" alt="xfce" />
-                <img src="{% static 'img/about/logos/vim.png' %}" alt="vim" />
-            </p>
+        {% include 'partials/open-source-pics.html' %}
             <p class="intro">The Open Computing Facility is the largest student group on campus.</p>
             <p class="intro">
                 Our volunteer staff team develops, maintains, and provides
