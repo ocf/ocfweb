@@ -14,7 +14,7 @@ following the examples on this page. You could alternatively use SFTP, but this
 wouldn't allow you to back up a database.
 
 
-## Backing up a web directory
+## Backing up a web directory    {web}
 
 Making a backup of your website document tree (where all the `.html`, `.php`,
 etc. files are) is as simple as making a copy of your files into your home
@@ -41,7 +41,7 @@ Instead, explicitly copy all the files inside to another directory or use the
 the commands on this page which were written to do so.
 
 
-## Backing up a database
+## Backing up a database    {database}
 
 For many websites and frameworks, the web document tree only makes up half the
 site; the rest of the data resides in the database. Particularly, if you are
@@ -99,7 +99,7 @@ However, you would need to run `makemysql` to create a new database, which
 would permanently change your password.
 
 
-## Example backup
+## Example backup    {example}
 
 Suppose your OCF account name is `johndoe` and you have WordPress installed
 directly in `~/public_html`. A typical backup might look like this:
@@ -118,7 +118,7 @@ If you were using `.my.cnf`, you wouldn't even have to enter your database
 password.
 
 
-## Security
+## Security     {security}
 
 The only real security concern is that you don't leave any backup files in your
 `public_html` directory. Doing so would allow anybody to download all your raw
