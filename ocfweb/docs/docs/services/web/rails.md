@@ -3,7 +3,7 @@
 
 Ruby on Rails is a popular web framework for Ruby applications.
 
-## Creating a New Application
+## Creating a New Application    {new}
 
 To create a new Rails application, use the `rails` command-line interface. For
 example, to create an application called `foo` in your home directory, run the
@@ -13,7 +13,7 @@ command:
 
 This may take some time.
 
-## Hosting Your Application
+## Hosting Your Application     {hosting}
 
 OCF allows hosting of Rails applications via FastCGI. This requires you to
 install the `fcgi` gem and create a FastCGI wrapper script.
@@ -26,7 +26,7 @@ install the `fcgi` gem and create a FastCGI wrapper script.
 2. Run `bundle install` from the root of your project to update installed gems.
    This will ensure that the `fcgi` gem is installed.
 
-### Create FastCGI wrapper script
+### Create FastCGI wrapper script     {fastcgi}
 
 To host your application, create a file called `dispatch.fcgi` in your web root
 (`~/public_html/`) based on the following template:
@@ -78,7 +78,7 @@ containing the following lines:
 
 Be sure to replace `user` with your username.
 
-### Debugging
+### Debugging     {debugging}
 
 If you see an error page when trying to load your app, you may find the
 webserver's logs useful. You can access them via SSH in the following

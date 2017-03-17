@@ -10,7 +10,7 @@ Instructions for using WordPress are provided below; you can also [[drop by
 during staff hours|staff-hours]] for in-person assistance.
 
 
-## Installing WordPress
+## Installing WordPress    {installing}
 
 The easiest way to set up WordPress is via [[SSH|doc services/shell]]. Some
 simple instructions:
@@ -51,7 +51,7 @@ Your WordPress installation is now ready! You can log in using the username and
 password you created and start configuring your site.
 
 
-## Migrating from WordPress.com to OCF
+## Migrating from WordPress.com to OCF     {migrating}
 
 If you already have a site hosted at WordPress.com and you'd like to move it to
 OCF web hosting, for example, to become eligible for [[virtual hosting|doc
@@ -94,9 +94,9 @@ Further details can be found at [the support page by WordPress.com][1].
 [1]: https://en.support.wordpress.com/moving-to-a-self-hosted-wordpress-site/
 
 
-## Frequently Asked Questions
+## Frequently Asked Questions    {faq}
 
-### I forgot my admin password and can't log in
+### I forgot my admin password and can't log in     {forgot-pwd}
 
 First, try using the "Forgot Password" feature on your site. You can find a
 link from the login page.
@@ -139,7 +139,7 @@ hours|staff-hours]] instead.
    `new_password` with your new password.)
 
 
-### I forgot my MySQL (database) password
+### I forgot my MySQL (database) password    {forgot-db-pwd}
 
 The database password used by WordPress is recorded in the WordPress
 configuration file `wp-config.php` on the line that looks like
@@ -157,7 +157,7 @@ cat ~/path/to/wordpress/wp-config.php | grep DB_PASSWORD
 ```
 
 
-### My site URL is configured incorrectly
+### My site URL is configured incorrectly    {site-url}
 
 If your site URL is configured incorrectly, you may have issues such as being
 unable to log in or being caught in a redirect loop.
