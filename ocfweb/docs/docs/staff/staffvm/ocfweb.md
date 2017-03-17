@@ -4,7 +4,7 @@ If you want to work on [`ocfweb`][0] on your Staff VM, it isn't as
 simple as cloning the repo and running `make dev`, unfortunately.
 In order to do so, you will need to add the `ocfweb` dev config to
 your Staff VM's Puppet configuration, so Puppet can install
-`ocfweb`'s dependencies. To do this, clone the [puppet repo][1] or
+`ocfweb`'s config files. To do this, clone the [puppet repo][1] or
 go to `/opt/puppet/env/<you>` on `lightning`, and then in
 `hieradata/nodes/` add the following lines to your staff VM's Hiera
 configuration:
