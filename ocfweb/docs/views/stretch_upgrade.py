@@ -144,7 +144,8 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'hal',
-            comments='changing soon when installing new drives, so it will be upgraded with replacement',
+            status=ThingToUpgrade.UPGRADED,
+            comments='Upgraded when installing new drives',
         ),
     )
 
