@@ -108,7 +108,7 @@ class HeaderRendererMixin:
     """Mixin to render headers with auto-generated IDs (or provided IDs).
 
     If headers are written as usual, they'll be given automatically-generated
-    IDs based on their header level and text.
+    IDs based on their text.
 
     Headers can also be specified with an ID at the end wrapped in curly braces:
 
@@ -139,10 +139,7 @@ class HeaderRendererMixin:
             if id in self.toc_ids:
                 raise ValueError('Duplicate header ID in Markdown: "{}"'.format(id))
         else:
-            id = 'h{level}_{title}'.format(
-                level=level,
-                title=re.sub('[^a-z0-9\-_ ]', '', strip_tags(text).lower()).strip().replace(' ', '-'),
-            )
+            id = re.sub('[^a-z0-9\-_ ]', '', strip_tags(text).lower()).strip().replace(' ', '-')
 
             # dumb collision avoidance
             while id in self.toc_ids:

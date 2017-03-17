@@ -28,7 +28,7 @@ def test_simple_markdown():
             * bullet 2
         ''',
         '''\
-            <h1 id="h1_this-is-an-h1">this is an h1 <a class="anchor" href="#h1_this-is-an-h1"><span></span></a></h1>
+            <h1 id="this-is-an-h1">this is an h1 <a class="anchor" href="#this-is-an-h1"><span></span></a></h1>
             <p>this is some paragraph text</p>
             <ul>
             <li>bullet</li>
@@ -100,7 +100,7 @@ def test_header_default_id():
             # this is an h1
         ''',
         '''\
-            <h1 id="h1_this-is-an-h1">this is an h1 <a class="anchor" href="#h1_this-is-an-h1"><span></span></a></h1>
+            <h1 id="this-is-an-h1">this is an h1 <a class="anchor" href="#this-is-an-h1"><span></span></a></h1>
         '''
     )
 
@@ -123,8 +123,8 @@ def test_header_with_collision_automatic():
             # this is an h1
         ''',
         '''\
-            <h1 id="h1_this-is-an-h1">this is an h1 <a class="anchor" href="#h1_this-is-an-h1"><span></span></a></h1>
-            <h1 id="h1_this-is-an-h1_">this is an h1 <a class="anchor" href="#h1_this-is-an-h1_"><span></span></a></h1>
+            <h1 id="this-is-an-h1">this is an h1 <a class="anchor" href="#this-is-an-h1"><span></span></a></h1>
+            <h1 id="this-is-an-h1_">this is an h1 <a class="anchor" href="#this-is-an-h1_"><span></span></a></h1>
         '''
     )
 
