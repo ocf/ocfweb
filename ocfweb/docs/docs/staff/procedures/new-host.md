@@ -58,7 +58,7 @@ example of a similar node's `host.yaml` file.
 
 ### Step 1.4. Create the Kerberos keytab
 
-On the puppetmaster, run `gen-keytab`.
+On the puppetmaster, run `sudo gen-keytab`.
 
 
 ## Step 2. Create the host, run Debian installer
@@ -116,8 +116,8 @@ tty.
 
 ## Step 4. Sign the Puppet cert and run Puppet
 
-On the puppetmaster, `puppet ca list` to see pending requests. When you see
-yours, use `puppet ca sign hostname.ocf.berkeley.edu`.
+On the puppetmaster, `sudo puppet ca list` to see pending requests. When you see
+yours, use `sudo puppet ca sign hostname.ocf.berkeley.edu`.
 
 Log back into the host and do `systemctl restart puppet` to start the Puppet
 run. Monitor the run with `journalctl -f`. Restart Puppet once or twice more
