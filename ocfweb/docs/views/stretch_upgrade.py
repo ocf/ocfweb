@@ -86,7 +86,7 @@ def _get_servers():
             status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname('reaper', status=ThingToUpgrade.UPGRADED),
-        ThingToUpgrade.from_hostname('democracy'),
+        ThingToUpgrade.from_hostname('democracy', status=ThingToUpgrade.UPGRADED),
         ThingToUpgrade.from_hostname(
             'zombies',
             status=ThingToUpgrade.UPGRADED,
