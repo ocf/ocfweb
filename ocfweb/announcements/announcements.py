@@ -134,7 +134,7 @@ def hpc_survey(title, request):
     date(2017, 3, 20),
     'hiring',
 )
-def hpc_survey(title, request):
+def hiring(title, request):
     return render(
         request,
         'announcements/2017-03-20-hiring.html',
