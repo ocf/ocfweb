@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 ocf-content-block">
+            <h3></h3>
+            <p><em>March 20, 2017</em></p>
+            <hr />
+            <p>
+                The OCF is making a big transition to being completely
+                self-staffed next semester, and as part of that process, we are
+                looking to hire students to be OCF Operations staff for the
+                2017-2018 academic year! This includes two paid positions,
+                Operations Assistant and Operations Manager, neither of which
+                require any technical experience. These are very important
+                roles, and without dedicated and passionate students to fill
+                them, the OCF will not be able to stay open next semester.
+            </p>
+
+            <h3>Operations Assistants</h3>
+            <p>
+                Operations Assistants will have the following responsibilities:
+
+                <ul>
+                    <li>Staffing the front desk</li>
+                    <ul>
+                        <li>Maintaining lab security</li>
+                        <li>Providing help to OCF members using the lab</li>
+                        <li>Carrying out regular lab maintenance</li>
+                    </ul>
+                    <li>Working on projects that benefit the OCF</li>
+                    <ul>
+                        <li>Marketing and outreach</li>
+                        <li>Collecting feedback on OCF services</li>
+                        <li>Organizing events taking place in the lab</li>
+                        <li>Researching and applying for additional sources of
+                            funding for the OCF</li>
+                    </ul>
+                    <li>Attending regular meetings with the Operations Manager
+                        and the other Operations Assistants</li>
+                </ul>
+
+                This job position will be paid $13.75 per hour, but will also be
+                less work and more flexible than the Operations Manager
+                position. See the
+                <a href="https://docs.google.com/document/d/1oS3ma415LbtuyeEuuoucWKYLcWOJaWmzhv2nIs5f718/edit">full job description</a>
+                for more details.
+            </p>
+
+            <h3>Operations Manager</h3>
+            <p>
+                The Operations Manager will have the same responsibilities as
+                the Operations Assistants (see above), except they will spend
+                less time staffing the front desk of the OCF, and instead will
+                spend the remaining time performing more managerial duties,
+                such as leading meetings with the Operations Assistants,
+                delegating projects, and scheduling shifts for the OCF front
+                desk. This job will involve more work than the Operations
+                Assistant role, but it is also paid more, at $15.75 per hour.
+                See the
+                <a href="https://docs.google.com/document/d/1oS3ma415LbtuyeEuuoucWKYLcWOJaWmzhv2nIs5f718/edit#bookmark=id.im3qxqp4zku2">full job description</a>
+                for more details.
+            </p>
+
+            <h3>Application</h3>
+            <p>
+                <a href="https://docs.google.com/a/berkeley.edu/forms/d/e/1FAIpQLSf4sSEdCg6gDbgYJPPvxtXKIcuveygjCBFg_pWuwWoRIFXpXQ/viewform">Apply online</a>
+                for either position. Applications close on Tuesday, April 7th
+                at 11:59 PM, so make sure to apply by then if you would like to
+                be considered.
+            </p>
+            <p>
+                We will let you know if you have been selected for a 30 minute
+                interview by April 9th, and the interviews will be held
+                starting April 11th and going through April 14th.
+            </p>
+            <p>
+              If you have any questions about either position, don't hesitate to
+              <a href="{% url 'doc' 'contact' %}">contact us</a>!
+            </p>
+        </div>
+
+        <div class="col-sm-4 ocf-sidebar">
+          <hr class="visible-sm" />
+            <h3>About the OCF</h3>
+            <p>
+                The OCF provides free computing services for any students,
+                faculty, or staff that lacks access to the resources they need.
+                Since its founding in 1989, the services offered by the OCF
+                have grown massively, especially in the past couple years as
+                the OCF moved to a much nicer new lab location in 171 MLK
+                Student Union.
+            </p>
+            <p>
+                Some of the variety of services we provide to the campus
+                community include:
+            </p>
+            <ul>
+                <li>
+                    <a href="{% url 'doc' 'services/lab' %}">
+                        A spiffy computer lab in 171 MLK</a>, visited by around
+                    500 students per day, and over 10,000 per year
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/web' %}">Web, application,
+                        and email hosting</a> for over 80% of student groups and
+                    thousands of individual students
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/lab/printing' %}">Free
+                        printing</a>, used by over 5,000 students per semester
+                </li>
+            </ul>
+            <hr />
+            <p class="text-center">
+                <img src="{% static 'img/penguin.svg' %}" />
+            </p>
+        </div>
+    </div>
+{% endblock %}
