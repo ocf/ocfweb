@@ -65,6 +65,11 @@ First, you need to have a group [[account|doc membership]] and a working
 [[website|doc services/web]]. Then, request [[virtual hosting|doc
 services/vhost]].
 
+#### [Email hosting|doc services/mail]]: How do I get @group.berkeley.edu ([[virtual hosting|doc services/vhost]])?
+
+First, set up regular [[virtual hosting|doc services/vhost]].
+Then, request [[email virtual hosting|doc services/vhost/mail]].
+
 #### [[Printing|doc services/lab/printing]]: I have a printing question/problem.
 
 See [[Printing|doc services/lab/printing]].
