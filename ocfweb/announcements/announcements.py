@@ -53,7 +53,11 @@ def index(request):
         {
             'title': 'News from the staff team',
 
-            'announcements': announcements,
+            'announcements': sorted(
+                announcements,
+                key=lambda announcement: announcement.date,
+                reverse=True
+            ),
             'blog_posts': get_blog_posts()[:10],
         },
     )
