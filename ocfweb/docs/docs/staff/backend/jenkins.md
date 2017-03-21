@@ -13,7 +13,7 @@ before deployed, though currently some don't (or some only use some portion,
 such as deploying without any tests).
 
 
-## Making changes to Jenkins
+## Making changes to Jenkins    {making-changes}
 
 Anyone in group `ocfroot` can log in to Jenkins (using their OCF username and
 password) and will have full access to Jenkins.
@@ -26,7 +26,7 @@ In practice it seems most people in industry are still using the web UI for
 configuration anyway.
 
 
-## Jenkins security model
+## Jenkins security model    {security}
 
 There are three users configured on the Jenkins server (`reaper`):
 
@@ -61,7 +61,7 @@ somewhere where it gets effectively run as root anyway. But this feels a little
 safer.
 
 
-## Jenkins for GitHub projects
+## Jenkins for GitHub projects    {github}
 
 ### On the master branch
 

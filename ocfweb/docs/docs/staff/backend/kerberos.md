@@ -1,6 +1,6 @@
 [[!meta title="Kerberos"]]
 
-## Introduction
+## Introduction    {introduction}
 
 Kerberos is a network authentication system that is designed for client to
 server communication over a (potentially) insecure network, where data can be
@@ -8,7 +8,7 @@ eavesdropped on, and addresses can be faked. It has several security and
 usability advantages over using password-based authentication over the network.
 
 
-### Security advantages
+### Security advantages    {security-advantages}
 
 One major security advantage of using Kerberos is that if a ticket is stolen
 from a host, it will expire, so damage is minimized compared to being able to
@@ -21,7 +21,7 @@ for attacks. Instead, it uses tickets, and encrypts data sent to clients and
 servers with a key that only that machine can read.
 
 
-### Usability advantages
+### Usability advantages    {usability-advantages}
 
 Kerberos makes passwordless login easy, since after the first password is
 input, a ticket can be used for future logins instead of having to type the
@@ -33,7 +33,7 @@ someone can't steal a ticket and use it after you have left, as a little added
 security.
 
 
-## Versions
+## Versions    {versions}
 
 There are two major free versions of Kerberos: MIT and Heimdal Kerberos. At the
 OCF, we use Heimdal Kerberos; if you look up documentation, it might instead
@@ -43,7 +43,7 @@ also has 2 main versions that are still used: version 4 and version 5. Version
 5 of the protocol.
 
 
-## Terminology
+## Terminology    {terminology}
 
 Unfortunately, Kerberos is a complicated protocol that involves a lot of
 technical jargon. Here's a bunch of different terms that you might run into
@@ -109,7 +109,7 @@ mean:
 [kdc-location]: https://github.com/ocf/puppet/blob/master/modules/ocf/files/auth/krb5.conf#L27
 
 
-## Commands
+## Commands    {commands}
 
 All conveniently prefixed with the letter `k`.
 
@@ -146,7 +146,7 @@ There are more commands, but they aren't used so often, and can be searched if
 needed.
 
 
-## Adding privileges for users
+## Adding privileges for users    {add-privileges}
 
 To add privileges for users, first create a new principal for them to use. As
 part of this process, the user will have to give each principal a password. The

@@ -30,7 +30,7 @@ The desktops are connected to ports 1 through 36. The servers are using ports
 37 through 47. The IST uplink is port 48.
 
 
-## Administering the switch over SSH
+## Administering the switch over SSH    {administer}
 
 To connect, use `ssh admin@blackhole`. You can find the password in the list of
 admin passwords.

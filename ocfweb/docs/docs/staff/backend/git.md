@@ -5,7 +5,7 @@ Git is a distributed revision control system used by the OCF. Other version
 control systems include Mercurial (also distributed) and Subversion (not
 distributed).
 
-## Workflow
+## Workflow    {workflow}
 
 Although Git is a great tool for large-scale distributed development, for us a
 Subversion-like workflow with a "central repository" (where you clone/fetch

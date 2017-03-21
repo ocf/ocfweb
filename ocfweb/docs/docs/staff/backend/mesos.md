@@ -6,7 +6,7 @@ pieces fit together. The sub-pages are primarily troubleshooting steps and
 instructions for working with each individual component.
 
 
-## Mesos
+## Mesos    {mesos}
 
 **[Apache Mesos][mesos]** is software originally developed at Berkeley which
 helps to schedule applications running on clusters of computers.
@@ -16,7 +16,7 @@ and does not do. The best way to think of Mesos is as a *scheduler*, which
 determines how to run a set of applications across a cluster of computers.
 
 
-### A Mesos cluster
+### A Mesos cluster    {cluster}
 
 A Mesos cluster consists of a small number of Mesos masters, and a large number
 of Mesos agents (formerly called "slaves").
@@ -92,7 +92,7 @@ decisions about scheduling (such as knowing that certain applications can only
 run on agents that have NFS).
 
 
-## Marathon
+## Marathon    {marathon}
 
 **[Marathon][marathon]** is a framework running under Mesos. It's currently the
 only one we use at the OCF.
@@ -122,7 +122,7 @@ Marathon's job is to figure out how to deploy all of our applications using the
 offers given to it by the Mesos master.
 
 
-### The Marathon masters
+### The Marathon masters    {masters}
 
 Mesos frameworks like Marathon do not need to run on each Mesos agent. They
 also do not need to run on each Mesos master. The only important thing is that
@@ -143,7 +143,7 @@ instance is sufficient. Since all data is stored in Zookeeper, Marathon masters
 themselves have no state.
 
 
-## Zookeeper
+## Zookeeper    {zookeeper}
 
 **[Apache Zookeeper][zookeeper]** is effectively a highly robust distributed
 key-value store. It is used as a primitive by many applications (including

@@ -2,7 +2,7 @@
 
 ## Common tasks and questions
 ### General
-#### A service is unreachable, how do I troubleshoot?
+#### A service is unreachable, how do I troubleshoot?    {troubleshoot}
 
 These are general steps:
 
@@ -31,7 +31,7 @@ These are general steps:
    curl the load balancers on port 80 and 443, and check the nginx logs.
 
 
-### keepalived
+### keepalived    {keepalived}
 #### How do I figure out who the current leader is?
 
 You can do `ssh lb` and see what you get connected to, but will probably have
@@ -45,7 +45,7 @@ TODO: is there a better way?
 TODO: not sure
 
 
-### marathon-lb
+### marathon-lb    {marathon-lb}
 #### How do I manage `marathon-lb` on some host?
 
 `marathon-lb` is a systemd service running as `ocf-lb`.

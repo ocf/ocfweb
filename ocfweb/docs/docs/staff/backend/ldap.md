@@ -1,13 +1,13 @@
 [[!meta title="LDAP"]]
 
-## Introduction
+## Introduction    {introduction}
 
 The Lightweight Directory Access Protocol accesses a directory service over a
 network. We currently use OpenLDAP to store information about accounts (except
 password hashes which are in [[Kerberos|doc staff/backend/kerberos]]).
 
 
-## Definition of an OCF account
+## Definition of an OCF account    {ocf-account}
 
 Attributes that define an OCF account (group or individual). Some of these
 attributes cannot be seen without the proper permissions, such as `mail`:
@@ -33,7 +33,7 @@ attributes cannot be seen without the proper permissions, such as `mail`:
 * `creationTime`: Account creation time in ISO 8601 format
 
 
-## Definition of a POSIX group
+## Definition of a POSIX group    {posix-group}
 
 Attributes that define a POSIX group:
 
@@ -49,9 +49,9 @@ Attributes that define a POSIX group:
   attributes)
 
 
-## Utilities
+## Utilities    {utilities}
 
-### `ldapsearch`
+### `ldapsearch`   {ldapsearch}
 
 For most staff, their primary interface to LDAP will be `ldapsearch`.
 `ldapsearch` is a powerful program that allows queries of the LDAP database.
@@ -86,7 +86,7 @@ Searching for all accounts created after a certain time:
     <many lines of output>
 
 
-### `ldapvi`
+### `ldapvi`    {ldapvi}
 
 `ldapvi` is a "text editor" for LDAP which can generate LDIF change records to
 pass to `ldapadd` (or modify directly if you have the proper [[permissions|doc
@@ -125,7 +125,7 @@ You can enter `y` to apply changes, `q` to save the LDIF change record as a
 file in your current directory, or `Q` to discard.
 
 
-### `ldapadd`
+### `ldapadd`    {ldapadd}
 
 `ldapadd` is a utility to add entries to the LDAP directory if you have the
 proper [[permissions|doc staff/powers]].
