@@ -9,7 +9,7 @@ These addresses can be used both to receive mail (via mail forwarding), and
 send mail. The details of how to use these addresses are below.
 
 
-## Getting set up with mail virtual hosting
+## Getting set up with mail virtual hosting    {setup}
 
 By default, groups only have regular web virtual hosting.
 
@@ -42,7 +42,7 @@ We provide instructions for setting this up with Gmail below, but other email
 providers and clients offer similar options.
 
 
-#### How can I use Gmail to send and receive email?
+#### How can I use Gmail to send and receive email?    {gmail}
 
 [[We have an entire page about that — click here!|doc
 services/vhost/mail/gmail]]

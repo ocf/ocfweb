@@ -19,7 +19,7 @@ The OCF provides two separate (but related) virtual hosting services:
 Web hosting is always enabled for group accounts with virtual hosting, but
 email forwarding must be requested separately.
 
-## Web Hosting
+## Web Hosting    {web}
 
 After the virtual host is set up, the files in the `public_html` directory of
 your group account (ordinarily accessible at
@@ -72,7 +72,7 @@ do that!
 We call this *mail virtual hosting*. To learn more, [[check out our page about
 that|doc services/vhost/mail]].
 
-### Policies
+### Policies    {policies}
 
 #### Groups, faculty, and academic staff only
 
@@ -91,7 +91,7 @@ staff, we will not manage their DNS, nor provide mailing lists for individual
 accounts.
 
 
-#### Limitations on non-berkeley.edu
+#### Limitations on non-berkeley.edu    {non-berkeley}
 
 The OCF may host non-berkeley.edu domains, however the process is more
 complicated in this case. At the discretion of an OCF (Deputy) Site Manager,
@@ -156,7 +156,7 @@ page|home]]. The banner must be noticeable without undue effort.  The hosting
 badge not only attributes the OCF but also distinguishes it from sites hosted
 by University departments.
 
-#### Disabling of virtual hosts
+#### Disabling of virtual hosts    {disable-vhost}
 
 If your OCF account is found in violation of OCF policies, including but not
 limited to the virtual hosting policies in this document, your account and/or
@@ -165,7 +165,7 @@ is disabled you will see [this](http://unavailable.ocf.berkeley.edu/) landing
 page in place of your vhost.  If you would like to request a domain that points
 to a currently disabled vhost, please contact us for more information.
 
-#### Reclamation of virtual hosts
+#### Reclamation of virtual hosts    {reclaim-vhost}
 
 Any virtual host which is no longer used, in violation of OCF policies, or
 assigned to an OCF account which has lost eligibility (for instance, an account
@@ -185,7 +185,7 @@ the issue, the virtual host will be disabled if it is not already. After a
 virtual host has been disabled for 3 months, it may be reclaimed at the
 discretion of the OCF staff.
 
-#### Renaming virtual hosts
+#### Renaming virtual hosts    {rename-vhost}
 
 If you wish to rename your virtual host (e.g. switch from
 something.berkeley.edu to somethingelse.berkeley.edu), you must provide a
@@ -201,7 +201,7 @@ semester). Note that for the purposes of this policy Winter break is considered
 part of the Spring semester, and Summer break is considered part of the Fall
 semester.
 
-#### Exceptions
+#### Exceptions    {exceptions}
 
 Any exceptions to any policies outlined in this document must be approved by an
 OCF General Manager, Site Manager, Deputy General Manager or Deputy Site

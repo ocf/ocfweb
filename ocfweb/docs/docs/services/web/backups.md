@@ -48,7 +48,7 @@ site; the rest of the data resides in the database. Particularly, if you are
 using WordPress, Joomla, or Drupal, you will have to backup your database
 alongside your web directory.
 
-### MySQL
+### MySQL    {mysql}
 
 If you are using a MySQL database, you can use `mysqldump` to make snapshots.
 Instructions are on the [[MySQL|doc services/mysql]] page, but the basic syntax

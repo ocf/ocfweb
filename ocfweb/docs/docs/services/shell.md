@@ -20,7 +20,7 @@ the correct server:
     256  a2:4b:d5:17:43:2e:a7:ea:50:d7:ab:1f:63:45:a9:6c tsunami.ocf.berkeley.edu (ECDSA)
     256  SHA256:h6Rnqg1tyl6VMFrotrR+DSnNW6DF8wQylVllkp03DIw tsunami.ocf.berkeley.edu (ECDSA)
 
-## SSH
+## SSH    {ssh}
 
 Your shell account can be controlled remotely using
 [SSH](https://en.wikipedia.org/wiki/Secure_Shell). The server name is
@@ -37,7 +37,7 @@ On Mac OS X or Linux, enter in the terminal:
 
     ssh username@ssh.ocf.berkeley.edu
 
-#### Windows
+#### Windows    {windows}
 
 On Windows, use [PuTTY][putty] (download the `putty.exe` file):
 
@@ -46,7 +46,7 @@ On Windows, use [PuTTY][putty] (download the `putty.exe` file):
 
 [putty]: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 
-## SFTP
+## SFTP    {sftp}
 
 You can transfer files to your account using [SFTP][sftp]. To transfer files
 you can use the command line utility `sftp`, or a graphical program such as
@@ -64,7 +64,7 @@ Otherwise, use the following information in your SFTP client.
 * Host Name: `ssh.ocf.berkeley.edu`
 * Port: 22
 
-## Disk quotas
+## Disk quotas    {quotas}
 
 <!-- As amended by the Board of Directors on December 1, 2015. -->
 

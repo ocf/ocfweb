@@ -3,7 +3,7 @@
 
 Ruby on Rails is a popular web framework for Ruby applications.
 
-## Creating a New Application    {new}
+## Creating a New Application    {setup}
 
 To create a new Rails application, use the `rails` command-line interface. For
 example, to create an application called `foo` in your home directory, run the

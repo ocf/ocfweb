@@ -10,7 +10,7 @@ Instructions for using WordPress are provided below; you can also [[drop by
 during staff hours|staff-hours]] for in-person assistance.
 
 
-## Installing WordPress    {installing}
+## Installing WordPress    {setup}
 
 The easiest way to set up WordPress is via [[SSH|doc services/shell]]. Some
 simple instructions:

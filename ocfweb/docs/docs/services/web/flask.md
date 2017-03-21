@@ -4,7 +4,7 @@ Flask is a popular microframework for Python web development. Using it on the
 OCF servers requires only just a little extra configuration.
 
 
-## Starting a Flask project    {starting}
+## Starting a Flask project    {setup}
 
 1.    Make a directory in your ~/public_html directory:
 
