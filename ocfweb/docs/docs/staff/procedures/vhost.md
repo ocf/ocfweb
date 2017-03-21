@@ -1,6 +1,6 @@
 [[!meta title="Virtual hosting (staff)"]]
 
-## Policy checklist
+## Policy checklist    {checklist}
 
 * Website developed, not a placeholder
 * Website hosted substantially on the OCF
@@ -19,9 +19,9 @@
   Manager
 
 
-## Enabling virtual hosting
+## Enabling virtual hosting    {enable}
 
-### Web
+### Web    {web}
 
 Edit the file `~staff/vhost/vhost.conf`, adding a new line. The format is
 documented at the top.
@@ -75,7 +75,7 @@ template](https://templates.ocf.berkeley.edu/#hostmaster-add-mail) for making
 DNS mail requests for groups that have old `CNAME` records.
 
 
-### Application hosting
+### Application hosting    {apphosting}
 
 The group website should be reasonably developed (can be offsite during review
 only for this request) before approving it.

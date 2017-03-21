@@ -9,7 +9,7 @@ All of these can be executed on `jaws`. Some of them also work on other servers
 which mount NFS.
 
 
-#### View your own quota
+#### View your own quota    {view-quota}
 
     quota
 
@@ -24,7 +24,7 @@ which mount NFS.
     repquota /dev/mapper/vg-homes
 
 
-#### Setting custom disk quotas
+#### Setting custom disk quotas    {set-quota}
 
 Sometimes we want to set a custom disk quota for a staff member or other
 special snowflake (e.g. perhaps a user wants to host their research or
@@ -42,7 +42,7 @@ new quota. To mimic an infinite quota, just give the account a very large quota
 instead.
 
 
-## Raising disk quotas for every user
+## Raising disk quotas for every user    {raise-quota}
 
 Are you trying to raise disk quotas for every user? Congratulations on finding
 this page! The SM who wrote this section spent a couple of hours trying to

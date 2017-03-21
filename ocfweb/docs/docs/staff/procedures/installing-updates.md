@@ -6,7 +6,7 @@ though you might want to keep an eye on important things to ensure they start
 again after being updated (MySQL, LDAP, and Kerberos are the common offenders).
 
 
-## apt-dater
+## apt-dater    {apt-dater}
 
 We install updates using [apt-dater](https://www.ibh.de/apt-dater/). We wrap it
 in a script that builds a list of hosts from LDAP and sends a summary email to
