@@ -13,7 +13,7 @@ Site Manager(s), which hold executive/legislative/judicial powers, although in
 practice most staff members are Directors and vice versa.
 
 
-## Staff
+## Staff    {staff}
 
 *group ocfstaff*
 
@@ -30,7 +30,7 @@ practice most staff members are Directors and vice versa.
 * must hold [[staff hours|staff-hours]], alongside other staffers
 
 
-### `/root` principal
+### `/root` principal    {root}
 
 In order to reset user passwords, staff must possess a `/root` principal. This
 principal grants the staffer the user the ability to change passwords. This is
@@ -53,7 +53,7 @@ privileges) on all servers and the ability to modify LDAP/Kerberos directly.
 This usually corresponds to Deputy Manager(s) and Site Manager(s). Sometimes
 the General Manager may also act as a Deputy Manager.
 
-### `ocfroot` group
+### `ocfroot` group    {ocfroot}
 
 The ability to become root via sudo first requires the existence of a `/root`
 principal (see above), with the exception of staff VMs where nobody needs a
@@ -64,7 +64,7 @@ use `sudo` on most servers. (Exceptions: desktops and your staff VM don't
 require you to be in ocfroot.)
 
 
-### `/admin` principal
+### `/admin` principal    {admin}
 
 In order to modify LDAP or Kerberos, staff must possess a `/admin` principal
 and it must be granted [Kerberos-editing rights in
