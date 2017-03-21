@@ -53,7 +53,11 @@ def index(request):
         {
             'title': 'News from the staff team',
 
-            'announcements': announcements,
+            'announcements': sorted(
+                announcements,
+                key=lambda announcement: announcement.date,
+                reverse=True
+            ),
             'blog_posts': get_blog_posts()[:10],
         },
     )
@@ -119,6 +123,21 @@ def hpc_survey(title, request):
     return render(
         request,
         'announcements/2017-03-01-hpc-survey.html',
+        {
+            'title': title,
+        },
+    )
+
+
+@announcement(
+    'The OCF is hiring!',
+    date(2017, 3, 20),
+    'hiring',
+)
+def hiring(title, request):
+    return render(
+        request,
+        'announcements/2017-03-20-hiring.html',
         {
             'title': title,
         },
