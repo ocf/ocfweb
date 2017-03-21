@@ -10,7 +10,7 @@ must meet at least one of the following eligibility criteria during account
 creation as verified electronically **or** by presentation of the specified
 documentation:
 
-## Individuals
+## Individuals    {individual}
 
 ### UC Berkeley students, faculty, staff, postdocs, visiting scholars, etc.
 
@@ -68,25 +68,25 @@ with the campus (e.g. Richmond Field Station))
   * Signature from your department (other than your own)
   * Signer's contact information for verification purposes
 
-## Groups
+## Groups    {groups}
 
-### Student groups registered on CalLink
+### Student groups registered on CalLink    {student-orgs}
 
 * Current Cal ID of the requesting person, and signatory status or a letter
   from a signatory authorizing the account request
 
-### Dpeartment-sponsored groups (e.g. research groups)
+### Department-sponsored groups (e.g. research groups)    {dept-orgs}
 
 * Letter from your Principal Investigator on departmental letterhead or an
   email from their bMail stating departmental recognition of the group and
   support for obtaining the group account
 
-### Staff organizations
+### Staff organizations    {staff-orgs}
 
 * Letter from an officer or sponsor of the organization stating that the person
   requesting the account is authorized to make the request
 
-### ASUC bodies not registered on CalLink
+### ASUC bodies not registered on CalLink    {asuc-orgs}
 
 * Letter from the relevant ASUC Executive Officer, Appointed Officer, Senator,
   Commissioner/Commission Chair, or General Committee Chair stating that the
