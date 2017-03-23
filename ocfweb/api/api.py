@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from ocflib.lab.hours import Day
 
 
-def sign_text(request):
+def hours(request):
     today = Day.from_date()
     dic = {
         'date': today.date,
