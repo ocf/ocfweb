@@ -19,7 +19,7 @@ from ocfweb.main.staff_hours import staff_hours
 from ocfweb.stats.urls import urlpatterns as stats
 from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
-from ocfweb.tv.tv_hours import tv_hours
+from ocfweb.tv.urls import urlpatterns as tv
 
 urlpatterns = [
     # test pages
@@ -43,8 +43,8 @@ urlpatterns = [
     url(r'^about/staff$', about_staff, name='about-staff'),
     url(r'^about/lab/open-source$', lab_open_source, name='lab-open-source'),
 
-    # tv urls
-    url(r'^tv/hours$', tv_hours, name='tv-hours'),
+    # tv endpoints
+    url(r'^tv/', include(tv)),
 
     # API endpoints
     url(r'^api/', include(api)),

@@ -59,5 +59,5 @@ act on them if they are sent to our designated agent. You must certify under
 penalty of perjury that your request is valid, that you are the rightsholder
 for the content in question, and that the use of the content does not fall
 under fair use exemptions to the DMCA. If you believe you have a valid DMCA
-claim against an OCF member, we suggest you seek actual legal advice prior to
+claim against an OCF member, we suggest that you seek legal advice prior to
 filing a takedown notice.
