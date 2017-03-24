@@ -23,7 +23,7 @@ OCF servers requires only just a little extra configuration.
 
 * run.fcgi:
 
-      #!/usr/bin/env python
+      #!venv/bin/python
       from flup.server.fcgi import WSGIServer
       from flaskyapplication import app
 
