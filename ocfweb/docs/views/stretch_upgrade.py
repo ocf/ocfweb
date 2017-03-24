@@ -83,10 +83,10 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'whiteout',
-            comments='waiting for dev-whiteout (on stretch) to replace whiteout',
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname('reaper', status=ThingToUpgrade.UPGRADED),
-        ThingToUpgrade.from_hostname('democracy'),
+        ThingToUpgrade.from_hostname('democracy', status=ThingToUpgrade.UPGRADED),
         ThingToUpgrade.from_hostname(
             'zombies',
             status=ThingToUpgrade.UPGRADED,
@@ -144,7 +144,8 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'hal',
-            comments='changing soon when installing new drives, so it will be upgraded with replacement',
+            status=ThingToUpgrade.UPGRADED,
+            comments='Upgraded when installing new drives',
         ),
     )
 

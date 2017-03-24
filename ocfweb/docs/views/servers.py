@@ -111,6 +111,11 @@ def get_hosts():
             ],
         ),
 
+        Host.from_ldap(
+            hostname='riptide',
+            type='hypervisor'
+        ),
+
         Host('blackhole', 'network', 'Managed Cisco Catalyst 2960S-48TS-L Switch.', []),
 
         Host('logjam', 'printer', '', []),

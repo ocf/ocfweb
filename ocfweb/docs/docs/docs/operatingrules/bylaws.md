@@ -50,6 +50,13 @@ amended at the general meeting of November 14, 2016.
       and Site Manager, and their actions can be overruled by either the
       General Manager or the Site Manager.
 
+   4. A Deputy Manager elected to an elected office shall cease to be a Deputy
+      Manager upon taking that office.
+
+   5. Only persons who have been students at some time during the last 12
+      months shall be eligible to hold the offices of Deputy Manager, Deputy
+      General Manager, or Deputy Site Manager.
+
 11. Deputy General Managers
 
    1. Deputy General Managers shall be appointed and removed by the General
@@ -58,8 +65,8 @@ amended at the general meeting of November 14, 2016.
    2. Deputy General Managers shall assist the General Manager with his or her
       duties.
 
-   3. The term of office of a Deputy General Manager shall expire at the next
-      election of a General Manager.
+   3. The term of office of a Deputy General Manager shall expire at the
+      beginning of a new term of a General Manager.
 
    4. The resignation, dismissal, or completion of term of a Deputy General
       Manager shall not apply to their status as a Deputy Manager.
@@ -72,8 +79,8 @@ amended at the general meeting of November 14, 2016.
    2. Deputy Site Managers shall assist the Site Manager with his or her
       duties.
 
-   3. The term of office of a Deputy Site Manager shall expire at the next
-      election of a Site Manager.
+   3. The term of office of a Deputy Site Manager shall expire at the beginning
+      of a new term of a Site Manager.
 
    4. The resignation, dismissal, or completion of term of a Deputy Site
       Manager shall not apply to their status as a Deputy Manager.
@@ -82,7 +89,7 @@ amended at the general meeting of November 14, 2016.
 
    1. All Cabinet members shall be Officers of the Open Computing Facility.
 
-   2. In addition, any member of the Open Computing Facility who attends an
+   2. In addition, any Director of the Open Computing Facility who attends an
       Officers’ Meeting and requests to be appointed as an Officer shall be
       appointed as an Officer.
 
@@ -111,4 +118,5 @@ Board meeting of April 30, 2014. Bylaws 9–13 added at the Board meeting of
 October 10, 2016. Bylaw 14 added at the Board meeting of October 17, 2016.
 Bylaw 7 amended at the Board meeting of October 31, 2016. Bylaws 1 and 8
 repealed, bylaw 7 amended, and bylaw 15 added at the general meeting of
-November 14, 2016.
+November 14, 2016. Bylaws 13.2, 11.3, 12.3 amended, and bylaws 10.4 and 10.5
+added at the Board meeting of March 6, 2017.

@@ -1,7 +1,9 @@
 [[!meta title="Constitution"]]
 
 This document records the **Constitution of the Open Computing Facility**, as
-established on November 14, 2016:
+established on November 14, 2016 and amended on:
+
+1. [March 6, 2017](#amended-2017-03-06)
 
 
 ## Preamble
@@ -196,14 +198,17 @@ Only Board members present at a meeting may vote.
 The OCF Board of Directors shall have authority over any OCF actions.
 
 
-#### 6.2 OCF General Manager
+#### 6.2 OCF General Manager {amended-2017-03-06}
 The OCF General Manager shall have authority over any OCF actions except where
-such action conflicts with Article 5.1.
+such action conflicts with Article 6.1.
 
+_[Amended at the Board meeting of March 6, 2017]._
 
 #### 6.3 OCF Site Manager
 The OCF Site Manager shall have authority over any OCF actions except where
-such action conflicts with Article 5.1 or 5.2.
+such action conflicts with Article 6.1 or 6.2.
+
+_[Amended at the Board meeting of March 6, 2017]._
 
 
 ### 7 Rights and Responsibilities of Members
