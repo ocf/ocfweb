@@ -35,9 +35,9 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
      services/vhost/badges]] on your home page that links to the OCF front
      page. If none of these images are appropriate for your site, you may
      design one of your own and [[submit it|doc contact]] for approval.
-4.   **Include university's disclaimer.** If you are a student group, place the
-     university-mandated student group disclaimer on each page of your website
-     (see the section below).
+4.   **Include university's disclaimer (if applicable).** If you are a student
+     group, place the university-mandated student group disclaimer on each page
+     of your website (see the section below).
 5.   **Complete request form.** Complete the [[virtual hosting request
      form|request_vhost]] online. OCF staff will review your request and
      contact the university hostmaster on your behalf.
