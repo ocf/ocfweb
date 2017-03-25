@@ -118,7 +118,6 @@ def get_hosts():
 
         Host('blackhole', 'network', 'Managed Cisco Catalyst 2960S-48TS-L Switch.', []),
 
-        Host('logjam', 'printer', '', []),
         Host('pagefault', 'printer', '', []),
         Host('papercut', 'printer', '', []),
         Host.from_ldap('overheat', type='raspi'),
