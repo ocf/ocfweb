@@ -35,8 +35,7 @@ throughout the semester on a wide range of computing topics (focusing on
 resources available to the Berkeley campus community), along with hosting the
 [UNIX SysAdmin DeCal][decal]. Additionally, the OCF used to conduct
 career fairs in the past with its sister organization, the
-[Computer Science Undergraduate Association][csua]. Now, we host regular Tech
-Talks that explore new technologies and how they might  to elements of the
+[Computer Science Undergraduate Association][csua]. Now, we host regular [[Tech Talks|doc staff/techtalks]] that explore new technologies and how they might pertain to elements of the
 OCF infrastructure. We also offer e-mail and in-person with our volunteer
 staff members, as well as online sources of information about computing on the
 Berkeley campus and how to use the available resources.
