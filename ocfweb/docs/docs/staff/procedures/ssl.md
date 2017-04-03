@@ -6,8 +6,9 @@ service](https://wikihub.berkeley.edu/display/calnet/CalNet+InCommon-Comodo+Cert
 
 The primary Common Name for a certificate should always be the **server
 hostname**, with service CNAMEs specified as Subject Alternative Names. A
-certificate for Request Tracker should have the primary CN
-`typhoon.ocf.berkeley.edu`, with `rt.ocf.berkeley.edu` as a SAN.
+certificate for our apt repository/mirrors should have the primary CN
+`fallingrocks.ocf.berkeley.edu`, with `apt.ocf.berkeley.edu`
+and `mirrors.ocf.berkeley.edu` as SANs.
 
 This allows us to easily distinguish between certificates in cases where a
 service may be hosted by multiple hostnames, or where the hostname changes,
