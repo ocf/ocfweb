@@ -105,7 +105,7 @@ folder:
 
 ```apache
 <Files "xmlrpc.php">
-  order allow, deny
+  order allow,deny
   allow from all
 </Files>
 ```
