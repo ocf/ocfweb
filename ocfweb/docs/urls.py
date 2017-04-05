@@ -1,6 +1,7 @@
 import re
 from itertools import chain
 
+from django.conf.urls import include
 from django.conf.urls import url
 from django.core.urlresolvers import reverse
 from django.http import Http404
@@ -66,10 +67,10 @@ redir_names = '|'.join(map(doc_name, REDIRECTS.keys()))
 
 urlpatterns = [
     url(r'^$', docs_index, name='docs'),
-
     # we use a complicated generated regex here so that we have actual
     # validation of URLs (in other words, if you try to make a link to a
     # missing document, it will fail)
     url(r'^({redir_names})/$'.format(redir_names=redir_names), send_redirect),
     url(r'^({doc_names})/$'.format(doc_names=doc_names), render_doc, name='doc'),
+    url(r'^search/', include('haystack.urls'))
 ]

@@ -26,6 +26,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'mathfilters',
 
+    'haystack',
+
     'ocfweb',
     'ocfweb.about',
     'ocfweb.account',
@@ -197,3 +199,11 @@ else:
         '127.0.0.1',
         '::1',
     ]
+
+# Search engine config
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}

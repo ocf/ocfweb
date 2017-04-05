@@ -1,6 +1,16 @@
 from collections import namedtuple
 
 from cached_property import cached_property
+from django.db import models
+
+
+class DocText(models.Model):
+    title = models.CharField(max_length=100)
+    text = models.TextField()
+
+    def __init__(self, title, text):
+        self.title = title
+        self.text = text
 
 
 class Document(namedtuple('Document', ['name', 'title', 'render'])):
