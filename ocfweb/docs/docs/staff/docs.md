@@ -11,7 +11,7 @@ Markdown syntax is parsed by [Mistune][mistune] with syntax highlighting done
 by [Pygments][pygments].
 
 We use a wiki-like syntax for making links within documentation and the
-website, e.g. from [[Virtual Hosting|doc services/vhost#h4_hosting-badge]]:
+website, e.g. from [[Virtual Hosting|doc services/vhost#hosting-badge]]:
 
     All virtual hosts on the OCF must include an [[OCF banner|doc services/vhost/badges]] on the front page that links to the [[OCF home page|home]].
 

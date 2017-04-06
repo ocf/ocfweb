@@ -42,7 +42,7 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
      form|request_vhost]] online. OCF staff will review your request and
      contact the university hostmaster on your behalf.
 
-### Including the OCF banner
+### Including the OCF banner    {banner}
 
 Place any of the [[Hosted by OCF banners|doc services/vhost/badges]] on your
 site by copying the code onto your page. The banner is required to be placed
@@ -78,7 +78,7 @@ domain. For such domains, the group account must:
  2.   Pay any and all fees and/or obtain permissions relating to obtaining and
       maintaining a domain name.
 
-#### University policies
+#### University policies    {university-policies}
 
 Virtual web sites, just like other OCF user accounts, must comply with the
 relevant UC Berkeley [computer use policy][computer-use] and [DNS
@@ -104,7 +104,7 @@ In particular,
 
 [offsite]: https://offsitehosting.berkeley.edu/
 
-#### Hosting badge
+#### Hosting badge    {badge}
 
 All virtual hosts on the OCF must include an [[OCF banner|doc
 services/vhost/badges]] on the front page that links to the [[OCF home
