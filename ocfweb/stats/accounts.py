@@ -6,8 +6,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from matplotlib.dates import DateFormatter
 from matplotlib.figure import Figure
-from ocflib.constants import OCF_LDAP_PEOPLE
 from ocflib.infra.ldap import ldap_ocf
+from ocflib.infra.ldap import OCF_LDAP_PEOPLE
 
 from ocfweb.caching import cache
 from ocfweb.caching import periodic

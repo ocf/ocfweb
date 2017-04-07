@@ -12,7 +12,6 @@ from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest
 from ocflib.account.search import user_attrs_ucb
 from ocflib.account.submission import NewAccountResponse
-from ocflib.constants import CREATE_PUBLIC_KEY
 
 from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
@@ -20,6 +19,17 @@ from ocfweb.component.celery import celery_app
 from ocfweb.component.celery import validate_then_create_account
 from ocfweb.component.forms import Form
 from ocfweb.component.forms import wrap_validator
+
+CREATE_PUBLIC_KEY = '''\
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3xG2dczz2y+qc0AgTZ1L
+Jrun4RbcMf7z7AFqPqIQrtbuJprg6EQPHd2EDjMt9rJm929tTatjLu7TcNisq9lW
+AMU85c1nM6l4ce58mIXGzaB5yCGP0Qfcos5o00xJOmRVmxZGB5D2Jli+JbmEHPpo
+KbvI3DuNLNbS+MxXawudEDVj0xA86Iv8biHqq//xMD+SicOzN4ZrjKarT9MdQYL+
+JDNjiYba1ZiNLiqXeLGS2IVYAd88etX+V5gxAvl0bGHzgeHodutxUf46QCg7cmvm
+5lQsbiYUABiEsE1OejSEfb+7mtuhxu+MeVXCYr341axa0IHorj4qURxKOi/CTn5f
+zwIDAQAB
+-----END PUBLIC KEY-----'''
 
 
 @calnet_required
