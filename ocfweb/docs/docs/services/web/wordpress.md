@@ -96,23 +96,6 @@ Further details can be found at [the support page by WordPress.com][1].
 
 ## Frequently Asked Questions
 
-### Jetpack plugin not working
-
-The Jetpack plugin as well as several others require a publicly accessible
-XML-RPC file, which is not public by default. Before you can install Jetpack,
-you need to add the following lines to the file `.htaccess` in your WordPress
-folder:
-
-```apache
-<Files "xmlrpc.php">
-  order allow,deny
-  allow from all
-</Files>
-```
-
-If `.htaccess` doesn't exist, create it and add the above lines.
-
-
 ### I forgot my admin password and can't log in
 
 First, try using the "Forgot Password" feature on your site. You can find a
