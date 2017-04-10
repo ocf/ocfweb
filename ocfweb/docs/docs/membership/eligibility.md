@@ -32,8 +32,7 @@ documentation:
 
 * Current LBNL ID card
 
-### Mathematical Sciences Research Institute (MSRI) (postdoc researchers and
-research professors)
+### Mathematical Sciences Research Institute (MSRI) (postdoc researchers and research professors)
 
 * Letter from your department on departmental letterhead stating:
   * Your name
