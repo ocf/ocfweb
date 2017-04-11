@@ -105,7 +105,7 @@ website which was previously hosted at a non-berkeley.edu address, a website
 for a department or University-affiliated research group that requires a
 particular domain, or the personal website of a faculty or staff member.
 Domains under berkeley.edu may not redirect to a non-berkeley.edu domain (see
-no off-site hosting).
+**no off-site hosting**).
 
 
 #### University policies
