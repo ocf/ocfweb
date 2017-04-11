@@ -4,7 +4,9 @@
 Virtual hosting allows group accounts to have their website available on a
 different domain, typically under berkeley.edu. For example, a group's site can
 be made available at `yourgroup.berkeley.edu` in addition to the standard
-address under `ocf.berkeley.edu`.
+address under `ocf.berkeley.edu`. Faculty and staff are also eligible
+for virtual hosting, but must obtain their own domains (e.g.
+`name.dept.berkeley.edu`).
 
 The OCF provides two separate (but related) virtual hosting services:
 
@@ -26,8 +28,9 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
 
 ### Instructions
 
-1.   **Request group account.** [[Request an OCF group account|doc membership]]
-     (if you haven't already done so).
+1.   **Request an account.** [[Request an OCF account|doc membership]] (if you
+     haven't already done so). Student and department groups need a group
+     account; faculty and staff may use their personal account.
 2.   **Set up real site.** Set up your webspace and upload your website (if you
      haven't already done so). The website should be developed already, not a
      placeholder.
@@ -38,9 +41,12 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
 4.   **Include university's disclaimer (if applicable).** If you are a student
      group, place the university-mandated student group disclaimer on each page
      of your website (see the section below).
-5.   **Complete request form.** Complete the [[virtual hosting request
+5.   **Obtain a domain (faculty and staff only).** The OCF will not request
+     personal domains for individuals, so faculty and staff must obtain their
+     own.
+6.   **Complete request form.** Complete the [[virtual hosting request
      form|request_vhost]] online. OCF staff will review your request and
-     contact the university hostmaster on your behalf.
+     contact the university hostmaster on your behalf if necessary.
 
 ### Including the OCF banner
 
