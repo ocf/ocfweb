@@ -20,7 +20,7 @@
 * Individual accounts are associated with a single person and may not be
   shared.
 * Individual accounts are **not** eligible for [[virtual hosting|doc
-  services/vhost]].
+  services/vhost]] except for faculty and staff accounts.
 * Individual accounts are eligible for [[printing|doc services/lab/printing]].
 
 **[[Request an account online|register]]**

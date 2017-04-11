@@ -8,12 +8,15 @@
 * Website has hosted by OCF banner on the front page that is noticeable without
   undue effort and links to the OCF home page
 * Request is made by a registered and active student organization in CalLink
-  (LEAD Center) or request is sponsored by an [administrative
-  official](http://compliance.berkeley.edu/delegation/principles)
-* Request is made by a signatory of the group in question
-  (use `signat group <group>` to see signatories)
-* Group does not already have a virtual host, or has an exception from the
-  Board of Directors
+  (LEAD Center), request is sponsored by an [administrative
+  official](http://compliance.berkeley.edu/delegation/principles), or request
+  is for the account of a faculty or staff member
+* For RSOs, request is made by a signatory of the group in question (use
+  `signat group <group>` to see signatories)
+* For faculty/staff, the requestor has already obtained a domain from e.g.
+  their department
+* Account does not already have a virtual host, or has an exception from a Site
+  Manager
 
 
 ## Enabling virtual hosting
