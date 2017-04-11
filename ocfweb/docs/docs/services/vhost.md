@@ -93,11 +93,13 @@ permission may be granted to those who can demonstrate a specific need for the
 OCF to host a website outside of the berkeley.edu domain. For such domains, the
 account holder must:
 
-1.  Obtain the written permission of a Site Manager or Deputy
-2.  Site Manager to host this domain.
+1.  Obtain the written permission of a Site Manager or Deputy Site Manager to
+    host this domain.
 
-Pay any and all fees and/or obtain permissions relating to obtaining and
-maintaining a domain name.  Here are some cases where it would be appropriate
+2.  Pay any and all fees and/or obtain permissions relating to obtaining and
+    maintaining a domain name.
+
+Here are some cases where it would be appropriate
 for the OCF to host a non-berkeley.edu domain: when hosting a student group
 website which was previously hosted at a non-berkeley.edu address, a website
 for a department or University-affiliated research group that requires a
@@ -121,14 +123,14 @@ groups.
 In particular,
 
 * **No off-site (third-party) hosting**: Circumventions around off-site
-    hosting, including (but not limited to) proxies, redirects, and substantial
-    inline frames (iframes) of non-berkeley.edu domains are not allowed. The OCF
-    does not process nor advise off-site hosting requests, which can be
-    [submitted directly to the university][offsite] (however, feel free to keep
-    us informed if you have an existing OCF account).
+hosting, including (but not limited to) proxies, redirects, and substantial
+inline frames (iframes) of non-berkeley.edu domains are not allowed. The OCF
+does not process nor advise off-site hosting requests, which can be
+[submitted directly to the university][offsite] (however, feel free to keep
+us informed if you have an existing OCF account).
 
-    In other words, to comply with university policy, the OCF may only provide
-    virtual hosting for websites that are hosted on OCF servers.
+In other words, to comply with university policy, the OCF may only provide
+virtual hosting for websites that are hosted on OCF servers.
 
 [offsite]: https://offsitehosting.berkeley.edu/
 
