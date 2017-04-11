@@ -40,9 +40,6 @@ attribute to `desktop`. If doing a staff VM, set it to `staffvm` instead.
 Clone the [DNS repo][github-dns] from GitHub, run `make`, and push a commit
 with the new records.
 
-Run `dns-reconcile` and request the needed DNS changes from the University
-hostmaster.
-
 [github-dns]: https://github.com/ocf/dns
 
 
