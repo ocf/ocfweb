@@ -15,9 +15,9 @@ from ocflib.misc.mail import send_mail
 from ocflib.misc.validators import host_exists
 from ocflib.misc.validators import valid_email
 from ocflib.misc.whoami import current_user_formatted_email
+from ocflib.vhost.web import eligible_for_vhost
 from ocflib.vhost.web import has_vhost
 
-from ocfweb.auth import group_account_required
 from ocfweb.auth import login_required
 from ocfweb.component.forms import Form
 from ocfweb.component.session import logged_in_user
@@ -26,16 +26,18 @@ from ocfweb.component.session import logged_in_user
 def valid_domain(domain):
     if not re.match(r'^[a-zA-Z0-9]+\.berkeley\.edu$', domain):
         return False
-    if domain.count('.') != 2:
-        return False
     return not host_exists(domain)
 
 
+def valid_domain_external(domain):
+    return bool(re.match(r'([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,}', domain))
+
+
 @login_required
-@group_account_required
 def request_vhost(request):
     user = logged_in_user(request)
     attrs = user_attrs(user)
+    is_group = 'callinkOid' in attrs
     error = None
 
     if has_vhost(user):
@@ -47,15 +49,24 @@ def request_vhost(request):
                 'user': user,
             },
         )
+    elif not eligible_for_vhost(user):
+        return render(
+            request,
+            'account/vhost/not_eligible.html',
+            {
+                'title': 'You are not eligible for virtual hosting',
+                'user': user,
+            }
+        )
 
     if request.method == 'POST':
-        form = VirtualHostForm(request.POST)
+        form = VirtualHostForm(is_group, request.POST)
 
         if form.is_valid():
             requested_subdomain = form.cleaned_data['requested_subdomain']
             requested_why = form.cleaned_data['requested_why']
             comments = form.cleaned_data['comments']
-            your_name = form.cleaned_data['your_name']
+            your_name = form.cleaned_data['your_name'] if is_group else attrs['cn'][0]
             your_email = form.cleaned_data['your_email']
             your_position = form.cleaned_data['your_position']
 
@@ -131,7 +142,7 @@ def request_vhost(request):
                 else:
                     return redirect(reverse('request_vhost_success'))
     else:
-        form = VirtualHostForm(initial={'requested_subdomain': user + '.berkeley.edu'})
+        form = VirtualHostForm(is_group, initial={'requested_subdomain': user + '.berkeley.edu'})
 
     group_url = 'https://www.ocf.berkeley.edu/~{0}/'.format(user)
 
@@ -143,7 +154,8 @@ def request_vhost(request):
             'error': error,
             'form': form,
             'group_url': group_url,
-            'title': 'Request berkeley.edu virtual hosting',
+            'is_group': is_group,
+            'title': 'Request virtual hosting',
             'user': user,
         },
     )
@@ -161,6 +173,15 @@ def request_vhost_success(request):
 
 class VirtualHostForm(Form):
     # requested subdomain
+    requested_own_domain = forms.ChoiceField(
+        choices=[
+            (False, 'I would like to request a berkeley.edu domain \
+                     (most student groups want this).'),
+            (True, 'I want to use the domain I already own.'),
+        ],
+        widget=forms.RadioSelect(),
+    )
+
     requested_subdomain = forms.CharField(
         label='Requested domain:',
         min_length=1,
@@ -178,12 +199,12 @@ class VirtualHostForm(Form):
 
     # website requirements
     website_complete = forms.BooleanField(
-        label='Our site is already complete and uploaded to the OCF \
-               server. The website is not just a placeholder.')
+        label='The website is already complete and uploaded to the OCF \
+               server. It is not just a placeholder.')
 
     website_hosted_by_ocf = forms.BooleanField(
-        label="Our site is substantially hosted by the OCF. We \
-               don't use frames, redirects, proxies, or other tricks to \
+        label="The website is substantially hosted by the OCF. It \
+               doesn't use frames, redirects, proxies, or other tricks to \
                circumvent this policy.")
 
     # see __init__ method below for the labels on these
@@ -193,8 +214,8 @@ class VirtualHostForm(Form):
 
     website_updated_software = forms.BooleanField(
         label='Any software (such as WordPress, Joomla, Drupal, etc.) \
-               is fully updated, and we will commit to updating it \
-               regularly to ensure our site is not compromised. (If \
+               is fully updated, and the maintainer will update it \
+               regularly to ensure the site is not compromised. (If \
                you are not using any software on your website, check \
                this box and move on.)')
 
@@ -209,12 +230,10 @@ class VirtualHostForm(Form):
         min_length=1,
         max_length=64)
 
+    # also see __init__
     your_position = forms.CharField(
-        label='Your position in group:',
         min_length=1,
-        max_length=64,
-        widget=forms.TextInput(attrs={'placeholder': 'Webmaster'}),
-    )
+        max_length=64)
 
     comments = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}),
@@ -223,7 +242,7 @@ class VirtualHostForm(Form):
         min_length=1,
         max_length=1024)
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, is_group=True, *args, **kwargs):
         super(Form, self).__init__(*args, **kwargs)
 
         # It's pretty derpy that we have to set the labels here, but we can't
@@ -238,11 +257,29 @@ class VirtualHostForm(Form):
         ).format(reverse('doc', args=('services/vhost',))))
 
         self.fields['website_ocf_banner'].label = mark_safe((
-            'We have placed a <a href="{}">Hosted by the OCF</a> banner image on our site.'
+            'There is a <a href="{}">Hosted by the OCF</a> banner image '
+            'visible on the home page.'
         ).format(reverse('doc', args=('services/vhost/badges',))))
+
+        # This one just requires some runtime info
+        self.fields['your_position'].label = mark_safe(
+            'Your position in group:' if is_group else 'Your academic post:'
+        )
+
+        self.fields['your_position'].widget = forms.TextInput(
+            attrs={'placeholder': 'Webmaster' if is_group else 'E.g., Professor of Math'}
+        )
 
     def clean_requested_subdomain(self):
         requested_subdomain = self.cleaned_data['requested_subdomain'].lower().strip()
+
+        if self.cleaned_data['requested_own_domain']:
+            if not valid_domain_external(requested_subdomain):
+                raise forms.ValidationError(
+                    'This does not appear to be a valid domain. '
+                    'Please check your response and try again.'
+                )
+            return requested_subdomain
 
         if not requested_subdomain.endswith('.berkeley.edu'):
             raise forms.ValidationError(
