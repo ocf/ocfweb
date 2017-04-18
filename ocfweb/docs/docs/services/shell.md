@@ -74,8 +74,8 @@ directories. You can check your disk usage by running `quota -v` over SSH or
 
 ## Unattended processes
 
-<!-- As established by the Board of Directors on April 17, 2017. SM can
-     unilaterally amend. -->
+<!-- As established by the Board of Directors on April 17, 2017. SM can -->
+<!-- unilaterally amend. -->
 
 You are welcome to run unattended processes on the OCF. However, you are
 ultimately responsible for ensuring that your unattended processes do not
