@@ -10,40 +10,23 @@ documentation:
 
 ## Individuals
 
-### UC Berkeley students
+### UC Berkeley students, faculty, staff, postdocs, visiting scholars, etc.
 
 * Current Cal ID
-* Current registration card and photo ID
-
-### UC Berkeley faculty and staff
-
-* Current UC Berkeley Faculty or Staff ID card
-
-### Postdoctoral, visiting scholars, research assistants, etc.
-
-* Letter from your department on departmental letterhead stating:
-  * Your name
-  * Length of appointment
-  * Departmental support for obtaining the computer account
-  * Signature from your department (other than your own)
-  * Signer's contact information for verification purposes
 
 ### Lawrence Berkeley National Laboratory (LBNL) staff
 
 * Current LBNL ID card
 
-### Mathematical Sciences Research Institute (MSRI) (postdoc researchers and research professors)
-
-* Letter from your department on departmental letterhead stating:
-  * Your name
-  * That you hold a valid appointment with the University
-  * Departmental support for obtaining the computer account
-  * Signature from your department (other than your own)
-  * Signer's contact information for verification purposes
-
 ### Graduate Theological Union (GTU) students
 
 * Current student ID card
+
+### Mathematical Sciences Research Institute (MSRI) (postdoc researchers and research professors)
+
+* Letter on MSRI letterhead stating:
+  * Your name
+  * That you are a current member, staff member, or postdoctoral fellow of MSRI
 
 ### UC Berkeley Extension students
 
@@ -52,16 +35,12 @@ documentation:
 At least one of the following:
 
 * enrollment in a credit course for classes numbered 1 through 499
-  * via copy of enrollment confirmation
 * enrollment in a certificate program
-  * via document and/or receipt for the certificate program
 * concurrent enrollment in a UC Berkeley course
-  * via copy of a paid and signed concurrent enrollment form
 
 ### UC Berkeley Extension faculty
 
-* Letter of appointment marked as independent contractor by agreement for a
-  term
+* Letter of appointment
 
 ### Employees of other University-affiliated organizations
 
@@ -87,15 +66,31 @@ with the campus (e.g. Richmond Field Station))
   * Signature from your department (other than your own)
   * Signer's contact information for verification purposes
 
-## Student groups, staff groups, or campus support organizations
+## Groups
 
-Current Cal ID and at least one of the following:
+### Student groups registered on CalLink
 
-* Signatory position in an active student group on
-  [CalLink](https://callink.berkeley.edu/)
-* Letter from your department on departmental letterhead stating departmental
-  recognition of the group and departmental support for obtaining the group
-  account
-* Documentation establishing that the Chancellor has recognized the group as a
-  support organization and that the person requesting the account is authorized
-  to make the request
+* Current Cal ID of the requesting person, and signatory status or a letter
+  from a signatory authorizing the account request
+
+### Dpeartment-sponsored groups (e.g. research groups)
+
+* Letter from your Principal Investigator on departmental letterhead or an
+  email from their bMail stating departmental recognition of the group and
+  support for obtaining the group account
+
+### Staff organizations
+
+* Letter from an officer or sponsor of the organization stating that the person
+  requesting the account is authorized to make the request
+
+### ASUC bodies not registered on CalLink
+
+* Letter from the relevant ASUC Executive Officer, Appointed Officer, Senator,
+  Commissioner/Commission Chair, or General Committee Chair stating that the
+  person requesting the account is authorized to make the request
+
+Each individual and each group is entitled to one account. Requests for
+additional accounts must demonstrate a unique need for having additional
+accounts and be approved by an OCF General Manager, Site Manager, Deputy
+General Manager or Deputy Site Manager in writing.
