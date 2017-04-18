@@ -69,3 +69,21 @@ Otherwise, use the following information in your SFTP client.
 Currently, accounts are limited to 5 GB of disk usage under the home and web
 directories. You can check your disk usage by running `quota -v` over SSH or
 [[from your browser|commands]].
+
+## Unattended processes
+
+You are welcome to run unattended processes on the OCF. However, you are
+ultimately responsible for ensuring that your unattended processes do not
+unduly interfere with others’ ability to use the shared computing resources.
+
+In particular, if you are going to run a batch job which may require a lot of
+computing power, you are advised to run it under `nice` and/or `ionice` to
+lower its CPU priority and I/O priority respectively. OCF staff reserve the
+right to terminate or otherwise decrease the resource usage of processes which
+are consuming too many resources.
+
+If you’re trying to run a webapp or other kind of server process on the SSH
+login server (`ssh.ocf.berkeley.edu`), please note that the SSH login server is
+firewalled and what you’re trying to do unfortunately won’t work. If you’re a
+group and you’re trying to run a webapp, you may want to consider
+[[apphosting|doc services/webapps]] instead.
