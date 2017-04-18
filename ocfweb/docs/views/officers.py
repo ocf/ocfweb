@@ -167,7 +167,6 @@ BOD_TERMS = [
                ('shasan', date(2016, 10, 24), date(2016, 11, 28))]),
     Term('Spring 2017', gms=['nickimp', 'baisang'], sms=['jvperrin', 'mattmcal'],
          dgms=['shasan'], dsms=['kpengboy']),
-    Term('Summer 2017', gms=['baisang', 'shasan'], sms=['jvperrin', 'abizer']),
 ]
 
 
