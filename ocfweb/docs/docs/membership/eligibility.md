@@ -1,5 +1,7 @@
 [[!meta title="Eligibility"]]
 
+<!-- Enacted by the Board of Directors on April 17, 2017. -->
+
 The following individuals and groups are eligible for [[membership|doc membership]]:
 
 

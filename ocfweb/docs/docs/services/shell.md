@@ -66,11 +66,16 @@ Otherwise, use the following information in your SFTP client.
 
 ## Disk quotas
 
+<!-- As amended by the Board of Directors on December 1, 2015. -->
+
 Currently, accounts are limited to 5 GB of disk usage under the home and web
 directories. You can check your disk usage by running `quota -v` over SSH or
 [[from your browser|commands]].
 
 ## Unattended processes
+
+<!-- As established by the Board of Directors on April 17, 2017. SM can
+     unilaterally amend. -->
 
 You are welcome to run unattended processes on the OCF. However, you are
 ultimately responsible for ensuring that your unattended processes do not
