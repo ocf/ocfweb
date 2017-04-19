@@ -135,8 +135,16 @@ does not process nor advise off-site hosting requests, which can be
 [submitted directly to the university][offsite] (however, feel free to keep
 us informed if you have an existing OCF account).
 
-In other words, to comply with university policy, the OCF may only provide
-virtual hosting for websites that are hosted on OCF servers.
+   In other words, to comply with university policy, the OCF may only provide
+   virtual hosting for websites that are hosted on OCF servers.
+
+* **Relevant domain name**: Registered Student Organizations may only use domains
+or request subdomains that are the officially recognized name of the group, or
+an officially recognized short name of the group. Exceptions to this rule must
+be approved by the LEAD Center prior to requesting the domain from the OCF.
+In general, the subdomain must reasonably and uniquely identify the student
+group that is requesting it, and not be easily confused with another group or
+University department or resource.
 
 [offsite]: https://offsitehosting.berkeley.edu/
 
