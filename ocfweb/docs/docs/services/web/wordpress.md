@@ -96,7 +96,7 @@ Further details can be found at [the support page by WordPress.com][1].
 
 ## Frequently Asked Questions    {faq}
 
-### I forgot my admin password and can't log in     {forgot-pwd}
+### I forgot my admin password and can't log in    {forgot-pwd}
 
 First, try using the "Forgot Password" feature on your site. You can find a
 link from the login page.
