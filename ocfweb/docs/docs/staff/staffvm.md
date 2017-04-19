@@ -1,6 +1,6 @@
 [[!meta title="Useful staff VM tricks"]]
 
-## Essentials
+## Essentials    {essentials}
 
 Your vm's environment is determined by the ldap entry for the machine.
 

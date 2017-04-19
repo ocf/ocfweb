@@ -15,7 +15,7 @@
   accounts) or your group's name (for group accounts). It is unlikely you will
   be able to change your account name after your request has been processed.
 
-## Individual accounts
+## Individual accounts    {individual}
 
 * Individual accounts are associated with a single person and may not be
   shared.
@@ -33,7 +33,7 @@ request or you have questions.
 
 Then, wait for your account to be created. (below)
 
-## Group accounts
+## Group accounts    {group}
 
 * Group accounts are associated with a group and may be shared by members of
   the group.

@@ -13,14 +13,14 @@ accounts without emails, if we need to contact you for any reason and cannot,
 your account will be disabled. This is true for both individual and group
 accounts.
 
-## Student groups
+## Student groups    {groups}
 
 We provide email virtual hosting for student groups who have a [[virtual
 host|doc services/vhost]] (e.g. mygroup.berkeley.edu). See [[here|doc
 services/vhost/mail]] for instructions on requesting email hosting and
 configuring email addresses.
 
-## Individual accounts
+## Individual accounts    {individual}
 
 Mail service for individual accounts was discontinued over summer 2014, but we
 are still offering email forwarding for individual accounts indefinitely.

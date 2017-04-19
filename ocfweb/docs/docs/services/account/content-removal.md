@@ -2,7 +2,7 @@
 
 <!-- Officially promulgated by the SMs on April 10, 2017 -->
 
-## Introduction
+## Introduction    {intro}
 
 Most of the content on [www.ocf.berkeley.edu](https://www.ocf.berkeley.edu)
 is created and owned by OCF members, not the OCF itself. This user-generated
@@ -18,7 +18,7 @@ This means the OCF will not change or remove any text, pictures,
 information, or other data hosted by an OCF member. We do however
 reserve the right to deactivate inactive accounts at our discretion.
 
-## Suggestions
+## Suggestions    {suggestions}
 
 If you take issue with the content hosted on the website of an OCF user,
 the responsibility falls on you to resolve any conflict.
@@ -51,7 +51,7 @@ maintained in compliance with our policies. There is nothing the OCF can
 do to change this outcome. Please do not assume that we support or endorse
 information posted by our members.
 
-### DMCA considerations
+### DMCA considerations    {dmca}
 
 If you require content to be taken down under the DMCA for copyright reasons,
 you may send a DMCA takedown notice to the University, which will forward

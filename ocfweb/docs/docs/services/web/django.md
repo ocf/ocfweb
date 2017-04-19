@@ -3,7 +3,7 @@
 Django is a popular web framework for Python applications.
 
 
-## Starting a Django project
+## Starting a Django project    {setup}
 
 The necessary scripts for you to create Django projects are installed on our
 login server, _ssh.ocf.berkeley.edu_.

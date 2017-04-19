@@ -18,7 +18,7 @@ When contacting OCF staff, please reference
  * your OCF account name (if known)
  * the software you are using and any error messages encountered
 
-## In person
+## In person    {in-person}
 
 The OCF lab is located on the ground level of MLK Student Union (entrance on
 Lower Sproul), Room 171. You will need to show your student ID to the
@@ -27,7 +27,7 @@ publications staff on desk when you enter the lab.
 OCF staff members are usually **not present** during lab open hours. To talk
 with an OCF volunteer staffer, check the [[posted staff hours|staff-hours]].
 
-## Email
+## Email    {email}
 
 Please do **not** send us your password over email, or your account will be
 disabled.
@@ -56,7 +56,7 @@ in-person to ask for it.
   Concerns about computer security, network infrastructure, and abuse of
   resources (including spam) should be sent here.
 
-## Snail mail
+## Snail mail    {mail}
 
 **We do not check our mailbox.** Please don't mail us anything that you'd like
 to ever be read.
@@ -68,7 +68,7 @@ Our address is:
     University of California, Berkeley
     Berkeley, CA 94720
 
-## Legal
+## Legal    {legal}
 
 Use of OCF resources in violation of applicable [university
 policies][usepolicy] and laws, including copyright, spam, and fraud, is not

@@ -1,5 +1,5 @@
 [[!meta title="Printing maintenance"]]
-## Removing printers from service
+## Removing printers from service    {remove}
 
 Ideally, printers shouldn't ever be turned off. Instead, they should be removed
 from the CUPS classes:
@@ -13,13 +13,13 @@ from the CUPS classes:
 version still queues jobs for them for some unknown reason, causing half of
 user jobs to not print.)
 
-## Restoring printer service
+## Restoring printer service    {restore}
 
 Perform the reverse of the above (add the printers back to the classes), then
 double-check that the printers are not paused. Even if staff don't pause them,
 CUPS will pause them automatically if they fail.
 
-## Replacing toner
+## Replacing toner    {toner}
 
 Toner replacement takes only a few seconds. Don't bother recording toner
 replacement, there is no point.
@@ -33,7 +33,7 @@ CC364XD item (same thing, but a dual pack) since it's usually cheaper. Other
 sellers (e.g. Amazon) are often significantly cheaper than Staples, but it
 varies a lot. We try to purchase in bulk when we find them at low cost.
 
-## Replacing maintenance kits
+## Replacing maintenance kits    {maintenance-kits}
 
 We normally replace maintenance kits on schedule, although they can print past
 the official limit. (Print quality might start to suffer, and it might not be
@@ -61,7 +61,7 @@ the warning reset.
 
 Our printers use [CB388A maintenance kits][maintkit].
 
-## Stats
+## Stats    {stats}
 
  * [How much toner is left in each printer][oracle]? (expressed as approximate
    pages remaining over time)

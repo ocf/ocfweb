@@ -7,7 +7,7 @@ services/vhost/mail]].**
 Virtual hosting mail allows groups to receive mail at `@group.b.e` addresses,
 and send from those same addresses. It complements our web hosting nicely.
 
-## Features
+## Features    {features}
 
 * Each user has mail forwarding.
 
@@ -21,7 +21,7 @@ and send from those same addresses. It complements our web hosting nicely.
   possible.
 
 
-## Technical implementation
+## Technical implementation    {implementation}
 
 There is a database on our MySQL host for storing email vhost information. It
 has one table, `addresses`, with columns for the incoming address, password,
@@ -44,6 +44,6 @@ clients to send as a vhost address. (See `/etc/pam.d/smtp` and
 `/etc/pam-mysql.conf` on anthrax).
 
 
-## How do I add mail hosting to a group?
+## How do I add mail hosting to a group?    {add}
 
 See [[here|doc staff/procedures/vhost#mail]].

@@ -1,7 +1,7 @@
 [[!meta title="About us"]]
 
 
-## The mission
+## The mission    {mission}
 
 The OCF is an all-volunteer, student-run, Chartered Program of the [Associated
 Students of the University of California (ASUC)][asuc] dedicated to free
@@ -12,7 +12,7 @@ she seeks, and to appeal to all members of the Berkeley campus community with
 unsatisfied computing needs and to provide a place for those interested in
 computing to fully explore that interest.
 
-## What do we do?
+## What do we do?    {what-we-do}
 
 The Open Computing Facility provides free computing services to students,
 faculty, and staff, ranging from printing to expiration-free web space to Unix
@@ -49,7 +49,7 @@ concerns or opinions about the OCF. All OCF members are welcome to join the
 Board of Directors, and the general public is welcome to attend BoD Meetings.
 [Minutes of all previous meetings][minutes] are available online.
 
-## How to find us
+## How to find us    {location}
 
 The OCF is located on the ground floor of MLK Student Union. For hours and a
 map, see [[here|doc services/lab]].

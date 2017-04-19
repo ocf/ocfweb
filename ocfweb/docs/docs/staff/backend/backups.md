@@ -1,5 +1,5 @@
 [[!meta title="Backups"]]
-## Backup Storage
+## Backup Storage    {storage}
 
 We currently store our on-site backups across a couple drives on `hal`:
 
@@ -11,7 +11,7 @@ We currently store our on-site backups across a couple drives on `hal`:
   `/dev/vg-backups/backups-scratch`, which is scratch space for holding
   compressed and encrypted backups which we then upload to off-site storage.
 
-## Off-Site Backups
+## Off-Site Backups    {offsite}
 
 Our main off-site backup location is [Box][box]. Students automatically get an
 "unlimited" plan, so it provides a nice and free location to store encrypted
@@ -24,7 +24,7 @@ with only OCF officers to make sure the backups are kept as secure as possible,
 since they contain all of the OCF's important data.  The backups are already
 encrypted, but it doesn't hurt to add a little extra security to that.
 
-## Backup Contents
+## Backup Contents    {contents}
 
 Backups currently include:
 
@@ -36,7 +36,7 @@ Backups currently include:
 * LDAP and Kerberos data
 * A [smattering of random files on random servers][backed-up-files]
 
-## Backup Procedures
+## Backup Procedures    {procedures}
 
 Backups are currently made daily via a cronjob on `hal` which calls rsnapshot.
 The current settings are to retain 7 daily backups, 4 weekly backups, and 6
@@ -51,13 +51,13 @@ actually changed). A full backup is about ~1.3TiB of space and growing.
 files can't be incrementally backed up, those take a whole ~2 GiB each time, so
 the total backup grows by ~3GiB each time.)
 
-#### Request Tracker
+#### Request Tracker    {rt}
 
 The RT database is stored in the `ocfrt` database on the MySQL host. It is
 possible to restore RT using just the database; in fact, simply running puppet
 is now sufficient to bring up a fully-functioning RT server.
 
-## Ideas for backup improvements
+## Ideas for backup improvements    {improvements}
 
 Some general ideas for improving backups:
 

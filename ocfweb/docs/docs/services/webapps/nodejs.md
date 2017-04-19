@@ -7,7 +7,7 @@ apphosting, you'll want to host with FastCGI instead.**
 You will want to deploy your application using nvm so that you can easily
 install and manage dependencies and versions.
 
-## Setting up nvm
+## Setting up nvm    {setup}
 
 1. Create a directory for your app to live in:
 
@@ -34,7 +34,7 @@ install and manage dependencies and versions.
 4. Copy your code to `~/myapp/src` or similar, and install any dependencies
    using `npm`.
 
-## Preparing your app to be supervised
+## Preparing your app to be supervised    {supervise}
 
 Create a file at `~/myapp/run` with content like:
 
@@ -55,12 +55,12 @@ executable:
 Test executing the run script. You should be able to access your website while
 running it (or see any errors in your terminal).
 
-## Supervise your app with systemd
+## Supervise your app with systemd    {systemd}
 
 Cool, your app works. [[Set up systemd|doc services/webapps#supervise]] to
 supervise your app (so that it starts and restarts automatically).
 
-## Suggestions/improvements?
+## Suggestions/improvements?    {suggestions}
 
 If you have a better way to host Node.js-based apps on the app server (or a
 suggestion for how we could improve this documentation), [[send us an email|doc

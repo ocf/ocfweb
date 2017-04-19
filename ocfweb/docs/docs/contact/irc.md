@@ -10,7 +10,7 @@ mostly for non-OCF-related discussion.
 
 You have three simple options for chatting:
 
-### Option 1: Use our web client
+### Option 1: Use our web client    {web}
 
 We have a web client set up at [irc.ocf.berkeley.edu][webirc] using the popular
 open-source web client [The Lounge][thelounge]. It's already set up with our
@@ -20,7 +20,7 @@ if you want, but it's not required. Once connected, you can type messages in
 the bottom bar and press enter and the OCF staff connected will respond to you
 as soon as we see your messages.
 
-### Option 2: Using your own client
+### Option 2: Using your own client    {client}
 
 You can connect using any IRC client. If you do not already have an IRC client,
 we recommend using [Hexchat][hexchat] because it is free, open source, and
@@ -30,7 +30,7 @@ generally easy to use. Our server settings are listed below:
 * **Port:** `6697` (requires SSL/TLS)
 * **Channels:** `#rebuild` (best to reach staff), `#ocf` (best for off-topic)
 
-### Option 3: Over SSH
+### Option 3: Over SSH    {ssh}
 
 If you're logged in to the OCF login server via [[SSH|doc services/shell]], you
 can use the pyrc script to easily connect to IRC. It will automatically launch
@@ -40,12 +40,12 @@ when you close the terminal.
 To do so, just type `pyrc` and hit enter. irssi will launch; press alt +
 left/right to switch which channel you're viewing.
 
-## Authenticating with NickServ
+## Authenticating with NickServ    {auth}
 
 To make sure that you can keep the same username, even after being disconnected
 and reconnecting again, you can register with NickServ.
 
-### Registering with NickServ
+### Registering with NickServ    {register}
 
 To register with NickServ, choose a password and enter the command `/msg
 NickServ register [password] [email]` into your IRC client. NickServ should
@@ -54,7 +54,7 @@ your email. To see if you are registered properly, try running `/msg NickServ
 info`. You should see your email address, and where you are logged in from,
 among other results.
 
-### Setting up NickServ to work with ZNC
+### Setting up NickServ to work with ZNC    {znc}
 
 If you are [[using ZNC|doc staff/staffvm/znc]], load the [NickServ
 module][nickserv] by running `/znc LoadMod nickserv` while connected to your

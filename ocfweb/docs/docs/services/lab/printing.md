@@ -17,14 +17,14 @@ Please note:
    large job, please be patient while the print server processes it.
 
 
-## Remaining quota
+## Remaining quota     {quota}
 
 To see how many pages you have left for the day and semester, run the `paper`
 command [[over the web|commands]] or [[in the shell|doc services/shell]]. Print
 quota is also displayed at the top of the screen when using a lab computer.
 Check your print balance regularly!
 
-## Printing refunds
+## Printing refunds    {refunds}
 
 Pages are **not** normally refunded, except in cases of technical issues. In
 this case, you should talk with the Publications Center staff at the front desk

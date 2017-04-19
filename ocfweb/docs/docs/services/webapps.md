@@ -5,7 +5,7 @@ have applied for apphosting. For normal user accounts or for groups without
 apphosting, you'll want to host with FastCGI instead.**
 
 
-## Introduction
+## Introduction    {intro}
 
 All accounts include our [[standard web hosting|doc services/web]], which is
 suitable for static content, PHP (WordPress, Joomla, etc.), and CGI/FastCGI.
@@ -13,7 +13,7 @@ For student groups wishing to host more advanced web apps with the OCF (Django,
 Flask, Rails, Node.js, etc.), we offer a separate hosting platform which
 provides more flexibility.
 
-## App hosting eligibility
+## App hosting eligibility    {eligibility}
 
 App hosting is *only available for student groups with [[virtually-hosting
 domain names|doc services/vhost]]* (either group.berkeley.edu, or your own
@@ -21,7 +21,7 @@ separately-purchased domain name). If you don't already have a virtual host and
 want to use app hosting, see below for instructions; please don't fill out a
 virtual host request form.
 
-## Requesting app hosting
+## Requesting app hosting    {request}
 
 To request app hosting, you need to first [[create an OCF group account|doc
 membership]]. Once you have an account, email `hostmaster@ocf` with at least
@@ -33,19 +33,19 @@ the following information:
   domain)
 * The technologies/languages your site is built on
 
-## Requirements for virtually-hosted apps
+## Requirements for virtually-hosted apps    {requirements}
 
 All [[normal requirements for virtual hosts|doc services/vhost]] apply. In
 particular, be sure you are in compliance with the university student group
 disclaimer policy, and that your website features a "Hosted by OCF" banner.
 
-## Technical documentation
+## Technical documentation    {docs}
 
 You can host basically any kind of web application that can bind to a socket.
 We provide suggested deployment instructions for some popular web applications
 below, but if you know what you're doing, you needn't follow them.
 
-### Connecting to the application server
+### Connecting to the application server    {connecting}
 
 We provide a separate server (currently named `werewolves`), for hosting
 applications. **You should connect to this server**, not to the public login
@@ -61,7 +61,7 @@ If your login is refused (but you *can* log in to `ssh.ocf.berkeley.edu`), your
 account probably isn't configured yet. Contact us (see above) to request app
 hosting on your account.
 
-### Routing traffic to your app
+### Routing traffic to your app    {routing}
 
 Our application server uses a reverse proxy to route traffic to UNIX sockets
 located at `/srv/apps/username/username.sock`. Your application should bind to
@@ -163,13 +163,13 @@ users to switch versions).
 The pages above provide instructions on doing this with popular programming
 languages.
 
-### How do I get a database for my application?
+### How do I get a database for my application?    {database}
 
 A [[MySQL database|doc services/mysql]] is included with your OCF account. You
 should probably just use that. We're *not* going to set up a different database
 for you (you could install one in your home directory if you *really* want to).
 
-### I'm running my app on port 3000 but I can't access it.
+### I'm running my app on port 3000 but I can't access it.    {firewall}
 
 The app server is behind a firewall; you won't be able to access most ports
 from outside of the OCF. You could come work from [[the lab|doc services/lab]],

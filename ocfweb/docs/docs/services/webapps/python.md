@@ -8,7 +8,7 @@ apphosting, you'll want to host with FastCGI instead. See our instructions for
 You will want to deploy your application using a virtualenv so that you can
 easily install and manage dependencies and versions.
 
-## Setting up a virtualenv
+## Setting up a virtualenv    {setup}
 
 1. Create a directory for your app to live in:
 
@@ -29,7 +29,7 @@ easily install and manage dependencies and versions.
 4. Copy your code to `~/myapp/src` or similar, and install any dependencies
    using `pip`.
 
-## Installing gunicorn
+## Installing gunicorn    {gunicorn}
 
 We recommend using gunicorn to serve your application. After activating your
 virtualenv, install it with `pip install gunicorn`.
@@ -38,7 +38,7 @@ Note that you may see a warning about a syntax error. As long as the output
 ends in "Successfully installed gunicorn", [it's safe to ignore
 this][lol-syntax].
 
-## Preparing your app to be supervised
+## Preparing your app to be supervised    {supervise}
 
 Create a file at `~/myapp/run` with content like:
 
@@ -56,7 +56,7 @@ then make `run` executable:
 Test executing the run script. You should be able to access your website while
 running it (or see any errors in your terminal).
 
-## Supervise your app with systemd
+## Supervise your app with systemd    {systemd}
 
 Cool, your app works. [[Set up systemd|doc services/webapps#supervise]] to
 supervise your app (so that it starts and restarts automatically).
@@ -73,7 +73,7 @@ and then running `systemctl --user daemon-reload`. After that, you can use
 
     systemctl --user reload myapp
 
-## Suggestions/improvements?
+## Suggestions/improvements?    {suggestions}
 
 If you have a better way to host Python-based apps on the app server (or a
 suggestion for how we could improve this documentation), [[send us an email|doc

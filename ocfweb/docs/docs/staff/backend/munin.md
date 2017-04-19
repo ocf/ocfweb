@@ -9,7 +9,7 @@ list of available nodes from LDAP.
 We monitor servers, desktops, and staff VMs, but not the hozer boxes.
 Additionally, we don't receive email alerts for staff VMs.
 
-## Automated alerts
+## Automated alerts    {alerts}
 
 Munin sends mail to root whenever certain stats run out of bounds for a
 machine, e.g. if disk usage goes above 92%. Some plugins have configurable
@@ -34,7 +34,7 @@ very flexible about disabling alerts from plugins, so, if there is a noisy
 variable you want to ignore alerts for, you can add it to the list of
 `IGNORED_WARNINGS`.
 
-## Custom plugins
+## Custom plugins    {plugins}
 
 We provide a Puppet class, `ocf::munin::plugin`, which installs a custom Munin
 plugin to a machine, for example, to monitor the number of players on our CS:GO

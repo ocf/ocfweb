@@ -8,7 +8,7 @@ that [[here|doc services/web/rails]].**
 You will want to deploy your application using [RVM][rvm] so that you can easily
 install and manage dependencies and versions.
 
-## Setting up RVM
+## Setting up RVM    {setup}
 
 1. Create a directory for your app to live in:
 
@@ -44,7 +44,7 @@ install and manage dependencies and versions.
    gems, but if building a gem fails due to a missing header, just [[send us an
    email|doc contact]] so we can add it.
 
-## Installing unicorn
+## Installing unicorn    {unicorn}
 
 We recommend using unicorn to serve your application. After setting up RVM, add
 a few lines to your app's `Gemfile` (or add a single line if you already have a
@@ -56,7 +56,7 @@ a few lines to your app's `Gemfile` (or add a single line if you already have a
 
 and run `bundle install` to install it, as with any new gems.
 
-## Preparing your app to be supervised
+## Preparing your app to be supervised    {supervise}
 
 Create a file at `~/myapp/run` with content like:
 
@@ -86,12 +86,12 @@ Some things to keep in mind:
   `config.public_file_server.enabled` (rails 5) to true in
   `config/environments/production.rb`.
 
-## Supervise your app with systemd
+## Supervise your app with systemd    {systemd}
 
 Cool, your app works. [[Set up systemd|doc services/webapps#supervise]] to
 supervise your app (so that it starts and restarts automatically).
 
-## Suggestions/improvements?
+## Suggestions/improvements?    {suggestions}
 
 If you have a better way to host Rails-based apps on the app server (or a
 suggestion for how we could improve this documentation), [[send us an email|doc

@@ -38,7 +38,7 @@ the battery-backed write cache), but we find it to be a small amount (and worth
 the operational benefits of never having to touch MegaCLI again).
 
 
-### Instructions
+### Instructions    {instructions}
 
 These assume you're willing to destroy all the data on the server and rebuild
 it. They also assume you're currently using MegaRAID.

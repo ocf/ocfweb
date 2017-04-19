@@ -1,7 +1,7 @@
 [[!meta title="Account"]]
 
 
-## Introduction
+## Introduction    {intro}
 
 Your OCF account is both proof of your [[membership|doc membership]] and the
 means by which you authenticate to the variety of [[services|doc services]]
@@ -14,7 +14,7 @@ Accounts are not normally deactivated after your membership [[eligibility|doc
 membership/eligibility]] expires (e.g., graduation). In fact, we have active
 accounts dating back to at least 1995.
 
-## Passwords
+## Passwords    {passwords}
 
 OCF staff members **do not need to know your password**. In fact, we can't
 "look it up" either since we don't store your password directly but rather a
@@ -25,7 +25,7 @@ Email is generally insecure, so please **do not send passwords over email**. We
 don't want to know it, and we have to disable your account if you tell it to
 us!
 
-### Changing your password
+### Changing your password    {change-password}
 
 #### Using CalNet
 
@@ -101,19 +101,19 @@ For security purposes, please include the following with your request:
 If you no longer have your Cal ID, you may substitute it with another
 government-issued ID.
 
-### MySQL
+### MySQL    {mysql}
 
 Access to your [[MySQL database|doc services/mysql]], if you have one, is
 protected by a separate password.
 
-## After graduation
+## After graduation    {post-grad}
 
 Currently, we don't actively disable accounts, so you are free to use your
 account until that policy changes. We can't promise all of your OCF account
 privileges into perpetuity, however.  We are run by students volunteers using
 student money.
 
-## Disabled accounts
+## Disabled accounts    {disabled}
 
 Some common reasons accounts are disabled:
 

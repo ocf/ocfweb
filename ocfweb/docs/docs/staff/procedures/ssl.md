@@ -14,7 +14,7 @@ This allows us to easily distinguish between certificates in cases where a
 service may be hosted by multiple hostnames, or where the hostname changes,
 without sharing private keys.
 
-## Setting up SSL
+## Setting up SSL    {setup}
 
 ### Generating a key/CSR
 
@@ -61,7 +61,7 @@ The bundle file is automatically generated from the certificate you provided,
 and contains the InCommon intermediate certificate.
 
 
-## Verifying certificates
+## Verifying certificates    {verify}
 
 For the host `rt.ocf.berkeley.edu` on port 443 (HTTPS), try connecting using
 the OpenSSL client.

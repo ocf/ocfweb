@@ -12,7 +12,7 @@ non-standard packages installed:
 
 For a full list of available modules, run `phpinfo()` from a PHP script.
 
-## Custom PHP settings
+## Custom PHP settings    {custom-settings}
 
 If the default PHP settings are problematic for your site (for example, if you
 require larger than normal file uploads), you can customize the PHP settings
@@ -26,7 +26,7 @@ and add only the settings you wish to change.
 Note that `.user.ini` filename should be used, as our webserver will not look
 for (per-user) `php.ini` files.
 
-### Example `.user.ini` file
+### Example `.user.ini` file     {example}
 
 The following file, located at `~/public_html/.user.ini`, is an example of a
 good `.user.ini` file.

@@ -4,7 +4,7 @@ The OCF's documentation (formerly known as "the wiki") is a part of the OCF
 website built with [Markdown][markdown] where we provide technical support for
 users and documentation for fellow staff.
 
-## Overview
+## Overview    {overview}
 
 Docs is currently a part of the OCF's main website, known as [ocfweb][ocfweb].
 Markdown syntax is parsed by [Mistune][mistune] with syntax highlighting done
@@ -15,7 +15,7 @@ website, e.g. from [[Virtual Hosting|doc services/vhost#h4_hosting-badge]]:
 
     All virtual hosts on the OCF must include an [[OCF banner|doc services/vhost/badges]] on the front page that links to the [[OCF home page|home]].
 
-## Editing docs
+## Editing docs    {editing}
 
 Edits to the documentation are made via the OCF website's Git repository on
 GitHub. The editing process is like our other Git workflows:

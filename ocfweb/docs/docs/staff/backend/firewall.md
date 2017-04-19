@@ -8,7 +8,7 @@ are also behind the firewall.
 
 [asa-5585]: http://www.cisco.com/c/en/us/products/collateral/security/asa-5500-series-next-generation-firewalls/product_bulletin_c25-614415.html
 
-## Administering the firewall
+## Administering the firewall    {administer}
 
 ### Option 1: Over SSH
 

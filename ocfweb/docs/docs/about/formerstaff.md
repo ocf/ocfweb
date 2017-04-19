@@ -1,6 +1,6 @@
 [[!meta title="Where alumni have gone"]]
 
-## Where have OCF staffers gone after leaving the OCF?
+## Where have OCF staffers gone after leaving the OCF?    {alumni}
 
 Many OCF staffers have found the skills and experience they gained from being
 OCF staff have been useful after leaving us. While we obviously can't claim
@@ -11,7 +11,7 @@ of making a difference helping your fellow students.
 
 Some of the places OCF staffers have gone on to work at:
 
-### On the Berkeley Campus
+### On the Berkeley Campus    {on-campus}
 
 * Berkeley Multimedia Research Center
 * Center for Extreme Ultraviolet Astrophysics
@@ -27,7 +27,7 @@ Some of the places OCF staffers have gone on to work at:
 * [School of Law - Boalt Hall](http://www.law.berkeley.edu/)
 * [Statistical Computing Facility](http://statistics.berkeley.edu/computing)
 
-### Elsewhere
+### Elsewhere    {elsewhere}
 
 * [The Aerospace Corporation](http://www.aerospace.org)
 * [Amazon](http://www.amazon.com)
@@ -112,7 +112,7 @@ gained as OCF staff:
 * [CalLUG - the UCB Linux User's Group](https://www.ocf.berkeley.edu/~linux/)
 * [Computer Science Undergrad Assoc.](http://www.csua.berkeley.edu/)
 * [Eta Kappa Nu](http://www-hkn.eecs.berkeley.edu/) (EECS Honor Society)
-* [Experimental Computing Facility](https://callink.berkeley.edu/organization/xcf)
+* [eXperimental Computing Facility](https://callink.berkeley.edu/organization/xcf)
 * Students Improving Campus Online Services
 * [U. C. Society of Electrical Engineers](https://ieee.berkeley.edu) (IEEE Student Chapter)
 * [Upsilon Pi Epsilon](http://upe.berkeley.edu/) (CS Honor Society)
