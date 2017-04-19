@@ -107,18 +107,12 @@ def _get_servers():
         # mesos servers
         ThingToUpgrade.from_hostname(
             'whirlwind',
-            status=ThingToUpgrade.BLOCKED,
-            comments='no mesos packages yet',
         ),
         ThingToUpgrade.from_hostname(
             'pileup',
-            status=ThingToUpgrade.BLOCKED,
-            comments='no mesos packages yet',
         ),
         ThingToUpgrade.from_hostname(
             'monsoon',
-            status=ThingToUpgrade.BLOCKED,
-            comments='no mesos packages yet',
         ),
 
         # raspberry pi
