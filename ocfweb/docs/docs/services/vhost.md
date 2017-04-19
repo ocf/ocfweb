@@ -43,7 +43,7 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
      of your website (see the section below).
 5.   **Obtain a domain (faculty and staff only).** The OCF will not request
      personal domains for individuals, so faculty and staff must obtain their
-     own.
+     own. Your department may be able to assist you with this step.
 6.   **Complete request form.** Complete the [[virtual hosting request
      form|request_vhost]] online. OCF staff will review your request and
      contact the university hostmaster on your behalf if necessary.

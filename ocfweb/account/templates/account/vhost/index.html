@@ -4,20 +4,20 @@
 {% block content %}
     <div class="ocf-content-block">
         <p>
-            One of the benefits of hosting your student group's site with the OCF is that you have the option of using an address like "mygroup.berkeley.edu" to access your site.
-        However, in order to obtain a berkeley.edu name for your site, you must meet both university policies regarding acceptable use of berkeley.edu names, as well as OCF policies for virtual hosting.
+            One of the benefits of hosting your website with the OCF is that department and student groups have the option of using an address like "mygroup.berkeley.edu" to access their site.
+            However, in order to use a custom domain name for your site, you must meet both university policies regarding acceptable use of berkeley.edu names, as well as OCF policies for virtual hosting.
         </p>
         <p>
             Please start by reading the
             <a href="{% url 'doc' 'services/vhost' %}">OCF Virtual Hosting documentation</a>.
-            If you believe your group satisfies all requirements listed, you
-            may complete the form below to request for us to set up a virtual
-            host for your account.
+            If you believe you have satisfied all requirements listed, you may
+            complete the form below to request for us to set up a virtual host
+            for your account.
         </p>
 
         <p>
             You are currently logged in using the OCF account
-            <strong>{{user}}</strong>. If this is not the group you wish to
+            <strong>{{user}}</strong>. If this is not the account you wish to
             request a virtual hosting for, please <a href="{% url 'logout' %}">
             log out</a> and log back in.
         </p>
@@ -25,10 +25,10 @@
         <div class="well">
             <h3 style="margin-top: 0;">Virtual Hosting Request Form</h3>
             <ul>
-                <li><strong>Group Name:</strong> {{attrs.cn.0}}</li>
-                <li><strong>Group OCF Account:</strong> {{user}}</li>
+                <li><strong>Name:</strong> {{attrs.cn.0}}</li>
+                <li><strong>OCF Account:</strong> {{user}}</li>
                 <li>
-                    <strong>Current OCF-Hosted Group Website:</strong>
+                    <strong>Current OCF-Hosted Website:</strong>
                     <a href="{{group_url}}">{{group_url}}</a>
                 </li>
             </ul>
@@ -42,6 +42,7 @@
                     </div>
                 {% endif %}
 
+                {{form.requested_own_domain|bootstrap}}
                 {{form.requested_subdomain|bootstrap}}
                 {{form.requested_why|bootstrap}}
 
@@ -56,7 +57,9 @@
                 {{form.website_disclaimer_text|bootstrap}}
                 {{form.website_updated_software|bootstrap}}
 
-                {{form.your_name|bootstrap}}
+                {% if is_group %}
+                    {{form.your_name|bootstrap}}
+                {% endif %}
                 {{form.your_email|bootstrap}}
                 {{form.your_position|bootstrap}}
                 {{form.comments|bootstrap}}

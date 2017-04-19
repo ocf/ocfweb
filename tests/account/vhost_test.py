@@ -1,6 +1,7 @@
 import pytest
 
 from ocfweb.account.vhost import valid_domain
+from ocfweb.account.vhost import valid_domain_external
 
 
 @pytest.mark.parametrize('domain,expected', [
@@ -36,3 +37,17 @@ from ocfweb.account.vhost import valid_domain
 ])
 def test_valid_domain(domain, expected):
     assert valid_domain(domain) is expected
+
+
+@pytest.mark.parametrize('domain,expected', [
+    # any proper domain goes
+    ('ocf.berkeley.edu', True),
+    ('example.com', True),
+
+    # malformatted domains
+    ('edu', False),
+    ('.io', False),
+    ('www..com', False),
+])
+def test_valid_domain_external(domain, expected):
+    assert valid_domain_external(domain) is expected
