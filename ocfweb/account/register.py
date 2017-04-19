@@ -8,11 +8,11 @@ from django.core.urlresolvers import reverse
 from django.forms.forms import NON_FIELD_ERRORS
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from ocflib.account.creation import CREATE_PUBLIC_KEY
 from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest
 from ocflib.account.search import user_attrs_ucb
 from ocflib.account.submission import NewAccountResponse
-from ocflib.constants import CREATE_PUBLIC_KEY
 
 from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required

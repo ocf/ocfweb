@@ -1,7 +1,6 @@
 from urllib.parse import urlencode
 from urllib.parse import urljoin
 
-import ocflib.constants as constants
 import ocflib.ucb.cas as cas
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http import HttpResponse
@@ -32,11 +31,11 @@ def _login_url(service):
     params = {'service': service,
               'renew': 'true'}
     return '%s?%s' % (
-        urljoin(constants.CAS_URL, 'login'), urlencode(params))
+        urljoin(cas.CAS_URL, 'login'), urlencode(params))
 
 
 def _logout_url(request, next_page=None):
-    url = urljoin(constants.CAS_URL, 'logout')
+    url = urljoin(cas.CAS_URL, 'logout')
     if next_page:
         protocol = ('http://', 'https://')[request.is_secure()]
         host = request.get_host()
