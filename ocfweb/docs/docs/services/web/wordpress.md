@@ -181,5 +181,10 @@ If that's the case, you can fix it by:
    $ wp option update siteurl 'https://example.com'
    ```
 
+If you've just received virtual hosting and you're changing your site URL from
+`https://www.ocf.berkeley.edu/~yourgroup` to `https://yourgroup.berkeley.edu`,
+you may additionally need to edit the `.htaccess` file in the root of your
+WordPress installation. Specifically, you should replace `/~yourgroup/` with
+`/` whenever it occurs in that file.
 
 [wp-cli]: http://wp-cli.org/
