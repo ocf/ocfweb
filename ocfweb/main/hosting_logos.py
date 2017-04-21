@@ -1,3 +1,4 @@
+import mimetypes
 import re
 from os.path import dirname
 from os.path import isfile
@@ -23,6 +24,14 @@ LEGACY_IMAGES = [
     'metal202x54.gif',
 ]
 
+# images which have been replaced by more tasteful versions
+REPLACED_IMAGES = {
+    'ocfbadge_mini8.png': 'ocf-hosted-penguin.png',
+    'ocfbadge_platinum.png': 'ocf-hosted-penguin.png',
+    'ocfbadge_mini8dark.png': 'ocf-hosted-penguin-dark.png',
+    'ocfbadge_mini8darkglow.png': 'ocf-hosted-penguin-dark.png',
+}
+
 HOSTING_LOGOS_PATH = join(dirname(dirname(__file__)), 'static', 'img', 'hosting-logos')
 
 
@@ -32,8 +41,7 @@ def get_image(image):
     if not match:
         raise Http404()
 
-    # 'image/png' or 'image/svg'
-    content_type = 'image/png' if match.group(1) == 'png' else 'image/svg+xml'
+    content_type, _ = mimetypes.guess_type(image)
 
     path = join(HOSTING_LOGOS_PATH, image)
 
@@ -53,6 +61,8 @@ def hosting_logo(request, image):
     # legacy images
     if image in LEGACY_IMAGES:
         return redirect('hosting-logo', re.sub('\.[a-z]+$', '.png', image), permanent=True)
+    elif image in REPLACED_IMAGES:
+        return redirect('hosting-logo', REPLACED_IMAGES[image], permanent=True)
 
     content, content_type = get_image(image)
     return HttpResponse(

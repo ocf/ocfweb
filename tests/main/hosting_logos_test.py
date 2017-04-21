@@ -48,6 +48,7 @@ def test_images_load(path, image, client):
 ])
 @pytest.mark.parametrize('image', [
     'ocf-hosted-penguin.svg',
+    'ocf-hosted-penguin-dark.svg',
 ])
 def test_svg_images_load(path, image, client):
     """This is the same sanity check as test_images_load, but checks SVGs
