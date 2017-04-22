@@ -7,7 +7,7 @@ The following individuals and groups are eligible for [[membership|doc membershi
 
 The Open Computing Facility provides accounts and services to members. Members
 must meet at least one of the following eligibility criteria during account
-creation as verified electronically **or** by presentation of the specified
+creation (verifiable electronically) **or** by presentation of the specified
 documentation:
 
 ## Individuals
@@ -75,7 +75,7 @@ with the campus (e.g. Richmond Field Station))
 * Current Cal ID of the requesting person, and signatory status or a letter
   from a signatory authorizing the account request
 
-### Dpeartment-sponsored groups (e.g. research groups)
+### Department-sponsored groups (e.g. research groups)
 
 * Letter from your Principal Investigator on departmental letterhead or an
   email from their bMail stating departmental recognition of the group and
