@@ -31,6 +31,12 @@
     hooks:
     -   id: reorder-python-imports
         language_version: python3
+-   repo: https://github.com/asottile/pyupgrade.git
+    sha: v1.0.6
+    hooks:
+    -   id: pyupgrade
+        language_version: python3
+        args: ['--py3-plus']
 -   repo: https://github.com/Lucas-C/pre-commit-hooks.git
     sha: v1.0.1
     hooks:
