@@ -101,6 +101,9 @@ For security purposes, please include the following with your request:
 If you no longer have your Cal ID, you may substitute it with another
 government-issued ID.
 
+Out of respect for your privacy, any copies of documents you send us will be
+destroyed once we have verified your identity.
+
 ### MySQL
 
 Access to your [[MySQL database|doc services/mysql]], if you have one, is
