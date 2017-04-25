@@ -66,6 +66,7 @@ def get_hosts():
             children=[
                 Host.from_ldap(hostname)
                 for hostname in (
+                    'fallingrocks',
                     'monsoon',
                 )
             ]
@@ -105,7 +106,6 @@ def get_hosts():
             children=[
                 Host.from_ldap(hostname)
                 for hostname in (
-                    'fallingrocks',
                     'pileup',
                 )
             ],
