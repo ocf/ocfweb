@@ -42,6 +42,22 @@ def test_images_load(path, image, client):
     assert resp.get('Content-Type') == 'image/png'
 
 
+@pytest.mark.parametrize('path', [
+    '/images/hosted-logos/',
+    '/hosting-logos/',
+])
+@pytest.mark.parametrize('image', [
+    'ocf-hosted-penguin.svg',
+    'ocf-hosted-penguin-dark.svg',
+])
+def test_svg_images_load(path, image, client):
+    """This is the same sanity check as test_images_load, but checks SVGs
+    separately to make sure they return the right MIME type."""
+    resp = client.get(path + image, follow=True)
+    assert resp.status_code == 200
+    assert resp.get('Content-Type') == 'image/svg+xml'
+
+
 @pytest.mark.parametrize('image', [
     'berknow150x40.jpg',
     'binnov-157x46.gif',
