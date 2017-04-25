@@ -3,6 +3,7 @@ cached-property
 # https://github.com/celery/celery/pull/3831
 ckuehl-celery[redis]==4.0.2.post1
 django-bootstrap-form
+django-haystack
 django-ipware
 django-mathfilters
 django-redis
@@ -19,3 +20,4 @@ pycrypto
 pygments
 pymysql
 python-dateutil
+Whoosh
