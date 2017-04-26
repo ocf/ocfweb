@@ -2,7 +2,7 @@
 
 ## Introduction
 
-`unsorry` is the inverse of [[sorry|docs staff/scripts/sorry]].
+`unsorry` is the inverse of [[sorry|doc staff/scripts/sorry]].
 It will remove the user from the sorry group, re-enable a login shell,
 and generally allow them to use their account again. Occasionally more
 than simply `unsorry` may be necessary depending on changes in the
