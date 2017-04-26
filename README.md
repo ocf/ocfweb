@@ -6,6 +6,7 @@ ocfweb
 
 [The main ocf website.](https://www.ocf.berkeley.edu/)
 
+
 ## Working on `ocfweb`
 
 Clone the repo, and be sure to check out submodules:
@@ -15,6 +16,7 @@ Clone the repo, and be sure to check out submodules:
 
 If you run into problems with scss where it can't import bootstrap, it's
 because you forgot to run the second command.
+
 
 ### Running in development mode
 
@@ -44,6 +46,7 @@ ocfweb, Jenkins will attempt to build and test your branch automatically.
 If your build fails, you can log into Jenkins to see which tests you've failed
 and fix them, if running `make test` locally didn't already tell you.
 
+
 ### Running pre-commit
 
 We use [pre-commit](http://pre-commit.com/) to lint our code before commiting.
@@ -58,6 +61,17 @@ test` as usual, which will also run the hooks.
 
 Almost all build failures of ocfweb can be tied to something `pre-commit`
 probably would have caught.
+
+
+### Installing packages
+
+To install a package to the production environment, add it to
+`requirements-minimal.txt`, then run `make upgrade-requirements`. Similarly, to
+install to the development environment, add to `requirements-dev-minimal.txt`
+and run `make upgrade-requirements`. Use as loose a version requirement as
+possible, e.g. try `django` or `django>=1.10,<1.10.999` before
+`django==1.10.0`.
+
 
 -----
 
