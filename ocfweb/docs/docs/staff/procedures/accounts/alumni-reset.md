@@ -1,4 +1,4 @@
-[[!meta title="Alumni Account Reset"]]
+[[!meta title="Alumni account reset"]]
 
 Occasionally former OCF members want to re-enable their accounts after
 they've been disabled for various reasons, including weak passwords,
@@ -13,11 +13,14 @@ password on their account, but they do have a CalNet login, you can manually
 add the Calnet UID to their account in LDAP to let them perform a password
 reset. They may also need to have a Kerberos principal added for them.
 
-Please make sure to confirm the user's CalNet ID using the Berkeley Directory.
+Please make sure to confirm the user's CalNet ID using the Berkeley Directory,
+or by searching the Cal Alumni Network. Alumni profile URLs are in the form
+`https://cal.berkeley.edu/profile.php?u=<calnet_uid>`.
 
 To perform the association, simply follow the steps outlined in the
 [[LDAP Association|doc staff/procedures/accounts/association]] documentation
-with regards to adding the `calnetUid` record.
+with regards to adding the `calnetUid` record. However, don't delete it after
+you're done.
 
 #### Missing Kerberos principal    {kerberos}
 
@@ -34,24 +37,17 @@ their password:
 
 To add the principal, run the following:
 
-    $ kadmin add <username>
+    $ kadmin add --use-defaults --random-password <username>
 
-You will need an admin principal yourself to do this. Choose the default options
-when kadmin presents them.
+You will need an admin principal yourself to do this. `kadmin` will return the
+password and you can relay this to the alumni.
 
-#### Disabled Account
+#### Disabled Account    {sorried}
 
-For various reasons, we've had to disable alumni accounts in the past. Some for weak
-passwords, some for security vulnerabilities, or myriad other reasons. If an account
-is [[sorried|doc staff/scripts/sorry]], once you've made sure the original problem
-has been resolved (you can check `User_Info` via [[check| doc staff/scripts/check]]
-you can [[unsorry|doc staff/scripts/unsorry]] their account and let them log in
-again. It may also be necessary to run `nscd -i groups` on **`tsunami`**, as well as
-`chown -R <username>:ocf ~<username>` to let them log in and access their files.
-Make sure to [[note| doc staff/scripts/note]] your changes as necessary.
+If the account is [[sorried|doc staff/scripts/sorry]], refer to the documentation
+for [[unsorry|doc staff/scripts/unsorry]] to re-enable the account.
 
-
-#### Manual Verification of Alumni Identity
+#### Manual Verification of Alumni Identity    {verify}
 
 Before re-enabling access to an alumni's account, one should verify their identity.
 If they do not have a CalNet UID or are otherwise lacking a reasonable method of
