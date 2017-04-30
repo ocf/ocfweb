@@ -1,3 +1,4 @@
+import math
 from collections import namedtuple
 from datetime import date
 
@@ -75,7 +76,7 @@ MISSING_NAMES = {
 
 # This function makes approximately five million LDAP queries, so it's
 # important that these terms aren't loaded at import time.
-@caching.cache()
+@caching.periodic(math.inf)
 def _bod_terms():
     return [
         Term('Spring 1989',
