@@ -1,5 +1,6 @@
 """Caching decorators for ocfweb."""
 import logging
+import math
 from collections import namedtuple
 from datetime import datetime
 from itertools import chain
@@ -245,7 +246,11 @@ def periodic(period, ttl=None):
         def get_blog_posts():
             ....
     """
-    if ttl is None:
+    if period == math.inf:
+        assert ttl is None, ttl
+        # In the Django cache framework, None means cache forever.
+        ttl = None
+    elif ttl is None:
         ttl = period * 2
 
     def outer(fn):
