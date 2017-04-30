@@ -116,6 +116,11 @@ def get_hosts():
             type='hypervisor'
         ),
 
+        Host.from_ldap(
+            hostname='corruption',
+            type='server',
+        ),
+
         Host('blackhole', 'network', 'Managed Cisco Catalyst 2960S-48TS-L Switch.', []),
 
         Host('pagefault', 'printer', '', []),
