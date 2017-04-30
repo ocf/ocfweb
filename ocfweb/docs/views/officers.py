@@ -7,7 +7,7 @@ from ocflib.account.search import user_attrs
 from ocfweb import caching
 
 
-_Term = namedtuple('Term', ['name', 'gms', 'sms', 'dgms', 'dsms'])
+_Term = namedtuple('_Term', ['name', 'gms', 'sms', 'dgms', 'dsms'])
 
 
 def Term(name, gms, sms, dgms=None, dsms=None):
