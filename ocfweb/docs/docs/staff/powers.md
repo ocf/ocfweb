@@ -50,8 +50,9 @@ This is usually given to staff after a semester of demonstrated interest.
 The most technical and "on-call" staff members are given sudo access (root
 privileges) on all servers and the ability to modify LDAP/Kerberos directly.
 
-This usually corresponds to Deputy Manager(s) and Site Manager(s). Sometimes
-the General Manager may also act as a Deputy Manager.
+The Site Manager(s) and Deputy Site Manager(s) are always Technical Managers.
+Other Deputy Managers and the General Manager(s) often happen to be Technical
+Managers as well.
 
 ### `ocfroot` group
 
