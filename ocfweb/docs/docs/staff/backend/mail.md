@@ -4,11 +4,12 @@
 mail, excluding staff use of Google Apps. Mail sent by users, websites, virtual
 hosts, or basically anything else goes through here.
 
-Received mail to @ocf.berkeley.edu is looked up via LDAP (or the aliases table)
-and forwarded or rejected; nothing is stored.
+Received mail to @ocf.berkeley.edu is forwarded to the address in the `mail`
+attribute of the LDAP account entry (or the [aliases table](https://github.com/ocf/puppet/blob/master/modules/ocf_mail/files/site_ocf/aliases))
+or rejected; nothing is stored.
 
-Received virtual host mail is looked up in a MySQL table and forwarded to the
-correct place. Outgoing virtual host mail is also via anthrax, which uses SMTP
+Received virtual host mail is forwarded to the address stored in a MySQL
+table. Outgoing virtual host mail is also via anthrax, which uses SMTP
 authentication (passwords checked against `crypt(3)`'d passwords in a MySQL
 table). [[There's a whole page with more details about vhost mail.|doc
 staff/backend/mail/vhost]]
