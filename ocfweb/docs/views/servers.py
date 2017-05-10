@@ -129,7 +129,7 @@ def get_hosts():
         Host.from_ldap('tornado', type='nuc'),
     ] + [
         Host.from_ldap(desktop, type='desktop')
-        for desktop in list_desktops()
+        for desktop in sorted(list_desktops())
     ]
 
 
