@@ -15,7 +15,9 @@ reset. They may also need to have a Kerberos principal added for them.
 
 Please make sure to confirm the user's CalNet ID using the Berkeley Directory,
 or by searching the Cal Alumni Network. Alumni profile URLs are in the form
-`https://cal.berkeley.edu/profile.php?u=<calnet_uid>`.
+`https://cal.berkeley.edu/profile.php?u=<calnet_uid>`. You may need an
+actual alumnus to perform the search for you, if you are so inclined but
+unable to access the page on account of your youth.
 
 To perform the association, simply follow the steps outlined in the
 [[LDAP Association|doc staff/procedures/accounts/association]] documentation
