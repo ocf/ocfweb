@@ -1,4 +1,4 @@
-[[!meta title="Running ocfweb on your Staff VM"]]
+[[!meta title="Running ocfweb on your staff VM"]]
 
 If you want to work on [`ocfweb`][0] on your Staff VM, it isn't as
 simple as cloning the repo and running `make dev`, unfortunately.
