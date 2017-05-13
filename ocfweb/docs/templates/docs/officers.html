@@ -33,17 +33,19 @@
             {% endif %}
           {% endfor %}
         </p>
-        <h4>
-          Deputy General Managers
-        </h4>
-          <p>
-            {% for dgm in current_term.dgms %}
-              {% if dgm.end is None %}
-                <strong>{{ dgm.name }}</strong> &lt;{{ dgm.uid }}&gt;
-                {% if dgm.acting %} (acting) {% endif %}<br>
-              {% endif %}
-            {% endfor %}
-          </p>
+        {% if current_term.dgms|length > 0 %}
+          <h4>
+            Deputy General Managers
+          </h4>
+            <p>
+              {% for dgm in current_term.dgms %}
+                {% if dgm.end is None %}
+                  <strong>{{ dgm.name }}</strong> &lt;{{ dgm.uid }}&gt;
+                  {% if dgm.acting %} (acting) {% endif %}<br>
+                {% endif %}
+              {% endfor %}
+            </p>
+        {% endif %}
         <p>
           General Managers handle the organizational activities of the OCF and
           lead the Board of Directors meetings. They are elected by the Board
@@ -60,17 +62,19 @@
             {% endif %}
           {% endfor %}
         </p>
-        <h4>
-          Deputy Site Managers
-        </h4>
-          <p>
-            {% for dsm in current_term.dsms %}
-              {% if dsm.end is None %}
-                <strong>{{ dsm.name }}</strong> &lt;{{ dsm.uid }}&gt;
-                {% if dsm.acting %} (acting) {% endif %}<br>
-              {% endif %}
-            {% endfor %}
-          </p>
+        {% if current_term.dsms|length > 0 %}
+          <h4>
+            Deputy Site Managers
+          </h4>
+            <p>
+              {% for dsm in current_term.dsms %}
+                {% if dsm.end is None %}
+                  <strong>{{ dsm.name }}</strong> &lt;{{ dsm.uid }}&gt;
+                  {% if dsm.acting %} (acting) {% endif %}<br>
+                {% endif %}
+              {% endfor %}
+            </p>
+        {% endif %}
         <p>
           Site Managers lie behind the technical work involved in maintaining
           the OCF lab and other services. They are elected by the Board of
