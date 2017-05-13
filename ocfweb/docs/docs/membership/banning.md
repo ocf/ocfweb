@@ -1,4 +1,4 @@
-[[!meta title="Banning Policy"]]
+[[!meta title="Banning policy"]]
 
 <!-- As established by BoD on October 31, 2016 -->
 

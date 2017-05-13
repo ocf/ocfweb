@@ -1,4 +1,4 @@
-[[!meta title="Additional Documentation"]]
+[[!meta title="Additional documentation"]]
 
 Additional documentation not published publicly can be found at
 `~staff/ocf/privdocs` on supernova.
