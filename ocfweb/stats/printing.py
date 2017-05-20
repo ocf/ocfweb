@@ -134,6 +134,7 @@ def _toner_changes_for_printer(printer):
                     B.position = A.position + 1 AND
                     B.value > A.value AND
                     A.value > 0
+           LIMIT 20;
         ''')
         return reversed(list(cursor))
 
