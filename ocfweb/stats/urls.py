@@ -8,6 +8,8 @@ from ocfweb.stats.job_frequency import daily_jobs_image
 from ocfweb.stats.printing import pages_printed
 from ocfweb.stats.printing import semester_histogram
 from ocfweb.stats.printing import stats_printing
+from ocfweb.stats.semester_job import weekday_jobs_image
+from ocfweb.stats.semester_job import weekend_jobs_image
 from ocfweb.stats.session_count import session_count_image
 from ocfweb.stats.session_length import session_length_image
 from ocfweb.stats.summary import summary
@@ -28,4 +30,6 @@ urlpatterns = [
     url(r'^printing/semester-histogram/graph$', semester_histogram, name='semester_histogram'),
     url(r'^printing/pages-printed$', pages_printed, name='pages_printed'),
     url(r'^printing/daily-job/graph$', daily_jobs_image, name='daily_job_image'),
+    url(r'^printing/weekend-jobs/graph$', weekend_jobs_image, name='weekend_jobs_image'),
+    url(r'^printing/weekday-jobs/graph$', weekday_jobs_image, name='weekday_jobs_image'),
 ]
