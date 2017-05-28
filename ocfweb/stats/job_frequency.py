@@ -81,11 +81,12 @@ def get_jobs_plot(day):
 
     tickLocations = np.arange(1, day_quota + 1)
     width = 0.8
-    ax.bar(tickLocations, today_jobs_count, width, color='blue')
+    ax.bar(tickLocations, today_jobs_count, width)
 
     ax.set_xticks(ticks=tickLocations)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax.yaxis.grid(True)
+    ax.set_ylim(ymin=0)
     ax.set_ylabel('Number of Jobs Printed')
     ax.set_title('Print Job Distribution {:%a %b %d}'.format(day))
 
