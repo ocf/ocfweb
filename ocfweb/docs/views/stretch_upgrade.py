@@ -107,12 +107,18 @@ def _get_servers():
         # mesos servers
         ThingToUpgrade.from_hostname(
             'whirlwind',
+            status=ThingToUpgrade.BLOCKED,
+            comments='Waiting for DSA-3871 resolution',
         ),
         ThingToUpgrade.from_hostname(
             'pileup',
+            status=ThingToUpgrade.BLOCKED,
+            comments='Waiting for DSA-3871 resolution',
         ),
         ThingToUpgrade.from_hostname(
             'monsoon',
+            status=ThingToUpgrade.BLOCKED,
+            comments='Waiting for DSA-3871 resolution',
         ),
 
         # raspberry pi
@@ -134,7 +140,8 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'pandemic',
-            comments='probably in-place, too hard to move stuff around unless installing new drives too',
+            status=ThingToUpgrade.UPGRADED,
+            comments='Upgraded when installing new drives',
         ),
         ThingToUpgrade.from_hostname(
             'hal',
