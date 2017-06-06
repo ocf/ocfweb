@@ -94,8 +94,9 @@ tty.
 
 ### Virtual hosts
 
-1. Log in as `root:r00tme`
+1. Log in as `root:r00tme`.
 2. `puppet agent --enable`.
+3. `puppet agent --test`.
 
 
 ### Physical hosts
@@ -108,7 +109,7 @@ tty.
    `/etc/udev/rules.d/70-persistent-net.rules` for `eth0` and `eth1` (see
    rt#3050). If you do, remove `eth1` and restart.
 4. `puppet agent --enable`
-5. `puppet agent --debug --no-daemonize`.
+5. `puppet agent --test`.
 
 
 ## Step 4. Sign the Puppet cert and run Puppet
