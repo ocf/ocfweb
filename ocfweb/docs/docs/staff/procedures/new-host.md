@@ -113,9 +113,9 @@ tty.
       by running `ip addr`. The ethernet interface should be named something
       like `eno1` or `enp4s2`. (In the following instructions, substitute
       `eno1` with the correct name.)
-   4. Remove the incorrect IP addresses with `sudo ip addr del $WRONG_ADDRESS
+   4. Remove the incorrect IP addresses with `ip addr del $WRONG_ADDRESS
       dev eno1`.
-   5. Add the correct IP addresses with `sudo ip addr add $CORRECT_ADDRESS
+   5. Add the correct IP addresses with `ip addr add $CORRECT_ADDRESS
       dev eno1`. Make sure that $CORRECT_ADDRESS includes the netmask.
 
 3. `puppet agent --enable`
