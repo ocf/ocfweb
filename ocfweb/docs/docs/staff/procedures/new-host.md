@@ -103,13 +103,23 @@ tty.
 
 1. Log in as `root:r00tme`. You can change the password if you want, but don't
    have to (Puppet will change it soon anyway).
-2. Make sure the IP address and hostname is set correctly. This probably
-   happened by DHCP if it's a desktop, but if not, fix it and restart.
-3. Make sure you you don't have duplicate entries in
-   `/etc/udev/rules.d/70-persistent-net.rules` for `eth0` and `eth1` (see
-   rt#3050). If you do, remove `eth1` and restart.
-4. `puppet agent --enable`
-5. `puppet agent --test`.
+2. Make sure the IP address and hostname is set correctly. This may have
+   happened by DHCP if it's a desktop, but if not, fix it and restart:
+
+   1. Edit `/etc/hostname` so it has the desired hostname instead of
+      dhcp-_whatever_.
+   2. Run `hostname -F /etc/hostname`.
+   3. Find out what the ethernet interface's name and current IP address is
+      by running `ip addr`. The ethernet interface should be named something
+      like `eno1` or `enp4s2`. (In the following instructions, substitute
+      `eno1` with the correct name.)
+   4. Remove the incorrect IP addresses with `sudo ip addr del $WRONG_ADDRESS
+      dev eno1`.
+   5. Add the correct IP addresses with `sudo ip addr add $CORRECT_ADDRESS
+      dev eno1`. Make sure that $CORRECT_ADDRESS includes the netmask.
+
+3. `puppet agent --enable`
+4. `puppet agent --test`.
 
 
 ## Step 4. Sign the Puppet cert and run Puppet
