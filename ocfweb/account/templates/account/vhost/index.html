@@ -42,6 +42,20 @@
                     </div>
                 {% endif %}
 
+                {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        <p>There were errors in your response:</p>
+                        {% for field, errors in form.errors.items %}
+                            <strong>{{ field }}:</strong>
+                            <ul>
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
                 {{form.requested_own_domain|bootstrap}}
                 {{form.requested_subdomain|bootstrap}}
                 {{form.requested_why|bootstrap}}

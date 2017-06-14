@@ -219,12 +219,6 @@ class VirtualHostForm(Form):
                you are not using any software on your website, check \
                this box and move on.)')
 
-    # confirm request
-    your_name = forms.CharField(
-        label='Your full name:',
-        min_length=1,
-        max_length=64)
-
     your_email = forms.EmailField(
         label='Your email address:',
         min_length=1,
@@ -261,7 +255,7 @@ class VirtualHostForm(Form):
             'visible on the home page.'
         ).format(reverse('doc', args=('services/vhost/badges',))))
 
-        # This one just requires some runtime info
+        # These just require some runtime info
         self.fields['your_position'].label = mark_safe(
             'Your position in group:' if is_group else 'Your academic post:'
         )
@@ -269,6 +263,13 @@ class VirtualHostForm(Form):
         self.fields['your_position'].widget = forms.TextInput(
             attrs={'placeholder': 'Webmaster' if is_group else 'E.g., Professor of Math'}
         )
+
+        if is_group:
+            self.fields['your_name'] = forms.CharField(
+                label='Your full name:',
+                min_length=1,
+                max_length=64
+            )
 
     def clean_requested_subdomain(self):
         requested_subdomain = self.cleaned_data['requested_subdomain'].lower().strip()

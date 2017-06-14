@@ -52,7 +52,7 @@
     -   id: no-top-level-header
         language: pcre
         name: No top-level headers (markdown)
-        entry: ^#\s
+        entry: ^#[^#]
         files: \.md$
     # In Django, if you have an app like "announcements" and another app like
     # "docs", it's not okay for both to provide templates with the same name
