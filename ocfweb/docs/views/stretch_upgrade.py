@@ -108,17 +108,18 @@ def _get_servers():
         ThingToUpgrade.from_hostname(
             'whirlwind',
             status=ThingToUpgrade.BLOCKED,
-            comments='Waiting for DSA-3871 resolution',
+            comments='No marathon packages yet. (A migration was previously attempted; the '
+                     'disk has been saved as vg/whirlwind-stretch.)',
         ),
         ThingToUpgrade.from_hostname(
             'pileup',
             status=ThingToUpgrade.BLOCKED,
-            comments='Waiting for DSA-3871 resolution',
+            comments='No marathon packages yet',
         ),
         ThingToUpgrade.from_hostname(
             'monsoon',
             status=ThingToUpgrade.BLOCKED,
-            comments='Waiting for DSA-3871 resolution',
+            comments='No marathon packages yet',
         ),
 
         # raspberry pi
