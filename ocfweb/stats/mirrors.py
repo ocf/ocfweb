@@ -1,7 +1,6 @@
 from datetime import date
 
 from django.shortcuts import render
-from humanize import naturalsize
 from ocflib.lab.stats import current_semester_start
 from ocflib.lab.stats import get_connection
 
@@ -22,14 +21,24 @@ def stats_mirrors(request):
         }
     )
 
+# TODO: move this to ocflib
+
+
+def _humanize(n):
+    # adapted from jvperrin/upload-to-box
+    for unit in ['', 'KB', 'MB', 'GB', 'TB', 'PB']:
+        if n < 1024.0:
+            return '{:3.2f} {}'.format(n, unit)
+        n /= 1024.0
+
 
 def _bandwidth_by_dist(start):
     with get_connection() as c:
         c.execute(
             'SELECT `dist`, SUM(`up` + `down`) as `bandwidth` FROM `mirrors_public` WHERE `date` > %s'
-            'GROUP BY `dist` ORDER BY `bandwidth` DESC', (start))
+            'GROUP BY `dist` ORDER BY `bandwidth` DESC', start)
 
-    return [(i['dist'], naturalsize(i['bandwidth'])) for i in c]
+    return [(i['dist'], _humanize(float(i['bandwidth']))) for i in c]
 
 
 @periodic(86400)
