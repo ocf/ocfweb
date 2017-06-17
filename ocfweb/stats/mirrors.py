@@ -18,7 +18,7 @@ def stats_mirrors(request):
             'bandwidth_semester': bandwidth_semester(),
             'bandwidth_all_time': bandwidth_all_time(),
             'start_date': current_semester_start,
-        }
+        },
     )
 
 # TODO: move this to ocflib
@@ -36,7 +36,8 @@ def _bandwidth_by_dist(start):
     with get_connection() as c:
         c.execute(
             'SELECT `dist`, SUM(`up` + `down`) as `bandwidth` FROM `mirrors_public` WHERE `date` > %s'
-            'GROUP BY `dist` ORDER BY `bandwidth` DESC', start)
+            'GROUP BY `dist` ORDER BY `bandwidth` DESC', start,
+        )
 
     return [(i['dist'], _humanize(float(i['bandwidth']))) for i in c]
 
