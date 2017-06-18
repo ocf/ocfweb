@@ -70,7 +70,10 @@ def _get_servers():
             'biohazard',
             status=ThingToUpgrade.UPGRADED,
         ),
-        ThingToUpgrade.from_hostname('dementors'),
+        ThingToUpgrade.from_hostname(
+            'dementors',
+            status=ThingToUpgrade.UPGRADED,
+        ),
         ThingToUpgrade.from_hostname(
             'flood',
             comments='will be easier to upgrade once the Slack to IRC bridge is moved to Marathon',
