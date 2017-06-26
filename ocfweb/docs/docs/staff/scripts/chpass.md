@@ -7,7 +7,7 @@ group accounts or users that send notarized letters to the OCF.
 
 ## Technical Description
 
-Perl script that changes a user's kerberos principal password using a specified
+Python script that changes a user's kerberos principal password using a specified
 staff/root principal.
 
 ## Usage
