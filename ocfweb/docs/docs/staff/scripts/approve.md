@@ -41,7 +41,7 @@ direct them to an OCF officer.
 
   Copy the group's OID, as you will need it when running approve.
 
-* If the group is not a student group, the requester will need official
+* If the group is not a student group, the requester will need an official
   letterhead giving them authority to create the account. You will also need to
   check that the group doesn't already have an account using
   `checkacct`.
@@ -59,6 +59,12 @@ direct them to an OCF officer.
 
 When you run approve it will open a text editor; just fill out the form,
 save it, and let the requester enter a password when prompted.
+
+For reference, `user_name` will be the username used to log in to the
+newly-created account, `group_name` is the full name of the group, e.g.
+'Open Computing Facility', and `email` should ideally point somewhere that
+will be read by whoever will be maintaining the account. `signatory` has been
+deprecated.
 
 Optionally, if you pass the OID as the only argument, the `group_name`,
 `callink_oid`, and `email` fields will get filled in automatically using the

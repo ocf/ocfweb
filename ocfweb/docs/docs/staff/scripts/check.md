@@ -2,9 +2,20 @@
 
 ## Introduction
 
-Check allows a staffer to get all the usage details of a user. Some information
-may only be accessible to privileged users or root, and dependent on local
-machine, so the output may differ accordingly.
+`check` allows staffers to get account details about users. Some information
+may only be accessible to privileged users or root, or depend on the local
+machine, so the output may differ accordingly. `check` is best run on `supernova`.
+
+`check` currently returns:
+
+* `getent` info
+* CalNet info
+* Print Quota
+* Virtual Host/Apphost info if group account
+* Signatory for/signatories of
+* [[Notes|doc staff/scripts/note]] about the user in `~staff/User_Info`
+* Currently running processes on local machines
+* Recent Logins
 
 ## Usage/Example
 

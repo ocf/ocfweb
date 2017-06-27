@@ -5,12 +5,10 @@
 For various reasons, we've had to disable accounts. Some for weak passwords,
 some for security vulnerabilities, or myriad other reasons. If an account
 is [[sorried|doc staff/scripts/sorry]], once you've made sure the original problem
-has been resolved (you can check `User_Info` via [[check| doc staff/scripts/check]]
-you can [[unsorry|doc staff/scripts/unsorry]] their account and let them log in
-again.
+has been resolved (you can check `User_Info` via [[check| doc staff/scripts/check]])
+you can `unsorry` their account and let them log in again.
 
-`unsorry` is the inverse of [[sorry|doc staff/scripts/sorry]].
-It will remove the user from the sorry group, re-enable a login shell,
+`unsorry` will remove the user from the sorry group, re-enable a login shell,
 and generally allow them to use their account again. Occasionally more
 than simply `unsorry` may be necessary depending on changes in the
 infrastructure.
