@@ -2,6 +2,7 @@ BIN := venv/bin
 PYTHON := $(BIN)/python
 SHELL := /bin/bash
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
+LISTEN_IP := 0.0.0.0
 DOCKER_REPO ?=
 DOCKER_REVISION ?= testing-$(USER)
 DOCKER_TAG_BASE = ocfweb-base-$(USER)
@@ -42,7 +43,11 @@ coveralls: venv test
 .PHONY: dev
 dev: venv ocfweb/static/scss/site.scss.css
 	@echo -e "\e[1m\e[93mRunning on http://$(shell hostname -f ):$(RANDOM_PORT)/\e[0m"
-	$(PYTHON) ./manage.py runserver 0.0.0.0:$(RANDOM_PORT)
+	$(PYTHON) ./manage.py runserver $(LISTEN_IP):$(RANDOM_PORT)
+
+.PHONE: local-dev
+local-dev: LISTEN_IP=127.0.0.1
+local-dev: dev
 
 venv: requirements.txt requirements-dev.txt
 	python ./vendor/venv-update venv= venv -ppython3 install= -r requirements.txt -r requirements-dev.txt
