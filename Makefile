@@ -45,7 +45,7 @@ dev: venv ocfweb/static/scss/site.scss.css
 	@echo -e "\e[1m\e[93mRunning on http://$(shell hostname -f ):$(RANDOM_PORT)/\e[0m"
 	$(PYTHON) ./manage.py runserver $(LISTEN_IP):$(RANDOM_PORT)
 
-.PHONE: local-dev
+.PHONY: local-dev
 local-dev: LISTEN_IP=127.0.0.1
 local-dev: dev
 
