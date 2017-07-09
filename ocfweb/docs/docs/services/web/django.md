@@ -1,91 +1,99 @@
 [[!meta title="Django"]]
 
-Django is a popular web framework for Python applications.
+Django is a popular web framework for Python applications. At the OCF, you can
+host it using our regular web hosting, though for groups with virtual hosting,
+we strongly recommend instead using our [[application hosting service|doc
+services/webapps]] instead, as it provides a first-class solution for webapps.
 
+## Running a Django app
 
-## Starting a Django project
+The steps below assume you have already created a Django application. If you
+haven't, take a look at [the Django documentation][django-docs] for help with
+that.
 
-The necessary scripts for you to create Django projects are installed on our
-login server, _ssh.ocf.berkeley.edu_.
+1. Copy your Django application to your OCF account. For example, you can use
+   `scp` to upload it, or if you're using source control, clone it using `git`
+   (or another tool) into your home directory.
 
-1.   First, you will want to create a directory to store all of your Django
-     projects. This directory should not be in your *public_html* directory.
+   In the steps below, we'll assume you put it at `~/app` in your home
+   directory.
 
-         tsunami$ mkdir ~/projects
+2. Inside your project directory, create a virtualenv and install your
+   dependencies. For example, to create a Python 3 virtualenv, try:
 
-1.   Go into the directory you just created:
+   ```bash
+   user@tsunami:~/app$ virtualenv -ppython3 venv
+   user@tsunami:~/app$ venv/bin/pip install django
+   ```
 
-         tsunami$ cd ~/projects
+   You'll want to install at least `django` to start with. If you're using
+   other packages, install those too. You can also install from a
+   `requirements.txt` file, if you have one.
 
-1.   Create a new Django project. For this example, the project name will be
-     "hatsune". You will want to stick with Python-friendly package and module
-     names, as detailed in [PEP
-     8](https://www.python.org/dev/peps/pep-0008/#package-and-module-names).
+   For full details on how to use pip, see [the pip documentation][pip-docs].
 
-         tsunami$ django-admin startproject hatsune
+3. Inside that same virtualenv, install the `flup6` package. You can just
+   copy-and-paste the below snippet:
 
-1.   Go into the project directory you just created and edit the settings.py
-     file with the necessary information:
+   ```bash
+   user@tsunami:~/app$ venv/bin/pip install flup6
+   ```
 
-         tsunami$ cd hatsune
-         tsunami$ vim settings.py
+   If you're using a `requirements.txt` file, you might want to add it there as
+   well. This part varies by how you're organizing your project.
 
-1.   Change the permissions of the settings.py file, since it might have
-     sensitive information like your database password!
+4. Make a directory under `public_html` to house your application. For example,
+   `~/public_html/django`. You can also just use `public_html` directly if
+   desired.
 
-         tsunami$ chmod go-rwx settings.py
+5. In the directory you just created, make a file called `run.fcgi` with the file contents:
 
-1.   Create an app, edit it, and so on:
+   ```python
+   #!/home/u/us/user/app/venv/bin/python
+   import os
+   import sys
 
-         tsunami$ django-admin startapp miku
-         tsunami$ vim miku/views.py
-         ...
-         tsunami$ vim urls.py
+   sys.path.insert(0, os.path.expanduser('~/app'))
 
-1.    Make a directory in your ~/public_html directory:
+   from flup.server.fcgi import WSGIServer
+   from djangoapp import wsgi
 
-        tsunami$ mkdir ~/public_html/hatsune
+   if __name__ == '__main__':
+       WSGIServer(wsgi.application).run()
+   ```
 
-1.    Go into the directory you just created, and create two files: *.htaccess*
-      (note the dot), and *run.fcgi*.
+   Make sure to replace the first line of `run.fcgi` file with the actual path
+   to your project's virtualenv Python. You can find it by running the command
+   `readlink -f ~/app/venv/bin/python`.
 
-* .htaccess:
+   Make sure also to replace `from djangoapp` with the name of your Django
+   application (that's the name of the directory containing your `wsgi.py`
+   file).
 
-      RewriteEngine On
-      RewriteBase /
-      RewriteCond %{REQUEST_FILENAME} !-f
-      # Change "username" and "hatsune" to your username and whatever directory name you made in public_html, respectively
-      RewriteRule ^(.*)$ /~username/hatsune/run.fcgi/$1 [QSA,L]
+6. In the same directory, run `chmod +x run.fcgi`.
 
-* run.fcgi:
+7. In the same directory, create another file called `.htaccess` with these contents:
 
-      #!/usr/bin/env python
-      import sys, os
+   ```htaccess
+   RewriteEngine on
+   RewriteBase /
+   RewriteCond %{REQUEST_FILENAME} !-f
+   # Change "user" and "django" to your username and whatever directory
+   # name you made in public_html, respectively.
+   RewriteRule ^(.*)$ /~user/django/run.fcgi/$1 [QSA,L]
+   ```
 
-      # Change this path to reflect the real directory where your django-project lives
-      projects_location = "/home/k/ke/kedo/django"
-      project_name = "hatsune"
+Your app should now be accessible!
 
-      sys.path.insert(0, projects_location)
-      sys.path.insert(1, os.path.join(projects_location, project_name))
-      os.chdir(projects_location)
+Once your app has started running, changes you make to the Python code or
+templates won't take effect for a few hours. To apply changes immediately, the
+webserver needs to see that the `run.fcgi` file has changed. You can can change
+the modification time of the `run.fcgi` file to trigger a restart with the
+command:
 
-      os.environ['DJANGO_SETTINGS_MODULE'] = "%s.settings" % project_name
+```bash
+user@tsunami:~$ touch ~/public_html/django/run.fcgi
+```
 
-      from django.core.servers.fastcgi import runfastcgi
-      runfastcgi(method="threaded", daemonize="false")
-
-1.   Make the *run.fcgi* file you just created executable:
-
-         tsunami$ chmod a+x run.fcgi
-
-1. Double check that your *settings.py* file is *not* readable by any other
-   users, and try not to leave DEBUG set to True in your settings.py. Also note
-   that paths are very finicky for Django (and Python) projects, and incorrect
-   paths will likely be the source of any problems.
-
-1. Once your app has started running, changes you make to the Python code or
-   templates won't take effect for a few hours. To apply changes immediately,
-   you can touch the run.fcgi file with the command:
-
-       tsunami$ touch run.fcgi
+[django-docs]: https://docs.djangoproject.com/en/1.11/intro/tutorial01/
+[pip-docs]: https://packaging.python.org/tutorials/installing-packages/#installing-from-pypi
