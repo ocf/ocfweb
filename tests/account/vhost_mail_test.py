@@ -442,6 +442,9 @@ def test_parse_addr_wildcards(addr):
     ('ckuehl@ocf.berkeley.edu', 'ckuehl', 'ocf.berkeley.edu'),
     ('john.doe+test@gmail.com', 'john.doe+test', 'gmail.com'),
     ('@gmail.com', None, 'gmail.com'),
+
+    # people suck at forms
+    (' \t  ckuehl@ocf.berkeley.edu', 'ckuehl', 'ocf.berkeley.edu'),
 ))
 @pytest.mark.parametrize('required', (False, True))
 def test_get_addr_valid(addr, name, domain, required):
