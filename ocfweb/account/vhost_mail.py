@@ -152,11 +152,12 @@ def _parse_addr(addr, allow_wildcard=False):
 
 
 def _get_addr(request, user, field, required=True):
-    addr = request.POST.get(field)
-    if addr is not None:
+    original = request.POST.get(field)
+    if original is not None:
+        addr = original.strip()
         parsed = _parse_addr(addr, allow_wildcard=True)
         if not parsed:
-            _error(request, 'Invalid address: "{}"'.format(addr))
+            _error(request, 'Invalid address: "{}"'.format(original))
         else:
             name, domain = parsed
 
