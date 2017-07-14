@@ -37,6 +37,6 @@ def google_map_static(width, height):
                 'markers': 'label:OCF|size:mid|{},{}'.format(OCF_LATITUDE, OCF_LONGITUDE),
 
                 'key': OCF_API_KEY,
-            })
+            }),
         ),
     }

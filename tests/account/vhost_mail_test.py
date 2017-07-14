@@ -57,7 +57,7 @@ def test_main_view_works(client_ggroup):
                         last_updated=datetime.now(),
                     ),
                 },
-            }
+            },
         ),
     }
     with mock.patch.object(vhost_mail, 'vhosts_for_user', return_value=fake_vhosts):

@@ -23,7 +23,8 @@ def get_accounts_signatory_for(calnet_uid):
 
     group_accounts = flatten(map(
         lambda group: group['accounts'],
-        groups_by_student_signat(calnet_uid).values()))
+        groups_by_student_signat(calnet_uid).values(),
+    ))
 
     # sanity check since we don't trust CalLink API that much:
     # if >= 10 groups, can't change online, sorry
@@ -103,13 +104,14 @@ class ChpassForm(Form):
     def __init__(self, ocf_accounts, calnet_uid, *args, **kwargs):
         super(ChpassForm, self).__init__(*args, **kwargs)
         self.calnet_uid = calnet_uid
-        self.fields['ocf_account'] = forms.ChoiceField(choices=[
-            (x, x) for x in ocf_accounts],
-            label='OCF account')
+        self.fields['ocf_account'] = forms.ChoiceField(
+            choices=[(x, x) for x in ocf_accounts],
+            label='OCF account',
+        )
         self.fields.keyOrder = [
             'ocf_account',
             'new_password',
-            'confirm_password'
+            'confirm_password',
         ]
 
     new_password = forms.CharField(
@@ -137,7 +139,8 @@ class ChpassForm(Form):
 
         if data not in ocf_accounts:
             raise forms.ValidationError(
-                extra + 'OCF user account and CalNet UID mismatch.')
+                extra + 'OCF user account and CalNet UID mismatch.',
+            )
 
         return data
 

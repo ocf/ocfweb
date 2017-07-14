@@ -56,7 +56,7 @@ def request_vhost(request):
             {
                 'title': 'You are not eligible for virtual hosting',
                 'user': user,
-            }
+            },
         )
 
     if request.method == 'POST':
@@ -175,8 +175,10 @@ class VirtualHostForm(Form):
     # requested subdomain
     requested_own_domain = forms.ChoiceField(
         choices=[
-            (False, 'I would like to request a berkeley.edu domain \
-                     (most student groups want this).'),
+            (
+                False, 'I would like to request a berkeley.edu domain \
+                     (most student groups want this).',
+            ),
             (True, 'I want to use the domain I already own.'),
         ],
         widget=forms.RadioSelect(),
@@ -195,7 +197,8 @@ class VirtualHostForm(Form):
                domain instead of your current address on \
                ocf.berkeley.edu.',
         min_length=1,
-        max_length=1024)
+        max_length=1024,
+    )
 
     # website requirements
     website_complete = forms.BooleanField(
@@ -222,19 +225,22 @@ class VirtualHostForm(Form):
     your_email = forms.EmailField(
         label='Your email address:',
         min_length=1,
-        max_length=64)
+        max_length=64,
+    )
 
     # also see __init__
     your_position = forms.CharField(
         min_length=1,
-        max_length=64)
+        max_length=64,
+    )
 
     comments = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}),
         label='Please write any special requests and/or comments you have:',
         required=False,
         min_length=1,
-        max_length=1024)
+        max_length=1024,
+    )
 
     def __init__(self, is_group=True, *args, **kwargs):
         super(Form, self).__init__(*args, **kwargs)
@@ -257,18 +263,18 @@ class VirtualHostForm(Form):
 
         # These just require some runtime info
         self.fields['your_position'].label = mark_safe(
-            'Your position in group:' if is_group else 'Your academic post:'
+            'Your position in group:' if is_group else 'Your academic post:',
         )
 
         self.fields['your_position'].widget = forms.TextInput(
-            attrs={'placeholder': 'Webmaster' if is_group else 'E.g., Professor of Math'}
+            attrs={'placeholder': 'Webmaster' if is_group else 'E.g., Professor of Math'},
         )
 
         if is_group:
             self.fields['your_name'] = forms.CharField(
                 label='Your full name:',
                 min_length=1,
-                max_length=64
+                max_length=64,
             )
 
     def clean_requested_subdomain(self):
@@ -278,20 +284,20 @@ class VirtualHostForm(Form):
             if not valid_domain_external(requested_subdomain):
                 raise forms.ValidationError(
                     'This does not appear to be a valid domain. '
-                    'Please check your response and try again.'
+                    'Please check your response and try again.',
                 )
             return requested_subdomain
 
         if not requested_subdomain.endswith('.berkeley.edu'):
             raise forms.ValidationError(
                 'The domain you entered does not end in ".berkeley.edu". '
-                'Maybe add ".berkeley.edu" to the end?'
+                'Maybe add ".berkeley.edu" to the end?',
             )
 
         if not valid_domain(requested_subdomain):
             raise forms.ValidationError(
                 'The domain you requested is not available. '
-                'Please select a different one.'
+                'Please select a different one.',
             )
 
         return requested_subdomain
@@ -301,6 +307,6 @@ class VirtualHostForm(Form):
         if not valid_email(your_email):
             raise forms.ValidationError(
                 "The email you entered doesn't appear to be "
-                'valid. Please double-check it.'
+                'valid. Please double-check it.',
             )
         return your_email

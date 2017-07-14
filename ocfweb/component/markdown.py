@@ -20,7 +20,7 @@ class HtmlCommentsInlineLexerMixin:
 
     def enable_html_comments(self):
         self.rules.html_comment = re.compile(
-            '^<!--(.*?)-->'
+            '^<!--(.*?)-->',
         )
         self.default_rules.insert(0, 'html_comment')
 
@@ -33,7 +33,7 @@ class HtmlCommentsBlockLexerMixin:
 
     def enable_html_comments(self):
         self.rules.html_comment = re.compile(
-            '^<!--(.*?)-->'
+            '^<!--(.*?)-->',
         )
         self.default_rules.insert(0, 'html_comment')
 
@@ -83,7 +83,7 @@ class DjangoLinkInlineLexerMixin:
             '\|'
             '([^#]+?)'
             '(?:#(.*?))?'
-            '\]\]'
+            '\]\]',
         )
         self.default_rules.insert(0, 'django_link')
 

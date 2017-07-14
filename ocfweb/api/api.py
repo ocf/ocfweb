@@ -8,9 +8,11 @@ def hours(request):
         'date': today.date,
         'day': today.weekday,
         'holiday': today.holiday,
-        'hours': today.hours
+        'hours': today.hours,
     }
 
-    return JsonResponse(dic,
-                        json_dumps_params={'default': lambda x: x.isoformat()},
-                        content_type='application/json')
+    return JsonResponse(
+        dic,
+        json_dumps_params={'default': lambda x: x.isoformat()},
+        content_type='application/json',
+    )

@@ -83,5 +83,5 @@ def doc_toc(toc, collapsible=False):
 
     return {
         'html': html,
-        'collapsible': collapsible
+        'collapsible': collapsible,
     }

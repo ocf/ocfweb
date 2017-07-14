@@ -23,7 +23,7 @@ def assert_does_not_error(client, path):
                 Final URL: {resp.url}
 
                 The response body was:
-                {resp.content}''').format(path=path, resp=resp)
+                {resp.content}''').format(path=path, resp=resp),
             )
 
 

@@ -74,18 +74,28 @@ class CommandForm(Form):
     )
 
     COMMAND_CHOICES = (
-        ('/opt/share/utils/bin/paper',
-         'paper quota -- how many pages you have remaining this semester'),
-        ('/usr/bin/quota -svQ',
-         'disk quota -- how much disk space you have used and how much you ' +
-         'have left'),
-        ('/opt/share/utils/bin/makehttp',
-         'makehttp -- set up the web space for your OCF account'),
-        ('echo yes | /opt/share/utils/bin/makemysql',
-         'makemysql -- reset your MySQL database password, or create a new ' +
-         'MySQL database (copy down the password somewhere secure)'),
+        (
+            '/opt/share/utils/bin/paper',
+            'paper quota -- how many pages you have remaining this semester',
+        ),
+        (
+            '/usr/bin/quota -svQ',
+            'disk quota -- how much disk space you have used and how much you ' +
+            'have left',
+        ),
+        (
+            '/opt/share/utils/bin/makehttp',
+            'makehttp -- set up the web space for your OCF account',
+        ),
+        (
+            'echo yes | /opt/share/utils/bin/makemysql',
+            'makemysql -- reset your MySQL database password, or create a new ' +
+            'MySQL database (copy down the password somewhere secure)',
+        ),
     )
 
-    command_to_run = forms.ChoiceField(choices=COMMAND_CHOICES,
-                                       label='Command to run',
-                                       widget=widgets.RadioSelect)
+    command_to_run = forms.ChoiceField(
+        choices=COMMAND_CHOICES,
+        label='Command to run',
+        widget=widgets.RadioSelect,
+    )

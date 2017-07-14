@@ -20,8 +20,9 @@ def get_lab_status():
             tree = yaml.safe_load(f)
     except IOError:
         tree = yaml.safe_load(requests.get(
-            'https://www.ocf.berkeley.edu/~staff/lab_status.yaml').text)
+            'https://www.ocf.berkeley.edu/~staff/lab_status.yaml',
+        ).text)
     return LabStatus(
         force_lab_closed=tree['force_lab_closed'],
-        banner_html=tree['banner_html'] if tree['banner_visible'] else ''
+        banner_html=tree['banner_html'] if tree['banner_visible'] else '',
     )

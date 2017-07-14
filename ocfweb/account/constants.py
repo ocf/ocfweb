@@ -17,5 +17,5 @@ TESTER_CALNET_UIDS = (
 TEST_GROUP_ACCOUNTS = (
     (91740, 'The Testing Group'),  # needs to have a real OID, so boo
     (46187, 'Open Computing Facility'),  # good old ocf
-    (46692, 'Awesome Group of Awesome')  # boo another real OID
+    (46692, 'Awesome Group of Awesome'),  # boo another real OID
 )

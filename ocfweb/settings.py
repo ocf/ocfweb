@@ -162,7 +162,7 @@ if not DEBUG:
         'LOCATION': conf.get('django', 'redis_uri'),
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
+        },
     }
 
     CSRF_COOKIE_SECURE = True

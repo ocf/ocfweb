@@ -55,7 +55,7 @@ class Officer(namedtuple('Officer', ['uid', 'name', 'start', 'end', 'acting'])):
         if not self.full_term:
             s += ' ({}–{})'.format(
                 self.start.strftime('%m/%d/%y'),
-                self.end.strftime('%m/%d/%y') if self.end is not None else ''
+                self.end.strftime('%m/%d/%y') if self.end is not None else '',
             )
         return s
 

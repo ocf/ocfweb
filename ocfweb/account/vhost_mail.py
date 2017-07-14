@@ -233,7 +233,7 @@ def _txn(**kwargs):
         password=settings.OCFMAIL_PASSWORD,
         db=settings.OCFMAIL_DB,
         autocommit=False,
-        **kwargs
+        **kwargs,
     ) as c:
         try:
             yield c

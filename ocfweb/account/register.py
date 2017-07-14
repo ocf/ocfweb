@@ -187,8 +187,9 @@ class ApproveForm(Form):
     disclaimer_agreement = forms.BooleanField(
         label='I agree with the above statement.',
         error_messages={
-            'required': 'You must agree to our policies.'
-        })
+            'required': 'You must agree to our policies.',
+        },
+    )
 
     def clean_verify_password(self):
         password = self.cleaned_data.get('password')
