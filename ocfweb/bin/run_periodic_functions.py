@@ -7,6 +7,7 @@ useful in development.
 """
 import logging
 import os
+import sys
 import time
 from argparse import ArgumentParser
 from textwrap import dedent
@@ -118,4 +119,4 @@ def main(argv=None):
 
 
 if __name__ == '__main__':
-    exit(main())
+    sys.exit(main())
