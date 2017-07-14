@@ -69,7 +69,7 @@ def get_hosts():
                     'fallingrocks',
                     'monsoon',
                 )
-            ]
+            ],
         ),
 
         Host.from_ldap(
@@ -113,7 +113,7 @@ def get_hosts():
 
         Host.from_ldap(
             hostname='riptide',
-            type='hypervisor'
+            type='hypervisor',
         ),
 
         Host.from_ldap(

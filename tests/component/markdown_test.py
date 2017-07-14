@@ -176,7 +176,7 @@ def test_text_and_meta():
         [[!meta title="Frequently asked questions"]]
         [[!meta herp="derp"]]
         hello world
-        ''')
+        '''),
     )
 
     assert text.strip() == 'hello world'

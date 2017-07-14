@@ -56,7 +56,7 @@ def index(request):
             'announcements': sorted(
                 announcements,
                 key=lambda announcement: announcement.date,
-                reverse=True
+                reverse=True,
             ),
             'blog_posts': get_blog_posts()[:10],
         },

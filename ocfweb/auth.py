@@ -32,9 +32,11 @@ def group_account_required(function):
         if user and user_is_group(logged_in_user(request)):
             return function(request, *args, **kwargs)
 
-        return render(request, 'group_accounts_only.html', {
-            'user': user,
-        }, status=403)
+        return render(
+            request, 'group_accounts_only.html', {
+                'user': user,
+            }, status=403,
+        )
 
     return _decorator
 

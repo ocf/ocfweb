@@ -28,10 +28,13 @@ def _redirect_url(request):
 
 
 def _login_url(service):
-    params = {'service': service,
-              'renew': 'true'}
+    params = {
+        'service': service,
+        'renew': 'true',
+    }
     return '%s?%s' % (
-        urljoin(cas.CAS_URL, 'login'), urlencode(params))
+        urljoin(cas.CAS_URL, 'login'), urlencode(params),
+    )
 
 
 def _logout_url(request, next_page=None):
@@ -48,7 +51,8 @@ def _next_page_response(next_page):
         return HttpResponseRedirect(next_page)
     else:
         return HttpResponse(
-            '<h1>Operation Successful</h1><p>Congratulations.</p>')
+            '<h1>Operation Successful</h1><p>Congratulations.</p>',
+        )
 
 
 def login(request, next_page=None):
@@ -68,7 +72,7 @@ def login(request, next_page=None):
             return _next_page_response(next_page)
         else:
             return HttpResponseForbidden(
-                '<h1>Forbidden</h1><p>CalNet login failed.</p>'
+                '<h1>Forbidden</h1><p>CalNet login failed.</p>',
             )
     return HttpResponseRedirect(_login_url(service))
 

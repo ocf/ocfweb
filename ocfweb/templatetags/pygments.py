@@ -29,7 +29,7 @@ class PygmentsNode(template.Node):
                 ''.join(
                     node.render(context)
                     for node in self.nodes
-                )
+                ),
             ).strip('\n'),
             get_lexer_by_name(self.lang),
             self.html_formatter,

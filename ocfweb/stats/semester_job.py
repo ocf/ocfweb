@@ -29,7 +29,8 @@ def weekend_jobs_image(request, start_day, end_day):
 # dictionary that gives parameters/config of different job graphs
 graphs = {
     'weekday':
-        {'query': '''
+        {
+            'query': '''
                 SELECT `pages`, SUM(`count`) AS `count`
                 FROM `public_jobs`
                 WHERE
@@ -37,10 +38,12 @@ graphs = {
                     (DAYOFWEEK(`day`) MOD 7 > 1) AND
                     (`day` BETWEEN CAST(%s AS Date) AND CAST(%s AS DATE))
                 GROUP BY `pages`''',
-         'quota': tuple([WEEKDAY_QUOTA]),
-         'title': 'Semester Weekday Jobs Distributiom'},
+            'quota': tuple([WEEKDAY_QUOTA]),
+            'title': 'Semester Weekday Jobs Distributiom',
+        },
     'weekend':
-        {'query': '''
+        {
+            'query': '''
                 SELECT `pages`, SUM(`count`) AS `count`
                 FROM `public_jobs`
                 WHERE
@@ -48,13 +51,16 @@ graphs = {
                     (DAYOFWEEK(`day`) MOD 7 <= 1) AND
                     (`day` BETWEEN CAST(%s AS Date) AND CAST(%s AS DATE))
                 GROUP BY `pages`''',
-         'quota': tuple([WEEKEND_QUOTA]),
-         'title': 'Semester Weekend Jobs Distribution'}
+            'quota': tuple([WEEKEND_QUOTA]),
+            'title': 'Semester Weekend Jobs Distribution',
+        },
 }
 
 
-def freq_plot(data, title,
-              ylab='Number of Jobs Printed'):
+def freq_plot(
+    data, title,
+    ylab='Number of Jobs Printed',
+):
     """takes in data, title, and ylab and makes a histogram, with
     the 1:len(data) as the xaxis
     """

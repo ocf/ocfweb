@@ -54,7 +54,7 @@ FILE_COMMANDS = [
     ),
     Command(
         'mkdir', 'DIRECTORY',
-        desc='Creates a new directory'
+        desc='Creates a new directory',
     ),
     Command(
         'nano', 'FILE',
