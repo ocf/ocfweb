@@ -29,6 +29,7 @@ Some of the places OCF staffers have gone on to work at:
 
 ### Elsewhere
 
+* [Adobe](http://www.adobe.com)
 * [The Aerospace Corporation](http://www.aerospace.org)
 * [Amazon](http://www.amazon.com)
 * [Americorps](http://www.nationalservice.gov/programs/americorps)
@@ -40,7 +41,7 @@ Some of the places OCF staffers have gone on to work at:
 * Bay Area BioFuel
 * Berkeley Systems
 * BigBook
-* [Buzzfeed](http://www.buzzfeed.com)
+* [BuzzFeed](http://www.buzzfeed.com)
 * [Carnegie Mellon Univeristy School of Computer Science](http://www.cs.cmu.edu/)
 * [Cisco Systems, Inc.](http://www.cisco.com/)
 * [Code for America](http://www.codeforamerica.org)
@@ -51,6 +52,7 @@ Some of the places OCF staffers have gone on to work at:
 * [Eventbrite](https://www.eventbrite.com)
 * [Facebook](https://www.facebook.com)
 * [Forte Software](http://www.forte.com/) (now part of [Sun Microsystems](http://www.sun.com/))
+* Framed Data (acquired by [Square](http://www.squareup.com))
 * [Fry's Electronics](http://www.outpost.com/)
 * Global Network Navigator, Inc.
 * [Goldman Sachs](http://www.goldmansachs.com/)
@@ -69,6 +71,8 @@ Some of the places OCF staffers have gone on to work at:
 * [Mindsource Software Engineers](http://www.mindsrc.com/)
 * [Netcom](http://www.netcom.com/)
 * MetaReward/NetFlip
+* [MixPanel](http://www.mixpanel.com)
+* [Mozilla Corp](http://www.mozilla.org)
 * [Netblue](http://www.netblue.com/)
 * [Netscape](http://www.netscape.com/)
 * [Network Appliance](http://www.netapp.com/)
@@ -84,6 +88,7 @@ Some of the places OCF staffers have gone on to work at:
 * [Silicon Graphics (SGI)](http://www.sgi.com/)
 * [Snapfish](http://www.snapfish.com/)
 * [Splunk](http://www.splunk.com/)
+* [Square](http://www.squareup.com)
 * [StarNine Technologies](http://www.starnine.com/)
 * [Sun Microsystems](http://www.sun.com/)
 * [Taos Mountain Software](http://www.taos.com)
@@ -93,6 +98,7 @@ Some of the places OCF staffers have gone on to work at:
 * [Walmart.com](http://www.walmart.com/)
 * [Wells Fargo Bank](http://www.wellsfargo.com/)
 * [The White House](https://www.whitehouse.gov)
+* [Yahoo!](http://www.yahoo.com)
 * [Yelp](https://www.yelp.com/)
 * [Yggdrasil Computing, Inc.](http://www.yggdrasil.com/)
 * Z-Code Software (acquired by [Microfocus](http://www.microfocus.com))
