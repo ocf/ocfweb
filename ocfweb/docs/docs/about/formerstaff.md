@@ -42,7 +42,7 @@ Some of the places OCF staffers have gone on to work at:
 * Berkeley Systems
 * BigBook
 * [BuzzFeed](http://www.buzzfeed.com)
-* [Carnegie Mellon Univeristy School of Computer Science](http://www.cs.cmu.edu/)
+* [Carnegie Mellon University School of Computer Science](http://www.cs.cmu.edu/)
 * [Cisco Systems, Inc.](http://www.cisco.com/)
 * [Code for America](http://www.codeforamerica.org)
 * [Compaq](http://www.compaq.com/)
