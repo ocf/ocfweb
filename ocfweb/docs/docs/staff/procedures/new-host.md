@@ -124,8 +124,8 @@ tty.
 
 ## Step 4. Sign the Puppet cert and run Puppet
 
-On the puppetmaster, `sudo puppet ca list` to see pending requests. When you see
-yours, use `sudo puppet ca sign hostname.ocf.berkeley.edu`.
+On the puppetmaster, `sudo puppet cert list` to see pending requests. When you see
+yours, use `sudo puppet cert sign hostname.ocf.berkeley.edu`.
 
 Log back into the host and do `systemctl restart puppet` to start the Puppet
 run. Monitor the run with `journalctl -f`. Restart Puppet once or twice more
