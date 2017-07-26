@@ -110,9 +110,8 @@ def _get_servers():
         # mesos servers
         ThingToUpgrade.from_hostname(
             'whirlwind',
-            status=ThingToUpgrade.BLOCKED,
-            comments='No marathon packages yet. (A migration was previously attempted; the '
-                     'disk has been saved as vg/whirlwind-stretch.)',
+            status=ThingToUpgrade.UPGRADED,
+            comments='Marathon packages are currently manually built and installed, for testing Marathon on stretch',
         ),
         ThingToUpgrade.from_hostname(
             'pileup',
@@ -140,7 +139,8 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'jaws',
-            comments='probably in-place, too hard to move stuff around',
+            status=ThingToUpgrade.UPGRADED,
+            comments='in-place, too hard to move stuff around',
         ),
         ThingToUpgrade.from_hostname(
             'pandemic',
