@@ -24,6 +24,7 @@ def stats_navbar(context):
                 # TODO: probably a better place to put this
                 ('pages_printed', 'Lifetime Pages Printed'),
                 ('stats_accounts', 'Accounts'),
+                ('stats_mirrors', 'Mirrors'),
             ]
         ],
     }
