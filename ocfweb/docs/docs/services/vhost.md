@@ -78,10 +78,10 @@ that|doc services/vhost/mail]].
 
 The OCF only performs virtual hosting for OCF group accounts and individual
 accounts belonging to UC Berkeley faculty, and the faculty and academic staff
-of associated institutions which are listed in our [Eligibility
-policy](docs/membership/eligibility).  Each account may have at most one
-virtual host, but you are free to set up external domains which redirect to it.
-Faculty and academic staff are not eligible for mail hosting for their
+of associated institutions which are listed in our
+[[eligibility policy | doc membership/eligibility]]. Each account may have at
+most one virtual host, but you are free to set up external domains which redirect
+to it. Faculty and academic staff are not eligible for mail hosting for their
 individual accounts, as mail hosting is intended for mailing lists or group
 accounts. Furthermore, virtual hosts for faculty and staff will only be
 approved if they have already obtained a domain name from their department or
