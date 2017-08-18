@@ -46,6 +46,13 @@ On Windows, use [PuTTY][putty] (download the `putty.exe` file):
 
 [putty]: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 
+#### Mosh
+
+We also support [Mosh](https://mosh.org/), an SSH alternative with improved
+support for laggy or roaming connections:
+
+    mosh username@ssh.ocf.berkeley.edu
+
 ## SFTP
 
 You can transfer files to your account using [SFTP][sftp]. To transfer files
