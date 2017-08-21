@@ -1,7 +1,7 @@
+import operator
 from collections import namedtuple
 from datetime import date
 from datetime import datetime
-from datetime import time
 from datetime import timedelta
 
 import requests
@@ -16,40 +16,47 @@ SHIFT_LENGTH = timedelta(hours=0.5)
 class Hour(namedtuple('Hours', ['open', 'close', 'staffer'])):
 
     def __contains__(self, when):
-        if not isinstance(when, time):
+        if isinstance(when, datetime):
             when = when.time()
 
         return self.open <= when < self.close
 
 
 def _get_hours():
-    """pull hours from the Google spreadsheet"""
+    """pull hours from the Google spreadsheet and parse shifts."""
 
     response = requests.get(HOURS_SPREADSHEET)
     response.raise_for_status()
 
-    matrix = response.content.decode('utf-8').splitlines()
+    matrix = response.text.splitlines()
     matrix = [row.split(',') for row in matrix]
 
-    # [1:] because the first box in the matrix is empty
-    # matrix[0] = ['', 'Monday', 'Tuesday', ...]
     # row[0] = ['13:30PM', 'name1', 'name2', ...]
-    shifts = [row[0] for row in matrix][1:]
+    shifts = [row[0] for row in matrix]
+
+    # first row is a header, first col is times: ['', 'Monday', ...]
+    header = shifts.pop(0)
+    assert header == '', header
 
     all_shifts = {}
 
     # instead of e.g. enumerate(['Monday', 'Tuesday', ... 'Sunday'])
     for day in range(7):
         # matrix[sidx + 1][day + 1] = person on shift on that shift index
-        all_shifts[day] = {shift: matrix[sidx + 1][day + 1] for sidx, shift in enumerate(shifts)}
+        all_shifts[day] = {
+            shift: matrix[sidx + 1][day + 1] for sidx, shift in enumerate(shifts)
+        }
 
     #  this will get cached downstream
     return all_shifts
 
 
 def _combine_shifts(shifts):
-    """combined a day's worht of shifts into a list of Hour() objects
-       shifts = {'09:00AM': 'name1', ...}"""
+    """combine a list of shifts into a list of Hour()s.
+
+    >>> _combine_shifts({'16:00PM':'test1', '16:30PM':'test2', ...})
+    [Hour(open=time(16), close=time(17), staffer='test2'), ...]
+    """
 
     raw_shifts = []
     for shift, staffer in shifts.items():
@@ -60,12 +67,12 @@ def _combine_shifts(shifts):
         close = open + SHIFT_LENGTH
         raw_shifts.append(Hour(open=open.time(), close=close.time(), staffer=staffer))
 
-    raw_shifts.sort(key=lambda k: k.open)
+    raw_shifts.sort(key=operator.attrgetter('open'))
 
     combined_shifts = []
 
-    initial = raw_shifts[0]
-    for next_shift in raw_shifts[1:]:
+    initial = raw_shifts.pop(0)
+    for next_shift in raw_shifts:
         if (initial.close in next_shift or next_shift.close in initial) and \
                 initial.staffer == next_shift.staffer:
             initial = Hour(
@@ -77,7 +84,9 @@ def _combine_shifts(shifts):
             combined_shifts.append(initial)
             initial = next_shift
 
-    combined_shifts.append(initial)  # tail case where staffer condition doesn't trip on list end
+    # tail case where staffer condition doesn't trip on list end
+    combined_shifts.append(initial)
+
     return combined_shifts
 
 
@@ -91,7 +100,6 @@ def get_hours_all(request):
     return JsonResponse(
         _generate_regular_hours(),
         json_dumps_params={'default': lambda x: x.isoformat()},
-        content_type='application/json',
     )
 
 
@@ -99,6 +107,5 @@ def get_hours_today(request):
     return JsonResponse(
         _generate_regular_hours()[date.today().weekday()],
         json_dumps_params={'default': lambda x: x.isoformat()},
-        content_type='application/json',
         safe=False,
     )
