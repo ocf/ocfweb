@@ -1,7 +1,5 @@
 cached-property
-# TODO: stop using our fork
-# https://github.com/celery/celery/pull/3831
-ckuehl-celery[redis]==4.0.2.post1
+celery[redis]==4.1.0
 django-bootstrap-form
 django-ipware
 django-mathfilters
@@ -13,9 +11,8 @@ matplotlib
 mistune
 numpy
 ocflib
-# TODO: pysnmp==4.3.2 can't work with newer pyasn1; one we upgrade, delete this
-pyasn1==0.1.9
-pycrypto
+pyasn1
+pycryptodome
 pygments
 pymysql
 python-dateutil
