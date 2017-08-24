@@ -9,8 +9,8 @@ from django.http import JsonResponse
 
 from ocfweb.caching import periodic
 
-HOURS_SPREADSHEET = 'https://docs.google.com/spreadsheet/ccc?key=1WgczUrxqey63fmPRmdkCDMCbsfaTyCJrixiCeJj35UI&output=csv'  # noqa: E501
-SHIFT_LENGTH = timedelta(hours=0.5)
+HOURS_SPREADSHEET = 'https://docs.google.com/spreadsheet/ccc?key=1FHgW0wCnAh49bZIw54eoBT9xEoJ3AGG7Y2LhQdi0Lvs&output=csv'  # noqa: E501
+SHIFT_LENGTH = timedelta(hours=1)
 
 
 class Hour(namedtuple('Hours', ['open', 'close', 'staffer'])):
@@ -63,7 +63,7 @@ def _combine_shifts(shifts):
         if not staffer:  # skip unstaffed shifts
             continue
 
-        open = datetime.strptime(shift, '%H:%M%p')  # 16:00PM
+        open = datetime.strptime(shift, '%I:%M %p')  # 12-hour AM/PM i.e. 7:00PM
         close = open + SHIFT_LENGTH
         raw_shifts.append(Hour(open=open.time(), close=close.time(), staffer=staffer))
 
