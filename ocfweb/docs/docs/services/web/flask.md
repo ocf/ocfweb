@@ -1,5 +1,9 @@
 [[!meta title="Flask"]]
 
+**Note: These instructions are primarily intended for individual user accounts.
+If you are using a group account, you may wish to consider
+[[apphosting|doc services/webapps]] instead.**
+
 Flask is a popular microframework for Python web development. Using it on the
 OCF servers requires only just a little extra configuration.
 
