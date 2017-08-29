@@ -2,7 +2,7 @@
 
 
 These are the official **Bylaws of the Open Computing Facility**, as last
-amended at the general meeting of March 6, 2017.
+amended at the Board meeting of August 28, 2017.
 
 1. [Repealed]
 
@@ -89,23 +89,12 @@ amended at the general meeting of March 6, 2017.
 
    1. All Cabinet members shall be Officers of the Open Computing Facility.
 
-   2. In addition, any Director of the Open Computing Facility who attends an
-      Officers’ Meeting and requests to be appointed as an Officer shall be
-      appointed as an Officer.
-
-   3. Officers appointed under subsection 2 of this title shall be removed from
-      office if they miss two consecutive Officers’ Meetings without an excuse
-      approved by the General Manager.
-
-14. No person shall be appointed as a Director unless they have served
-    previously on the Board of Directors or have attended at least four Board
-    meetings in the semester in which they are to be appointed.
-
-    Any non-Director member who attends four Board meetings in the same
-    semester can request to be appointed as a Director; they shall be
-    automatically appointed unless a Director moves for a vote on their
-    appointment, in which case the candidate will be appointed upon gaining a
-    majority vote.
+14. Any non-Director member who attends a Board meeting can request to be
+    appointed as a Director at that meeting. In that case, they shall be
+    automatically appointed unless at the same meeting a Director moves for a
+    vote on their appointment, in which case the candidate will be appointed if
+    not more than three-fifths of Directors present vote against their
+    appointment.
 
     Directors not in good standing shall be disqualified from the Board until
     they are in good standing again.
@@ -119,4 +108,5 @@ October 10, 2016. Bylaw 14 added at the Board meeting of October 17, 2016.
 Bylaw 7 amended at the Board meeting of October 31, 2016. Bylaws 1 and 8
 repealed, bylaw 7 amended, and bylaw 15 added at the general meeting of
 November 14, 2016. Bylaws 13.2, 11.3, 12.3 amended, and bylaws 10.4 and 10.5
-added at the Board meeting of March 6, 2017.
+added at the Board meeting of March 6, 2017. Bylaws 13.2 and 13.3 repealed and
+Bylaw 14 amended at the Board meeting of August 28, 2017.
