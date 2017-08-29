@@ -174,7 +174,8 @@ def _bod_terms():
                    ('shasan', date(2016, 10, 24), date(2016, 11, 28))]),
         Term('Spring 2017', gms=['nickimp', 'baisang'], sms=['jvperrin', 'mattmcal'],
              dgms=['shasan'], dsms=['kpengboy']),
-        Term('Fall 2017', gms=['baisang', 'shasan'], sms=['jvperrin', 'abizer']),
+        Term('Fall 2017', gms=['baisang', 'shasan'], sms=['jvperrin', 'abizer'],
+             dgms=['asai'], dsms=['dkessler', 'kuoh']),
     ]
 
 
