@@ -27,7 +27,7 @@ Check your print balance regularly!
 ## Printing refunds
 
 Pages are **not** normally refunded, except in cases of technical issues. In
-this case, you should talk with the Publications Center staff at the front desk
+this case, you should talk with the OCF Operations Staff at the front desk
 for a refund.
 
 ## Technical details

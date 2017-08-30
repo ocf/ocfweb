@@ -22,7 +22,7 @@ When contacting OCF staff, please reference
 
 The OCF lab is located on the ground level of MLK Student Union (entrance on
 Lower Sproul), Room 171. You will need to show your student ID to the
-publications staff on desk when you enter the lab.
+front desk staff when you enter the lab.
 
 OCF staff members are usually **not present** during lab open hours. To talk
 with an OCF volunteer staffer, check the [[posted staff hours|staff-hours]].
