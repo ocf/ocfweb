@@ -103,12 +103,12 @@ errors.
 
 In order to know what job options are available for a particular printer and
 how to convert documents to a printable format, CUPS requires large config
-files called PostScript Printer Drivers (PPDs). The OCF uses a modified HP
-PPD for the [M806][m806] and one for the [P4515][p4515]. There are two
-versions of each: one which only allows double-sided printing and one which
-only allows single-sided. This is how we implement the "double" and "single"
-classes. The PPDs tell CUPS to use `ocfps` to convert documents to PostScript,
-plus they turn on economode so we can afford the toner.
+files called PostScript Printer Drivers (PPDs). The OCF uses a modified HP PPD
+for the [M806][m806]. There are two versions of it: one which only allows
+double-sided printing and one which only allows single-sided. This is how we
+implement the "double" and "single" classes. The PPDs tell CUPS to use `ocfps`
+to convert documents to PostScript, plus they turn on economode so we can
+afford the toner.
 
 [m806]: https://github.com/ocf/puppet/blob/master/modules/ocf_printhost/templates/cups/ppd/m806.ppd.epp
 
