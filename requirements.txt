@@ -10,7 +10,7 @@ chardet==3.0.4
 cracklib==2.9.3
 cryptography==2.0.3
 cycler==0.10.0
-Django==1.10.7
+Django==1.11.4
 django-bootstrap-form==3.3
 django-ipware==1.1.6
 django-mathfilters==0.4.0
@@ -31,9 +31,9 @@ paramiko==2.2.1
 pexpect==4.2.1
 ply==3.10
 ptyprocess==0.5.2
-pyasn1==0.3.2
+pyasn1==0.3.3
 pycparser==2.18
-pycryptodome==3.4.6
+pycryptodome==3.4.7
 Pygments==2.2.0
 PyMySQL==0.7.11
 PyNaCl==1.1.2
