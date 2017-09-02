@@ -67,7 +67,7 @@ to print, it is sent to the printer via some backend such as IPP.
 Finally, the printer accepts a PostScript document as raw data and prints it
 out (some also support raster formats). This part of the process is largely
 controlled by the printer's onboard configuration, which can be modified by
-visiting the printer's IP over the web (e.g. `htts://papercut/`). In the OCF's
+visiting the printer's IP over the web (e.g. `https://papercut/`). In the OCF's
 case, security is provided by an access control list (ACL) which accepts print
 jobs from the printhost and rejects jobs from other hosts.
 
@@ -103,15 +103,14 @@ errors.
 
 In order to know what job options are available for a particular printer and
 how to convert documents to a printable format, CUPS requires large config
-files called PostScript Printer Drivers (PPDs). The OCF uses two modified HP
-PPDs, one for the [M806][m806] and one for the [P4515][p4515]. There are two
+files called PostScript Printer Drivers (PPDs). The OCF uses a modified HP
+PPD for the [M806][m806] and one for the [P4515][p4515]. There are two
 versions of each: one which only allows double-sided printing and one which
 only allows single-sided. This is how we implement the "double" and "single"
 classes. The PPDs tell CUPS to use `ocfps` to convert documents to PostScript,
 plus they turn on economode so we can afford the toner.
 
-[m805]: https://github.com/ocf/puppet/blob/master/modules/ocf_printhost/templates/cups/ppd/m806.ppd.epp
-[p4515]: https://github.com/ocf/puppet/blob/master/modules/ocf_printhost/templates/cups/ppd/p4515.ppd.epp
+[m806]: https://github.com/ocf/puppet/blob/master/modules/ocf_printhost/templates/cups/ppd/m806.ppd.epp
 
 
 ## Print accounting
