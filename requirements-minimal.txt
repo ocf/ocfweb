@@ -1,10 +1,10 @@
 cached-property
 celery[redis]
+django
 django-bootstrap-form
 django-ipware
 django-mathfilters
 django-redis
-django>=1.11,<1.11.999
 gunicorn
 libsass
 matplotlib
