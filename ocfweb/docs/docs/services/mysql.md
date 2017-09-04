@@ -10,7 +10,7 @@ important differences between the two, though MariaDB does contain [some
 improvements](https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-features/).
 
 
-## Policies
+## Policies  {policies}
 
 We limit users to 1 database, and this database has the same name as your
 username. As a user of shared database server we ask you to respect the
