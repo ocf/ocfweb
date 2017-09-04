@@ -67,13 +67,13 @@ def get_open_close(day):
             day.year,
             day.month,
             day.day,
-            min(h.open.hour for h in REGULAR_HOURS[None]),
+            min(h.open.hour for hour_list in REGULAR_HOURS.values() for h in hour_list),
         )
         end = datetime(
             day.year,
             day.month,
             day.day,
-            max(h.close.hour for h in REGULAR_HOURS[None]),
+            max(h.close.hour for hour_list in REGULAR_HOURS.values() for h in hour_list),
         )
 
     return start, end
