@@ -1,6 +1,6 @@
 [[!meta title="Banning policy"]]
 
-<!-- As established by BoD on October 31, 2016 -->
+_As established by the Board of Directors on October 31, 2016._
 
 Any member of the OCF staff may propose to ban a user from the OCF for willful
 violation of OCF policies. Banned users may not enter the OCF lab or use any

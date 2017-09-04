@@ -1,6 +1,6 @@
 [[!meta title="Keycard policy"]]
 
-<!-- This policy was promulgated by the GMs on August 18, 2017. -->
+_As promulgated by the GMs on August 18, 2017._
 
 
 ## Keycard access
