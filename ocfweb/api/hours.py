@@ -85,7 +85,7 @@ def _combine_shifts(shifts):
                 shift.staffer == next_shift.staffer:
             shift = _merge_shifts(shift, next_shift)
         else:
-            combined_shifts.append(next_shift)
+            combined_shifts.append(shift)
             shift = next_shift
 
     # tail case where staffer condition doesn't trip on list end
