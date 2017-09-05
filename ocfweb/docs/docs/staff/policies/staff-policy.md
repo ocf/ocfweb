@@ -88,5 +88,3 @@ without the SMs’ (or GMs’ or BoD’s) approval.
 
 Site Managers should promptly inform staffers whenever they make amendments to
 any such policies.
-
-[decision]: https://www.ocf.berkeley.edu/docs/docs/operatingrules/constitution/#ocf_decision_making_process
