@@ -78,6 +78,7 @@ Some of the places OCF staffers have gone on to work at:
 * [Network Appliance](http://www.netapp.com/)
 * [Neuron Data](http://www.neurondata.com/)
 * Newspager Corp. of America
+* [New York State Office of the Attorney General](https://ag.ny.gov)
 * [Okta](https://www.okta.com)
 * [Oracle](http://www.oracle.com/)
 * [Palantir](https://www.palantir.com)
