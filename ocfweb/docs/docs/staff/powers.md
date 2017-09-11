@@ -26,7 +26,8 @@ practice most staff members are Directors and vice versa.
 * can login to all servers
 * can edit shared staff files such as `User_Info` and `motd` (message of the
   day on public servers)
-* can edit the [[wiki|doc staff/docs]] and are expected to help maintain it
+* can edit the [[wiki|doc staff/procedures/editing-docs]] and are expected to
+  help maintain it
 * must hold [[staff hours|staff-hours]], alongside other staffers
 
 
