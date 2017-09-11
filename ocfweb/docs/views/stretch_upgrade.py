@@ -37,7 +37,7 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'anthrax',
-            comments='maybe move to marathon instead?',
+            comments='maybe move to Marathon instead?',
         ),
 
         # login servers
@@ -74,15 +74,12 @@ def _get_servers():
             'dementors',
             status=ThingToUpgrade.UPGRADED,
         ),
-        ThingToUpgrade.from_hostname(
-            'flood',
-            comments='will be easier to upgrade once the Slack to IRC bridge is moved to Marathon',
-        ),
+        ThingToUpgrade.from_hostname('flood'),
         ThingToUpgrade.from_hostname('pestilence'),
         ThingToUpgrade.from_hostname(
             'thunder',
             status=ThingToUpgrade.BLOCKED,
-            comments='no puppetlabs packages yet',
+            comments='no puppetdb stretch packages yet',
         ),
         ThingToUpgrade.from_hostname(
             'whiteout',
@@ -98,7 +95,7 @@ def _get_servers():
         ThingToUpgrade.from_hostname(
             'lightning',
             status=ThingToUpgrade.BLOCKED,
-            comments='no puppetlabs packages yet',
+            comments='no puppetserver stretch packages yet',
         ),
         ThingToUpgrade.from_hostname(
             'fallingrocks',
@@ -115,13 +112,11 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'pileup',
-            status=ThingToUpgrade.BLOCKED,
-            comments='No marathon packages yet',
+            comments='No official Marathon packages yet, but manually-built ones work',
         ),
         ThingToUpgrade.from_hostname(
             'monsoon',
-            status=ThingToUpgrade.BLOCKED,
-            comments='No marathon packages yet',
+            comments='No official Marathon packages yet, but manually-built ones work',
         ),
 
         # raspberry pi
