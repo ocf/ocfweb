@@ -6,4 +6,5 @@ There are a couple official test accounts:
   - `ggroup`: Test group account. Name stands for "guest group".
   - `testgroupacct`: Another test group account. Originally created to test
     usernames with length > 8 characters.
+  - `gstaff`: Test staff account. Name stands for "guest staff".
   - `testopstaff`: Test opstaff account.
