@@ -11,7 +11,7 @@
                 <table class="table table-hover table-responsive">
                     <tr>
                         <th>Printer</th>
-                        <th>Trees killed over lifetime</tr>
+                        <th>Trees killed over lifetime*</th>
                     </tr>
                     {% for dict in data %}
                         <tr>
@@ -21,6 +21,7 @@
                         </tr>
                     {% endfor %}
                 </table>
+                <small>*Assuming each tree yields ~8333 pages.</small>
             </div>
         </div>
     </div>
