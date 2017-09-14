@@ -23,7 +23,7 @@ To install updates:
    This will send an email to `root` with a list of packages to be updated.
    Glance over the list to make sure there are no obvious problems (for
    example, if it's trying to upgrade an entire system or install every
-   available backport, which has actually happaned before).
+   available backport, which has actually happened before).
 
    Once apt-dater opens, proceed to the next step.
 
