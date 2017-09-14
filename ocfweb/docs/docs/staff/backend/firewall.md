@@ -49,6 +49,10 @@ startup config (see below):
         network-object object host4
         network-object object host6
 
+* To remove a config option, do the same as adding it, but put `no` before the
+  definition, so for instance to remove a NTP server added with `ntp server
+  169.229.226.12`, remove it with `no ntp server 169.229.226.12`.
+
 * To exit config mode or an object declaration: `exit` (may need to be run
   multiple times to fully exit a config definition).
 
