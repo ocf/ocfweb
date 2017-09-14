@@ -75,7 +75,10 @@ def _get_servers():
             status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname('flood'),
-        ThingToUpgrade.from_hostname('pestilence'),
+        ThingToUpgrade.from_hostname(
+            'pestilence',
+            status=ThingToUpgrade.UPGRADED,
+        ),
         ThingToUpgrade.from_hostname(
             'thunder',
             status=ThingToUpgrade.BLOCKED,
