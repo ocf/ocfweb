@@ -53,7 +53,7 @@ Verifying - New password: <my new password>
 Success : Password changed
 ```
 
-#### In person
+#### In person    {in-person-reset}
 
 If you are not able to use CalNet or SSH, or if you are a group and forgot your
 current password, you can meet a staff member in person during [[staff
