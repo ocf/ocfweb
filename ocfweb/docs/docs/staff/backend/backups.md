@@ -55,7 +55,7 @@ take to restore from an offsite backup:
 
 1. Download all the backup pieces from Box.com. This is generally easiest with
    a command line tool like `cadaver`, which can just use a `mget *` to download
-   all the files (albiet sequentially). If more speed is needed, open multiple
+   all the files (albeit sequentially). If more speed is needed, open multiple
    `cadaver` connections and download multiple groups of files at once.
 
 2. Put together all the backup pieces into a single file. This can be done by
