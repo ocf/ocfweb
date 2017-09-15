@@ -6,17 +6,21 @@
 
 {% block content %}
     <div class="ocf-content-block">
-        {% if not vhosts %}
-            <h3>You don't currently have mail virtual hosting.</h3>
-        {% endif %}
-        <p>
-            Mail virtual hosting lets you receive mail at a domain like
-            <tt>@mygroup.berkeley.edu</tt>. You can create as many
-            addresses as you'd like&ndash;for your officers, members,
-            committees, and more. Learn how to send and receive e-mails
-            through Gmail
-            <a href="{% url 'doc' 'services/vhost/mail/gmail' %}">here</a>.
-        </p>
+        <div class="row">
+            <div class="col-md-8">
+                {% if not vhosts %}
+                    <h3>You don't currently have mail virtual hosting.</h3>
+                {% endif %}
+                <p>
+                    Mail virtual hosting lets you receive mail at a domain like
+                    <code>@mygroup.berkeley.edu</code>. You can create as many
+                    addresses as you'd like&ndash;for your officers, members,
+                    committees, and more. Learn how to send and receive e-mails
+                    through Gmail
+                    <a href="{% url 'doc' 'services/vhost/mail/gmail' %}">here</a>.
+                </p>
+            </div>
+        </div>
 
         {% if vhosts %}
             {% for vhost in vhosts %}
@@ -113,12 +117,66 @@
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         Add address
                     </button>
+                    <h4>CSV import/export</h4>
+                    <form class="form-inline js-import-csv-form" enctype="multipart/form-data" action="{% url 'vhost_mail_csv_import' vhost.domain %}" method="post">
+                        <a class="btn btn-default" href="{% url 'vhost_mail_csv_export' vhost.domain %}">
+
+                            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                            Download CSV
+                        </a>
+                        <div class="form-group">
+                            <label class="btn btn-default">
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                Upload CSV
+                                <input type="file" class="hidden js-import-csv" name="csv_file" accept="text/csv" />
+                            </label>
+                        </div>
+                        <a href="#csv_import_export">What's this?</a>
+                        {% csrf_token %}
+                    </form>
                 {% endwith %}
             {% endfor %}
             <hr />
             <small>
                 * Passwords can't be retrieved after being set, but you can always change them again.
             </small>
+            <div class="row">
+                <div class="col-md-8">
+                    <h4 id="csv_import_export">Importing and exporting CSVs</h4>
+                    <p>
+                        You can use CSV spreadsheets to manage your forwarding
+                        addresses. Clicking "Download CSV" will allow you to
+                        download all your forwarding addresses for a particular
+                        domain and the emails they forward to. Clicking "Upload
+                        CSV" will let you pick a CSV file to add new forwarding
+                        rules or update existing ones; no addresses will be
+                        deleted.
+                    </p>
+                    <p>
+                        The CSV format for downloading and uploading is UTF-8
+                        encoded and has two columns. The first contains the
+                        name part of the forwarding address (i.e. the part
+                        before <code>@mygroup.berkeley.edu</code>). The second
+                        contains all the receiving emails in a list. When
+                        uploading, the list may be separated by any combination
+                        of commas or whitespace, as long as the column is
+                        quoted when line breaks or commas are used.
+                    </p>
+                    <p>
+                        Here's what an example of what a valid uploaded CSV
+                        file might look like in a text editor:
+<pre>president,john.doe@berkeley.edu
+officers,john.doe@berkeley.edu jane.doe@berkeley.edu
+committee,"john.doe@berkeley.edu, jane.doe@berkeley.edu"
+members,"john.doe@berkeley.edu,
+jane.doe@berkeley.edu,"</pre>
+                    </p>
+                        You cannot set or retrieve passwords or your catch-all
+                        address via CSV.
+                    <p>
+                    </p>
+                </div>
+            </div>
         {% else %}
             <p>
                 Mail virtual hosting is a free service from the friendly

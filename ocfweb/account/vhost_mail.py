@@ -1,9 +1,12 @@
+import csv
+import io
 import re
 from contextlib import contextmanager
 
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
@@ -114,6 +117,109 @@ def vhost_mail_update(request):
             addr_vhost.add_forwarding_address(c, new)
 
     messages.add_message(request, messages.SUCCESS, 'Update successful!')
+    return _redirect_back()
+
+
+@login_required
+@group_account_required
+def vhost_mail_csv_export(request, domain):
+    user = logged_in_user(request)
+    vhost = _get_vhost(user, domain)
+    if not vhost:
+        _error(request, 'No domain {} for {}'.format(domain, user))
+
+    with _txn() as c:
+        addresses = (
+            addr for addr in sorted(vhost.get_forwarding_addresses(c))
+            if not addr.is_wildcard
+        )
+
+    # Write CSV to string
+    buf = io.StringIO()
+    writer = csv.writer(buf)
+    for addr in addresses:
+        writer.writerow((
+            addr.address.split('@')[0],
+            ' '.join(sorted(addr.forward_to)),
+        ))
+
+    response = HttpResponse(
+        buf.getvalue(),
+        content_type='text/csv',
+    )
+    # See https://docs.djangoproject.com/en/1.11/ref/request-response/
+    response['Content-disposition'] = 'attachment; filename="{}.csv"'.format(domain)
+    return response
+
+
+@login_required
+@group_account_required
+@require_POST
+def vhost_mail_csv_import(request, domain):
+    user = logged_in_user(request)
+    vhost = _get_vhost(user, domain)
+    if not vhost:
+        _error(request, 'No domain {} for {}'.format(domain, user))
+
+    csv_file = request.FILES.get('csv_file')
+    if not csv_file:
+        _error(request, 'Missing CSV file in request')
+
+    # Parse CSV and validate addresses
+    addresses = {}
+    with io.TextIOWrapper(csv_file, encoding='utf-8') as f:
+        reader = csv.reader(f)
+        for i, row in enumerate(reader):
+            if len(row) != 2:
+                _error(request, 'Row {} should have exactly 2 columns'.format(i))
+
+            from_addr = row[0] + '@' + domain
+            if _parse_addr(from_addr) is None:
+                _error(request, 'Invalid forwarding address: ' + from_addr)
+
+            # Allow any combination of whitespace and , as separators
+            to_addrs = re.split(r'(?:\s|,)+', row[1])
+            if to_addrs[-1] == '':
+                # Allow trailing comma
+                to_addrs = to_addrs[:-1]
+            for to_addr in to_addrs:
+                if _parse_addr(to_addr) is None:
+                    _error(request, 'Invalid recipient address: ' + to_addr)
+
+            addresses[from_addr] = frozenset(to_addrs)
+
+    # Add new addresses and update existing if the recipients changed
+    with _txn() as c:
+        existing_addrs = {
+            addr.address: addr
+            for addr in vhost.get_forwarding_addresses(c)
+        }
+
+        for from_addr, to_addrs in addresses.items():
+            if from_addr in existing_addrs:
+                existing_addr = existing_addrs[from_addr]
+                if to_addrs != existing_addr.forward_to:
+                    new = MailForwardingAddress(
+                        address=from_addr,
+                        crypt_password=existing_addr.crypt_password,
+                        forward_to=to_addrs,
+                        last_updated=None,
+                    )
+                    vhost.remove_forwarding_address(c, from_addr)
+                else:
+                    new = None
+            else:
+                new = MailForwardingAddress(
+                    address=from_addr,
+                    crypt_password=None,
+                    forward_to=to_addrs,
+                    last_updated=None,
+                )
+
+            if new is not None:
+                vhost.add_forwarding_address(c, new)
+
+    messages.add_message(request, messages.SUCCESS, 'Import successful!')
     return _redirect_back()
 
 
