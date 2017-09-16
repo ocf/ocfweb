@@ -34,7 +34,7 @@ practice most staff members are Directors and vice versa.
 ### `/root` principal
 
 In order to reset user passwords, staff must possess a `/root` principal. This
-principal grants the staffer the user the ability to change passwords. This is
+principal grants the staffer the ability to change users' passwords. This is
 because chpass requires the Kerberos `change-password` privilege. The
 permission to do this originates in the Kerberos administrative ACL
 (`kerberos:/etc/heimdal-kdc/kadmind.acl`):
