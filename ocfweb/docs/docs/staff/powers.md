@@ -10,7 +10,7 @@ Each tier includes the privileges of the preceding tiers.
 
 Staff privileges are distinct from the Board of Directors, General Manager, and
 Site Manager(s), which hold executive/legislative/judicial powers, although in
-practice most staff members are Directors and vice versa.
+practice many staff members are Directors and vice versa.
 
 
 ## Staff
@@ -29,6 +29,7 @@ practice most staff members are Directors and vice versa.
 * can edit the [[wiki|doc staff/procedures/editing-docs]] and are expected to
   help maintain it
 * must hold [[staff hours|staff-hours]], alongside other staffers
+* must join a staffer family
 
 
 ### `/root` principal
