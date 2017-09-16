@@ -35,17 +35,17 @@ practice many staff members are Directors and vice versa.
 ### `/root` principal
 
 In order to reset user passwords, staff must possess a `/root` principal. This
-principal grants the staffer the ability to change users' passwords. This is
-because chpass requires the Kerberos `change-password` privilege. The
-permission to do this originates in the Kerberos administrative ACL
-(`kerberos:/etc/heimdal-kdc/kadmind.acl`):
+principal grants the staffer the ability to change users' passwords.
 
     username/root@OCF.BERKELEY.EDU change-password *@OCF.BERKELEY.EDU
 
-This is usually given to staff after a semester of demonstrated interest.
+Before student groups became able to reset their passwords online in 2015, this
+principal was widely given out. However, since then, it has only been useful for
+resetting passwords of group accounts with no associated signatories. It is now
+given out as needed.
 
 
-## Technical managers
+## Technical Managers
 
 *group ocfroot*
 
@@ -65,9 +65,25 @@ Once that's satisfied, you must also be in the `ocfroot` LDAP group in order to
 use `sudo` on most servers. (Exceptions: desktops and your staff VM don't
 require you to be in ocfroot.)
 
-
 ### `/admin` principal
 
 In order to modify LDAP or Kerberos, staff must possess a `/admin` principal
 and it must be granted [Kerberos-editing rights in
 Puppet](https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl).
+
+### Other powers
+
+Technical Managers also have the following powers:
+
+ - Being in the Admin group in the OCF org on GitHub, which grants the ability
+   to directly commit to any repository
+ - Access to the RT admin interface
+
+Some Technical Managers, particularly the DSMs and SMs, may additionally have
+the following:
+
+ - Super admin status on Google Apps
+ - Access to the firewall configuration interface
+ - Being a Departmental Certificate Administrator for the InCommon certificate
+   service
+ - Knowledge of the root password
