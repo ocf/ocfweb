@@ -156,7 +156,7 @@ def _get_servers():
 def stretch_upgrade(doc, request):
     return render(
         request,
-        'docs/stretch-upgrade.html',
+        'docs/stretch_upgrade.html',
         {
             'title': doc.title,
             'servers': _get_servers(),
