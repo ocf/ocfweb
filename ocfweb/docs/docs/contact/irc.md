@@ -56,7 +56,7 @@ among other results.
 
 ### Setting up NickServ to work with ZNC
 
-If you are [[using ZNC|doc staff/staffvm/znc]], load the [NickServ
+If you are [[using ZNC|doc staff/tips/staffvm/znc]], load the [NickServ
 module][nickserv] by running `/znc LoadMod nickserv` while connected to your
 ZNC server. Then, in your ZNC web admin interface, log in and go to `Your
 Settings` under either the global or user modules links. Under the Networks

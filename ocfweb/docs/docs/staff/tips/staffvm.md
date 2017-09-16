@@ -1,4 +1,4 @@
-[[!meta title="Useful staff VM tricks"]]
+[[!meta title="On your staff VM"]]
 
 ## Essentials
 
