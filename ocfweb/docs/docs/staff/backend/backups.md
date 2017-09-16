@@ -24,6 +24,62 @@ with only OCF officers to make sure the backups are kept as secure as possible,
 since they contain all of the OCF's important data.  The backups are already
 encrypted, but it doesn't hurt to add a little extra security to that.
 
+## Restoring Backups
+
+The easiest way to restore from a backup is to look at how it is made and
+reverse it. If it is a directory specified in rsnapshot, then likely all that
+needs to be done is to take that directory from the backup and put it onto the
+server to restore onto. Some backups, such as mysql, ldap, and kerberos are
+more complicated, and need to be restored using `mysqlimport` or `ldapadd` for
+instance.
+
+### Onsite
+
+Onsite backups are pretty simple, all that needs to be done is to go to `hal`
+and find the backup to restore from in `/opt/backups/live`. All backups of
+recent data are found in either `rsnapshot` (for daily backups) or `misc` (for
+any incidents or one-off backups). Within `rsnapshot`, the backups are
+organized into directories dependings on how long ago the backup was made. To
+see when each backup was created just use `ls -l` to show the last modified
+time of each directory.
+
+### Offsite
+
+Offsite backups are more complicated because the backup files first need to be
+downloaded, stuck together into a single file, decrypted, extracted, and then
+put into LVM to get back the whole backup archive that would normally be found
+onsite. This essentially just means that the
+[create-encrypted-backup][create-encrypted-backup] script needs to be reversed
+to restore once the backup files are downloaded. Here are the general steps to
+take to restore from an offsite backup:
+
+1. Download all the backup pieces from Box.com. This is generally easiest with
+   a command line tool like `cadaver`, which can just use a `mget *` to download
+   all the files (albeit sequentially). If more speed is needed, open multiple
+   `cadaver` connections and download multiple groups of files at once.
+
+2. Put together all the backup pieces into a single file. This can be done by
+   running `cat <backup>.img.gz.gpg.part* > <backup>.img.gz.gpg`.
+
+3. Decrypt the backup using `gpg`. This requires your key pair to be imported
+   into `gpg` first using `gpg --import public_key.gpg` and
+   `gpg --allow-secret-key-import --import private_key.gpg`, then you can
+   decrypt the backup with
+   `gpg --output <backup>.img.gz --decrypt <backup>.img.gz.gpg`. Be careful to
+   keep your private key secure by setting good permissions on it so that nobody
+   else can read it, and delete it after the backup is imported. The keys can be
+   deleted with `gpg --delete-secret-keys "<Name>"` and
+   `gpg --delete-key "<Name>"`, where your name is whatever name it shows when
+   you run `gpg --list-keys`.
+
+4. Extract the backup with `gunzip <backup>.img.gz`.
+
+5. Put the backup image into a LVM logical volume. First find the size that the
+   volume should be by running `ls -l <backup>.img`, and copy the number of
+   bytes that outputs. Then create the LV with
+   `sudo lvcreate -L <bytes>B -n <name> /dev/<volume group>` where the volume
+   group has enough space to store the entire backup (2+ TiB).
+
 ## Backup Contents
 
 Backups currently include:
@@ -38,64 +94,23 @@ Backups currently include:
 
 ## Backup Procedures
 
-Backups are currently made daily via a cronjob on `hal` which calls rsnapshot.
+Backups are currently made daily via a cronjob on `hal` which calls `rsnapshot`.
 The current settings are to retain 7 daily backups, 4 weekly backups, and 6
 monthly backups, but we might adjust this as it takes more space or we get
 larger backup drives.
 
 We use `rsnapshot` to make incremental backups. Typically, each new backup
 takes an additional ~3GiB of space (but this will vary based on how many files
-actually changed). A full backup is about ~1.3TiB of space and growing.
+actually changed). A full backup is about ~2TiB of space and growing.
 
 (The incremental file backups are only about ~300 MiB, but since mysqldump
 files can't be incrementally backed up, those take a whole ~2 GiB each time, so
-the total backup grows by ~3GiB each time.)
-
-#### Request Tracker
-
-The RT database is stored in the `ocfrt` database on the MySQL host. It is
-possible to restore RT using just the database; in fact, simply running puppet
-is now sufficient to bring up a fully-functioning RT server.
+the total backup grows by ~3GiB each time. However, an old backup is discarded
+each time too, so it approximately breaks even.)
 
 ## Ideas for backup improvements
 
-Some general ideas for improving backups:
-
-1. **Done.** Use RAID 0 on `hal:/dev/sdb` to get an effective 2 TiB of space,
-   matching pandemic. Mirror the two (pandemic -> hal); pandemic is master.
-
-   (pandemic already does RAID 1, so the chance of that failing the same time a
-   hal drive fails without some external disaster which destroys the entire
-   server rack is low.)
-
-2. **Done.** Make the backup on hal automatically clone the backup on pandemic
-   periodically. Should find a way to make it happen only when no backups are
-   going on (which might be hard, since copying all the files takes a long time
-   -- about 7.25 hours).
-
-   Currently there is a script `hal:/opt/copy-backups.sh`, but we need some
-   more complicated setup than just putting it in cron (it requires SSHing to
-   pandemic as password, which can't be automated).
-
-3. **Done.** Use incremental file backups, possibly rsnapshot
-
-4. **Done.** Backup certain directories on servers
-
-     * Crontabs
-     * LDAP
-     * Kerberos
-     * Puppet shares and master's directory (has puppet CA)
-     * Munin records (`stats:/var/lib/munin`)
-     * DNS zones (`ns:/etc/bind`; we should just move this to git)
-     * *more things here* (feel free to add)
-
-5. **Done.** Backup git repositories (currently mostly on GitHub)
-
-6. **Done.** Automate the backups and rotation.
-
-7. **Done.** Automate weekly offsite backups to Box.
-
-8. Automate backup testing, so have some system for periodically checking that
+1. Automate backup testing, so have some system for periodically checking that
    backups can be restored from, whether they are offsite or onsite.
 
 [box]: https://www.box.com
