@@ -1,7 +1,11 @@
 import crypt
+import csv
+import io
+import re
 from contextlib import contextmanager
 from datetime import datetime
 from unittest import mock
+from textwrap import dedent
 
 import pytest
 from django.contrib import messages
@@ -18,27 +22,38 @@ from ocfweb.account.vhost_mail import _get_forward_to
 from ocfweb.account.vhost_mail import _get_password
 from ocfweb.account.vhost_mail import _get_vhost
 from ocfweb.account.vhost_mail import _parse_addr
+from ocfweb.account.vhost_mail import _parse_csv
+from ocfweb.account.vhost_mail import _parse_csv_forward_addrs
 from ocfweb.account.vhost_mail import _redirect_back
 from ocfweb.account.vhost_mail import _txn
+from ocfweb.account.vhost_mail import _write_csv
+from ocfweb.account.vhost_mail import EXAMPLE_CSV
 from ocfweb.account.vhost_mail import REMOVE_PASSWORD
 from ocfweb.component.errors import ResponseException
 
 
-ALL_VIEWS = ('vhost_mail', 'vhost_mail_update')
+TEST_VIEWS = (
+    ('vhost_mail', ()),
+    ('vhost_mail_update', ()),
+    ('vhost_mail_csv_export', ('vhost.com',)),
+    ('vhost_mail_csv_import', ('vhost.com',)),
+)
 
 
-@pytest.mark.parametrize('view', ALL_VIEWS)
+@pytest.mark.parametrize('view', TEST_VIEWS)
 def test_view_requires_login(view, client):
     """Logged out users should get redirected to login."""
-    resp = client.get(reverse(view))
+    name, args = view
+    resp = client.get(reverse(name, args=args))
     assert resp.status_code == 302
     assert resp.url == reverse('login')
 
 
-@pytest.mark.parametrize('view', ALL_VIEWS)
+@pytest.mark.parametrize('view', TEST_VIEWS)
 def test_view_requires_group_account(view, client_guser):
     """Individual accounts should get an error."""
-    resp = client_guser.get(reverse(view))
+    name, args = view
+    resp = client_guser.get(reverse(name, args=args))
     assert resp.status_code == 403
 
 
@@ -74,6 +89,12 @@ def mock_ggroup_vhost():
             address='exists@vhost.com',
             crypt_password='crypt',
             forward_to=frozenset(('bob@gmail.com', 'tom@gmail.com')),
+            last_updated=datetime(2000, 1, 1),
+        ),
+        MailForwardingAddress(
+            address='another@vhost.com',
+            crypt_password=None,
+            forward_to=frozenset(('someguy@gmail.com',)),
             last_updated=datetime(2000, 1, 1),
         ),
     }
@@ -169,15 +190,13 @@ def test_update_add_new_addr_already_exists(client_ggroup, mock_ggroup_vhost, mo
 
 
 def test_update_fails_to_add_addr_to_bad_vhost(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(
-        reverse('vhost_mail_update'), {
-            'action': 'add',
-            'addr': 'john@bad-vhost.com',
-            'forward_to': 'john@gmail.com,bob@gmail.com',
-            'password': 'nice password bro',
-        },
-    )
-    mock_ggroup_vhost.add_forwarding_address.called
+    resp = client_ggroup.post(reverse('vhost_mail_update'), {
+        'action': 'add',
+        'addr': 'john@bad-vhost.com',
+        'forward_to': 'john@gmail.com,bob@gmail.com',
+        'password': 'nice password bro',
+    })
+    assert not mock_ggroup_vhost.add_forwarding_address.called
     assert resp.status_code == 302
     mock_messages.assert_called_once_with(
         mock.ANY,
@@ -693,3 +712,260 @@ def test_txn_rolls_back_and_raises_on_failure(fake_cursor):
             raise ValueError('lol sup')
     fake_cursor.connection.rollback.assert_called_once_with()
     assert not fake_cursor.connection.commit.called
+
+
+@pytest.mark.parametrize('addrs,expected', (
+    ('a@a.a', {'a@a.a'}),
+    ('a@a.a b@b.b', {'a@a.a', 'b@b.b'}),
+    ('a@a.a, b@b.b, ', {'a@a.a', 'b@b.b'}),
+    ('a@a.a, \t\n,b@b.b', {'a@a.a', 'b@b.b'}),
+))
+def test_parse_csv_forward_addrs_success(addrs, expected):
+    """Comma/whitespace separated lists of valid email addresses work."""
+    assert _parse_csv_forward_addrs(addrs) == expected
+
+
+@pytest.mark.parametrize('addrs', (
+    '',
+    ', \t\r\n',
+    'invalid',
+    'valid@email.address invalid-email-address',
+))
+def test_parse_csv_forward_addrs_failure(addrs):
+    """Empty lists and lists with invalid email addresses fail."""
+    with pytest.raises(ValueError):
+        _parse_csv_forward_addrs(addrs)
+
+
+def test_parse_csv_example_success():
+    """The on-page example is actually valid."""
+    csv_file = io.BytesIO(bytes(EXAMPLE_CSV, encoding='utf-8'))
+    fake_request = mock.Mock(**{'FILES.get': {'csv_file': csv_file}.get})
+    john_doe, jane_doe = 'john.doe@berkeley.edu', 'jane.doe@berkeley.edu'
+    assert _parse_csv(fake_request, 'example.com') == {
+        'president@example.com': {john_doe},
+        'officers@example.com': {john_doe, jane_doe},
+        'committee@example.com': {john_doe, jane_doe},
+        'members@example.com': {john_doe, jane_doe},
+    }
+
+
+@pytest.mark.parametrize('csv_text', (
+    'toofew',
+    'too,many,',
+    'invalid@example.com,',
+    'valid,invalid@example@com',
+    'valid,valid@example.com invalid',
+))
+def test_parse_csv_failure(csv_text, fake_error):
+    """CSV with wrong # of columns or invalid email addresses fails."""
+    csv_file = io.BytesIO(bytes(csv_text, encoding='utf-8'))
+    fake_request = mock.Mock(**{'FILES.get': {'csv_file': csv_file}.get})
+    with pytest.raises(fake_error):
+        _parse_csv(fake_request, 'vhost.com')
+
+
+def test_write_csv_has_correct_format(mock_ggroup_vhost):
+    """Output CSV has two columns and valid email addresses."""
+    f = io.StringIO(_write_csv(mock_ggroup_vhost.get_forwarding_addresses()))
+    reader = csv.reader(f)
+    for row in reader:
+        assert len(row) == 2
+        assert _parse_addr(row[0] + '@' + mock_ggroup_vhost.domain)
+        assert _parse_csv_forward_addrs(row[1])
+
+
+def check_csv_has_addresses(csv_str, addresses):
+    """A helper for roughly checking the contents of a CSV document."""
+    for addr in addresses:
+        m = re.search(addr.address.split('@')[0] + r'.*$', csv_str, re.MULTILINE)
+        assert m
+        s = m.group(0)
+        for to_addr in addr.forward_to:
+            assert re.search(to_addr, s)
+
+
+def test_write_csv_has_expected_rows(mock_ggroup_vhost):
+    """Output CSV has all email addresses from the vhost."""
+    addresses = mock_ggroup_vhost.get_forwarding_addresses()
+    csv_str = _write_csv(addresses)
+    check_csv_has_addresses(csv_str, addresses)
+
+
+def test_parse_then_write_csv_is_noop(mock_ggroup_vhost):
+    """Not an explicit goal, but write-parse-write should be the same
+    as one write de facto if our data structures are consistent."""
+    addresses_1 = mock_ggroup_vhost.get_forwarding_addresses()
+    csv_str_1 = _write_csv(addresses_1)
+    f = io.BytesIO(bytes(csv_str_1, encoding='utf-8'))
+    fake_request = mock.Mock(**{'FILES.get': {'csv_file': f}.get})
+    addresses_2 = frozenset({
+        MailForwardingAddress(
+            address=from_addr,
+            forward_to=to_addrs,
+            crypt_password=None,
+            last_updated=None,
+        )
+        for from_addr, to_addrs in _parse_csv(fake_request, 'vhost.com').items()
+    })
+    assert _write_csv(addresses_2)
+
+
+def test_import_csv_success(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    """A test request that adds and updates addresses should work and
+    preserve passwords."""
+    csv_text = dedent("""\
+        exists,bub@gmail.com tim@gmail.com
+        newtestaddress,someone@example.com
+    """)
+    resp = client_ggroup.post(
+        reverse('vhost_mail_csv_import', args=('vhost.com',)),
+        {
+            'csv_file': io.StringIO(csv_text),
+        },
+    )
+    mock_ggroup_vhost.remove_forwarding_address.assert_called_once_with(
+        mock_txn().__enter__(),
+        'exists@vhost.com',
+    )
+    mock_ggroup_vhost.add_forwarding_address.assert_has_calls(any_order=True, calls=(
+        mock.call(
+            mock_txn().__enter__(),
+            MailForwardingAddress(
+                address='exists@vhost.com',
+                crypt_password='crypt',
+                forward_to=frozenset(('bub@gmail.com', 'tim@gmail.com')),
+                last_updated=None,
+            ),
+        ),
+        mock.call(
+            mock_txn().__enter__(),
+            MailForwardingAddress(
+                address='newtestaddress@vhost.com',
+                forward_to=frozenset(('someone@example.com',)),
+                crypt_password=None,
+                last_updated=None,
+            ),
+        ),
+    ))
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.SUCCESS,
+        'Import successful!',
+    )
+
+
+def test_import_noop_csv(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    """Exporting then importing ideally doesn't even hit the
+    database."""
+    csv_text = _write_csv(mock_ggroup_vhost.get_forwarding_addresses())
+    resp = client_ggroup.post(
+        reverse('vhost_mail_csv_import', args=('vhost.com',)),
+        {
+            'csv_file': io.StringIO(csv_text),
+        },
+    )
+    assert not mock_ggroup_vhost.remove_forwarding_address.called
+    assert not mock_ggroup_vhost.add_forwarding_address.called
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.SUCCESS,
+        'Import successful!',
+    )
+
+
+def test_import_empty_csv(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    """The parser doesn't reject an empty CSV, so it must pass."""
+    resp = client_ggroup.post(
+        reverse('vhost_mail_csv_import', args=('vhost.com',)),
+        {
+            'csv_file': io.StringIO(''),
+        },
+    )
+    assert not mock_ggroup_vhost.remove_forwarding_address.called
+    assert not mock_ggroup_vhost.add_forwarding_address.called
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.SUCCESS,
+        'Import successful!',
+    )
+
+
+def test_import_csv_missing(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    """POSTing to the CSV import URL without a CSV file fails."""
+    resp = client_ggroup.post(reverse('vhost_mail_csv_import', args=('nonexist.com',)))
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.ERROR,
+        mock.ANY,
+    )
+
+
+def test_import_csv_bad_vhost_fails(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    """POSTing to the CSV import URL for an unowned domain fails."""
+    resp = client_ggroup.post(
+        reverse('vhost_mail_csv_import', args=('nonexist.com',)),
+        {
+            'csv_file': io.StringIO('address,test@example.com'),
+        },
+    )
+    assert not mock_ggroup_vhost.remove_forwarding_address.called
+    assert not mock_ggroup_vhost.add_forwarding_address.called
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.ERROR,
+        'You cannot use the domain: "nonexist.com"',
+    )
+
+
+@pytest.mark.parametrize(('csv_str', 'expected_err'), (
+    ('email', 'Must have exactly 2 columns'),
+    (',,', 'Must have exactly 2 columns'),
+    (',', 'Invalid forwarding address: "@vhost.com"'),
+    ('invalid@vhost.com,', 'Invalid forwarding address: "invalid@vhost.com@vhost.com"'),
+    ('email,', 'Missing forward-to address'),
+    ('email,invalid', 'Invalid address: "invalid"'),
+    ('email,valid@example.com invalid', 'Invalid address: "invalid"'),
+))
+def test_import_invalid_csv_fails(csv_str, expected_err, client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
+    """Trying to import malformatted CSV fails."""
+    resp = client_ggroup.post(
+        reverse('vhost_mail_csv_import', args=('vhost.com',)),
+        {
+            'csv_file': io.StringIO(csv_str),
+        },
+    )
+    assert not mock_ggroup_vhost.remove_forwarding_address.called
+    assert not mock_ggroup_vhost.add_forwarding_address.called
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.ERROR,
+        'Error parsing CSV: row 1: ' + expected_err,
+    )
+
+
+def test_export_csv_works(client_ggroup, mock_ggroup_vhost, mock_txn):
+    """Exporting CSV from a valid domain gives the expected data."""
+    resp = client_ggroup.get(reverse('vhost_mail_csv_export', args=('vhost.com',)))
+    assert resp.status_code == 200
+    check_csv_has_addresses(
+        str(resp.content, encoding='utf-8'),
+        mock_ggroup_vhost.get_forwarding_addresses(),
+    )
+
+
+def test_export_csv_bad_vhost_fails(client_ggroup, mock_ggroup_vhost, mock_txn, mock_messages):
+    """Hitting the CSV export URL for an unowned domain fails."""
+    resp = client_ggroup.get(reverse('vhost_mail_csv_export', args=('nonexist.com',)))
+    assert resp.status_code == 302
+    mock_messages.assert_called_once_with(
+        mock.ANY,
+        messages.ERROR,
+        'You cannot use the domain: "nonexist.com"',
+    )
