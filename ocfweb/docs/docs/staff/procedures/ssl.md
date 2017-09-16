@@ -2,7 +2,7 @@
 
 We are able to obtain signed certificates at no charge through the campus
 [InCommon-Comodo certificate
-service](https://wikihub.berkeley.edu/display/calnet/CalNet+InCommon-Comodo+Certificate+Service).
+service](https://calnetweb.berkeley.edu/calnet-technologists/calnet-incommon-comodo-certificate-service).
 
 The primary Common Name for a certificate should always be the **server
 hostname**, with service CNAMEs specified as Subject Alternative Names. A
