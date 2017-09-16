@@ -59,8 +59,7 @@ Managers as well.
 ### `ocfroot` group
 
 The ability to become root via sudo first requires the existence of a `/root`
-principal (see above), with the exception of staff VMs where nobody needs a
-`/root` (but it must either be *your VM* or you must be in group `ocfroot`).
+principal (see above), with the exception of your staff VM.
 
 Once that's satisfied, you must also be in the `ocfroot` LDAP group in order to
 use `sudo` on most servers. (Exceptions: desktops and your staff VM don't
