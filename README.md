@@ -46,6 +46,9 @@ ocfweb, Jenkins will attempt to build and test your branch automatically.
 If your build fails, you can log into Jenkins to see which tests you've failed
 and fix them, if running `make test` locally didn't already tell you.
 
+You can run individual tests with `venv/bin/pytest <test_file>::<test_name>` if
+running all tests is too slow.
+
 
 ### Running pre-commit
 
