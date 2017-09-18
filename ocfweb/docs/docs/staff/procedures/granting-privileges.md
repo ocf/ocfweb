@@ -44,6 +44,11 @@ After you've created these principals, you'll need to grant them powers in the
 [Kerberos ACL file in Puppet](https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl).
 
 
+## Granting IRC chanop status
+
+TODO
+
+
 ## Granting firewall access
 
 TODO

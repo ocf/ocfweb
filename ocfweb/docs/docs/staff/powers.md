@@ -83,6 +83,7 @@ Some Technical Managers, particularly the DSMs and SMs, may additionally have
 the following:
 
  - Super admin status on Google Apps
+ - Chanop status on IRC
  - Access to the firewall configuration interface
  - Being a Departmental Certificate Administrator for the InCommon certificate
    service
