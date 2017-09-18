@@ -4,7 +4,7 @@
 
 * Website developed, not a placeholder
 * Website hosted substantially on the OCF
-* Website has required university disclaimer on every page
+* For RSOs, website has required university disclaimer on every page
 * Website has hosted by OCF banner on the front page that is noticeable without
   undue effort and links to the OCF home page
 * Request is made by a registered and active student organization in CalLink
@@ -17,6 +17,13 @@
   their department
 * Account does not already have a virtual host, or has an exception from a Site
   Manager
+* For RSOs, domain name complies with [LEAD Center guidelines](http://lead.berkeley.edu/wp-content/uploads/2014/12/student-org-domain-guidelines.pdf). In
+  particular, requested domain name is sufficiently similar to their official
+  name and wouldn't potentially be confused with a university department.
+* For non-berkeley.edu domains, domain name has been approved by a (D)GM or
+  (D)SM. (We wish to keep the number of these domains under check to limit the
+  number of non-berkeley.edu domain owners we have to contact when our web
+  server or mail server DNS changes.)
 
 
 ## Enabling virtual hosting
@@ -80,7 +87,7 @@ DNS mail requests for groups that have old `CNAME` records.
 The group website should be reasonably developed (can be offsite during review
 only for this request) before approving it.
 
-You will need a `/admin` principle to modify apphosting entries.
+You will need a `/admin` principal to modify apphosting entries.
 
 * Add the group account to the ocfdev LDAP group:
 
