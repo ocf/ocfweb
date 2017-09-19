@@ -26,7 +26,6 @@ def stats_printing(request):
             'title': 'Printing Statistics',
             'current_printers': PRINTERS,
             'toner_changes': _toner_changes(),
-
             'last_month': [
                 date.today() - timedelta(days=i)
                 for i in range(30)

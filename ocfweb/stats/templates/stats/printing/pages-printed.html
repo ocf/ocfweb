@@ -6,6 +6,24 @@
     <div class="ocf-content-block">
         {% stats_navbar %}
         <div id="chart"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-responsive">
+                    <tr>
+                        <th>Printer</th>
+                        <th>Trees killed over lifetime*</th>
+                    </tr>
+                    {% for dict in data %}
+                        <tr>
+                            <td>{{ dict.name }}</td>
+                            <!-- hack to divide the lifetime pages printed by 8333 pages/tree -->
+                            <td>{% widthratio dict.data|getitem:-1|getitem:1 8333  1 %}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <small>*Assuming each tree yields ~8333 pages.</small>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
