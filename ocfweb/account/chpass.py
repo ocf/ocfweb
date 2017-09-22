@@ -1,5 +1,7 @@
 from django import forms
 from django.shortcuts import render
+from django.template.loader import render_to_string
+from django.utils.safestring import mark_safe
 from ocflib.account.search import user_exists
 from ocflib.account.search import users_by_calnet_uid
 from ocflib.ucb.directory import name_by_calnet_uid
@@ -52,6 +54,14 @@ def change_password(request):
         accounts += get_accounts_signatory_for(calnet_uid)
     except ConnectionError:
         error = CALLINK_ERROR_MSG
+
+    if not accounts and error is None:
+        error = mark_safe(render_to_string(
+            'account/partials/chpass-no-accounts.html',
+            {
+                'calnet_uid': calnet_uid,
+            },
+        ))
 
     if request.method == 'POST':
         form = ChpassForm(accounts, calnet_uid, request.POST)
