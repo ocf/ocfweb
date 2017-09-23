@@ -93,9 +93,11 @@ tty.
 
 ### Virtual hosts
 
-1. Log in as `root:r00tme`.
-2. `puppet agent --enable`.
-3. `puppet agent --test`.
+The `makevm` script at the very end drops you into a shell. In this shell, you
+should run:
+
+1. `puppet agent --enable`.
+2. `puppet agent --test`.
 
 
 ### Physical hosts
