@@ -1,4 +1,4 @@
-[[!meta title="Virtual hosting (staff)"]]
+[[!meta title="Configuring virtual hosting"]]
 
 ## Policy checklist
 
