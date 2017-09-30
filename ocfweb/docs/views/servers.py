@@ -132,9 +132,9 @@ def get_hosts():
         Host('papercut', 'printer', '', []),
         Host.from_ldap('overheat', type='raspi'),
         Host.from_ldap('tornado', type='nuc'),
-    ] + [
-        Host.from_ldap(desktop, type='desktop')
-        for desktop in sorted(list_desktops())
+
+        *(Host.from_ldap(desktop, type='desktop')
+          for desktop in sorted(list_desktops())),
     ]
 
 
