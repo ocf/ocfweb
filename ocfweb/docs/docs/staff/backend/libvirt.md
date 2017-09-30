@@ -46,21 +46,15 @@ You can SSH into the VM and run the `poweroff` command, or you can run
 
 You can run virt-manager on the hypervisors to graphically start and stop VMs,
 view their virtual monitors, and do many other similar things. To access
-virt-manager, use one of the following methods:
+virt-manager, SSH into the hypervisor with X forwarding (`-X`) enabled. Then, on
+the hypervisor, run `sudo XAUTHORITY=~/.Xauthority virt-manager`.
 
-#### Method 1: using SSH X forwarding
+#### If you just want to see a single VM's virtual monitor
 
-SSH into the hypervisor with X forwarding (`-X`) enabled. Then, on the
-hypervisor, run `sudo XAUTHORITY=~/.Xauthority virt-manager`.
+You can use the virt-viewer tool. Replace `virt-manager` in the above command
+with `virt-viewer <vm-name>`.
 
-#### Method 2: using VNC
-
-TODO (jvperrin)
-
-#### virt-viewer
-
-If you just want to see a VM's display, you can also use the virt-viewer tool.
-Replace `virt-manager` in the above commands with `virt-viewer <vm-name>`.
+Alternatively, you can directly connect to the VM's VNC display. TODO (jvperrin)
 
 ### How do I create a VM?
 
@@ -78,3 +72,22 @@ On the hypervisor:
 ### How do I move a VM from one host to another?
 
 Use the [[migrate-vm|doc staff/scripts/migrate-vm]] script.
+
+### Oh no, I've got a VM with broken networking. How can I access it?
+
+You can open virt-manager as described above, open the VM's display, and then
+log in there.
+
+Alternatively, if you don't want to bother with opening up a GUI, you can often
+access the VM using its serial console. Run `sudo virsh console <vm-name>` on
+the hypervisor. This will connect you to the VM's TTY listening on its simulated
+serial port.
+
+You may have to initially hit enter for the VM to (re-)print the login prompt.
+When you're done, make sure to log out. Then use Ctrl+] to exit the virsh
+console.
+
+This method of accessing the VM only works when there is a getty process
+listening on the serial port. All of our VMs start such a process automatically,
+but only after boot has mostly finished. Therefore, the serial console probably
+won't work if you're trying to diagnose boot problems.
