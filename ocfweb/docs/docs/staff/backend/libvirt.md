@@ -57,6 +57,8 @@ hypervisor, run `sudo XAUTHORITY=~/.Xauthority virt-manager`.
 
 TODO (jvperrin)
 
+#### virt-viewer
+
 If you just want to see a VM's display, you can also use the virt-viewer tool.
 Replace `virt-manager` in the above commands with `virt-viewer <vm-name>`.
 
