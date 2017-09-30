@@ -61,6 +61,11 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
 def get_hosts():
     return [
         Host.from_ldap(
+            hostname='crisis',
+            type='hypervisor',
+        ),
+
+        Host.from_ldap(
             hostname='hal',
             type='hypervisor',
             children=[
