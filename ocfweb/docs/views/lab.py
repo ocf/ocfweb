@@ -4,8 +4,9 @@ from datetime import timedelta
 from django.shortcuts import render
 from ocflib.lab.hours import Day
 from ocflib.lab.hours import HOLIDAYS
-from ocflib.lab.hours import REGULAR_HOURS
 from ocflib.lab.stats import current_semester_start
+
+from ocfweb.api.hours import display_hours
 
 
 def get_holidays():
@@ -43,7 +44,7 @@ def lab(doc, request):
                 Day.from_date(date.today() + timedelta(days=i))
                 for i in range(7)
             ],
-            'regular_hours': REGULAR_HOURS,
+            'regular_hours': display_hours(),
             'holidays': list(get_holidays()),
             'semester': get_semester(),
             'SUNDAY': Day.SUNDAY,
