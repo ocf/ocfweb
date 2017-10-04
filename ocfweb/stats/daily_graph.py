@@ -1,4 +1,3 @@
-
 import urllib.parse
 from datetime import date
 from datetime import datetime
@@ -133,7 +132,7 @@ def get_daily_plot(day):
     ax.set_xlim(start, end)
 
     ax.set_ylim(0, desks_count + 5)
-    ax.set_ylabel('Computers in Use ')
+    ax.set_ylabel('Computers in Use')
 
     ax.set_title('Lab Utilization {:%a %b %d}'.format(day))
     return fig
