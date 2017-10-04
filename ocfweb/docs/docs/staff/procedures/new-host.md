@@ -69,8 +69,8 @@ We have a handy script, `makevm`, that:
 * Waits for the Debian installer to finish
 * SSHs to the new server and sets its IP
 
-To use it, log on to the target physical server (`hal`, `pandemic`, or `jaws`),
-and run `makevm --help`. A typical invocation looks something like:
+To use it, log on to the target physical server (`hal`, `pandemic`, `jaws`,
+`riptide`, etc.), and run `makevm --help`. A typical invocation looks something like:
 
     makevm -m 4096 -c 2 -s 15 arsenic 169.229.226.47
 
@@ -138,3 +138,13 @@ until the configuration converges.
 The first Puppet run and various other things may be broken if one or more
 packages are out of date, e.g. Puppet. Remedy this with an `apt-get update &&
 apt-get upgrade`.
+
+## Tips and Tricks
+
+### VNC monitoring of Debian install
+
+In some cases it may be useful to monitor a VM install via VNC, if, for example,
+the install is getting stuck somewhere. To do so, do the following:
+
+    $ ssh -X <hypervisor>
+    $ sudo -E virt-viewer <vm>
