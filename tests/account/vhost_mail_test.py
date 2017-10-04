@@ -4,8 +4,8 @@ import io
 import re
 from contextlib import contextmanager
 from datetime import datetime
-from unittest import mock
 from textwrap import dedent
+from unittest import mock
 
 import pytest
 from django.contrib import messages
@@ -190,12 +190,14 @@ def test_update_add_new_addr_already_exists(client_ggroup, mock_ggroup_vhost, mo
 
 
 def test_update_fails_to_add_addr_to_bad_vhost(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'add',
-        'addr': 'john@bad-vhost.com',
-        'forward_to': 'john@gmail.com,bob@gmail.com',
-        'password': 'nice password bro',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'add',
+            'addr': 'john@bad-vhost.com',
+            'forward_to': 'john@gmail.com,bob@gmail.com',
+            'password': 'nice password bro',
+        },
+    )
     assert not mock_ggroup_vhost.add_forwarding_address.called
     assert resp.status_code == 302
     mock_messages.assert_called_once_with(
@@ -714,23 +716,27 @@ def test_txn_rolls_back_and_raises_on_failure(fake_cursor):
     assert not fake_cursor.connection.commit.called
 
 
-@pytest.mark.parametrize('addrs,expected', (
-    ('a@a.a', {'a@a.a'}),
-    ('a@a.a b@b.b', {'a@a.a', 'b@b.b'}),
-    ('a@a.a, b@b.b, ', {'a@a.a', 'b@b.b'}),
-    ('a@a.a, \t\n,b@b.b', {'a@a.a', 'b@b.b'}),
-))
+@pytest.mark.parametrize(
+    'addrs,expected', (
+        ('a@a.a', {'a@a.a'}),
+        ('a@a.a b@b.b', {'a@a.a', 'b@b.b'}),
+        ('a@a.a, b@b.b, ', {'a@a.a', 'b@b.b'}),
+        ('a@a.a, \t\n,b@b.b', {'a@a.a', 'b@b.b'}),
+    ),
+)
 def test_parse_csv_forward_addrs_success(addrs, expected):
     """Comma/whitespace separated lists of valid email addresses work."""
     assert _parse_csv_forward_addrs(addrs) == expected
 
 
-@pytest.mark.parametrize('addrs', (
-    '',
-    ', \t\r\n',
-    'invalid',
-    'valid@email.address invalid-email-address',
-))
+@pytest.mark.parametrize(
+    'addrs', (
+        '',
+        ', \t\r\n',
+        'invalid',
+        'valid@email.address invalid-email-address',
+    ),
+)
 def test_parse_csv_forward_addrs_failure(addrs):
     """Empty lists and lists with invalid email addresses fail."""
     with pytest.raises(ValueError):
@@ -750,13 +756,15 @@ def test_parse_csv_example_success():
     }
 
 
-@pytest.mark.parametrize('csv_text', (
-    'toofew',
-    'too,many,',
-    'invalid@example.com,',
-    'valid,invalid@example@com',
-    'valid,valid@example.com invalid',
-))
+@pytest.mark.parametrize(
+    'csv_text', (
+        'toofew',
+        'too,many,',
+        'invalid@example.com,',
+        'valid,invalid@example@com',
+        'valid,valid@example.com invalid',
+    ),
+)
 def test_parse_csv_failure(csv_text, fake_error):
     """CSV with wrong # of columns or invalid email addresses fails."""
     csv_file = io.BytesIO(bytes(csv_text, encoding='utf-8'))
@@ -828,26 +836,28 @@ def test_import_csv_success(client_ggroup, mock_ggroup_vhost, mock_messages, moc
         mock_txn().__enter__(),
         'exists@vhost.com',
     )
-    mock_ggroup_vhost.add_forwarding_address.assert_has_calls(any_order=True, calls=(
-        mock.call(
-            mock_txn().__enter__(),
-            MailForwardingAddress(
-                address='exists@vhost.com',
-                crypt_password='crypt',
-                forward_to=frozenset(('bub@gmail.com', 'tim@gmail.com')),
-                last_updated=None,
+    mock_ggroup_vhost.add_forwarding_address.assert_has_calls(
+        any_order=True, calls=(
+            mock.call(
+                mock_txn().__enter__(),
+                MailForwardingAddress(
+                    address='exists@vhost.com',
+                    crypt_password='crypt',
+                    forward_to=frozenset(('bub@gmail.com', 'tim@gmail.com')),
+                    last_updated=None,
+                ),
+            ),
+            mock.call(
+                mock_txn().__enter__(),
+                MailForwardingAddress(
+                    address='newtestaddress@vhost.com',
+                    forward_to=frozenset(('someone@example.com',)),
+                    crypt_password=None,
+                    last_updated=None,
+                ),
             ),
         ),
-        mock.call(
-            mock_txn().__enter__(),
-            MailForwardingAddress(
-                address='newtestaddress@vhost.com',
-                forward_to=frozenset(('someone@example.com',)),
-                crypt_password=None,
-                last_updated=None,
-            ),
-        ),
-    ))
+    )
     assert resp.status_code == 302
     mock_messages.assert_called_once_with(
         mock.ANY,
@@ -923,15 +933,17 @@ def test_import_csv_bad_vhost_fails(client_ggroup, mock_ggroup_vhost, mock_messa
     )
 
 
-@pytest.mark.parametrize(('csv_str', 'expected_err'), (
-    ('email', 'Must have exactly 2 columns'),
-    (',,', 'Must have exactly 2 columns'),
-    (',', 'Invalid forwarding address: "@vhost.com"'),
-    ('invalid@vhost.com,', 'Invalid forwarding address: "invalid@vhost.com@vhost.com"'),
-    ('email,', 'Missing forward-to address'),
-    ('email,invalid', 'Invalid address: "invalid"'),
-    ('email,valid@example.com invalid', 'Invalid address: "invalid"'),
-))
+@pytest.mark.parametrize(
+    ('csv_str', 'expected_err'), (
+        ('email', 'Must have exactly 2 columns'),
+        (',,', 'Must have exactly 2 columns'),
+        (',', 'Invalid forwarding address: "@vhost.com"'),
+        ('invalid@vhost.com,', 'Invalid forwarding address: "invalid@vhost.com@vhost.com"'),
+        ('email,', 'Missing forward-to address'),
+        ('email,invalid', 'Invalid address: "invalid"'),
+        ('email,valid@example.com invalid', 'Invalid address: "invalid"'),
+    ),
+)
 def test_import_invalid_csv_fails(csv_str, expected_err, client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
     """Trying to import malformatted CSV fails."""
     resp = client_ggroup.post(

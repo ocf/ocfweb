@@ -226,25 +226,28 @@ def _parse_csv(request, domain):
         _error(request, 'Missing CSV file!')
 
     addresses = {}
-    with io.TextIOWrapper(csv_file, encoding='utf-8') as f:
-        reader = csv.reader(f)
-        for i, row in enumerate(reader):
-            try:
-                if len(row) != 2:
-                    raise ValueError('Must have exactly 2 columns')
-
-                from_addr = row[0] + '@' + domain
-                if _parse_addr(from_addr) is None:
-                    raise ValueError('Invalid forwarding address: "{}"'.format(from_addr))
-
+    try:
+        with io.TextIOWrapper(csv_file, encoding='utf-8') as f:
+            reader = csv.reader(f)
+            for i, row in enumerate(reader):
                 try:
-                    to_addrs = _parse_csv_forward_addrs(row[1])
-                except InvalidEmailError as e:
-                    raise ValueError('Invalid address: "{}"'.format(e))
+                    if len(row) != 2:
+                        raise ValueError('Must have exactly 2 columns')
 
-                addresses[from_addr] = to_addrs
-            except ValueError as e:
-                _error(request, 'Error parsing CSV: row {}: {}'.format(i + 1, e))
+                    from_addr = row[0] + '@' + domain
+                    if _parse_addr(from_addr) is None:
+                        raise ValueError('Invalid forwarding address: "{}"'.format(from_addr))
+
+                    try:
+                        to_addrs = _parse_csv_forward_addrs(row[1])
+                    except InvalidEmailError as e:
+                        raise ValueError('Invalid address: "{}"'.format(e))
+
+                    addresses[from_addr] = to_addrs
+                except ValueError as e:
+                    _error(request, 'Error parsing CSV: row {}: {}'.format(i + 1, e))
+    except UnicodeDecodeError as e:
+        _error('Uploaded file is not valid UTF-8 encoded: "{}"'.format(e))
 
     return addresses
 
