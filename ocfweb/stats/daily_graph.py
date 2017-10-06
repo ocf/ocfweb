@@ -84,8 +84,9 @@ def get_open_close(day):
 def get_daily_plot(day):
     """Return matplotlib plot representing a day's plot."""
     start, end = get_open_close(day)
-    profiles = UtilizationProfile.from_hostnames(list_desktops(public_only=True), start, end).values()
-    desks_count = len(list_desktops(public_only=True))
+    desktops = list_desktops(public_only=True)
+    profiles = UtilizationProfile.from_hostnames(desktops, start, end).values()
+    desks_count = len(desktops)
 
     now = datetime.now()
     latest = min(end, now)
