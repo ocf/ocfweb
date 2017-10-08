@@ -1,7 +1,7 @@
 import io
 from textwrap import dedent
+from unittest import mock
 
-import mock
 import pytest
 
 import ocfweb.component.markdown

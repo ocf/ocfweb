@@ -1,8 +1,8 @@
 import crypt
 from contextlib import contextmanager
 from datetime import datetime
+from unittest import mock
 
-import mock
 import pytest
 from django.contrib import messages
 from django.core.urlresolvers import reverse
