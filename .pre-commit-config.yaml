@@ -6,6 +6,7 @@ repos:
     -   id: autopep8-wrapper
     -   id: check-added-large-files
     -   id: check-docstring-first
+    -   id: check-executables-have-shebangs
     -   id: check-json
     -   id: check-merge-conflict
     -   id: check-xml
@@ -14,16 +15,19 @@ repos:
     -   id: detect-private-key
     -   id: double-quote-string-fixer
     -   id: end-of-file-fixer
+    -   id: file-contents-sorter
     -   id: flake8
+    -   id: mixed-line-ending
     -   id: name-tests-test
     -   id: requirements-txt-fixer
+    -   id: sort-simple-yaml
     -   id: trailing-whitespace
 -   repo: https://github.com/asottile/reorder_python_imports.git
     sha: v0.3.5
     hooks:
     -   id: reorder-python-imports
 -   repo: https://github.com/asottile/pyupgrade.git
-    sha: v1.1.2-1
+    sha: v1.2.0
     hooks:
     -   id: pyupgrade
         args: ['--py3-plus']
@@ -33,7 +37,7 @@ repos:
     -   id: add-trailing-comma
         args: ['--py35-plus']
 -   repo: https://github.com/Lucas-C/pre-commit-hooks.git
-    sha: v1.1.1
+    sha: v1.1.4
     hooks:
     -   id: remove-tabs
 -   repo: https://github.com/pre-commit/mirrors-scss-lint
