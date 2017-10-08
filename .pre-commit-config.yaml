@@ -1,7 +1,7 @@
 exclude: (^vendor/|^ocfweb/static/fonts/bootstrap/)
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks.git
-    sha: v0.9.1
+    sha: v0.9.5
     hooks:
     -   id: autopep8-wrapper
     -   id: check-added-large-files
@@ -28,12 +28,12 @@ repos:
     -   id: pyupgrade
         args: ['--py3-plus']
 -   repo: https://github.com/asottile/add-trailing-comma.git
-    sha: 07422afcba118cd3846c94ebc71fea998e1c3060
+    sha: v0.6.4
     hooks:
     -   id: add-trailing-comma
         args: ['--py35-plus']
 -   repo: https://github.com/Lucas-C/pre-commit-hooks.git
-    sha: v1.0.1
+    sha: v1.1.1
     hooks:
     -   id: remove-tabs
 -   repo: https://github.com/pre-commit/mirrors-scss-lint

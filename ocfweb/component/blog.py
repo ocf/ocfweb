@@ -12,16 +12,18 @@ from ocfweb.caching import periodic
 _namespaces = {'atom': 'http://www.w3.org/2005/Atom'}
 
 
-class Post(namedtuple('Post', [
-    'id',
-    'published',
-    'updated',
-    'title',
-    'content',
-    'author_name',
-    'author_email',
-    'link',
-])):
+class Post(namedtuple(
+    'Post', [
+        'id',
+        'published',
+        'updated',
+        'title',
+        'content',
+        'author_name',
+        'author_email',
+        'link',
+    ],
+)):
 
     @cached_property
     def datetime(self):

@@ -85,8 +85,10 @@ def get_jobs_plot(graph, start_day, end_day):
     """Return matplotlib plot of the number of jobs of different page-jobs"""
     graph_config = graphs[graph]
     with quota.get_connection() as cursor:
-        cursor.execute(graph_config['query'],
-                       graph_config['quota'] + (start_day, end_day))
+        cursor.execute(
+            graph_config['query'],
+            graph_config['quota'] + (start_day, end_day),
+        )
         data = cursor.fetchall()
 
     jobs_dict = {row['pages']: row['count'] for row in data}

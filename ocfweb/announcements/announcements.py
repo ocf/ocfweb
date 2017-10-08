@@ -36,12 +36,14 @@ class Announcement(namedtuple('Announcement', ('title', 'date', 'path', 'render'
 def announcement(title, date, path):
     def wrapper(fn):
         global announcements
-        announcements += (Announcement(
-            title=title,
-            date=date,
-            path=path,
-            render=lambda request: fn(title, request),
-        ),)
+        announcements += (
+            Announcement(
+                title=title,
+                date=date,
+                path=path,
+                render=lambda request: fn(title, request),
+            ),
+        )
         return fn
     return wrapper
 

@@ -97,7 +97,8 @@ def _pages_per_day():
 
 def _toner_changes_for_printer(printer):
     with stats.get_connection() as cursor:
-        cursor.execute('''
+        cursor.execute(
+            '''
             CREATE TEMPORARY TABLE ordered1
                 (PRIMARY KEY (position))
                 AS (
@@ -115,7 +116,8 @@ def _toner_changes_for_printer(printer):
                             )
                     ) AS x
                 )
-        ''', (printer,))
+        ''', (printer,),
+        )
         cursor.execute('''
             CREATE TEMPORARY TABLE ordered2
                 (PRIMARY KEY (position))
@@ -140,7 +142,8 @@ def _toner_changes_for_printer(printer):
 
 def _pages_printed_for_printer(printer, resolution=100):
     with stats.get_connection() as cursor:
-        cursor.execute('''
+        cursor.execute(
+            '''
             SELECT Z.date, Z.value FROM (
                 SELECT
                     T.*,
@@ -155,7 +158,8 @@ def _pages_printed_for_printer(printer, resolution=100):
                 )
             ) as Z
             WHERE Z.position mod %s = 0
-        ''', (printer, resolution))
+        ''', (printer, resolution),
+        )
         return [
             (time.mktime(row['date'].timetuple()) * 1000, row['value'])
             for row in cursor

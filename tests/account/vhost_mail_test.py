@@ -77,9 +77,11 @@ def mock_ggroup_vhost():
             last_updated=datetime(2000, 1, 1),
         ),
     }
-    with mock.patch.object(vhost_mail, 'vhosts_for_user', return_value={
-        mocked_vhost, mocked_vhost2,
-    }):
+    with mock.patch.object(
+        vhost_mail, 'vhosts_for_user', return_value={
+            mocked_vhost, mocked_vhost2,
+        },
+    ):
         yield mocked_vhost
 
 
@@ -107,11 +109,13 @@ class VerifyPassword:
             return crypt.crypt(self.password, salt=other)
 
 
-@pytest.mark.parametrize(('addr', 'password', 'expected_password'), (
-    ('john@vhost.com', 'nice password bro', VerifyPassword('nice password bro')),
-    ('@vhost.com', 'nice password bro', VerifyPassword(None)),
-    ('@vhost.com', None, VerifyPassword(None)),
-))
+@pytest.mark.parametrize(
+    ('addr', 'password', 'expected_password'), (
+        ('john@vhost.com', 'nice password bro', VerifyPassword('nice password bro')),
+        ('@vhost.com', 'nice password bro', VerifyPassword(None)),
+        ('@vhost.com', None, VerifyPassword(None)),
+    ),
+)
 def test_update_add_new_addr(
         addr,
         password,
@@ -121,12 +125,14 @@ def test_update_add_new_addr(
         mock_messages,
         mock_txn,
 ):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'add',
-        'addr': addr,
-        'forward_to': 'john@gmail.com,bob@gmail.com',
-        'password': 'nice password bro',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'add',
+            'addr': addr,
+            'forward_to': 'john@gmail.com,bob@gmail.com',
+            'password': 'nice password bro',
+        },
+    )
     mock_ggroup_vhost.add_forwarding_address.assert_called_once_with(
         mock_txn().__enter__(),
         MailForwardingAddress(
@@ -145,12 +151,14 @@ def test_update_add_new_addr(
 
 
 def test_update_add_new_addr_already_exists(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'add',
-        'addr': 'exists@vhost.com',
-        'forward_to': 'john@gmail.com,bob@gmail.com',
-        'password': 'nice password bro',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'add',
+            'addr': 'exists@vhost.com',
+            'forward_to': 'john@gmail.com,bob@gmail.com',
+            'password': 'nice password bro',
+        },
+    )
     assert not mock_ggroup_vhost.add_forwarding_address.called
     assert resp.status_code == 302
     mock_messages.assert_called_once_with(
@@ -161,12 +169,14 @@ def test_update_add_new_addr_already_exists(client_ggroup, mock_ggroup_vhost, mo
 
 
 def test_update_fails_to_add_addr_to_bad_vhost(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'add',
-        'addr': 'john@bad-vhost.com',
-        'forward_to': 'john@gmail.com,bob@gmail.com',
-        'password': 'nice password bro',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'add',
+            'addr': 'john@bad-vhost.com',
+            'forward_to': 'john@gmail.com,bob@gmail.com',
+            'password': 'nice password bro',
+        },
+    )
     mock_ggroup_vhost.add_forwarding_address.called
     assert resp.status_code == 302
     mock_messages.assert_called_once_with(
@@ -177,10 +187,12 @@ def test_update_fails_to_add_addr_to_bad_vhost(client_ggroup, mock_ggroup_vhost,
 
 
 def test_update_delete_addr(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'delete',
-        'addr': 'exists@vhost.com',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'delete',
+            'addr': 'exists@vhost.com',
+        },
+    )
     assert not mock_ggroup_vhost.add_forwarding_address.called
     mock_ggroup_vhost.remove_forwarding_address.assert_called_once_with(
         mock_txn().__enter__(),
@@ -195,10 +207,12 @@ def test_update_delete_addr(client_ggroup, mock_ggroup_vhost, mock_messages, moc
 
 
 def test_update_delete_addr_nonexistent(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'delete',
-        'addr': 'john@vhost.com',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'delete',
+            'addr': 'john@vhost.com',
+        },
+    )
     assert not mock_ggroup_vhost.add_forwarding_address.called
     assert not mock_ggroup_vhost.remove_forwarding_address.called
     assert resp.status_code == 302
@@ -210,13 +224,15 @@ def test_update_delete_addr_nonexistent(client_ggroup, mock_ggroup_vhost, mock_m
 
 
 def test_update_replace_some_stuff(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'update',
-        'addr': 'exists@vhost.com',
-        'new_addr': 'john@vhost.com',
-        'forward_to': 'john@gmail.com,bob@gmail.com',
-        'password': 'nice password bro',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'update',
+            'addr': 'exists@vhost.com',
+            'new_addr': 'john@vhost.com',
+            'forward_to': 'john@gmail.com,bob@gmail.com',
+            'password': 'nice password bro',
+        },
+    )
     mock_ggroup_vhost.remove_forwarding_address.assert_called_once_with(
         mock_txn().__enter__(),
         'exists@vhost.com',
@@ -239,11 +255,13 @@ def test_update_replace_some_stuff(client_ggroup, mock_ggroup_vhost, mock_messag
 
 
 def test_update_remove_password(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'update',
-        'addr': 'exists@vhost.com',
-        'password': '',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'update',
+            'addr': 'exists@vhost.com',
+            'password': '',
+        },
+    )
     mock_ggroup_vhost.remove_forwarding_address.assert_called_once_with(
         mock_txn().__enter__(),
         'exists@vhost.com',
@@ -266,10 +284,12 @@ def test_update_remove_password(client_ggroup, mock_ggroup_vhost, mock_messages,
 
 
 def test_update_replace_noop(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'update',
-        'addr': 'exists@vhost.com',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'update',
+            'addr': 'exists@vhost.com',
+        },
+    )
     mock_ggroup_vhost.remove_forwarding_address.assert_called_once_with(
         mock_txn().__enter__(),
         'exists@vhost.com',
@@ -292,11 +312,13 @@ def test_update_replace_noop(client_ggroup, mock_ggroup_vhost, mock_messages, mo
 
 
 def test_update_replace_addr_nonexistent(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'update',
-        'addr': 'john@vhost.com',
-        'password': 'some great password',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'update',
+            'addr': 'john@vhost.com',
+            'password': 'some great password',
+        },
+    )
     assert not mock_ggroup_vhost.add_forwarding_address.called
     assert not mock_ggroup_vhost.remove_forwarding_address.called
     assert resp.status_code == 302
@@ -307,11 +329,13 @@ def test_update_replace_addr_nonexistent(client_ggroup, mock_ggroup_vhost, mock_
     )
 
 
-@pytest.mark.parametrize('forward_to,expected_error', (
-    ('', 'You must provide at least one address to forward to!'),
-    ('@gmail.com', 'Invalid forwarding address: "@gmail.com"'),
-    ('bob@gmail.com,@berkeley.edu', 'Invalid forwarding address: "@berkeley.edu"'),
-))
+@pytest.mark.parametrize(
+    'forward_to,expected_error', (
+        ('', 'You must provide at least one address to forward to!'),
+        ('@gmail.com', 'Invalid forwarding address: "@gmail.com"'),
+        ('bob@gmail.com,@berkeley.edu', 'Invalid forwarding address: "@berkeley.edu"'),
+    ),
+)
 def test_update_replace_addr_bad_forward_to(
         forward_to,
         expected_error,
@@ -320,11 +344,13 @@ def test_update_replace_addr_bad_forward_to(
         mock_messages,
         mock_txn,
 ):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'update',
-        'addr': 'john@vhost.com',
-        'forward_to': forward_to,
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'update',
+            'addr': 'john@vhost.com',
+            'forward_to': forward_to,
+        },
+    )
     assert not mock_ggroup_vhost.add_forwarding_address.called
     assert not mock_ggroup_vhost.remove_forwarding_address.called
     assert resp.status_code == 302
@@ -336,11 +362,13 @@ def test_update_replace_addr_bad_forward_to(
 
 
 def test_update_cant_move_addr_across_vhosts(client_ggroup, mock_ggroup_vhost, mock_messages, mock_txn):
-    resp = client_ggroup.post(reverse('vhost_mail_update'), {
-        'action': 'update',
-        'addr': 'john@vhost.com',
-        'new_addr': 'john@vhost2.com',
-    })
+    resp = client_ggroup.post(
+        reverse('vhost_mail_update'), {
+            'action': 'update',
+            'addr': 'john@vhost.com',
+            'new_addr': 'john@vhost2.com',
+        },
+    )
     assert not mock_ggroup_vhost.add_forwarding_address.called
     assert not mock_ggroup_vhost.remove_forwarding_address.called
     assert resp.status_code == 302
@@ -401,51 +429,59 @@ def test_get_action_invalid(action, fake_error):
     assert ex.value.args[0] == 'Invalid action: "{}"'.format(action)
 
 
-@pytest.mark.parametrize(('addr', 'expected'), [
-    ('ckuehl@ocf.berkeley.edu', ('ckuehl', 'ocf.berkeley.edu')),
-    ('ckuehl+yolo1._2+3@ocf.berkeley.edu', ('ckuehl+yolo1._2+3', 'ocf.berkeley.edu')),
-    ('a@a.a', ('a', 'a.a')),
-])
+@pytest.mark.parametrize(
+    ('addr', 'expected'), [
+        ('ckuehl@ocf.berkeley.edu', ('ckuehl', 'ocf.berkeley.edu')),
+        ('ckuehl+yolo1._2+3@ocf.berkeley.edu', ('ckuehl+yolo1._2+3', 'ocf.berkeley.edu')),
+        ('a@a.a', ('a', 'a.a')),
+    ],
+)
 @pytest.mark.parametrize('allow_wildcard', (True, False))
 def test_parse_addr_success(addr, expected, allow_wildcard):
     assert _parse_addr(addr, allow_wildcard=allow_wildcard) == expected
 
 
-@pytest.mark.parametrize('addr', [
-    'ckuehl',
-    '',
-    '   ',
-    '\t',
-    ' ckuehl@ocf.berkeley.edu',
-    'ckuehl\t@ocf.berkeley.edu',
-    'ckuehl@',
-    '@',
-    'asdf@asdf',
-    '@wat',
-])
+@pytest.mark.parametrize(
+    'addr', [
+        'ckuehl',
+        '',
+        '   ',
+        '\t',
+        ' ckuehl@ocf.berkeley.edu',
+        'ckuehl\t@ocf.berkeley.edu',
+        'ckuehl@',
+        '@',
+        'asdf@asdf',
+        '@wat',
+    ],
+)
 @pytest.mark.parametrize('allow_wildcard', (True, False))
 def test_parse_addr_invalid(addr, allow_wildcard):
     assert _parse_addr(addr, allow_wildcard=allow_wildcard) is None
 
 
-@pytest.mark.parametrize('addr', (
-    '@ocf.berkeley.edu',
-    '@vhost.com',
-    '@a-b-c.e.f-gh.net',
-))
+@pytest.mark.parametrize(
+    'addr', (
+        '@ocf.berkeley.edu',
+        '@vhost.com',
+        '@a-b-c.e.f-gh.net',
+    ),
+)
 def test_parse_addr_wildcards(addr):
     assert _parse_addr(addr) is None
     assert _parse_addr(addr, allow_wildcard=True) == (None, addr[1:])
 
 
-@pytest.mark.parametrize(('addr', 'name', 'domain'), (
-    ('ckuehl@ocf.berkeley.edu', 'ckuehl', 'ocf.berkeley.edu'),
-    ('john.doe+test@gmail.com', 'john.doe+test', 'gmail.com'),
-    ('@gmail.com', None, 'gmail.com'),
+@pytest.mark.parametrize(
+    ('addr', 'name', 'domain'), (
+        ('ckuehl@ocf.berkeley.edu', 'ckuehl', 'ocf.berkeley.edu'),
+        ('john.doe+test@gmail.com', 'john.doe+test', 'gmail.com'),
+        ('@gmail.com', None, 'gmail.com'),
 
-    # people suck at forms
-    (' \t  ckuehl@ocf.berkeley.edu', 'ckuehl', 'ocf.berkeley.edu'),
-))
+        # people suck at forms
+        (' \t  ckuehl@ocf.berkeley.edu', 'ckuehl', 'ocf.berkeley.edu'),
+    ),
+)
 @pytest.mark.parametrize('required', (False, True))
 def test_get_addr_valid(addr, name, domain, required):
     fake_vhost = mock.Mock()
@@ -491,10 +527,12 @@ def test_get_addr_invalid_addr(addr, required, fake_error):
     assert ex.value.args[0] == 'Invalid address: "{}"'.format(addr)
 
 
-@pytest.mark.parametrize(('addr', 'domain'), (
-    ('ckuehl@ocf.berkeley.edu', 'ocf.berkeley.edu'),
-    ('john.doe+test@gmail.com', 'gmail.com'),
-))
+@pytest.mark.parametrize(
+    ('addr', 'domain'), (
+        ('ckuehl@ocf.berkeley.edu', 'ocf.berkeley.edu'),
+        ('john.doe+test@gmail.com', 'gmail.com'),
+    ),
+)
 @pytest.mark.parametrize('required', (False, True))
 def test_get_addr_no_permission(addr, domain, required, fake_error):
     with pytest.raises(fake_error) as ex, \
@@ -508,24 +546,26 @@ def test_get_addr_no_permission(addr, domain, required, fake_error):
     assert ex.value.args[0] == 'You cannot use the domain: "{}"'.format(domain)
 
 
-@pytest.mark.parametrize(('forward_to', 'expected'), (
-    (
-        None,
-        None,
+@pytest.mark.parametrize(
+    ('forward_to', 'expected'), (
+        (
+            None,
+            None,
+        ),
+        (
+            'a@gmail.com',
+            {'a@gmail.com'},
+        ),
+        (
+            'a@gmail.com,b@gmail.com',
+            {'a@gmail.com', 'b@gmail.com'},
+        ),
+        (
+            'a@gmail.com , , b@gmail.com,, \n',
+            {'a@gmail.com', 'b@gmail.com'},
+        ),
     ),
-    (
-        'a@gmail.com',
-        {'a@gmail.com'},
-    ),
-    (
-        'a@gmail.com,b@gmail.com',
-        {'a@gmail.com', 'b@gmail.com'},
-    ),
-    (
-        'a@gmail.com , , b@gmail.com,, \n',
-        {'a@gmail.com', 'b@gmail.com'},
-    ),
-))
+)
 def test_get_forward_to_valid(forward_to, expected):
     result = _get_forward_to(fake_request(forward_to=forward_to))
     assert result == expected
@@ -538,11 +578,13 @@ def test_get_forward_to_no_addrs_provided(forward_to, fake_error):
     assert ex.value.args[0] == 'You must provide at least one address to forward to!'
 
 
-@pytest.mark.parametrize(('forward_to', 'first_invalid'), (
-    ('a@a,b@gmail.com', 'a@a'),
-    ('a@a,b', 'a@a'),
-    ('asdf@gmail.com, ,   ,john.doe,boo@gmail.com', 'john.doe'),
-))
+@pytest.mark.parametrize(
+    ('forward_to', 'first_invalid'), (
+        ('a@a,b@gmail.com', 'a@a'),
+        ('a@a,b', 'a@a'),
+        ('asdf@gmail.com, ,   ,john.doe,boo@gmail.com', 'john.doe'),
+    ),
+)
 def test_get_forward_to_invalid_addrs_provided(forward_to, first_invalid, fake_error):
     with pytest.raises(fake_error) as ex:
         _get_forward_to(fake_request(forward_to=forward_to))
