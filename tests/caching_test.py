@@ -1,4 +1,5 @@
-import mock
+from unittest import mock
+
 import pytest
 
 from ocfweb.caching import _make_function_call_key

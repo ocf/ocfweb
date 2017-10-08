@@ -1,8 +1,8 @@
 import crypt
 from contextlib import contextmanager
 from datetime import datetime
+from unittest import mock
 
-import mock
 import pytest
 from django.contrib import messages
 from django.core.urlresolvers import reverse
@@ -641,7 +641,7 @@ def fake_cursor():
 def test_txn_commits_on_success(fake_cursor):
     with _txn():
         pass
-    fake_cursor.connection.commit.assert_called_once()
+    fake_cursor.connection.commit.assert_called_once_with()
     assert not fake_cursor.connection.rollback.called
 
 
@@ -649,5 +649,5 @@ def test_txn_rolls_back_and_raises_on_failure(fake_cursor):
     with pytest.raises(ValueError):
         with _txn():
             raise ValueError('lol sup')
-    fake_cursor.connection.rollback.assert_called_once()
+    fake_cursor.connection.rollback.assert_called_once_with()
     assert not fake_cursor.connection.commit.called

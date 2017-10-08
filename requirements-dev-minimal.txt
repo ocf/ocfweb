@@ -1,7 +1,5 @@
 coverage
 coveralls
-ipdb
-mock
 pre-commit
 pytest
 pytest-django

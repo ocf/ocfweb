@@ -1,9 +1,9 @@
+exclude: (^vendor/|^ocfweb/static/fonts/bootstrap/)
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks.git
     sha: v0.9.1
     hooks:
     -   id: autopep8-wrapper
-        exclude: ^vendor/
     -   id: check-added-large-files
     -   id: check-docstring-first
     -   id: check-json
@@ -12,16 +12,12 @@ repos:
     -   id: check-yaml
     -   id: debug-statements
     -   id: detect-private-key
-        exclude: ^(ocfweb/static/scss/bootstrap|bootstrap-scss|docs)$
     -   id: double-quote-string-fixer
     -   id: end-of-file-fixer
-        exclude: ^ocfweb/static/fonts/bootstrap/
     -   id: flake8
-        exclude: ^vendor/
     -   id: name-tests-test
     -   id: requirements-txt-fixer
     -   id: trailing-whitespace
-        exclude: ^ocfweb/static/fonts/bootstrap/
 -   repo: https://github.com/asottile/reorder_python_imports.git
     sha: v0.3.5
     hooks:
@@ -31,18 +27,15 @@ repos:
     hooks:
     -   id: pyupgrade
         args: ['--py3-plus']
-        exclude: ^vendor/
 -   repo: https://github.com/asottile/add-trailing-comma.git
     sha: 07422afcba118cd3846c94ebc71fea998e1c3060
     hooks:
     -   id: add-trailing-comma
         args: ['--py35-plus']
-        exclude: ^vendor/
 -   repo: https://github.com/Lucas-C/pre-commit-hooks.git
     sha: v1.0.1
     hooks:
     -   id: remove-tabs
-        exclude: ^(Makefile|ocfweb/static/scss/bootstrap|bootstrap-scss|docs)$
 -   repo: https://github.com/pre-commit/mirrors-scss-lint
     sha: v0.54.0
     hooks:
@@ -50,7 +43,7 @@ repos:
 -   repo: local
     hooks:
     -   id: no-top-level-header
-        language: pcre
+        language: pygrep
         name: No top-level headers (markdown)
         entry: ^#[^#]
         files: \.md$
