@@ -81,8 +81,7 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'thunder',
-            status=ThingToUpgrade.BLOCKED,
-            comments='no puppetdb stretch packages yet',
+            comments='Should re-configure from scratch since it is not well puppeted',
         ),
         ThingToUpgrade.from_hostname(
             'whiteout',
@@ -97,8 +96,7 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'lightning',
-            status=ThingToUpgrade.BLOCKED,
-            comments='no puppetserver stretch packages yet',
+            comments='Much easier to migrate in place since it is the puppet master',
         ),
         ThingToUpgrade.from_hostname(
             'fallingrocks',
