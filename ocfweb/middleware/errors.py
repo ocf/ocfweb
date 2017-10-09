@@ -18,7 +18,7 @@ SENSITIVE_WSGI_CONTEXT = frozenset((
 
 def sanitize(msg):
     """Attempt to sanitize out known-bad patterns."""
-    # Remove any dictionary references with "encrypted_password", e.g. limes like:
+    # Remove any dictionary references with "encrypted_password", e.g. lines like:
     #   {'some_key': ..., 'encrypted_password': b'asdf', 'some_other_key': ...}
     msg = re.sub(r"('encrypted_password': b?').+?('(?:,|}))", r'\1<REDACTED>\2', msg)
     return msg
