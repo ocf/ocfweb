@@ -140,11 +140,13 @@ def _make_function_call_key(fn, args, kwargs):
 periodic_functions = set()
 
 
-class PeriodicFunction(namedtuple('PeriodicFunction', [
-    'function',
-    'period',
-    'ttl',
-])):
+class PeriodicFunction(namedtuple(
+    'PeriodicFunction', [
+        'function',
+        'period',
+        'ttl',
+    ],
+)):
 
     def __hash__(self):
         return hash(self.function_call_key)

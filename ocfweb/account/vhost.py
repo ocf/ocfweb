@@ -203,12 +203,14 @@ class VirtualHostForm(Form):
     # website requirements
     website_complete = forms.BooleanField(
         label='The website is already complete and uploaded to the OCF \
-               server. It is not just a placeholder.')
+               server. It is not just a placeholder.'
+    )
 
     website_hosted_by_ocf = forms.BooleanField(
         label="The website is substantially hosted by the OCF. It \
                doesn't use frames, redirects, proxies, or other tricks to \
-               circumvent this policy.")
+               circumvent this policy."
+    )
 
     # see __init__ method below for the labels on these
     website_ocf_banner = forms.BooleanField()
@@ -220,7 +222,8 @@ class VirtualHostForm(Form):
                is fully updated, and the maintainer will update it \
                regularly to ensure the site is not compromised. (If \
                you are not using any software on your website, check \
-               this box and move on.)')
+               this box and move on.)'
+    )
 
     your_email = forms.EmailField(
         label='Your email address:',

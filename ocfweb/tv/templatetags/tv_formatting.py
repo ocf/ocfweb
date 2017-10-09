@@ -17,6 +17,8 @@ def tv_lab_hours(hour):
 @register.filter
 def tv_lab_hours_css(hours):
     # 9:30 = hours-small, 9:00 = hours-large
-    return 'hours-small' if any(block.open.minute != 0 or
-                                block.close.minute != 0
-                                for block in hours) else 'hours-large'
+    return 'hours-small' if any(
+        block.open.minute != 0 or
+        block.close.minute != 0
+        for block in hours
+    ) else 'hours-large'

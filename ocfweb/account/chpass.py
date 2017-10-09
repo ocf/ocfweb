@@ -15,8 +15,10 @@ from ocfweb.component.celery import change_password as change_password_task
 from ocfweb.component.forms import Form
 
 
-CALLINK_ERROR_MSG = ("Couldn't connect to CalLink API. Resetting group "
-                     'account passwords online is unavailable.')
+CALLINK_ERROR_MSG = (
+    "Couldn't connect to CalLink API. Resetting group "
+    'account passwords online is unavailable.'
+)
 
 
 def get_accounts_signatory_for(calnet_uid):
