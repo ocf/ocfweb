@@ -8,12 +8,12 @@ anyone to use. These mirrors are available using any of the following protocols:
   - ftp: [ftp://mirrors.ocf.berkeley.edu/](ftp://mirrors.ocf.berkeley.edu/)
   - rsync: [rsync://mirrors.ocf.berkeley.edu/](rsync://mirrors.ocf.berkeley.edu/)
 
-To request for another project to be mirrored or to report a problem, please
-[[contact us|doc contact]].
+To request for another project to be mirrored or to report a problem with our
+mirroring service, please [[contact us|doc contact]].
 
 ## Currently mirrored projects
 
-  - [Apache Projects](http://www.apache.org/)
+  - [Apache Projects](https://www.apache.org/)
   - [Arch Linux](https://www.archlinux.org/)
   - [CentOS](https://www.centos.org/)
   - [Debian](https://www.debian.org/)
@@ -23,6 +23,7 @@ To request for another project to be mirrored or to report a problem, please
   - [Manjaro](https://manjaro.org/)
   - [Parrot Project](https://www.parrotsec.org/)
   - [Puppet](https://puppet.com/)
+  - [Qt](https://www.qt.io/)
   - [Raspbian](https://www.raspbian.org/)
   - [Tails](https://tails.boum.org/)
   - [Tanglu](http://www.tanglu.org/)
