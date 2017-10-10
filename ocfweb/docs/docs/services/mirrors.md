@@ -8,6 +8,9 @@ anyone to use. These mirrors are available using any of the following protocols:
   - ftp: [ftp://mirrors.ocf.berkeley.edu/](ftp://mirrors.ocf.berkeley.edu/)
   - rsync: [rsync://mirrors.ocf.berkeley.edu/](rsync://mirrors.ocf.berkeley.edu/)
 
+We are also available at `mirrors.berkeley.edu`, as an alias for
+`mirrors.ocf.berkeley.edu`.
+
 To request for another project to be mirrored or to report a problem with our
 mirroring service, please [[contact us|doc contact]].
 
