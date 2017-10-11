@@ -84,7 +84,9 @@ def get_open_close(day):
 def get_daily_plot(day):
     """Return matplotlib plot representing a day's plot."""
     start, end = get_open_close(day)
-    profiles = UtilizationProfile.from_hostnames(list_desktops(public_only=True), start, end).values()
+    desktops = list_desktops(public_only=True)
+    profiles = UtilizationProfile.from_hostnames(desktops, start, end).values()
+    desks_count = len(desktops)
 
     now = datetime.now()
     latest = min(end, now)
@@ -123,10 +125,14 @@ def get_daily_plot(day):
     if now:
         ax.axvline(now, linewidth=1.5)
 
+    # Draw a horizontal line for total desktops
+    ax.axhline(desks_count, ls='dashed')
+    ax.annotate('   Total desktops', xy=(start, desks_count + 1))
+
     ax.xaxis.set_major_formatter(DateFormatter('%-I%P'))
     ax.set_xlim(start, end)
 
-    ax.set_ylim(0, len(profiles))
+    ax.set_ylim(0, desks_count + 5)
     ax.set_ylabel('Computers in Use')
 
     ax.set_title('Lab Utilization {:%a %b %d}'.format(day))
