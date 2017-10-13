@@ -98,7 +98,8 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'lightning',
-            comments='Much easier to migrate in place since it is the puppet master',
+            status=ThingToUpgrade.UPGRADED,
+            comments="Made a new host and rsync'd across certs, private share, and environments",
         ),
         ThingToUpgrade.from_hostname(
             'fallingrocks',
