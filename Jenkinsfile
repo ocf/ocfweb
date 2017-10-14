@@ -28,7 +28,7 @@ try {
             }
         }
 
-        stash 'src'
+        stash name: 'src', useDefaultExcludes: false
     }
 
     def version = "${new Date().format("yyyy-MM-dd-'T'HH-mm-ss")}-git${sha}"
@@ -39,6 +39,7 @@ try {
         parallel(
             test: {
                 node('slave') {
+                    step([$class: 'WsCleanup'])
                     unstash 'src'
                     stage('test') {
                         dir('src') {
