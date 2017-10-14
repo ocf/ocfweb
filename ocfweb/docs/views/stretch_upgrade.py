@@ -39,7 +39,7 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'anthrax',
-            comments='maybe move to Marathon instead?',
+            status=ThingToUpgrade.UPGRADED,
         ),
 
         # login servers
