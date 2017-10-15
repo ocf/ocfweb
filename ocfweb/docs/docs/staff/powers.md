@@ -78,6 +78,7 @@ Technical Managers also have the following powers:
  - Being in the Admin group in the OCF org on GitHub, which grants the ability
    to directly commit to any repository
  - Access to the RT admin interface
+ - Admin privileges to the OCF status blog
 
 Some Technical Managers, particularly the DSMs and SMs, may additionally have
 the following:
