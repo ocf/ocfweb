@@ -175,5 +175,9 @@
                 showAddAddressModal($(this).data('domain'), true);
             }.bind(this));
         });
+
+        $('.js-import-csv').change(function() {
+            $('.js-import-csv-form').submit();
+        });
     });
 })();
