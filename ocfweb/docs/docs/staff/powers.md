@@ -34,11 +34,7 @@ practice many staff members are Directors and vice versa.
 
 ### `/root` principal
 
-In order to reset user passwords, staff must possess a `/root` principal. This
-principal grants the staffer the ability to change users' passwords.
-
-    username/root@OCF.BERKELEY.EDU change-password *@OCF.BERKELEY.EDU
-
+In order to reset user passwords, staff must possess a `/root` principal.
 Before student groups became able to reset their passwords online in 2015, this
 principal was widely given out. However, since then, it has only been useful for
 resetting passwords of group accounts with no associated signatories. It is now
@@ -57,13 +53,12 @@ Other Deputy Managers and the General Manager(s) often happen to be Technical
 Managers as well.
 
 ### `ocfroot` group
+The ability to become root via sudo on machines other than your staff VM
+requires the existence of a `/root` principal (see above).
 
-The ability to become root via sudo first requires the existence of a `/root`
-principal (see above), with the exception of your staff VM.
-
-Once that's satisfied, you must also be in the `ocfroot` LDAP group in order to
-use `sudo` on most servers. (Exceptions: desktops and your staff VM don't
-require you to be in ocfroot.)
+You must also be in the `ocfroot` LDAP group in order to use `sudo` on most
+servers. (Exceptions: desktops and your staff VM don't require you to be in
+`ocfroot`.)
 
 ### `/admin` principal
 
