@@ -88,7 +88,8 @@ It's useful along with [[OCF's IRC server|doc contact/irc]].
 
        [Unit]
        Description=ZNC - IRC Bouncer
-       After=network-online.target
+       Requires=nss-user-lookup.target
+       After=network-online.target nss-user-lookup.target
 
        [Service]
        User=<YOUR_USER>
