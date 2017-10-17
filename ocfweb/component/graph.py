@@ -24,7 +24,7 @@ def current_start_end():
 def canonical_graph(hot_path=None, default_start_end=current_start_end):
     """Decorator to make graphs with a start_day and end_day.
 
-    It does there primary things:
+    It does three primary things:
 
     1. Redirects to the current "start_day" or "end_day" if one (or both) is
        missing.
