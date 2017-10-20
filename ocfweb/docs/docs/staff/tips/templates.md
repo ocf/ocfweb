@@ -3,7 +3,7 @@
 General email response templates can be found at
 [templates.ocf.berkeley.edu](https://templates.ocf.berkeley.edu)
 for purposes such as sending requests for DNS to the University hostmaster,
-responding to virtual host requests, and reseting alumni account passwords.
+responding to virtual host requests, and resetting alumni account passwords.
 Templates should be used when applicable because they are designed to provide
 all necessary information while remaining cordial to the recipient.
 
