@@ -39,8 +39,23 @@ On the hypervisor, run `sudo virsh start <vm-name>`.
 
 ### How do I turn off a VM?
 
-You can SSH into the VM and run the `poweroff` command, or you can run
+You can SSH into the VM and run the `shutdown` command, or you can run
 `sudo virsh stop <vm-name>` on the hypervisor which hosts it.
+
+If it's a public-facing VM (e.g. tsunami), remember to give a positive amount
+of time to the shutdown command, so users have adequate warning.
+
+### How do I make a VM automatically turn on when the hypervisor boots?
+
+On the hypervisor, run `sudo virsh autostart <vm-name>`.
+
+You can list which VMs are set to autostart with `sudo virsh list --all
+--autostart`.
+
+Firestorm is set to autostart because it must be running in order for any staff
+to log in (other than by using the root account). Other VMs are not set to
+autostart because if they start before LDAP and Kerberos are available, logins
+may not necessarily work properly.
 
 ### Is there a GUI for all of this?
 
@@ -54,7 +69,9 @@ the hypervisor, run `sudo XAUTHORITY=~/.Xauthority virt-manager`.
 You can use the virt-viewer tool. Replace `virt-manager` in the above command
 with `virt-viewer <vm-name>`.
 
-Alternatively, you can directly connect to the VM's VNC display. TODO (jvperrin)
+Alternatively, you can directly connect to the VM's VNC display. This procedure
+is more complicated, but gives much better performance than X forwarding.
+TODO (jvperrin)
 
 ### How do I create a VM?
 
@@ -67,7 +84,12 @@ On the hypervisor:
 1. Shutdown the VM.
 2. Run `sudo virsh undefine <vm-name>`.
 3. Backup the VM's disk (e.g. by renaming the LVM volume to `vg/<vm-name>.old`)
-   or delete it.
+   or delete it. You may want to also dump the contents of the disk to a file,
+   compressing it, and placing that file in `/opt/backups/live/misc/servers` on
+   the server which contains backups (which is `hal` at the time of this
+   writing). You may also want to save the VM's XML definition by running
+   `sudo virsh dumpxml [vm-name] > [vm-name].xml` and placing it in the same
+   aforementioned directory.
 
 ### How do I move a VM from one host to another?
 
@@ -91,3 +113,12 @@ This method of accessing the VM only works when there is a getty process
 listening on the serial port. All of our VMs start such a process automatically,
 but only after boot has mostly finished. Therefore, the serial console probably
 won't work if you're trying to diagnose boot problems.
+
+### How do I edit my VM's RAM size or CPU count?
+
+On the hypervisor, run `sudo virsh edit <vm-name>` to edit the VM's XML
+definition.
+
+### How do I edit my VM's disk size?
+
+TODO
