@@ -83,7 +83,7 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'thunder',
-            comments='Should re-configure from scratch since it is not well puppeted',
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
             'whiteout',
