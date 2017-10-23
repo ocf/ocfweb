@@ -70,8 +70,12 @@ You can use the virt-viewer tool. Replace `virt-manager` in the above command
 with `virt-viewer <vm-name>`.
 
 Alternatively, you can directly connect to the VM's VNC display. This procedure
-is more complicated, but gives much better performance than X forwarding.
-TODO (jvperrin)
+gives much better performance than X forwarding, especially outside of the OCF
+network.  To do this, first run `sudo virsh vncdisplay <vm-name>` on the
+hypervisor, and record what it prints out. Then, from your local computer, run
+`vncviewer -via <hypervisor> <output of virsh vncdisplay>`. So for instance, if
+`virsh vncdisplay` printed out `127.0.0.1:10`, and the hypervisor were jaws,
+then you would run `vncviewer -via jaws 127.0.0.1:10` (or `localhost:10`).
 
 ### How do I create a VM?
 
