@@ -52,12 +52,12 @@ Other Deputy Managers and the General Manager(s) often happen to be Technical
 Managers as well.
 
 ### `ocfroot` group
+
+You must be in the `ocfroot` LDAP group in order to use `sudo` on most
+servers, other than desktops and your own staff VM.
+
 The ability to become root via sudo on machines other than your staff VM
 requires the existence of a `/root` principal (see above).
-
-You must also be in the `ocfroot` LDAP group in order to use `sudo` on most
-servers. (Exceptions: desktops and your staff VM don't require you to be in
-`ocfroot`.)
 
 ### `/admin` principal
 
