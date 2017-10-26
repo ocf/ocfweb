@@ -17,9 +17,14 @@ Then add or remove the appropriate `memberUid` attribute.
 
 ### `ocfroot`
 
-Adding or removing people from `ocfroot` is similar. However, if you are adding
-someone to root staff, in addition to modifying LDAP, you will also have to
-create their `/root` and `/admin` principals (if those don't already exist):
+Before giving anyone root privileges, make sure to obtain authorization from
+the SM.
+
+Adding or removing people from `ocfroot` is similar to modifying
+`ocfstaff`. However, if you are adding someone to root staff, in addition to
+modifying LDAP, you will also have to create their `/root` and `/admin`
+principals (if those don't already exist). For example, to create the
+`/admin` principal, you would do:
 
 ```text
 $ kadmin
@@ -42,6 +47,9 @@ filled in by the new root staffer; it will become the password for their
 
 After you've created these principals, you'll need to grant them powers in the
 [Kerberos ACL file in Puppet](https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl).
+
+You may also wish to add new root staffers to the Admin team in our GitHub org
+and grant them RT admin privileges.
 
 
 ## Granting IRC chanop status
