@@ -35,10 +35,9 @@ practice many staff members are Directors and vice versa.
 ### `/root` principal
 
 In order to reset user passwords, staff must possess a `/root` principal.
-Before student groups became able to reset their passwords online in 2015, this
-principal was widely given out. However, since then, it has only been useful for
-resetting passwords of group accounts with no associated signatories. It is now
-given out as needed.
+Before RSOs became able to reset their passwords online in 2015, this principal
+was widely given out. Since then, it has become much less necessary to have for
+staff hours. It is now given out as needed.
 
 
 ## Technical Managers
