@@ -68,19 +68,21 @@ Puppet](https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kad
 
 ### Other powers
 
-Technical Managers also have the following powers:
+Technical Managers also have the following privileges:
 
- - Being in the Admin group in the OCF org on GitHub, which grants the ability
-   to directly commit to any repository
- - Access to the RT admin interface
- - Admin privileges to the OCF status blog
+* Being in the Admin group in the OCF org on GitHub, which grants the ability
+  to directly commit to any repository
+* Being a Team Maintainer of the Staff and Admin teams of the OCF org on GitHub
+* Access to the RT admin interface
+* Admin privileges to the OCF status blog
 
 Some Technical Managers, particularly the DSMs and SMs, may additionally have
 the following:
 
- - Super admin status on Google Apps
- - Chanop status on IRC
- - Access to the firewall configuration interface
- - Being a Departmental Certificate Administrator for the InCommon certificate
-   service
- - Knowledge of the root password
+* Being an Owner of the GitHub OCF org
+* Super admin status on Google Apps
+* Chanop status on IRC
+* Access to the firewall configuration interface
+* Being a Departmental Certificate Administrator for the InCommon certificate
+  service
+* Knowledge of the root password
