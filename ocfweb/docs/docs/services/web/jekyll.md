@@ -2,14 +2,14 @@
 
 [Jekyll](https://jekyllrb.com) is a popular static website generator.
 
-## Set up 
+## Set up
 
 1. Go to our [web-based SSH client](https://ssh.ocf.berkeley.edu/) and sign in
    with your username and password. Or, at terminal, SSH into tsuanami.ocf.berkeley.edu.
 
 2. Install Jekyll locally:
 ```shell
-  gem install jekyll --user-install 
+  gem install jekyll --user-install
 ```
 
 3. Source the executable:
@@ -20,7 +20,7 @@
 
 ## Create a new (template) site
 
-1. Create a new site in directory "jk" (can replace "jk" with any name you'd like):  
+1. Create a new site in directory "jk" (can replace "jk" with any name you'd like):
 ```shell
   jekyll new jk
 ```
@@ -32,7 +32,7 @@ Here it will prompt you to enter root password - abort by Ctrl-c.
   bundle install --path vendor/bundle
 ```
 
-## Deploy 
+## Deploy
 
 1. Change baseurl field in _config.yml file to "/~{Your OCF username}".
 
@@ -51,7 +51,7 @@ We've created a default template site of the theme Minima. Let's see how to make
 
 2. Other than blog posts, you can also make pages (about, contact, etc.) that are linked at the top right of the site. An example is the about.md file in the site directory (note the YAML header with layout: page).
 
-3. In _config.yml in the site directory are global site settings, where you can change the title of the site among others.  
+3. In _config.yml in the site directory are global site settings, where you can change the title of the site among others.
 
 ## Advanced Guide
 
@@ -61,4 +61,3 @@ Here are some that might be of interest:
 
 1. [Using a different theme](https://jekyllrb.com/docs/themes/#installing-a-theme) (Themes might be non-compatible with each other: the YAML header format might be different, for instance)
 2. [Using variables](https://jekyllrb.com/docs/variables/)
-
