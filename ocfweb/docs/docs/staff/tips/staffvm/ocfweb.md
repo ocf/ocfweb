@@ -20,6 +20,9 @@ trigger a puppet run on your staffvm (`sudo puppet-trigger -fe <user>`)
 otherwise, push to your fork and submit a pull request and someone will
 merge it for you, after which you can trigger the puppet run on your VM.
 
+Furthermore, you will need to install the `libcrack2-dev` package so that
+the crypto libraries `ocfweb` depends on will successfully compile.
+
 [0]: https://github.com/ocf/ocfweb
 [1]: https://github.com/ocf/puppet
 [2]: https://github.com/ocf/puppet/blob/master/hieradata/nodes/fireball.yaml
