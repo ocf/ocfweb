@@ -5,43 +5,47 @@
 ## Set up
 
 1. Go to our [web-based SSH client](https://ssh.ocf.berkeley.edu/) and sign in
-   with your username and password. Or, at terminal, SSH into tsuanami.ocf.berkeley.edu.
+   with your username and password. Or, at terminal, [SSH](https://www.ocf.berkeley.edu/docs/services/shell/) into tsuanami.ocf.berkeley.edu
 
-2. Install Jekyll locally:
+2. Set up [rbenv](https://github.com/rbenv/rbenv):
 ```shell
-  gem install jekyll --user-install
+  echo 'export PATH="~/.rbenv/bin:$PATH"' >> ~/.bash_profile
+  echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+  source .bash_profile
 ```
 
-3. Source the executable:
+3. Create and enter project directory "jk" (can replace "jk" with any name you'd like):
 ```shell
-  echo "PATH=$PATH:~/.gem/ruby/2.1.0/bin">>~/.bash_profile
-  source ~/.bash_profile
+  mkdir jk
+  cd jk
+```
+
+4. Configure ruby via [rbenv](https://github.com/rbenv/rbenv), then install jekyll:
+```shell
+  rbenv install 2.1.0
+  rbenv local 2.1.0
+  gem install bundler
+  gem install jekyll
+  rbenv rehash
 ```
 
 ## Create a new (template) site
 
-1. Create a new site in directory "jk" (can replace "jk" with any name you'd like):
+1. In project directory ("jk"):
 ```shell
-  jekyll new jk
-```
-Here it will prompt you to enter root password - abort by Ctrl-c.
-
-2. Install dependencies:
-```shell
-  cd jk
-  bundle install --path vendor/bundle
+  jekyll new .
 ```
 
 ## Deploy
 
-1. Change baseurl field in _config.yml file to "/~{Your OCF username}".
+1. Change baseurl field in _config.yml file to '/~your_OCF_username'
 
 2. Build the site in ~/public_html (run this also to reflect the changes you make):
 ```shell
-bundle exec jekyll build -d ~/public_html
+  bundle exec jekyll build -d ~/public_html
 ```
 
-3. Your site should be up at ocf.berkeley.edu/~{Your OCF username}
+3. Your site should be up at https://www.ocf.berkeley.edu/~your_OCF_username
 
 ## Quick Start Guide
 
