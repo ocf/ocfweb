@@ -74,6 +74,8 @@ that|doc services/vhost/mail]].
 
 ## Policies    {policies}
 
+<!-- As amended by the Board of Directors on April 10, 2017. -->
+
 ### Groups, faculty, and academic staff only
 
 The OCF only performs virtual hosting for OCF group accounts and individual
