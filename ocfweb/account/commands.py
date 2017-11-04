@@ -92,6 +92,11 @@ class CommandForm(Form):
             'makemysql -- reset your MySQL database password, or create a new ' +
             'MySQL database (copy down the password somewhere secure)',
         ),
+        (
+            'cd ~/public_html && wp core download',
+            'wordpress -- Download the latest version of WordPress ' +
+            'into your web directory using wp-cli',
+        ),
     )
 
     command_to_run = forms.ChoiceField(
