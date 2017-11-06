@@ -71,6 +71,63 @@ def _toner_changes():
     ]
 
 
+# Toner numbers can be significantly noisy, including significant diffs
+# whenever toner gets taken out and put back in whenever there is jam. Because
+# of this it's hard to determine if a new toner is inserted into a printer to
+# reduce this noise we only count diffs that are smaller than a cutoff which
+# empirically seems to be more accurate
+def _toner_used_by_printer(printer, cutoff=.05, since=date(2017, 8, 20)):
+    with stats.get_connection() as cursor:
+        cursor.execute(
+            '''
+            CREATE TEMPORARY TABLE ordered1
+                (PRIMARY KEY (position))
+                AS (
+                    SELECT * FROM (
+                        SELECT
+                            T.*,
+                            @rownum := @rownum + 1 AS position
+                            FROM (
+                                (
+                                    SELECT * FROM printer_toner_public
+                                    WHERE printer = %s AND
+                                    date > %s
+                                    ORDER BY date
+                                ) AS T,
+                                (SELECT @rownum := 0) AS r
+                            )
+                    ) AS x
+                )
+        ''', (printer, since.strftime('%Y-%m-%d')),
+        )
+        cursor.execute('''
+            CREATE TEMPORARY TABLE ordered2
+                (PRIMARY KEY (position))
+                AS (SELECT * FROM ordered1)
+        ''')
+        cursor.execute('''
+            CREATE TEMPORARY TABLE diffs
+            AS (SELECT
+                B.date AS date,
+                B.value/B.max - A.value/A.max as pct_diff
+                FROM
+                    ordered1 as A,
+                    ordered2 as B
+                WHERE
+                    B.position = A.position + 1)
+        ''')
+        cursor.execute(
+            '''
+            SELECT SUM(pct_diff) as toner_used
+            FROM
+            diffs
+            WHERE
+            ABS(pct_diff)<%s
+        ''', (cutoff),
+        )
+        return cursor.fetchone()['toner_used']
+
+
 @periodic(120)
 def _pages_per_day():
     with stats.get_connection() as cursor:
