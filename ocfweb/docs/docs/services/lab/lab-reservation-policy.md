@@ -30,19 +30,20 @@ Here are a few important things to note:
 ## Student group expectations
 
 To reserve the OCF lab, all student groups must have a signatory of their
-organization apply for the lab space using our lab reservation request form at
-least two weeks in advance of the desired reservation date. The request must
-then be approved by  the OCF Board of Directors.  Should the request be
-approved, the student organization will be allowed to to use the lab at the
-allotted time pursuant to the following conditions:
+organization apply for the lab space using our lab reservation [request
+form](https://docs.google.com/forms/d/1H4AnBfZVavyTgKDhZg1QHTqQloKsEJNd_s6_wvHj-G0)
+at least two weeks in advance of the desired reservation date. The request must
+then be approved by the OCF Board of Directors. Should the request be approved,
+the student organization will be allowed to to use the lab at the allotted time
+pursuant to the following conditions:
 
 1. The lab space must be cleaned after use by the student organization. Eating
 and drinking in the lab is permitted, as long as the space remains clean and
 available for use immediately after the event concludes.
 
 2. Printing in the OCF lab is subject to the standard per person rules located
-here. Please note that the OCF currently does not offer printing for group
-accounts.
+[here](https://www.ocf.berkeley.edu/docs/services/lab/printing/). Please note
+that the OCF currently does not offer printing for group accounts.
 
 3. All persons entering the OCF during the time of the event must have
 identification showing affiliation with the university (e.g. Cal ID or Clipper
