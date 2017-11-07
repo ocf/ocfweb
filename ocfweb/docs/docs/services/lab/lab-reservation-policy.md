@@ -1,4 +1,4 @@
-[[!meta title="Lab Reservation Policy"]]
+[[!meta title="Lab reservation policy"]]
 
 Registered Student Organizations of UC Berkeley are able to reserve the OCF lab
 space for a maximum of 2 hours at a time during the OCF’s regular operating
@@ -22,7 +22,7 @@ Here are a few important things to note:
   Make sure that you will be able to enter the building on the day of your
   reservation!
 
-## Student Group Expectations
+## Student group expectations
 
 To reserve the OCF lab, all student groups must have a signatory of their
 organization apply for the lab space here at least two weeks in advance. The
@@ -37,10 +37,19 @@ entering the OCF during the time of the event are expected to have a Cal ID and
 show it to staff at the door. In addition, all members that would like to use
 OCF computers will need to have their own OCF account.
 
-## Approving Lab Usage Requests
+## Approving lab usage requests
 
 The Board of Directors holds the authority to approve requests to reserve the
 OCF. When the OCF is not formally in session (i.e. during breaks), the Cabinet
 can make provisional decisions on requests. If the decisions are ratified at
 the first Board meeting of the next formal session, they will become valid;
 otherwise they will expire.
+
+## Cancellation and rescheduling
+
+The OCF is not responsible for events outside of our control that can interfere with scheduled events. These can include, but are not limited to: fire alarms, building closures, etc. In situations where events are interrupted, the OCF may be willing to attempt to reschedule the event, but cannot guarantee that an event will be rescheduled. In addition, failure to abide by safety procedures (e.g not evacuating during a fire alarm) may result in student groups being banned from reserving the OCF, banning accounts affiliated with the event as well as possible further action as decided by the Board of Directors. 
+
+## Liability
+
+The OCF is not liable for the actions taken by those who attend events within the lab, and will hold the hosting group liable for any policy violations. In addition, the OCF is not liable for any damages during said event.
+
