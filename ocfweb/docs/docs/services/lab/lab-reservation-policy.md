@@ -35,7 +35,7 @@ OCF lab is subject to the standard per person rules located here. Please note
 that the OCF currently does not offer group account printing. All members
 entering the OCF during the time of the event are expected to have a Cal ID and
 show it to staff at the door. In addition, all members that would like to use
-OCF computers will need to have their own OCF account. 
+OCF computers will need to have their own OCF account.
 
 ## Approving Lab Usage Requests
 
