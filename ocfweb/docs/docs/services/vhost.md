@@ -48,7 +48,7 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
      form|request_vhost]] online. OCF staff will review your request and
      contact the university hostmaster on your behalf if necessary.
 
-### Including the OCF banner
+### Including the OCF banner {ocf_banner}
 
 Place any of the [[Hosted by OCF banners|doc services/vhost/badges]] on your
 site by copying the code onto your page. The banner is required to be placed
