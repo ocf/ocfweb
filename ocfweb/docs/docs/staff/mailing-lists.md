@@ -11,7 +11,7 @@ All staffers are automatically added to the following two mailing lists:
  * `wheel`: For technical discussion among all staff
 
 Staffers can also choose to be further added to the following mailing lists.
-Technical Managers are especially expected to join them:
+Technical Managers are required to join them:
 
  * `rt`: Emails sent to Request Tracker are copied to this mailing list. If
    you are on the `rt` mailing list, you can reply to RT tickets from your
