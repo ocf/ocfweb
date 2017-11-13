@@ -1,5 +1,7 @@
 [[!meta title="Lab reservation policy"]]
 
+_As established by the Board of Directors on November 6, 2017._
+
 Any group eligible for OCF membership is able to reserve the OCF lab space for
 a maximum of 2 hours at a time during the OCF’s regular operating hours
 (exceptions can be made at the discretion of the OCF Board of Directors). Those
