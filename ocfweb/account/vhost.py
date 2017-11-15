@@ -76,7 +76,7 @@ def request_vhost(request):
 
                 try:
                     ip_reverse = socket.gethostbyaddr(ip_addr)[0]
-                except:
+                except socket.herror:
                     ip_reverse = 'unknown'
 
                 subject = 'Virtual Hosting Request: {} ({})'.format(
