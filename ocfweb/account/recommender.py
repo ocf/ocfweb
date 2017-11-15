@@ -14,10 +14,11 @@ def recommend(first_name, last_name, n):
         first_generated = first_name[:first_rand]
         last_generated = last_name[:last_rand]
         recommendation = first_generated+last_generated
-        try:
-            validate_username(recommendation, first_name+last_name)
-            recommendations.append(recommendation)
-        except:
-            pass
+        if recommendation not in recommendations:
+            try:
+                validate_username(recommendation, first_name+last_name)
+                recommendations.append(recommendation)
+            except:
+                pass
         attempts += 1
     return recommendations

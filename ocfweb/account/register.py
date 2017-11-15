@@ -97,16 +97,12 @@ def request_account(request):
     else:
         form = ApproveForm()
 
-    first_name, last_name = real_name.split()
-    recommendations = recommender.recommend(first_name, last_name, 3)
-
     return render(
         request,
         'account/register/index.html',
         {
             'form': form,
             'real_name': real_name,
-            'recommendations': recommendations,
             'status': status,
             'title': 'Request an OCF account',
         },

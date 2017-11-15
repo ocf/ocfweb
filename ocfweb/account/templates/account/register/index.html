@@ -57,11 +57,7 @@
                 {{form.ocf_login_name|bootstrap}}
 
 		            <p><strong>Recommendations</strong><p>
-                <div id="recommendations">
-                  {% for recommendation in recommendations %}
-                  <p>{{recommendation}}</p>
-                  {% endfor %}
-                </div>
+	        <div id="recommendations"></div>
                 <button type="button" class="btn btn-secondary" onclick="recommend()">Refresh</button>
 
                 <hr />
@@ -133,11 +129,12 @@
     <script>
       function recommend() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', "recommend?real_name=" + document.getElementById("real_name").innerHTML);
+	xhr.open('GET', "recommend?real_name={{real_name}}");
         xhr.onload = function() {
           document.getElementById("recommendations").innerHTML = xhr.responseText;
-        };
+        }
         xhr.send();
       }
+      recommend(); // Initial recommends
     </script>
 {% endblock %}
