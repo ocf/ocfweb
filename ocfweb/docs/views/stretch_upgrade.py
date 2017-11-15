@@ -76,7 +76,10 @@ def _get_servers():
             'dementors',
             status=ThingToUpgrade.UPGRADED,
         ),
-        ThingToUpgrade.from_hostname('flood'),
+        ThingToUpgrade.from_hostname(
+            'flood',
+            status=ThingToUpgrade.UPGRADED,
+        ),
         ThingToUpgrade.from_hostname(
             'pestilence',
             status=ThingToUpgrade.UPGRADED,
