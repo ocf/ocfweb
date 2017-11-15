@@ -1,4 +1,4 @@
-oo extends "base.html" %}
+{% extends "base.html" %}
 {% load bootstrap %}
 {% load staticfiles %}
 
@@ -133,8 +133,8 @@ oo extends "base.html" %}
     <script>
       function recommend() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', "{% url 'recommend' %}" + "?real_name=" +
-          document.getElementById("real_name"));
+        xhr.open('GET', "ocf.berkeley.edu/account/register/recommend?real_name=" +
+          document.getElementById("real_name").innerHTML);
         xhr.onload = function() {
           document.getElementById("recommendations_id").innerHTML = xhr.responseText;
         };
