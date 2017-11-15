@@ -389,7 +389,7 @@ def _txn(**kwargs):
     ) as c:
         try:
             yield c
-        except:
+        except Exception:
             c.connection.rollback()
             raise
         else:
