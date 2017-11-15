@@ -69,7 +69,7 @@ We have a handy script, `makevm`, that:
 * Waits for the Debian installer to finish
 * SSHs to the new server and sets its IP
 
-To use it, log on to the target physical server (`hal`, `pandemic`, or `jaws`),
+To use it, log on to the target physical server (`riptide`, `hal`, `pandemic`, or `jaws`),
 and run `makevm --help`. A typical invocation looks something like:
 
     makevm -m 4096 -c 2 -s 15 arsenic 169.229.226.47
