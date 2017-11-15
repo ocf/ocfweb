@@ -21,6 +21,7 @@ from ocfweb.component.celery import validate_then_create_account
 from ocfweb.component.forms import Form
 from ocfweb.component.forms import wrap_validator
 
+from .login import username_suggester
 
 @calnet_required
 def request_account(request):
@@ -96,17 +97,29 @@ def request_account(request):
     else:
         form = ApproveForm()
 
+    first_name, last_name = real_name.split()
+    recommender = username_suggester(first_name, last_name)
+    recommendations = recommender.generate()
+
     return render(
         request,
         'account/register/index.html',
         {
             'form': form,
             'real_name': real_name,
+            'recommendations': recommendations,
             'status': status,
             'title': 'Request an OCF account',
         },
     )
 
+def recommend(request, real_name):
+    first_name, last_name = real_name.split()
+    recommender = username_suggester(first_name, last_name)
+    recommendations = recommender.generate()
+
+    while True:
+        yield recommender.generate()
 
 def wait_for_account(request):
     if 'approve_task_id' not in request.session:

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+oo extends "base.html" %}
 {% load bootstrap %}
 {% load staticfiles %}
 
@@ -48,14 +48,21 @@
                 </p>
 
                 <hr />
-
                 <p><strong>Full Name</strong></p>
-                <p>{{real_name|title}}</p>
+                <p id="real_name">{{real_name|title}}</p>
 
                 <hr />
 
                 <p>Your account name must consist of between three and 16 lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
                 {{form.ocf_login_name|bootstrap}}
+
+		            <p><strong>Recommendations</strong><p>
+                <div id="recommendations">
+                  {% for recommendation in recommendations %}
+                  <p>{{recommendation}}</p>
+                  {% endfor %}
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="recommend()">Refresh</button>
 
                 <hr />
 
@@ -123,4 +130,15 @@
             {% include "account/partials/password-requirements-sidebar.html" %}
         </div>
     </div>
+    <script>
+      function recommend() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', "{% url 'recommend' %}" + "?real_name=" +
+          document.getElementById("real_name"));
+        xhr.onload = function() {
+          document.getElementById("recommendations_id").innerHTML = xhr.responseText;
+        };
+        xhr.send();
+      }
+    </script>
 {% endblock %}
