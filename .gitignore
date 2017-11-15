@@ -51,3 +51,6 @@ target/
 # emacs
 \#*\#
 *~
+
+# vim
+.*.sw*

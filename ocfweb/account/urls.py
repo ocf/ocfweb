@@ -5,7 +5,9 @@ from ocfweb.account.commands import commands
 from ocfweb.account.register import account_created
 from ocfweb.account.register import account_pending
 from ocfweb.account.register import request_account
+from ocfweb.account.register import recommend
 from ocfweb.account.register import wait_for_account
+from ocfweb.account.register import validate
 from ocfweb.account.vhost import request_vhost
 from ocfweb.account.vhost import request_vhost_success
 from ocfweb.account.vhost_mail import vhost_mail
@@ -23,6 +25,8 @@ urlpatterns = [
     url(r'^register/wait/$', wait_for_account, name='wait_for_account'),
     url(r'^register/created/$', account_created, name='account_created'),
     url(r'^register/pending/$', account_pending, name='account_pending'),
+    url(r'^register/recommend/$', recommend, name='recommend'),
+    url(r'^register/validate/$', validate, name='validate'),
 
     # request vhost
     url(r'^vhost/$', request_vhost, name='request_vhost'),
