@@ -13,6 +13,7 @@ from django.shortcuts import render
 from ocflib.account.creation import CREATE_PUBLIC_KEY
 from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest
+from ocflib.account.creation import validate_username
 from ocflib.account.search import user_attrs_ucb
 from ocflib.account.submission import NewAccountResponse
 
@@ -117,6 +118,15 @@ def recommend(request):
         recs += '<p>%s</p>\n' % rec
     return HttpResponse(recs)
 
+def validate(request):
+    real_name = request.GET.get('real_name', '')
+    username = request.GET.get('username', '')
+    try:
+        validate_username(username, real_name)
+        return HttpResponse('Valid')
+    except:
+        return HttpResponse('Invalid')
+        
 def wait_for_account(request):
     if 'approve_task_id' not in request.session:
         return render(
