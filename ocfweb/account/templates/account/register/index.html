@@ -49,13 +49,13 @@
 
                 <hr />
                 <p><strong>Full Name</strong></p>
-                <p id="real_name">{{real_name|title}}</p>
+                <p>{{real_name|title}}</p>
 
                 <hr />
 
                 <p>Your account name must consist of between three and 16 lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
                 {{form.ocf_login_name|bootstrap}}
-
+		<img id="username_check" src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Apply_ok_check_yes_dialog_valid_tick_yellow.png" style="display:none"/>
 		            <p><strong>Recommendations</strong><p>
 	        <div id="recommendations"></div>
                 <button type="button" class="btn btn-secondary" onclick="recommend()">Refresh</button>
@@ -129,12 +129,44 @@
     <script>
       function recommend() {
         var xhr = new XMLHttpRequest();
-	xhr.open('GET', "recommend?real_name={{real_name}}");
+	xhr.open('GET', 'recommend?real_name={{real_name}}');
         xhr.onload = function() {
-          document.getElementById("recommendations").innerHTML = xhr.responseText;
+          document.getElementById('recommendations').innerHTML = xhr.responseText;
         }
         xhr.send();
       }
       recommend(); // Initial recommends
+    </script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
+      var finTypingCountdown = 1;
+      var typingTimer;
+      var $input = $('#myInput');
+
+      // On keyup, start countdown
+      $input.on('keyup', function() {
+      	  clearTimeout(typingTimer)
+	  typingTimer = setTimeout(finTyping, finTypingCountdown)
+	}
+      );
+
+      // On keydown, clear countdown
+      $input.on('keydown', function() {
+      	  clearTimeout(typingTimer);
+      	}
+      );
+
+      function finTyping() {
+	if (validate_username()) {
+      	  $('username_check').show();
+	} else {
+	  $('username_check').hide();
+      	}
+      }
+      
+      function validate_username() {
+      	$.ajax({
+	  url: 'validate?=' + $(""),
+
+      }
     </script>
 {% endblock %}
