@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^register/wait/$', wait_for_account, name='wait_for_account'),
     url(r'^register/created/$', account_created, name='account_created'),
     url(r'^register/pending/$', account_pending, name='account_pending'),
-    url(r'^register/recommend(?P<real_name>[a-zA-Z]+%20[a-zA-Z]+)=/$', recommend, name='recommend'),
+    url(r'^register/recommend/$', recommend, name='recommend'),
 
     # request vhost
     url(r'^vhost/$', request_vhost, name='request_vhost'),

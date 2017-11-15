@@ -2,11 +2,13 @@ import ocflib.account.search as search
 import ocflib.account.validators as validators
 import ocflib.misc.validators
 import ocflib.ucb.directory as directory
+import ocfweb.account.recommender as recommender
 from Crypto.PublicKey import RSA
 from django import forms
 from django.core.urlresolvers import reverse
 from django.forms.forms import NON_FIELD_ERRORS
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.account.creation import CREATE_PUBLIC_KEY
 from ocflib.account.creation import encrypt_password
@@ -20,8 +22,6 @@ from ocfweb.component.celery import celery_app
 from ocfweb.component.celery import validate_then_create_account
 from ocfweb.component.forms import Form
 from ocfweb.component.forms import wrap_validator
-
-from .login import username_suggester
 
 @calnet_required
 def request_account(request):
@@ -98,8 +98,7 @@ def request_account(request):
         form = ApproveForm()
 
     first_name, last_name = real_name.split()
-    recommender = username_suggester(first_name, last_name)
-    recommendations = recommender.generate()
+    recommendations = recommender.recommend(first_name, last_name, 3)
 
     return render(
         request,
@@ -113,13 +112,14 @@ def request_account(request):
         },
     )
 
-def recommend(request, real_name):
+def recommend(request):
+    real_name = request.GET.get('real_name', '')
     first_name, last_name = real_name.split()
-    recommender = username_suggester(first_name, last_name)
-    recommendations = recommender.generate()
-
-    while True:
-        yield recommender.generate()
+    rec_lst = recommender.recommend(first_name, last_name, 3)
+    recs = ''
+    for rec in rec_lst:
+        recs += '<p>%s</p>\n' % rec
+    return HttpResponse(recs)
 
 def wait_for_account(request):
     if 'approve_task_id' not in request.session:

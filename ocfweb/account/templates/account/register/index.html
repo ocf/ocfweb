@@ -133,10 +133,9 @@
     <script>
       function recommend() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', "ocf.berkeley.edu/account/register/recommend?real_name=" +
-          document.getElementById("real_name").innerHTML);
+        xhr.open('GET', "recommend?real_name=" + document.getElementById("real_name").innerHTML);
         xhr.onload = function() {
-          document.getElementById("recommendations_id").innerHTML = xhr.responseText;
+          document.getElementById("recommendations").innerHTML = xhr.responseText;
         };
         xhr.send();
       }
