@@ -55,12 +55,14 @@
 
                 <p>Your account name must consist of between three and 16 lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
                 {{form.ocf_login_name|bootstrap}}
-		        <img id="username_check" src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Apply_ok_check_yes_dialog_valid_tick_yellow.png" style="display:none"/>
+		            <img id="username_check" src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Apply_ok_check_yes_dialog_valid_tick_yellow.png" style="display:none"/>
+                    <img id="username_check" src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Apply_ok_check_yes_dialog_valid_tick_yellow.png" style="display:none"/>
 
-                <p><strong>Recommendations</strong><p>
-	            <div id="recommendations"></div>
-                <button type="button" class="btn btn-secondary" onclick="recommend()">Refresh</button>
-
+                <div class="well">
+                    <p><strong>Recommendations</strong><p>
+    	            <div id="recommendations"></div>
+                    <button type="button" class="btn btn-secondary" onclick="recommend()">Refresh</button>
+                </div>
                 <hr />
 
                 <p>
@@ -130,7 +132,7 @@
     <script>
         function recommend() {
             var xhr = new XMLHttpRequest();
-	        xhr.open('GET', 'recommend?real_name={{real_name}}');
+            xhr.open('GET', 'recommend?real_name={{real_name}}');
             xhr.onload = function() {
                 document.getElementById('recommendations').innerHTML = xhr.responseText;
             }
@@ -138,38 +140,38 @@
         }
         recommend(); // Initial recommends
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
         $(document).ready(function() {
-            var finTypingCountdown = 1000; // 1000 milliseconds
+            var finTypingCountdown = 500; // 1000 milliseconds
             var typingTimer;
             var $input = $('#id_ocf_login_name');
 
             // On keyup, start countdown
             $input.keyup(function() {
-                alert('key UP');
+                //alert('key UP');
                 clearTimeout(typingTimer);
                 typingTimer = setTimeout(validate_username, finTypingCountdown);
             });
 
             // On keydown, clear countdown
             $input.keydown(function() {
-                alert('key DOWN');
+                //alert('key DOWN');
                 clearTimeout(typingTimer);
             });
 
             function validate_username() {
-                alert('EHHH')
                 $.ajax({
                      type: 'GET',
                      url: 'validate',
                      data: {'username': $input.val(),
                             'real_name': '{{real_name}}'},
                      success: function(data) {
-                          if(data.is_valid == 'True') {
-                              $('#username_check').show();
-                          } else {
-                              $('#username_check').hide();
-                          }
+                         if(data == 'Valid') {
+                             $input.css('border', '5px solid green');
+                         } else {
+                             $input.css('border', '5px solid red');
+                         }
                      }
                  });
              }

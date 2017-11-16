@@ -123,10 +123,10 @@ def validate(request):
     username = request.GET.get('username', '')
     try:
         validate_username(username, real_name)
-        return HttpResponse('Valid')
+        return HttpResponse("Valid")
     except:
-        return HttpResponse('Invalid')
-        
+        return HttpResponse("Invalid")
+
 def wait_for_account(request):
     if 'approve_task_id' not in request.session:
         return render(
