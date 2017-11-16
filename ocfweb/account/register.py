@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from django.forms.forms import NON_FIELD_ERRORS
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from ocflib.account.creation import CREATE_PUBLIC_KEY
 from ocflib.account.creation import encrypt_password
@@ -113,19 +114,19 @@ def recommend(request):
     real_name = request.GET.get('real_name', '')
     first_name, last_name = real_name.split()
     rec_lst = recommender.recommend(first_name, last_name, 3)
-    recs = ''
+    recsHTML = ''
     for rec in rec_lst:
-        recs += '<p>%s</p>\n' % rec
-    return HttpResponse(recs)
+        recsHTML += '<p>%s</p>\n' % rec
+    return HttpResponse(recsHTML)
 
 def validate(request):
     real_name = request.GET.get('real_name', '')
     username = request.GET.get('username', '')
     try:
         validate_username(username, real_name)
-        return HttpResponse("Valid")
+        return JsonResponse({'is_valid': True})
     except:
-        return HttpResponse("Invalid")
+        return JsonResponse({'is_valid': False})
 
 def wait_for_account(request):
     if 'approve_task_id' not in request.session:

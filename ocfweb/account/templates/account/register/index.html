@@ -61,7 +61,7 @@
                 <div class="well">
                     <p><strong>Recommendations</strong><p>
     	            <div id="recommendations"></div>
-                    <button type="button" class="btn btn-secondary" onclick="recommend()">Refresh</button>
+                    <button type="button" class="btn btn-secondary" onclick="recommend()">More</button>
                 </div>
                 <hr />
 
@@ -129,17 +129,6 @@
             {% include "account/partials/password-requirements-sidebar.html" %}
         </div>
     </div>
-    <script>
-        function recommend() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'recommend?real_name={{real_name}}');
-            xhr.onload = function() {
-                document.getElementById('recommendations').innerHTML = xhr.responseText;
-            }
-            xhr.send();
-        }
-        recommend(); // Initial recommends
-    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -167,7 +156,7 @@
                      data: {'username': $input.val(),
                             'real_name': '{{real_name}}'},
                      success: function(data) {
-                         if(data == 'Valid') {
+                         if(data.is_valid) {
                              $input.css('border', '5px solid green');
                          } else {
                              $input.css('border', '5px solid red');
@@ -175,6 +164,22 @@
                      }
                  });
              }
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            function recommend() {
+                $.ajax({
+                     type: 'GET',
+                     url: 'recommend',
+                     data: {'real_name': '{{real_name}}'},
+                     success: function(data) {
+                         alert(data)
+                         $('#recommendations').html(data);
+                     }
+                 });
+            }
+            recommend();
         });
     </script>
 {% endblock %}
