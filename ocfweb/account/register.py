@@ -2,7 +2,7 @@ import ocflib.account.search as search
 import ocflib.account.validators as validators
 import ocflib.misc.validators
 import ocflib.ucb.directory as directory
-import ocfweb.account.recommender as recommender
+import ocflib.account.recommender as recommender
 from Crypto.PublicKey import RSA
 from django import forms
 from django.core.urlresolvers import reverse
