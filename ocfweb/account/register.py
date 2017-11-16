@@ -114,10 +114,10 @@ def recommend(request):
     real_name = request.GET.get('real_name', '')
     first_name, last_name = real_name.split()
     rec_lst = recommender.recommend(first_name, last_name, 3)
-    recsHTML = ''
-    for rec in rec_lst:
-        recsHTML += '<li class="list-group-item list-group-item-success">%s</li>\n' % rec
-    return HttpResponse(recsHTML)
+    rec_dict = {}
+    for i in range(len(rec_lst)):
+        rec_dict[str(i)] = rec_lst[i] # convert i to string because JS dicts need string keys
+    return JsonResponse(rec_dict)
 
 def validate(request):
     real_name = request.GET.get('real_name', '')

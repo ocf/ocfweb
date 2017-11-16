@@ -182,7 +182,12 @@
                  url: 'recommend',
                  data: {'real_name': '{{real_name}}'},
                  success: function(data) {
-                     $('#recommendations').html(data);
+                     $('#recommendations').empty();
+                     for (var i in data) {
+                         $('#recommendations').append(
+                             '<li class="list-group-item list-group-item-success">'+ data[i] +'</li>'
+                         );
+                     }
                  }
              });
         }
