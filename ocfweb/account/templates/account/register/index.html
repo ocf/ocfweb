@@ -61,11 +61,6 @@
                 <div class="alert alert-danger" role="alert" id="invalid_username_notif" style="display: none">
                     Sorry, account name is <strong>invalid</strong> or has been <strong>taken</strong>.
                 </div>
-                <div class="well">
-                    <p><strong>Recommendations (untaken and valid usernames)</strong><p>
-    	            <ul class="list-group list-group-flush" id="recommendations"></ul>
-                    <button type="button" class="btn btn-secondary" onclick="recommend()">More</button>
-                </div>
                 <hr />
 
                 <p>
@@ -115,6 +110,7 @@
 
         </div>
         <div class="col-md-4">
+            <hr/>
             <hr class="visible-sm" />
             <div class="welcome-penguin">
                 <h2>Welcome to the OCF!</h2>
@@ -127,9 +123,15 @@
                 </p>
             </div>
 
-            <hr />
+            <div class="well well-sm">
+                <strong>Available Account Names</strong>
+                <ul class="list-group list-group-flush" id="recommendations" style="margin: 7px"></ul>
+                <button type="button" class="btn btn-secondary" onclick="recommend()">More</button>
+            </div>
+            <hr class="visible-sm" />
 
             {% include "account/partials/password-requirements-sidebar.html" %}
+
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
