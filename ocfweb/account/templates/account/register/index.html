@@ -55,12 +55,15 @@
 
                 <p>Your account name must consist of between three and 16 lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
                 {{form.ocf_login_name|bootstrap}}
-		            <img id="username_check" src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Apply_ok_check_yes_dialog_valid_tick_yellow.png" style="display:none"/>
-                    <img id="username_check" src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Apply_ok_check_yes_dialog_valid_tick_yellow.png" style="display:none"/>
-
+                <div class="alert alert-success" role="alert" id="valid_username_notif" style="display: none">
+                    Account name is <strong>available</strong>.
+                </div>
+                <div class="alert alert-danger" role="alert" id="invalid_username_notif" style="display: none">
+                    Sorry, account name is <strong>invalid</strong> or has been <strong>taken</strong>.
+                </div>
                 <div class="well">
-                    <p><strong>Recommendations</strong><p>
-    	            <div id="recommendations"></div>
+                    <p><strong>Recommendations (untaken and valid usernames)</strong><p>
+    	            <ul class="list-group list-group-flush" id="recommendations"></ul>
                     <button type="button" class="btn btn-secondary" onclick="recommend()">More</button>
                 </div>
                 <hr />
@@ -132,7 +135,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            var finTypingCountdown = 500; // 1000 milliseconds
+            var finTypingCountdown = 250; // 250 milliseconds
             var typingTimer;
             var $input = $('#id_ocf_login_name');
 
@@ -157,9 +160,13 @@
                             'real_name': '{{real_name}}'},
                      success: function(data) {
                          if(data.is_valid) {
-                             $input.css('border', '5px solid green');
+                             $input.css('border', '5px solid #3c763d');
+                             $('#valid_username_notif').css('display', 'block')
+                             $('#invalid_username_notif').css('display', 'none')
                          } else {
-                             $input.css('border', '5px solid red');
+                             $input.css('border', '5px solid #a94442');
+                             $('#invalid_username_notif').css('display', 'block')
+                             $('#valid_username_notif').css('display', 'none')
                          }
                      }
                  });
@@ -167,17 +174,17 @@
         });
     </script>
     <script>
+        function recommend() {
+            $.ajax({
+                 type: 'GET',
+                 url: 'recommend',
+                 data: {'real_name': '{{real_name}}'},
+                 success: function(data) {
+                     $('#recommendations').html(data);
+                 }
+             });
+        }
         $(document).ready(function() {
-            function recommend() {
-                $.ajax({
-                     type: 'GET',
-                     url: 'recommend',
-                     data: {'real_name': '{{real_name}}'},
-                     success: function(data) {
-                         $('#recommendations').html(data);
-                     }
-                 });
-            }
             recommend();
         });
     </script>

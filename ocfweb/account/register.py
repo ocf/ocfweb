@@ -116,7 +116,7 @@ def recommend(request):
     rec_lst = recommender.recommend(first_name, last_name, 3)
     recsHTML = ''
     for rec in rec_lst:
-        recsHTML += '<p>%s</p>\n' % rec
+        recsHTML += '<li class="list-group-item" style="background-color:#d6e9c6">%s</li>\n' % rec
     return HttpResponse(recsHTML)
 
 def validate(request):
