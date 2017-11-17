@@ -109,7 +109,7 @@ def _toner_used_by_printer(printer, cutoff=.05, since=date(2017, 8, 20)):
             CREATE TEMPORARY TABLE diffs
             AS (SELECT
                 B.date AS date,
-                B.value/B.max - A.value/A.max as pct_diff
+                A.value/A.max - B.value/B.max as pct_diff
                 FROM
                     ordered1 as A,
                     ordered2 as B
@@ -125,7 +125,7 @@ def _toner_used_by_printer(printer, cutoff=.05, since=date(2017, 8, 20)):
             ABS(pct_diff)<%s
         ''', (cutoff),
         )
-        return cursor.fetchone()['toner_used']
+        return float(cursor.fetchone()['toner_used'])
 
 
 @periodic(120)
