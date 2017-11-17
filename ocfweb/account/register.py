@@ -2,7 +2,6 @@ import ocflib.account.search as search
 import ocflib.account.validators as validators
 import ocflib.misc.validators
 import ocflib.ucb.directory as directory
-import ocfweb.account.recommender as recommender
 from Crypto.PublicKey import RSA
 from django import forms
 from django.core.urlresolvers import reverse
@@ -14,15 +13,19 @@ from ocflib.account.creation import CREATE_PUBLIC_KEY
 from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest
 from ocflib.account.creation import validate_username
+from ocflib.account.creation import ValidationError
+from ocflib.account.creation import ValidationWarning
 from ocflib.account.search import user_attrs_ucb
 from ocflib.account.submission import NewAccountResponse
 
+import ocfweb.account.recommender as recommender
 from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
 from ocfweb.component.celery import celery_app
 from ocfweb.component.celery import validate_then_create_account
 from ocfweb.component.forms import Form
 from ocfweb.component.forms import wrap_validator
+
 
 @calnet_required
 def request_account(request):
@@ -109,23 +112,32 @@ def request_account(request):
         },
     )
 
+
 def recommend(request):
     real_name = request.GET.get('real_name', '')
     first_name, last_name = real_name.split()
     rec_lst = recommender.recommend(first_name, last_name, 3)
     rec_dict = {}
     for i in range(len(rec_lst)):
-        rec_dict[str(i)] = rec_lst[i] # convert i to string because JS dicts need string keys
+        rec_dict[str(i)] = rec_lst[i]  # convert i to string because JS dicts need string keys
     return JsonResponse(rec_dict)
+
 
 def validate(request):
     real_name = request.GET.get('real_name', '')
     username = request.GET.get('username', '')
     try:
         validate_username(username, real_name)
-        return JsonResponse({'is_valid': True})
-    except:
-        return JsonResponse({'is_valid': False})
+        return JsonResponse({
+            'is_valid': True,
+            'msg': 'Username is available.',
+        })
+    except (ValidationError, ValidationWarning) as e:
+        return JsonResponse({
+            'is_valid': False,
+            'msg': str(e) + '.',
+        })
+
 
 def wait_for_account(request):
     if 'approve_task_id' not in request.session:
