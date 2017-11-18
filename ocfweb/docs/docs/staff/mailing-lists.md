@@ -19,8 +19,6 @@ Technical Managers are required to join them:
    not root staff.
  * `root`: Miscellaneous messages from system daemons are sent here:
     * Cron daemons send mail containing any stdout/stderr output from cronjobs
-    * Munin sends mail whenever some munin measurement (e.g. disk usage, RAM
-      usage, etc.) is outside the normal range
     * Jenkins sends emails whenever a Jenkins build fails
     * ocflib sends emails whenever an uncaught exception is thrown in ocfweb,
       create, enforcer, and several other background tasks
@@ -29,9 +27,11 @@ Technical Managers are required to join them:
    days it can get a lot more.
  * `puppet`: Error messages from puppet runs go here. This list tends to be
    very noisy.
- * `mon`: We've set up Rackspace Cloud Monitoring to email us alerts when our
-   important services are inaccessible from outside the OCF network. Alerts
-   from Rackspace get sent to this list.
+ * `mon`: Monitoring alerts are sent here:
+    * Rackspace Cloud Monitoring email us alerts when our important services are
+      inaccessible from outside the OCF network.
+    * Munin sends mail whenever some munin measurement (e.g. disk usage, RAM
+      usage, etc.) is outside the normal range.
 
 On the administrative side, the `officers` mailing list receives emails related
 to OCF administrivia. Cabinet members are expected to be on this mailing list,
