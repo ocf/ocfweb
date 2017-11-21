@@ -79,7 +79,7 @@ possible, e.g. try `django` or `django>=1.10,<1.10.999` before
 -----
 
 [0]: In order to run ocfweb on your staffvm without running into problems,
-you will have to add the ocf_ocfweb::dev_config class to your
+you will have to add the `ocf_ocfweb::dev_config` class to your
 [Hiera node config](https://github.com/ocf/puppet/tree/master/hieradata/nodes).
 Specifically, add:
 
