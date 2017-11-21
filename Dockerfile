@@ -22,6 +22,7 @@ RUN apt-get update \
         redis-tools \
         runit \
         virtualenv \
+        yui-compressor \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

@@ -1,6 +1,8 @@
 FROM {tag}
 
 RUN /opt/ocfweb/venv/bin/sassc /opt/ocfweb/ocfweb/static/scss/site.scss /opt/ocfweb/ocfweb/static/scss/site.scss.css
+RUN yui-compressor -o /opt/ocfweb/ocfweb/static/scss/site.scss.css /opt/ocfweb/ocfweb/static/scss/site.scss.css
+RUN yui-compressor -o '.js$:.js' /opt/ocfweb/ocfweb/static/js/*.js --nomunge
 RUN mkdir /opt/ocfweb/static
 ENV OCFWEB_STATIC_ROOT /opt/ocfweb/static
 RUN /opt/ocfweb/venv/bin/python /opt/ocfweb/manage.py collectstatic --noinput
