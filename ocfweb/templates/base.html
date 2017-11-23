@@ -230,5 +230,14 @@
 
         {% include "partials/google-analytics.html" %}
         {% block inline_js %}{% endblock %}
+
+        <!-- TODO: disable after December 14 vote -->
+        <script>
+            var _bftn_options = {
+                theme: {headline: 'Stand with the OCF on internet freedom.'},
+                disableGoogleAnalytics: true
+            };
+        </script>
+        <script src="https://widget.battleforthenet.com/widget.js" async></script>
     </body>
 </html>
