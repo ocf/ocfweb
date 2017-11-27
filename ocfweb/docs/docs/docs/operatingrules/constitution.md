@@ -4,6 +4,7 @@ This document records the **Constitution of the Open Computing Facility**, as
 established on November 14, 2016 and amended on:
 
 1. [March 6, 2017](#amended-2017-03-06)
+2. [November 20, 2017](#amended-2017-11-20)
 
 
 ## Preamble
@@ -68,10 +69,11 @@ quorum.
 Other Directors shall be appointed and removed as provided for by bylaw.
 
 
-#### 3.3 Quorum
-Quorum consists of 2/3 of the Board of Directors. Quorum must be met at Board
+#### 3.3 Quorum {amended-2017-11-20}
+Quorum consists of 1/2 of the Board of Directors. Quorum must be met at Board
 meetings for Board votes to be valid.
 
+_[Amended at the Board meeting of November 20, 2017]._
 
 ### 4 Elected Officers
 
