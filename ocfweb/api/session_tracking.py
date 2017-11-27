@@ -1,48 +1,53 @@
 import json
 from functools import partial
+from ipaddress import ip_address
 
 import pymysql
 from django.conf import settings
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from ocflib.infra.ldap import ldap_ocf
 from ocflib.infra.ldap import OCF_LDAP_HOSTS
+from ocflib.infra.net import is_ocf_ip
 from ocflib.lab.stats import get_connection
 
 from ocfweb.caching import cache
+from ocfweb.caching import periodic
+
+HOST_TIMEOUT = 5  # minutes
+
+get_connection = partial(
+    get_connection,
+    user=settings.OCFSTATS_USER,
+    password=settings.OCFSTATS_PASSWORD,
+)
 
 
-def get_connection():
-    return pymysql.connect(
-        user=settings.OCFSTATS_USER,
-        password=settings.OCFSTATS_PASSWORD,
-        db=settings.OCFSTATS_DB,
-        host='mysql.ocf.berkeley.edu',
-        charset='utf8mb4',
-        autocommit=True,
-        cursorclass=pymysql.cursors.DictCursor,
-    )
-
-#get_connection = partial(get_connection, user='abizer', password=settings.OCFSTATS_PASSWORD, db='abizer')
-
-
+@require_POST
 @csrf_exempt
-def desktop_checkin(request):
+def log_session(request):
     """Primary API endpoint for session tracking.
 
     Desktops have a cronjob that calls this endpoint, replacing
     the functionality that used to be in ocf/labstats.
     """
 
-    if request.method != 'POST':
+    if not is_ocf_ip(ip_address(request.META['REMOTE_ADDR'])):
         return HttpResponse('Not Authorized', status=401)
 
     try:
         body = json.loads(request.body.decode('utf-8'))
 
-        host = body.get('host', _match_desktop(request.META['REMOTE_ADDR']))
-        user = body['user']
+        host = _get_desktops().get(request.META['REMOTE_ADDR'], None)
+        user = body.get('user', None)
+
+        if user is '' or user is None:
+            raise ValueError('Invalid user {}'.format(user))
+
+        if host is None:
+            raise ValueError('Invalid host {}'.format(host))
 
         if _session_exists(host, user):
             _refresh_session(host, user)
@@ -52,6 +57,7 @@ def desktop_checkin(request):
         return HttpResponse(status=200)
 
     except Exception as e:
+        print(e)
         return HttpResponseBadRequest(e)
 
 
@@ -99,12 +105,21 @@ def _close_sessions(host):
         )
 
 
-def _match_desktop(ip):
-    return _get_desktops()[ip]
-
-
 @cache()
 def _get_desktops():
     with ldap_ocf() as c:
         c.search(OCF_LDAP_HOSTS, '(type=desktop)', attributes=['cn', 'ipHostNumber'])
-        return {e['attributes']['ipHostNumber'][0]: e['attributes']['cn'][0] + '.ocf.berkeley.edu' for e in c.response}
+        return {
+            e['attributes']['ipHostNumber'][0]: e['attributes']['cn'][0] + '.ocf.berkeley.edu'
+            for e in c.response
+        }
+
+
+@periodic(300)
+def _close_old_sessions():
+    """Periodically close sessions once users have logged out."""
+
+    with get_connection() as c:
+        c.execute('UPDATE `session` SET `end` = NOW(), `last_update` = NOW() '
+                  'WHERE `end` IS NULL '
+                  'AND `last_update` < ADDDATE(NOW(), INTERVAL -{} MINUTE)'.format(HOST_TIMEOUT))
