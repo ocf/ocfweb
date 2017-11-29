@@ -2,7 +2,6 @@ import json
 from functools import partial
 from ipaddress import ip_address
 
-import pymysql
 from django.conf import settings
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
@@ -14,14 +13,12 @@ from ocflib.infra.net import is_ocf_ip
 from ocflib.lab.stats import get_connection
 
 from ocfweb.caching import cache
-from ocfweb.caching import periodic
-
-HOST_TIMEOUT = 5  # minutes
 
 get_connection = partial(
     get_connection,
     user=settings.OCFSTATS_USER,
     password=settings.OCFSTATS_PASSWORD,
+    db=settings.OCFSTATS_DB,
 )
 
 
@@ -44,10 +41,10 @@ def log_session(request):
         user = body.get('user', None)
 
         if user is '' or user is None:
-            raise ValueError('Invalid user {}'.format(user))
+            raise ValueError('Invalid user "{}"'.format(user))
 
         if host is None:
-            raise ValueError('Invalid host {}'.format(host))
+            raise ValueError('Invalid host "{}"'.format(host))
 
         if _session_exists(host, user):
             _refresh_session(host, user)
@@ -57,7 +54,6 @@ def log_session(request):
         return HttpResponse(status=200)
 
     except Exception as e:
-        print(e)
         return HttpResponseBadRequest(e)
 
 
@@ -113,13 +109,3 @@ def _get_desktops():
             e['attributes']['ipHostNumber'][0]: e['attributes']['cn'][0] + '.ocf.berkeley.edu'
             for e in c.response
         }
-
-
-@periodic(300)
-def _close_old_sessions():
-    """Periodically close sessions once users have logged out."""
-
-    with get_connection() as c:
-        c.execute('UPDATE `session` SET `end` = NOW(), `last_update` = NOW() '
-                  'WHERE `end` IS NULL '
-                  'AND `last_update` < ADDDATE(NOW(), INTERVAL -{} MINUTE)'.format(HOST_TIMEOUT))
