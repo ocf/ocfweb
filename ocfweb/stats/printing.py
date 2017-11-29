@@ -16,6 +16,7 @@ from ocfweb.component.graph import plot_to_image_bytes
 
 
 ALL_PRINTERS = ('papercut', 'pagefault', 'logjam', 'deforestation')
+ACTIVE_PRINTERS = ('papercut', 'pagefault')
 
 
 def stats_printing(request):
@@ -65,10 +66,7 @@ def _semester_histogram():
 
 @periodic(3600)
 def _toner_changes():
-    return [
-        (printer, _toner_changes_for_printer(printer))
-        for printer in ALL_PRINTERS
-    ]
+    return [(printer, _toner_used_by_printer(printer)) for printer in ACTIVE_PRINTERS]
 
 
 # Toner numbers can be significantly noisy, including significant diffs
@@ -125,7 +123,10 @@ def _toner_used_by_printer(printer, cutoff=.05, since=date(2017, 8, 20)):
             ABS(pct_diff)<%s
         ''', (cutoff),
         )
-        return float(cursor.fetchone()['toner_used'])
+        result = cursor.fetchone()['toner_used']
+        # The none check is here as a kind of failsafe for if the request is run on a printer
+        # that is no longer in use, although this should no longer happen in the first place
+        return [None if result is None else float(result)]
 
 
 @periodic(120)
@@ -152,6 +153,7 @@ def _pages_per_day():
     return pages_printed
 
 
+# Deprecated in favor of _toner_used_by_printer by virtue of giving meaningless data
 def _toner_changes_for_printer(printer):
     with stats.get_connection() as cursor:
         cursor.execute(

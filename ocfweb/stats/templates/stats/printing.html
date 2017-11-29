@@ -49,16 +49,12 @@
                     <h3>{{printer}}</h3>
                     <table class="table">
                         <tr>
-                            <th>Date</th>
-                            <th>Pages Before</th>
-                            <th>Pages After</th>
+                            <th>Toner cartridges used this semester</th>
                         </tr>
 
                         {% for change in toner_changes %}
                             <tr>
-                                <td>{{change.date|date:'Y-m-d'}}</td>
-                                <td>{{change.pages_before}}</td>
-                                <td>{{change.pages_after}}</td>
+                                <td>{{change}}</td>
                             </tr>
                         {% endfor %}
                     </table>
