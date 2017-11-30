@@ -48,8 +48,8 @@ filled in by the new root staffer; it will become the password for their
 After you've created these principals, you'll need to grant them powers in the
 [Kerberos ACL file in Puppet](https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl).
 
-You may also wish to add new root staffers to the Admin team in our GitHub org
-and grant them RT admin privileges.
+Also add the new root staffer to the Admin team in our GitHub org and grant
+them RT admin privileges.
 
 
 ## Granting IRC chanop status
