@@ -7,8 +7,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from ocflib.infra.ldap import ldap_ocf
-from ocflib.infra.ldap import OCF_LDAP_HOSTS
+from ocflib.infra.hosts import hosts_by_filter
 from ocflib.infra.net import is_ocf_ip
 from ocflib.lab.stats import get_connection
 
@@ -31,16 +30,18 @@ def log_session(request):
     the functionality that used to be in ocf/labstats.
     """
 
-    if not is_ocf_ip(ip_address(request.META['REMOTE_ADDR'])):
+    remote_ip = request.META['REMOTE_ADDR']
+
+    if not is_ocf_ip(ip_address(remote_ip)):
         return HttpResponse('Not Authorized', status=401)
 
     try:
         body = json.loads(request.body.decode('utf-8'))
 
-        host = _get_desktops().get(request.META['REMOTE_ADDR'], None)
-        user = body.get('user', None)
+        host = _get_desktops().get(remote_ip)
+        user = body.get('user')
 
-        if user is '' or user is None:
+        if user == '' or user is None:
             raise ValueError('Invalid user "{}"'.format(user))
 
         if host is None:
@@ -51,9 +52,9 @@ def log_session(request):
         else:
             _new_session(host, user)
 
-        return HttpResponse(status=200)
+        return HttpResponse(status=204)
 
-    except Exception as e:
+    except ValueError as e:
         return HttpResponseBadRequest(e)
 
 
@@ -92,7 +93,7 @@ def _refresh_session(host, user):
 
 
 def _close_sessions(host):
-    """Close old sessions for a particular host."""
+    """Close all sessions for a particular host."""
 
     with get_connection() as c:
         c.execute(
@@ -101,11 +102,7 @@ def _close_sessions(host):
         )
 
 
-@cache()
+@cache(3600)
 def _get_desktops():
-    with ldap_ocf() as c:
-        c.search(OCF_LDAP_HOSTS, '(type=desktop)', attributes=['cn', 'ipHostNumber'])
-        return {
-            e['attributes']['ipHostNumber'][0]: e['attributes']['cn'][0] + '.ocf.berkeley.edu'
-            for e in c.response
-        }
+    return {e['ipHostNumber'][0]: e['cn'][0] + '.ocf.berkeley.edu'
+            for e in hosts_by_filter('(type=desktop)')}
