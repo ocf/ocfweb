@@ -37,33 +37,23 @@
             </div>
         </div>
 
-        <h2>Toner changes</h2>
-        <p>
-            <strong>Note:</strong> These numbers are a bit suspect on the new
-            printers. We need to try to find a better way to get the remaining
-            number of pages on a toner cartridge.
-        </p>
+        <h2>Toner usage</h2>
         <div class="row">
-            {% for printer, toner_changes in toner_changes %}
-                <div class="col-md-6">
-                    <h3>{{printer}}</h3>
-                    <table class="table">
-                        <tr>
-                            <th>Date</th>
-                            <th>Pages Before</th>
-                            <th>Pages After</th>
-                        </tr>
+            <div class="col-md-6">
+                <table class="table">
+                    <tr>
+                        <th>Printer</th>
+                        <th>Toner cartridges used this semester</th>
+                    </tr>
 
-                        {% for change in toner_changes %}
-                            <tr>
-                                <td>{{change.date|date:'Y-m-d'}}</td>
-                                <td>{{change.pages_before}}</td>
-                                <td>{{change.pages_after}}</td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                </div>
-            {% endfor %}
+                    {% for printer, toner_used in toner_changes %}
+                        <tr>
+                            <td>{{printer}}</td>
+                            <td>{{toner_used}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -16,6 +16,7 @@ from ocfweb.component.graph import plot_to_image_bytes
 
 
 ALL_PRINTERS = ('papercut', 'pagefault', 'logjam', 'deforestation')
+ACTIVE_PRINTERS = ('papercut', 'pagefault')
 
 
 def stats_printing(request):
@@ -66,9 +67,71 @@ def _semester_histogram():
 @periodic(3600)
 def _toner_changes():
     return [
-        (printer, _toner_changes_for_printer(printer))
-        for printer in ALL_PRINTERS
+        (printer, _toner_used_by_printer(printer))
+        for printer in ACTIVE_PRINTERS
     ]
+
+
+def _toner_used_by_printer(printer, cutoff=.05, since=date(2017, 8, 20)):
+    """Returns toner changes for a printer since a given date.
+
+    Toner numbers can be significantly noisy, including significant diffs
+    whenever toner gets taken out and put back in whenever there is jam. Because
+    of this it's hard to determine if a new toner is inserted into a printer to
+    reduce this noise we only count diffs that are smaller than a cutoff which
+    empirically seems to be more accurate
+    """
+    with stats.get_connection() as cursor:
+        cursor.execute(
+            '''
+            CREATE TEMPORARY TABLE ordered1
+                (PRIMARY KEY (position))
+                AS (
+                    SELECT * FROM (
+                        SELECT
+                            T.*,
+                            @rownum := @rownum + 1 AS position
+                            FROM (
+                                (
+                                    SELECT * FROM printer_toner_public
+                                    WHERE printer = %s AND
+                                    date > %s
+                                    ORDER BY date
+                                ) AS T,
+                                (SELECT @rownum := 0) AS r
+                            )
+                    ) AS x
+                )
+        ''', (printer, since.strftime('%Y-%m-%d')),
+        )
+        cursor.execute('''
+            CREATE TEMPORARY TABLE ordered2
+                (PRIMARY KEY (position))
+                AS (SELECT * FROM ordered1)
+        ''')
+        cursor.execute('''
+            CREATE TEMPORARY TABLE diffs
+            AS (SELECT
+                B.date AS date,
+                A.value/A.max - B.value/B.max as pct_diff
+                FROM
+                    ordered1 as A,
+                    ordered2 as B
+                WHERE
+                    B.position = A.position + 1)
+        ''')
+        cursor.execute(
+            '''
+            SELECT SUM(pct_diff) as toner_used
+            FROM
+            diffs
+            WHERE
+            ABS(pct_diff)<%s
+        ''', (cutoff,),
+        )
+        result = cursor.fetchone()['toner_used']
+        assert result is not None, 'No data exists for printer \'{}\''.format(printer)
+        return float(result)
 
 
 @periodic(120)
@@ -93,51 +156,6 @@ def _pages_per_day():
             last_seen[row['printer']] = row['value']
 
     return pages_printed
-
-
-def _toner_changes_for_printer(printer):
-    with stats.get_connection() as cursor:
-        cursor.execute(
-            '''
-            CREATE TEMPORARY TABLE ordered1
-                (PRIMARY KEY (position))
-                AS (
-                    SELECT * FROM (
-                        SELECT
-                            T.*,
-                            @rownum := @rownum + 1 AS position
-                            FROM (
-                                (
-                                    SELECT * FROM printer_toner_public
-                                    WHERE printer = %s
-                                    ORDER BY date
-                                ) AS T,
-                                (SELECT @rownum := 0) AS r
-                            )
-                    ) AS x
-                )
-        ''', (printer,),
-        )
-        cursor.execute('''
-            CREATE TEMPORARY TABLE ordered2
-                (PRIMARY KEY (position))
-                AS (SELECT * FROM ordered1)
-        ''')
-        cursor.execute('''
-            SELECT
-                B.date AS date,
-                A.value as pages_before,
-                B.value as pages_after
-                FROM
-                    ordered1 as A,
-                    ordered2 as B
-                WHERE
-                    B.position = A.position + 1 AND
-                    B.value > A.value AND
-                    A.value > 0
-           LIMIT 20;
-        ''')
-        return reversed(list(cursor))
 
 
 def _pages_printed_for_printer(printer, resolution=100):
