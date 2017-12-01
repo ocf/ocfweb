@@ -5,9 +5,10 @@ function recommend() {
          data: {'real_name': $('#real_name').html()},
          success: function(data) {
              $('#recommendations').empty();
-             for (var i in data) {
+             recommendations = data['recommendations'];
+             for (var i in recommendations) {
                  $('#recommendations').append(
-                     '<li class="list-group-item list-group-item-success">'+ data[i] +'</li>'
+                     '<li class="list-group-item list-group-item-success">'+ recommendations[i] +'</li>'
                  );
              }
          }

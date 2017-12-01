@@ -115,12 +115,15 @@ def request_account(request):
 
 def recommend(request):
     real_name = request.GET.get('real_name', '')
-    first_name, last_name = real_name.split()
-    rec_lst = recommender.recommend(first_name, last_name, 3)
-    rec_dict = {}
-    for i in range(len(rec_lst)):
-        rec_dict[str(i)] = rec_lst[i]  # convert i to string because JS dicts need string keys
-    return JsonResponse(rec_dict)
+    if real_name == '':
+        return JsonResponse({'recommendations': []})  # Return empty if no real name
+
+    recommendations = recommender.recommend(real_name, 3)
+    return JsonResponse(
+        {
+            'recommendations': recommendations,
+        },
+    )
 
 
 def validate(request):
