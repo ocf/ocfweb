@@ -5,14 +5,12 @@ $(document).ready(function() {
 
     // On keyup, start countdown
     $input.keyup(function() {
-        //alert('key UP');
         clearTimeout(typingTimer);
         typingTimer = setTimeout(validate_username, finTypingCountdown);
     });
 
     // On keydown, clear countdown
     $input.keydown(function() {
-        //alert('key DOWN');
         clearTimeout(typingTimer);
     });
 
