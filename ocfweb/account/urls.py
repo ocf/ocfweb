@@ -4,10 +4,10 @@ from ocfweb.account.chpass import change_password
 from ocfweb.account.commands import commands
 from ocfweb.account.register import account_created
 from ocfweb.account.register import account_pending
-from ocfweb.account.register import request_account
 from ocfweb.account.register import recommend
-from ocfweb.account.register import wait_for_account
+from ocfweb.account.register import request_account
 from ocfweb.account.register import validate
+from ocfweb.account.register import wait_for_account
 from ocfweb.account.vhost import request_vhost
 from ocfweb.account.vhost import request_vhost_success
 from ocfweb.account.vhost_mail import vhost_mail
