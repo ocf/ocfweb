@@ -66,15 +66,21 @@ def _semester_histogram():
 
 @periodic(3600)
 def _toner_changes():
-    return [(printer, _toner_used_by_printer(printer)) for printer in ACTIVE_PRINTERS]
+    return [
+        (printer, _toner_used_by_printer(printer))
+        for printer in ACTIVE_PRINTERS
+    ]
 
 
-# Toner numbers can be significantly noisy, including significant diffs
-# whenever toner gets taken out and put back in whenever there is jam. Because
-# of this it's hard to determine if a new toner is inserted into a printer to
-# reduce this noise we only count diffs that are smaller than a cutoff which
-# empirically seems to be more accurate
 def _toner_used_by_printer(printer, cutoff=.05, since=date(2017, 8, 20)):
+    """Returns toner changes for a printer since a given date.
+
+    Toner numbers can be significantly noisy, including significant diffs
+    whenever toner gets taken out and put back in whenever there is jam. Because
+    of this it's hard to determine if a new toner is inserted into a printer to
+    reduce this noise we only count diffs that are smaller than a cutoff which
+    empirically seems to be more accurate
+    """
     with stats.get_connection() as cursor:
         cursor.execute(
             '''
@@ -121,12 +127,11 @@ def _toner_used_by_printer(printer, cutoff=.05, since=date(2017, 8, 20)):
             diffs
             WHERE
             ABS(pct_diff)<%s
-        ''', (cutoff),
+        ''', (cutoff,),
         )
         result = cursor.fetchone()['toner_used']
-        # The none check is here as a kind of failsafe for if the request is run on a printer
-        # that is no longer in use, although this should no longer happen in the first place
-        return [None if result is None else float(result)]
+        assert result is not None, 'No data exists for printer \'{}\''.format(printer)
+        return float(result)
 
 
 @periodic(120)
@@ -151,52 +156,6 @@ def _pages_per_day():
             last_seen[row['printer']] = row['value']
 
     return pages_printed
-
-
-# Deprecated in favor of _toner_used_by_printer by virtue of giving meaningless data
-def _toner_changes_for_printer(printer):
-    with stats.get_connection() as cursor:
-        cursor.execute(
-            '''
-            CREATE TEMPORARY TABLE ordered1
-                (PRIMARY KEY (position))
-                AS (
-                    SELECT * FROM (
-                        SELECT
-                            T.*,
-                            @rownum := @rownum + 1 AS position
-                            FROM (
-                                (
-                                    SELECT * FROM printer_toner_public
-                                    WHERE printer = %s
-                                    ORDER BY date
-                                ) AS T,
-                                (SELECT @rownum := 0) AS r
-                            )
-                    ) AS x
-                )
-        ''', (printer,),
-        )
-        cursor.execute('''
-            CREATE TEMPORARY TABLE ordered2
-                (PRIMARY KEY (position))
-                AS (SELECT * FROM ordered1)
-        ''')
-        cursor.execute('''
-            SELECT
-                B.date AS date,
-                A.value as pages_before,
-                B.value as pages_after
-                FROM
-                    ordered1 as A,
-                    ordered2 as B
-                WHERE
-                    B.position = A.position + 1 AND
-                    B.value > A.value AND
-                    A.value > 0
-           LIMIT 20;
-        ''')
-        return reversed(list(cursor))
 
 
 def _pages_printed_for_printer(printer, resolution=100):
