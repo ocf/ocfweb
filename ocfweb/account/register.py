@@ -137,12 +137,9 @@ def validate(request):
             'msg': 'Username is available.',
         })
     except (ValidationError, ValidationWarning) as e:
-        msg = str(e)
-        if msg[-1] != '.':
-            msg += '.'
         return JsonResponse({
             'is_valid': False,
-            'msg': msg,
+            'msg': str(e),
         })
 
 
