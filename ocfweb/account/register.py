@@ -6,6 +6,7 @@ from Crypto.PublicKey import RSA
 from django import forms
 from django.core.urlresolvers import reverse
 from django.forms.forms import NON_FIELD_ERRORS
+from django.http import HttpResponseBadRequest
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -116,7 +117,7 @@ def request_account(request):
 def recommend(request):
     real_name = request.GET.get('real_name', '')
     if real_name == '':
-        return JsonResponse({'recommendations': []})  # Return empty if no real name
+        return HttpResponseBadRequest()
 
     recommendations = recommender.recommend(real_name, 3)
     return JsonResponse(
