@@ -119,7 +119,7 @@ def recommend(request):
     if real_name == '':
         return HttpResponseBadRequest()
 
-    recommendations = recommender.recommend(real_name, 3)
+    recommendations = recommender.recommend(real_name, 10)
     return JsonResponse(
         {
             'recommendations': recommendations,
