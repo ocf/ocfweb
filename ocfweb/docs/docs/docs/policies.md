@@ -9,6 +9,7 @@ These are the current policies of the Open Computing Facility:
  * [[Eligibility policy|doc membership/eligibility]]
  * [[Banning policy|doc membership/banning]]
  * [[Content removal policy|doc services/account/content-removal]]
+ * [[Lab reservation policy|doc services/lab/lab-reservation-policy]]
  * The printing quotas as documented on the
    [[Printing|doc services/lab/printing]] page
  * [[Database policy|doc services/mysql#policies]]
