@@ -115,9 +115,9 @@ def request_account(request):
 
 
 def recommend(request):
-    real_name = request.GET.get('real_name', '')
-    if real_name == '':
-        return HttpResponseBadRequest()
+    real_name = request.GET.get('real_name', None)
+    if real_name is None:
+        return HttpResponseBadRequest('No real_name in recommend request')
 
     recommendations = recommender.recommend(real_name, 10)
     return JsonResponse(
@@ -128,8 +128,13 @@ def recommend(request):
 
 
 def validate(request):
-    real_name = request.GET.get('real_name', '')
-    username = request.GET.get('username', '')
+    real_name = request.GET.get('real_name', None)
+    if real_name is None:
+        return HttpResponseBadRequest('No real_name in validate request')
+    username = request.GET.get('username', None)
+    if username is None:
+        return HttpResponseBadRequest('No username in validate request')
+
     try:
         validate_username(username, real_name)
         return JsonResponse({
