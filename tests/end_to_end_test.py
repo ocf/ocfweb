@@ -11,7 +11,14 @@ from ocfweb.urls import urlpatterns
 
 def assert_does_not_error(client, path):
     resp = client.get(path, follow=True)
-    if resp.status_code != 200:
+    if resp.status_code not in (
+        # OK!
+        200,
+        # Bad request. This usually happens when the view requires
+        # arguments (e.g. GET params), but we don't have a sane way to
+        # guess what to provide in this test.
+        400,
+    ):
         # If a SERVER_NAME is set, then we redirect off-site (e.g. to CAS).
         # We'll just assume those would have succeeded.
         if 'SERVER_NAME' not in resp.request:

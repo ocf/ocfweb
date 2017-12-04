@@ -48,15 +48,27 @@
                 </p>
 
                 <hr />
-
                 <p><strong>Full Name</strong></p>
-                <p>{{real_name|title}}</p>
+                <p id=real_name>{{real_name|title}}</p>
 
                 <hr />
 
-                <p>Your account name must consist of between three and 16 lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
-                {{form.ocf_login_name|bootstrap}}
-
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <p>Your account name must consist of between three and 16 lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
+                            {{form.ocf_login_name|bootstrap}}
+                            <div class="alert alert-success" role="alert" id="valid_username_notif" style="display: none; padding: 7px"></div>
+                            <div class="alert alert-danger" role="alert" id="invalid_username_notif" style="display: none; padding: 7px"></div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="well well-sm">
+                                <strong>Available account names</strong>
+                                <ul class="list-group list-group-flush" id="recommendations" style="margin: 7px; overflow-y: scroll; max-height: 150px;"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <hr />
 
                 <p>
@@ -106,6 +118,7 @@
 
         </div>
         <div class="col-md-4">
+            <hr/>
             <hr class="visible-sm" />
             <div class="welcome-penguin">
                 <h2>Welcome to the OCF!</h2>
@@ -118,9 +131,14 @@
                 </p>
             </div>
 
-            <hr />
+            <hr class="visible-sm" />
 
             {% include "account/partials/password-requirements-sidebar.html" %}
+
         </div>
     </div>
 {% endblock %}
+{% block inline_js %}
+        <script src="/static/js/pages/account/quick_username_validation.js"></script>
+        <script src="/static/js/pages/account/recommend_username.js"></script>
+{% endblock inline_js %}

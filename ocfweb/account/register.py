@@ -6,14 +6,20 @@ from Crypto.PublicKey import RSA
 from django import forms
 from django.core.urlresolvers import reverse
 from django.forms.forms import NON_FIELD_ERRORS
+from django.http import HttpResponseBadRequest
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 from django.shortcuts import render
 from ocflib.account.creation import CREATE_PUBLIC_KEY
 from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest
+from ocflib.account.creation import validate_username
+from ocflib.account.creation import ValidationError
+from ocflib.account.creation import ValidationWarning
 from ocflib.account.search import user_attrs_ucb
 from ocflib.account.submission import NewAccountResponse
 
+import ocfweb.account.recommender as recommender
 from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
 from ocfweb.component.celery import celery_app
@@ -106,6 +112,40 @@ def request_account(request):
             'title': 'Request an OCF account',
         },
     )
+
+
+def recommend(request):
+    real_name = request.GET.get('real_name', None)
+    if real_name is None:
+        return HttpResponseBadRequest('No real_name in recommend request')
+
+    recommendations = recommender.recommend(real_name, 10)
+    return JsonResponse(
+        {
+            'recommendations': recommendations,
+        },
+    )
+
+
+def validate(request):
+    real_name = request.GET.get('real_name', None)
+    if real_name is None:
+        return HttpResponseBadRequest('No real_name in validate request')
+    username = request.GET.get('username', None)
+    if username is None:
+        return HttpResponseBadRequest('No username in validate request')
+
+    try:
+        validate_username(username, real_name)
+        return JsonResponse({
+            'is_valid': True,
+            'msg': 'Username is available.',
+        })
+    except (ValidationError, ValidationWarning) as e:
+        return JsonResponse({
+            'is_valid': False,
+            'msg': str(e),
+        })
 
 
 def wait_for_account(request):
