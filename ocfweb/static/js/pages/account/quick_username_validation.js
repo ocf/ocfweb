@@ -21,18 +21,19 @@ $(document).ready(function() {
              data: {'username': $input.val(),
                     'real_name': $('#real_name').text()},
              success: function(data) {
+                 var $username_feedback = $('#username_feedback')
                  if(data.is_valid) {
-                     $input.parent().attr('class', 'has-success')
-                     $('#valid_username_notif').css('display', 'block');
-                     $('#valid_username_notif').text(data.msg);
-                     $('#invalid_username_notif').css('display', 'none');
-
+                    $input.parent().removeClass('has-error')
+                                   .addClass('has-success');
+                    $username_feedback.removeClass('alert-danger')
+                                      .addClass('alert-success');
                  } else {
-                     $input.parent().attr('class', 'has-error');
-                     $('#invalid_username_notif').css('display', 'block');
-                     $('#invalid_username_notif').text(data.msg);
-                     $('#valid_username_notif').css('display', 'none');
+                    $input.parent().removeClass('has-success')
+                                   .addClass('has-error');
+                    $username_feedback.removeClass('alert-sucess')
+                                      .addClass('alert-danger');
                  }
+                 $username_feedback.show().text(data.msg);
              }
          });
      }
