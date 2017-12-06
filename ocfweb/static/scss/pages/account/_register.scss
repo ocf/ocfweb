@@ -3,3 +3,18 @@
         text-align: center;
     }
 }
+
+.username-feedback {
+    display: none;
+    padding: 7px;
+}
+
+.recommendations-list {
+    margin: 7px;
+    overflow-y: scroll;
+    max-height: 150px;
+}
+
+.recommendation {
+    padding: 8px;
+}

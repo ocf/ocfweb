@@ -19,9 +19,9 @@ $(document).ready(function() {
              type: 'GET',
              url: 'validate',
              data: {'username': $input.val(),
-                    'real_name': $('#real_name').text()},
+                    'real_name': $('#real-name').text()},
              success: function(data) {
-                 var $username_feedback = $('#username_feedback')
+                 var $username_feedback = $('#username-feedback')
                  if(data.is_valid) {
                     $input.parent().removeClass('has-error')
                                    .addClass('has-success');
