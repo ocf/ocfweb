@@ -58,8 +58,7 @@
                         <div class="col-sm-7">
                             <p>Your account name must consist of between three and 16 lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
                             {{form.ocf_login_name|bootstrap}}
-                            <div class="alert alert-success" role="alert" id="valid_username_notif" style="display: none; padding: 7px"></div>
-                            <div class="alert alert-danger" role="alert" id="invalid_username_notif" style="display: none; padding: 7px"></div>
+                            <div class="alert" role="alert" id="username_feedback" style="display: none; padding: 7px"></div>
                         </div>
                         <div class="col-sm-5">
                             <div class="well well-sm">
@@ -139,6 +138,6 @@
     </div>
 {% endblock %}
 {% block inline_js %}
-        <script src="/static/js/pages/account/quick_username_validation.js"></script>
-        <script src="/static/js/pages/account/recommend_username.js"></script>
+        <script src="{% static 'js/pages/account/quick_username_validation.js' %}"></script>
+        <script src="{% static 'js/pages/account/recommend_username.js' %}"></script>
 {% endblock inline_js %}
