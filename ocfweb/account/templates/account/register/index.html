@@ -49,8 +49,7 @@
 
                 <hr />
                 <p><strong>Full Name</strong></p>
-                <p id=real_name>{{real_name|title}}</p>
-
+                <p id="real-name">{{real_name|title}}</p>
                 <hr />
 
                 <div class="container-fluid">
@@ -58,12 +57,12 @@
                         <div class="col-sm-7">
                             <p>Your account name must consist of between three and 16 lowercase letters (no spaces, numbers, underscores, or other symbols), and it <strong><strong>MUST</strong> be based on your real name or initials.</strong></p>
                             {{form.ocf_login_name|bootstrap}}
-                            <div class="alert" role="alert" id="username_feedback" style="display: none; padding: 7px"></div>
+                            <div class="alert username-feedback" role="alert" id="username-feedback"></div>
                         </div>
                         <div class="col-sm-5">
                             <div class="well well-sm">
                                 <strong>Available account names</strong>
-                                <ul class="list-group list-group-flush" id="recommendations" style="margin: 7px; overflow-y: scroll; max-height: 150px;"></ul>
+                                <ul class="list-group list-group-flush recommendations-list" id="recommendations"></ul>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,19 @@
 .page-register {
+    .recommendation {
+        padding: 8px;
+    }
+
+    .recommendations-list {
+        margin: 7px;
+        overflow-y: scroll;
+        max-height: 150px;
+    }
+
+    .username-feedback {
+        display: none;
+        padding: 7px;
+    }
+
     .welcome-penguin {
         text-align: center;
     }
