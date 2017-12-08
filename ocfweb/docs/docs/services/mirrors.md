@@ -23,6 +23,7 @@ mirroring service, please [[contact us|doc contact]].
   - [Finnix](https://www.finnix.org/)
   - [GNU](https://www.gnu.org/)
   - [Kali Linux](https://www.kali.org/)
+  - [KDE](https://www.kde.org/)
   - [Manjaro](https://manjaro.org/)
   - [Parrot Project](https://www.parrotsec.org/)
   - [Puppet](https://puppet.com/)
