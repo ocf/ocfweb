@@ -4,9 +4,6 @@ from datetime import datetime
 from operator import attrgetter
 
 from django.shortcuts import render
-from ocflib.lab.printing import get_maintkit
-from ocflib.lab.printing import get_toner
-from ocflib.lab.printing import PRINTERS
 from ocflib.lab.stats import current_semester_start
 from ocflib.lab.stats import list_desktops
 from ocflib.lab.stats import staff_in_lab as real_staff_in_lab
@@ -16,6 +13,9 @@ from ocflib.lab.stats import top_staff_alltime as real_top_staff_alltime
 from ocflib.lab.stats import top_staff_semester as real_top_staff_semester
 from ocflib.lab.stats import users_in_lab_count as real_users_in_lab_count
 from ocflib.lab.stats import UtilizationProfile
+from ocflib.printing.printers import get_maintkit
+from ocflib.printing.printers import get_toner
+from ocflib.printing.printers import PRINTERS
 
 from ocfweb.caching import periodic
 from ocfweb.stats.daily_graph import get_open_close
