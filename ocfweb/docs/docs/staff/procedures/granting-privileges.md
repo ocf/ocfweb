@@ -59,7 +59,7 @@ TODO
 
 ## Granting firewall access
 
-In order to gain access to the fifrewall, it is necessary to email someone
+In order to gain access to the firewall, it is necessary to email someone
 from the ASUC Student Union to ask them to fill out the Telecom Shopping
 Cart on your behalf. Send them an email with the CalNet IDs of the people
 you want to add to the firewall, and have an existing firewall administrator
