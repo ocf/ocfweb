@@ -59,7 +59,15 @@ TODO
 
 ## Granting firewall access
 
-TODO
+In order to gain access to the fifrewall, it is necessary to email someone
+from the ASUC Student Union to ask them to fill out the Telecom Shopping
+Cart on your behalf. Send them an email with the CalNet IDs of the people
+you want to add to the firewall, and have an existing firewall administrator
+authorize the request. As of Fall 2017, the
+[Facilities Coordinator](https://studentunion.berkeley.edu/our-team/) has
+worked to get new people added to the firewall, although it is likely that
+this process will change in Spring/Fall 2018 when the firewall is changed as
+part of the [bSecure](https://bsecure.berkeley.edu) project.
 
 
 ## Giving people InCommon DCA access
