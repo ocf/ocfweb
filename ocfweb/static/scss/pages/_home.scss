@@ -58,12 +58,23 @@
     }
 
     .ocf-staffhours {
+        border-width: thin;
+        font-size: 18px;
+
+        .title {
+            margin-bottom: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
         p {
             margin: 0;
         }
 
         h3 {
+            margin-top: 0;
             margin-bottom: 0;
+            font-size: 20px;
         }
 
         .cancelled p {

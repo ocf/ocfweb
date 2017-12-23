@@ -8,34 +8,38 @@
         <h2>Have questions? Drop by for help from a friendly volunteer staffer!</h2>
         <p>OCF staff members hold regular drop-in staff hours to provide assistance with account issues or with OCF services. We're always happy to help troubleshoot account or service issues!</p>
         <p>Keep in mind the OCF volunteers sometimes have last-minute conflicts, so it's a good idea to check this page before coming in for cancellations.</p>
-	{% for day_in_week in days_of_the_week %}
-        {% for staff_hour in staff_hours %}
-	{% if staff_hour.day == day_in_week %}
-            <div class="hour {% if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %} cancelled {% endif %}">
-                <div class="title">
-                    <strong>{{staff_hour.day}}</strong>
-                </div>
-                <div class="content">
-                    <ul class="ocf-staffhours-faces">
-                        {% for staffer in staff_hour.staff %}
-                            <li>
-                                <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:100}}" />
-                                <h4>{{staffer.real_name}}</h4>
-                                <h5>{{staffer.position}}</h5>
-				<h6>{{staff_hour.time}}</h6>
-				{% if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %}
-				<h7> cancelled this week </h7>
+	{% for day_in in days_of_the_week %}
+		{% with day_in.weekday as day_in_week %}
+		<div class="hour">
+			<div class="title">
+				<strong>{{day_in_week}}</strong>
+			</div>
+        		{% for staff_hour in staff_hours %}
+				{%if staff_hour.day == day_in_week %}
+				<div class="hour content {% if staff_hour.cancelled or day_in.holiday != None  or staff_hour.day == today and lab_status.force_lab_closed %} cancelled {% endif %}" style = "border:none">
+						<ul class="ocf-staffhours-faces">
+							<div class="hour title" style = "border:none"> 
+								<strong>{{staff_hour.time}}</strong>
+								{%if staff_hour.cancelled or day_in.holiday != None or staff_hour.day == today and lab_status.force_lab_closed %}
+									<span class = "cancelled-text"> cancelled this week </span>
+									<span class = "cancelled-holiday"> {{day_in | lab_holidays}} </span>
+								{% endif %}
+							</div>
+                        				{% for staffer in staff_hour.staff %}
+							<li>
+                					<img alt="{{staffer.user_name}}" src="{{staffer|gravatar:100}}" />
+							<h4><strong> {{staffer.real_name}}</strong></h4>
+                                			<h5>{{staffer.position}}</h5>
+                            				</li>
+                        				{% endfor %}
+						</ul>
+					</div>
 				{% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-	{% endif %}
-        {% endfor %}
+        		{% endfor %}
+		</div>
+		{% endwith %}
 	{% endfor %}
     </div>
-
     <div class="col-sm-4 ocf-sidebar">
         <h4>Open Computing Facility Lab</h4>
         <p>{% google_map '100%' '250px' %}</p>
