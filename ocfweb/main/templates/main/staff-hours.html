@@ -13,25 +13,27 @@
 	<div class="title">
 		<strong>{{day_in_week}}</strong>
 	</div>
-	<div class="content">
-	<ul class="ocf-staffhours-faces">
         {% for staff_hour in staff_hours %}
-	{% if staff_hour.day == day_in_week %}
+	{%if staff_hour.day == day_in_week %}
+	<div class="hour content">
+	<ul class="ocf-staffhours-faces">
+	<div class="hour"> 
+		<strong>{{staff_hour.time}}</strong>
+	{%if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %}
+	<span class = "cancelled-text"> cancelled this week </span>
+	{% endif %}
+	</div>
                         {% for staffer in staff_hour.staff %}
                             <li>
-				<h4><strong>{{staff_hour.time}}</strong></h4>
-				{%if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %}
-				<h5 style="color:red;"> cancelled this week </h5>
-				{% endif %}
                                 <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:100}}" />
-				<h5><strong> {{staffer.real_name}}</strong></h5>
+				<h4><strong> {{staffer.real_name}}</strong></h4>
                                 <h5>{{staffer.position}}</h5>
                             </li>
                         {% endfor %}
-	{% endif %}
-        {% endfor %}
 	</ul>
 	</div>
+	{% endif %}
+        {% endfor %}
 	</div>
 	{% endfor %}
     </div>
