@@ -9,14 +9,14 @@
         <p>OCF staff members hold regular drop-in staff hours to provide assistance with account issues or with OCF services. We're always happy to help troubleshoot account or service issues!</p>
         <p>Keep in mind the OCF volunteers sometimes have last-minute conflicts, so it's a good idea to check this page before coming in for cancellations.</p>
 	{% for day_in_week in days_of_the_week %}
+	<div class="hour">
+	<div class="title">
+		<strong>{{day_in_week}}</strong>
+	</div>
+	<div class="content">
+	<ul class="ocf-staffhours-faces">
         {% for staff_hour in staff_hours %}
 	{% if staff_hour.day == day_in_week %}
-            <div class="hour {% if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %} cancelled {% endif %}">
-                <div class="title">
-                    <strong>{{staff_hour.day}}</strong>
-                </div>
-                <div class="content">
-                    <ul class="ocf-staffhours-faces">
                         {% for staffer in staff_hour.staff %}
                             <li>
                                 <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:100}}" />
@@ -28,11 +28,11 @@
 				{% endif %}
                             </li>
                         {% endfor %}
-                    </ul>
-                </div>
-            </div>
 	{% endif %}
         {% endfor %}
+	</ul>
+	</div>
+	</div>
 	{% endfor %}
     </div>
 
