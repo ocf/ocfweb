@@ -19,13 +19,13 @@
 	{% if staff_hour.day == day_in_week %}
                         {% for staffer in staff_hour.staff %}
                             <li>
-                                <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:100}}" />
-                                <h4>{{staffer.real_name}}</h4>
-                                <h5>{{staffer.position}}</h5>
-				<h6>{{staff_hour.time}}</h6>
-				{% if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %}
-				<h7> cancelled this week </h7>
+				<h4><strong>{{staff_hour.time}}</strong></h4>
+				{%if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %}
+				<h5 style="color:red;"> cancelled this week </h5>
 				{% endif %}
+                                <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:100}}" />
+				<h5><strong> {{staffer.real_name}}</strong></h5>
+                                <h5>{{staffer.position}}</h5>
                             </li>
                         {% endfor %}
 	{% endif %}
