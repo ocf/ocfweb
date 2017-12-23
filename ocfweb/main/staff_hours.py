@@ -21,5 +21,7 @@ def staff_hours(request):
             'staff_hours': get_staff_hours(),
             'today': time.strftime('%A'),
             'lab_status': get_lab_status(),
+            'days_of_the_week':['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',\
+                    'Saturday', 'Sunday'],
         },
     )
