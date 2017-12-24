@@ -15,7 +15,10 @@ from ocfweb.component.lab_status import get_lab_status
 def get_staff_hours():
     return real_get_staff_hours()
 
-
+"""
+Assumes that staff hours are only on weekdays. If days of staff hours change,
+add or take out of weekdays list.
+"""
 def staff_hours(request):
     weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
     return render(
