@@ -17,8 +17,6 @@ def get_staff_hours():
 
 
 def staff_hours(request):
-    print ([Day.from_date(date.today() + timedelta(days=i)) for i in range(7)])
-    print("hello")
     weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
     return render(
         request,
