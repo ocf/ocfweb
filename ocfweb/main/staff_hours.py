@@ -22,12 +22,25 @@ def sort_days_of_week(Days):
     for index in range(len(Days)):
         if Days[index].weekday == "Monday":
             return rotate_list(Days, index)
+
+def weekend(day):
+    return day.weekday == "Sunday" or day.weekday == "Saturday"
+
+def remove_weekends(Days):
+    index = 0
+    while index < len(Days):
+        if weekend(Days[index]):
+            Days.pop(index)
+        else:
+            index += 1
+    return Days
+
+
 """
-Assumes that staff hours are only on weekdays. If days of staff hours change,
-add or take out of weekdays list.
+Assumes that staff hours are only on weekdays. If days of staff hours change, change 
+days_of_the_week.
 """
 def staff_hours(request):
-    weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
     return render(
         request,
         'main/staff-hours.html',
@@ -36,9 +49,9 @@ def staff_hours(request):
             'staff_hours': get_staff_hours(),
             'today': time.strftime('%A'),
             'lab_status': get_lab_status(),
-            'days_of_the_week': sort_days_of_week ([
+            'days_of_the_week': sort_days_of_week(remove_weekends([
                 Day.from_date(date.today() + timedelta(days=i))
                 for i in range(7)
-            ]),
+            ])),
         },
     )

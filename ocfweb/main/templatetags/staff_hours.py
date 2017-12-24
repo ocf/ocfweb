@@ -13,16 +13,4 @@ def gravatar(staffer, size):
 def lab_holidays(hours):
     return holiday_hours(hours)
 
-@register.filter
-def not_weekend(day):
-    return not (day == "Sunday" or  day == "Saturday")
-
-def rotate_list(lst, shift):
-    return lst[shift:] + lst[:shift]
-
-@register.filter
-def sort_days_of_week(Days):
-    for index in range(len(Days)):
-        if Days[index].weekday == "Monday":
-            return rotate_list(Days, index)
 
