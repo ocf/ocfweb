@@ -16,13 +16,13 @@
 			</div>
         		{% for staff_hour in staff_hours %}
 				{%if staff_hour.day == day_in_week %}
-					<div class="hour content" style = "border:none">
+				<div class="hour content {% if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %} cancelled {% endif %}" style = "border:none">
 						<ul class="ocf-staffhours-faces">
 							<div class="hour title" style = "border:none"> 
 								<strong>{{staff_hour.time}}</strong>
 								{%if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %}
 									<span class = "cancelled-text"> cancelled this week </span>
-									<span class = "Cancel b/c Holiday"> {{day_in | lab_holidays}} </span>
+									<span class = "cancelled-holiday"> {{day_in | lab_holidays}} </span>
 								{% endif %}
 							</div>
                         				{% for staffer in staff_hour.staff %}
