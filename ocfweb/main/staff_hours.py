@@ -2,6 +2,10 @@ import time
 
 from django.shortcuts import render
 from ocflib.lab.staff_hours import get_staff_hours as real_get_staff_hours
+from datetime import date
+from datetime import timedelta
+
+from ocflib.lab.hours import Day
 
 from ocfweb.caching import periodic
 from ocfweb.component.lab_status import get_lab_status
@@ -13,6 +17,9 @@ def get_staff_hours():
 
 
 def staff_hours(request):
+    print ([Day.from_date(date.today() + timedelta(days=i)) for i in range(7)])
+    print("hello")
+    weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
     return render(
         request,
         'main/staff-hours.html',
@@ -21,6 +28,10 @@ def staff_hours(request):
             'staff_hours': get_staff_hours(),
             'today': time.strftime('%A'),
             'lab_status': get_lab_status(),
-            'days_of_the_week':['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], 
+            'days_of_the_week': weekdays,
+            'hours_this_week': [
+                Day.from_date(date.today() + timedelta(days=i))
+                for i in range(7)
+            ],
         },
     )

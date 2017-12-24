@@ -21,6 +21,12 @@
 		<strong>{{staff_hour.time}}</strong>
 	{%if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %}
 	<span class = "cancelled-text"> cancelled this week </span>
+
+	{% for hour in hours_this_week %}
+	{% if hour.weekday == day_in_week %}
+	<span class = "Cancel b/c Holiday"> {{hour | lab_holidays}} </span>
+	{% endif %}
+	{% endfor %}
 	{% endif %}
 	</div>
                         {% for staffer in staff_hour.staff %}
