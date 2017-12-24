@@ -15,6 +15,13 @@ from ocfweb.component.lab_status import get_lab_status
 def get_staff_hours():
     return real_get_staff_hours()
 
+def rotate_list(lst, shift):
+    return lst[shift:] + lst[:shift]
+
+def sort_days_of_week(Days):
+    for index in range(len(Days)):
+        if Days[index].weekday == "Monday":
+            return rotate_list(Days, index)
 """
 Assumes that staff hours are only on weekdays. If days of staff hours change,
 add or take out of weekdays list.
@@ -29,10 +36,9 @@ def staff_hours(request):
             'staff_hours': get_staff_hours(),
             'today': time.strftime('%A'),
             'lab_status': get_lab_status(),
-            'days_of_the_week': weekdays,
-            'hours_this_week': [
+            'days_of_the_week': sort_days_of_week ([
                 Day.from_date(date.today() + timedelta(days=i))
                 for i in range(7)
-            ],
+            ]),
         },
     )
