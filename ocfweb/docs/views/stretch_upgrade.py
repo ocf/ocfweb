@@ -33,6 +33,27 @@ class ThingToUpgrade(namedtuple(
 @cache()
 def _get_servers():
     return (
+        # login servers
+        ThingToUpgrade.from_hostname(
+            'death',
+            status=ThingToUpgrade.BLOCKED,
+            comments='same time as all login servers; need to forward-port '
+                     'suPHP or replace it',
+        ),
+        ThingToUpgrade.from_hostname(
+            'tsunami',
+            status=ThingToUpgrade.BLOCKED,
+            comments='same time as all login servers, mostly blocked by death',
+        ),
+        ThingToUpgrade.from_hostname(
+            'werewolves',
+            status=ThingToUpgrade.BLOCKED,
+            comments=(
+                'same time as all login servers; '
+                'last time we set up an entirely new server and moved vhosts one-by-one'
+            ),
+        ),
+
         ThingToUpgrade.from_hostname(
             'firestorm',
             status=ThingToUpgrade.UPGRADED,
@@ -41,25 +62,6 @@ def _get_servers():
             'anthrax',
             status=ThingToUpgrade.UPGRADED,
         ),
-
-        # login servers
-        ThingToUpgrade.from_hostname(
-            'death',
-            comments='same time as all login servers; need to forward-port '
-                     'suPHP or replace it',
-        ),
-        ThingToUpgrade.from_hostname(
-            'tsunami',
-            comments='same time as all login servers',
-        ),
-        ThingToUpgrade.from_hostname(
-            'werewolves',
-            comments=(
-                'same time as all login servers; '
-                'last time we set up an entirely new server and moved vhosts one-by-one'
-            ),
-        ),
-
         ThingToUpgrade.from_hostname(
             'maelstrom',
             status=ThingToUpgrade.UPGRADED,
@@ -119,10 +121,12 @@ def _get_servers():
         ),
         ThingToUpgrade.from_hostname(
             'pileup',
+            status=ThingToUpgrade.UPGRADED,
             comments='No official Marathon packages yet, but manually-built ones work',
         ),
         ThingToUpgrade.from_hostname(
             'monsoon',
+            status=ThingToUpgrade.UPGRADED,
             comments='No official Marathon packages yet, but manually-built ones work',
         ),
 
