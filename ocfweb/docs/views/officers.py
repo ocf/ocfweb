@@ -204,6 +204,10 @@ def _bod_terms():
             'Fall 2017', gms=['baisang', 'shasan'], sms=['jvperrin', 'abizer'],
             dgms=['asai'], dsms=['dkessler', 'kuoh'],
         ),
+        Term(
+            'Spring 2018', gms=['shasan'], sms=['jvperrin', 'abizer'],
+            dgms=['asai', 'awelty', 'baisang'], dsms=['dkessler', 'kuoh'],
+        ),
     ]
 
 
