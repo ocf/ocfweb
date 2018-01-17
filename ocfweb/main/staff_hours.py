@@ -1,11 +1,10 @@
 import time
-
-from django.shortcuts import render
-from ocflib.lab.staff_hours import get_staff_hours as real_get_staff_hours
 from datetime import date
 from datetime import timedelta
 
+from django.shortcuts import render
 from ocflib.lab.hours import Day
+from ocflib.lab.staff_hours import get_staff_hours as real_get_staff_hours
 
 from ocfweb.caching import periodic
 from ocfweb.component.lab_status import get_lab_status
@@ -15,16 +14,20 @@ from ocfweb.component.lab_status import get_lab_status
 def get_staff_hours():
     return real_get_staff_hours()
 
+
 def rotate_list(lst, shift):
     return lst[shift:] + lst[:shift]
 
+
 def sort_days_of_week(Days):
     for index in range(len(Days)):
-        if Days[index].weekday == "Monday":
+        if Days[index].weekday == 'Monday':
             return rotate_list(Days, index)
 
+
 def weekend(day):
-    return day.weekday == "Sunday" or day.weekday == "Saturday"
+    return day.weekday == 'Sunday' or day.weekday == 'Saturday'
+
 
 def remove_weekends(Days):
     index = 0
@@ -36,10 +39,6 @@ def remove_weekends(Days):
     return Days
 
 
-"""
-Assumes that staff hours are only on weekdays. If days of staff hours change, change 
-days_of_the_week.
-"""
 def staff_hours(request):
     return render(
         request,
