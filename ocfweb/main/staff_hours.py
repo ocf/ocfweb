@@ -13,6 +13,7 @@ def get_staff_hours():
 
 
 def staff_hours(request):
+    print(get_staff_hours())
     return render(
         request,
         'main/staff-hours.html',
