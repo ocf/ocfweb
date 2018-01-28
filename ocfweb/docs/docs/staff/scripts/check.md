@@ -3,19 +3,22 @@
 ## Introduction
 
 `check` allows staffers to get account details about users. Some information
-may only be accessible to privileged users or root, or depend on the local
-machine, so the output may differ accordingly. `check` is best run on `supernova`.
+may only be accessible to privileged users or root, or depend on the server
+`check` is being run on, so output may differ accordingly.
+
+`check` is best run on `supernova`.
 
 `check` currently returns:
 
-* `getent` info
+* `getent` (i.e. LDAP) info
 * CalNet info
-* Print Quota
-* Virtual Host/Apphost info if group account
-* Signatory for/signatories of
+* Remaining print quota
+* Virtual host, apphost, and/or virtual mail configuration if applicable
+* DNS records for any of the above
+* Signatory of / signatories for
 * [[Notes|doc staff/scripts/note]] about the user in `~staff/User_Info`
-* Currently running processes on local machines
-* Recent Logins
+* Processes running on the current machine owned by that user
+* Recent login history on the current machine by that user
 
 ## Usage/Example
 

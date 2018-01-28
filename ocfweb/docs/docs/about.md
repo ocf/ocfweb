@@ -8,19 +8,19 @@ Students of the University of California (ASUC)][asuc] dedicated to free
 computing for all [University of California at Berkeley][berkeley] students,
 faculty, and staff.  The mission of the OCF is to provide an environment where
 no member of Berkeley's campus community is denied the computer resources he or
-she seeks, and to appeal to all members of the Berkeley campus community with
-unsatisfied computing needs and to provide a place for those interested in
+she seeks, to appeal to all members of the Berkeley campus community with
+unsatisfied computing needs, and to provide a place for those interested in
 computing to fully explore that interest.
 
 ## What do we do?
 
 The Open Computing Facility provides free computing services to students,
-faculty, and staff, ranging from printing to expiration-free web space to Unix
+faculty, and staff, ranging from printing to expiration-free web hosting to Unix
 shell accounts to email. Furthermore, the OCF operates a highly frequented
-long-hours computing lab with a generally high volunteer-staff-to-user ratio
+long-hours computer lab with a generally high volunteer-staff-to-user ratio
 for accessible in-person support, as well as online support. In addition to
-these user services, the group also hosts numerous student group websites, and
-provides support to these and other organizations on campus.
+these user services, the group also hosts numerous student group and faculty/staff
+websites, and provides support to these and other organizations on campus.
 
 To be able to do this, we are always aiming to secure more resources to fully
 meet the needs of everyone in the campus community.  Our primary resources are
