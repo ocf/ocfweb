@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 ocf-content-block">
+
+            <form method="post" action="{% url 'request_reservation' %}">
+                {% csrf_token %}
+                <p>
+                    This form is <strong>only</strong> for student groups desiring to
+                    use the OCF's lab space. If you want to create an individual account
+                    please visit <a href="{% url 'register' %}">this link</a>. If you
+                    want to request an account for a student group, please visit
+                    a staff member in the OCF lab during
+                    <a href="{% url 'staff-hours' %}">staff hours</a>.
+                </p>
+
+                <hr />
+
+                <p>{{form.real_name|bootstrap}}</p>
+
+                <hr />
+                Please provide a UC Berkeley e-mail address. We will use this
+                to send you a confirmation email in addition to any necessary
+                follow-ups (including an approval email).
+                <p>{{form.contact_email|bootstrap}}</p>
+                <p>{{form.verify_contact_email|bootstrap}}</p>
+
+                <hr />
+
+                <p>{{form.student_group|bootstrap}}</p>
+                <p>{{form.reason|bootstrap}}</p>
+
+                <hr />
+
+                <p>{{form.date|bootstrap}}</p>
+                <p>{{form.starttime|bootstrap}}</p>
+                <p>{{form.endtime|bootstrap}}</p>
+
+
+                <div class="well">
+                    <p><strong>
+                        Please read our lab reservation policy
+                        <a href=https://www.ocf.berkeley.edu/docs/services/lab/lab-reservation-policy/>
+                         here</a>; you are responsible for
+                        knowing and abiding by it.
+                    </strong></p>
+
+                    <p><strong>
+                        I have read, understood, and agreed to follow the policy linked above.
+                         In addition, I agree not to hold the University
+                        of California, the Associated Students of the University of
+                        California, or the Open Computing Facility (OCF)
+                        responsible for lost files or other misfortunes which may
+                        result from my use of the OCF's facilities.
+
+                        Additionally, I certify that I am eligible for an OCF
+                        account according to the
+                        <a href="{% url 'doc' 'membership/eligibility' %}">OCF account eligibility policy</a>.
+                    </strong></p>
+                    {{form.disclaimer_agreement|bootstrap}}
+                </div>
+
+                <p>
+                    <input class="btn btn-primary" type="submit" value="Request Reservation" />
+                    <a class="btn btn-default" href="{% url 'calnet_logout' %}">Cancel</a>
+                </p>
+            </form>
+        </div>
+
+        <!-- This stuff is the sidebar. -->
+        <div class="col-md-4">
+            <hr class="visible-sm" />
+            <div class="welcome-penguin">
+                <h2>Welcome to the OCF!</h2>
+                <p><img src="{% static 'img/penguin.svg' %}" width="100" height="132" /></p>
+                <h4>OCF &hearts; Python, Linux, Open Source</h4>
+                <p>
+                    The OCF is provided for students, by students. Sound interesting?
+                    <br />
+                    <a href="{% url 'about-staff' %}">Learn about getting involved!</a>
+                </p>
+            </div>
+
+            <hr />
+
+            {% include "account/partials/password-requirements-sidebar.html" %}
+        </div>
+    </div>
+{% endblock %}

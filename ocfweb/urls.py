@@ -16,6 +16,7 @@ from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
 from ocfweb.main.robots import robots_dot_txt
 from ocfweb.main.staff_hours import staff_hours
+from ocfweb.reservations.urls import urlpatterns as reservations
 from ocfweb.stats.urls import urlpatterns as stats
 from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
@@ -38,6 +39,7 @@ urlpatterns = [
     url(r'^docs/', include(docs)),
     url(r'^login/', include(login)),
     url(r'^stats/', include(stats)),
+    url(r'^reservations/', include(reservations)),
 
     # about pages
     url(r'^about/staff$', about_staff, name='about-staff'),

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="ocf-content-block">
+        <p>
+            Unfortunately, we're not able to read information for this CalNet
+            account.
+        </p>
+        <p>
+            This often happens with alumni accounts, which the university prevents
+            us from reading information about. If you get in touch with us, we
+            should be able to help.
+        </p>
+        <p>
+            If you believe this is an error, please <a href="{% url 'doc' 'contact' %}">contact us</a>
+            with your CalNet UID: <tt>{{calnet_uid}}</tt>.
+        </p>
+
+        <p>
+            Please logout <a href="{% url 'calnet_logout' %}">here</a>.
+        </p>
+    </div>
+{% endblock %}
