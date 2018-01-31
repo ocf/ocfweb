@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'ocfweb.test',
     'ocfweb.tv',
     'ocfweb.api',
-    'ocfweb.reservations',
+    'ocfweb.lab_reservations',
 )
 
 MIDDLEWARE_CLASSES = (
