@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from ocfweb.reservations.reserve import request_reservation
-from ocfweb.reservations.reserve import reservation_requested
+from ocfweb.lab_reservations.reserve import request_reservation
+from ocfweb.lab_reservations.reserve import reservation_requested
 
 
 urlpatterns = [
