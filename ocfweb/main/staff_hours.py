@@ -40,7 +40,6 @@ def remove_weekends(Days):
 
 
 def staff_hours(request):
-    print(get_staff_hours())
     return render(
         request,
         'main/staff-hours.html',
