@@ -10,13 +10,13 @@ from ocfweb.account.urls import urlpatterns as account
 from ocfweb.announcements.urls import urlpatterns as announcements
 from ocfweb.api.urls import urlpatterns as api
 from ocfweb.docs.urls import urlpatterns as docs
+from ocfweb.lab_reservations.urls import urlpatterns as lab_reservations
 from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
 from ocfweb.main.robots import robots_dot_txt
 from ocfweb.main.staff_hours import staff_hours
-from ocfweb.reservations.urls import urlpatterns as reservations
 from ocfweb.stats.urls import urlpatterns as stats
 from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
@@ -39,7 +39,7 @@ urlpatterns = [
     url(r'^docs/', include(docs)),
     url(r'^login/', include(login)),
     url(r'^stats/', include(stats)),
-    url(r'^lab_reservations/', include(reservations)),
+    url(r'^lab_reservations/', include(lab_reservations)),
 
     # about pages
     url(r'^about/staff$', about_staff, name='about-staff'),
