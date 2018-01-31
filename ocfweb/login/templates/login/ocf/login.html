@@ -19,10 +19,12 @@
                     {% csrf_token %}
                     <div style="max-width: 300px;">
                         {{ form|bootstrap }}
+            <small style="float: right; margin-top: 6pt;">
+                <a href="{% url 'change_password' %}">Forgot your password?</a>
+            </small>
                     </div>
                     <input class="btn btn-primary" type="submit" value="Login" />
-                </form>
-		<a href="{% url 'change_password' %}">Reset your password.</a>
+            </form>
             </div>
             <div class="col-sm-4">
                 <h3>OCF Accounts</h3>
