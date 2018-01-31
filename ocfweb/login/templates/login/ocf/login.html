@@ -19,7 +19,7 @@
                     {% csrf_token %}
                     <div style="max-width: 300px;">
                         {{ form|bootstrap }}
-            <small style="float: right; margin-top: 6pt;">
+            <small class="reset-link">
                 <a href="{% url 'change_password' %}">Forgot your password?</a>
             </small>
                     </div>
