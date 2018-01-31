@@ -39,7 +39,7 @@ urlpatterns = [
     url(r'^docs/', include(docs)),
     url(r'^login/', include(login)),
     url(r'^stats/', include(stats)),
-    url(r'^reservations/', include(reservations)),
+    url(r'^lab_reservations/', include(reservations)),
 
     # about pages
     url(r'^about/staff$', about_staff, name='about-staff'),
