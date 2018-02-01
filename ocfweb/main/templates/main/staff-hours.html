@@ -9,25 +9,24 @@
         <p>OCF staff members hold regular drop-in staff hours to provide assistance with account issues or with OCF services. We're always happy to help troubleshoot account or service issues!</p>
         <p>Keep in mind the OCF volunteers sometimes have last-minute conflicts, so it's a good idea to check this page before coming in for cancellations.</p>
         {% for staff_day in staff_hours %}
-        <div class = "day">
-            <div class="title">
-                       <strong>{{staff_day.day}}</strong>
-            {%if lab_status.force_lab_closed and staff_day == today or staff_day.no_staff_hours_today %}
-                <span class="cancelled-text"> cancelled this week </span>
-            {% endif %}
-            </div>
+    <div class = "title">
+                <div class="title">
+            <strong><big>{{staff_day.day}}</big></strong>
+                    {%if lab_status.force_lab_closed and staff_day == today or staff_day.holiday != None or staff_day.no_staff_hours_today %}
+                    <span class="cancelled-text"> cancelled this week </span>
+                    {% endif %}
+                </div>
                 {% for staff_hour in staff_day.hours %}
                     <div class="hour {% if staff_hour.cancelled %} cancelled {% endif %}">
                         <div class="title">
                             <strong>{{staff_hour.time}}</strong>
-                            {% if staff_hour.cancelled and not lab_status.force_lab_closed
-                    or staff_day == today and staff_day.no_staff_hours_today%}
+                            {% if staff_hour.cancelled and not lab_status.force_lab_closed or staff_day == today and staff_day.holiday != None and staff_day.no_staff_hours_today %}
                                 <span class="cancelled-text"> cancelled this week</span>
                             {% endif %}
                         </div>
                         <div class="content">
                             <ul class="ocf-staffhours-faces">
-                                {% for staffer in staff_hour.staff %}
+                                {%for staffer in staff_hour.staff %}
                                     <li>
                                         <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:100}}" />
                                         <h4>{{staffer.real_name}}</h4>
