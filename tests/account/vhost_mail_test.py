@@ -9,8 +9,8 @@ from unittest import mock
 
 import pytest
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 from ocflib.vhost.mail import MailForwardingAddress
 
 from ocfweb.account import vhost_mail

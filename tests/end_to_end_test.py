@@ -1,10 +1,10 @@
 from textwrap import dedent
 
 import pytest
-from django.core.urlresolvers import NoReverseMatch
-from django.core.urlresolvers import RegexURLPattern
-from django.core.urlresolvers import RegexURLResolver
-from django.core.urlresolvers import reverse
+from django.urls import NoReverseMatch
+from django.urls import reverse
+from django.urls import URLPattern
+from django.urls import URLResolver
 
 from ocfweb.urls import urlpatterns
 
@@ -37,14 +37,14 @@ def assert_does_not_error(client, path):
 def _get_reversed_urlpatterns(urlpatterns=urlpatterns):
     """Yields a list of all URLs that we can reverse with default args."""
     for urlpattern in urlpatterns:
-        if isinstance(urlpattern, RegexURLPattern):
+        if isinstance(urlpattern, URLPattern):
             try:
                 path = reverse(urlpattern.name, *urlpattern.default_args)
             except NoReverseMatch:
                 pass
             else:
                 yield path
-        elif isinstance(urlpattern, RegexURLResolver):
+        elif isinstance(urlpattern, URLResolver):
             # handle recursive urlpattern definitions
             yield from _get_reversed_urlpatterns(urlpatterns=urlpattern.url_patterns)
 

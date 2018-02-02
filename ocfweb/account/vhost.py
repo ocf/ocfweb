@@ -5,9 +5,9 @@ from textwrap import dedent
 
 from django import forms
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 from ipware.ip import get_real_ip
 from ocflib.account.search import user_attrs

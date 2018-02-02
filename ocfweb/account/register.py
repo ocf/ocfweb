@@ -4,12 +4,12 @@ import ocflib.misc.validators
 import ocflib.ucb.directory as directory
 from Crypto.PublicKey import RSA
 from django import forms
-from django.core.urlresolvers import reverse
 from django.forms.forms import NON_FIELD_ERRORS
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.urls import reverse
 from ocflib.account.creation import CREATE_PUBLIC_KEY
 from ocflib.account.creation import encrypt_password
 from ocflib.account.creation import NewAccountRequest

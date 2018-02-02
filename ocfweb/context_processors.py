@@ -2,7 +2,7 @@ import re
 from datetime import date
 from ipaddress import ip_address
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from ipware.ip import get_real_ip
 from ocflib.account.search import user_is_group
 from ocflib.infra.net import is_ocf_ip

@@ -4,9 +4,9 @@ from datetime import datetime
 
 import numpy as np
 import ocflib.printing.quota as quota
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.urls import reverse
 from matplotlib.figure import Figure
 from matplotlib.ticker import MaxNLocator
 

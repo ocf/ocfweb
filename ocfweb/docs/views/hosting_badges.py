@@ -1,5 +1,5 @@
-from django.core.urlresolvers import reverse
 from django.shortcuts import render
+from django.urls import reverse
 
 
 def hosting_badges(doc, request):

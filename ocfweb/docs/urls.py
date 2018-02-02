@@ -2,9 +2,9 @@ import re
 from itertools import chain
 
 from django.conf.urls import url
-from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import redirect
+from django.urls import reverse
 
 from ocfweb.docs.doc import Document
 from ocfweb.docs.markdown_based import get_markdown_docs
