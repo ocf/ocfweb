@@ -1,8 +1,8 @@
 from django.conf.urls import include
 from django.conf.urls import url
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.urls import reverse
 
 from ocfweb.about.lab import lab_open_source
 from ocfweb.about.staff import about_staff

@@ -3,9 +3,9 @@ import re
 import ocflib.account.utils as utils
 import ocflib.account.validators as validators
 from django import forms
-from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 from ocfweb.auth import login_required
 from ocfweb.component.forms import Form

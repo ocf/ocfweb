@@ -5,8 +5,8 @@ from datetime import time
 
 from cached_property import cached_property
 from django.contrib.staticfiles.templatetags.staticfiles import static
-from django.core.urlresolvers import reverse
 from django.shortcuts import render
+from django.urls import reverse
 from django.utils import timezone
 
 from ocfweb.component.blog import get_blog_posts

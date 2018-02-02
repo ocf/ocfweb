@@ -3,9 +3,9 @@ from datetime import date
 from datetime import datetime
 from datetime import timedelta
 
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.urls import reverse
 from matplotlib.dates import DateFormatter
 from matplotlib.figure import Figure
 from ocflib.lab.hours import Day

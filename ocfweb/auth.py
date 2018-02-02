@@ -2,9 +2,9 @@
 from urllib.parse import urlencode
 
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from ocflib.account.search import user_is_group
 
 from ocfweb.component.session import is_logged_in

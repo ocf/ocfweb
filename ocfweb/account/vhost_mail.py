@@ -6,10 +6,10 @@ from textwrap import dedent
 
 from django.conf import settings
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.views.decorators.http import require_POST
 from ocflib.account.validators import validate_password
 from ocflib.vhost.mail import crypt_password
