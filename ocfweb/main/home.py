@@ -14,6 +14,8 @@ from ocfweb.component.lab_status import get_lab_status
 
 @periodic(60)
 def get_staff_hours():
+    print(get_staff_hours_soonest_first())
+    print(get_staff_hours_soonest_first()[:2])
     return get_staff_hours_soonest_first()[:2]
 
 
