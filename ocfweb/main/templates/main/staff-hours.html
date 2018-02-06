@@ -12,15 +12,15 @@
             <div class = "day">
                 <div class="daytitle">
                     <strong><big>{{staff_day.day}}</big></strong>
-                    {%if lab_status.force_lab_closed and staff_day == today or staff_day.holiday != None or staff_day.no_staff_hours_today %}
-                    <span class="cancelled-text"> cancelled this week </span>
+                    {%if staff_day.holiday != None %}
+                        <span class="cancelled-text"> {{staff_day.holiday}} </span>
                     {% endif %}
                 </div>
                 {% for staff_hour in staff_day.hours %}
                     <div class="hour {% if staff_hour.cancelled %} cancelled {% endif %}">
                         <div class="title">
                             <strong>{{staff_hour.time}}</strong>
-                            {% if staff_hour.cancelled and not lab_status.force_lab_closed or staff_day == today and staff_day.holiday != None and staff_day.no_staff_hours_today %}
+                            {% if staff_hour.cancelled or lab_status.force_lab_closed and staff_day == today%}
                                 <span class="cancelled-text"> cancelled this week</span>
                             {% endif %}
                         </div>

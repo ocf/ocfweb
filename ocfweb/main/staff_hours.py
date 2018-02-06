@@ -9,11 +9,7 @@ from ocfweb.component.lab_status import get_lab_status
 
 @periodic(60, ttl=86400)
 def get_staff_hours():
-    print('getting staff_hours')
-    # return real_get_staff_hours()
-    s = real_get_staff_hours()
-    print(s)
-    return s
+    return real_get_staff_hours()
 
 
 def staff_hours(request):
