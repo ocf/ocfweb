@@ -8,14 +8,7 @@
 
             <form method="post" action="{% url 'request_reservation' %}">
                 {% csrf_token %}
-                <p>
-                    This form is <strong>only</strong> for student groups desiring to
-                    use the OCF's lab space. If you want to create an individual account
-                    please visit <a href="{% url 'register' %}">this link</a>. If you
-                    want to request an account for a student group, please visit
-                    a staff member in the OCF lab during
-                    <a href="{% url 'staff-hours' %}">staff hours</a>.
-                </p>
+
 
                 <hr />
 
@@ -43,14 +36,14 @@
                 <div class="well">
                     <p><strong>
                         Please read our lab reservation policy
-                        <a href=https://www.ocf.berkeley.edu/docs/services/lab/lab-reservation-policy/>
-                         here</a>; you are responsible for
+                        <a href="{% url 'doc' 'services/lab/lab-reservation-policy' %}"/>
+                        here</a>; you are responsible for
                         knowing and abiding by it.
                     </strong></p>
 
                     <p><strong>
                         I have read, understood, and agreed to follow the policy linked above.
-                         In addition, I agree not to hold the University
+                        In addition, I agree not to hold the University
                         of California, the Associated Students of the University of
                         California, or the Open Computing Facility (OCF)
                         responsible for lost files or other misfortunes which may
@@ -86,7 +79,6 @@
 
             <hr />
 
-            {% include "account/partials/password-requirements-sidebar.html" %}
         </div>
     </div>
 {% endblock %}
