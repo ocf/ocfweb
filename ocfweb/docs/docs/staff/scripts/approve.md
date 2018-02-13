@@ -69,7 +69,7 @@ deprecated.
 Optionally, if you pass the OID as the only argument, the `group_name`,
 `callink_oid`, and `email` fields will get filled in automatically using the
 group's public information on CalLink. If the group is not a student group,
-(i.e. a research group), use 0 as the OID.
+(e.g. a research group), use 0 as the OID.
 
 
 ### Post approval
