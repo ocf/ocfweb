@@ -168,7 +168,7 @@ def send_request_to_officers(request):
     body = JINJA_MAIL_ENV.get_template(
         'lab_reservations/mail_templates/officer_notification.jinja',
     ).render(request=request)
-    send_mail('devnull@ocf.berkeley.edu', 'New Lab Reservation Request', body, sender=request.contact_email)
+    send_mail('bod@ocf.berkeley.edu', 'New Lab Reservation Request', body, sender=request.contact_email)
 
 
 def send_request_confirmation(request):
