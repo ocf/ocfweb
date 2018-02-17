@@ -64,7 +64,6 @@ def request_vhost(request):
 
         if form.is_valid():
             requested_subdomain = form.cleaned_data['requested_subdomain']
-            requested_why = form.cleaned_data['requested_why']
             comments = form.cleaned_data['comments']
             your_name = form.cleaned_data['your_name'] if is_group else attrs['cn'][0]
             your_email = form.cleaned_data['your_email']
@@ -90,9 +89,6 @@ def request_vhost(request):
                       - Requested Subdomain: {requested_subdomain}
                       - Current URL: https://www.ocf.berkeley.edu/~{user}/
 
-                    Request Reason:
-                    {requested_why}
-
                     Comments/Special Requests:
                     {comments}
 
@@ -109,7 +105,6 @@ def request_vhost(request):
                     user=user,
                     title=attrs['cn'][0],
                     requested_subdomain=requested_subdomain,
-                    requested_why=requested_why,
                     comments=comments,
                     your_name=your_name,
                     your_position=your_position,
@@ -189,15 +184,6 @@ class VirtualHostForm(Form):
         min_length=1,
         max_length=32,
         widget=forms.TextInput(attrs={'placeholder': 'mysite.berkeley.edu'}),
-    )
-
-    requested_why = forms.CharField(
-        widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}),
-        label='Please explain why you would like to use the requested \
-               domain instead of your current address on \
-               ocf.berkeley.edu.',
-        min_length=1,
-        max_length=1024,
     )
 
     # website requirements
