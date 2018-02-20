@@ -1,11 +1,11 @@
 .page-staff-hours {
     .day {
+        border-width: thin;
         padding: 20px;
 
         .daytitle {
             font-size: 22px;
-            padding: 7px 10px 5px;
-            text-align: center;
+            padding: 0 10px 5px;
         }
 
         &.cancelled .title {
@@ -19,6 +19,7 @@
 
         .hour {
             margin-bottom: 15px;
+            border-width: thin;
 
             .title {
                 font-size: 16px;
