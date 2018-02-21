@@ -1,25 +1,11 @@
 .page-staff-hours {
-    .hour {
-        border: solid 1px #ddd;
-        margin-bottom: 15px;
+    .day {
+        border-width: thin;
+        padding: 20px;
 
-        .title {
-            font-size: 16px;
-            padding: 7px 10px 5px;
-            border-bottom: solid 1px #ddd;
-            background-color: #eee;
-
-            strong {
-                margin-right: 3px;
-            }
-
-            span {
-                margin-left: 3px;
-            }
-        }
-
-        .content {
-            padding: 13px;
+        .daytitle {
+            font-size: 22px;
+            padding: 0 10px 5px;
         }
 
         &.cancelled .title {
@@ -31,39 +17,63 @@
             font-weight: bold;
         }
 
-        .ocf-staffhours-faces {
-            @extend .list-inline;
-            margin-bottom: 0;
+        .hour {
+            margin-bottom: 15px;
+            border-width: thin;
 
-            li {
-                h4,
-                h5 {
-                    text-align: center;
+            .title {
+                font-size: 16px;
+                padding: 7px 10px 5px;
+                border: solid 1px #ddd;
+                background-color: #eee;
+
+                strong {
+                    margin-right: 3px;
                 }
 
-                h4 {
-                    margin-top: 5px;
-                    margin-bottom: 4px;
-                    font-size: 16px;
-                }
-
-                h5 {
-                    margin-top: 0;
-                    margin-bottom: 0;
-                    font-size: 14px;
-                    font-weight: normal;
-                }
-
-                img {
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
+                span {
+                    margin-left: 3px;
                 }
             }
-        }
 
-        &.cancelled .ocf-staffhours-faces {
-            opacity: 0.6;
+            .content {
+                padding: 13px;
+            }
+
+            .ocf-staffhours-faces {
+                @extend .list-inline;
+                margin-bottom: 0;
+
+                li {
+                    h4,
+                        h5 {
+                        text-align: center;
+                        }
+
+                    h4 {
+                        margin-top: 5px;
+                        margin-bottom: 4px;
+                        font-size: 16px;
+                    }
+
+                    h5 {
+                        margin-top: 0;
+                        margin-bottom: 0;
+                        font-size: 14px;
+                        font-weight: normal;
+                    }
+
+                    img {
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                }
+            }
+
+            &.cancelled .ocf-staffhours-faces {
+                opacity: 0.6;
+            }
         }
-    }
+   }
 }

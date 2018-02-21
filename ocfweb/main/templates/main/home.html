@@ -108,8 +108,11 @@
         </ul>
 
         <div class="ocf-staffhours">
+        <span class="title">
+            Staff Hours
+        </span>
             {% for staff_hour in staff_hours %}
-                <h3>Staff Hours {{staff_hour.day}}</h3>
+                <h3>{{staff_hour.day}}</h3>
                 <div class="{% if staff_hour.cancelled %} cancelled {% endif %}">
                     <p>
                         {{staff_hour.time}}
