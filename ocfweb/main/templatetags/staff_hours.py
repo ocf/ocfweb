@@ -9,8 +9,12 @@ register = template.Library()
 def gravatar(staffer, size):
     return staffer.gravatar(size)
 
+
 @register.filter
 def lab_holidays(hours):
     return holiday_hours(hours)
 
 
+@register.filter
+def get_bio(staffer):
+    return staffer.get_bio()

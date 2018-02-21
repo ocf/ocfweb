@@ -27,13 +27,15 @@
                         <div class="content">
                             <ul class="ocf-staffhours-faces">
                                 {%for staffer in staff_hour.staff %}
-                <a href="#" data-toggle="tooltip" data-placement="top" title= {{staffer|get_bio}}>
                                     <li>
+
+                        <a href="#" data-toggle="tooltip" data-placement="top"
+                            title= "{{staffer|get_bio}}">
                                         <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:100}}" />
+                </a>
                                         <h4>{{staffer.real_name}}</h4>
                                         <h5>{{staffer.position}}</h5>
                                     </li>
-                </a>
                                 {% endfor %}
                             </ul>
                         </div>
