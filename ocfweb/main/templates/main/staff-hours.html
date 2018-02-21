@@ -27,11 +27,13 @@
                         <div class="content">
                             <ul class="ocf-staffhours-faces">
                                 {%for staffer in staff_hour.staff %}
+                <a href="#" data-toggle="tooltip" data-placement="top" title= {{staffer|get_bio}}>
                                     <li>
                                         <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:100}}" />
                                         <h4>{{staffer.real_name}}</h4>
                                         <h5>{{staffer.position}}</h5>
                                     </li>
+                </a>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -40,7 +42,7 @@
             </div>
         {% endfor %}
     </div>
-
+    </script>
     <div class="col-sm-4 ocf-sidebar">
         <h4>Open Computing Facility Lab</h4>
         <p>{% google_map '100%' '250px' %}</p>
