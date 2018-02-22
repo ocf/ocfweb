@@ -1,4 +1,5 @@
 from collections import namedtuple
+from datetime import datetime
 
 import ocflib.misc.validators
 from django import forms
@@ -50,27 +51,27 @@ class RequestForm(forms.Form):
 
     real_name = forms.CharField(
         label='Full Name',
-        widget=forms.TextInput(attrs={'placeholder': 'Jane Doe'}),
+        widget=forms.TextInput(attrs={'placeholder': 'Oski Bear'}),
         min_length=3,
         max_length=32,
     )
 
     contact_email = forms.EmailField(
-        label='Contact e-mail',
+        label='Contact email',
         validators=[wrap_validator(ocflib.misc.validators.valid_email)],
-        widget=forms.EmailInput(attrs={'placeholder': 'janedoe@berkeley.edu'}),
+        widget=forms.EmailInput(attrs={'placeholder': 'oski@berkeley.edu'}),
     )
 
     verify_contact_email = forms.EmailField(
-        label='Confirm contact e-mail',
-        widget=forms.EmailInput(attrs={'placeholder': 'janedoe@berkeley.edu'}),
+        label='Confirm contact email',
+        widget=forms.EmailInput(attrs={'placeholder': 'oski@berkeley.edu'}),
     )
 
     student_group = forms.CharField(
         label='Student Group',
-        widget=forms.TextInput(attrs={'placeholder': 'OCF'}),
+        widget=forms.TextInput(attrs={'placeholder': 'Open Computing Facility'}),
         min_length=3,
-        max_length=32,
+        max_length=100,
     )
 
     reason = forms.CharField(
@@ -79,15 +80,17 @@ class RequestForm(forms.Form):
     )
 
     date = forms.DateField(
-        label='Date of reservation (mm/dd/yy)',
-        widget=forms.DateInput(attrs={'placeholder': '02/28/18'}),
+        label='Date of reservation (yyyy-mm-dd)',
+        widget=forms.DateInput(attrs={'placeholder': datetime.now().strftime('%Y-%m-%d')}),
     )
 
     starttime = forms.TimeField(
+        input_formats='%g %A',
         label='Starting time of reservation (xx:xx)',
     )
 
     endtime = forms.TimeField(
+        input_formats='%g %A',
         label='Ending time of reservation (xx:xx)',
     )
 
@@ -168,11 +171,16 @@ def send_request_to_officers(request):
     body = JINJA_MAIL_ENV.get_template(
         'lab_reservations/mail_templates/officer_notification.jinja',
     ).render(request=request)
-    send_mail('bod@ocf.berkeley.edu', 'New Lab Reservation Request', body, sender=request.contact_email)
+    send_mail(
+        'bod@ocf.berkeley.edu',
+        'New Lab Reservation Request: ' + str(request.student_group),
+        body,
+        sender=request.contact_email,
+    )
 
 
 def send_request_confirmation(request):
     body = JINJA_MAIL_ENV.get_template(
         'lab_reservations/mail_templates/user_notification.jinja',
     ).render(request=request)
-    send_mail(request.contact_email, '[OCF] Your recent reservation request has been submitted!', body)
+    send_mail(request.contact_email, '[OCF] Your reservation request has been submitted!', body)
