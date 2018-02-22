@@ -11,5 +11,22 @@
     <p> Closed All Day </p>
     {% endfor %}
   </div>
+  <div class="desktop_usage">
+	<p id="desktop_num"></p>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script>
+	function update_desktops() {
+		$.getJSON("http://supernova.ocf.berkeley.edu:8977/api/desktop_usage",
+		function(json) {
+		document.getElementById("desktop_num").innerHTML = 
+			"There are " + (json.total_desktops - json.users_in_lab)
+			+ " computers available";});	
+	};
+	update_desktops();
+	setInterval(update_desktops, 15*1000);
+	</script>
+  </div>
 </div>
-{% endblock %}
+
+
+{% endblock %} 
