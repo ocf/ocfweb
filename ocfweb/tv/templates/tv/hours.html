@@ -19,8 +19,8 @@
 		$.getJSON("http://supernova.ocf.berkeley.edu:8977/api/desktop_usage",
 		function(json) {
 		document.getElementById("desktop_num").innerHTML = 
-			"There are " + (json.total_desktops - json.users_in_lab)
-			+ " computers available";});	
+			"There are " + (json.total_desktops - json.public_desktops.length)
+			+ " computers available (not logged in).";});	
 	};
 	update_desktops();
 	setInterval(update_desktops, 15*1000);
