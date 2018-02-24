@@ -3,4 +3,6 @@ coveralls
 pre-commit
 pytest
 pytest-django
+pytest-env
+pytest-xdist
 requirements-tools
