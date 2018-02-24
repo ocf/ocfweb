@@ -1,0 +1,16 @@
+<div class="page-tv-hours">
+  <p>There are <span id="desktop_num">_</span> desktops available.</p>
+  <script>
+    $(document).ready(function() {
+      function update() {
+        $.getJSON("{% url 'desktop_usage' %}", function(res) {
+          document.getElementById("desktop_num").innerHTML =
+          (res.total_desktops - res.desktops_in_use.length);
+        });
+      }
+
+      update();
+      setInterval(update, 15000);
+    });
+  </script>
+</div>
