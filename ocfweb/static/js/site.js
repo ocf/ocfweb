@@ -6,6 +6,8 @@ $(document).ready(function() {
         $('body').css('margin-bottom', height);
     };
 
+    $('[data-toogle="tooltip"]').tooltip();
+
     $(window).resize(function() {
         clearTimeout(resizeTimeout);
         setTimeout(updateFooterHeight, 10);
