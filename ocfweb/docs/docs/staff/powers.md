@@ -85,3 +85,4 @@ the following:
   service](https://cert-manager.com/customer/incommon)
 * Knowledge of the root password
 * Access to [NetReg](https://netreg.berkeley.edu/)
+* Access to view Google Analytics data for ocfweb
