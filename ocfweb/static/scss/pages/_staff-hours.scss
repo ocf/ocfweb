@@ -6,6 +6,8 @@
         .daytitle {
             font-size: 22px;
             padding: 0 10px 5px;
+            background-color: #eee;
+            border: solid 1px #ddd;
         }
 
         &.cancelled .title {
@@ -24,8 +26,7 @@
             .title {
                 font-size: 16px;
                 padding: 7px 10px 5px;
-                border: solid 1px #ddd;
-                background-color: #eee;
+                border-bottom: solid 2px #eee;
 
                 strong {
                     margin-right: 3px;
@@ -45,18 +46,23 @@
                 margin-bottom: 0;
 
                 li {
+                    width: 175px;
+                    display: inline-block;
+
                     h4,
                         h5 {
                         text-align: center;
                         }
 
                     h4 {
+                        text-align: center;
                         margin-top: 5px;
                         margin-bottom: 4px;
                         font-size: 16px;
                     }
 
                     h5 {
+                        text-align: center;
                         margin-top: 0;
                         margin-bottom: 0;
                         font-size: 14px;
