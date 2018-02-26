@@ -61,7 +61,7 @@ def get_blog_posts():
         try:
             tree = etree.fromstring(
                 requests.get(
-                    'http://status.ocf.berkeley.edu/feeds/posts/default',
+                    'https://status.ocf.berkeley.edu/feeds/posts/default',
                     timeout=2,
                 ).content,
             )
