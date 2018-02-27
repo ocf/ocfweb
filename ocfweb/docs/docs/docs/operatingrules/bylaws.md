@@ -34,7 +34,7 @@ amended at the Board meeting of August 28, 2017.
 9. The Cabinet
 
    1. The Cabinet of the Open Computing Facility shall consist of the General
-      Manager, Site Manager, and Deputy Managers.
+      Manager, Site Manager, Deputy General Managers, and Deputy Site Managers.
 
    2. The General Manager shall be chair of the cabinet.
 
@@ -87,7 +87,8 @@ amended at the Board meeting of August 28, 2017.
 
 13. Officers
 
-   1. All Cabinet members shall be Officers of the Open Computing Facility.
+   1. All Cabinet members and Deputy Managers shall be Officers of the Open
+      Computing Facility.
 
 14. Any non-Director member who attends a Board meeting can request to be
     appointed as a Director at that meeting. In that case, they shall be
@@ -109,4 +110,4 @@ Bylaw 7 amended at the Board meeting of October 31, 2016. Bylaws 1 and 8
 repealed, bylaw 7 amended, and bylaw 15 added at the general meeting of
 November 14, 2016. Bylaws 13.2, 11.3, 12.3 amended, and bylaws 10.4 and 10.5
 added at the Board meeting of March 6, 2017. Bylaws 13.2 and 13.3 repealed and
-Bylaw 14 amended at the Board meeting of August 28, 2017.
+Bylaw 14 amended at the Board meeting of August 28, 2017. Bylaws 9.1 and 13.1 amended at the Board meeting of February 26, 2018.
