@@ -8,12 +8,12 @@ from ocfweb.caching import periodic
 
 
 @cache()
-def _enumerate_desktops():
+def _list_public_desktops():
     return list_desktops(public_only=True)
 
 
-@periodic(15)
-def _get_active_desktops():
+@periodic(5)
+def _get_desktops_in_use():
     """List which desktops are currently in use."""
 
     # https://github.com/ocf/ocflib/blob/master/ocflib/lab/ocfstats.sql#L70
@@ -25,17 +25,16 @@ def _get_active_desktops():
             'WHERE `end` IS NULL;',
         )
 
-    return {hostname_from_domain(i['host']) for i in c}
+    return {hostname_from_domain(session['host']) for session in c}
 
 
 def desktop_usage(request):
-    desktops = _enumerate_desktops()
+    public_desktops = _list_public_desktops()
 
-    # get the list of public-only dekstops in use
-    active_desktops = _get_active_desktops()
-    desktops_in_use = active_desktops.intersection(desktops)
+    desktops_in_use = _get_desktops_in_use()
+    public_desktops_in_use = desktops_in_use.intersection(public_desktops)
 
     return JsonResponse({
-        'desktops_in_use': list(desktops_in_use),
-        'total_desktops': len(desktops),
+        'public_desktops_in_use': list(public_desktops_in_use),
+        'public_desktops_num': len(public_desktops),
     })

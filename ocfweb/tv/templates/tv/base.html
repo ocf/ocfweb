@@ -1,12 +1,12 @@
 <!doctype html>
 
 <html>
-  {% include 'partials/head.html' %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <body>
-    <div class="page-tv">
-      {% block tv-body %}
-      {% endblock %}
-    </div>
-  </body>
+    <body>
+        {% include 'partials/head.html' %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <div class="page-tv">
+        {% block tv-body %}
+        {% endblock %}
+        </div>
+    </body>
 </html>
