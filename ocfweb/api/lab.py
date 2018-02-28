@@ -21,8 +21,7 @@ def _get_desktops_in_use():
     # desktops in use, and the view does COUNT(DISTINCT users)
     with get_connection() as c:
         c.execute(
-            'SELECT `host` FROM `session_duration_public` '
-            'WHERE `end` IS NULL;',
+            'SELECT * FROM `desktops_in_use_public`;',
         )
 
     return {hostname_from_domain(session['host']) for session in c}
