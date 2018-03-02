@@ -52,7 +52,6 @@ class RequestForm(forms.Form):
         label='Full Name',
         widget=forms.TextInput(attrs={'placeholder': 'Oski Bear'}),
         min_length=3,
-        max_length=32,
     )
 
     contact_email = forms.EmailField(
@@ -70,7 +69,6 @@ class RequestForm(forms.Form):
         label='Student Group',
         widget=forms.TextInput(attrs={'placeholder': 'Open Computing Facility'}),
         min_length=3,
-        max_length=100,
     )
 
     reason = forms.CharField(
