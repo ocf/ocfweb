@@ -28,16 +28,6 @@ class NewReservationRequest(namedtuple(
         'endtime',
     ],
 )):
-    """Request for reservation request.
-    :param real_name:
-    :param contact_email:
-    :param student_group:
-    :param reason:
-    :param date:
-    :param starttime:
-    :param endtime:
-    """
-    __slots__ = ()
 
     def to_dict(self):
         return self._asdict()
@@ -82,11 +72,11 @@ class RequestForm(forms.Form):
     )
 
     starttime = forms.TimeField(
-        label='Starting time of reservation (xx:xx)',
+        label='Starting time of reservation (24 hour, e.g. 22:00)',
     )
 
     endtime = forms.TimeField(
-        label='Ending time of reservation (xx:xx)',
+        label='Ending time of reservation (24 hour, e.g. 22:00)',
     )
 
     disclaimer_agreement = forms.BooleanField(
@@ -96,7 +86,7 @@ class RequestForm(forms.Form):
         },
     )
 
-    def clean_verify_contact_email(self):
+    def clean_verify_(self):
         email = self.cleaned_data.get('contact_email')
         verify_contact_email = self.cleaned_data.get('verify_contact_email')
 

@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from ocfweb.lab_reservations.reserve import request_reservation
-from ocfweb.lab_reservations.reserve import reservation_requested
+from ocfweb.lab_reservations.reserve import request_reservation_success
 
 
 urlpatterns = [
@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'^request/$', request_reservation, name='request_reservation'),
 
     # reservation pending
-    url(r'^request/pending/$', reservation_requested, name='reservation_requested'),
+    url(r'^request/pending/$', request_reservation_success, name='request_reservation_success'),
 
 ]
