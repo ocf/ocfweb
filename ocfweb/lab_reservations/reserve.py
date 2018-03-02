@@ -3,7 +3,9 @@ from datetime import datetime
 
 import ocflib.misc.validators
 from django import forms
+from django.shortcuts import redirect
 from django.shortcuts import render
+from django.urls import reverse
 from jinja2 import Environment
 from jinja2 import PackageLoader
 from ocflib.account.search import user_attrs_ucb
@@ -11,7 +13,6 @@ from ocflib.misc.mail import send_mail
 
 from ocfweb.auth import calnet_required
 from ocfweb.component.forms import wrap_validator
-
 
 JINJA_MAIL_ENV = Environment(loader=PackageLoader('ocfweb', ''))
 
@@ -36,12 +37,10 @@ class NewReservationRequest(namedtuple(
     :param starttime:
     :param endtime:
     """
+    __slots__ = ()
 
     def to_dict(self):
-        return {
-            field: getattr(self, field)
-            for field in self._fields
-        }
+        return self._asdict()
 
 
 class RequestForm(forms.Form):
@@ -76,7 +75,7 @@ class RequestForm(forms.Form):
 
     reason = forms.CharField(
         label='Reason for reservation',
-        widget=forms.TextInput(attrs={'placeholder': ''}),
+        widget=forms.Textarea(attrs={'placeholder': ''}),
     )
 
     date = forms.DateField(
@@ -85,12 +84,10 @@ class RequestForm(forms.Form):
     )
 
     starttime = forms.TimeField(
-        input_formats='%g %A',
         label='Starting time of reservation (xx:xx)',
     )
 
     endtime = forms.TimeField(
-        input_formats='%g %A',
         label='Ending time of reservation (xx:xx)',
     )
 
@@ -144,10 +141,7 @@ def request_reservation(request):
             send_request_to_officers(req)
             send_request_confirmation(req)
 
-            return render(
-                request,
-                'lab_reservations/pending.html',
-            )
+            return redirect(reverse('request_reservation_success'))
 
     else:
         form = RequestForm()
@@ -163,7 +157,7 @@ def request_reservation(request):
     )
 
 
-def reservation_requested(request):
+def request_reservation_success(request):
     return render(request, 'lab_reservations/pending.html', {'title': 'Reservation request successful'})
 
 
