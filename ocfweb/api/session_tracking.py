@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from ipware.ip import get_real_ip
 from ocflib.infra.hosts import hosts_by_filter
 from ocflib.infra.net import is_ocf_ip
 from ocflib.lab.stats import get_connection
@@ -30,7 +31,7 @@ def log_session(request):
     the functionality that used to be in ocf/labstats.
     """
 
-    remote_ip = request.META['REMOTE_ADDR']
+    remote_ip = get_real_ip(request)
 
     if not is_ocf_ip(ip_address(remote_ip)):
         return HttpResponse('Not Authorized', status=401)
@@ -40,8 +41,9 @@ def log_session(request):
 
         host = _get_desktops().get(remote_ip)
         user = body.get('user')
+        state = body.get('state')
 
-        if user == '' or user is None:
+        if not user:
             raise ValueError('Invalid user "{}"'.format(user))
 
         if host is None:
@@ -49,6 +51,8 @@ def log_session(request):
 
         if _session_exists(host, user):
             _refresh_session(host, user)
+        elif state == 'inactive':
+            _close_sessions(host)
         else:
             _new_session(host, user)
 
@@ -102,7 +106,7 @@ def _close_sessions(host):
         )
 
 
-@cache(3600)
+@cache()
 def _get_desktops():
     return {e['ipHostNumber'][0]: e['cn'][0] + '.ocf.berkeley.edu'
             for e in hosts_by_filter('(type=desktop)')}

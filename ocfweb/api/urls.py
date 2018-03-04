@@ -2,7 +2,6 @@ from django.conf.urls import url
 
 from ocfweb.api import hours
 from ocfweb.api import lab
-from ocfweb.api import labstats
 from ocfweb.api import session_tracking
 
 urlpatterns = [
