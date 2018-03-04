@@ -2,10 +2,10 @@ from django.shortcuts import render
 from ocflib.lab.hours import Day
 
 
-def tv_hours(request):
+def tv_main(request):
     return render(
         request,
-        'tv/hours.html',
+        'tv/tv.html',
         {
             'hours': Day.from_date(),
         },

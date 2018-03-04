@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from ocfweb.tv import tv_hours
+from ocfweb.tv import main
 
 urlpatterns = [
-    url(r'^hours/$', tv_hours.tv_hours, name='tv-hours'),
+    url(r'^$', main.tv_main, name='tv_main'),
 ]
