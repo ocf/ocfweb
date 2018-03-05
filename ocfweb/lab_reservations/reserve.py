@@ -52,6 +52,7 @@ class RequestForm(forms.Form):
 
     verify_contact_email = forms.EmailField(
         label='Confirm contact email',
+        validators=[wrap_validator(ocflib.misc.validators.valid_email)],
         widget=forms.EmailInput(attrs={'placeholder': 'oski@berkeley.edu'}),
     )
 
@@ -90,9 +91,8 @@ class RequestForm(forms.Form):
         email = self.cleaned_data.get('contact_email')
         verify_contact_email = self.cleaned_data.get('verify_contact_email')
 
-        if email and verify_contact_email:
-            if email != verify_contact_email:
-                raise forms.ValidationError("Your emails don't match.")
+        if email != verify_contact_email:
+            raise forms.ValidationError("Your emails don't match.")
         return verify_contact_email
 
 
