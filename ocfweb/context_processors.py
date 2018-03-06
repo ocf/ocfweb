@@ -3,7 +3,7 @@ from datetime import date
 from ipaddress import ip_address
 
 from django.urls import reverse
-from ipware.ip import get_real_ip
+from ipware import get_client_ip
 from ocflib.account.search import user_is_group
 from ocflib.infra.net import is_ocf_ip
 from ocflib.lab.hours import Day
@@ -25,7 +25,7 @@ def get_base_css_classes(request):
 
 def ocf_template_processor(request):
     hours = Day.from_date(date.today())
-    real_ip = get_real_ip(request)
+    real_ip, _ = get_client_ip(request)
     user = logged_in_user(request)
     return {
         'base_css_classes': ' '.join(get_base_css_classes(request)),
