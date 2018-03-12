@@ -21,7 +21,7 @@ class NewReservationRequest(namedtuple(
     'NewReservationRequest', [
         'real_name',
         'contact_email',
-        'student_group',
+        'group',
         'reason',
         'date',
         'starttime',
@@ -56,8 +56,8 @@ class RequestForm(forms.Form):
         widget=forms.EmailInput(attrs={'placeholder': 'oski@berkeley.edu'}),
     )
 
-    student_group = forms.CharField(
-        label='Student Group',
+    group = forms.CharField(
+        label='Group',
         widget=forms.TextInput(attrs={'placeholder': 'Open Computing Facility'}),
         min_length=3,
     )
@@ -73,11 +73,11 @@ class RequestForm(forms.Form):
     )
 
     starttime = forms.TimeField(
-        label='Starting time of reservation (24 hour, e.g. 22:00)',
+        label='Starting time of reservation (24 hour, i.e. 20:00)',
     )
 
     endtime = forms.TimeField(
-        label='Ending time of reservation (24 hour, e.g. 22:00)',
+        label='Ending time of reservation (24 hour, i.e. 22:00)',
     )
 
     disclaimer_agreement = forms.BooleanField(
@@ -119,7 +119,7 @@ def request_reservation(request):
             req = NewReservationRequest(
                 real_name=form.cleaned_data['real_name'],
                 contact_email=form.cleaned_data['contact_email'],
-                student_group=form.cleaned_data['student_group'],
+                group=form.cleaned_data['group'],
                 reason=form.cleaned_data['reason'],
                 date=form.cleaned_data['date'],
                 starttime=form.cleaned_data['starttime'],
@@ -155,7 +155,7 @@ def send_request_to_officers(request):
     ).render(request=request)
     send_mail(
         'bod@ocf.berkeley.edu',
-        'New Lab Reservation Request: ' + str(request.student_group),
+        'New Lab Reservation Request: ' + str(request.group),
         body,
         sender=request.contact_email,
     )
