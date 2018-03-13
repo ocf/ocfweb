@@ -28,6 +28,7 @@ class NewReservationRequest(namedtuple(
         'endtime',
     ],
 )):
+    __slots__ = ()
 
     def to_dict(self):
         return self._asdict()
@@ -155,7 +156,7 @@ def send_request_to_officers(request):
     ).render(request=request)
     send_mail(
         'bod@ocf.berkeley.edu',
-        'New Lab Reservation Request: ' + str(request.group),
+        'New Lab Reservation Request: {}'.format(request.group),
         body,
         sender=request.contact_email,
     )
