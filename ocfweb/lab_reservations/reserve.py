@@ -8,7 +8,6 @@ from django.shortcuts import render
 from django.urls import reverse
 from jinja2 import Environment
 from jinja2 import PackageLoader
-from ocflib.account.search import user_attrs_ucb
 from ocflib.misc.mail import send_mail
 
 from ocfweb.auth import calnet_required
@@ -99,20 +98,7 @@ class RequestForm(forms.Form):
 
 @calnet_required
 def request_reservation(request):
-    calnet_uid = request.session['calnet_uid']
     status = 'new_request'
-
-    # ensure we can even find them in university LDAP
-    # (alumni etc. might not be readable in LDAP but can still auth via CalNet)
-    if not user_attrs_ucb(calnet_uid):
-        return render(
-            request,
-            'lab_reservations/lab_reservations/cant-find-in-ldap.html',
-            {
-                'calnet_uid': calnet_uid,
-                'title': 'Unable to read account information',
-            },
-        )
 
     if request.method == 'POST':
         form = RequestForm(request.POST)
