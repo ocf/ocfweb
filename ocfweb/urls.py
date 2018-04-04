@@ -10,6 +10,7 @@ from ocfweb.account.urls import urlpatterns as account
 from ocfweb.announcements.urls import urlpatterns as announcements
 from ocfweb.api.urls import urlpatterns as api
 from ocfweb.docs.urls import urlpatterns as docs
+from ocfweb.lab_reservations.urls import urlpatterns as lab_reservations
 from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
@@ -38,6 +39,7 @@ urlpatterns = [
     url(r'^docs/', include(docs)),
     url(r'^login/', include(login)),
     url(r'^stats/', include(stats)),
+    url(r'^lab_reservations/', include(lab_reservations)),
 
     # about pages
     url(r'^about/staff$', about_staff, name='about-staff'),
