@@ -29,15 +29,3 @@ Check your print balance regularly!
 Pages are **not** normally refunded, except in cases of technical issues. In
 this case, you should talk with the OCF Operations Staff at the front desk
 for a refund.
-
-## Technical details
-
-See [[staff documentation|doc staff/procedures/printing]].
-
-## Amendment of printing quota
-<!-- RT#6159 -->
-The Board of Directors holds the authority to make changes to the printing
-quota. When the OCF is not formally in session (i.e. during breaks), the
-Cabinet can make provisional changes to the printing quota. If the changes are
-ratified at the first Board meeting of the next formal session, they will
-become permanent; otherwise they will expire.
