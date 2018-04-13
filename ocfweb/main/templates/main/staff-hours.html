@@ -12,8 +12,8 @@
             <div class = "day">
                 <div class="daytitle">
                     <strong><big>{{staff_day.day}}</big></strong>
-                    {%if staff_day.holiday != None %}
-                        <span class="cancelled-text"> {{staff_day.holiday}} </span>
+                    {%if staff_day.holiday is not None %}
+                        <span class="cancelled-text">{{staff_day.holiday}}</span>
                     {% endif %}
                 </div>
                 {% for staff_hour in staff_day.hours %}
@@ -40,7 +40,6 @@
             </div>
         {% endfor %}
     </div>
-    </script>
     <div class="col-sm-4 ocf-sidebar">
         <h4>Open Computing Facility Lab</h4>
         <p>{% google_map '100%' '250px' %}</p>
