@@ -23,7 +23,7 @@ Dockerfile.%: Dockerfile.%.in
 
 .PHONY: cook-image
 cook-image: Dockerfile.web Dockerfile.worker Dockerfile.static
-	$(eval OCFLIB_VERSION := ==$(shell curl https://pypi.python.org/pypi/ocflib/json | jq -r .info.version))
+	$(eval OCFLIB_VERSION := ==$(shell curl https://pypi.org/pypi/ocflib/json | jq -r .info.version))
 	docker build --pull --build-arg ocflib_version=$(OCFLIB_VERSION) -t $(DOCKER_TAG_BASE) .
 	docker build -t $(DOCKER_TAG_WEB) -f Dockerfile.web .
 	docker build -t $(DOCKER_TAG_WORKER) -f Dockerfile.worker .
