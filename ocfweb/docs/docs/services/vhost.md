@@ -51,9 +51,9 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
 ### Including the OCF banner {ocf_banner}
 
 Place any of the [[Hosted by OCF banners|doc services/vhost/badges]] on your
-site by copying the code onto your page. The banner is required to be placed
-only on the home page of your site. You can also create your own OCF banner
-with approval from the OCF (see instructions above).
+site by copying the code onto your page. The banner need only be placed on the
+home page of your site. You can also create your own OCF banner with approval
+from the OCF (see instructions above).
 
 ### Including the University Student Group Disclaimer    {disclaimer}
 
