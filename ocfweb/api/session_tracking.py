@@ -1,4 +1,5 @@
 import json
+from enum import Enum
 from functools import partial
 from ipaddress import ip_address
 
@@ -13,6 +14,11 @@ from ocflib.infra.net import is_ocf_ip
 from ocflib.lab.stats import get_connection
 
 from ocfweb.caching import cache
+from ocfweb.caching import periodic
+
+CLEANUP_TIMEOUT = 3
+
+State = Enum('State', ['active', 'inactive', 'cleanup'])
 
 get_connection = partial(
     get_connection,
@@ -27,8 +33,7 @@ get_connection = partial(
 def log_session(request):
     """Primary API endpoint for session tracking.
 
-    Desktops have a cronjob that calls this endpoint, replacing
-    the functionality that used to be in ocf/labstats.
+    Desktops have a cronjob that calls this endpoint: https://git.io/vpIKX
     """
 
     remote_ip = get_real_ip(request)
@@ -38,21 +43,18 @@ def log_session(request):
 
     try:
         body = json.loads(request.body.decode('utf-8'))
-
         host = _get_desktops().get(remote_ip)
-        user = body.get('user')
-        state = body.get('state')
 
-        if not user:
-            raise ValueError('Invalid user "{}"'.format(user))
-
-        if host is None:
+        if not host:
             raise ValueError('Invalid host "{}"'.format(host))
 
-        if _session_exists(host, user):
-            _refresh_session(host, user)
-        elif state == 'inactive':
+        state = State[body.get('state')]
+        user = body.get('user')
+
+        if state in (State.inactive, State.cleanup) or not user:
             _close_sessions(host)
+        elif state is State.active and _session_exists(host, user):
+            _refresh_session(host, user)
         else:
             _new_session(host, user)
 
@@ -106,7 +108,24 @@ def _close_sessions(host):
         )
 
 
+@periodic(60)
+def _cleanup_sessions():
+    """Periodically clean up sessions that don't die naturally.
+
+    For example, if a desktop crashes or is reset.
+    """
+
+    with get_connection() as c:
+        c.execute(
+            'UPDATE `session` SET `end` = `last_update` WHERE '
+            '`end` IS NULL AND `last_update` < '
+            ' ADDDATE(NOW(), -{} MINUTE)'.format(CLEANUP_TIMEOUT),
+        )
+
+
 @cache()
 def _get_desktops():
+    """Return IP address to fqdn mapping for OCF desktops from LDAP."""
+
     return {e['ipHostNumber'][0]: e['cn'][0] + '.ocf.berkeley.edu'
             for e in hosts_by_filter('(type=desktop)')}
