@@ -46,7 +46,7 @@ def log_session(request):
         host = _get_desktops().get(remote_ip)
 
         if not host:
-            raise ValueError('Invalid host "{}"'.format(host))
+            raise ValueError('Invalid host "{}" at IP {}'.format(host, remote_ip))
 
         state = State[body.get('state')]
         user = body.get('user')
