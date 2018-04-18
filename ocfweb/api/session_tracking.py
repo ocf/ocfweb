@@ -18,7 +18,7 @@ from ocfweb.caching import periodic
 
 CLEANUP_TIMEOUT = 3
 
-State = Enum('State', ['active', 'inactive', 'cleanup'])
+State = Enum('State', ['active', 'cleanup'])
 
 get_connection = partial(
     get_connection,
@@ -51,7 +51,7 @@ def log_session(request):
         state = State[body.get('state')]
         user = body.get('user')
 
-        if state in (State.inactive, State.cleanup) or not user:
+        if state is State.cleanup or not user:
             _close_sessions(host)
         elif state is State.active and _session_exists(host, user):
             _refresh_session(host, user)
