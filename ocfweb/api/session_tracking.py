@@ -42,16 +42,21 @@ def log_session(request):
         return HttpResponse('Not Authorized', status=401)
 
     try:
-        body = json.loads(request.body.decode('utf-8'))
         host = _get_desktops().get(remote_ip)
 
         if not host:
-            raise ValueError('Invalid host "{}" at IP {}'.format(host, remote_ip))
+            raise ValueError('IP {} does not belong to a desktop'.format(remote_ip))
 
-        state = State[body.get('state')]
+        body = json.loads(request.body.decode('utf-8'))
+        state = State[body.get('state')]  # triggers KeyError
         user = body.get('user')
 
-        if state is State.cleanup or not user:
+        if not user:
+            # could also check LDAP, but that would result in
+            # thousands of extra requests per day to firestorm
+            raise ValueError('No user specified')
+
+        if state is State.cleanup:
             _close_sessions(host)
         elif state is State.active and _session_exists(host, user):
             _refresh_session(host, user)
@@ -60,7 +65,7 @@ def log_session(request):
 
         return HttpResponse(status=204)
 
-    except ValueError as e:
+    except (KeyError, ValueError) as e:
         return HttpResponseBadRequest(e)
 
 

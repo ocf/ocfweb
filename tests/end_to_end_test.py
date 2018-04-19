@@ -18,6 +18,9 @@ def assert_does_not_error(client, path):
         # arguments (e.g. GET params), but we don't have a sane way to
         # guess what to provide in this test.
         400,
+        # Method Not Allowed. Some API endpoints are POST-only,
+        # and unwittingly trigger this test.
+        405,
     ):
         # If a SERVER_NAME is set, then we redirect off-site (e.g. to CAS).
         # We'll just assume those would have succeeded.
