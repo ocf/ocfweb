@@ -51,12 +51,7 @@ def log_session(request):
         state = State[body.get('state')]  # triggers KeyError
         user = body.get('user')
 
-        if not user:
-            # could also check LDAP, but that would result in
-            # thousands of extra requests per day to firestorm
-            raise ValueError('No user specified')
-
-        if state is State.cleanup:
+        if state is State.cleanup or not user:
             _close_sessions(host)
         elif state is State.active and _session_exists(host, user):
             _refresh_session(host, user)

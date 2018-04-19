@@ -44,9 +44,6 @@ TEST_INVALID_POST_DATA = (
     ({'user': 'guser', 'state': 'inactive'}, "'inactive'"),
     ({'user': 'guser', 'state': 'foo'}, "'foo'"),
     ({'user': 'guser', 'state': ''}, "''"),
-    # invalid user, valid state
-    ({'user': '', 'state': 'active'}, 'No user specified'),
-    ({'user': '', 'state': 'cleanup'}, 'No user specified'),
     # invalid everything
     ({'user': '', 'state': 'inactive'}, "'inactive'"),
     ({'user': '', 'state': 'foo'}, "'foo'"),
