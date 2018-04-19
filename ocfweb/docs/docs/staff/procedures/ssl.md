@@ -50,8 +50,8 @@ You should install the key and certificate via Puppet. On lightning, create the
 directory `/opt/puppet/shares/private/$fqdn/ssl` and place the key and cert in
 it.
 
-Add the `ocf_ssl` module to the server (e.g. by adding `puppetClass: ocf_ssl`
-to the server's LDAP entry). This will provide the files:
+Add the `ocf_ssl` module to the server (e.g. by adding it to the server's
+hiera config). This will provide the files:
 
 * `/etc/ssl/private/${fqdn}.key`
 * `/etc/ssl/private/${fqdn}.crt`
