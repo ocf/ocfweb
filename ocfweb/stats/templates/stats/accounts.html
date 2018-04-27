@@ -1,14 +1,80 @@
 {% extends 'base.html' %}
+{% load common %}
 {% load stats %}
 
 {% block content %}
     <div class="ocf-content-block">
         {% stats_navbar %}
-        <p>
-            <img class="img-responsive" src="{% url 'cumulative_accounts_graph' %}" />
-        </p>
-        <p>
-            <img class="img-responsive" src="{% url 'cumulative_group_accounts_graph' %}" />
-        </p>
+    <div id="total"></div>
+    <div id="group"></div>
     </div>
 {% endblock %}
+
+{% block inline_js %}
+    <script src="https://code.highcharts.com/5.0.7/highcharts.js"></script>
+    <script>
+        $(document).ready(function () {
+             Highcharts.setOptions({
+                global: {
+                      useUTC: false
+                },
+                chart: {
+                    defaultSeriesType: 'line',
+                    backgroundColor: null,
+                    height: document.documentElement.clientHeight / 2,
+                    zoomType: 'x'
+                },
+                xAxis: {
+                    type: "datetime",
+                    title: {
+                        text: "Date"
+                    }
+                },
+                yAxis: {
+                    min: 0
+                },
+                tooltip: {
+                    xDateFormat:"%A, %b %e, %Y"
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    line: {
+                        step: true
+                    }
+                },
+            });
+
+            Highcharts.chart({
+                chart: {
+                    renderTo: 'total',
+                },
+                yAxis: {
+                    title: {
+                        text: "Number of Accounts"
+                    },
+                },
+                title: {
+                    text: "Total OCF Accounts"
+                },
+                series: {{total|json|safe}},
+            });
+
+            Highcharts.chart({
+                chart: {
+                    renderTo: 'group',
+                },
+                yAxis: {
+                    title: {
+                        text: "Number of Group Accounts"
+                    },
+                },
+                title: {
+                    text: "Total OCF Group Accounts"
+                },
+                series: {{group|json|safe}},
+            });
+        });
+    </script>
+    {% endblock %}

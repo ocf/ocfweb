@@ -1,7 +1,5 @@
 from django.conf.urls import url
 
-from ocfweb.stats.accounts import cumulative_accounts_graph
-from ocfweb.stats.accounts import cumulative_group_accounts_graph
 from ocfweb.stats.accounts import stats_accounts
 from ocfweb.stats.daily_graph import daily_graph_image
 from ocfweb.stats.job_frequency import daily_jobs_image
@@ -22,12 +20,6 @@ urlpatterns = [
     url(r'^session-length/graph$', session_length_image, name='session_length_image'),
     url(r'^printing/$', stats_printing, name='stats_printing'),
     url(r'^accounts/$', stats_accounts, name='stats_accounts'),
-    url(r'^accounts/cumulative/graph$', cumulative_accounts_graph, name='cumulative_accounts_graph'),
-    url(
-        r'^accounts/cumulative-groups/graph$',
-        cumulative_group_accounts_graph,
-        name='cumulative_group_accounts_graph',
-    ),
     url(r'^printing/semester-histogram/graph$', semester_histogram, name='semester_histogram'),
     url(r'^printing/pages-printed$', pages_printed, name='pages_printed'),
     url(r'^printing/daily-job/graph$', daily_jobs_image, name='daily_job_image'),
