@@ -10,6 +10,7 @@ from ocfweb.account.urls import urlpatterns as account
 from ocfweb.announcements.urls import urlpatterns as announcements
 from ocfweb.api.urls import urlpatterns as api
 from ocfweb.docs.urls import urlpatterns as docs
+from ocfweb.errors import errors
 from ocfweb.lab_reservations.urls import urlpatterns as lab_reservations
 from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
@@ -21,6 +22,8 @@ from ocfweb.stats.urls import urlpatterns as stats
 from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
 from ocfweb.tv.urls import urlpatterns as tv
+
+handler404 = errors.http404
 
 urlpatterns = [
     # test pages

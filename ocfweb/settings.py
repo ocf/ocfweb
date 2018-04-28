@@ -16,6 +16,7 @@ ALLOWED_HOSTS = [
     'dev.ocf.berkeley.edu',
     'dev-www.ocf.berkeley.edu',
     'ocfweb.ocf.berkeley.edu',
+    'supernova.ocf.berkeley.edu',
 ]
 
 INSTALLED_APPS = (
@@ -33,6 +34,7 @@ INSTALLED_APPS = (
     'ocfweb.docs',
     'ocfweb.login',
     'ocfweb.main',
+    'ocfweb.errors',
     'ocfweb.middleware',
     'ocfweb.stats',
     'ocfweb.test',
