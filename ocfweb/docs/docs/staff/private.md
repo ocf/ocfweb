@@ -1,7 +1,7 @@
 [[!meta title="Additional documentation"]]
 
 Additional documentation not published publicly can be found at
-`~staff/ocf/privdocs` on supernova.
+`~staff/privdocs` on supernova.
 
 Generally, staff documentation should be placed on this website whenever
 possible. However, sometimes there are things which should be documented, but
