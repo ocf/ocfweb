@@ -8,3 +8,4 @@ There are a couple official test accounts:
     usernames with length > 8 characters.
   - `gstaff`: Test staff account. Name stands for "guest staff".
   - `testopstaff`: Test opstaff account.
+  - `ofc`: Test sorried account.
