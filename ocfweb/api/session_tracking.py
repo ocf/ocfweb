@@ -8,15 +8,13 @@ from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from ipware.ip import get_real_ip
+from ipware import get_client_ip
 from ocflib.infra.hosts import hosts_by_filter
+from ocflib.infra.net import ipv4_to_ipv6
 from ocflib.infra.net import is_ocf_ip
 from ocflib.lab.stats import get_connection
 
 from ocfweb.caching import cache
-from ocfweb.caching import periodic
-
-CLEANUP_TIMEOUT = 3
 
 State = Enum('State', ['active', 'cleanup'])
 
@@ -36,7 +34,7 @@ def log_session(request):
     Desktops have a cronjob that calls this endpoint: https://git.io/vpIKX
     """
 
-    remote_ip = get_real_ip(request)
+    remote_ip, _ = get_client_ip(request)
 
     if not is_ocf_ip(ip_address(remote_ip)):
         return HttpResponse('Not Authorized', status=401)
@@ -108,24 +106,14 @@ def _close_sessions(host):
         )
 
 
-@periodic(60)
-def _cleanup_sessions():
-    """Periodically clean up sessions that don't die naturally.
-
-    For example, if a desktop crashes or is reset.
-    """
-
-    with get_connection() as c:
-        c.execute(
-            'UPDATE `session` SET `end` = `last_update` WHERE '
-            '`end` IS NULL AND `last_update` < '
-            ' ADDDATE(NOW(), -{} MINUTE)'.format(CLEANUP_TIMEOUT),
-        )
-
-
 @cache()
 def _get_desktops():
-    """Return IP address to fqdn mapping for OCF desktops from LDAP."""
+    """Return IPv4 and 6 address to fqdn mapping for OCF desktops from LDAP."""
 
-    return {e['ipHostNumber'][0]: e['cn'][0] + '.ocf.berkeley.edu'
-            for e in hosts_by_filter('(type=desktop)')}
+    desktops = {}
+    for e in hosts_by_filter('(type=desktop)'):
+        host = e['cn'][0] + '.ocf.berkeley.edu'
+        v4 = e['ipHostNumber'][0]
+        desktops[v4] = host
+        desktops[ipv4_to_ipv6(v4)] = host
+    return desktops
