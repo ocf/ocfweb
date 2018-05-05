@@ -50,6 +50,7 @@ def log_session(request):
         user = body.get('user')
 
         if state is State.cleanup or not user:
+            # sessions also get periodically cleaned up: https://git.io/vpwg8
             _close_sessions(host)
         elif state is State.active and _session_exists(host, user):
             _refresh_session(host, user)
@@ -114,6 +115,7 @@ def _get_desktops():
     for e in hosts_by_filter('(type=desktop)'):
         host = e['cn'][0] + '.ocf.berkeley.edu'
         v4 = e['ipHostNumber'][0]
+        v6 = ipv4_to_ipv6(ip_address(v4))
         desktops[v4] = host
-        desktops[ipv4_to_ipv6(v4)] = host
+        desktops[v6] = host
     return desktops

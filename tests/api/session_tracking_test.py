@@ -9,8 +9,10 @@ from ocfweb.api.session_tracking import log_session
 
 # something we know is a desktop or VM
 OCF_DESKTOP_IP = '169.229.226.118'
+OCF_DESKTOP_IP_V6 = '2607:f140:8801::1:118'
 OCF_DESKTOP_HOST = 'blackout.ocf.berkeley.edu'
 OCF_VM_IP = '169.229.226.36'
+OCF_VM_IP_V6 = '2607:f140:8801::1:36'
 
 
 def test_view_requires_post(client):
@@ -21,11 +23,14 @@ def test_view_requires_post(client):
 
 
 TEST_SOURCE_IPS = (
-    (OCF_DESKTOP_IP, 400, ''),  # valid IP but invalid data == 400
+    (OCF_DESKTOP_IP, 400, ''),  # valid IP but invalid data == 400, this is ok
+    (OCF_DESKTOP_IP_V6, 400, ''),
     (OCF_VM_IP, 400, 'IP {} does not belong to a desktop'.format(OCF_VM_IP)),
+    (OCF_VM_IP_V6, 400, 'IP {} does not belong to a desktop'.format(OCF_VM_IP_V6)),
     ('169.229.228.90', 401, 'Not Authorized'),
     ('8.8.8.8', 401, 'Not Authorized'),
     ('1.10.11.12', 401, 'Not Authorized'),
+    ('2606:4700:4700::1111', 401, 'Not Authorized'),
 )
 
 
