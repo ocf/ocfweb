@@ -107,7 +107,7 @@ def _close_sessions(host):
         )
 
 
-@cache()
+@cache(600)
 def _get_desktops():
     """Return IPv4 and 6 address to fqdn mapping for OCF desktops from LDAP."""
 
