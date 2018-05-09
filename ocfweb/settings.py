@@ -16,7 +16,6 @@ ALLOWED_HOSTS = [
     'dev.ocf.berkeley.edu',
     'dev-www.ocf.berkeley.edu',
     'ocfweb.ocf.berkeley.edu',
-    'supernova.ocf.berkeley.edu',
 ]
 
 INSTALLED_APPS = (

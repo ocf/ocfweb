@@ -26,6 +26,8 @@ from ocfweb.tv.urls import urlpatterns as tv
 handler404 = errors.http404
 
 urlpatterns = [
+    url(r'^404/', handler404),
+
     # test pages
     url(r'^test/status$', lambda _: HttpResponse('ok'), name='status'),
     url(r'^test/session$', test_session, name='test_session'),
