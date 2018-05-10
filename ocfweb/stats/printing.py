@@ -67,20 +67,28 @@ def _semester_histogram():
 @periodic(3600)
 def _toner_changes():
     return [
-        (printer, _toner_used_by_printer(printer))
+        (
+            printer,
+            _toner_used_by_printer(printer),
+        )
         for printer in ACTIVE_PRINTERS
     ]
 
 
-def _toner_used_by_printer(printer, cutoff=.05, since=date(2017, 8, 20)):
-    """Returns toner changes for a printer since a given date.
+def _toner_used_by_printer(printer, cutoff=.05, since=None):
+    """Returns toner used for a printer since a given date (by default it
+    returns toner used for this semester).
 
     Toner numbers can be significantly noisy, including significant diffs
-    whenever toner gets taken out and put back in whenever there is jam. Because
-    of this it's hard to determine if a new toner is inserted into a printer to
-    reduce this noise we only count diffs that are smaller than a cutoff which
-    empirically seems to be more accurate
+    whenever toner gets taken out and put back in whenever there is a jam.
+    Because of this it's hard to determine if a new toner is inserted into a
+    printer or if it was the same toner again. To reduce this noise we only
+    count diffs that are smaller than a cutoff which empirically seems to be
+    more accurate.
     """
+    if not since:
+        since = stats.current_semester_start()
+
     with stats.get_connection() as cursor:
         cursor.execute(
             '''
@@ -130,8 +138,7 @@ def _toner_used_by_printer(printer, cutoff=.05, since=date(2017, 8, 20)):
         ''', (cutoff,),
         )
         result = cursor.fetchone()['toner_used']
-        assert result is not None, 'No data exists for printer \'{}\''.format(printer)
-        return float(result)
+        return float(result or 0.0)
 
 
 @periodic(120)
