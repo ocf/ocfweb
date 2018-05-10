@@ -16,7 +16,7 @@ from ocfweb.component.graph import plot_to_image_bytes
 
 
 ALL_PRINTERS = ('papercut', 'pagefault', 'logjam', 'deforestation')
-ACTIVE_PRINTERS = ('papercut', 'pagefault')
+ACTIVE_PRINTERS = ('papercut', 'pagefault', 'logjam')
 
 
 def stats_printing(request):
