@@ -4,29 +4,8 @@ from datetime import timedelta
 from django.shortcuts import render
 from ocflib.lab.hours import Day
 from ocflib.lab.hours import HOLIDAYS
-from ocflib.lab.stats import current_semester_start
 
 from ocfweb.api.hours import display_hours
-
-
-def get_holidays():
-    for start, stop, name, hours in HOLIDAYS:
-        # there should be a better way to do this...
-        if name in ('Summer Break', 'Winter Break'):
-            continue
-
-        day = start
-        while start <= day <= stop:
-            if date.today() <= day:
-                yield (day, name, hours)
-            day += timedelta(days=1)
-
-
-def get_semester():
-    """Get the current semester (Fall 2016, Spring 2018, etc.)"""
-    start = current_semester_start()
-    semester = 'Fall' if start.month > 6 else 'Spring'
-    return '{} {}'.format(semester, start.year)
 
 
 def lab(doc, request):
@@ -45,8 +24,13 @@ def lab(doc, request):
                 for i in range(7)
             ],
             'regular_hours': display_hours(),
-            'holidays': list(get_holidays()),
-            'semester': get_semester(),
+            # Format dates to look like "month day, year" but with non-breaking
+            # spaces (\xa0) instead of spaces so that the date does not get
+            # broken up across lines:
+            # https://docs.djangoproject.com/en/2.0/ref/templates/builtins/#date
+            'holiday_format': 'M\xa0j,\xa0o',
+            # Only select current and future holidays (any that have not finished fully)
+            'holidays': [holiday for holiday in HOLIDAYS if holiday[1] >= date.today()],
             'SUNDAY': Day.SUNDAY,
             'MONDAY': Day.MONDAY,
             'TUESDAY': Day.TUESDAY,
