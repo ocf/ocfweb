@@ -14,7 +14,7 @@ from ocfweb.environment import ocfweb_version
 
 
 def get_base_css_classes(request):
-    if request.resolver_match.url_name:
+    if request.resolver_match and request.resolver_match.url_name:
         page_class = 'page-' + request.resolver_match.url_name
         yield page_class
 

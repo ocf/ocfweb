@@ -33,7 +33,6 @@ INSTALLED_APPS = (
     'ocfweb.docs',
     'ocfweb.login',
     'ocfweb.main',
-    'ocfweb.errors',
     'ocfweb.middleware',
     'ocfweb.stats',
     'ocfweb.test',
