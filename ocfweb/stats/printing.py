@@ -15,7 +15,7 @@ from ocfweb.caching import periodic
 from ocfweb.component.graph import plot_to_image_bytes
 
 
-ALL_PRINTERS = ('papercut', 'pagefault', 'logjam', 'deforestation')
+ALL_PRINTERS = ('papercut', 'pagefault', 'logjam', 'logjam-old', 'deforestation')
 ACTIVE_PRINTERS = ('papercut', 'pagefault', 'logjam')
 
 
