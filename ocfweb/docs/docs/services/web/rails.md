@@ -88,7 +88,7 @@ webserver's logs useful. You can access them via SSH in the following
 locations:
 
 * error log: `/opt/httpd/error.log` (most useful)
-* suexec log: `/opt/httpd/httpd-suexec.log` (only useful in rare cases)
+* suexec log: `/opt/httpd/suexec.log` (only useful in rare cases)
 
 Once your app has started running, changes you make to the Ruby code or
 templates won't take effect for a few hours. To apply changes immediately, you
