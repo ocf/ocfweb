@@ -36,21 +36,16 @@ def _get_servers():
         # login servers
         ThingToUpgrade.from_hostname(
             'death',
-            status=ThingToUpgrade.BLOCKED,
-            comments='same time as all login servers; need to forward-port '
-                     'suPHP or replace it',
+            comments='same time as all login servers',
         ),
         ThingToUpgrade.from_hostname(
             'tsunami',
-            status=ThingToUpgrade.BLOCKED,
-            comments='same time as all login servers, mostly blocked by death',
+            comments='same time as all login servers',
         ),
         ThingToUpgrade.from_hostname(
             'werewolves',
-            status=ThingToUpgrade.BLOCKED,
             comments=(
-                'same time as all login servers; '
-                'last time we set up an entirely new server and moved vhosts one-by-one'
+                "we'll need to set up an entirely new server and move vhosts one-by-one"
             ),
         ),
 
