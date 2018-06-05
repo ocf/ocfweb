@@ -1695,7 +1695,8 @@ function nightMode() {
 
   document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
 
-  document.getElementById('labtext').textContent = "Lab is closed.";
+  document.getElementById('labhours').innerHTML = "";
+  document.getElementById('labtext').textContent = "Closed all day.";
 }
 
 function shortTime(t) {
@@ -1779,7 +1780,5 @@ if (hours[0] != null) {
   }
 } else {
   nightMode();
-  document.getElementById('labhours').innerHTML = "";
-  document.getElementById('labtext').textContent = "Closed all day.";
 }
 </script>
