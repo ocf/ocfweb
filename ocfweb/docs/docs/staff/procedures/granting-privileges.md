@@ -75,6 +75,9 @@ part of the [bSecure](https://bsecure.berkeley.edu) project.
 We are able to obtain signed certificates at no charge through the campus
 InCommon-Comodo certificate service. In order to gain access to this service, a
 staffer needs to be listed as a Departmental Certificate Administrator for the
-OCF. Refer to the service's [help
+OCF. A current DCA can add other DCAs by sending a request to
+[calnet-admin@berkeley.edu](mailto:calnet-admin@berkeley.edu).
+
+ Refer to the service's [help
 page](https://calnetweb.berkeley.edu/calnet-technologists/calnet-incommon-comodo-certificate-service)
-for information on how to do that.
+for more information.
