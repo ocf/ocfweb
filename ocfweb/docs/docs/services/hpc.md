@@ -38,22 +38,26 @@ where you can ask questions and talk to us about anything HPC.
 
 ## The Cluster
 
-Users are currenly able to run jobs on our main HPC server, which has 4
+Users are currently able to run jobs on our main HPC server, which has 4
 1080Ti's and 256GB of DDR4-2400 RAM, which was funded by generous grants from
-the Student Tech Fund
+the Student Tech Fund.
 
 ## Slurm
 
 We currently use [Slurm][slurm] as our workload manager for the cluster. We
 will soon post technical documentation about our Slurm configuration, but briefly,
 Slurm is a free and open-source job scheduler which helps distribute jobs from
-all users evenly among HPC computers, referred to as nodes. In short, all of
-your programs will be run through Slurm. To use Slurm there are several commands
-that will be helpful:
+all users evenly among HPC computers, referred to as nodes. Berkeley Research
+Computing (BRC) has some useful documentation for using Slurm [here][brc_slurm],
+just keep in mind that there are some differences between their configuration and
+ours. To put it simply, all of your programs will be run through Slurm. To use
+Slurm there are several commands that will be helpful:
 
 * `srun`: Used to submit jobs.
 * `scontrol`: Used to view and edit the Slurm configuration.
 * `squeue`: Used to view running and queued jobs.
+* `scancel`: Used to cancel jobs.
+* `sinfo`: Used to view status of compute nodes in a cluster.
 
 ## Dependencies
 For managing application dependencies, you currently have two options:
@@ -69,7 +73,7 @@ virtualenv -p python3 venv
 . venv/bin/activate
 ```
 
-This will allow you to *pip install* any Python packages that the OCF does not
+This will allow you to `pip install` any Python packages that the OCF does not
 already have for your program.
 
 ### Singularity
@@ -92,22 +96,29 @@ Linux on your system, you can install Singularity from the official apt repos:
 sudo apt install singularity-container
 ```
 
-If you are running Mac you can look [here][mac_install], or Windows [here][win_install].
+If you do not have an apt-based Linux distribution, installation instructions
+can be found [here][linux_install]. Otherwise, if you are running Mac you can
+look [here][mac_install], or Windows [here][win_install].
 
 #### Building Your Container
 
 ```
-singularity build --sandbox ./my_container docker://ubuntu
+singularity build [--sandbox] ./my_container docker://ubuntu
 ```
 This will create a Singularity container named `my_container`. If you are still
 testing out your container on your system, we suggest you use the `--sandbox`
 option. This will allow you to install new packages in your container as you
-need them. The `docker://ubuntu` option notifies Singularity to bootstrap the
-container from the official Ubuntu docker container on [Docker Hub][docker_hub].
-There is also a [Singularity Hub][singularity_hub], from which you can directly
-pull Singularity images in a similar fashon. We also have some pre-built
-containers that you may use to avoid having to build your own. They are
-currently located at `/home/containers` on the Slurm master node.
+need them. However, if you are working on our infrastructure you will *not*
+be able to install non-pip packages on your container, because you do not have
+`sudo` privileges. If you would like to create your own container with new packages,
+you must create the container on your own machine, using the above command with
+`sudo` prepended, and then transfer it over to our infrastructure. The
+`docker://ubuntu` option notifies Singularity to bootstrap the container from
+the official Ubuntu docker container on [Docker Hub][docker_hub]. There is also
+a [Singularity Hub][singularity_hub], from which you can directly pull
+Singularity images in a similar fashon. We also have some pre-built containers
+that you may use to avoid having to build your own. They are currently located
+at `/home/containers` on the Slurm master node.
 
 #### Using Your Container
 
@@ -158,3 +169,5 @@ able to interface with the GPUs.
 [fco]: https://fco.slack.com/
 [mac_install]: https://singularity.lbl.gov/install-mac
 [win_install]: https://singularity.lbl.gov/install-windows
+[linux_install]: https://singularity.lbl.gov/install-linux
+[brc_slurm]: http://research-it.berkeley.edu/services/high-performance-computing/running-your-jobs
