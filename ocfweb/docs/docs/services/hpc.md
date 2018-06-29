@@ -47,10 +47,7 @@ the Student Tech Fund.
 We currently use [Slurm][slurm] as our workload manager for the cluster. We
 will soon post technical documentation about our Slurm configuration, but briefly,
 Slurm is a free and open-source job scheduler which helps distribute jobs from
-all users evenly among HPC computers, referred to as nodes. Berkeley Research
-Computing (BRC) has some useful documentation for using Slurm [here][brc_slurm],
-just keep in mind that there are some differences between their configuration and
-ours. To put it simply, all of your programs will be run through Slurm. To use
+all users evenly among HPC computers, referred to as nodes. To use
 Slurm there are several commands that will be helpful:
 
 * `srun`: Used to submit jobs.
@@ -58,6 +55,11 @@ Slurm there are several commands that will be helpful:
 * `squeue`: Used to view running and queued jobs.
 * `scancel`: Used to cancel jobs.
 * `sinfo`: Used to view status of compute nodes in a cluster.
+
+Berkeley Research Computing (BRC) has some useful documentation for using Slurm
+[here][brc_slurm], just keep in mind that there are some differences between
+their configuration and ours. To put it simply, all of your programs will be
+run through Slurm.
 
 ## Dependencies
 For managing application dependencies, you currently have two options:
@@ -103,20 +105,20 @@ look [here][mac_install], or Windows [here][win_install].
 #### Building Your Container
 
 ```
-singularity build [--sandbox] ./my_container docker://ubuntu
+singularity build --sandbox ./my_container docker://ubuntu
 ```
-This will create a Singularity container named `my_container`. If you are still
-testing out your container on your system, we suggest you use the `--sandbox`
-option. This will allow you to install new packages in your container as you
-need them. However, if you are working on our infrastructure you will *not*
-be able to install non-pip packages on your container, because you do not have
-`sudo` privileges. If you would like to create your own container with new packages,
-you must create the container on your own machine, using the above command with
-`sudo` prepended, and then transfer it over to our infrastructure. The
-`docker://ubuntu` option notifies Singularity to bootstrap the container from
+This will create a Singularity container named `my_container`. If you are
+working on our infrastructure you will *not* be able to install non-pip
+packages on your container, because you do not have root privileges.
+
+If you would like to create your own container with new packages, you must
+create the container on your own machine, using the above command with
+`sudo` prepended, and then transfer it over to our infrastructure.
+
+The `docker://ubuntu` option notifies Singularity to bootstrap the container from
 the official Ubuntu docker container on [Docker Hub][docker_hub]. There is also
 a [Singularity Hub][singularity_hub], from which you can directly pull
-Singularity images in a similar fashon. We also have some pre-built containers
+Singularity images in a similar fashion. We also have some pre-built containers
 that you may use to avoid having to build your own. They are currently located
 at `/home/containers` on the Slurm master node.
 
@@ -147,13 +149,20 @@ conversion using the following command:
 ```
 sudo singularity build my_image.simg ./my_sandboxed_container
 ```
+
+If you were working on the image on your own computer, you can transfer it over
+to your home directory on our infrastructure using the following command:
+```
+scp my_image.simg my_ocf_username@hpcctl.ocf.berkeley.edu:~/
+```
+
 To actually submit a Slurm job that uses your Singularity container and runs
 your script `my_executable.sh`, run the following command:
 ```
 srun --gres=gpu --partition=ocf-hpc singularity exec --nv my_image.simg ./my_executable.sh
 ```
 This will submit a Slurm job to run your executable on the `ocf-hpc` Slurm
-parition. The `--gres=gpu` option is what allows multiple users to run jobs
+partition. The `--gres=gpu` option is what allows multiple users to run jobs
 on a single node so it is important to include. Without it, you will not be
 able to interface with the GPUs.
 
