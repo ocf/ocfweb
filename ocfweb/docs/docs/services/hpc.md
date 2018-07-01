@@ -16,10 +16,11 @@ use the resources at our disposal.
 
 In order to access the HPC cluster, please send an access request to
 [help@ocf.berkeley.edu](mailto:help@ocf.berkeley.edu). Make sure to include
-your OCF username or [[group account|doc membership#h2_group-accounts]] name and a detailed technical
-description of the projects you plan to run on our HPC infrastructure. This
-would include information about the nature of the software being run, as
-well as the amount of computational resources that are expected to be needed.
+your OCF username or [[group account|doc membership#h2_group-accounts]] name
+and a detailed technical description of the projects you plan to run on our
+HPC infrastructure. This would include information about the nature of the
+software being run, as well as the amount of computational resources that are
+expected to be needed.
 
 ### Connecting
 
@@ -92,13 +93,13 @@ simplify deploying your program on our infrastructure.
 
 We recommend that you do your development on our HPC infrastructure, but you
 can also develop on your own machine if you would like. If you are running
-Linux on your system, you can install Singularity from the official apt repos:
+Linux on your system, you can install Singularity from the official `apt` repos:
 
 ```
 sudo apt install singularity-container
 ```
 
-If you do not have an apt-based Linux distribution, installation instructions
+If you do not have an `apt` based Linux distribution, installation instructions
 can be found [here][linux_install]. Otherwise, if you are running Mac you can
 look [here][mac_install], or Windows [here][win_install].
 
