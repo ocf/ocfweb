@@ -93,7 +93,7 @@ the check boxes and select `Drop` to delete them all.
 
 If you instead wanted to delete the whole database, you could use the command
 
-    mysqladmin -uusername -pmysql_password drop username
+    mysqladmin -uusername -p drop username
 
 However, you would need to run `makemysql` to create a new database, which
 would permanently change your password.
