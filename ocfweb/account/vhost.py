@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from ipware.ip import get_real_ip
+from ipware import get_client_ip
 from ocflib.account.search import user_attrs
 from ocflib.misc.mail import send_mail
 from ocflib.misc.validators import host_exists
@@ -71,7 +71,7 @@ def request_vhost(request):
 
             if not error:
                 # send email to hostmaster@ocf and redirect to success page
-                ip_addr = get_real_ip(request)
+                ip_addr, _ = get_client_ip(request)
 
                 try:
                     ip_reverse = socket.gethostbyaddr(ip_addr)[0]

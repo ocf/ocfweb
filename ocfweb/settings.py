@@ -156,6 +156,10 @@ OCFMAIL_USER = conf.get('ocfmail', 'user')
 OCFMAIL_PASSWORD = conf.get('ocfmail', 'password')
 OCFMAIL_DB = conf.get('ocfmail', 'db')
 
+OCFSTATS_USER = conf.get('ocfstats', 'user')
+OCFSTATS_PASSWORD = conf.get('ocfstats', 'password')
+OCFSTATS_DB = conf.get('ocfstats', 'db')
+
 if not DEBUG:
     # Prod-only settings.
     CACHES['default'] = {
