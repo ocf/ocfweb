@@ -28,48 +28,39 @@ Old toner cartridges should be saved in the server room (find a box that has a
 bunch of old toner in it). We return these to Staples for $2/cartridge in
 rewards.
 
-Our printers use [CC364X toner cartridges][toner]. We usually purchase the
-CC364XD item (same thing, but a dual pack) since it's usually cheaper. Other
-sellers (e.g. Amazon) are often significantly cheaper than Staples, but it
-varies a lot. We try to purchase in bulk when we find them at low cost.
+Our printers use [CC364X toner cartridges][toner]. As part of our service
+agreement with the [UCSF Print Management Program][pmp], we buy toner in bulk
+from them and in exchange receive complimentary service for our printers. In
+order to replenish stocks of toner, first get in touch with the UC Berkeley
+PMP Coordinator (as of 2018, this is Pam Krol) to get a quote for a bulk toner
+order, and then notify our LEAD Center advisor to get the pass-through account
+chartstring in order to let PMP debit our account directly through the ASUC.
+Once a contract is signed, PMP will ship the toner to the lab and withdraw
+funds from our account automatically. It is necessary to inform our advisors
+of this in advance so they can properly authorize and document the fund transfer
+between the ASUC and the University. The LEAD center has requested we keep our
+use of the passthrough account to a miminum, so we've agreed to buy toner in
+annual intervals.
 
-## Replacing maintenance kits
+## Performing maintenance on the printers
 
-We normally replace maintenance kits on schedule, although they can print past
-the official limit. (Print quality might start to suffer, and it might not be
-great for the printers, though.)
+Our contract with PMP entitles us to free service for our printers, with a
+short turn-around time. As a result, we should not longer attempt maintenance
+ourselves, and should let the professionals take care of it. Should maintenance
+be necessary, follow the instructions on the stickers attached to the front of
+the printers to contact a PMP technician, inform them of the problem, and let
+them handle everything else. If there are any questions about the terms of our
+service agreement, direct them to the UC Berkeley PMP Coordinator.
 
-Replacing maintenance kits is best done after lab hours, since it requires
-access to the back of the printer (and can be disruptive).
-
-The instructions provided with the maintenance kits are quite nice and have
-diagrams to follow showing where to replace the different parts in the printer.
-Gloves are provided with the kit, but using them is not necessary. However,
-they are good to use when replacing parts that have ink on them though to
-protect your hands and the part being replaced. The maintenance kits have more
-rollers provided than the printers use, so don't worry if you have a lot of
-them left over after replacing the kit.
-
-The most complicated part of the kit replacement is actually resetting the
-maintenance kit warning on the printer after it is all installed. To reset the
-warning, turn off the printer using the power switch on the lower right. Then,
-turn on the printer and hold down the `OK` button while the printer is
-starting. Once the printer stops loading any further, release the `OK` button
-and a startup menu should appear. In this menu, select `NEW MAINTENANCE KIT`
-and press the `OK` button and the printer should proceed to start normally with
-the warning reset.
-
-Our printers use [CB388A maintenance kits][maintkit].
 
 ## Stats
 
- * [How much toner is left in each printer][oracle]? (expressed as approximate
-   pages remaining over time)
- * [How many pages has each printer printed][historacle]? (expressed as total
+ * Toner and Maintenance Kit [status][printer-summary]
+ * [How many pages has each printer printed][pages-printed]? (expressed as total
    pages printed over time)
 
 
 [toner]: http://www.staples.com/HP-64X-Black-Toner-Cartridge-CC364XD-High-Yield-Twin-Pack/product_821762
-[maintkit]: http://www.staples.com/office/supplies/StaplesProductDisplay?storeId=10001&partNumber=854426
-[oracle]: http://stats.ocf.berkeley.edu/printing/oracle/
-[historacle]: http://stats.ocf.berkeley.edu/printing/historacle/
+[pmp]: http://campuslifeservices.ucsf.edu/documentsmedia/services/print_management
+[printer-summary]: https://www.ocf.berkeley.edu/stats/
+[pages-printed]: https://www.ocf.berkeley.edu/stats/printing/pages-printed
