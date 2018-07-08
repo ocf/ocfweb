@@ -34,9 +34,9 @@ def log_session(request):
     Desktops have a cronjob that calls this endpoint: https://git.io/vpIKX
     """
 
-    remote_ip, _ = get_client_ip(request)
+    remote_ip = ip_address(get_client_ip(request)[0])
 
-    if not is_ocf_ip(ip_address(remote_ip)):
+    if not is_ocf_ip(remote_ip):
         return HttpResponse('Not Authorized', status=401)
 
     try:
@@ -114,8 +114,8 @@ def _get_desktops():
     desktops = {}
     for e in hosts_by_filter('(type=desktop)'):
         host = e['cn'][0] + '.ocf.berkeley.edu'
-        v4 = e['ipHostNumber'][0]
-        v6 = ipv4_to_ipv6(ip_address(v4))
+        v4 = ip_address(e['ipHostNumber'][0])
+        v6 = ipv4_to_ipv6(v4)
         desktops[v4] = host
         desktops[v6] = host
     return desktops
