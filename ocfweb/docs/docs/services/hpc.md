@@ -1,4 +1,4 @@
-[[!meta title="High Performance Computing"]]
+[[!meta title="High performance computing"]]
 
 **NOTE: We are in the process of trialing this service to users so that we can
 make the service as accommodating and secure as possible. This means that items
