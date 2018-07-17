@@ -19,6 +19,7 @@ documentation:
 ### Lawrence Berkeley National Laboratory (LBNL) staff
 
 * Current LBNL ID card
+(or request a CalNet ID per [Berkeley Lab Docs](https://commons.lbl.gov/display/itdivision/2015/11/13/LBL+Calnet+ID+Requests+To+Go+Electronic))
 
 ### Graduate Theological Union (GTU) students
 
