@@ -12,6 +12,7 @@ ones for staff:
  * **ocf.io/gh/_<repo>_**, **ocf.io/github/_<repo>_**: The repository _<repo>_
    on the OCF GitHub page.  
    There are also abbreviations for the most commonly used repositories:
+    * **ocf.io/gh/i**: ircbot
     * **ocf.io/gh/l**: ocflib
     * **ocf.io/gh/p**: puppet
     * **ocf.io/gh/u**: utils
