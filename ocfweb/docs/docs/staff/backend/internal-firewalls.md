@@ -10,7 +10,8 @@ are those which are not running user code and are not staff VMs, specifically
 those in the IP range 5-90 (excluding the ones in the DMZ listed below). The DMZ
 consists of all other machines, including:
 
- * Those running user code (tsunami, werewolves, death, and desktops)
+ * Those running user code (i.e. the public SSH login, apphosting, and web
+   servers, and desktops)
  * Staff VMs
  * External machines plugged into the OCF network (e.g. staffers' laptops)
 
@@ -92,6 +93,9 @@ The `iptables` command allows you to inspect and debug IPv4 firewall rules:
       input/output interface)
     * You can add a `-n` option to show IP addresses and port numbers instead of
       hostnames and port names
+ * `iptables -S`: dump firewall rules in machine-parseable format
+    * Shows command line options used to add each rule
+    * `iptables -S <chain>`: dump firewall rules for a given chain
  * `iptables -F <chain>`: deletes all of the rules in the given chain.
     * It seems that in some circumstances iptables may be buggy and not remove a
       rule that Puppet tells it to remove. This seems to be more likely to occur
