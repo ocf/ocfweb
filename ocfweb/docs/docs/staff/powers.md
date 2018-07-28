@@ -65,7 +65,7 @@ In order to modify LDAP or Kerberos, staff must possess a `/admin` principal
 and it must be granted [Kerberos-editing rights in
 Puppet](https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl).
 
-### Other powers
+### Other privileges
 
 Technical Managers also have the following privileges:
 
@@ -80,6 +80,7 @@ the following:
 * Being an Owner of the GitHub OCF org
 * Super admin status on Google Apps
 * Chanop status on IRC
+* Services Root Adminship for Anope
 * Access to the firewall configuration interface
 * Being a Departmental Certificate Administrator for the [InCommon certificate
   service](https://cert-manager.com/customer/incommon)
