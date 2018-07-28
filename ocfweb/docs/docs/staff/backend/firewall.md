@@ -1,4 +1,4 @@
-[[!meta title="Firewall"]]
+[[!meta title="External firewall"]]
 
 We use a Palo Alto Networks (PAN) firewall provided by IST. We have one network
 port in the server room which is activated and behind the firewall; we have
