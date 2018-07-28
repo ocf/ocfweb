@@ -8,9 +8,9 @@ simplification have been consolidated into a tiered structure.
 
 Each tier includes the privileges of the preceding tiers.
 
-Staff privileges are distinct from the Board of Directors, General Manager, and
-Site Manager(s), which hold executive/legislative/judicial powers, although in
-practice virtually all Directors are staffers.
+Staff privileges are distinct from the Board of Directors and Officers, which
+hold legislative and executive powers respectively, although in practice
+virtually all Directors are staffers.
 
 
 ## Staff
