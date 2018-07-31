@@ -123,6 +123,18 @@ won't work if you're trying to diagnose boot problems.
 On the hypervisor, run `sudo virsh edit <vm-name>` to edit the VM's XML
 definition.
 
+To query and modify virtual hardware state for your vm, use the following commands,
+for RAM:
+
+    virsh dommemstat <vm-name> [[--config] [--live] | [--current]]
+    virsh setmaxmem <vm-name> <size> [[--config] [--live] | [--current]]
+    virsh memtune <vm-name> [...]
+and for vCPUs:
+
+    virsh vcpuinfo <vm-name> [...]
+    virsh vcpucount <vm-name>
+    virsh setvcpus <vm-name> <count> [...] [--guest] [--hotpluggable]
+
 ### How do I edit my VM's disk size?
 
 TODO
