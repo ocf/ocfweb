@@ -1,3 +1,5 @@
+def sha, version
+
 pipeline {
   // TODO: Make this cleaner: https://issues.jenkins-ci.org/browse/JENKINS-42643
   triggers {
@@ -16,28 +18,23 @@ pipeline {
     timeout(time: 1, unit: 'HOURS')
   }
 
-  script {
-    def sha
-  }
-
   stages {
     stage('init-submodules') {
       steps {
-        sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+        script {
+          sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+          version = "${new Date().format("yyyy-MM-dd-'T'HH-mm-ss")}-git${sha}"
+        }
 
         // TODO: figure out how to get the git plugin to do this for us
         sh 'git submodule update --init'
       }
     }
 
-    script {
-      def version = "${new Date().format("yyyy-MM-dd-'T'HH-mm-ss")}-git${sha}"
-    }
-
     stage('parallel-test-cook') {
       environment {
         DOCKER_REPO = 'docker-push.ocf.berkeley.edu/'
-        DOCKER_REVISION = version
+        DOCKER_REVISION = "${version}"
       }
       parallel {
         stage('test') {
