@@ -136,6 +136,7 @@ and for vCPUs:
     virsh setvcpus <vm-name> <count> [...] [--guest] [--hotpluggable]
 
 ### How do I edit my VM's disk size?
+
 Find the lvm vg
 
     virsh dumpxml <vm> | grep -C3 path
@@ -145,12 +146,12 @@ On the hypervisor,
     virsh dominfo <vm>
     virsh domblkinfo <vm>  
     lvextend /dev/vg/<vm> -L20G
-    virsh blockresize <vm> /dev/vda 20G 
+    virsh blockresize <vm> /dev/vda 20G
 
 On the vm,
 
     fdisk /dev/vda        # if needed, very carefully
     partprobe /dev/vda1
     resize2fs /dev/vda1
- 
- If you'd like to shrink a partition on-line, see [Unix SE](https://unix.stackexchange.com/questions/226872/how-to-shrink-root-filesystem-without-booting-a-livecd#227318).
+
+If you'd like to shrink a partition on-line, see [Unix SE](https://unix.stackexchange.com/questions/226872/how-to-shrink-root-filesystem-without-booting-a-livecd#227318).
