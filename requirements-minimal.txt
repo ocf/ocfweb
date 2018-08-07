@@ -11,6 +11,7 @@ matplotlib
 mistune
 numpy
 ocflib
+paramiko
 pyasn1
 pycryptodome
 pygments
