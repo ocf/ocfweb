@@ -1,20 +1,17 @@
-if (env.BRANCH_NAME == 'master') {
-    properties([
-        pipelineTriggers([
-            upstream(
-                upstreamProjects: 'ocflib/master,dockers/master',
-                threshold: hudson.model.Result.SUCCESS,
-            ),
-        ]),
-    ])
-}
-
-
 pipeline {
+  // TODO: Make this cleaner: https://issues.jenkins-ci.org/browse/JENKINS-42643
+  triggers {
+    upstream(
+      upstreamProjects: (env.BRANCH_NAME == 'master' ? 'ocflib/master,dockers/master' : ''),
+      threshold: hudson.model.Result.SUCCESS,
+    )
+  }
+
   agent {
     label 'slave'
   }
-   options {
+
+  options {
     ansiColor('xterm')
     timeout(time: 1, unit: 'HOURS')
   }
@@ -97,6 +94,5 @@ pipeline {
     }
   }
 }
-
 
 // vim: ft=groovy
