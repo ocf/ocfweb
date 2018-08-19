@@ -23,7 +23,7 @@ from ocfweb.component.forms import Form
 from ocfweb.component.session import logged_in_user
 
 
-def valid_domain(domain):
+def available_domain(domain):
     if not re.match(r'^[a-zA-Z0-9]+\.berkeley\.edu$', domain):
         return False
     return not host_exists(domain)
@@ -283,7 +283,7 @@ class VirtualHostForm(Form):
                 'Maybe add ".berkeley.edu" to the end?',
             )
 
-        if not valid_domain(requested_subdomain):
+        if not available_domain(requested_subdomain):
             raise forms.ValidationError(
                 'The domain you requested is not available. '
                 'Please select a different one.',

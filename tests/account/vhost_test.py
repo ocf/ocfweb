@@ -1,12 +1,12 @@
 import pytest
 
-from ocfweb.account.vhost import valid_domain
+from ocfweb.account.vhost import available_domain
 from ocfweb.account.vhost import valid_domain_external
 
 
 @pytest.mark.parametrize(
     'domain,expected', [
-        # nxdomain
+        # nxdomain (should be available)
         ('asdfghjkl.berkeley.edu', True),
         ('kljasdlgjlsafdfhsadf.berkeley.edu', True),
 
@@ -37,8 +37,8 @@ from ocfweb.account.vhost import valid_domain_external
         ('vns;alf iashf poasf bawen svn;', False),
     ],
 )
-def test_valid_domain(domain, expected):
-    assert valid_domain(domain) is expected
+def test_available_domain(domain, expected):
+    assert available_domain(domain) is expected
 
 
 @pytest.mark.parametrize(
