@@ -1,113 +1,101 @@
-if (env.BRANCH_NAME == 'master') {
-    properties([
-        pipelineTriggers([
-            upstream(
-                upstreamProjects: 'ocflib/master,dockers/master',
-                threshold: hudson.model.Result.SUCCESS,
-            ),
-        ]),
-    ])
-}
+def sha, version
 
+pipeline {
+  // TODO: Make this cleaner: https://issues.jenkins-ci.org/browse/JENKINS-42643
+  triggers {
+    upstream(
+      upstreamProjects: (env.BRANCH_NAME == 'master' ? 'ocflib/master,dockers/master' : ''),
+      threshold: hudson.model.Result.SUCCESS,
+    )
+  }
 
-try {
-    def sha
+  agent {
+    label 'slave'
+  }
 
-    node('slave') {
-        step([$class: 'WsCleanup'])
+  options {
+    ansiColor('xterm')
+    timeout(time: 1, unit: 'HOURS')
+  }
 
-        stage('check-out-code') {
-            // TODO: I think we can factor out the "src" subdirectory now that we
-            // don't build a Debian package?
-            dir('src') {
-                checkout scm
-                sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+  stages {
+    stage('check-gh-trust') {
+      steps {
+        checkGitHubAccess()
+      }
+    }
 
-                // TODO: figure out how to get the git plugin to do this for us
-                sh 'git submodule update --init'
-            }
+    stage('init-submodules') {
+      steps {
+        script {
+          sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+          version = "${new Date().format("yyyy-MM-dd-'T'HH-mm-ss")}-git${sha}"
         }
 
-        stash name: 'src', useDefaultExcludes: false
+        // TODO: figure out how to get the git plugin to do this for us
+        sh 'git submodule update --init'
+      }
     }
 
-    def version = "${new Date().format("yyyy-MM-dd-'T'HH-mm-ss")}-git${sha}"
-    withEnv([
-        'DOCKER_REPO=docker-push.ocf.berkeley.edu/',
-        "DOCKER_REVISION=${version}",
-    ]) {
-        parallel(
-            test: {
-                node('slave') {
-                    step([$class: 'WsCleanup'])
-                    unstash 'src'
-                    stage('test') {
-                        dir('src') {
-                            sh 'make test'
-                        }
-                    }
-                }
-            },
-
-            cook_image: {
-                node('slave') {
-                    step([$class: 'WsCleanup'])
-                    unstash 'src'
-                    stage('cook-image') {
-                        dir('src') {
-                            sh 'make cook-image'
-                        }
-                    }
-                }
-            },
-        )
-
-
-        if (env.BRANCH_NAME == 'master') {
-            node('deploy') {
-                step([$class: 'WsCleanup'])
-                unstash 'src'
-
-                stage('push-to-registry') {
-                    dir('src') {
-                        sh 'make push-image'
-                    }
-                }
-
-                stage('deploy-to-prod') {
-                    // TODO: make these deploy and roll back together!
-                    build job: 'marathon-deploy-app', parameters: [
-                        [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/web'],
-                        [$class: 'StringParameterValue', name: 'version', value: version],
-                    ]
-                    build job: 'marathon-deploy-app', parameters: [
-                        [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/worker'],
-                        [$class: 'StringParameterValue', name: 'version', value: version],
-                    ]
-                    build job: 'marathon-deploy-app', parameters: [
-                        [$class: 'StringParameterValue', name: 'app', value: 'ocfweb/static'],
-                        [$class: 'StringParameterValue', name: 'version', value: version],
-                    ]
-                }
-            }
+    stage('parallel-test-cook') {
+      environment {
+        DOCKER_REPO = 'docker-push.ocf.berkeley.edu/'
+        DOCKER_REVISION = "${version}"
+      }
+      parallel {
+        stage('test') {
+          steps {
+            sh 'make test'
+          }
         }
+
+        stage('cook-image') {
+          steps {
+            sh 'make cook-image'
+          }
+        }
+      }
     }
 
-} catch (err) {
-    def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Failure!"
-    def message = "${env.JOB_NAME} (#${env.BUILD_NUMBER}) failed: ${env.BUILD_URL}"
-
-    if (env.BRANCH_NAME == 'master') {
-        slackSend color: '#FF0000', message: message
-        mail to: 'root@ocf.berkeley.edu', subject: subject, body: message
-    } else {
-        mail to: emailextrecipients([
-            [$class: 'CulpritsRecipientProvider'],
-            [$class: 'DevelopersRecipientProvider']
-        ]), subject: subject, body: message
+    stage('push-to-registry') {
+      when {
+        branch 'master'
+      }
+      agent {
+        label 'deploy'
+      }
+      steps {
+        sh 'make push-image'
+      }
     }
 
-    throw err
+    stage('deploy-to-prod') {
+      when {
+        branch 'master'
+      }
+      agent {
+        label 'deploy'
+      }
+      steps {
+        // TODO: Make these deploy and roll back together!
+        // TODO: Also try to parallelize these if possible?
+        marathonDeployApp('ocfweb/web', version)
+        marathonDeployApp('ocfweb/worker', version)
+        marathonDeployApp('ocfweb/static', version)
+      }
+    }
+  }
+
+  post {
+    failure {
+      emailNotification()
+    }
+    always {
+      node(label: 'slave') {
+        ircNotification()
+      }
+    }
+  }
 }
 
 // vim: ft=groovy
