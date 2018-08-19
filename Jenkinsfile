@@ -58,6 +58,10 @@ pipeline {
     }
 
     stage('push-to-registry') {
+      environment {
+        DOCKER_REPO = 'docker-push.ocf.berkeley.edu/'
+        DOCKER_REVISION = "${version}"
+      }
       when {
         branch 'master'
       }
