@@ -45,7 +45,7 @@ pipeline {
       parallel {
         stage('test') {
           environment {
-            COVERALLS_REPO_TOKEN = credentials('coveralls_token')
+            COVERALLS_REPO_TOKEN = credentials('coveralls_ocfweb_token')
           }
           steps {
             sh 'make coveralls'
