@@ -1,8 +1,10 @@
-coverage
 coveralls
 pre-commit
 pytest
-pytest-django
+pytest-cov
+# pytest-django 3.4.0 and 3.4.1 cause test errors with hosting icons that
+# aren't actual errors
+pytest-django<=3.4.0
 pytest-env
 pytest-xdist
 requirements-tools
