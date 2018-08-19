@@ -29,7 +29,7 @@
         removeIcon.attr('aria-hidden', 'true');
         removeIcon.addClass('glyphicon glyphicon-minus');
         removeButton.append(removeIcon);
-        removeButton.click(function() {
+        removeButton.on('click', function() {
             if (row.attr('data-hiding') !== 'true') {
                 row.attr('data-hiding', 'true').stop(true).slideUp(200, function() {
                     row.remove();
@@ -53,7 +53,7 @@
 
     function updateDisabledButtons(ctrl) {
         if (ctrl.find('.row[data-hiding!="true"]').length > 1)
-            ctrl.find('button').removeAttr('disabled');
+            ctrl.find('button').attr('disabled', false);
         else
             ctrl.find('button').attr('disabled', 'disabled');
     }
@@ -79,7 +79,7 @@
         } else {
             modal.find('.js-addr').val(name + '@' + domain);
             modal.find('.js-warn-addr').hide();
-            modal.find('button').removeAttr('disabled');
+            modal.find('button').attr('disabled', false);
         }
     }
 
@@ -95,16 +95,16 @@
         }
 
         modal.find('input[name=password],input[name=name]').val('');
-        modal.find('button').removeAttr('disabled');
-        modal.find('input[name=name]').unbind('input').on('input', updateForwardToAddr.bind(modal));
+        modal.find('button').attr('disabled', false);
+        modal.find('input[name=name]').off('input').on('input', updateForwardToAddr.bind(modal));
 
         var container = modal.find('.js-forward-to-addresses');
         var addAddress = addForwardingAddress.bind(container);
         container.empty();
         addAddress();
 
-        modal.find('.js-add-another').unbind('click').click(function() { addAddress(); });
-        modal.parent('form').unbind('submit').submit(function() {
+        modal.find('.js-add-another').off('click').on('click', function() { addAddress(); });
+        modal.parent('form').off('submit').on('submit', function() {
             updateForwardToValue.bind(this)();
             updateForwardToAddr.bind(this)();
         }.bind(modal));
@@ -112,24 +112,24 @@
     }
 
     $(document).ready(function() {
-        $('.js-change-password').click(function() {
+        $('.js-change-password').on('click', function() {
             var modal = $('#js-modal-change-password');
             setTextOrValue(modal.find('.js-email'), $(this).data('addr'));
             modal.find('input[name=password]').val('');
             modal.modal();
         });
 
-        $('.js-remove-address').click(function() {
+        $('.js-remove-address').on('click', function() {
             var modal = $('#js-modal-remove-address');
             setTextOrValue(modal.find('.js-email'), $(this).data('addr'));
             modal.modal();
         });
 
-        $('.js-add-address').click(function() {
+        $('.js-add-address').on('click', function() {
             showAddAddressModal($(this).data('domain'), false);
         });
 
-        $('.js-edit-forward-to').click(function() {
+        $('.js-edit-forward-to').on('click', function() {
             var modal = $('#js-modal-edit-forward-to');
             setTextOrValue(modal.find('.js-email'), $(this).data('addr'));
 
@@ -141,8 +141,8 @@
             for (var i = 0; i < forwardTo.length; i++)
                 addAddress(forwardTo[i]);
 
-            modal.find('.js-add-another').click(function() { addAddress(); });
-            modal.find('button[type=submit]').click(updateForwardToValue.bind(modal));
+            modal.find('.js-add-another').on('click', function() { addAddress(); });
+            modal.find('button[type=submit]').on('click', updateForwardToValue.bind(modal));
 
             modal.modal();
         });
@@ -158,7 +158,7 @@
             'title': catchallTitle,
             'content': catchallContent,
             'html': true
-        }).click(function() {
+        }).on('click', function() {
             $(this).popover('toggle');
         });
 
@@ -168,16 +168,18 @@
                 <a class="btn btn-large btn-block btn-success js-add-catchall-btn">Add a catch-all address</a> \
             ',
             'html': true
-        }).click(function() {
+        }).on('click', function() {
             $(this).popover('toggle');
-            $('.js-add-catchall-btn').click(function() {
+            $('.js-add-catchall-btn').on('click', function() {
                 $(this).popover('hide');
                 showAddAddressModal($(this).data('domain'), true);
             }.bind(this));
         });
 
-        $('.js-import-csv').change(function() {
-            $('.js-import-csv-form').submit();
+        $('.js-import-csv').on('change', function() {
+            $('.js-import-csv-form').trigger('submit');
         });
     });
 })();
+
+// vim: ts=4 sts=4 sw=4
