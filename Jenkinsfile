@@ -19,6 +19,12 @@ pipeline {
   }
 
   stages {
+    stage('check-gh-trust') {
+      steps {
+        checkGitHubAccess()
+      }
+    }
+
     stage('init-submodules') {
       steps {
         script {
