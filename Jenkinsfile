@@ -44,8 +44,11 @@ pipeline {
       }
       parallel {
         stage('test') {
+          environment {
+            COVERALLS_REPO_TOKEN = credentials('coveralls_token')
+          }
           steps {
-            sh 'make test'
+            sh 'make coveralls'
           }
         }
 
