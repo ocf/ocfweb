@@ -6,7 +6,7 @@ $(document).ready(function() {
         $('body').css('margin-bottom', height);
     };
 
-    $(window).resize(function() {
+    $(window).on('resize', function() {
         clearTimeout(resizeTimeout);
         setTimeout(updateFooterHeight, 10);
     });
@@ -14,13 +14,15 @@ $(document).ready(function() {
     updateFooterHeight();
 
     // Close dropdown menu if clicked/tapped outside of
-    $(document).click(function(event) {
+    $(document).on('click', function(event) {
         var menuOpen = $(".navbar-collapse").hasClass("in");
 
         // If the menu is open and the click occurred somewhere
         //   other than the menu itself, close it.
         if (menuOpen && $('.navbar-collapse').has(event.target).length === 0) {
-            $("button.navbar-toggle").click();
+            $("button.navbar-toggle").trigger('click');
         }
     });
 });
+
+// vim: ts=4 sts=4 sw=4
