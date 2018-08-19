@@ -1,8 +1,8 @@
-coverage
 coveralls
 pre-commit
 pytest
-pytest-django
+pytest-cov
+pytest-django<=3.4.0
 pytest-env
 pytest-xdist
 requirements-tools

@@ -13,8 +13,7 @@ DOCKER_TAG_STATIC = $(DOCKER_REPO)ocfweb-static:$(DOCKER_REVISION)
 .PHONY: test
 test: export OCFWEB_TESTING ?= 1
 test: venv
-	$(BIN)/coverage run -m py.test -v tests/
-	$(BIN)/coverage report
+	$(BIN)/py.test -v tests/
 	$(BIN)/pre-commit run --all-files
 
 .PHONY: Dockerfile.%

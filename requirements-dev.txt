@@ -14,7 +14,8 @@ pathlib2==2.3.2
 pluggy==0.7.1
 pre-commit==1.10.5
 py==1.5.4
-pytest==3.7.1
+pytest==3.7.2
+pytest-cov==2.5.1
 pytest-django==3.3.3
 pytest-env==0.6.2
 pytest-forked==0.2
