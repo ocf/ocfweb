@@ -48,7 +48,7 @@ pipeline {
             COVERALLS_REPO_TOKEN = credentials('coveralls_ocfweb_token')
           }
           steps {
-            sh 'make coveralls'
+            sh 'make test'
           }
         }
 

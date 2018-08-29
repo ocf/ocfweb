@@ -10,11 +10,16 @@ DOCKER_TAG_WEB = $(DOCKER_REPO)ocfweb-web:$(DOCKER_REVISION)
 DOCKER_TAG_WORKER = $(DOCKER_REPO)ocfweb-worker:$(DOCKER_REVISION)
 DOCKER_TAG_STATIC = $(DOCKER_REPO)ocfweb-static:$(DOCKER_REVISION)
 
+# set COVERALLS_REPO_TOKEN=<repo token> environment variable to report coverage
+# after running tests
 .PHONY: test
 test: export OCFWEB_TESTING ?= 1
 test: venv
 	$(BIN)/py.test -v tests/
 	$(BIN)/pre-commit run --all-files
+ifneq ($(strip $(COVERALLS_REPO_TOKEN)),)
+	$(BIN)/coveralls
+endif
 
 .PHONY: Dockerfile.%
 Dockerfile.%: Dockerfile.%.in
@@ -33,11 +38,6 @@ push-image:
 	docker push $(DOCKER_TAG_WEB)
 	docker push $(DOCKER_TAG_WORKER)
 	docker push $(DOCKER_TAG_STATIC)
-
-# first set COVERALLS_REPO_TOKEN=<repo token> environment variable
-.PHONY: coveralls
-coveralls: venv test
-	$(BIN)/coveralls
 
 .PHONY: dev
 dev: venv ocfweb/static/scss/site.scss.css
