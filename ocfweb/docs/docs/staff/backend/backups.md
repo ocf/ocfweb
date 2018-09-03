@@ -116,4 +116,4 @@ each time too, so it approximately breaks even.)
 [box]: https://www.box.com
 [create-encrypted-backup]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/create-encrypted-backup
 [upload-to-box]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/upload-to-box
-[backed-up-files]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/rsnapshot.conf#L53
+[backed-up-files]: https://github.com/ocf/puppet/blob/17bc94b395e254529d97c84fb044f76931439fd7/modules/ocf_backups/files/rsnapshot.conf#L53

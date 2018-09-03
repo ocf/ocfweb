@@ -106,7 +106,7 @@ mean:
 - **SASL**: An authentication layer that many different applications can use.
 
 [xkcd-space]: https://xkcd.com/1133/
-[kdc-location]: https://github.com/ocf/puppet/blob/master/modules/ocf/files/auth/krb5.conf#L27
+[kdc-location]: https://github.com/ocf/puppet/blob/17bc94b395e254529d97c84fb044f76931439fd7/modules/ocf/files/auth/krb5.conf#L27
 
 
 ## Commands
@@ -216,4 +216,4 @@ or a HTTP Kerberos login, then they make more requests to the KDC:
    the user issuing the request.
 
 [eli5]: http://www.roguelynn.com/words/explain-like-im-5-kerberos/
-[kdc]: https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kdc.conf#L13
+[kdc]: https://github.com/ocf/puppet/blob/17bc94b395e254529d97c84fb044f76931439fd7/modules/ocf_kerberos/files/kdc.conf#L13

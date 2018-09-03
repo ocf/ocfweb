@@ -114,7 +114,7 @@ def change_password(request):
 class ChpassForm(Form):
 
     def __init__(self, ocf_accounts, calnet_uid, *args, **kwargs):
-        super(ChpassForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.calnet_uid = calnet_uid
         self.fields['ocf_account'] = forms.ChoiceField(
             choices=[(x, x) for x in ocf_accounts],
