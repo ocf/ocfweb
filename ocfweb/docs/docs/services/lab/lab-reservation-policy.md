@@ -20,7 +20,7 @@ Here are a few important things to note:
   available for Debian, it may be installed at the discretion of an OCF Site
   Manager.
 
-- The OCF hosts a DeCal; in Fall 2017 the DeCal is from 8 to 9 pm on Tuesdays
+- The OCF hosts a DeCal; in Fall 2018 the DeCal is from 8 to 9 pm on Tuesdays
   and Thursdays, and as such we will be unable to allow lab reservations that
   conflict with or extend into that timeframe.
 
