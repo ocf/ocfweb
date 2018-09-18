@@ -69,7 +69,7 @@ that we only raise quotas (so that we don't accidentally lower the quota of a
 special snowflake).
 
 The "soft limit" is like a warning limit; it can be configured to be enforced
-after a grade period, but we don't do this. In practice, we announce the limit
+after a grace period, but we don't do this. In practice, we announce the limit
 to the public as "X GB", with a soft limit of "X GB" and a hard limit of "X+0.5
 GB".
 
