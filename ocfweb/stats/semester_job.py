@@ -39,7 +39,7 @@ graphs = {
                     (`day` BETWEEN CAST(%s AS Date) AND CAST(%s AS DATE))
                 GROUP BY `pages`''',
             'quota': tuple([WEEKDAY_QUOTA]),
-            'title': 'Semester Weekday Jobs Distributiom',
+            'title': 'Semester Weekday Jobs Distribution',
         },
     'weekend':
         {
