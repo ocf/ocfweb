@@ -72,7 +72,7 @@ gunicorn: venv
 # phony because it depends on other files, too many to express
 .PHONY: ocfweb/static/scss/site.scss.css
 ocfweb/static/scss/site.scss.css: ocfweb/static/scss/site.scss venv
-	$(BIN)/sassc "$<" "$@"
+	$(BIN)/pysassc "$<" "$@"
 
 .PHONY: watch-scss
 watch-scss: venv
