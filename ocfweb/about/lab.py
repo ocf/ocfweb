@@ -10,6 +10,7 @@ def lab_open_source(request):
         },
     )
 
+
 def lab_vote(request):
     return render(
         request,
