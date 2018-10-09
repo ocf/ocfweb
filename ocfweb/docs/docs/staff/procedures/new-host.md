@@ -96,8 +96,7 @@ tty.
 The `makevm` script at the very end drops you into a shell. In this shell, you
 should run:
 
-1. `puppet agent --enable`.
-2. `puppet agent --test`.
+1. `puppet agent --test`.
 
 
 ### Physical hosts
@@ -119,22 +118,20 @@ should run:
    5. Add the correct IP addresses with `ip addr add $CORRECT_ADDRESS
       dev eno1`. Make sure that $CORRECT_ADDRESS includes the netmask.
 
-3. `puppet agent --enable`
-4. `puppet agent --test`.
+3. `puppet agent --test`
 
 
 ## Step 4. Sign the Puppet cert and run Puppet
 
-On the puppetmaster, `sudo puppet cert list` to see pending requests. When you see
-yours, use `sudo puppet cert sign hostname.ocf.berkeley.edu`.
+On the puppetmaster, `sudo puppetserver ca list` to see pending requests. When
+you see yours, use `sudo puppetserver ca sign --certname hostname.ocf.berkeley.edu`.
 
-Log back into the host and do `systemctl restart puppet` to start the Puppet
-run. Monitor the run with `journalctl -f`. Restart Puppet once or twice more
-until the configuration converges.
+Log back into the host and run `puppet agent --test` to start the Puppet
+run. You may need to repeat this once or twice until the run converges.
 
 
 ### Step 4.1. Upgrade packages
 
 The first Puppet run and various other things may be broken if one or more
-packages are out of date, e.g. Puppet. Remedy this with an `apt-get update &&
-apt-get upgrade`.
+packages are out of date, e.g. Puppet. Remedy this with an `apt update &&
+apt upgrade`.
