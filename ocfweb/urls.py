@@ -47,7 +47,7 @@ urlpatterns = [
     # about pages
     url(r'^about/staff$', about_staff, name='about-staff'),
     url(r'^about/lab/open-source$', lab_open_source, name='lab-open-source'),
-    url(r'^about/lab/vote$', lab_open_source, name='lab-vote'),
+    url(r'^about/lab/vote$', lab_vote, name='lab-vote'),
 
     # tv endpoints
     url(r'^tv/', include(tv)),
