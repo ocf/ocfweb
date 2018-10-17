@@ -64,4 +64,4 @@ credentials from the passwords file. Then fill out the [create new notice
 form](https://lumendatabase.org/notices/new). The "recipient" field should be
 the University, the "sender" field should be the entity that sent the request,
 the "principal" field is the copyright holder, and the the "submitter" is the
-OCF. 
+OCF.
