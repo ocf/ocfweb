@@ -86,7 +86,7 @@ def get_jobs_plot(day):
     ax.set_xticks(ticks=tickLocations)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax.yaxis.grid(True)
-    ax.set_ylim(ymin=0)
+    ax.set_ylim(bottom=0)
     ax.set_ylabel('Number of Jobs Printed')
     ax.set_title('Print Job Distribution {:%a %b %d}'.format(day))
 

@@ -4,8 +4,8 @@ from datetime import datetime
 from datetime import time
 
 from cached_property import cached_property
-from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.shortcuts import render
+from django.templatetags.static import static
 from django.urls import reverse
 from django.utils import timezone
 
