@@ -71,7 +71,8 @@ def get_hosts():
     is_hidden = lambda host: host['cn'][0][:6] == 'hozer-' or host['cn'][0][:4] == 'dev-'
     
     def create_hosts(lst):
-        """Accepts a list of raw ldap output, returns a dictionary of host objects indexed by hostname
+        """Accepts a list of raw ldap output, returns a dictionary of host
+        objects indexed by hostname
         """
         hosts = {}
         for h in lst:
@@ -96,9 +97,9 @@ def get_hosts():
                 children.append(Host(child.hostname, 'vm', child.description, ()))
         if children:
             servers.pop(h.hostname)
-            hypervisors[h.hostname] = Host(h.hostname, 'hypervisor', h.description, tuple(children))
+            hypervisors[h.hostname] = Host(h.hostname, 'hypervisor',
+                                            h.description, tuple(children))
     
-    return list(hypervisors.values()) + list(servers.values()) + list(desktops.values()) + list(misc.values())
     # Handle special cases
     def change_host_type(hostname, host_type, type_dict):
         """Pop Host with hostname from servers, change its type, and add to misc
@@ -111,6 +112,8 @@ def get_hosts():
     misc['blackhole'] = Host('blackhole', 'network',
                             'Managed Cisco Catalyst 2960S-48TS-L Switch.', [])
 
+    return list(hypervisors.values()) + list(servers.values()) \
+           + list(desktops.values()) + list(misc.values())
 
 def servers(doc, request):
     return render(
