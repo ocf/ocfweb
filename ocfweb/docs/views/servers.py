@@ -99,6 +99,18 @@ def get_hosts():
             hypervisors[h.hostname] = Host(h.hostname, 'hypervisor', h.description, tuple(children))
     
     return list(hypervisors.values()) + list(servers.values()) + list(desktops.values()) + list(misc.values())
+    # Handle special cases
+    def change_host_type(hostname, host_type, type_dict):
+        """Pop Host with hostname from servers, change its type, and add to misc
+        """
+        servers.pop(hostname, host_type)
+        type_dict[hostname] = Host.from_ldap(hostname, type=host_type)
+    change_host_type('overheat', 'raspi', misc)
+    change_host_type('tornado', 'nuc', misc)
+    change_host_type('jaws', 'hypervisor', hypervisors)
+    misc['blackhole'] = Host('blackhole', 'network',
+                            'Managed Cisco Catalyst 2960S-48TS-L Switch.', [])
+
 
 def servers(doc, request):
     return render(
