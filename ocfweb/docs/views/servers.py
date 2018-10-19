@@ -4,7 +4,7 @@ import dns.resolver
 from cached_property import cached_property
 from django.shortcuts import render
 from ocflib.infra.hosts import hosts_by_filter
-from ocflib.lab.stats import list_desktops
+
 from ocfweb.caching import periodic
 
 
@@ -55,21 +55,24 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
     def has_munin(self):
         return self.type in ('hypervisor', 'vm', 'server', 'desktop')
 
+
 def get_children(host_name):
     """Get the children of a host in a list
     Right now this returns a hard-coded entry from puppet query. Would be changed
     once I figure out how to query puppet from python.
     """
-    puppet_query_output = eval('[ { "name": "vms", "environment": "abizer_aux", "value": [], "certname": "jaws.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [ "fallingrocks", "cataclysm", "dev-flood", "dev-maelstrom", "dev-pestilence", "dev-tsunami", "dev-werewolves", "dev-whiteout", "doom", "fraud", "hozer-62", "limniceruption", "lowgpa", "miasma" ], "certname": "hal.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [], "certname": "mudslide.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [ "pox", "alamo", "apocalypse", "blackrain", "fallout", "falsevacuum", "fireball", "fukushima", "gnats", "leprosy", "malaria", "nuke", "oilspill", "panic", "pileup", "riot", "sarin", "shipwreck", "virus", "vortex", "war", "zerg", "walpurgisnacht", "mudslide", "pompeii", "locusts", "fire", "rapture", "smallpox", "aliens", "cloudburst", "coldwave", "coma", "dev-firestorm", "emp", "meltdown", "meteorite", "old-vampires", "quasar", "ragnarok", "revolution", "sauron", "skynet", "tempest" ], "certname": "pandemic.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [ "nyx", "dementors", "democracy", "whiteout", "reaper", "segfault", "monsoon", "fraud", "gridlock", "lethe", "anthrax", "supernova", "firestorm", "pestilence", "flood", "maelstrom", "thunder", "death", "tsunami", "lightning", "vampires", "werewolves", "biohazard", "cataclysm", "dev-dementors", "dev-flood", "dev-whiteout", "doom", "hozer-69", "hozer-70", "hozer-71", "hozer-73", "hozer-74", "limniceruption", "matrix", "miasma", "zombies" ], "certname": "riptide.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [], "certname": "gnats.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [], "certname": "smallpox.ocf.berkeley.edu" } ]')
+    puppet_query_output = eval('[ { "name": "vms", "environment": "abizer_aux", "value": [], "certname": "jaws.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [ "fallingrocks", "cataclysm", "dev-flood", "dev-maelstrom", "dev-pestilence", "dev-tsunami", "dev-werewolves", "dev-whiteout", "doom", "fraud", "hozer-62", "limniceruption", "lowgpa", "miasma" ], "certname": "hal.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [], "certname": "mudslide.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [ "pox", "alamo", "apocalypse", "blackrain", "fallout", "falsevacuum", "fireball", "fukushima", "gnats", "leprosy", "malaria", "nuke", "oilspill", "panic", "pileup", "riot", "sarin", "shipwreck", "virus", "vortex", "war", "zerg", "walpurgisnacht", "mudslide", "pompeii", "locusts", "fire", "rapture", "smallpox", "aliens", "cloudburst", "coldwave", "coma", "dev-firestorm", "emp", "meltdown", "meteorite", "old-vampires", "quasar", "ragnarok", "revolution", "sauron", "skynet", "tempest" ], "certname": "pandemic.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [ "nyx", "dementors", "democracy", "whiteout", "reaper", "segfault", "monsoon", "fraud", "gridlock", "lethe", "anthrax", "supernova", "firestorm", "pestilence", "flood", "maelstrom", "thunder", "death", "tsunami", "lightning", "vampires", "werewolves", "biohazard", "cataclysm", "dev-dementors", "dev-flood", "dev-whiteout", "doom", "hozer-69", "hozer-70", "hozer-71", "hozer-73", "hozer-74", "limniceruption", "matrix", "miasma", "zombies" ], "certname": "riptide.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [], "certname": "gnats.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [], "certname": "smallpox.ocf.berkeley.edu" } ]')  # noqa: E501
     for entry in puppet_query_output:
         if entry['certname'].split('.')[0] == host_name:
             return entry['value']
     return []
 
+
 @periodic(120)
 def get_hosts():
-    is_hidden = lambda host: host['cn'][0][:6] == 'hozer-' or host['cn'][0][:4] == 'dev-'
-    
+    def is_hidden(host):
+        return host['cn'][0][:6] == 'hozer-' or host['cn'][0][:4] == 'dev-'
+
     def create_hosts(lst):
         """Accepts a list of raw ldap output, returns a dictionary of host
         objects indexed by hostname
@@ -86,7 +89,7 @@ def get_hosts():
     desktops = create_hosts(hosts_by_filter('(type=desktop)'))
     misc = create_hosts(hosts_by_filter('(type=printer)'))
     hypervisors = {}
-    
+
     # Add children to hypervisors
     for h in list(servers.values()):
         children = []
@@ -97,9 +100,13 @@ def get_hosts():
                 children.append(Host(child.hostname, 'vm', child.description, ()))
         if children:
             servers.pop(h.hostname)
-            hypervisors[h.hostname] = Host(h.hostname, 'hypervisor',
-                                            h.description, tuple(children))
-    
+            hypervisors[h.hostname] = Host(
+                h.hostname,
+                'hypervisor',
+                h.description,
+                tuple(children),
+            )
+
     # Handle special cases
     def change_host_type(hostname, host_type, type_dict):
         """Pop Host with hostname from servers, change its type, and add to misc
@@ -109,11 +116,14 @@ def get_hosts():
     change_host_type('overheat', 'raspi', misc)
     change_host_type('tornado', 'nuc', misc)
     change_host_type('jaws', 'hypervisor', hypervisors)
-    misc['blackhole'] = Host('blackhole', 'network',
-                            'Managed Cisco Catalyst 2960S-48TS-L Switch.', [])
+    misc['blackhole'] = Host(
+        'blackhole', 'network',
+        'Managed Cisco Catalyst 2960S-48TS-L Switch.', [],
+    )
 
     return list(hypervisors.values()) + list(servers.values()) \
-           + list(desktops.values()) + list(misc.values())
+        + list(desktops.values()) + list(misc.values())
+
 
 def servers(doc, request):
     return render(
