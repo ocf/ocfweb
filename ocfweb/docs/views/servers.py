@@ -56,6 +56,16 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
     def has_munin(self):
         return self.type in ('hypervisor', 'vm', 'server', 'desktop')
 
+def get_children(host_name):
+    """Get the children of a host in a list
+    Right now this returns a hard-coded entry from puppet query. Would be changed
+    once I figure out how to query puppet from python.
+    """
+    puppet_query_output = eval('[ { "name": "vms", "environment": "abizer_aux", "value": [], "certname": "jaws.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [ "fallingrocks", "cataclysm", "dev-flood", "dev-maelstrom", "dev-pestilence", "dev-tsunami", "dev-werewolves", "dev-whiteout", "doom", "fraud", "hozer-62", "limniceruption", "lowgpa", "miasma" ], "certname": "hal.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [], "certname": "mudslide.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [ "pox", "alamo", "apocalypse", "blackrain", "fallout", "falsevacuum", "fireball", "fukushima", "gnats", "leprosy", "malaria", "nuke", "oilspill", "panic", "pileup", "riot", "sarin", "shipwreck", "virus", "vortex", "war", "zerg", "walpurgisnacht", "mudslide", "pompeii", "locusts", "fire", "rapture", "smallpox", "aliens", "cloudburst", "coldwave", "coma", "dev-firestorm", "emp", "meltdown", "meteorite", "old-vampires", "quasar", "ragnarok", "revolution", "sauron", "skynet", "tempest" ], "certname": "pandemic.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [ "nyx", "dementors", "democracy", "whiteout", "reaper", "segfault", "monsoon", "fraud", "gridlock", "lethe", "anthrax", "supernova", "firestorm", "pestilence", "flood", "maelstrom", "thunder", "death", "tsunami", "lightning", "vampires", "werewolves", "biohazard", "cataclysm", "dev-dementors", "dev-flood", "dev-whiteout", "doom", "hozer-69", "hozer-70", "hozer-71", "hozer-73", "hozer-74", "limniceruption", "matrix", "miasma", "zombies" ], "certname": "riptide.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [], "certname": "gnats.ocf.berkeley.edu" }, { "name": "vms", "environment": "production", "value": [], "certname": "smallpox.ocf.berkeley.edu" } ]')
+    for entry in puppet_query_output:
+        if entry['certname'].split('.')[0] == host_name:
+            return entry['value']
+    return []
 
 @periodic(120)
 def get_hosts():
