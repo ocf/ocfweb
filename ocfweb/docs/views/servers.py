@@ -5,7 +5,6 @@ from cached_property import cached_property
 from django.shortcuts import render
 from ocflib.infra.hosts import hosts_by_filter
 from ocflib.lab.stats import list_desktops
-
 from ocfweb.caching import periodic
 
 
@@ -69,80 +68,6 @@ def get_children(host_name):
 
 @periodic(120)
 def get_hosts():
-    return [
-        Host.from_ldap(
-            hostname='hal',
-            type='hypervisor',
-            children=[
-                Host.from_ldap(hostname)
-                for hostname in (
-                    'fallingrocks',
-                    'monsoon',
-                )
-            ],
-        ),
-
-        Host.from_ldap(
-            hostname='jaws',
-            type='hypervisor',
-            children=[
-                Host.from_ldap(hostname)
-                for hostname in (
-                    'anthrax',
-                    'biohazard',
-                    'death',
-                    'dementors',
-                    'democracy',
-                    'firestorm',
-                    'flood',
-                    'lightning',
-                    'maelstrom',
-                    'pestilence',
-                    'reaper',
-                    'supernova',
-                    'thunder',
-                    'tsunami',
-                    'werewolves',
-                    'whirlwind',
-                    'whiteout',
-                    'zombies',
-                )
-            ],
-        ),
-
-        Host.from_ldap(
-            hostname='pandemic',
-            type='hypervisor',
-            children=[
-                Host.from_ldap(hostname)
-                for hostname in (
-                    'pileup',
-                )
-            ],
-        ),
-
-        Host.from_ldap(
-            hostname='riptide',
-            type='hypervisor',
-        ),
-
-        Host.from_ldap(
-            hostname='corruption',
-            type='server',
-        ),
-
-        Host('blackhole', 'network', 'Managed Cisco Catalyst 2960S-48TS-L Switch.', []),
-
-        Host('logjam', 'printer', '', []),
-        Host('pagefault', 'printer', '', []),
-        Host('papercut', 'printer', '', []),
-        Host.from_ldap('overheat', type='raspi'),
-        Host.from_ldap('tornado', type='nuc'),
-
-        *(Host.from_ldap(desktop, type='desktop')
-          for desktop in sorted(list_desktops())),
-    ]
-
     is_hidden = lambda host: host['cn'][0][:6] == 'hozer-' or host['cn'][0][:4] == 'dev-'
     
     def create_hosts(lst):
@@ -160,6 +85,7 @@ def get_hosts():
     desktops = create_hosts(hosts_by_filter('(type=desktop)'))
     misc = create_hosts(hosts_by_filter('(type=printer)'))
     hypervisors = {}
+    return list(hypervisors.values()) + list(servers.values()) + list(desktops.values()) + list(misc.values())
 
 def servers(doc, request):
     return render(
