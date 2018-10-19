@@ -85,6 +85,19 @@ def get_hosts():
     desktops = create_hosts(hosts_by_filter('(type=desktop)'))
     misc = create_hosts(hosts_by_filter('(type=printer)'))
     hypervisors = {}
+    
+    # Add children to hypervisors
+    for h in list(servers.values()):
+        children = []
+        for child_hostname in get_children(h.hostname):
+            child = servers.get(child_hostname, False)
+            if child:
+                servers.pop(child.hostname)
+                children.append(Host(child.hostname, 'vm', child.description, ()))
+        if children:
+            servers.pop(h.hostname)
+            hypervisors[h.hostname] = Host(h.hostname, 'hypervisor', h.description, tuple(children))
+    
     return list(hypervisors.values()) + list(servers.values()) + list(desktops.values()) + list(misc.values())
 
 def servers(doc, request):
