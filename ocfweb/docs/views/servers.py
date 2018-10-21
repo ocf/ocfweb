@@ -119,7 +119,7 @@ def get_hosts():
     change_host_type('jaws', 'hypervisor', hypervisors)
     misc['blackhole'] = Host(
         'blackhole', 'network',
-        'Managed Cisco Catalyst 2960S-48TS-L Switch.', [],
+        'Arista 7050SX Switch.', [],
     )
 
     return list(hypervisors.values()) + list(servers.values()) \
