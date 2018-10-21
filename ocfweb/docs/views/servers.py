@@ -69,11 +69,12 @@ def get_children(host_name):
     return []
 
 
+def is_hidden(host):
+    return host['cn'][0].startswith('hozer-') or host['cn'][0].startswith('dev-')
+
+
 @periodic(120)
 def get_hosts():
-    def is_hidden(host):
-        return host['cn'][0][:6] == 'hozer-' or host['cn'][0][:4] == 'dev-'
-
     def create_hosts(lst):
         """Accepts a list of raw ldap output, returns a dictionary of host
         objects indexed by hostname
@@ -97,23 +98,24 @@ def get_hosts():
         for child_hostname in get_children(h.hostname):
             child = servers.get(child_hostname, False)
             if child:
-                servers.pop(child.hostname)
+                del servers[child.hostname]
                 children.append(Host(child.hostname, 'vm', child.description, ()))
         if children:
-            servers.pop(h.hostname)
+            del servers[h.hostname]
             hypervisors[h.hostname] = Host(
                 h.hostname,
                 'hypervisor',
                 h.description,
-                tuple(children),
+                children,
             )
 
     # Handle special cases
     def change_host_type(hostname, host_type, type_dict):
         """Pop Host with hostname from servers, change its type, and add to misc
         """
-        servers.pop(hostname, host_type)
+        del servers[hostname]
         type_dict[hostname] = Host.from_ldap(hostname, type=host_type)
+
     change_host_type('overheat', 'raspi', misc)
     change_host_type('tornado', 'nuc', misc)
     change_host_type('jaws', 'hypervisor', hypervisors)
@@ -122,8 +124,7 @@ def get_hosts():
         'Arista 7050SX Switch.', [],
     )
 
-    return list(hypervisors.values()) + list(servers.values()) \
-        + list(desktops.values()) + list(misc.values())
+    return [*hypervisors.values(), *servers.values(), *desktops.values(), *misc.values()]
 
 
 def servers(doc, request):
