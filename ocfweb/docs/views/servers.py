@@ -123,15 +123,17 @@ def get_hosts():
             )
 
     # Handle special cases
-    def change_host_type(hostname, host_type, type_dict):
+    def change_host_type(hostname, host_type, origin_type_dict, target_type_dict):
         """Pop Host with hostname from servers, change its type, and add to misc
         """
-        del servers[hostname]
-        type_dict[hostname] = Host.from_ldap(hostname, type=host_type)
+        del origin_type_dict[hostname]
+        target_type_dict[hostname] = Host.from_ldap(hostname, type=host_type)
 
-    change_host_type('overheat', 'raspi', misc)
-    change_host_type('tornado', 'nuc', misc)
-    change_host_type('jaws', 'hypervisor', hypervisors)
+    change_host_type('overheat', 'raspi', servers, misc)
+    change_host_type('tornado', 'nuc', hypervisors, misc)
+    change_host_type('ransomware', 'hypervisor', servers, hypervisors)
+    change_host_type('dataloss', 'server', hypervisors, servers)
+    change_host_type('corruption', 'server', hypervisors, servers)
     misc['blackhole'] = Host(
         'blackhole', 'network',
         'Arista 7050SX Switch.', [],
