@@ -3,16 +3,11 @@
 DMCA safe harbor provisions help "Online Service Providers" such as us
 avoid liability from copyright infringement by our users.
 
-As specified in our [[contact|doc contact]] page:
-
- * We are required to act upon a valid DMCA takedown notice sent to
-   our DMCA designated agent (in the University). If we receive notices
-   directly from outside the University, ask the complaining party
-   to send a valid DMCA takedown notice to the designated agent.
-   Please keep the University involved.
- * We also like to forward any takedown or cease and desist notices to
-   the [Lumen database](https://lumendatabase.org/). Please ask for
-   a copy of the original notice from the University if not provided.
+As specified in our [[contact|doc contact]] page, we are required to act upon a
+valid DMCA takedown notice sent to our DMCA designated agent (in the
+University). If we receive notices directly from outside the University, ask the
+complaining party to send a valid DMCA takedown notice to the designated agent.
+Please keep the University involved.
 
 An example of instructions for a DMCA takedown notice is the
 [GitHub DMCA Takedown article](https://help.github.com/articles/dmca-takedown).
@@ -57,3 +52,16 @@ In general, for all takedown or cease and desist notices
    to our users and offer to assist them
    (of course, we cannot provide legal advice, but the University
    or ASUC may be able to).
+
+## Lumen Database submission
+We like to forward any takedown or cease and desist notices to the [Lumen
+database](https://lumendatabase.org/). Please ask for a copy of the original
+notice from the University if one is not provided.
+
+To submit a notice to the database, first [sign
+in](https://lumendatabase.org/users/sign_in) with the OCF account using
+credentials from the passwords file. Then fill out the [create new notice
+form](https://lumendatabase.org/notices/new). The "recipient" field should be
+the University, the "sender" field should be the entity that sent the request,
+the "principal" field is the copyright holder, and the the "submitter" is the
+OCF.
