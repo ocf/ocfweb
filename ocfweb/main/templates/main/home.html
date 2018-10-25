@@ -5,18 +5,57 @@
 {% load staff_hours %}
 
 {% block hero %}
-<div class="ocf-penguin-swing"></div>
+<!-- <div class="ocf-penguin-swing"></div> -->
 
 <div class="ocf-hero">
     <div class="container">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-sm-8">
                 <h1>Welcome to the Open Computing Facility!</h1>
                 <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
-                <p class="ocf-button-holder">
-                <a href="{% url 'about-staff' %}" class="btn btn-lg">Learn what we do</a>
+            </div>
+            <div class="col-sm-8">
+              <h1>TODO: User Log In </h1>
+              <p>
+                <a href="{% url 'change_password' %}">Forgot your password?</a>
                 <a href="{% url 'register' %}" class="btn btn-lg">Create an account</a>
+              </p>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Welcome to the Open Computing Facility!</h1>
+                <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
+                <!-- <h4>Interested in free &amp; open-source software?</h4>
+                <p>Our volunteer staff team helps create and mantain the OCF services you use.</p>
+                <p>We're always on the lookout for new members interested in
+                learning more about technology and open source!</p>
+                <p><a href="{% url 'about-staff' %}">Learn more about getting involved!</a></p> -->
+            </div>
+            <div class="col-sm-6">
+                <h1>  </h1>
+                <p>Sign Up
+                  template: https://berkeley.joinhandshake.com/login
+                  <a href="{% url 'change_password' %}">Forgot your password?</a><br>
+                  <a href="{% url 'register' %}" class="btn btn-lg">Forgot your username?</a>
+<!--
+                  <a class="sso-button" title="test" id="sso-button" data-bind="click: track_sso_click"
+                  href="<a class="sso-button" title="For current students only: Alumni Advantage and VSPA Affiliates use email address above" id="sso-button" data-bind="click: track_sso_click" href="https://auth.berkeley.edu/cas/login?service=https%3A%2F%2Fberkeley.joinhandshake.com%2Flogin%3Fschool_id%3D84"><div class="sso-content">
+<img alt="" src="https://s3.amazonaws.com/handshake.production/app/public/assets/schools/84/small/hs-school-logo-data.?1482461526">
+<div class="sso-name" id="sso-name">Login with your UC Berkeley student CalNet</div>
+</div>
+<i class="fa fa-chevron-right"></i>
+</a>" -->
                 </p>
+                <!-- <h4>News from the staff team</h4>
+
+                {% for announcement in announcements %}
+                    <p>
+                        <a href="{{announcement.link}}">{{announcement.title}}</a><br />
+                        {{announcement.datetime | naturaltime}}
+                    </p>
+                {% endfor %}
+                <p><a href="{% url 'announcements' %}">More updates from the OCF &raquo;</a></p> -->
             </div>
         </div>
     </div>
@@ -29,105 +68,37 @@
 
         {{lab_status.banner_html | safe}}
 
-        <p>
-            The Open Computing Facility is an all-volunteer student
-            organization located at the University of California, Berkeley.
-            We're passionate about open source and free software.
-        </p>
-        <p>Our volunteers maintain services for the Berkeley community. Among others, we offer:</p>
-        <ul>
-            <li><a href="{% url 'doc' 'services/lab' %}">A spiffy computer lab</a> in 171 MLK Student Union</li>
-            <li><a href="{% url 'doc' 'services/web' %}">Web &amp; email hosting</a> for thousands of student groups and individuals</li>
-            <li><a href="{% url 'doc' 'services/lab/printing' %}">Free printing</a> for all UC Berkeley students</li>
-            <li><a href="{% url 'doc' 'services/shell' %}">Shell accounts</a> on our powerful on-campus servers</li>
-            <li>...and <a href="{% url 'doc' 'services' %}">lots more!</a></li>
-        </ul>
-        <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop by to ask questions or just to hang out!</p>
-
-        <hr />
         <div class="row">
             <div class="col-sm-6">
-                <h4>Interested in free &amp; open-source software?</h4>
-                <p>Our volunteer staff team helps create and mantain the OCF services you use.</p>
-                <p>We're always on the lookout for new members interested in
-                learning more about technology and open source!</p>
-                <p><a href="{% url 'about-staff' %}">Learn more about getting involved!</a></p>
+              <h3>Lab Hours</h3>
+              <!-- <p><strong>Lab Hours</strong></p> -->
+              <div class="ocf-hours">
+                  {% for hour in hours %}
+                      <div class="ocf-hour row {% cycle 'odd' 'even' %}">
+                          <div class="col-sm-5 col-md-3 ocf-hour-title">
+                              {{hour.weekday}}<br />
+                          </div>
+                          <div class="col-sm-7 col-md-9 ocf-hour-hours">
+                              {% if hour == today and lab_status.force_lab_closed %}
+                                  Temporarily Closed
+                              {% else %}
+                                  {{hour.hours | lab_hours_time}}
+                                  {% if hour.holiday %}
+                                      ({{hour.holiday}})
+                                  {% endif %}
+                              {% endif %}
+                          </div>
+                      </div>
+                  {% endfor %}
+              </div>
+              <p><a href="{% url 'doc' 'services/lab' %}" class="see-more">See more lab hours &raquo;</a></p>
             </div>
-            <div class="col-sm-6">
-                <h4>News from the staff team</h4>
-
-                {% for announcement in announcements %}
-                    <p>
-                        <a href="{{announcement.link}}">{{announcement.title}}</a><br />
-                        {{announcement.datetime | naturaltime}}
-                    </p>
-                {% endfor %}
-                <p><a href="{% url 'announcements' %}">More updates from the OCF &raquo;</a></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-4 ocf-sidebar">
-        <h3>OCF Computer Lab</h3>
-        <p>
-            The lab is located in
-            <a href="{% url 'doc' 'services/lab' %}">171 MLK Student Union</a>.
-        </p>
-        {% google_map '100%' '151px' show_info=False %}
-
-        <p><strong>Upcoming Lab Hours</strong></p>
-        <div class="ocf-hours">
-            {% for hour in hours %}
-                <div class="ocf-hour row {% cycle 'odd' 'even' %}">
-                    <div class="col-sm-5 col-md-3 ocf-hour-title">
-                        {{hour.weekday}}<br />
-                    </div>
-                    <div class="col-sm-7 col-md-9 ocf-hour-hours">
-                        {% if hour == today and lab_status.force_lab_closed %}
-                            Temporarily Closed
-                        {% else %}
-                            {{hour.hours | lab_hours_time}}
-                            {% if hour.holiday %}
-                                ({{hour.holiday}})
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <p><a href="{% url 'doc' 'services/lab' %}" class="see-more">See more lab hours &raquo;</a></p>
-
-        <p><strong>Account Tools</strong></p>
-        <ul>
-            <li><a href="{% url 'commands' %}">Check Account</a></li>
-            <li><a href="{% url 'change_password' %}">Reset Password</a></li>
-
-            {% if is_ocf_ip %}
-                <li><a href="https://printhost.ocf.berkeley.edu/jobs/">View Print Queue</a></li>
-            {% endif %}
-        </ul>
-
-        <div class="ocf-staffhours">
-            {% for staff_hour in staff_hours %}
-                <h3>Staff Hours {{staff_hour.day}}</h3>
-                <div class="{% if staff_hour.cancelled %} cancelled {% endif %}">
-                    <p>
-                        {{staff_hour.time}}
-                        {% if staff_hour.cancelled %}
-                            <span class="cancelled-text">cancelled this week</span>
-                        {% endif %}
-                    </p>
-                    <div class="ocf-staffhours-faces">
-                      <!--  XXX: html comment to avoid spaces between images
-                        {% for staffer in staff_hour.staff %}
-                            --><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" /><!--
-                        {% endfor %}
-                      -->
-                    </div>
-                </div>
-            {% endfor %}
-
-            <p><a href="{% url 'staff-hours' %}" class="see-more">See more staff hours &raquo;</a></p>
+            <h3>Location</h3>
+            <p>
+                The lab is located in
+                <a href="{% url 'doc' 'services/lab' %}">171 MLK Student Union</a>.
+            </p>
+            {% google_map '100%' '151px' show_info=False %}
         </div>
     </div>
 </div>
