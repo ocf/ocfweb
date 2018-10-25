@@ -5,57 +5,26 @@
 {% load staff_hours %}
 
 {% block hero %}
-<!-- <div class="ocf-penguin-swing"></div> -->
-
 <div class="ocf-hero">
     <div class="container">
-        <!-- <div class="row">
-            <div class="col-sm-8">
-                <h1>Welcome to the Open Computing Facility!</h1>
-                <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
-            </div>
-            <div class="col-sm-8">
-              <h1>TODO: User Log In </h1>
-              <p>
-                <a href="{% url 'change_password' %}">Forgot your password?</a>
-                <a href="{% url 'register' %}" class="btn btn-lg">Create an account</a>
-              </p>
-            </div>
-        </div> -->
         <div class="row">
             <div class="col-sm-6">
                 <h1>Welcome to the Open Computing Facility!</h1>
                 <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
-                <!-- <h4>Interested in free &amp; open-source software?</h4>
-                <p>Our volunteer staff team helps create and mantain the OCF services you use.</p>
-                <p>We're always on the lookout for new members interested in
-                learning more about technology and open source!</p>
-                <p><a href="{% url 'about-staff' %}">Learn more about getting involved!</a></p> -->
             </div>
-            <div class="col-sm-6">
-                <h1>  </h1>
-                <p>Sign Up
-                  template: https://berkeley.joinhandshake.com/login
+            <div class="col-sm-6 ocf-login-main">
+                <h1>Create an account here</h1>
+                <a class="sso-button" title="For current students only" id="sso-button" data-bind="click: track_sso_click" href="https://auth.berkeley.edu/cas/login?service=https%3A%2F%2Fwww.ocf.berkeley.edu%2Flogin%2Fcalnet%2Flogin%2F%3Fnext%3D%252Faccount%252Fregister%252F&renew=true"><div class="sso-content">
+                  <img alt="" src="https://s3.amazonaws.com/handshake.production/app/public/assets/schools/84/small/hs-school-logo-data.?1482461526">
+                  <div class="sso-name" id="sso-name">Create an account with your UC Berkeley student CalNet</div>
+                  </div>
+                  <i class="fa fa-chevron-right"></i>
+                </a>
+                <br>
+                <p>
                   <a href="{% url 'change_password' %}">Forgot your password?</a><br>
-                  <a href="{% url 'register' %}" class="btn btn-lg">Forgot your username?</a>
-<!--
-                  <a class="sso-button" title="test" id="sso-button" data-bind="click: track_sso_click"
-                  href="<a class="sso-button" title="For current students only: Alumni Advantage and VSPA Affiliates use email address above" id="sso-button" data-bind="click: track_sso_click" href="https://auth.berkeley.edu/cas/login?service=https%3A%2F%2Fberkeley.joinhandshake.com%2Flogin%3Fschool_id%3D84"><div class="sso-content">
-<img alt="" src="https://s3.amazonaws.com/handshake.production/app/public/assets/schools/84/small/hs-school-logo-data.?1482461526">
-<div class="sso-name" id="sso-name">Login with your UC Berkeley student CalNet</div>
-</div>
-<i class="fa fa-chevron-right"></i>
-</a>" -->
+                  <a href="{% url 'register' %}">Forgot your username?</a>
                 </p>
-                <!-- <h4>News from the staff team</h4>
-
-                {% for announcement in announcements %}
-                    <p>
-                        <a href="{{announcement.link}}">{{announcement.title}}</a><br />
-                        {{announcement.datetime | naturaltime}}
-                    </p>
-                {% endfor %}
-                <p><a href="{% url 'announcements' %}">More updates from the OCF &raquo;</a></p> -->
             </div>
         </div>
     </div>
@@ -97,8 +66,9 @@
             <p>
                 The lab is located in
                 <a href="{% url 'doc' 'services/lab' %}">171 MLK Student Union</a>.
+                {% google_map '100%' '200px' show_info=False %}
             </p>
-            {% google_map '100%' '151px' show_info=False %}
+
         </div>
     </div>
 </div>
