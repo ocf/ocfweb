@@ -27,11 +27,12 @@ $color-penguin-yellow: #ffd700;
 
 $navbar-height: 60px;
 
-$hero-color: $color-green-light;
+$hero-color: $color-blue-baby;
 $hero-button-color: #f7f7f7;
 $hero-button-color-hover: #fff;
 
 $status-bar-color: $color-blue-baby;
+$nav-bar-color: $color-blue-baby;
 
 $footer-top-color: $color-gray-light;
 $footer-bottom-color: $color-gray;
@@ -47,7 +48,7 @@ body {
     padding-top: $navbar-height;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     font-size: 16px;
-    background-color: #f5f5f5;
+    background-color: #fff;
 
     @media (max-width: $screen-xs-max) {
         font-size: 14px;
@@ -75,7 +76,7 @@ h6 {
 .ocf-navbar {
     @extend .navbar-default;
 
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: $nav-bar-color;
     border: 0;
 
     .navbar-brand {
@@ -238,6 +239,7 @@ h6 {
             margin-top: 5px;
             font-size: 20px;
         }
+
     }
 }
 
