@@ -3,27 +3,29 @@
 {% load humanize %}
 {% load lab_hours %}
 {% load staff_hours %}
+{% load common %}
 
 {% block hero %}
 <div class="ocf-hero">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h1>Welcome to the Open Computing Facility!</h1>
+                <h1>Welcome to the Open Computing Facility!</h1><br>
                 <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
             </div>
             <div class="col-sm-6 ocf-login-main">
-                <h1>Create an account here</h1>
-                <a class="sso-button" title="For current students only" id="sso-button" data-bind="click: track_sso_click" href="https://auth.berkeley.edu/cas/login?service=https%3A%2F%2Fwww.ocf.berkeley.edu%2Flogin%2Fcalnet%2Flogin%2F%3Fnext%3D%252Faccount%252Fregister%252F&renew=true"><div class="sso-content">
-                  <img alt="" src="https://s3.amazonaws.com/handshake.production/app/public/assets/schools/84/small/hs-school-logo-data.?1482461526">
-                  <div class="sso-name" id="sso-name">Create an account with your UC Berkeley student CalNet</div>
+                <h1 align="center">Sign Up Here</h1>
+                <a class="sso-button" title="For current students only" id="sso-button" data-bind="click: track_sso_click" href="https://auth.berkeley.edu/cas/login?service=https%3A%2F%2Fwww.ocf.berkeley.edu%2Flogin%2Fcalnet%2Flogin%2F%3Fnext%3D%252Faccount%252Fregister%252F&renew=true">
+                  <div class="sso-content">
+                    <img alt="" src="https://s3.amazonaws.com/handshake.production/app/public/assets/schools/84/small/hs-school-logo-data.?1482461526">
+                    <div class="sso-name" id="sso-name">Create an account with your UC Berkeley student CalNet</div>
                   </div>
                   <i class="fa fa-chevron-right"></i>
                 </a>
                 <br>
-                <p>
-                  <a href="{% url 'change_password' %}">Forgot your password?</a><br>
-                  <a href="{% url 'register' %}">Forgot your username?</a>
+                <p align="center">
+                  <a href="{% url 'register' %}">Forgot your username?</a> <br>
+                  <a href="{% url 'change_password' %}">Forgot your password?</a>
                 </p>
             </div>
         </div>
@@ -33,42 +35,32 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-sm-8 ocf-content-block">
+    <div class="ocf-content-block">
 
         {{lab_status.banner_html | safe}}
-
         <div class="row">
-            <div class="col-sm-6">
-              <h3>Lab Hours</h3>
-              <!-- <p><strong>Lab Hours</strong></p> -->
-              <div class="ocf-hours">
-                  {% for hour in hours %}
-                      <div class="ocf-hour row {% cycle 'odd' 'even' %}">
-                          <div class="col-sm-5 col-md-3 ocf-hour-title">
-                              {{hour.weekday}}<br />
-                          </div>
-                          <div class="col-sm-7 col-md-9 ocf-hour-hours">
-                              {% if hour == today and lab_status.force_lab_closed %}
-                                  Temporarily Closed
-                              {% else %}
-                                  {{hour.hours | lab_hours_time}}
-                                  {% if hour.holiday %}
-                                      ({{hour.holiday}})
-                                  {% endif %}
-                              {% endif %}
-                          </div>
-                      </div>
-                  {% endfor %}
-              </div>
-              <p><a href="{% url 'doc' 'services/lab' %}" class="see-more">See more lab hours &raquo;</a></p>
+            <div class="col-sm-6 ocf-hours1">
+                <h3 align="center">Lab Hours</h3>
+                    <div class="ocf-hours2">
+                        <table align="right" class="table table-striped table-hover">
+                            <tr><th>Sunday</th><td>{{regular_hours | getitem:SUNDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Monday</th><td>{{regular_hours | getitem:MONDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Tuesday</th><td>{{regular_hours | getitem:TUESDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Wednesday</th><td>{{regular_hours | getitem:WEDNESDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Thursday</th><td>{{regular_hours | getitem:THURSDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Friday</th><td>{{regular_hours | getitem:FRIDAY | lab_hours_time}}</td></tr>
+                            <tr><th>Saturday</th><td>{{regular_hours | getitem:SATURDAY | lab_hours_time}}</td></tr>
+                        </table>
+                    </div>
             </div>
-            <h3>Location</h3>
-            <p>
-                The lab is located in
-                <a href="{% url 'doc' 'services/lab' %}">171 MLK Student Union</a>.
-                {% google_map '100%' '200px' show_info=False %}
-            </p>
-
+            <div class="col-sm-6 ocf-location">
+              <h3 align="center">Location</h3>
+              <p align="center">
+                  The lab is located in
+                  <a href="{% url 'doc' 'services/lab' %}">171 MLK Student Union</a>.
+                  {% google_map '100%' '275px' show_info=False %}
+              </p>
+            </div>
         </div>
     </div>
 </div>

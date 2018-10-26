@@ -45,9 +45,9 @@ html {
 
 body {
     padding-top: $navbar-height;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: Roboto;
     font-size: 16px;
-    background-color: #f5f5f5;
+    background-color: white;
 
     @media (max-width: $screen-xs-max) {
         font-size: 14px;
@@ -170,6 +170,10 @@ h6 {
     }
 }
 
+.page-home .ocf-hero {
+  padding-bottom: 10px;
+}
+
 .ocf-footer {
     position: absolute;
     bottom: 0;
@@ -213,20 +217,30 @@ h6 {
 }
 
 .ocf-content {
+    column-gap: 40px;
     background-color: white;
     padding: 0 10px;
+    @media (max-width: $screen-xs-max) {
+        padding: 5px;
+        font-size: 14px;
+
+        h1 {
+            margin-top: 5px;
+            font-size: 20px;
+        }
+    }
 }
 
 .ocf-content-block {
     > :first-child {
-        margin-top: 20px;
+        margin-top: 0px;
     }
 }
 
+
 .ocf-hero {
     background-color: $hero-color;
-    font-size: 16px;
-    padding: 0 10px;
+    padding: 15px 15px 15px 15px;
 
     @media (max-width: $screen-xs-max) {
         padding: 5px;
@@ -234,6 +248,7 @@ h6 {
 
         h1 {
             margin-top: 5px;
+            margin-bottom: 5px;
             font-size: 20px;
         }
     }
@@ -265,6 +280,86 @@ h6 {
     font-weight: normal;
     font-size: 90%;
 }
+
+.ocf-hours {
+  background-color: white;
+  border-radius: 25px;
+  border-width: medium;
+  border: 2px solid #A5A4A4;
+}
+
+.ocf-login-main {
+  background-color: white;
+  border-radius: 25px;
+  border-width: medium;
+  border: 10px solid #AEC9D0;
+  padding: 20px;
+}
+
+.col-sm-6 {
+  width: 48%;
+}
+/* Create an account css */
+.ocf-login-main .sso-button {
+	border: 1px solid #05c;
+	border-radius: 3px;
+	padding: 16px;
+	display: -ms-flex;
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: space-between
+}
+
+.ocf-login-main .sso-button .sso-content {
+	display: -ms-flex;
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	color: #434343
+}
+
+.ocf-login-main .sso-button .sso-content img {
+	width: 24px;
+	height: 24px;
+	margin-right: 8px
+}
+
+.ocf-login-main .sso-button .sso-content .sso-name {
+	display: inline-block;
+	flex-basis: 90%
+}
+
+.ocf-login-main .sso-button:hover {
+	background-color: #e6f0ff;
+	text-decoration: none
+}
+
+.ocf-location {
+  margin: 5px;
+}
+
+.row {
+  margin-bottom: 30px;
+}
+.ocf-hours1 {
+  margin: 5px
+}
+
+.ocf-hours2 {
+  background-color: white;
+  border-radius: 25px;
+  border-width: medium;
+  border: 10px solid #E9E9E9;
+  padding: 15px;
+  height: 320px;
+}
+
+.table, .page-doc .ocf-content-block {
+  margin-bottom: 0px;
+}
+
+
 
 
 @import 'pages/account';
