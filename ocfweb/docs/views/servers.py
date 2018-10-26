@@ -109,7 +109,7 @@ def get_hosts():
             # Populate a list of children
             children = []
             for child_hostname in all_children.get(h.hostname, []):
-                child = servers.get(child_hostname, False)
+                child = servers.get(child_hostname)
                 if child:
                     del servers[child.hostname]
                     children.append(Host(child.hostname, 'vm', child.description, ()))
@@ -126,8 +126,8 @@ def get_hosts():
     def change_host_type(hostname, host_type, origin_type_dict, target_type_dict):
         """Pop Host with hostname from servers, change its type, and add to misc
         """
-        del origin_type_dict[hostname]
-        target_type_dict[hostname] = Host.from_ldap(hostname, type=host_type)
+        host = origin_type_dict.pop(hostname)
+        target_type_dict[hostname] = host._replace(type=host_type)
 
     change_host_type('overheat', 'raspi', servers, misc)
     change_host_type('tornado', 'nuc', servers, misc)
