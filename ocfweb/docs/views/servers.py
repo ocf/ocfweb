@@ -81,20 +81,21 @@ def query_puppet(query):
     return result
 
 
+def create_hosts(lst):
+    """Accepts a list of raw ldap output, returns a dictionary of host
+    objects indexed by hostname
+    """
+    hosts = {}
+    for h in lst:
+        if not is_hidden(h):
+            description = h.get('description', [''])[0]
+            hostname = h['cn'][0]
+            hosts[hostname] = (Host(hostname, h['type'], description, ()))
+    return hosts
+
+
 @periodic(120)
 def get_hosts():
-    def create_hosts(lst):
-        """Accepts a list of raw ldap output, returns a dictionary of host
-        objects indexed by hostname
-        """
-        hosts = {}
-        for h in lst:
-            if not is_hidden(h):
-                description = h.get('description', [''])[0]
-                hostname = h['cn'][0]
-                hosts[hostname] = (Host(hostname, h['type'], description, ()))
-        return hosts
-
     servers = create_hosts(hosts_by_filter('(type=server)'))
     desktops = create_hosts(hosts_by_filter('(type=desktop)'))
     misc = create_hosts(hosts_by_filter('(type=printer)'))
