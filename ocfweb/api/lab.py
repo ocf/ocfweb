@@ -27,6 +27,17 @@ def _get_desktops_in_use():
     return {hostname_from_domain(session['host']) for session in c}
 
 
+@periodic(5)
+def _get_visible_staff_in_lab():
+    """List desktops logged into by staff and flagged as visible in the lab."""
+    # https://github.com/ocf/ocflib/blob/master/ocflib/lab/ocfstats.sql#L81
+    with get_connection() as c:
+        c.execute(
+            'SELECT * FROM `staff_in_lab_public`;',
+        )
+        
+    return {hostname_from_domain(session['host']) for session in c if session['flags'] == 'visible'}
+
 def desktop_usage(request):
     public_desktops = _list_public_desktops()
 
@@ -37,3 +48,10 @@ def desktop_usage(request):
         'public_desktops_in_use': list(public_desktops_in_use),
         'public_desktops_num': len(public_desktops),
     })
+
+def visible_staff(request):
+    current_staff = _get_visible_staff_in_lab()
+    
+    return JsonResponse({
+        'visible_staff': list(current_staff),
+    })    
