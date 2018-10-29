@@ -26,6 +26,7 @@ $color-penguin-blue: #0f4d92;
 $color-penguin-yellow: #ffd700;
 
 $navbar-height: 60px;
+$navbar-color: $color-blue-baby ;
 
 $hero-color: $color-blue-baby;
 $hero-button-color: #f7f7f7;
@@ -45,7 +46,7 @@ html {
 
 body {
     padding-top: $navbar-height;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 16px;
     background-color: #f5f5f5;
 
@@ -76,8 +77,7 @@ h6 {
     @extend .navbar-default;
 
     // baby blue with opacity changed (http://hex2rgba.devoth.com/)
-    background-color: rgba(203, 225, 234, 0.9);
-
+    background-color: $navbar-color;
     border: 0;
 
     .navbar-brand {
@@ -227,6 +227,7 @@ h6 {
     background-color: $hero-color;
     font-size: 16px;
     padding: 0 10px;
+    text-align: center;
 
     @media (max-width: $screen-xs-max) {
         padding: 5px;
