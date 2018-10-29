@@ -48,15 +48,18 @@ def log_session(request):
         body = json.loads(request.body.decode('utf-8'))
         state = State[body.get('state')]  # triggers KeyError
         user = body.get('user')
+        flags = body.get('flags')
 
         if state is State.cleanup or not user:
             # sessions also get periodically cleaned up: https://git.io/vpwg8
             _close_sessions(host)
-        elif state is State.active and _session_exists(host, user):
-            _refresh_session(host, user)
         else:
-            _new_session(host, user)
-
+            if state is State.active and _session_exists(host, user):
+                _refresh_session(host, user)
+            else:
+                _new_session(host, user)
+            if flags:
+                _update_session_flags(host, user, flags)
         return HttpResponse(status=204)
 
     except (KeyError, ValueError) as e:
@@ -96,6 +99,14 @@ def _refresh_session(host, user):
             'WHERE `host` = %s AND `user` = %s AND `end` IS NULL', (host, user),
         )
 
+def _update_session_flags(host, user, flag):
+    """Change the session flags for a user"""
+    
+    with get_connection() as c:
+        c.execute(
+            'UPDATE `session` SET `flags` = %s '
+            'WHERE `host` = %s AND `user` = %s AND `end` IS NULL', (flag, host, user),
+        )
 
 def _close_sessions(host):
     """Close all sessions for a particular host."""
