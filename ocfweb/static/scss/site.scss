@@ -77,12 +77,7 @@ h6 {
     @extend .navbar-default;
 
     // baby blue with opacity changed (http://hex2rgba.devoth.com/)
-<<<<<<< HEAD
-    background-color: $navbar-color;
-=======
     background-color: rgba(203, 225, 234, 1.0);
-
->>>>>>> c2cbb99b87e9ae7641506b6e797f74f437d32c6a
     border: 0;
 
     .navbar-brand {
@@ -245,13 +240,9 @@ h6 {
 
 .ocf-hero {
     background-color: $hero-color;
-<<<<<<< HEAD
     font-size: 16px;
-    padding: 0 10px;
     text-align: center;
-=======
     padding: 15px 15px 15px 15px;
->>>>>>> c2cbb99b87e9ae7641506b6e797f74f437d32c6a
 
     @media (max-width: $screen-xs-max) {
         padding: 5px;
