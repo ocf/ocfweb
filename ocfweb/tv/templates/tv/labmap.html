@@ -1640,8 +1640,34 @@
               </g>
               <path class="st20" d="M1820.1,1004.5v40.5l58.2-33.3v-40.5L1820.1,1004.5z M1877.2,1009.1l-56.1,32.4v-36.6l56.1-32.4V1009.1z"/>
           </g>
+          <g id="legend_staff">
+              <g>
+                  <g>
+                      <polygon class="st52" points="758,1034.5 749.3,1039.6 749.3,1040.9 758,1035.8                     "/>
+                      <polygon class="desk-left" points="743.5,1036.2 749.3,1039.6 749.3,1040.9 743.5,1037.5                     "/>
+                      <polygon class="st53" points="743.5,1036.2 749.3,1039.6 758,1034.5 752.3,1031.2                     "/>
+                  </g>
+              </g>
+              <g>
+                  <g>
+                      <polygon class="st52" points="754.3,1002.6 748.3,1006.1 748.3,1037.4 754.3,1034                     "/>
+                      <polygon class="desk-left" points="746.8,1005.3 748.3,1006.1 748.3,1037.4 746.8,1036.6                     "/>
+                      <polygon class="st19" points="746.8,1005.3 748.3,1006.1 754.3,1002.6 752.8,1001.8                     "/>
+                  </g>
+              </g>
+              <g>
+                  <polygon class="staff" points="778.3,971.2 720.1,1004.5 720.1,1045 778.3,1011.7                 "/>
+                  <polygon class="st18" points="716.5,1002.4 720.1,1004.5 720.1,1045 716.5,1042.9                 "/>
+                  <polygon class="st19" points="716.5,1002.4 720.1,1004.5 778.3,971.2 774.7,969.1                 "/>
+              </g>
+              <path class="st20" d="M1820.1,1004.5v40.5l58.2-33.3v-40.5L1820.1,1004.5z M1877.2,1009.1l-56.1,32.4v-36.6l56.1-32.4V1009.1z"/>
+          </g>
+
       </g>
+
       <text transform="matrix(1 0 0 1 1376.9951 1027.0986)" class="text-color text-font text-size-medium">Available Desktop :</text>
+      <text transform="matrix(1 0 0 1 370 1000)" class="text-color text-font text-size-medium">Staff Member :</text>
+      <text transform="matrix(1 0 0 1 375 1040)" class="text-color text-font text-size-small">(Talk to them if you need help!)</text>
       <text transform="matrix(1 0 0 1 40.1084 97.6892)"><tspan id="labtext" x="0" y="0" class="text-color text-font text-size-large">Today’s Hours:</tspan>
       <tspan id="labhours" x="0" y="86.4" class="text-color text-font text-size-large"><tspan id="starthours">9 am</tspan> - <tspan id="endhours">6 pm</tspan></tspan></text>
   </g>
@@ -1742,17 +1768,36 @@ function makeAPIRequest() {
         for (polygon of document.getElementsByClassName('comp')) {
             if (hasOverlap(polygon.classList, id_in_use)) {
                 polygon.classList.add("occupied");
-        polygon.classList.remove("available");
-        polygon.parentNode.parentNode.classList.remove("bounce");
+                polygon.classList.remove("available");
+	        polygon.parentNode.parentNode.classList.remove("bounce");
             } else {
                 polygon.classList.remove("occupied");
-        polygon.classList.add("available");
-        polygon.parentNode.parentNode.classList.add("bounce");
+		polygon.classList.remove("staff");
+                polygon.classList.add("available");
+                polygon.parentNode.parentNode.classList.add("bounce");
             }
         }
     });
-    req.open('GET', 'https://www.ocf.berkeley.edu/api/lab/desktops');
+    var req_staff = new XMLHttpRequest();
+    req_staff.addEventListener('load', function() {
+        var desktops_in_use = JSON.parse(this.responseText)['visible_staff'];
+        var id_staff = new Set();
+        for (desktop_name of desktops_in_use) {
+            id_staff.add(mapping[desktop_name]);
+        }
+
+	for (polygon of document.getElementsByClassName('comp')) {
+	    if (hasOverlap(polygon.classList, id_staff)) {
+		polygon.classList.add("staff");
+	    } else {
+		polygon.classList.remove("staff");
+	    }
+	}
+    });
+    req.open('GET', 'http://supernova.ocf.berkeley.edu:8390/api/lab/desktops');
     req.send();
+    req_staff.open('GET', 'http://supernova.ocf.berkeley.edu:8390/api/lab/staff');
+    req_staff.send();
 }
 
 makeAPIRequest();
