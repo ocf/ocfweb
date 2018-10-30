@@ -29,4 +29,3 @@ def lab_survey(request):
             'title': 'OCF: Lab Feedback',
         },
     )
-
