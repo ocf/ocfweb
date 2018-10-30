@@ -16,7 +16,7 @@ up UIDs and OIDs in OCF [[LDAP|doc staff/backend/ldap]] and names in the
 university's [LDAP directory service][berkeleyldap].
 
 [ocflib]: github.com/ocf/ocflib
-[callinkapi]: https://studentservices.berkeley.edu/WebServices/StudentGroupServiceV2/Service.asmx
+[callinkapi]: https://orapps.berkeley.edu/StudentGroupServiceV2/service.asmx
 [berkeleyldap]: https://wikihub.berkeley.edu/display/calnet/LDAP+Directory+Service
 
 ## Usage
