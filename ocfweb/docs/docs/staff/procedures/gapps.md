@@ -15,7 +15,7 @@ Google Apps accounts are available upon request for **any OCF staffer**. Before
 getting one, staffers should be aware that OCF emails will be sent to the new
 account instead of the Calnet account that they're used to.
 
-Making a new account requires Google Admin privelges:
+Making a new account requires Google Admin privileges:
 
 1. Go to admin.google.com, click on the "Users" section of the Admin panel, and
 press the '+' button.
