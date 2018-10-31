@@ -32,7 +32,7 @@ def _login_url(service):
         'service': service,
         'renew': 'true',
     }
-    return '%s?%s' % (
+    return '{}?{}'.format(
         urljoin(cas.CAS_URL, 'login'), urlencode(params),
     )
 

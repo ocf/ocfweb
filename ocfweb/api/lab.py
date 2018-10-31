@@ -16,7 +16,7 @@ def _list_public_desktops():
 def _get_desktops_in_use():
     """List which desktops are currently in use."""
 
-    # https://github.com/ocf/ocflib/blob/master/ocflib/lab/ocfstats.sql#L70
+    # https://github.com/ocf/ocflib/blob/90f9268a89ac9d53c089ab819c1aa95bdc38823d/ocflib/lab/ocfstats.sql#L70
     # we don't use users_in_lab_count_public because we're looking for
     # desktops in use, and the view does COUNT(DISTINCT users)
     with get_connection() as c:

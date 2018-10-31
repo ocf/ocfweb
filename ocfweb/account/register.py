@@ -250,7 +250,7 @@ class ApproveForm(Form):
         return verify_contact_email
 
     def clean(self):
-        cleaned_data = super(ApproveForm, self).clean()
+        cleaned_data = super().clean()
 
         # validate password (requires username to check similarity)
         username = cleaned_data.get('username')
