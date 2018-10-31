@@ -1,4 +1,4 @@
-[[!meta title="Mail hosting for student groups"]]
+[[!meta title="Mail virtual hosting for student groups"]]
 
 
 Our regular virtual hosting gives your group a website at
@@ -18,29 +18,27 @@ If you'd like to get started using mail virtual hosting, send us an email at
 know you'd like to enable email virtual hosting. Be sure to include both the
 domain name, and your OCF account name.
 
-Once your domain is configured for mail hosting, head over to our [[mail
+Once your domain is configured for mail, head over to our [[mail
 virtual hosting page|vhost_mail]] to add and remove addresses.
 
 
 ## How sending and receiving mail works
 
-In the past, we provided a full mail service, including storing mail on our
-servers. However, we found that few groups actually wanted this. Most people
-are already juggling multiple email addresses, and don't particularly want
-another mailbox to monitor.
+The OCF does not provide "true" mail hosting-- we do not store mail on our
+servers, nor do we provide a new mailbox for you to monitor. Instead, we
+provide:
 
-Instead, we now provide *mail forwarding* for incoming mail, and *mail sending*
-for outgoing mail. This means that incoming mail will always be forwarded to
-some other address (such as your berkeley.edu address or your personal Gmail),
-but you can always send mail using your `@mygroup.berkeley.edu` address.
+* Mail forwarding: forward emails sent to `xxxx@yourgroup.berkeley.edu` to an
+  email address you already own.
+* Mail sending: send an email as `xxxx@yourgroup.berkeley.edu`.
+* Lightweight user management: create different email addresses and configure
+  who to forward them to.
 
-This is super convenient: you don't have to manage a separate inbox, but you
-can still compose mail or reply to mail as your fancy group email, even from
-your phone.
+Our admin panel looks like this:
+![](https://i.fluffy.cc/9cGLcQv29G6kmlgvnvgq8J7nxw9BlMrx.png)
 
 We provide instructions for setting this up with Gmail below, but other email
 providers and clients offer similar options.
-
 
 #### How can I use Gmail to send and receive email?
 
