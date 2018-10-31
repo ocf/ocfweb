@@ -145,6 +145,7 @@ def hiring_2017(title, request):
         },
     )
 
+
 @announcement(
     'The OCF is hiring!',
     date(2018, 10, 30),
