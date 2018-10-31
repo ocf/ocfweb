@@ -134,7 +134,7 @@ def hpc_survey(title, request):
 @announcement(
     'The OCF is hiring!',
     date(2017, 3, 20),
-    'hiring',
+    'hiring-2017',
 )
 def hiring_2017(title, request):
     return render(
@@ -149,7 +149,7 @@ def hiring_2017(title, request):
 @announcement(
     'The OCF is hiring!',
     date(2018, 10, 30),
-    'hiring',
+    'hiring-2018',
 )
 def hiring_2018(title, request):
     return render(
