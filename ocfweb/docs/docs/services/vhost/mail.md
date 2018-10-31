@@ -24,7 +24,7 @@ virtual hosting page|vhost_mail]] to add and remove addresses.
 
 ## How sending and receiving mail works
 
-The OCF does not provide "true" mail hosting-- we do not store mail on our
+The OCF does not provide "true" mail hosting -- we do not store mail on our
 servers, nor do we provide a new mailbox for you to monitor. Instead, we
 provide:
 
