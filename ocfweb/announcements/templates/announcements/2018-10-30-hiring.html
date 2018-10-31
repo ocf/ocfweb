@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 ocf-content-block">
+            <h3></h3>
+            <p><em>October 30, 2018</em></p>
+            <hr />
+            <p><i>
+                We are looking to hire students to be OCF Operations
+                staff for the 2019 academic year and onward! This includes two paid
+                positions, Operations Assistant and Operations Manager, neither
+                of which require any technical experience. These are very
+                important roles, and without dedicated and passionate students
+                to fill them, the OCF will not be able to stay open next
+                semester.
+            </i></p>
+
+            <h3>Operations Assistants</h3>
+            <p>
+                Operations Assistants will have the following responsibilities:
+
+                <ul>
+                    <li>Staffing the front desk</li>
+                    <ul>
+                        <li>Maintaining lab security</li>
+                        <li>Providing help to OCF members using the lab</li>
+                        <li>Carrying out regular lab maintenance</li>
+                    </ul>
+                    <li>Working on projects that benefit the OCF</li>
+                    <ul>
+                        <li>Marketing and outreach</li>
+                        <li>Collecting feedback on OCF services</li>
+                        <li>Organizing events taking place in the lab</li>
+                        <li>Researching and applying for additional sources of
+                            funding for the OCF</li>
+                    </ul>
+                    <li>Attending regular meetings with the Operations Manager
+                        and the other Operations Assistants</li>
+                </ul>
+
+                This job position will be paid $13.75 per hour.
+            </p>
+
+            <h3>Operations Manager</h3>
+            <p>
+                The Operations Manager will have the same responsibilities as
+                the Operations Assistants (see above), except they will spend
+                less time staffing the front desk of the OCF, and instead will
+                spend the remaining time performing more managerial duties,
+                such as leading meetings with the Operations Assistants,
+                delegating projects, and scheduling shifts for the OCF front
+                desk. This job will involve more responsibilities and use of
+                communication skills than the Operations Assistant role, but it
+                is also paid more, at $15.75 per hour.
+            </p>
+            <h3>Application</h3>
+            <p>
+            Applications close on Sunday, November 4th at 11:59 PM. Apply <a href="https://ocf.io/hiring"> here </a>!
+            </p>
+        </div>
+
+        <div class="col-sm-4 ocf-sidebar">
+          <hr class="visible-sm" />
+            <h3>About the OCF</h3>
+            <p>
+                The OCF provides free computing services for any students,
+                faculty, or staff that lack access to the resources they need.
+                Since its founding in 1989, the services offered by the OCF
+                have grown massively, especially in the past couple years as
+                the OCF moved to a much nicer new lab location in 171 MLK
+                Student Union.
+            </p>
+            <p>
+                Some of the variety of services we provide to the campus
+                community include:
+            </p>
+            <ul>
+                <li>
+                    <a href="{% url 'doc' 'services/lab' %}">
+                        A spiffy computer lab in 171 MLK</a>, visited by around
+                    500 students per day, and over 10,000 per year
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/web' %}">Web, application,
+                        and email hosting</a> for over 80% of student groups and
+                    thousands of individual students
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/lab/printing' %}">Free
+                        printing</a>, used by over 5,000 students per semester
+                </li>
+            </ul>
+            <hr />
+            <p class="text-center">
+                <img src="{% static 'img/penguin.svg' %}" />
+            </p>
+        </div>
+    </div>
+{% endblock %}
