@@ -5,8 +5,8 @@ We use the standard Unix quota utilities to set disk quotas.
 
 ### Summary of useful commands
 
-All of these can be executed on `jaws`. Some of them also work on other servers
-which mount NFS.
+All of these can be executed on `dataloss`. Some of them also work on other
+servers which mount NFS.
 
 
 #### View your own quota
