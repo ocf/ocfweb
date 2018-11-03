@@ -7,6 +7,7 @@ from ocflib.account.search import users_by_calnet_uid
 from ocflib.ucb.directory import name_by_calnet_uid
 from ocflib.ucb.groups import groups_by_student_signat
 from requests.exceptions import ConnectionError
+from requests.exceptions import ReadTimeout
 
 from ocfweb.account.constants import TEST_OCF_ACCOUNTS
 from ocfweb.account.constants import TESTER_CALNET_UIDS
@@ -54,7 +55,7 @@ def change_password(request):
     accounts = get_accounts_for(calnet_uid)
     try:
         accounts += get_accounts_signatory_for(calnet_uid)
-    except ConnectionError:
+    except (ConnectionError, ReadTimeout):
         error = CALLINK_ERROR_MSG
 
     if not accounts and error is None:
