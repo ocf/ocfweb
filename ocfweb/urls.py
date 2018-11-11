@@ -5,7 +5,6 @@ from django.shortcuts import redirect
 from django.urls import reverse
 
 from ocfweb.about.lab import lab_open_source
-from ocfweb.about.lab import lab_survey
 from ocfweb.about.lab import lab_vote
 from ocfweb.about.staff import about_staff
 from ocfweb.account.urls import urlpatterns as account
@@ -49,7 +48,6 @@ urlpatterns = [
     url(r'^about/staff$', about_staff, name='about-staff'),
     url(r'^about/lab/open-source$', lab_open_source, name='lab-open-source'),
     url(r'^about/lab/vote$', lab_vote, name='lab-vote'),
-    url(r'^about/lab/survey$', lab_survey, name='lab-survey'),
 
     # tv endpoints
     url(r'^tv/', include(tv)),

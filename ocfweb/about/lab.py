@@ -19,13 +19,3 @@ def lab_vote(request):
             'title': 'OCF: Register to vote',
         },
     )
-
-
-def lab_survey(request):
-    return render(
-        request,
-        'about/lab-survey.html',
-        {
-            'title': 'OCF: Lab Feedback',
-        },
-    )
