@@ -17,7 +17,7 @@ already in use in our [DNS repo on GitHub][github-ip-list]. Hostnames must be
 based on (un)natural disasters; check out `~staff/server_name_ideas` if you're
 having trouble thinking of one.
 
-[github-ip-list]: https://github.com/ocf/dns/blob/master/etc/zones/db.ocf.in-addr.arpa
+[github-ip-list]: https://github.com/ocf/dns/blob/master/etc/zones/db.226.229.169.in-addr.arpa
 
 
 ## Step 1. (New hosts only) Add to LDAP, DNS, Puppet, Kerberos
