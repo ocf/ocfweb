@@ -74,6 +74,11 @@ h6 {
 }
 
 .ocf-navbar {
+
+  //drop shadow on nav bar
+-webkit-box-shadow: 0 8px 6px -6px #888;
+    -moz-box-shadow: 0 8px 6px -6px #888;
+    box-shadow: 0 8px 6px -6px #888;
     @extend .navbar-default;
 
     // baby blue with opacity changed (http://hex2rgba.devoth.com/)
@@ -111,7 +116,7 @@ h6 {
     .navbar-nav > li > a,
     .ocf-account-dropdown {
         font-size: 16px;
-        color: #000;
+        color: #5f6368;
         height: $navbar-height;
         padding-top: 21px;
 
@@ -160,6 +165,7 @@ h6 {
 .ocf-status-bar {
     background-color: $status-bar-color;
     font-size: 14px;
+    color: #5f6368;
 
     p {
         margin: 10px 0;
@@ -303,38 +309,38 @@ h6 {
 }
 /* Create an account css */
 .ocf-login-main .sso-button {
-	border: 1px solid #05c;
-	border-radius: 3px;
-	padding: 16px;
-	display: -ms-flex;
-	display: flex;
-	flex-grow: 1;
-	align-items: center;
-	justify-content: space-between
+    border: 1px solid #05c;
+    border-radius: 3px;
+    padding: 16px;
+    display: -ms-flex;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between
 }
 
 .ocf-login-main .sso-button .sso-content {
-	display: -ms-flex;
-	display: flex;
-	flex-grow: 1;
-	align-items: center;
-	color: #434343
+    display: -ms-flex;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    color: #434343
 }
 
 .ocf-login-main .sso-button .sso-content img {
-	width: 24px;
-	height: 24px;
-	margin-right: 8px
+    width: 24px;
+    height: 24px;
+    margin-right: 8px
 }
 
 .ocf-login-main .sso-button .sso-content .sso-name {
-	display: inline-block;
-	flex-basis: 90%
+    display: inline-block;
+    flex-basis: 90%
 }
 
 .ocf-login-main .sso-button:hover {
-	background-color: #e6f0ff;
-	text-decoration: none
+    background-color: #e6f0ff;
+    text-decoration: none
 }
 
 .ocf-location {
@@ -355,6 +361,7 @@ h6 {
   border: 10px solid #E9E9E9;
   padding: 15px;
   height: 320px;
+
 }
 
 .table, .page-doc .ocf-content-block {

@@ -2051,7 +2051,7 @@ caption {
   text-align: left; }
 
 th {
-  text-align: center; }
+  text-align: left; }
 
 .table, .page-doc .ocf-content-block table {
   width: 100%;
@@ -3662,12 +3662,12 @@ tbody.collapse.in {
       margin-left: -1px; }
     .input-group-btn > .btn:hover, .input-group-btn > .doc-collapse-toggle:hover, .input-group-btn > .btn:focus, .input-group-btn > .doc-collapse-toggle:focus, .input-group-btn > .btn:active, .input-group-btn > .doc-collapse-toggle:active {
       z-index: 2; }
-  
+
   .input-group-btn:first-child > .btn,
   .input-group-btn:first-child > .doc-collapse-toggle,
   .input-group-btn:first-child > .btn-group {
     margin-right: -1px; }
-  
+
   .input-group-btn:last-child > .btn,
   .input-group-btn:last-child > .doc-collapse-toggle,
   .input-group-btn:last-child > .btn-group {
@@ -6039,6 +6039,9 @@ h6 {
     color: #999; }
 
 .ocf-navbar {
+  -webkit-box-shadow: 0 8px 6px -6px #888;
+  -moz-box-shadow: 0 8px 6px -6px #888;
+  box-shadow: 0 8px 6px -6px #888;
   background-color: #cbe1ea;
   border: 0; }
   .ocf-navbar .navbar-brand {
