@@ -14,11 +14,10 @@
                 <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
             </div>
             <div class="col-sm-6 ocf-login-main">
-                <h1 align="center">Sign Up Here</h1>
                 <a class="sso-button" title="For current students only" id="sso-button" data-bind="click: track_sso_click" href="https://auth.berkeley.edu/cas/login?service=https%3A%2F%2Fwww.ocf.berkeley.edu%2Flogin%2Fcalnet%2Flogin%2F%3Fnext%3D%252Faccount%252Fregister%252F&renew=true">
                   <div class="sso-content">
                     <img alt="" src="https://s3.amazonaws.com/handshake.production/app/public/assets/schools/84/small/hs-school-logo-data.?1482461526">
-                    <div class="sso-name" id="sso-name">Create an account with your UC Berkeley student CalNet</div>
+                    <div class="sso-name" id="sso-name">Create an OCF Account</div>
                   </div>
                   <i class="fa fa-chevron-right"></i>
                 </a>
@@ -42,7 +41,7 @@
             <div class="col-sm-6 ocf-hours1">
                 <h3 align="center">Lab Hours</h3>
                     <div class="ocf-hours2">
-                        <table align="right" class="table table-striped table-hover">
+                        <table align="center" class="table table-hover">
                             <tr><th>Sunday</th><td>{{regular_hours | getitem:SUNDAY | lab_hours_time}}</td></tr>
                             <tr><th>Monday</th><td>{{regular_hours | getitem:MONDAY | lab_hours_time}}</td></tr>
                             <tr><th>Tuesday</th><td>{{regular_hours | getitem:TUESDAY | lab_hours_time}}</td></tr>

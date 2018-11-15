@@ -25,7 +25,7 @@ $color-yellow-light: #ffc;
 $color-penguin-blue: #0f4d92;
 $color-penguin-yellow: #ffd700;
 
-$navbar-height: 60px;
+$navbar-height: 70px;
 $navbar-color: $color-blue-baby ;
 
 $hero-color: $color-blue-baby;
@@ -75,12 +75,6 @@ h6 {
 
 .ocf-navbar {
 
-  //drop shadow on nav bar
--webkit-box-shadow: 0 8px 6px -6px #888;
-    -moz-box-shadow: 0 8px 6px -6px #888;
-    box-shadow: 0 8px 6px -6px #888;
-    @extend .navbar-default;
-
     // baby blue with opacity changed (http://hex2rgba.devoth.com/)
     background-color: rgba(203, 225, 234, 1.0);
     border: 0;
@@ -118,7 +112,7 @@ h6 {
         font-size: 16px;
         color: #5f6368;
         height: $navbar-height;
-        padding-top: 21px;
+        padding-top: 25px;
 
         @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
             font-size: 14px;
@@ -293,15 +287,15 @@ h6 {
   background-color: white;
   border-radius: 25px;
   border-width: medium;
-  border: 2px solid #A5A4A4;
+  border: 0px solid #A5A4A4;
 }
 
 .ocf-login-main {
-  background-color: white;
+  background-color: #cbelea;
   border-radius: 25px;
   border-width: medium;
-  border: 10px solid #AEC9D0;
-  padding: 20px;
+  border: 0px solid #AEC9D0;
+  padding: 60px;
 }
 
 .col-sm-6 {
@@ -311,7 +305,7 @@ h6 {
 .ocf-login-main .sso-button {
     border: 1px solid #05c;
     border-radius: 3px;
-    padding: 16px;
+    padding: 5px;
     display: -ms-flex;
     display: flex;
     flex-grow: 1;
@@ -328,7 +322,7 @@ h6 {
 }
 
 .ocf-login-main .sso-button .sso-content img {
-    width: 24px;
+    width: 10px;
     height: 24px;
     margin-right: 8px
 }
@@ -356,9 +350,9 @@ h6 {
 
 .ocf-hours2 {
   background-color: white;
-  border-radius: 25px;
+  border-radius: 5px;
   border-width: medium;
-  border: 10px solid #E9E9E9;
+  border: 0px solid #E9E9E9;
   padding: 15px;
   height: 320px;
 
