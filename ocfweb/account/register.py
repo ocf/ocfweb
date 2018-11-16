@@ -144,6 +144,7 @@ def validate(request):
     except (ValidationError, ValidationWarning) as e:
         return JsonResponse({
             'is_valid': False,
+            'is_warning': isinstance(e, ValidationWarning),
             'msg': str(e),
         })
 
