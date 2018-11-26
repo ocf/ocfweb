@@ -106,6 +106,7 @@ def get_hosts():
                     'democracy',
                     'firestorm',
                     'flood',
+                    'fraud',
                     'gridlock',
                     'lethe',
                     'lightning',
@@ -117,9 +118,8 @@ def get_hosts():
                     'supernova',
                     'thunder',
                     'tsunami',
-                    'whirlwind',
-                    'whiteout',
                     'vampires',
+                    'whiteout',
                     'zombies',
                 )
             ],
@@ -130,7 +130,12 @@ def get_hosts():
             type='server',
         ),
 
-        Host('blackhole', 'network', 'Managed Cisco Catalyst 2960S-48TS-L Switch.', []),
+        Host.from_ldap(
+            hostname='dev-fallingrocks',
+            type='server',
+        ),
+
+        Host('blackhole', 'network', 'Managed Arista 7050SX-64 Switch.', []),
 
         Host('logjam', 'printer', '', []),
         Host('pagefault', 'printer', '', []),
