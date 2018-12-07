@@ -83,7 +83,7 @@ Port Channel Port-Channel7:
 
 More details can be found on the EOS guide online, in the [Port Channel section][lacp-guide].
 
-LACP also needs to be configured on the [host side][lacp-setup].
+LACP also needs to be configured on the [[host side | doc staff/procedures/setting-up-lacp]].
 
 [primary-switch]: https://www.arista.com/assets/data/pdf/Datasheets/7050SX-128_64_Datasheet.pdf
 [secondary-switch]: https://www.arista.com/assets/data/pdf/Datasheets/7048T-A_DataSheet.pdf
@@ -91,4 +91,3 @@ LACP also needs to be configured on the [host side][lacp-setup].
 [ipv6-ra]: https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol
 [bsecure]: https://bsecure.berkeley.edu
 [lacp-guide]: https://www.arista.com/en/um-eos/eos-port-channels-and-lacp
-[lacp-setup]: https://www.ocf.berkeley.edu/docs/staff/procedures/setting-up-bridging-and-link-aggregation
