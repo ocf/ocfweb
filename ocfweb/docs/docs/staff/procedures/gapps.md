@@ -11,9 +11,10 @@ good if you want to send an email while representing the OCF
 * It can be useful to have a separation between OCF and Calnet accounts.
 
 ## Making an account
-Google Apps accounts are available upon request for **any OCF staffer**. Before
-getting one, staffers should be aware that OCF emails will be sent to the new
-account instead of the Calnet account that they're used to.
+Google Apps accounts are available upon request for OCF staff members, and are
+granted at SM discretion. Upon getting one, staffers should be aware that OCF
+emails will be sent to the new account instead of the Calnet account that
+they're used to.
 
 Making a new account requires Google Admin privileges:
 
