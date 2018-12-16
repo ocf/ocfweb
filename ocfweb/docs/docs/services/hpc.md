@@ -39,9 +39,16 @@ where you can ask questions and talk to us about anything HPC.
 
 ## The Cluster
 
-Users are currently able to run jobs on our main HPC server, which has 4
-1080Ti's and 256GB of DDR4-2400 RAM, which was funded by generous grants from
-the Student Tech Fund.
+As of Fall 2018, the OCF HPC cluster is composed of one server, with the
+following specifications:
+
+* 2 Intel Xeon [E5-2640v4][corruption-cpu] CPUs (10c/20t @ 2.4GHz)
+* 4 NVIDIA 1080Ti GPUs
+* 256GB ECC DDR4-2400 RAM
+
+We have plans to expand the cluster with additional nodes of comparable
+specifications as funding becomes available. The current hardware was
+generously funded by a series of grants from the [Student Tech Fund][stf].
 
 ## Slurm
 
@@ -181,3 +188,5 @@ able to interface with the GPUs.
 [win_install]: https://singularity.lbl.gov/install-windows
 [linux_install]: https://singularity.lbl.gov/install-linux
 [brc_slurm]: http://research-it.berkeley.edu/services/high-performance-computing/running-your-jobs
+[corruption-cpu]: https://ark.intel.com/products/92984/Intel-Xeon-Processor-E5-2640-v4-25M-Cache-2-40-GHz-
+[stf]: https://techfund.berkeley.edu
