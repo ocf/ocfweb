@@ -212,8 +212,10 @@ def _bod_terms():
             'Fall 2018',
             gms=[
                 ('asai', date(2018, 5, 12), date(2018, 11, 7)),
-                ('awelty', date(2018, 11, 7), date(2018, 12, 14), True),
-                ('trliu', date(2018, 11, 7), date(2018, 12, 14), True),
+                ('awelty', date(2018, 11, 7), date(2018, 11, 26), True),
+                ('trliu', date(2018, 11, 7), date(2018, 11, 26), True),
+                ('awelty', date(2018, 11, 26), date(2018, 12, 14)),
+                ('trliu', date(2018, 11, 26), date(2018, 12, 14)),
             ],
             sms=['dkessler', 'keur'],
         ),
