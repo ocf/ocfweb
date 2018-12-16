@@ -234,6 +234,6 @@ def officers(doc, request):
         {
             'title': doc.title,
             'current_term': terms[-1],
-            'previous_terms': terms[:-1],
+            'previous_terms': reversed(terms[:-1]),
         },
     )
