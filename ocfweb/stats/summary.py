@@ -6,9 +6,9 @@ from operator import attrgetter
 from django.shortcuts import render
 from ocflib.lab.stats import current_semester_start
 from ocflib.lab.stats import list_desktops
+from ocflib.lab.stats import SESSIONS_EPOCH
 from ocflib.lab.stats import staff_in_lab as real_staff_in_lab
 from ocflib.lab.stats import staff_in_lab_count as real_staff_in_lab_count
-from ocflib.lab.stats import STATS_EPOCH
 from ocflib.lab.stats import top_staff_alltime as real_top_staff_alltime
 from ocflib.lab.stats import top_staff_semester as real_top_staff_semester
 from ocflib.lab.stats import users_in_lab_count as real_users_in_lab_count
@@ -96,7 +96,7 @@ def summary(request):
             'title': 'Lab Statistics',
             'desktop_profiles': desktop_profiles(),
             'current_semester_start': current_semester_start(),
-            'stats_epoch': STATS_EPOCH,
+            'stats_epoch': SESSIONS_EPOCH,
             'staff_in_lab': staff_in_lab(),
             'top_staff_alltime': top_staff_alltime()[:15],
             'top_staff_semester': top_staff_semester()[:15],
