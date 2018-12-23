@@ -4,6 +4,7 @@ import dns.resolver
 from cached_property import cached_property
 from django.shortcuts import render
 from ocflib.infra.hosts import hosts_by_filter
+from requests import get
 
 from ocfweb.caching import periodic
 
@@ -65,14 +66,16 @@ PQL_IS_HYPERVISOR = 'resources[certname] { type = "Class" and title = "Ocf_kvm" 
 
 
 def query_puppet(query):
-    """Placeholder function for puppet queries
-    Accepts a PQL query, returns a dictionary with hostname as keys and
+    """Accepts a PQL query, returns a dictionary with hostname as keys and
     'value' in the query output as values
     """
-    if query == PQL_IS_HYPERVISOR:
-        output = eval('[ { "certname": "jaws.ocf.berkeley.edu" }, { "certname": "dev-hal.ocf.berkeley.edu" }, { "certname": "hal.ocf.berkeley.edu" }, { "certname": "riptide.ocf.berkeley.edu" }, { "certname": "pandemic.ocf.berkeley.edu" } ]')  # noqa: E501
-    if query == PQL_GET_CHILDREN:
-        output = eval('[ { "certname": "hal.ocf.berkeley.edu", "value": [ "fallingrocks" ] }, { "certname": "jaws.ocf.berkeley.edu", "value": [] }, { "certname": "mudslide.ocf.berkeley.edu", "value": [] }, { "certname": "aliens.ocf.berkeley.edu", "value": [] }, { "certname": "pandemic.ocf.berkeley.edu", "value": [ "pox", "alamo", "apocalypse", "blackrain", "fallout", "falsevacuum", "fireball", "fukushima", "gnats", "leprosy", "malaria", "nuke", "oilspill", "panic", "pileup", "riot", "sarin", "shipwreck", "virus", "vortex", "war", "zerg", "walpurgisnacht", "mudslide", "pompeii", "locusts", "fire", "rapture", "smallpox", "aliens", "cloudburst", "coldwave", "coma", "dev-firestorm", "emp", "meltdown", "meteorite", "old-vampires", "quasar", "ragnarok", "revolution", "sauron", "skynet", "tempest" ] }, { "certname": "riptide.ocf.berkeley.edu", "value": [ "nyx", "dementors", "democracy", "whiteout", "reaper", "segfault", "monsoon", "fraud", "gridlock", "lethe", "anthrax", "supernova", "firestorm", "pestilence", "flood", "maelstrom", "thunder", "death", "tsunami", "lightning", "vampires", "werewolves", "biohazard", "dev-whiteout", "dev-flood", "cataclysm", "dev-dementors", "doom", "hozer-69", "hozer-70", "hozer-71", "hozer-73", "hozer-74", "limniceruption", "matrix", "miasma", "zombies" ] }, { "certname": "gnats.ocf.berkeley.edu", "value": [] }, { "certname": "smallpox.ocf.berkeley.edu", "value": [] } ]')  # noqa: E501
+    URL = 'https://puppetdb:8081/pdb/query/v4'
+    ROOT_DIR = '/home/z/zi/ziyaoz/'
+    r = get(
+        URL, cert=(ROOT_DIR + 'puppet-cert.pem', ROOT_DIR + 'puppet-private.pem'),
+        verify=ROOT_DIR + 'puppet-ca.pem', params={'query': query},
+    )
+    output = eval(r.text)
     result = {}
     for d in output:
         hostname = d['certname'].split('.')[0]
