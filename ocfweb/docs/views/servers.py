@@ -70,7 +70,7 @@ def query_puppet(query):
     'value' in the query output as values
     """
     URL = 'https://puppetdb:8081/pdb/query/v4'
-    ROOT_DIR = '/home/z/zi/ziyaoz/'
+    ROOT_DIR = '/etc/ocfweb/'
     r = get(
         URL, cert=(ROOT_DIR + 'puppet-cert.pem', ROOT_DIR + 'puppet-private.pem'),
         verify=ROOT_DIR + 'puppet-ca.pem', params={'query': query},
