@@ -96,7 +96,7 @@ def create_hosts(lst):
     return hosts
 
 
-@periodic(120)
+@periodic(300)
 def get_hosts():
     servers = create_hosts(hosts_by_filter('(type=server)'))
     desktops = create_hosts(hosts_by_filter('(type=desktop)'))
