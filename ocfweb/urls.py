@@ -30,6 +30,9 @@ urlpatterns = [
     url(r'^test/session$', test_session, name='test_session'),
     url(r'^test/periodic$', test_list_periodic_functions, name='test_list_periodic_functions'),
 
+    # prometheus metrics
+    url('', include('django_prometheus.urls')),
+
     url(r'^$', home, name='home'),
     url(r'^robots\.txt$', robots_dot_txt, name='robots.txt'),
     url(r'^favicon.ico$', favicon, name='favicon'),

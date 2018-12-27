@@ -14,6 +14,7 @@ Django==2.1.2
 django-bootstrap-form==3.4
 django-ipware==2.1.0
 django-mathfilters==0.4.0
+django-prometheus==1.0.15
 django-redis==4.9.0
 dnspython==1.15.0
 gunicorn==19.9.0
