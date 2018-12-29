@@ -11,12 +11,8 @@ from django.template.base import TemplateSyntaxError
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TESTING = os.environ.get('OCFWEB_TESTING') == '1'
 
-ALLOWED_HOSTS = [
-    'www.ocf.berkeley.edu',
-    'dev.ocf.berkeley.edu',
-    'dev-www.ocf.berkeley.edu',
-    'ocfweb.ocf.berkeley.edu',
-]
+# This is checked by marathon-lb anyways
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = (
     'bootstrapform',
