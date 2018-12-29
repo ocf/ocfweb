@@ -4,6 +4,6 @@ exec 2>&1
 
 cd /opt/ocfweb
 exec /opt/ocfweb/venv/bin/gunicorn \
-    -b 0.0.0.0:8000 \
+    -b 127.0.0.1:8080 \
     -w 4 \
     ocfweb.wsgi
