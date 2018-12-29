@@ -6,7 +6,7 @@ RUN mkdir /opt/ocfweb/static
 ENV OCFWEB_STATIC_ROOT /opt/ocfweb/static
 RUN /opt/ocfweb/venv/bin/python /opt/ocfweb/manage.py collectstatic --noinput
 
-COPY services/nginx /opt/ocfweb/services/nginx
+COPY services/static /opt/ocfweb/services/static
 RUN chown -R nobody:nogroup /opt/ocfweb/services
 
 USER nobody
