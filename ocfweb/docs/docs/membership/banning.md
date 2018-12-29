@@ -11,7 +11,7 @@ user will be called to the next Board of Directors meeting, and those present
 shall testify. The Board of Directors may then decide to ban the user with a ⅔
 majority vote. If the violation of OCF policies is additionally a violation of
 the UC Berkeley Student Code of Conduct, the GM will submit a report to the
-Center of Student Conduct."
+Center of Student Conduct.
 
 If the user is banned, they shall be promptly notified of the ban and given a
 chance to appeal the ban at one of the next three future Board of Directors 
