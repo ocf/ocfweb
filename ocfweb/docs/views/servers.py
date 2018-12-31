@@ -1,4 +1,5 @@
 from collections import namedtuple
+from os.path import join
 
 import dns.resolver
 from cached_property import cached_property
@@ -72,8 +73,8 @@ def query_puppet(query):
     URL = 'https://puppetdb:8081/pdb/query/v4'
     ROOT_DIR = '/etc/ocfweb/'
     r = get(
-        URL, cert=(ROOT_DIR + 'puppet-cert.pem', ROOT_DIR + 'puppet-private.pem'),
-        verify=ROOT_DIR + 'puppet-ca.pem', params={'query': query},
+        URL, cert=(join(ROOT_DIR, 'puppet-cert.pem'), join(ROOT_DIR, 'puppet-private.pem')),
+        verify=join(ROOT_DIR, 'puppet-ca.pem'), params={'query': query},
     )
     output = eval(r.text)
     result = {}
