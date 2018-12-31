@@ -107,10 +107,15 @@ def create_hosts(lst):
 
 @periodic(300)
 def get_hosts():
-    servers = create_hosts(hosts_by_filter('(type=server)'))
-    desktops = create_hosts(hosts_by_filter('(type=desktop)'))
-    misc = create_hosts(hosts_by_filter('(type=printer)'))
-    hypervisors = {}
+    servers = create_hosts(hosts_by_filter('(|(type=server)(type=desktop)(type=printer))'))
+
+    # Handle special cases
+    servers['blackhole'] = Host(
+        'blackhole', 'network',
+        'Arista 7050SX Switch.', [],
+    )
+    servers['overheat'] = servers['overheat']._replace(type='raspi')
+    servers['tornado'] = servers['tornado']._replace(type='nuc')
 
     hypervisor_hostnames = format_query_output(query_puppet(PQL_IS_HYPERVISOR))
     all_children = format_query_output(query_puppet(PQL_GET_CHILDREN))
@@ -125,30 +130,16 @@ def get_hosts():
                 if child:
                     del servers[child.hostname]
                     children.append(Host(child.hostname, 'vm', child.description, ()))
-            # Associate host with its children and move it to the hypervisors dictionary
+            # Associate host with its children and specify type
             del servers[h.hostname]
-            hypervisors[h.hostname] = Host(
+            servers[h.hostname] = Host(
                 h.hostname,
                 'hypervisor',
                 h.description,
                 children,
             )
 
-    # Handle special cases
-    def change_host_type(hostname, host_type, origin_type_dict, target_type_dict):
-        """Pop Host with hostname from servers, change its type, and add to misc
-        """
-        host = origin_type_dict.pop(hostname)
-        target_type_dict[hostname] = host._replace(type=host_type)
-
-    change_host_type('overheat', 'raspi', servers, misc)
-    change_host_type('tornado', 'nuc', servers, misc)
-    misc['blackhole'] = Host(
-        'blackhole', 'network',
-        'Arista 7050SX Switch.', [],
-    )
-
-    return [*hypervisors.values(), *servers.values(), *desktops.values(), *misc.values()]
+    return [*servers.values()]
 
 
 def servers(doc, request):
