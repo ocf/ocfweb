@@ -139,7 +139,18 @@ def get_hosts():
                 children,
             )
 
-    return [*servers.values()]
+    def host_key(h):
+        """Key function for sorting Host objects
+        """
+        if h.type == 'hypervisor':
+            return 'a' + h.hostname
+        if h.type == 'server':
+            return 'b' + h.hostname
+        if h.type == 'desktop':
+            return 'z' + h.hostname
+        return 'c' + h.type + h.hostname
+
+    return sorted(servers.values(), key=host_key)
 
 
 def servers(doc, request):
