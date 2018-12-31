@@ -30,13 +30,16 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
 
     @cached_property
     def ipv4(self):
-        return str(dns.resolver.query(self.hostname, 'A')[0])
+        try:
+            return str(dns.resolver.query(self.hostname, 'A')[0])
+        except dns.resolver.NXDOMAIN:
+            return 'No IPv4 Address'
 
     @cached_property
     def ipv6(self):
         try:
             return str(dns.resolver.query(self.hostname, 'AAAA')[0])
-        except dns.resolver.NoAnswer:
+        except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
             return 'No IPv6 address'
 
     @cached_property
