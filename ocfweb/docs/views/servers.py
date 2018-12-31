@@ -1,3 +1,4 @@
+import json
 from collections import namedtuple
 from os.path import join
 
@@ -70,8 +71,7 @@ PQL_IS_HYPERVISOR = 'resources[certname] { type = "Class" and title = "Ocf_kvm" 
 
 
 def query_puppet(query):
-    """Accepts a PQL query, returns a dictionary with hostname as keys and
-    'value' in the query output as values
+    """Accepts a PQL query, returns the parsed json result
     """
     URL = 'https://puppetdb:8081/pdb/query/v4'
     ROOT_DIR = '/etc/ocfweb/'
@@ -79,7 +79,12 @@ def query_puppet(query):
         URL, cert=(join(ROOT_DIR, 'puppet-cert.pem'), join(ROOT_DIR, 'puppet-private.pem')),
         verify=join(ROOT_DIR, 'puppet-ca.pem'), params={'query': query},
     )
-    output = eval(r.text)
+    return json.loads(r.text)
+
+
+def format_query_output(output):
+    """Converts the output of a puppet query to a dictionary of the form {certname: value}
+    """
     result = {}
     for d in output:
         hostname = d['certname'].split('.')[0]
@@ -107,8 +112,8 @@ def get_hosts():
     misc = create_hosts(hosts_by_filter('(type=printer)'))
     hypervisors = {}
 
-    hypervisor_hostnames = query_puppet(PQL_IS_HYPERVISOR)
-    all_children = query_puppet(PQL_GET_CHILDREN)
+    hypervisor_hostnames = format_query_output(query_puppet(PQL_IS_HYPERVISOR))
+    all_children = format_query_output(query_puppet(PQL_GET_CHILDREN))
 
     # Add children to hypervisors
     for h in list(servers.values()):
