@@ -73,7 +73,7 @@ PQL_IS_HYPERVISOR = 'resources[certname] { type = "Class" and title = "Ocf_kvm" 
 def query_puppet(query):
     """Accepts a PQL query, returns a parsed json result"""
     URL = 'https://puppetdb:8081/pdb/query/v4'
-    ROOT_DIR = '/home/z/zi/ziyaoz/'
+    ROOT_DIR = '/etc/ocfweb/puppet-certs'
     r = get(
         URL,
         cert=(join(ROOT_DIR, 'puppet-cert.pem'), join(ROOT_DIR, 'puppet-private.pem')),
