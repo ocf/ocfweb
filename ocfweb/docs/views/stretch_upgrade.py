@@ -37,18 +37,18 @@ def _get_servers():
         ThingToUpgrade.from_hostname(
             'death',
             comments='same time as all login servers',
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
             'tsunami',
             comments='same time as all login servers',
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
-            'werewolves',
-            comments=(
-                "we'll need to set up an entirely new server and move vhosts one-by-one"
-            ),
+            'vampires',
+            comments='same time as all login servers',
+            status=ThingToUpgrade.UPGRADED,
         ),
-
         ThingToUpgrade.from_hostname(
             'firestorm',
             status=ThingToUpgrade.UPGRADED,

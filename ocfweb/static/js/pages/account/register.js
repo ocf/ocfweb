@@ -7,18 +7,26 @@ function validate_username() {
          data: {'username': $username_field.val(),
                 'real_name': $('#real-name').text()},
          success: function(data) {
+             var msg = data.msg;
+
              if(data.is_valid) {
                 $username_field.parent().removeClass('has-error')
                                .addClass('has-success');
-                $username_feedback.removeClass('alert-danger')
+                $username_feedback.removeClass('alert-danger alert-warning')
                                   .addClass('alert-success');
              } else {
                 $username_field.parent().removeClass('has-success')
                                .addClass('has-error');
                 $username_feedback.removeClass('alert-sucess')
                                   .addClass('alert-danger');
+                if (data.is_warning) {
+                    msg += ' Your account will require manual approval.';
+                    msg += ' Email help@ocf.berkeley.edu if you have questions.';
+                    $username_feedback.removeClass('alert-danger')
+                                      .addClass('alert-warning');
+                }
              }
-             $username_feedback.show().text(data.msg);
+             $username_feedback.show().text(msg);
          }
      });
  }

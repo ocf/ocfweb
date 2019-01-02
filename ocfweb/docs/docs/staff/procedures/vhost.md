@@ -89,9 +89,9 @@ only for this request) before approving it.
 
 You will need a `/admin` principal to modify apphosting entries.
 
-* Add the group account to the ocfdev LDAP group:
+* Add the group account to the ocfapphost LDAP group:
 
-      $ ldapvi cn=ocfdev
+      $ ldapvi cn=ocfapphost
       memberUid: ggroup
       memberUid: GROUP_USERNAME
 

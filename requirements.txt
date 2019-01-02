@@ -14,6 +14,7 @@ Django==2.1.2
 django-bootstrap-form==3.4
 django-ipware==2.1.0
 django-mathfilters==0.4.0
+django-prometheus==1.0.15
 django-redis==4.9.0
 dnspython==1.15.0
 gunicorn==19.9.0
@@ -46,7 +47,7 @@ python-dateutil==2.7.3
 pytz==2018.5
 PyYAML==3.13
 redis==2.10.6
-requests==2.19.1
+requests==2.20.0
 setuptools==40.4.3
 six==1.11.0
 SQLAlchemy==1.2.12

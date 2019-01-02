@@ -24,6 +24,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'django_prometheus',
     'mathfilters',
 
     'ocfweb',
@@ -42,12 +43,14 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'ocfweb.middleware.errors.OcflibErrorMiddleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 )
 
 # write flash messages into the session

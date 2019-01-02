@@ -1,8 +1,9 @@
 from datetime import date
 
 from django.shortcuts import render
+from ocflib.lab.stats import bandwidth_by_dist
 from ocflib.lab.stats import current_semester_start
-from ocflib.lab.stats import get_connection
+from ocflib.lab.stats import humanize_bytes
 
 from ocfweb.caching import periodic
 
@@ -10,43 +11,41 @@ MIRRORS_EPOCH = date(2017, 1, 1)
 
 
 def stats_mirrors(request):
+
+    semester_total, semester_dists = bandwidth_semester()
+    all_time_total, all_time_dists = bandwidth_all_time()
+
     return render(
         request,
         'stats/mirrors.html',
         {
             'title': 'Mirrors Statistics',
-            'bandwidth_semester': bandwidth_semester(),
-            'bandwidth_all_time': bandwidth_all_time(),
-            'start_date': current_semester_start,
+            'semester_total': semester_total,
+            'semester_dists': semester_dists,
+            'all_time_total': all_time_total,
+            'all_time_dists': all_time_dists,
+            'start_date': current_semester_start(),
         },
     )
-
-# TODO: move this to ocflib
-
-
-def _humanize(n):
-    # adapted from jvperrin/upload-to-box
-    for unit in ['', 'KB', 'MB', 'GB', 'TB', 'PB']:
-        if n < 1024.0:
-            return '{:3.2f} {}'.format(n, unit)
-        n /= 1024.0
-
-
-def _bandwidth_by_dist(start):
-    with get_connection() as c:
-        c.execute(
-            'SELECT `dist`, SUM(`up` + `down`) as `bandwidth` FROM `mirrors_public` WHERE `date` > %s'
-            'GROUP BY `dist` ORDER BY `bandwidth` DESC', start,
-        )
-
-    return [(i['dist'], _humanize(float(i['bandwidth']))) for i in c]
 
 
 @periodic(86400)
 def bandwidth_semester():
-    return _bandwidth_by_dist(current_semester_start())
+
+    data = bandwidth_by_dist(current_semester_start())
+
+    total = humanize_bytes(sum(x[1] for x in data))
+    by_dist = [(dist, humanize_bytes(bw)) for dist, bw in data]
+
+    return total, by_dist
 
 
 @periodic(86400)
 def bandwidth_all_time():
-    return _bandwidth_by_dist(MIRRORS_EPOCH)
+
+    data = bandwidth_by_dist(MIRRORS_EPOCH)
+
+    total = humanize_bytes(sum(x[1] for x in data))
+    by_dist = [(dist, humanize_bytes(bw)) for dist, bw in data]
+
+    return total, by_dist

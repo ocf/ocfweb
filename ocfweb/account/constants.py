@@ -10,6 +10,7 @@ TESTER_CALNET_UIDS = (
     1034192,  # ckuehl
     869331,   # tzhu
     1031366,  # mattmcal
+    1099131,  # dkessler
     1101587,  # jvperrin
 )
 

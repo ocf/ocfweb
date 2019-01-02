@@ -55,6 +55,7 @@ service agreement, direct them to the UC Berkeley PMP Coordinator.
 
 ## Stats
 
+ * [Printer status Grafana dashboard (ocf.io/printers)][printer-dashboard]
  * Toner and Maintenance Kit [status][printer-summary]
  * [How many pages has each printer printed][pages-printed]? (expressed as total
    pages printed over time)
@@ -62,5 +63,6 @@ service agreement, direct them to the UC Berkeley PMP Coordinator.
 
 [toner]: http://www.staples.com/HP-64X-Black-Toner-Cartridge-CC364XD-High-Yield-Twin-Pack/product_821762
 [pmp]: http://campuslifeservices.ucsf.edu/documentsmedia/services/print_management
+[printer-dashboard]: https://ocf.io/printers
 [printer-summary]: https://www.ocf.berkeley.edu/stats/
 [pages-printed]: https://www.ocf.berkeley.edu/stats/printing/pages-printed
