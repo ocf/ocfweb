@@ -71,13 +71,14 @@ PQL_IS_HYPERVISOR = 'resources[certname] { type = "Class" and title = "Ocf_kvm" 
 
 
 def query_puppet(query):
-    """Accepts a PQL query, returns the parsed json result
-    """
+    """Accepts a PQL query, returns a parsed json result"""
     URL = 'https://puppetdb:8081/pdb/query/v4'
-    ROOT_DIR = '/etc/ocfweb/'
+    ROOT_DIR = '/home/z/zi/ziyaoz/'
     r = get(
-        URL, cert=(join(ROOT_DIR, 'puppet-cert.pem'), join(ROOT_DIR, 'puppet-private.pem')),
-        verify=join(ROOT_DIR, 'puppet-ca.pem'), params={'query': query},
+        URL,
+        cert=(join(ROOT_DIR, 'puppet-cert.pem'), join(ROOT_DIR, 'puppet-private.pem')),
+        verify=join(ROOT_DIR, 'puppet-ca.pem'),
+        params={'query': query},
     )
     return json.loads(r.text)
 
@@ -105,6 +106,18 @@ def create_hosts(lst):
     return hosts
 
 
+def host_key(h):
+    """Key function for sorting Host objects
+    """
+    if h.type == 'hypervisor':
+        return 'a' + h.hostname
+    if h.type == 'server':
+        return 'b' + h.hostname
+    if h.type == 'desktop':
+        return 'z' + h.hostname
+    return 'c' + h.type + h.hostname
+
+
 @periodic(300)
 def get_hosts():
     servers = create_hosts(hosts_by_filter('(|(type=server)(type=desktop)(type=printer))'))
@@ -129,27 +142,15 @@ def get_hosts():
                 child = servers.get(child_hostname)
                 if child:
                     del servers[child.hostname]
-                    children.append(Host(child.hostname, 'vm', child.description, ()))
+                    children.append(child._replace(type='vm'))
             # Associate host with its children and specify type
             del servers[h.hostname]
             servers[h.hostname] = Host(
-                h.hostname,
-                'hypervisor',
-                h.description,
-                children,
+                hostname=h.hostname,
+                type='hypervisor',
+                description=h.description,
+                children=children,
             )
-
-    def host_key(h):
-        """Key function for sorting Host objects
-        """
-        if h.type == 'hypervisor':
-            return 'a' + h.hostname
-        if h.type == 'server':
-            return 'b' + h.hostname
-        if h.type == 'desktop':
-            return 'z' + h.hostname
-        return 'c' + h.type + h.hostname
-
     return sorted(servers.values(), key=host_key)
 
 
