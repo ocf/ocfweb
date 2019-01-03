@@ -61,6 +61,18 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
     def has_munin(self):
         return self.type in ('hypervisor', 'vm', 'server', 'desktop')
 
+    def __key(self):
+        if self.type == 'hypervisor':
+            return 'a' + self.hostname
+        if self.type == 'server':
+            return 'b' + self.hostname
+        if self.type == 'desktop':
+            return 'z' + self.hostname
+        return 'c' + self.type + self.hostname
+
+    def __lt__(self, other_host):
+        return self.__key() < other_host.__key()
+
 
 def is_hidden(host):
     return host['cn'][0].startswith('hozer-') or host['cn'][0].startswith('dev-')
@@ -106,18 +118,6 @@ def create_hosts(lst):
     return hosts
 
 
-def host_key(h):
-    """Key function for sorting Host objects
-    """
-    if h.type == 'hypervisor':
-        return 'a' + h.hostname
-    if h.type == 'server':
-        return 'b' + h.hostname
-    if h.type == 'desktop':
-        return 'z' + h.hostname
-    return 'c' + h.type + h.hostname
-
-
 @periodic(300)
 def get_hosts():
     servers = create_hosts(hosts_by_filter('(|(type=server)(type=desktop)(type=printer))'))
@@ -151,7 +151,7 @@ def get_hosts():
                 description=h.description,
                 children=children,
             )
-    return sorted(servers.values(), key=host_key)
+    return sorted(servers.values())
 
 
 def servers(doc, request):
