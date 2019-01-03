@@ -13,6 +13,7 @@ from ocfweb.docs.views.buster_upgrade import buster_upgrade
 from ocfweb.docs.views.commands import commands
 from ocfweb.docs.views.hosting_badges import hosting_badges
 from ocfweb.docs.views.index import docs_index
+from ocfweb.docs.views.index import staffdocs_index
 from ocfweb.docs.views.lab import lab
 from ocfweb.docs.views.officers import officers
 from ocfweb.docs.views.servers import servers
@@ -57,7 +58,7 @@ def send_redirect(request, redir_src):
 def doc_name(doc_name):
     # we can't actually deal with escaping into a regex, so we just use a whitelist
     assert re.match(r'^/[a-zA-Z0-9\-/]+$', doc_name), 'Bad document name: ' + doc_name
-    return doc_name[1:].replace('-', '\\-')
+    return doc_name[1:].replace('-', r'\-')
 
 
 doc_names = '|'.join(map(doc_name, DOCS.keys()))
@@ -66,6 +67,7 @@ redir_names = '|'.join(map(doc_name, REDIRECTS.keys()))
 
 urlpatterns = [
     url(r'^$', docs_index, name='docs'),
+    url(r'staff/$', staffdocs_index, name='staffdocs'),
 
     # we use a complicated generated regex here so that we have actual
     # validation of URLs (in other words, if you try to make a link to a

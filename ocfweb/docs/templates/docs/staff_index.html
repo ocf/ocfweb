@@ -1,8 +1,9 @@
-{% extends 'docs/doc.html' %}
+{% extends 'base.html' %}
 {% load docs %}
 
-{% block after-content %}
-    {% doc_tree root='/staff/' suppress_root=True cur_path=doc.name %}
+{% block content %}
+    {% doc_categories root='/staff/howto/' categories=howto_groups %}
+    {% doc_tree root='/staff/' suppress_root=True cur_path='/staff/' exclude='^/staff/howto' %}
 {% endblock %}
 
 {% block sidebar %}

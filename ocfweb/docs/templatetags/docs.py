@@ -85,3 +85,19 @@ def doc_toc(toc, collapsible=False):
         'html': html,
         'collapsible': collapsible,
     }
+
+
+@register.inclusion_tag('docs/partials/doc-categories.html')
+def doc_categories(root, categories):
+    return {
+        'categories': [
+            (
+                category_name,
+                [
+                    (root[1:] + child, DOCS.get(root + child).title)
+                    for child in children
+                ],
+            )
+            for category_name, children in categories
+        ],
+    }
