@@ -94,14 +94,10 @@ def query_puppet(query):
     return r.json() if r.status_code == 200 else None
 
 
-def format_query_output(output):
-    """Converts the output of a puppet query to a dictionary of the form {certname: value}
+def format_query_output(item):
+    """Converts an item of a puppet query to tuple(hostname, query_value).
     """
-    result = {}
-    for d in output:
-        hostname = d['certname'].split('.')[0]
-        result[hostname] = d.get('value')
-    return result
+    return item['certname'].split('.')[0], item.get('value')
 
 
 def create_hosts(lst):
@@ -129,8 +125,8 @@ def get_hosts():
     servers['overheat'] = servers['overheat']._replace(type='raspi')
     servers['tornado'] = servers['tornado']._replace(type='nuc')
 
-    hypervisor_hostnames = format_query_output(query_puppet(PQL_IS_HYPERVISOR))
-    all_children = format_query_output(query_puppet(PQL_GET_VMS))
+    hypervisor_hostnames = dict(format_query_output(item) for item in query_puppet(PQL_IS_HYPERVISOR))
+    all_children = dict(format_query_output(item) for item in query_puppet(PQL_GET_VMS))
 
     # Add children to hypervisors
     for h in list(servers.values()):
