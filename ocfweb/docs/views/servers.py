@@ -1,4 +1,3 @@
-import json
 import os.path
 from collections import namedtuple
 
@@ -92,7 +91,7 @@ def query_puppet(query):
         verify=os.path.join(PUPPET_CERT_DIR, 'puppet-ca.pem'),
         params={'query': query},
     )
-    return json.loads(r.text)
+    return r.json() if r.status_code == 200 else None
 
 
 def format_query_output(output):
