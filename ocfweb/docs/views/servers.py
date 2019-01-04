@@ -58,13 +58,14 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
         return self.type in ('hypervisor', 'vm', 'server', 'desktop')
 
     def __key(self):
-        if self.type == 'hypervisor':
-            return 'a' + self.hostname
-        if self.type == 'server':
-            return 'b' + self.hostname
-        if self.type == 'desktop':
-            return 'z' + self.hostname
-        return 'c' + self.type + self.hostname
+        """Key function used for comparison."""
+        ORDER = {
+            'hypervisor': 1,
+            'server': 2,
+            'desktop': float('inf'),
+        }
+        DEFAULT_ORDER = 3
+        return (ORDER.get(self.type, DEFAULT_ORDER), self.type, self.hostname)
 
     def __lt__(self, other_host):
         return self.__key() < other_host.__key()
