@@ -1,6 +1,6 @@
 import json
+import os.path
 from collections import namedtuple
-from os.path import join
 
 import dns.resolver
 from cached_property import cached_property
@@ -12,9 +12,6 @@ from ocfweb.caching import periodic
 
 
 class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
-
-    # TODO: don't hard-code host types or children
-
     @classmethod
     def from_ldap(cls, hostname, type='vm', children=()):
         host = hosts_by_filter('(cn={})'.format(hostname))
@@ -78,18 +75,21 @@ def is_hidden(host):
     return host['cn'][0].startswith('hozer-') or host['cn'][0].startswith('dev-')
 
 
-PQL_GET_CHILDREN = "facts { name = 'vms' }"
+PQL_GET_VMS = "facts { name = 'vms' }"
 PQL_IS_HYPERVISOR = 'resources[certname] { type = "Class" and title = "Ocf_kvm" }'
 
 
 def query_puppet(query):
     """Accepts a PQL query, returns a parsed json result"""
-    URL = 'https://puppetdb:8081/pdb/query/v4'
-    ROOT_DIR = '/etc/ocfweb/puppet-certs'
+    PUPPETDB_URL = 'https://puppetdb:8081/pdb/query/v4'
+    PUPPET_CERT_DIR = '/etc/ocfweb/puppet-certs'
     r = get(
-        URL,
-        cert=(join(ROOT_DIR, 'puppet-cert.pem'), join(ROOT_DIR, 'puppet-private.pem')),
-        verify=join(ROOT_DIR, 'puppet-ca.pem'),
+        PUPPETDB_URL,
+        cert=(
+            os.path.join(PUPPET_CERT_DIR, 'puppet-cert.pem'),
+            os.path.join(PUPPET_CERT_DIR, 'puppet-private.pem'),
+        ),
+        verify=os.path.join(PUPPET_CERT_DIR, 'puppet-ca.pem'),
         params={'query': query},
     )
     return json.loads(r.text)
@@ -114,7 +114,7 @@ def create_hosts(lst):
         if not is_hidden(h):
             description = h.get('description', [''])[0]
             hostname = h['cn'][0]
-            hosts[hostname] = (Host(hostname, h['type'], description, ()))
+            hosts[hostname] = Host(hostname, h['type'], description, ())
     return hosts
 
 
@@ -131,7 +131,7 @@ def get_hosts():
     servers['tornado'] = servers['tornado']._replace(type='nuc')
 
     hypervisor_hostnames = format_query_output(query_puppet(PQL_IS_HYPERVISOR))
-    all_children = format_query_output(query_puppet(PQL_GET_CHILDREN))
+    all_children = format_query_output(query_puppet(PQL_GET_VMS))
 
     # Add children to hypervisors
     for h in list(servers.values()):
