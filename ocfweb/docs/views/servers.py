@@ -100,22 +100,18 @@ def format_query_output(item):
     return item['certname'].split('.')[0], item.get('value')
 
 
-def create_hosts(lst):
-    """Accepts a list of raw ldap output, returns a dictionary of host
-    objects indexed by hostname
+def ldap_to_host(item):
+    """Accepts an ldap output item, returns tuple(hostname, host_object)
     """
-    hosts = {}
-    for h in lst:
-        if not is_hidden(h):
-            description = h.get('description', [''])[0]
-            hostname = h['cn'][0]
-            hosts[hostname] = Host(hostname, h['type'], description, ())
-    return hosts
+    description = item.get('description', [''])[0]
+    hostname = item['cn'][0]
+    return hostname, Host(hostname, item['type'], description, ())
 
 
 @periodic(300)
 def get_hosts():
-    servers = create_hosts(hosts_by_filter('(|(type=server)(type=desktop)(type=printer))'))
+    ldap_output = hosts_by_filter('(|(type=server)(type=desktop)(type=printer))')
+    servers = dict(ldap_to_host(item) for item in ldap_output if not is_hidden(item))
 
     # Handle special cases
     servers['blackhole'] = Host(
