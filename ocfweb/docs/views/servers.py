@@ -79,7 +79,7 @@ PQL_IS_HYPERVISOR = 'resources[certname] { type = "Class" and title = "Ocf_kvm" 
 
 
 def query_puppet(query):
-    """Accepts a PQL query, returns a parsed json result"""
+    """Accepts a PQL query, returns a parsed json result."""
     PUPPETDB_URL = 'https://puppetdb:8081/pdb/query/v4'
     PUPPET_CERT_DIR = '/etc/ocfweb/puppet-certs'
     r = get(
@@ -101,7 +101,7 @@ def format_query_output(item):
 
 
 def ldap_to_host(item):
-    """Accepts an ldap output item, returns tuple(hostname, host_object)
+    """Accepts an ldap output item, returns tuple(hostname, host_object).
     """
     description = item.get('description', [''])[0]
     hostname = item['cn'][0]
