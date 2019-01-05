@@ -52,7 +52,7 @@ class BackslashLineBreakLexerMixin:
 
     def enable_backslash_line_breaks(self):
         self.rules.backslash_line_break = re.compile(
-            '^(\\\\)\n',
+            '^\\\\\n',
         )
         self.default_rules.insert(0, 'backslash_line_break')
 
