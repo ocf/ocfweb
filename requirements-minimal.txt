@@ -4,6 +4,7 @@ django
 django-bootstrap-form
 django-ipware
 django-mathfilters
+django-prometheus
 django-redis
 gunicorn
 libsass
