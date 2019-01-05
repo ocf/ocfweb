@@ -15,8 +15,8 @@ from ocfweb.caching import cache
 META_REGEX = re.compile(r'\[\[!meta ([a-z]+)="([^"]*)"\]\]')
 
 
-class HtmlCommentsInlineLexerMixin:
-    """Strip HTML comments inside lines."""
+class HtmlCommentsLexerMixin:
+    """Strip HTML comments as entire blocks or inside lines."""
 
     def enable_html_comments(self):
         self.rules.html_comment = re.compile(
@@ -27,18 +27,37 @@ class HtmlCommentsInlineLexerMixin:
     def output_html_comment(self, m):
         return ''
 
-
-class HtmlCommentsBlockLexerMixin:
-    """Strip blocks which consist entirely of HTML comments."""
-
-    def enable_html_comments(self):
-        self.rules.html_comment = re.compile(
-            r'^<!--(.*?)-->',
-        )
-        self.default_rules.insert(0, 'html_comment')
-
     def parse_html_comment(self, m):
         pass
+
+
+class BackslashLineBreakLexerMixin:
+    """Convert lines that end in a backslash into a simple line break.
+
+    This follows GitHub-flavored Markdown on backslashes at the end of lines
+    being treated as a hard line break
+    (https://github.github.com/gfm/#backslash-escapes)
+
+    For example, something like this (escaped for python's sake since this in
+    in a string):
+
+        This is a test\\
+        with a line break
+
+    would be rendered as:
+
+        This is a test<br>
+        with a line break
+    """
+
+    def enable_backslash_line_breaks(self):
+        self.rules.backslash_line_break = re.compile(
+            '^(\\\\)\n',
+        )
+        self.default_rules.insert(0, 'backslash_line_break')
+
+    def output_backslash_line_break(self, m):
+        return '<br>'
 
 
 class CodeRendererMixin:
@@ -168,14 +187,15 @@ class OcfMarkdownRenderer(
 class OcfMarkdownInlineLexer(
     mistune.InlineLexer,
     DjangoLinkInlineLexerMixin,
-    HtmlCommentsInlineLexerMixin,
+    HtmlCommentsLexerMixin,
+    BackslashLineBreakLexerMixin,
 ):
     pass
 
 
 class OcfMarkdownBlockLexer(
     mistune.BlockLexer,
-    HtmlCommentsBlockLexerMixin,
+    HtmlCommentsLexerMixin,
 ):
     pass
 
@@ -188,6 +208,7 @@ _renderer = OcfMarkdownRenderer(
 _inline = OcfMarkdownInlineLexer(_renderer)
 _inline.enable_html_comments()
 _inline.enable_django_links()
+_inline.enable_backslash_line_breaks()
 
 _block = OcfMarkdownBlockLexer(mistune.BlockGrammar())
 _block.enable_html_comments()

@@ -38,6 +38,24 @@ def test_simple_markdown():
     )
 
 
+def test_backslash_linebreak():
+    assert_markdown(
+        '''\
+            this is some paragraph text\\
+            with a line break \\ and an escaped backslash
+
+            * And a list\\
+              with a newline in it
+        ''',
+        '''\
+            <p>this is some paragraph text<br>with a line break \\ and an escaped backslash</p>
+            <ul>
+            <li>And a list<br>with a newline in it</li>
+            </ul>
+        '''
+    )
+
+
 def test_comments_get_stripped():
     assert_markdown(
         '''\

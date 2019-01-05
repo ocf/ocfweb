@@ -10,7 +10,7 @@ We've additionally defined other shorturls. Here are some especially useful
 ones for staff:
 
  * **ocf.io/gh/_<repo>_**, **ocf.io/github/_<repo>_**: The repository _<repo>_
-   on the OCF GitHub page.  
+   on the OCF GitHub page.\
    There are also abbreviations for the most commonly used repositories:
     * **ocf.io/gh/i**: ircbot
     * **ocf.io/gh/l**: ocflib
