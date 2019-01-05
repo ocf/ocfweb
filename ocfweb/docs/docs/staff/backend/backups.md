@@ -24,6 +24,10 @@ with only OCF officers to make sure the backups are kept as secure as possible,
 since they contain all of the OCF's important data.  The backups are already
 encrypted, but it doesn't hurt to add a little extra security to that.
 
+### Retention
+
+Off-site backups older than six months (180 days) are permanently deleted.
+
 ## Restoring Backups
 
 The easiest way to restore from a backup is to look at how it is made and
