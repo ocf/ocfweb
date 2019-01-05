@@ -12,7 +12,7 @@ from pygments.util import ClassNotFound
 from ocfweb.caching import cache
 
 # tags of a format like: [[!meta title="Backups"]]
-META_REGEX = re.compile('\[\[!meta ([a-z]+)="([^"]*)"\]\]')
+META_REGEX = re.compile(r'\[\[!meta ([a-z]+)="([^"]*)"\]\]')
 
 
 class HtmlCommentsInlineLexerMixin:
@@ -20,7 +20,7 @@ class HtmlCommentsInlineLexerMixin:
 
     def enable_html_comments(self):
         self.rules.html_comment = re.compile(
-            '^<!--(.*?)-->',
+            r'^<!--(.*?)-->',
         )
         self.default_rules.insert(0, 'html_comment')
 
@@ -33,7 +33,7 @@ class HtmlCommentsBlockLexerMixin:
 
     def enable_html_comments(self):
         self.rules.html_comment = re.compile(
-            '^<!--(.*?)-->',
+            r'^<!--(.*?)-->',
         )
         self.default_rules.insert(0, 'html_comment')
 
@@ -74,16 +74,16 @@ class DjangoLinkInlineLexerMixin:
         [[human readable name|doc staff/backend/backups#something]]
     """
 
-    split_words = re.compile('((?:\S|\\\\ )+)')
+    split_words = re.compile(r'((?:\S|\\ )+)')
 
     def enable_django_links(self):
         self.rules.django_link = re.compile(
-            '^\[\[(?!\!)'
-            '([\s\S]+?)'
-            '\|'
-            '([^#]+?)'
-            '(?:#(.*?))?'
-            '\]\]',
+            r'^\[\[(?!\!)'
+            r'([\s\S]+?)'
+            r'\|'
+            r'([^#]+?)'
+            r'(?:#(.*?))?'
+            r'\]\]',
         )
         self.default_rules.insert(0, 'django_link')
 
@@ -141,7 +141,7 @@ class HeaderRendererMixin:
         else:
             id = 'h{level}_{title}'.format(
                 level=level,
-                title=re.sub('[^a-z0-9\-_ ]', '', strip_tags(text).lower()).strip().replace(' ', '-'),
+                title=re.sub(r'[^a-z0-9\-_ ]', '', strip_tags(text).lower()).strip().replace(' ', '-'),
             )
 
             # dumb collision avoidance

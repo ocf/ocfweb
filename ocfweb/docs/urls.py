@@ -57,7 +57,7 @@ def send_redirect(request, redir_src):
 def doc_name(doc_name):
     # we can't actually deal with escaping into a regex, so we just use a whitelist
     assert re.match(r'^/[a-zA-Z0-9\-/]+$', doc_name), 'Bad document name: ' + doc_name
-    return doc_name[1:].replace('-', '\-')
+    return doc_name[1:].replace('-', '\\-')
 
 
 doc_names = '|'.join(map(doc_name, DOCS.keys()))
