@@ -1,13 +1,16 @@
-import os.path
+import os
 from collections import namedtuple
 
 import dns.resolver
+import requests
 from cached_property import cached_property
 from django.shortcuts import render
 from ocflib.infra.hosts import hosts_by_filter
-from requests import get
 
 from ocfweb.caching import periodic
+
+PUPPETDB_URL = 'https://puppetdb:8081/pdb/query/v4'
+PUPPET_CERT_DIR = '/etc/ocfweb/puppet-certs'
 
 
 class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
@@ -59,13 +62,13 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
 
     def __key(self):
         """Key function used for comparison."""
-        ORDER = {
+        ranking = {
             'hypervisor': 1,
             'server': 2,
             'desktop': float('inf'),
         }
-        DEFAULT_ORDER = 3
-        return (ORDER.get(self.type, DEFAULT_ORDER), self.type, self.hostname)
+        default = 3
+        return (ranking.get(self.type, default), self.type, self.hostname)
 
     def __lt__(self, other_host):
         return self.__key() < other_host.__key()
@@ -81,9 +84,7 @@ PQL_IS_HYPERVISOR = 'resources[certname] { type = "Class" and title = "Ocf_kvm" 
 
 def query_puppet(query):
     """Accepts a PQL query, returns a parsed json result."""
-    PUPPETDB_URL = 'https://puppetdb:8081/pdb/query/v4'
-    PUPPET_CERT_DIR = '/etc/ocfweb/puppet-certs'
-    r = get(
+    r = requests.get(
         PUPPETDB_URL,
         cert=(
             os.path.join(PUPPET_CERT_DIR, 'puppet-cert.pem'),
@@ -96,14 +97,12 @@ def query_puppet(query):
 
 
 def format_query_output(item):
-    """Converts an item of a puppet query to tuple(hostname, query_value).
-    """
+    """Converts an item of a puppet query to tuple(hostname, query_value)."""
     return item['certname'].split('.')[0], item.get('value')
 
 
 def ldap_to_host(item):
-    """Accepts an ldap output item, returns tuple(hostname, host_object).
-    """
+    """Accepts an ldap output item, returns tuple(hostname, host_object)."""
     description = item.get('description', [''])[0]
     hostname = item['cn'][0]
     return hostname, Host(hostname, item['type'], description, ())
