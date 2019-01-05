@@ -170,6 +170,9 @@ if not DEBUG:
         'LOCATION': conf.get('django', 'redis_uri'),
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'CONNECTION_POOL_KWARGS': {
+                'ssl_ca_certs': '/etc/ssl/certs/ca-certificates.crt',
+            },
         },
     }
 
