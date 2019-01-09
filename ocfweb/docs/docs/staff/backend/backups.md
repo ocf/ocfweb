@@ -26,7 +26,8 @@ encrypted, but it doesn't hurt to add a little extra security to that.
 
 ### Retention
 
-Off-site backups older than six months (180 days) are permanently deleted.
+Off-site backups older than six months (180 days) are permanently deleted by a
+[daily cronjob][prune-old-backups].
 
 ## Restoring Backups
 
@@ -121,3 +122,4 @@ each time too, so it approximately breaks even.)
 [create-encrypted-backup]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/create-encrypted-backup
 [upload-to-box]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/upload-to-box
 [backed-up-files]: https://github.com/ocf/puppet/blob/17bc94b395e254529d97c84fb044f76931439fd7/modules/ocf_backups/files/rsnapshot.conf#L53
+[prune-old-backups]: https://github.com/ocf/puppet/blob/master/modules/ocf_backups/files/prune-old-backups
