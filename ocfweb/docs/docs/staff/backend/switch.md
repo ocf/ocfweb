@@ -35,7 +35,7 @@ the OCF subnet.
 ```
 $ ssh admin@blackhole.ocf.berkeley.edu
 Password:
-blackhole.ocf.berkeley.edu>  
+blackhole.ocf.berkeley.edu>
 ```
 
 The switches can also be administered directly by connecting to their console port
@@ -74,7 +74,7 @@ Port Channel Port-Channel5:
 Port Channel Port-Channel7:
   No Active Ports
   Configured, but inactive ports:
-       Port          Reason unconfigured  
+       Port          Reason unconfigured
     ---------------- -------------------------
        Ethernet13    Waiting for LACP response
        Ethernet14    Waiting for LACP response

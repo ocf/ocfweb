@@ -144,7 +144,7 @@ Find the lvm vg
 On the hypervisor,
 
     virsh dominfo <vm>
-    virsh domblkinfo <vm>  
+    virsh domblkinfo <vm>
     lvextend /dev/vg/<vm> -L20G
     virsh blockresize <vm> /dev/vda 20G
 
