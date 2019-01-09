@@ -1,9 +1,8 @@
 exclude: (^vendor/|^ocfweb/static/fonts/bootstrap/)
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks.git
-    sha: v1.4.0
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    sha: v2.1.0
     hooks:
-    -   id: autopep8-wrapper
     -   id: check-added-large-files
     -   id: check-ast
     -   id: check-builtin-literals
@@ -29,27 +28,31 @@ repos:
     -   id: requirements-txt-fixer
     -   id: sort-simple-yaml
     -   id: trailing-whitespace
--   repo: https://github.com/asottile/reorder_python_imports.git
-    sha: v1.1.0
+-   repo: https://github.com/pre-commit/mirrors-autopep8
+    sha: v1.4.3
+    hooks:
+    -   id: autopep8
+-   repo: https://github.com/asottile/reorder_python_imports
+    sha: v1.3.4
     hooks:
     -   id: reorder-python-imports
--   repo: https://github.com/asottile/pyupgrade.git
-    sha: v1.5.0
+-   repo: https://github.com/asottile/pyupgrade
+    sha: v1.11.0
     hooks:
     -   id: pyupgrade
         args: ['--py3-plus']
--   repo: https://github.com/asottile/add-trailing-comma.git
-    sha: v0.7.0
+-   repo: https://github.com/asottile/add-trailing-comma
+    sha: v0.7.1
     hooks:
     -   id: add-trailing-comma
         args: ['--py35-plus']
--   repo: https://github.com/Lucas-C/pre-commit-hooks.git
-    sha: v1.1.5
+-   repo: https://github.com/Lucas-C/pre-commit-hooks
+    sha: v1.1.6
     hooks:
     -   id: remove-tabs
     -   id: remove-crlf
 -   repo: https://github.com/pre-commit/mirrors-scss-lint
-    sha: v0.57.0
+    sha: v0.57.1
     hooks:
     -   id: scss-lint
 -   repo: local
