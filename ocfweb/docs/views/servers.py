@@ -113,36 +113,43 @@ def get_hosts():
     ldap_output = hosts_by_filter('(|(type=server)(type=desktop)(type=printer))')
     servers = dict(ldap_to_host(item) for item in ldap_output if not is_hidden(item))
 
-    # Handle special cases
-    servers['blackhole'] = Host(
-        'blackhole', 'network',
-        'Arista 7050SX Switch.', [],
-    )
-    servers['overheat'] = servers['overheat']._replace(type='raspi')
-    servers['tornado'] = servers['tornado']._replace(type='nuc')
-
-    hypervisor_hostnames = dict(format_query_output(item) for item in query_puppet(PQL_IS_HYPERVISOR))
+    hypervisors_hostnames = dict(format_query_output(item) for item in query_puppet(PQL_IS_HYPERVISOR))
     all_children = dict(format_query_output(item) for item in query_puppet(PQL_GET_VMS))
 
+    hostnames_seen = []
+    servers_to_display = []
     # Add children to hypervisors
-    for h in list(servers.values()):
-        if h.hostname in hypervisor_hostnames:
-            # Populate a list of children
-            children = []
-            for child_hostname in all_children.get(h.hostname, []):
-                child = servers.get(child_hostname)
-                if child:
-                    del servers[child.hostname]
-                    children.append(child._replace(type='vm'))
-            # Associate host with its children and specify type
-            del servers[h.hostname]
-            servers[h.hostname] = Host(
-                hostname=h.hostname,
-                type='hypervisor',
-                description=h.description,
-                children=children,
-            )
-    return sorted(servers.values())
+    for hypervisor_hostname in hypervisors_hostnames:
+        children = []
+        for child_hostname in all_children.get(hypervisor_hostname, []):
+            child = servers.get(child_hostname)
+            if child:
+                children.append(child._replace(type='vm'))
+                hostnames_seen.append(child.hostname)
+        description = servers[hypervisor_hostname].description if hypervisor_hostname in servers else None
+        servers_to_display.append(Host(
+            hostname=hypervisor_hostname,
+            type='hypervisor',
+            description=description,
+            children=children,
+        ))
+        hostnames_seen.append(hypervisor_hostname)
+
+    # Handle special cases
+    for host in servers.values():
+        if (host.hostname not in hostnames_seen):
+            servers_to_display.append(host)
+
+    servers_to_display.extend([
+        Host(
+            'blackhole', 'network',
+            'Arista 7050SX Switch.', [],
+        ),
+        servers['overheat']._replace(type='raspi'),
+        servers['tornado']._replace(type='nuc'),
+    ])
+
+    return sorted(servers_to_display)
 
 
 def servers(doc, request):
