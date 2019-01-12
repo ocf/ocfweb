@@ -39,7 +39,7 @@ automatically when SCSS files change.
 
 To run tests locally, run `make test`. Please don't push to master with
 failing tests—Jenkins will refuse to deploy your code, and nobody will be able
-to deploy until fixing it.
+to deploy until it's fixed.
 
 If you make a pull request to the OCF GitHub organization from your fork of
 ocfweb, Jenkins will attempt to build and test your branch automatically.
