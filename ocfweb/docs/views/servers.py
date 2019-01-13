@@ -7,7 +7,7 @@ from cached_property import cached_property
 from django.shortcuts import render
 from ocflib.infra.hosts import hosts_by_filter
 
-from ocfweb.caching import periodic
+from ocfweb.caching import cache
 
 PUPPETDB_URL = 'https://puppetdb:8081/pdb/query/v4'
 PUPPET_CERT_DIR = '/etc/ocfweb/puppet-certs'
@@ -108,7 +108,7 @@ def ldap_to_host(item):
     return hostname, Host(hostname, item['type'], description, ())
 
 
-@periodic(300)
+@cache()
 def get_hosts():
     ldap_output = hosts_by_filter('(|(type=server)(type=desktop)(type=printer))')
     servers = dict(ldap_to_host(item) for item in ldap_output if not is_hidden(item))
