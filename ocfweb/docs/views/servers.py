@@ -137,13 +137,15 @@ def get_hosts():
 
     # Handle special cases
     for host in servers.values():
-        if (host.hostname not in hostnames_seen):
+        if host.hostname not in hostnames_seen:
             servers_to_display.append(host)
 
     servers_to_display.extend([
         Host(
-            'blackhole', 'network',
-            'Arista 7050SX Switch.', [],
+            hostname='blackhole',
+            type='network',
+            description='Arista 7050SX Switch.',
+            children=[],
         ),
         servers['overheat']._replace(type='raspi'),
         servers['tornado']._replace(type='nuc'),
