@@ -2,6 +2,7 @@ cached-property
 celery[redis]
 django
 django-bootstrap-form
+django-cors-headers
 django-ipware
 django-mathfilters
 django-prometheus
