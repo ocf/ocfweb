@@ -37,129 +37,165 @@ def _get_servers():
         ThingToUpgrade.from_hostname(
             'death',
             comments='same time as all login servers',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'tsunami',
             comments='same time as all login servers',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'vampires',
             comments='same time as all login servers',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'firestorm',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'anthrax',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'maelstrom',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'supernova',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'biohazard',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'dementors',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'flood',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'pestilence',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'thunder',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'whiteout',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
-        ThingToUpgrade.from_hostname('reaper', status=ThingToUpgrade.UPGRADED),
-        ThingToUpgrade.from_hostname('democracy', status=ThingToUpgrade.UPGRADED),
+        ThingToUpgrade.from_hostname('reaper', status=ThingToUpgrade.NEEDS_UPGRADE),
+        ThingToUpgrade.from_hostname('democracy', status=ThingToUpgrade.NEEDS_UPGRADE),
         ThingToUpgrade.from_hostname(
             'zombies',
-            status=ThingToUpgrade.UPGRADED,
+            status=ThingToUpgrade.NEEDS_UPGRADE,
             comments='in-place (not well puppeted)',
         ),
         ThingToUpgrade.from_hostname(
             'lightning',
-            status=ThingToUpgrade.UPGRADED,
-            comments="Made a new host and rsync'd across certs, private share, and environments",
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'fallingrocks',
-            status=ThingToUpgrade.UPGRADED,
-            comments='rebuilt, with the old /opt/mirrors drive mounted in-place',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+            comments='to be replaced with dev-fallingrocks',
         ),
-        ThingToUpgrade.from_hostname('tornado', status=ThingToUpgrade.UPGRADED),
+        ThingToUpgrade.from_hostname(
+            'gridlock',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
+        ThingToUpgrade.from_hostname(
+            'lethe',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
+        ThingToUpgrade.from_hostname(
+            'pgp',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
+        ThingToUpgrade.from_hostname(
+            'segfault',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
+        ThingToUpgrade.from_hostname('tornado', status=ThingToUpgrade.NEEDS_UPGRADE),
 
         # mesos servers
         ThingToUpgrade.from_hostname(
             'whirlwind',
-            status=ThingToUpgrade.UPGRADED,
-            comments='Marathon packages are currently manually built and installed, for testing Marathon on stretch',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'pileup',
-            status=ThingToUpgrade.UPGRADED,
-            comments='No official Marathon packages yet, but manually-built ones work',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'monsoon',
-            status=ThingToUpgrade.UPGRADED,
-            comments='No official Marathon packages yet, but manually-built ones work',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
+
+        # kubernetes servers
+        ThingToUpgrade.from_hostname(
+            'coup',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+            comments='',
+        ),
+        ThingToUpgrade.from_hostname(
+            'autocrat',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+            comments='',
+        ),
+        ThingToUpgrade.from_hostname(
+            'deadlock',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+            comments='',
         ),
 
         # raspberry pi
         ThingToUpgrade.from_hostname(
             'overheat',
-            status=ThingToUpgrade.UPGRADED,
-            comments='not puppeted, still needs ocflib and a wrapper around the LED sign',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
 
         # physical servers
         ThingToUpgrade.from_hostname(
             'riptide',
-            status=ThingToUpgrade.UPGRADED,
-            comments='it was made this way',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'jaws',
-            status=ThingToUpgrade.UPGRADED,
-            comments='in-place, too hard to move stuff around',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'pandemic',
-            status=ThingToUpgrade.UPGRADED,
-            comments='Upgraded when installing new drives',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'hal',
-            status=ThingToUpgrade.UPGRADED,
-            comments='Upgraded when installing new drives',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
+        ThingToUpgrade.from_hostname(
+            'scurvy',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
+        ThingToUpgrade.from_hostname(
+            'corruption',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
+        ThingToUpgrade.from_hostname(
+            'dev-fallingrocks',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
     )
 
 
-def stretch_upgrade(doc, request):
+def buster_upgrade(doc, request):
     return render(
         request,
-        'docs/stretch_upgrade.html',
+        'docs/buster_upgrade.html',
         {
             'title': doc.title,
             'servers': _get_servers(),
