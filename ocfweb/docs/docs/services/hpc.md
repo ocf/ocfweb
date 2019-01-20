@@ -42,7 +42,7 @@ where you can ask questions and talk to us about anything HPC.
 As of Fall 2018, the OCF HPC cluster is composed of one server, with the
 following specifications:
 
-* 2 Intel Xeon [E5-2640v4][corruption-cpu] CPUs (10c/20t @ 2.4GHz)
+* 2 Intel Xeon [E5-2640v4][corruption-cpu] CPUs (40 cores @ 2.4GHz)
 * 4 NVIDIA 1080Ti GPUs
 * 256GB ECC DDR4-2400 RAM
 
@@ -52,22 +52,12 @@ generously funded by a series of grants from the [Student Tech Fund][stf].
 
 ## Slurm
 
-We currently use [Slurm][slurm] as our workload manager for the cluster. We
-will soon post technical documentation about our Slurm configuration, but briefly,
+We currently use [Slurm][slurm] as our workload manager for the cluster. Briefly,
 Slurm is a free and open-source job scheduler which helps distribute jobs from
-all users evenly among HPC computers, referred to as nodes. To use
-Slurm there are several commands that will be helpful:
+all users evenly among HPC computers, referred to as nodes.
+The only way to access our HPC nodes is through Slurm.
 
-* `srun`: Used to submit jobs.
-* `scontrol`: Used to view and edit the Slurm configuration.
-* `squeue`: Used to view running and queued jobs.
-* `scancel`: Used to cancel jobs.
-* `sinfo`: Used to view status of compute nodes in a cluster.
-
-Berkeley Research Computing (BRC) has some useful documentation for using Slurm
-[here][brc_slurm], just keep in mind that there are some differences between
-their configuration and ours. To put it simply, all of your programs will be
-run through Slurm.
+Detailed documentation for how to access Slurm is [here](https://www.ocf.berkeley.edu/docs/services/hpc/slurm).
 
 ## Dependencies
 For managing application dependencies, you currently have two options:
