@@ -33,6 +33,9 @@ Technical Managers are required to join them:
       important services are inaccessible from outside the OCF network.
     * [Munin][munin] sends mail whenever some munin measurement (e.g. disk
       usage, RAM usage, etc.) is outside the normal range.
+    * [Prometheus][prometheus] sends mail for alerts, similar to Munin.
+ * `extcomm`: A compilation of technical mailing lists for upstream projects
+   and projects we mirror.
 
 On the administrative side, the `officers` mailing list receives emails related
 to OCF administrivia. Cabinet members are expected to be on this mailing list,
@@ -46,12 +49,15 @@ Operations Staff are added to the `opstaff` mailing list.
 
 There are also some special purpose mailing lists:
 
- * `joinstaff`: we add emails from Calapalooza tabling to this mailing list, and
-   send out announcements about our first staff meeting of the semester here.
-   Announcements after the first staff meeting should be sent only to `staff`.
+ * `ocf@lists.berkeley.edu` ([ocf.io/announce][announce]): we add emails from
+   Calapalooza tabling to this mailing list, and send out announcements about
+   staff meetings here. We use a Berkeley mailing list here to let non-OCF
+   members sign up for it.
 
-   This mailing list should be cleared every new semester.
+   This mailing list should be cleared every fall.
 
+[announce]: https://ocf.io/announce
 [jenkins]: https://jenkins.ocf.berkeley.edu/
 [rackspace]: https://intelligence.rackspace.com/login
 [munin]: https://munin.ocf.berkeley.edu/
+[prometheus]: https://prometheus.ocf.berkeley.edu/
