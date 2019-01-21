@@ -115,31 +115,19 @@ enter, because they might need some adjustment.
    parted /dev/md0 mklabel gpt
    ```
 
-6. On `pestilence` (the DHCP server), you have to:
+6. Back in Finnix, run `sync` to write any changes in memory to disk.
 
-   * `sudo crontab -e` and comment out the line that runs puppet
-   * Edit `/etc/dhcp/dhcpd.conf` and comment out the line that looks like:
+7. Reboot and launch the Debian installer.
 
-         filename "http://contrib.ocf.berkeley.edu/preseed.cfg";
-
-     (unfortunately the server install can't be automated as easily since
-     installation location depends on the drives installed, etc.)
-
-   * `systemctl restart isc-dhcp-server`
-
-7. Back in Finnix, run `sync` to write any changes in memory to disk.
-
-8. Reboot and launch the Debian installer.
-
-9. Make sure not to do the "OCF Automated Install" at PXE, do an "expert
+8. Make sure not to do the "OCF Automated Install" at PXE, do an "expert
    install" instead. sorry.
 
-10. When you get to partitioning, use common sense. I recommend switching to
-    another TTY (`Ctrl+Alt+F2`) and using fdisk to create ~40GB root, ~8GB swap,
-    and the rest as one partition (for LVM). These should be created on the RAID
-    device (typically `/dev/md0` if you only have one RAID array).
+9. When you get to partitioning, use common sense. I recommend switching to
+   another TTY (`Ctrl+Alt+F2`) and using fdisk to create ~40GB root, ~8GB swap,
+   and the rest as one partition (for LVM). These should be created on the RAID
+   device (typically `/dev/md0` if you only have one RAID array).
 
-11. When asked, install GRUB on the same disk as in step 5 (I recommend
+10. When asked, install GRUB on the same disk as in step 5 (I recommend
     `/dev/sda`)
 
 
