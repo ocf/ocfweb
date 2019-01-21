@@ -2,7 +2,7 @@
 {% load docs %}
 
 {% block content %}
-    {% doc_categories root='/staff/howto/' categories=howto_groups %}
+    {% doc_masonry root='/staff/howto/' %}
     {% doc_tree root='/staff/' suppress_root=True cur_path='/staff/' exclude='^/staff/howto' %}
 {% endblock %}
 
