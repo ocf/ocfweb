@@ -20,7 +20,7 @@ actual alumnus to perform the search for you, if you are so inclined but
 unable to access the page on account of your youth.
 
 To perform the association, simply follow the steps outlined in the
-[[LDAP Association|doc staff/procedures/accounts/association]] documentation
+[[LDAP Association|doc staff/howto/account-management/association]] documentation
 with regards to adding the `calnetUid` record. However, don't delete it after
 you're done.
 
@@ -46,8 +46,8 @@ password and you can relay this to the alumni.
 
 #### Disabled Account    {sorried}
 
-If the account is [[sorried|doc staff/scripts/sorry]], refer to the documentation
-for [[unsorry|doc staff/scripts/unsorry]] to re-enable the account.
+If the account is [[sorried|doc staff/howto/account-management/sorry]], refer to the documentation
+for [[unsorry|doc staff/howto/account-management/unsorry]] to re-enable the account.
 
 #### Manual Verification of Alumni Identity    {verify}
 

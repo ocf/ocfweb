@@ -16,4 +16,4 @@ reasons where some documentation should be made about an OCF account.
 
 `note` will append the note-taking user's username, the day's date, the noted
 user's username, and the note to `~staff/User_Info`, where it can later be retrieved by
-[[`check`|doc staff/scripts/check]].
+[[`check`|doc staff/howto/account-management/check]].

@@ -31,7 +31,7 @@ After sorrying a user, make sure to run the `note` command to document the
 reasoning to ~staff/User_Info. This reason will be read to future users running
 `check` on the sorried user.
 
-[[Unsorrying | doc staff/scripts/unsorry]] a user is also possible.
+[[Unsorrying | doc staff/howto/account-management/unsorry]] a user is also possible.
 
 If a user is sending too much mail, it may be easier to `nomail` the user
 instead of sorrying their account. This involves adding the user to

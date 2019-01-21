@@ -6,7 +6,7 @@ The `signat` script is used to look up the signatory status of people and
 student groups. This allows us to verify that the people who email us or come
 in to [[staff hours|staff-hours]] are really signatories for their group, and
 it also gives all the information needed to create group accounts with
-[[approve|doc staff/scripts/approve]].
+[[approve|doc staff/howto/user-services/approve]].
 
 ## How it works
 

@@ -39,6 +39,12 @@ REDIRECTS = {
     '/docs/constitution': 'docs/operatingrules/constitution',
     '/docs/bylaws': 'docs/operatingrules/bylaws',
 
+    '/staff/backend/git': 'staff/howto/development/git',
+    '/staff/rebuild/rt': 'staff/rt',
+    '/staff/backend/libvirt': 'staff/howto/infrastructure/libvirt',
+    '/staff/i3wm': 'staff/howto/other/i3wm',
+    '/staff/procedures': 'staff/howto',
+    '/staff/scripts': 'staff/howto',
     '/staff/procedures/accounts/association': 'staff/howto/account-management/association',
     '/staff/scripts/check': 'staff/howto/account-management/check',
     '/staff/scripts/checkacct': 'staff/howto/account-management/checkacct',

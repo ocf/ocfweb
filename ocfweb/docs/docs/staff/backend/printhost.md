@@ -140,7 +140,7 @@ and emails users in the case a job fails.
 After printing a document from a desktop, lab visitors are notified when pages
 are subtracted from their quota by a little popup notification. This is done by
 a short daemon script, [notify script][notify], which starts upon login and
-runs the [[paper command|doc staff/scripts/paper]] every minute to see if the
+runs the [[paper command|doc staff/howto/user-services/paper]] every minute to see if the
 quota has changed.
 
 In the future, it would be nice to have a more robust notification system where
@@ -157,9 +157,9 @@ current user.
 
 ## See also
 
-- [[Printing maintenance|doc staff/procedures/printing]]
+- [[Printing maintenance|doc staff/howto/maintenance/printing]]
 - The [ocf\_printhost][ocf_printhost] Puppet class
-- The [[paper|doc staff/scripts/paper]] command
+- The [[paper|doc staff/howto/user-services/paper]] command
 - [CUPS documentation at Samba][cups-samba] (for Windows users, but has general
   CUPS info as well)
 

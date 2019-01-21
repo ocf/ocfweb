@@ -15,6 +15,6 @@ filename doesn't have any spaces or weird characters in it. After
 re-rasterizing the file, Evince will open, and you can start a new print job
 from there. Monitor the job's progress in
 [printhost.ocf.berkeley.edu](//printhost.ocf.berkeley.edu) to ensure the job
-survives. You may [[refund|doc staff/scripts/paper]] printing credits to
+survives. You may [[refund|doc staff/howto/user-services/paper]] printing credits to
 the user in case they've gone over their daily capacity and you're feeling
 generous.
