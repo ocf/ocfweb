@@ -18,4 +18,4 @@ def ocfweb_version():
         pass
 
     # Otherwise, we must be in dev.
-    return 'dev'
+    return 'dev-kube'
