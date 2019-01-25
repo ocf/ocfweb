@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ocfweb-web-service
+spec:
+  selector:
+    app: ocfweb-web
+  ports:
+    - port: 80
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ocfweb-web-deployment
+  labels:
+    app: ocfweb-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ocfweb-web
+  template:
+    metadata:
+      labels:
+        app: ocfweb-web
+    spec:
+      containers:
+        - name: ocfweb-web-deploy
+          image: "docker.ocf.berkeley.edu/ocfweb-web:<%= version %>"
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: 1
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: ocfweb-secrets
+              mountPath: /etc/ocfweb
+              readOnly: true
+            - name: ocfweb-ocf
+              mountPath: /etc/ocf
+              readOnly: true
+          env:
+            - name: OCFWEB_TESTING
+              value: "1"
+      volumes:
+        - name: ocfweb-secrets
+          hostPath:
+            path: /opt/share/kubernetes/secrets/ocfweb
+            type: Directory
+        - name: ocfweb-ocf
+          hostPath:
+            path: /etc/ocf
+            type: Directory
+      dnsPolicy: ClusterFirst
+      dnsConfig:
+        searches:
+          - "ocf.berkeley.edu"
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: vhost-web-ingress
+spec:
+  rules:
+    - host: ocf.berkeley.edu
+      http:
+        paths:
+          - backend:
+              serviceName: ocfweb-web-service
+              servicePort: 80

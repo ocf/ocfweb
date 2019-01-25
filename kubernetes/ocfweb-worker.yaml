@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ocfweb-worker-deployment
+  labels:
+    app: ocfweb-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ocfweb-worker
+  template:
+    metadata:
+      labels:
+        app: ocfweb-worker
+    spec:
+      containers:
+        - name: ocfweb-worker-deploy
+          image: "docker.ocf.berkeley.edu/ocfweb-worker:<%= version %>"
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: 1
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: ocfweb-secrets
+              mountPath: /etc/ocfweb
+              readOnly: true
+          env:
+            - name: OCFWEB_TESTING
+              value: "0"
+      volumes:
+        - name: ocfweb-secrets
+          hostPath:
+            path: /opt/share/kubernetes/secrets/ocfweb
+            type: Directory
+      dnsPolicy: ClusterFirst
+      dnsConfig:
+        searches:
+          - "ocf.berkeley.edu"
