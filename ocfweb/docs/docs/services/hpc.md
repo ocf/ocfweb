@@ -53,8 +53,9 @@ generously funded by a series of grants from the [Student Tech Fund][stf].
 ## Slurm
 
 We currently use [Slurm][slurm] as our workload manager for the cluster.
-Slurm is a free and open source job scheduler that evenly distributes jobs across an HPC cluster,
-where each computer in the cluster is referred to as a node.
+Slurm is a free and open source job scheduler that evenly distributes jobs
+across an HPC cluster, where each computer in the cluster is referred to
+as a node.
 The only way to access our HPC nodes is through Slurm.
 
 Detailed documentation for how to access Slurm is [[here|doc services/hpc/slurm]].

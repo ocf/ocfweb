@@ -44,25 +44,25 @@ allocate more resources and time to your job, you must set one or more of these
 flags:**
 
 * `-n` / `--ntasks`:
-    - The number of tasks/processes to allocate. **Default is 1.**
+    - The number of tasks/processes to allocate. Default is 1.
 * `-c` / `--cpus-per-task`:
-    - The number of CPUs to allocate per task. **Default is 1.**
+    - The number of CPUs to allocate per task. Default is 1.
 * `--mem`:
     - The total amount of RAM to allocate. By default, the number supplied is
 assumed to megabytes. However, the prefixes `K`, `M`, `G`, and `T` can be
 appended to the number instead. For example, to allocate 5 gigabytes of ram,
-use `--mem=5G`. **Default is 100 megabytes.**
+use `--mem=5G`. Default is 100 megabytes.
 * `--gres` **(Optional)**:
     - Allocates some GPUs to your job. The format is `--gres=gpu:[optional
 type]:[number to allocate]`. For example, to allocate 2 GPUs of any type, you
 would include `--gres=gpu:2`. To allocate two Nvidia 1080Ti GPUs (our only type
-right now), you would include `--gres=gpu:nv1080:2`. **Default is no GPUs.**
+right now), you would include `--gres=gpu:nv1080:2`. Default is no GPUs.
 * `--t` / `--time` **(Optional)**:
     - The maximum amount of time your job can take before Slurm forcefully
 kills it. Acceptable time formats include "minutes", "minutes:seconds",
 "hours:minutes:seconds", "days-hours", "days-hours:minutes" and
 "days-hours:minutes:seconds". You cannot set the time limit greater than the
-**default, which is 2 days.**
+default, which is 2 days.
 
 ### Using `srun`
 
