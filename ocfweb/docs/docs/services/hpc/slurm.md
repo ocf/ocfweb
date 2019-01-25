@@ -10,6 +10,8 @@ nodes' resources.
 
 ## Running a job through Slurm
 
+Slurm is only accessible while SSHed into `hpcctl.ocf.berkeley.edu`.
+
 Submitting a job to Slurm can be done in one of two ways: through `srun`, and
 through `sbatch`.
 
@@ -28,6 +30,8 @@ job's output to `stdout` are put into your home directory.
 If your job requires interactivity or inputs from the terminal, or you need a
 terminal to test or experiment, use `srun`. Otherwise, use `sbatch`, as you
 don't have to keep your terminal open until the job runs.
+Alternatively, you could use `screen` or `tmux` with `srun` to keep your
+job alive, even if you disconnect from your terminal.
 
 ### Resource options
 
@@ -52,7 +56,7 @@ use `--mem=5G`. **Default is 100 megabytes.**
     - Allocates some GPUs to your job. The format is `--gres=gpu:[optional
 type]:[number to allocate]`. For example, to allocate 2 GPUs of any type, you
 would include `--gres=gpu:2`. To allocate two Nvidia 1080Ti GPUs (our only type
-right now), you would include `--gres=gpu:nv1080:2`. **No default.**
+right now), you would include `--gres=gpu:nv1080:2`. **Default is no GPUs.**
 * `--t` / `--time` **(Optional)**:
     - The maximum amount of time your job can take before Slurm forcefully
 kills it. Acceptable time formats include "minutes", "minutes:seconds",
@@ -62,7 +66,7 @@ kills it. Acceptable time formats include "minutes", "minutes:seconds",
 
 ### Using `srun`
 
-On `hpcctl`:
+On `hpcctl.ocf.berkeley.edu`:
 
 ```
 srun [command-line flags] [command to run]
@@ -71,8 +75,7 @@ srun [command-line flags] [command to run]
 For example, to run a job that uses 4 CPUs, 8 GB of RAM, and 1 GPU:
 
 ```
-bzh@hpcctl:~$ srun --ntasks=1 --cpus-per-task=4 --mem=8G --gres=gpu:1 echo
-"Hello world!"
+bzh@hpcctl:~$ srun --ntasks=1 --cpus-per-task=4 --mem=8G --gres=gpu:1 echo "Hello world!"
 
 Hello world!
 ```
