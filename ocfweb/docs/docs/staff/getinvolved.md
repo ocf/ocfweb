@@ -57,7 +57,7 @@ more information.
 
 #### GitHub Issues
 
-All of our code is on GitHub (github.com/ocf). Sometimes you can find ways to
+All of our code is on GitHub ([github.com/ocf][ocf-github]). Sometimes you can find ways to
 contribute by reading open issues, but they can sometimes be hard to understand
 since they’re short on context. Some issues are also marked as “good first
 issue.” Here’s a list of our most active repos, with some examples of things we
@@ -85,8 +85,8 @@ can do with them:
    * JSON APIs for lab hours ([api/hours.py][api-hours])
    * [Account creation][account-register], [password resets][account-chpass],
      [others][account]
-   * Lab usage statistics ([stats/][ocfweb])
-   * Form for requesting a virtual host ([lab_reservations/][lab_reservations])
+   * Lab usage statistics ([stats/][ocfweb-stats])
+   * Form for requesting a virtual host ([account/vhost.py][ocfweb-vhost])
 * [ocflib][ocflib] ([issues][ocflib/issues]) - a Python library installed on all
   servers. Has Python functions for various parts of the lab infrastructure.
    * Account management, searching ([account/][ocflib-account])
@@ -128,7 +128,7 @@ Joining this list doesn’t obligate you to respond to help requests. It’s
 perfectly acceptable to only read tickets as a way to learn more about what we
 do.
 
-If you’re on staff, you can view the ticket archive at rt.ocf.berkeley.edu.
+If you’re on staff, you can view the ticket archive at [rt.ocf.berkeley.edu][rt].
 
 #### Your idea here
 
@@ -196,13 +196,14 @@ even if you can’t make meetings.
 [ircbot]: https://github.com/ocf/ircbot
 [mirror-healthcheck-puppet]: ️https://github.com/ocf/puppet/blob/master/modules/ocf_mirrors/manifests/monitoring.pp
 [mirror-healthcheck]: https://github.com/ocf/puppet/blob/master/modules/ocf_mirrors/files/healthcheck
+[ocf-github]: https://github.com/ocf
 [ocflib-account]: https://github.com/ocf/ocflib/tree/master/ocflib/account
 [ocflib-mail]: https://github.com/ocf/ocflib/blob/master/ocflib/misc/mail.py
 [ocflib-mysql]: https://github.com/ocf/ocflib/blob/master/ocflib/infra/mysql.py
 [ocflib-printing]: https://github.com/ocf/ocflib/tree/master/ocflib/printing
 [ocflib/issues]: https://github.com/ocf/ocflib/issues
 [ocflib]: https://github.com/ocf/ocflib
-[ocfweb-lab_reservations]: https://github.com/ocf/ocfweb/tree/master/ocfweb/lab_reservations
+[ocfweb-vhost]: https://github.com/ocf/ocfweb/blob/master/ocfweb/account/vhost.py
 [ocfweb-stats]: https://github.com/ocf/ocfweb/tree/master/ocfweb/stats
 [ocfweb/issues]: https://github.com/ocf/ocfweb/issues
 [ocfweb]: https://github.com/ocf/ocfweb
@@ -215,6 +216,7 @@ even if you can’t make meetings.
 [puppet-desktop-packages]: https://github.com/ocf/puppet/blob/master/modules/ocf_desktop/manifests/packages.pp
 [puppet/issues]: https://github.com/ocf/puppet/issues
 [puppet]: https://github.com/ocf/puppet
+[rt]: https://rt.ocf.berkeley.edu/
 [slack]: https://ocf.io/slack
 [slackbridge/issues]: https://github.com/ocf/slackbridge/issues
 [slackbridge]: https://github.com/ocf/slackbridge
