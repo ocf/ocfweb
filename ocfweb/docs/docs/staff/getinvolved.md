@@ -137,12 +137,12 @@ If you’re feeling particularly adventurous, you can [search for the string
 #### Help requests
 
 During the semester, our [[help@ocf.berkeley.edu mailing list|doc contact]]
-gets around 14 emails per week from the UC Berkeley community. These emails get
-responded to by volunteers like you. Most requests are about requesting virtual
-hosting and helping users debug or fix their websites. If you’re interested in
-seeing how this process works, ask a staffer to add you to the RT mailing list.
-Since this is high-volume, we recommend filtering these to a different folder
-so you don’t get notified all the time.
+gets around 14 emails per week from the UC Berkeley community. Volunteers like
+you respond to these emails. Most requests are about requesting virtual hosting
+and helping users debug or fix their websites. If you’re interested in seeing
+how this process works, ask a staffer to add you to the RT mailing list. Since
+this is high-volume, we recommend filtering these to a different folder so you
+don’t get notified all the time.
 
 Joining this list doesn’t obligate you to respond to help requests. It’s
 perfectly acceptable to only read tickets as a way to learn more about what we
