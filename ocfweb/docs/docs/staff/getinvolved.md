@@ -3,7 +3,7 @@
 ## How can I get involved in the OCF?
 
 Glad you asked! Students from all backgrounds are welcome to join staff. We
-don’t interview or have a selective process for joining— you simply have to
+don’t interview or have a selective process for joining—you simply have to
 express interest and show up to our weekly meetings. If you want to learn more
 and be an active participant, there are multiple ways to get started:
 
@@ -27,8 +27,28 @@ We hold two meetings every Monday:
 **Mondays 7-8pm**
 
 BoD is where we discuss and vote on administrative decisions. If you are
-interested in gaining insight into the internal operations the OCF from an administrative
-perspective, please come to BoD meetings! Meetings always are open to all.
+someboday who wants to learn about how an organization such as the OCF gets and
+spends its money, what issues the OCF needs to deal with, and all the
+administrative work that needs to be done to keep the OCF running, please come
+to BoD meetings! Meetings are always open to all. Some examples of what we
+discuss at BoD:
+
+##### Finances
+
+* Spending - we go through our "buy sheet" and vote on what to buy
+* Income - we mainly get money from the ASUC and the Student Tech Fund. We
+  discuss big-picture goals for receiving funding and where to direct our
+  spending.
+
+##### Collaborations
+
+* Industry - we have mutually beneficial relationships with companies like Yelp,
+  Facebook, Kloudless, and more.
+* Campus groups - we want to improve in this area. Bring your ideas to BoD!
+
+##### Lab Administration
+
+We draft policies and discuss new services to provide the UC Berkeley community.
 
 #### Staff Meeting
 
@@ -169,7 +189,7 @@ any of these channels if you’re new, and don’t be afraid to ask questions!
 ### Hang out in the lab
 
 OCF staff members usually like to socialize in the lab. We’re a friendly bunch,
-so feel free to talk to us! You can also come into the lab after-hours— just
+so feel free to talk to us! You can also come into the lab after-hours—just
 say you’re interested in joining staff and we’ll let you in.
 
 ## FAQ
