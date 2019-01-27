@@ -161,7 +161,8 @@ starting point and roadmap.
 
 During the week, veteran staffers host “staff hours”
 ([ocf.io/staffhours][staffhours]), where we provide support to users of our
-services. As a newbie, attending staff hours can serve multiple purposes:
+services. Newbies are encouraged to attend staff hours too. For a newbie,
+attending staff hours can serve multiple purposes:
 
    * Learn by shadowing veteran staffers as they help people out
    * Talk about your interests so we can help you find stuff to work on
