@@ -180,7 +180,7 @@ still join?**
 Yes! You can join at any time. If you’re worried about what you’ve missed, we
 recommend reading archives from our mailing list ([ocf.io/announce][announce]).
 These will usually contain links to presentations slides and information about
-what was covered.
+what was covered. You can also ask a veteran staffer to bring you up to speed.
 
 **What if I can’t physically be present at weekly meetings?**
 
