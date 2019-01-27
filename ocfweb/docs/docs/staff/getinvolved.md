@@ -3,7 +3,7 @@
 ## How can I get involved in the OCF?
 
 Glad you asked! Students from all backgrounds are welcome to join staff. We
-don’t interview or have a selective process for joining-- you simply have to
+don’t interview or have a selective process for joining— you simply have to
 express interest and show up to our weekly meetings. If you want to learn more
 and be an active participant, there are multiple ways to get started:
 
@@ -164,7 +164,7 @@ any of these channels if you’re new, and don’t be afraid to ask questions!
 ### Hang out in the lab
 
 OCF staff members usually like to socialize in the lab. We’re a friendly bunch,
-so feel free to talk to us! You can also come into the lab after-hours-- just
+so feel free to talk to us! You can also come into the lab after-hours— just
 say you’re interested in joining staff and we’ll let you in.
 
 ## FAQ
