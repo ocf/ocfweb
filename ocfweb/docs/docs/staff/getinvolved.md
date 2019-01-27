@@ -89,7 +89,6 @@ can do with them:
      ([ocf_desktop/manifests/packages.pp][puppet-desktop-packages])
    * Configure Firefox to show the "are you sure you want to quit" dialog
      ([PR #373][puppet-373])
-   * Allow operations staff to refund pages ([PR #368][puppet-368])
    * Monitor our mirrors to see if they’re out of date
      ([healthcheck script][mirror-healthcheck],
      [configuring server to call the healtcheck
@@ -243,7 +242,6 @@ community.
 [prometheus-mirror]: https://github.com/ocf/puppet/blob/master/modules/ocf_prometheus/files/rules.d/mirror.rules.yaml
 [prometheus-printer]: https://github.com/ocf/puppet/blob/master/modules/ocf_prometheus/files/rules.d/printer.rules.yaml
 [puppet-321]: https://github.com/ocf/puppet/pull/321
-[puppet-368]: https://github.com/ocf/puppet/pull/368
 [puppet-373]: https://github.com/ocf/puppet/pull/373
 [puppet-aliases]: https://github.com/ocf/puppet/blob/master/modules/ocf_mail/files/site_ocf/aliases
 [puppet-desktop-packages]: https://github.com/ocf/puppet/blob/master/modules/ocf_desktop/manifests/packages.pp
