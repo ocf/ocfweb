@@ -26,29 +26,10 @@ We hold two meetings every Monday:
 
 **Mondays 7-8pm**
 
-BoD is where we discuss and vote on administrative decisions. If you are
-someboday who wants to learn about how an organization such as the OCF gets and
-spends its money, what issues the OCF needs to deal with, and all the
-administrative work that needs to be done to keep the OCF running, please come
-to BoD meetings! Meetings are always open to all. Some examples of what we
-discuss at BoD:
-
-##### Finances
-
-* Spending - we go through our "buy sheet" and vote on what to buy
-* Income - we mainly get money from the ASUC and the Student Tech Fund. We
-  discuss big-picture goals for receiving funding and where to direct our
-  spending.
-
-##### Collaborations
-
-* Industry - we have mutually beneficial relationships with companies like Yelp,
-  Facebook, Kloudless, and more.
-* Campus groups - we want to improve in this area. Bring your ideas to BoD!
-
-##### Lab Administration
-
-We draft policies and discuss new services to provide the UC Berkeley community.
+The OCF Board of Directors has open meetings from 7-8 pm every Monday. BoD is
+where we discuss and vote on administrative decisions. If you are interested in
+gaining insight into the internal operations the OCF from an administrative
+perspective, please come to BoD meetings! Meetings always are open to all.
 
 #### Staff Meeting
 
