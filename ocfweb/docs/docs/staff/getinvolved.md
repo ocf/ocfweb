@@ -85,7 +85,7 @@ can do with them:
 
 * [puppet][puppet] ([issues][puppet/issues]) - contains Puppet modules, which
   controls the software and configuration on all of our servers.
-   * Install software packages on the desktops
+   * Install a standard set of software packages on each of the desktops
      ([ocf_desktop/manifests/packages.pp][puppet-desktop-packages])
    * Configure Firefox to show the "are you sure you want to quit" dialog
      ([PR #373][puppet-373])
