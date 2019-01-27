@@ -4,8 +4,10 @@
 
 Glad you asked! Students from all backgrounds are welcome to join staff. We
 don’t interview or have a selective process for joining—you simply have to
-express interest and show up to our weekly meetings. If you want to learn more
-and be an active participant, there are multiple ways to get started:
+express interest and show up to our weekly meetings. We don't impose a specific
+time commitment; some volunteers work many hours per week, others contribute
+occasionally. If you want to learn more and be an active participant, there are
+multiple ways to get started:
 
 ### Stay up-to-date
 
