@@ -94,10 +94,17 @@ can do with them:
      ([healthcheck script][mirror-healthcheck],
      [configuring server to call the healtcheck
      script][mirror-healthcheck-puppet],
-     [Prometheus rules for alerting][prometheus-mirror])
+     [Monitoring rules for alerting][prometheus-mirror])
    * Monitor printers to see if they’re out of paper, toner, or jammed
      ([printer.rules.yaml][prometheus-printer])
    * Send a desktop notification if a print jobs fails ([PR #321][puppet-321])
+   * Configure our mail server, including
+     [@ocf.berkeley.edu aliases][puppet-aliases]
+   * Configure our [DHCP server][puppet-dhcp]
+   * Configure our [Apache web server][puppet-www], which serves almost all
+     web requests on our infra
+   * Configure our [internal firewall][puppet-firewall]
+     ([[docs|doc staff/backend/internal-firewalls]])
 * [ocfweb][ocfweb] ([issues][ocfweb/issues]) - the source code for our website,
   www.ocf.berkeley.edu. Written in Python using the Django framework.
    * Hosts our documentation for users and staffers (including
@@ -238,7 +245,11 @@ community.
 [puppet-321]: https://github.com/ocf/puppet/pull/321
 [puppet-368]: https://github.com/ocf/puppet/pull/368
 [puppet-373]: https://github.com/ocf/puppet/pull/373
+[puppet-aliases]: https://github.com/ocf/puppet/blob/master/modules/ocf_mail/files/site_ocf/aliases
 [puppet-desktop-packages]: https://github.com/ocf/puppet/blob/master/modules/ocf_desktop/manifests/packages.pp
+[puppet-dhcp]: https://github.com/ocf/puppet/blob/master/modules/ocf_dhcp/manifests/init.pp
+[puppet-firewall]: https://github.com/ocf/puppet/tree/master/modules/ocf/manifests/firewall
+[puppet-www]: https://github.com/ocf/puppet/blob/master/modules/ocf_www/manifests/site/www.pp
 [puppet/issues]: https://github.com/ocf/puppet/issues
 [puppet]: https://github.com/ocf/puppet
 [rt]: https://rt.ocf.berkeley.edu/
