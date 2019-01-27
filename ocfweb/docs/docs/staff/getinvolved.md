@@ -153,7 +153,9 @@ services. As a newbie, attending staff hours can serve multiple purposes:
 ### Slack or IRC
 
 OCF staff often communicate on Slack or IRC. For instructions on how to join
-Slack, see [ocf.io/slack][slack]. Some important channels:
+Slack, see [ocf.io/slack][slack]. See [[IRC docs|doc contact/irc]] for how to
+join IRC. Slack and IRC are bridged together, so joining either one lets you
+participate in the same discussions. Some important channels:
 
    * #rebuild - technical discussion
    * #administrivia - non-technical discussion
