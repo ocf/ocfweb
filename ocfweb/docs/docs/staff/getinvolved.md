@@ -24,17 +24,20 @@ We hold two meetings every Monday:
 
 #### Board of Directors (BoD)
 
-The OCF Board of Directors has open meetings from 7-8 pm every Monday. BoD is
-where we discuss and vote on administrative decisions. If you are interested in
-gaining insight into the internal operations the OCF from an administrative
+**Mondays 7-8pm**
+
+BoD is where we discuss and vote on administrative decisions. If you are
+interested in gaining insight into the internal operations the OCF from an administrative
 perspective, please come to BoD meetings! Meetings always are open to all.
 
 #### Staff Meeting
 
-From 8 to 9 pm every Monday, all OCF staff (that includes you!) get together to
-discuss technology, learn from each other, and work on OCF projects. These
-meetings will be a mix of presentations, work time, and socializing. Our goal
-is to build OCF staff into a strong community of capable individuals.
+**Mondays 8-9pm**
+
+In these meetings, all OCF staff (that includes you!) get together to discuss
+technology, learn from each other, and work on OCF projects. These meetings will
+be a mix of presentations, work time, and socializing. Our goal is to build OCF
+staff into a strong community of capable individuals.
 
 ### Contribute
 
