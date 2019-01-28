@@ -3,7 +3,7 @@
 ## How can I get involved in the OCF?
 
 Glad you asked! Students from all backgrounds are welcome to join staff. We
-don’t interview or have a selective process for joining—you simply have to
+don’t interview or have a selection process for joining—you simply have to
 express interest and show up to our weekly meetings. We don't impose a specific
 time commitment; some volunteers work many hours per week, others contribute
 occasionally. If you want to learn more and be an active participant, there are
