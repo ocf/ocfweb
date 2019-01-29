@@ -108,7 +108,7 @@ is:
 
        [Unit]
        Description={YOUR GROUP NAME} Webapp
-       ConditionHost=werewolves
+       ConditionHost=vampires
 
        [Install]
        WantedBy=default.target
