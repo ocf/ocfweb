@@ -21,13 +21,17 @@ repos:
     -   id: double-quote-string-fixer
     -   id: end-of-file-fixer
     -   id: file-contents-sorter
-    -   id: flake8
     -   id: mixed-line-ending
     -   id: name-tests-test
     -   id: pretty-format-json
     -   id: requirements-txt-fixer
     -   id: sort-simple-yaml
     -   id: trailing-whitespace
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: '3.7.3'
+    hooks:
+    - id: flake8
+      language_version: python3.5
 -   repo: https://github.com/pre-commit/mirrors-autopep8
     sha: v1.4.3
     hooks:
