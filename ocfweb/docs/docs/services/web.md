@@ -20,7 +20,7 @@ directory.
 
 ## Additional details
 
-The web server runs Apache 2.4 with FastCGI (mod_fcgid), suEXEC, and suPHP.
+The web server runs Apache 2.4 with FastCGI (mod_fcgid) and suEXEC.
 Access and error logs are accessible in `/opt/httpd` using [[SSH|doc
 services/shell]].
 
@@ -37,10 +37,11 @@ Both individual hosting and student group hosting are done entirely over HTTPS.
 
 ### Supported languages
 
-* PHP 5.6
-* Perl 5.20.2
-* Python 2.7, and 3.4; Django 1.7.7; Flask 0.10.1
-* Ruby 2.1.5; Rails 4.1.8
+* PHP 7.0.33
+* Perl 5.24.1
+* Python 2.7.13, and 3.5.3; Django 1.10.7; Flask 0.12.1
+* Ruby 2.3.3; Rails 4.2.7.1
+* NodeJS 4.8.2
 
 Other flavors of the day may work but are not currently supported. We may be
 able to install additional packages on request, but will generally advise you
