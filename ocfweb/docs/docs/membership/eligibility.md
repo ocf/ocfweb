@@ -4,7 +4,6 @@ _As amended by the Board of Directors on April 17, 2017._
 
 The following individuals and groups are eligible for [[membership|doc membership]]:
 
-
 The Open Computing Facility provides accounts and services to members. Members
 must meet at least one of the following eligibility criteria during account
 creation (verifiable electronically) **or** by presentation of the specified
@@ -92,6 +91,11 @@ with the campus (e.g. Richmond Field Station))
 * Letter from the relevant ASUC Executive Officer, Appointed Officer, Senator,
   Commissioner/Commission Chair, or General Committee Chair stating that the
   person requesting the account is authorized to make the request
+
+### Graduate Assembly bodies not registered on CalLink
+
+* Letter from the relevent GA Executive, Officer, or Project Director stating
+  that the person requesting the account is authorized to make the request
 
 Each individual and each group is entitled to one account. Requests for
 additional accounts must demonstrate a unique need for having additional
