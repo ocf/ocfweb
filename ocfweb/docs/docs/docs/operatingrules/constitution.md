@@ -5,6 +5,8 @@ established on November 14, 2016 and amended on:
 
 1. [March 6, 2017](#amended-2017-03-06)
 2. [November 20, 2017](#amended-2017-11-20)
+3. February 11, 2019 (Sections [4.7](#amended-2019-02-11-4-7),
+   [5.2.4](#amended-2019-02-11-5-2-4), and [5.3.1](#amended-2019-02-11-5-3-1))
 
 
 ## Preamble
@@ -116,10 +118,13 @@ members pass a vote of no confidence in them. An officer shall not be eligible
 to preside over a debate concerning a vote of no confidence in themself.
 
 
-#### 4.7 Vacancies
+#### 4.7 Vacancies {amended-2019-02-11-4-7}
 If an elected office becomes vacant, the [OCF Decision Making
 Process](#ocf_decision_making_process) shall designate a member to act in that
-position until the office can be filled by election.
+position until the office can be filled by election or special election as
+provided by Article 5.2.3.
+
+_[Amended at the Board meeting of February 11, 2019]._
 
 
 #### 4.8 Incapacity
@@ -168,21 +173,31 @@ If an elected office becomes vacant, a special election shall be held at the
 next Board meeting to elect a replacement, unless a regular election is being
 held at the next Board meeting.
 
+##### 5.2.4 Nominations {amended-2019-02-11-5-2-4}
+
+Nominations for elected offices can take place either at the Board meeting
+before the election, or two Board meetings before the election. Nominations
+for a special election may also be made electronically over a medium
+available to all Directors up to 48 hours before the special election or 48
+hours after the vacancy begins, whichever is later. Nominations can only
+come from Board members, and every nomination requires the approval of one
+other Board member who is not on the ticket and the approval of the
+nominated ticket to be placed on the ballot. Self-nominations are allowed.
+
+_[Added at the Board meeting of February 11, 2019]._
+
 
 #### 5.3 Voting
 
 
-##### 5.3.1 Election of Officers
+##### 5.3.1 Election of Officers {amended-2019-02-11-5-3-1}
 The election of officers shall be by secret ballot.  A simple majority of those
-casting votes is required. If on the first ballot no candidate receives a
-simple majority, then there will be a runoff between the top two
-candidates. The voting will continue until one candidate receives a simple
-majority. Nominations can take place either at the Board meeting before the
-election, or two Board meetings before the election. Nominations can only come
-from Board members, and every nomination requires the approval of one other
-Board member who is not on the ticket and the approval of the nominated ticket
-to be placed on the ballot. Self-nominations are allowed. Write-in votes shall
-not be counted during the election.
+casting votes is required. If on the first ballot no candidate receives a simple
+majority, then there will be a runoff between the top two candidates. The voting
+will continue until one candidate receives a simple majority. Write-in votes
+shall not be counted during the election.
+
+_[Amended at the Board meeting of February 11, 2019]._
 
 
 ##### 5.3.2 Other Votes
