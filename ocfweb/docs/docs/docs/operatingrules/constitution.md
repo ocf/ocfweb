@@ -180,9 +180,9 @@ before the election, or two Board meetings before the election. Nominations
 for a special election may also be made electronically over a medium
 available to all Directors up to 48 hours before the special election or 48
 hours after the vacancy begins, whichever is later. Nominations can only
-come from Board members, and every nomination requires the approval of one
+come from Board members. Every nomination requires the approval of one
 other Board member who is not on the ticket and the approval of the
-nominated ticket to be placed on the ballot. Self-nominations are allowed.
+nominees on the ticket to be placed on the ballot. Self-nominations are allowed.
 
 _[Added at the Board meeting of February 11, 2019]._
 
