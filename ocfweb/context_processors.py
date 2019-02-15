@@ -1,12 +1,13 @@
 import re
+from datetime import date
 from ipaddress import ip_address
 
 from django.urls import reverse
 from ipware import get_client_ip
 from ocflib.account.search import user_is_group
 from ocflib.infra.net import is_ocf_ip
+from ocflib.lab.hours import Day
 
-from ocfweb.api.hours import get_hours_listing
 from ocfweb.component.lab_status import get_lab_status
 from ocfweb.component.session import logged_in_user
 from ocfweb.environment import ocfweb_version
@@ -23,16 +24,15 @@ def get_base_css_classes(request):
 
 
 def ocf_template_processor(request):
-    hours_listing = get_hours_listing()
+    hours = Day.from_date(date.today())
     real_ip, _ = get_client_ip(request)
     user = logged_in_user(request)
     return {
         'base_css_classes': ' '.join(get_base_css_classes(request)),
-        'current_lab_hours': hours_listing.hours_on_date(),
-        'holidays': hours_listing.holidays,
+        'current_lab_hours': hours,
         'is_ocf_ip': is_ocf_ip(ip_address(real_ip)) if real_ip else True,
         'join_staff_url': request.build_absolute_uri(reverse('about-staff')),
-        'lab_is_open': hours_listing.is_open(),
+        'lab_is_open': hours.is_open(),
         'lab_status': get_lab_status(),
         'ocfweb_version': ocfweb_version(),
         'request_full_path': request.get_full_path(),

@@ -8,10 +8,11 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from matplotlib.dates import DateFormatter
 from matplotlib.figure import Figure
+from ocflib.lab.hours import Day
 from ocflib.lab.stats import list_desktops
 from ocflib.lab.stats import UtilizationProfile
 
-from ocfweb.api.hours import get_hours_listing
+from ocfweb.api.hours import display_hours
 from ocfweb.caching import periodic
 from ocfweb.component.graph import plot_to_image_bytes
 
@@ -56,24 +57,24 @@ def get_open_close(day):
 
     If the lab is closed all day (e.g. holiday), just return our weekday hours.
     """
-    hours_listing = get_hours_listing()
-    d = hours_listing.hours_on_date()
+    d = Day.from_date(day)
+    regular_hours = display_hours()
 
-    if d:
-        start = datetime(day.year, day.month, day.day, min(h.open.hour for h in d))
-        end = datetime(day.year, day.month, day.day, max(h.close.hour for h in d))
+    if not d.closed_all_day:
+        start = datetime(day.year, day.month, day.day, min(h.open.hour for h in d.hours))
+        end = datetime(day.year, day.month, day.day, max(h.close.hour for h in d.hours))
     else:
         start = datetime(
             day.year,
             day.month,
             day.day,
-            min(h.open.hour for hour_list in hours_listing.regular.values() for h in hour_list),
+            min(h.open.hour for hour_list in regular_hours.values() for h in hour_list),
         )
         end = datetime(
             day.year,
             day.month,
             day.day,
-            max(h.close.hour for hour_list in hours_listing.regular.values() for h in hour_list),
+            max(h.close.hour for hour_list in regular_hours.values() for h in hour_list),
         )
 
     return start, end

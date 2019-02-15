@@ -107,11 +107,11 @@
                             <strong>Lab Currently Closed</strong>
                         {% endif %}
                         <span class="nowrap">
-                            {% if not lab_is_open and current_lab_hours %}
+                            {% if not lab_is_open and not current_lab_hours.closed_all_day %}
                                 Hours:
                             {% endif %}
-                            {{current_lab_hours|lab_hours_time}}
-                            on {% now "l" %} {% lab_hours_holiday holidays %}
+                            {{current_lab_hours.hours|lab_hours_time}}
+                            on {{current_lab_hours.weekday}} {{current_lab_hours | lab_hours_holiday}}
                             <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
                         </span>
                     {% else %}

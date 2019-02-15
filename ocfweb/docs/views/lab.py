@@ -2,12 +2,13 @@ from datetime import date
 from datetime import timedelta
 
 from django.shortcuts import render
+from ocflib.lab.hours import Day
+from ocflib.lab.hours import HOLIDAYS
 
-from ocfweb.api.hours import get_hours_listing
+from ocfweb.api.hours import display_hours
 
 
 def lab(doc, request):
-    hours_listing = get_hours_listing()
     return render(
         request,
         'docs/lab.html',
@@ -19,23 +20,23 @@ def lab(doc, request):
                 'UC Berkeley campus, maintained by OCF volunteers.'
             ),
             'hours_this_week': [
-                (
-                    date.today() + timedelta(days=i),
-                    hours_listing.hours_on_date(date.today() + timedelta(days=i)),
-                )
+                Day.from_date(date.today() + timedelta(days=i))
                 for i in range(7)
             ],
-            'regular_hours': hours_listing.regular,
+            'regular_hours': display_hours(),
             # Format dates to look like "month day, year" but with non-breaking
             # spaces (\xa0) instead of spaces so that the date does not get
             # broken up across lines:
             # https://docs.djangoproject.com/en/2.0/ref/templates/builtins/#date
             'holiday_format': 'M\xa0j,\xa0o',
             # Only select current and future holidays (any that have not finished fully)
-            'holidays': [
-                holiday
-                for holiday in hours_listing.holidays
-                if holiday.enddate >= date.today()
-            ],
+            'holidays': [holiday for holiday in HOLIDAYS if holiday[1] >= date.today()],
+            'SUNDAY': Day.SUNDAY,
+            'MONDAY': Day.MONDAY,
+            'TUESDAY': Day.TUESDAY,
+            'WEDNESDAY': Day.WEDNESDAY,
+            'THURSDAY': Day.THURSDAY,
+            'FRIDAY': Day.FRIDAY,
+            'SATURDAY': Day.SATURDAY,
         },
     )
