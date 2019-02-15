@@ -1,12 +1,18 @@
+from datetime import date
+
 from django import template
 
 register = template.Library()
 
 
-@register.filter
-def lab_hours_holiday(hours):
-    if hours.holiday:
-        return '({})'.format(hours.holiday)
+@register.simple_tag
+def lab_hours_holiday(holidays, when=None):
+    if when is None:
+        when = date.today()
+
+    for holiday in holidays:
+        if holiday.startdate <= when <= holiday.enddate:
+            return '({})'.format(holiday.reason)
     return ''
 
 
