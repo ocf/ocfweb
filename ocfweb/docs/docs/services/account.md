@@ -135,3 +135,16 @@ provide your OCF username. If your account appears to still be active, we may
 ask for some evidence that you are the account owner. Currently, disabled
 accounts are stored or archived and can be *re-enabled* by request at a later
 date. Disabled accounts may eventually be scheduled for deletion.
+
+## Backups and Data Retention
+
+The OCF maintains onsite and offsite backups of all user data uploaded to our
+servers. Our onsite backups of user data consist of 7 days of daily backups, 4
+weeks of weekly backups, and 6 months of monthly backups of NFS, MySQL, and
+PostgreSQL data. Offsite backups are made weekly and consist of the entire state
+of the onsite backups at the time the backup is made. Offsite backups are
+encrypted locally before being uploaded to servers owned by Box.com, under the
+terms of the University's collaboration agreement with the company. Offsite
+backups are retained for a period of 6 months before being deleted for user data
+privacy reasons. Encrypted backups are only accessible by a small number of OCF
+staff.
