@@ -141,7 +141,7 @@ date. Disabled accounts may eventually be scheduled for deletion.
 The OCF maintains onsite and offsite backups of all user data uploaded to our
 servers. Our onsite backups of user data consist of 7 days of daily backups, 4
 weeks of weekly backups, and 6 months of monthly backups of NFS, MySQL, and
-PostreSQL data. Offsite backups are made weekly and consist of the entire state
+PostgreSQL data. Offsite backups are made weekly and consist of the entire state
 of the onsite backups at the time the backup is made. Offsite backups are
 encrypted locally before being uploaded to servers owned by Box.com, under the
 terms of the University's collaboration agreement with the company. Offsite
