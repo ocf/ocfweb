@@ -2,9 +2,9 @@ from datetime import time
 from json import JSONEncoder
 
 from django.http import JsonResponse
-from ocflib.lab.hours2 import Hour
-from ocflib.lab.hours2 import HoursListing
-from ocflib.lab.hours2 import read_hours_listing
+from ocflib.lab.hours import Hour
+from ocflib.lab.hours import HoursListing
+from ocflib.lab.hours import read_hours_listing
 
 from ocfweb.caching import periodic
 
