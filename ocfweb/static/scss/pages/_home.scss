@@ -90,6 +90,12 @@
         }
     }
 
+    @-webkit-keyframes rotate {
+        from {transform:rotate(0deg);}
+        to {transform:rotate(360deg);}
+    }
+
+
     .ocf-penguin-swing {
         position: absolute;
 
@@ -102,6 +108,12 @@
         background-image: url('../img/penguin-swing.svg');
         background-repeat: no-repeat;
         background-size: 366px 407px;
+
+        animation-name: rotate;
+        animation-duration:2s;
+        animation-iteration-count:infinite;
+        animation-timing-function:linear;
+
 
         // responsive penguin ftw
         @media (min-width: $screen-lg-min) {
