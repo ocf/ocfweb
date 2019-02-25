@@ -43,7 +43,7 @@ spec:
               readOnly: true
           env:
             - name: OCFWEB_TESTING
-              value: "1"
+              value: "0"
       volumes:
         - name: ocfweb-secrets
           hostPath:
