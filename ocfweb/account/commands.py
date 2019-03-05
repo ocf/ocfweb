@@ -43,8 +43,8 @@ def commands(request):
 
             if not error:
                 _, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run)
-                output = ssh_stdout.read()
-                error = ssh_stderr.read()
+                output = ssh_stdout.read().decode()
+                error = ssh_stderr.read().decode()
     else:
         form = CommandForm()
 

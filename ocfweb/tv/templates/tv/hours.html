@@ -1,9 +1,9 @@
 {% load tv_formatting %}
 
 <div class="page-tv-hours">
-  <p> Hours for {{ hours.date | date:'l, M j' }} </p>
-  <div class="hours-container {{ hours.hours | tv_lab_hours_css }}">
-    {% for hour in hours.hours %}
+  <p> Hours for {% now "l, M j" %} </p>
+  <div class="hours-container {{ hours | tv_lab_hours_css }}">
+    {% for hour in hours %}
     <p> {{ hour | tv_lab_hours }} </p>
     {% empty %}
     <p> Closed All Day </p>

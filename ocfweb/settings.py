@@ -45,7 +45,6 @@ INSTALLED_APPS = (
 MIDDLEWARE = (
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -111,12 +110,6 @@ CACHES = {  # sessions are stored here
         'MAX_ENTRIES': 1000,
     },
 }
-
-CORS_URLS_REGEX = r'^/api/.*$'
-CORS_ALLOW_METHODS = ('GET',)
-
-# Allow CORS from any ocf.berkeley.edu domain
-CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(.+\.)?ocf\.berkeley\.edu$', )
 
 # Silence cache key warnings, since we are using redis and not memcached.
 # https://docs.djangoproject.com/en/1.9/topics/cache/#cache-key-warnings

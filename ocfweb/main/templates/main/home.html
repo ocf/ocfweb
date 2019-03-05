@@ -78,19 +78,17 @@
 
         <p><strong>Upcoming Lab Hours</strong></p>
         <div class="ocf-hours">
-            {% for hour in hours %}
+            {% for hours_date, hour in hours %}
                 <div class="ocf-hour row {% cycle 'odd' 'even' %}">
                     <div class="col-sm-5 col-md-3 ocf-hour-title">
-                        {{hour.weekday}}<br />
+                        {{hours_date | date:'l'}}<br />
                     </div>
                     <div class="col-sm-7 col-md-9 ocf-hour-hours">
                         {% if hour == today and lab_status.force_lab_closed %}
                             Temporarily Closed
                         {% else %}
-                            {{hour.hours | lab_hours_time}}
-                            {% if hour.holiday %}
-                                ({{hour.holiday}})
-                            {% endif %}
+                            {{hour | lab_hours_time}}
+                            {% lab_hours_holiday holidays hours_date %}
                         {% endif %}
                     </div>
                 </div>
