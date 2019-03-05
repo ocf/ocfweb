@@ -45,6 +45,14 @@
             word-wrap: break-word;
         }
 
+        .expand {
+            display: none;
+        }
+
+        .expand:target {
+            display: block;
+        }
+
         .host {
             margin-top: -1px;
             border: solid 1px #e2e2e2;
