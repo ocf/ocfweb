@@ -24,6 +24,22 @@
             {% endif %}
         </p>
     </div>
+    <div class="col-sm-12 ssh-keys">
+            {% if host.has_ssh_rsa_key %}
+              {% if host.ssh_rsa_key == None %}
+                  <p>This machine does not have an SSH RSA Key</p>
+              {% else %}
+                  <p>SSH RSA Key: {{host.ssh_rsa_key}}</p>
+              {% endif %}
+            {% endif %}
+            {% if host.has_ssh_dsa_key %}
+              {% if host.ssh_dsa_key == None %}
+                  <p>This machine does not have an SSH DSA Key</p>
+              {% else %}
+                  <p>SSH DSA Key: {{host.ssh_dsa_key}}</p>
+              {% endif %}
+            {% endif %}
+    </div>
 </div>
 
 {% if host.children %}

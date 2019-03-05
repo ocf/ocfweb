@@ -13,9 +13,9 @@ PUPPETDB_URL = 'https://puppetdb:8081/pdb/query/v4'
 PUPPET_CERT_DIR = '/etc/ocfweb/puppet-certs'
 
 
-class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
+class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children', 'ssh_keys'])):
     @classmethod
-    def from_ldap(cls, hostname, type='vm', children=()):
+    def from_ldap(cls, hostname, type='vm', children=(), ssh_keys={}):
         host = hosts_by_filter('(cn={})'.format(hostname))
         if 'description' in host:
             description, = host['description']
@@ -26,6 +26,7 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
             type=type,
             description=description,
             children=children,
+            ssh_keys=ssh_keys,
         )
 
     @cached_property
@@ -60,6 +61,18 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
     def has_munin(self):
         return self.type in ('hypervisor', 'vm', 'server', 'desktop')
 
+    def has_ssh_rsa_key(self):
+        return 'sshrsakey' in self.ssh_keys.keys()
+
+    def ssh_rsa_key(self):
+        return self.ssh_keys['sshrsakey']
+
+    def has_ssh_dsa_key(self):
+        return 'sshdsakey' in self.ssh_keys.keys()
+
+    def ssh_dsa_key(self):
+        return self.ssh_keys['sshdsakey']
+
     def __key(self):
         """Key function used for comparison."""
         ranking = {
@@ -80,6 +93,8 @@ def is_hidden(host):
 
 PQL_GET_VMS = "facts { name = 'vms' }"
 PQL_IS_HYPERVISOR = 'resources[certname] { type = "Class" and title = "Ocf_kvm" }'
+PQL_GET_SSHDSA_KEYS = "facts[name, certname, value] {name = 'sshdsakey'}"
+PQL_GET_SSHRSA_KEYS = "facts[name, certname, value] {name = 'sshrsakey'}"
 
 
 def query_puppet(query):
@@ -105,7 +120,12 @@ def ldap_to_host(item):
     """Accepts an ldap output item, returns tuple(hostname, host_object)."""
     description = item.get('description', [''])[0]
     hostname = item['cn'][0]
-    return hostname, Host(hostname, item['type'], description, ())
+    return hostname, Host(hostname, item['type'], description, (), {})
+
+
+def add_ssh_key_to_host(host_ssh_keys, hostname, keyname, keystore):
+    """Adds keystore[keyname] to host_ssh_keys"""
+    host_ssh_keys[keyname] = keystore.get(hostname)
 
 
 @cache()
@@ -115,15 +135,22 @@ def get_hosts():
 
     hypervisors_hostnames = dict(format_query_output(item) for item in query_puppet(PQL_IS_HYPERVISOR))
     all_children = dict(format_query_output(item) for item in query_puppet(PQL_GET_VMS))
+    sshdsa_keys = dict(format_query_output(item) for item in query_puppet(PQL_GET_SSHDSA_KEYS))
+    sshrsa_keys = dict(format_query_output(item) for item in query_puppet(PQL_GET_SSHRSA_KEYS))
 
     hostnames_seen = set()
     servers_to_display = []
     # Add children to hypervisors
     for hypervisor_hostname in hypervisors_hostnames:
         children = []
+        ssh_keys = {}
+        add_ssh_key_to_host(ssh_keys, hypervisor_hostname, 'sshdsakey', sshdsa_keys)
+        add_ssh_key_to_host(ssh_keys, hypervisor_hostname, 'sshrsakey', sshrsa_keys)
         for child_hostname in all_children.get(hypervisor_hostname, []):
             child = servers.get(child_hostname)
             if child:
+                add_ssh_key_to_host(child.ssh_keys, child.hostname, 'sshdsakey', sshdsa_keys)
+                add_ssh_key_to_host(child.ssh_keys, child.hostname, 'sshrsakey', sshrsa_keys)
                 children.append(child._replace(type='vm'))
                 hostnames_seen.add(child.hostname)
         description = servers[hypervisor_hostname].description if hypervisor_hostname in servers else None
@@ -132,8 +159,8 @@ def get_hosts():
             type='hypervisor',
             description=description,
             children=children,
+            ssh_keys=ssh_keys,
         ))
-        hostnames_seen.add(hypervisor_hostname)
 
     # Handle special cases
     for host in servers.values():
@@ -146,6 +173,7 @@ def get_hosts():
             type='network',
             description='Arista 7050SX Switch.',
             children=[],
+            ssh_keys={},
         ),
         servers['overheat']._replace(type='raspi'),
         servers['tornado']._replace(type='nuc'),

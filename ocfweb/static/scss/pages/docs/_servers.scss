@@ -40,6 +40,11 @@
             background-color: #FBC5D5;
         }
 
+        .ssh-keys {
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+
         .host {
             margin-top: -1px;
             border: solid 1px #e2e2e2;
