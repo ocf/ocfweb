@@ -47,10 +47,11 @@ annual intervals.
 Our contract with PMP entitles us to free service for our printers, with a
 short turn-around time. As a result, we should not longer attempt maintenance
 ourselves, and should let the professionals take care of it. Should maintenance
-be necessary, follow the instructions on the stickers attached to the front of
-the printers to contact a PMP technician, inform them of the problem, and let
-them handle everything else. If there are any questions about the terms of our
-service agreement, direct them to the UC Berkeley PMP Coordinator.
+be necessary, email copycenter@library.berkeley.edu (with sm@ cc'd) to contact a
+PMP technician, inform them of the problem, and let them handle everything else.
+Make sure to include the relevant printer IDs in the email. If there are any
+questions about the terms of our service agreement, direct them to the UC
+Berkeley PMP Coordinator.
 
 
 ## Stats
