@@ -63,6 +63,7 @@ more information.
 All of our code is on GitHub ([github.com/ocf][ocf-github]). You can find good
 ways to contribute by browsing open issues, but they can sometimes be hard to
 understand if they’re short on context. The following links can be helpful:
+(note that you must be logged in to GitHub to see these links)
 
 * [All OCF GitHub issues][ocf-github-issues]
 * [OCF GitHub issues marked "good first issue"][ocf-github-issues-starter]
