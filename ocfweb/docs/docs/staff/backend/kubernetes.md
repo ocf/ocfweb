@@ -172,7 +172,7 @@ dynamically update our DNS, which sounds like a myriad of outages waiting to
 happen. `L3` mode would require the OCF dedicating a router to Kubernetes.
 
 
-### Why don't we copy Marathan and specify one port per service?
+### Why don't we copy Marathon and specify one port per service?
 
 In our current Marathon configuration, we give each service a port on the load
 balancer and traffic coming into that port is routed accordingly. First, in
