@@ -12,6 +12,7 @@ from ocfweb.stats.semester_job import weekend_jobs_image
 from ocfweb.stats.session_count import session_count_image
 from ocfweb.stats.session_length import session_length_image
 from ocfweb.stats.summary import summary
+from ocfweb.stats.session_stats import session_stats
 
 urlpatterns = [
     url(r'^$', summary, name='stats'),
@@ -27,4 +28,5 @@ urlpatterns = [
     url(r'^printing/weekday-jobs/graph$', weekday_jobs_image, name='weekday_jobs_image'),
 
     url(r'^mirrors/$', stats_mirrors, name='stats_mirrors'),
+    url(r'^session-stats/$', session_stats, name='session-stats'),
 ]
