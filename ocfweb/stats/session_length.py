@@ -70,8 +70,10 @@ def get_sessions_plot(start_day, end_day):
         x.append(time.mktime(day.timetuple()))
 
         row = days.get(day)
-        mean_duration_hours.append(row['mean_duration_seconds'] / 3600 if row else 0)
-
+        mean_duration_hours.append(
+            row['mean_duration_seconds'] /
+            3600 if (row and row['mean_duration_seconds'] / 3600 <= 4) else 0,
+        )
         day += ONE_DAY
 
     ax.grid(True)

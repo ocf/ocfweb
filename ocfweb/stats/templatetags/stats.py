@@ -25,6 +25,7 @@ def stats_navbar(context):
                 ('pages_printed', 'Lifetime Pages Printed'),
                 ('stats_accounts', 'Accounts'),
                 ('stats_mirrors', 'Mirrors'),
+                ('session-stats', 'Session Statistics'),
             ]
         ],
     }
