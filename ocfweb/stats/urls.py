@@ -11,8 +11,8 @@ from ocfweb.stats.semester_job import weekday_jobs_image
 from ocfweb.stats.semester_job import weekend_jobs_image
 from ocfweb.stats.session_count import session_count_image
 from ocfweb.stats.session_length import session_length_image
-from ocfweb.stats.summary import summary
 from ocfweb.stats.session_stats import session_stats
+from ocfweb.stats.summary import summary
 
 urlpatterns = [
     url(r'^$', summary, name='stats'),
