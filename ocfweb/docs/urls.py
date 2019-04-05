@@ -65,9 +65,9 @@ REDIRECTS = {
     '/staff/procedures/setting-up-mdraid': 'staff/howto/infrastructure/setting-up-mdraid',
     '/staff/scripts/ssh-list': 'staff/howto/infrastructure/ssh-list',
     '/staff/procedures/ssl': 'staff/howto/infrastructure/ssl',
-    '/staff/scripts/economode': 'staff/howto/maintenance/economode',
-    '/staff/scripts/lab-wakeup': 'staff/howto/maintenance/lab-wakeup',
-    '/staff/procedures/printing': 'staff/howto/maintenance/printing',
+    '/staff/scripts/economode': 'staff/howto/printing/economode',
+    '/staff/scripts/lab-wakeup': 'staff/howto/infrastructure/lab-wakeup',
+    '/staff/procedures/printing': 'staff/howto/printing/printing',
     '/staff/procedures/dmca': 'staff/howto/other/dmca',
     '/staff/scripts/how': 'staff/howto/other/how',
     '/staff/scripts/ocf-tv': 'staff/howto/other/ocf-tv',
@@ -76,9 +76,8 @@ REDIRECTS = {
     '/staff/procedures/granting-privileges': 'staff/howto/staff-admin/granting-privileges',
     '/staff/procedures/accounts/alumni-reset': 'staff/howto/user-services/alumni-reset',
     '/staff/scripts/approve': 'staff/howto/user-services/approve',
-    '/staff/scripts/paper': 'staff/howto/user-services/paper',
+    '/staff/scripts/paper': 'staff/howto/printing/paper',
     '/staff/procedures/vhost': 'staff/howto/user-services/vhost',
-
 }
 
 
