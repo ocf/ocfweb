@@ -4,7 +4,7 @@ OCF goes through toners quite fast, due to the heavy volume of printing from our
 
 ## Options to dispose the toners
 
-* We can dispose the toners by returning them to Staples down at the Shattuck Ave. They give us $2 Staples rewards per toner, and there is maximum limit of 10 toners per month. [Link](http://rewards.staples.com/SRC/faqs.do)
+* We can dispose the toners by returning them to [Staples](http://rewards.staples.com/SRC/faqs.do) down at the Shattuck Ave. They give us $2 Staples rewards per toner, and there is maximum limit of 10 toners per month.
 
 * Copy Center at Moffitt Library would accept our toners that are individually sealed in a garbage bag.
 
