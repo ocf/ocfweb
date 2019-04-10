@@ -48,4 +48,8 @@ make dev # start a development server and see your changes live
 To access Kubernetes, simply run `kubectl` commands. See the [Kubernetes
 documentation][kubernetes-basics] for more information.
 
+Note that staff only have viewing permissions for the cluster. Interested
+stafferse can request write access to a development namespace by talking to a
+root staffer.
+
 [kubernetes-basics]: https://kubernetes.io/docs/tutorials/kubernetes-basics/
