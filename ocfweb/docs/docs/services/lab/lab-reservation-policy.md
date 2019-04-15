@@ -5,7 +5,7 @@ _As established by the Board of Directors on November 6, 2017._
 Any group eligible for OCF membership is able to reserve the OCF lab space for
 a maximum of 2 hours at a time during the OCF’s regular operating hours
 (exceptions can be made at the discretion of the OCF Board of Directors). Those
-who reserve the OCF lab space are able to use the 28 computers within the lab
+who reserve the OCF lab space are able to use the 29 computers within the lab
 (as well as additional seating if available), in addition to the main TV
 attached to the back wall. A whiteboard is available upon request, and student
 group members who are also OCF members may print normally pursuant to their
