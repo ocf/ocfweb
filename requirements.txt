@@ -52,5 +52,5 @@ requests==2.21.0
 setuptools==40.8.0
 six==1.12.0
 SQLAlchemy==1.2.17
-urllib3==1.24.1
+urllib3==1.24.2
 vine==1.2.0
