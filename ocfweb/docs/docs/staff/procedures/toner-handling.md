@@ -15,7 +15,6 @@ recycle the used toners as soon as possible.
 services/) down at the Shattuck Ave. They give us $2 Staples rewards per toner, and
 there is maximum limit of 10 toners per month. With the rewards, we can purchase
 snacks and etc from Staples.
-
 The rewards account information can be found in the passwd file.
 
 * Copy Center at 3rd floor of Moffitt Library - to the right of FSM cafe when you enter the
