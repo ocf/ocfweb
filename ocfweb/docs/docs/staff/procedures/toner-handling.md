@@ -3,9 +3,9 @@
 OCF goes through toners quite fast, due to the heavy volume of printing from our
 users. In the past, we've let it accumulate inside the storage room which
 resulted in accidental toner spillage. The following document contains how
-to recycle the toners and hope to encourage rapid removal of the toners from OCF space.
+to recycle the toners in hope of encouraging rapid removal of the toners from OCF space.
 
-OCF staffer should keep an eye out for the accumulation of the toners, and proactively
+OCF staffers should keep an eye out for the accumulation of the toners, and proactively
 recycle the used toners as soon as possible.
 
 ## Options to dispose the toners
