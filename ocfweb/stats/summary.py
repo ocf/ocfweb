@@ -78,7 +78,7 @@ def printers():
             try:
                 return f(*args, **kwargs)
             except (OSError, ValueError) as ex:
-                _logger.warn('Silencing exception reading printer data: {}'.format(ex))
+                _logger.warn(f'Silencing exception reading printer data: {ex}')
                 return None
         return inner
 

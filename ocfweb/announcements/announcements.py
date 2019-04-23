@@ -22,7 +22,7 @@ class Announcement(namedtuple('Announcement', ('title', 'date', 'path', 'render'
 
     @cached_property
     def route_name(self):
-        return '{}-announcement'.format(self.path)
+        return f'{self.path}-announcement'
 
     @cached_property
     def datetime(self):

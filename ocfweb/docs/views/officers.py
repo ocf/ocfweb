@@ -44,7 +44,7 @@ class Officer(namedtuple('Officer', ['uid', 'name', 'start', 'end', 'acting'])):
         return self.start is None and self.end is None
 
     def __str__(self):
-        s = '{} <{}>'.format(self.name, self.uid)
+        s = f'{self.name} <{self.uid}>'
         if self.acting:
             if self.end is not None and self.end < date(2016, 11, 14):
                 # Prior to the 2016 constitution, we had interim managers

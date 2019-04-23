@@ -31,10 +31,10 @@ def google_map_static(width, height):
     return {
         'url': 'https://maps.googleapis.com/maps/api/staticmap?{}'.format(
             urlencode({
-                'size': '{}x{}'.format(width, height),
+                'size': f'{width}x{height}',
                 'zoom': 17,
-                'center': '{},{}'.format(OCF_LATITUDE, OCF_LONGITUDE),
-                'markers': 'label:OCF|size:mid|{},{}'.format(OCF_LATITUDE, OCF_LONGITUDE),
+                'center': f'{OCF_LATITUDE},{OCF_LONGITUDE}',
+                'markers': f'label:OCF|size:mid|{OCF_LATITUDE},{OCF_LONGITUDE}',
 
                 'key': OCF_API_KEY,
             }),

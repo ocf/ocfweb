@@ -104,7 +104,7 @@ def vhost_mail_update(request):
 
         if action == 'add':
             if existing is not None:
-                _error(request, 'The address "{}" already exists!'.format(addr))
+                _error(request, f'The address "{addr}" already exists!')
 
             new = MailForwardingAddress(
                 address=addr,
@@ -114,7 +114,7 @@ def vhost_mail_update(request):
             )
         else:
             if existing is None:
-                _error(request, 'The address "{}" does not exist!'.format(addr))
+                _error(request, f'The address "{addr}" does not exist!')
             addr_vhost.remove_forwarding_address(c, existing.address)
 
         if action != 'delete':
@@ -141,7 +141,7 @@ def vhost_mail_csv_export(request, domain):
     user = logged_in_user(request)
     vhost = _get_vhost(user, domain)
     if not vhost:
-        _error(request, 'You cannot use the domain: "{}"'.format(domain))
+        _error(request, f'You cannot use the domain: "{domain}"')
 
     with _txn() as c:
         addresses = (
@@ -154,7 +154,7 @@ def vhost_mail_csv_export(request, domain):
         content_type='text/csv',
     )
     # See https://docs.djangoproject.com/en/1.11/ref/request-response/
-    response['Content-disposition'] = 'attachment; filename="{}.csv"'.format(domain)
+    response['Content-disposition'] = f'attachment; filename="{domain}.csv"'
     return response
 
 
@@ -165,7 +165,7 @@ def vhost_mail_csv_import(request, domain):
     user = logged_in_user(request)
     vhost = _get_vhost(user, domain)
     if not vhost:
-        _error(request, 'You cannot use the domain: "{}"'.format(domain))
+        _error(request, f'You cannot use the domain: "{domain}"')
 
     addresses = _parse_csv(request, domain)
 
@@ -236,18 +236,18 @@ def _parse_csv(request, domain):
 
                     from_addr = row[0] + '@' + domain
                     if _parse_addr(from_addr) is None:
-                        raise ValueError('Invalid forwarding address: "{}"'.format(from_addr))
+                        raise ValueError(f'Invalid forwarding address: "{from_addr}"')
 
                     try:
                         to_addrs = _parse_csv_forward_addrs(row[1])
                     except InvalidEmailError as e:
-                        raise ValueError('Invalid address: "{}"'.format(e))
+                        raise ValueError(f'Invalid address: "{e}"')
 
                     addresses[from_addr] = to_addrs
                 except ValueError as e:
                     _error(request, 'Error parsing CSV: row {}: {}'.format(i + 1, e))
     except UnicodeDecodeError as e:
-        _error('Uploaded file is not valid UTF-8 encoded: "{}"'.format(e))
+        _error(f'Uploaded file is not valid UTF-8 encoded: "{e}"')
 
     return addresses
 
@@ -281,7 +281,7 @@ def _redirect_back():
 def _get_action(request):
     action = request.POST.get('action')
     if action not in {'add', 'update', 'delete'}:
-        _error(request, 'Invalid action: "{}"'.format(action))
+        _error(request, f'Invalid action: "{action}"')
     else:
         return action
 
@@ -309,7 +309,7 @@ def _get_addr(request, user, field, required=True):
         addr = original.strip()
         parsed = _parse_addr(addr, allow_wildcard=True)
         if not parsed:
-            _error(request, 'Invalid address: "{}"'.format(original))
+            _error(request, f'Invalid address: "{original}"')
         else:
             name, domain = parsed
 
@@ -318,7 +318,7 @@ def _get_addr(request, user, field, required=True):
             if vhost is not None:
                 return name, domain, vhost
             else:
-                _error(request, 'You cannot use the domain: "{}"'.format(domain))
+                _error(request, f'You cannot use the domain: "{domain}"')
     elif required:
         _error(request, 'You must provide an address!')
 
@@ -338,7 +338,7 @@ def _get_forward_to(request):
             if _parse_addr(forward_addr) is not None:
                 parsed_addrs.add(forward_addr)
             else:
-                _error(request, 'Invalid forwarding address: "{}"'.format(forward_addr))
+                _error(request, f'Invalid forwarding address: "{forward_addr}"')
 
     if len(parsed_addrs) < 1:
         _error(request, 'You must provide at least one address to forward to!')

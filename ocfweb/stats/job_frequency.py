@@ -88,6 +88,6 @@ def get_jobs_plot(day):
     ax.yaxis.grid(True)
     ax.set_ylim(bottom=0)
     ax.set_ylabel('Number of Jobs Printed')
-    ax.set_title('Print Job Distribution {:%a %b %d}'.format(day))
+    ax.set_title(f'Print Job Distribution {day:%a %b %d}')
 
     return fig

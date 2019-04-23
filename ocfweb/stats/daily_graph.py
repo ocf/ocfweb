@@ -134,5 +134,5 @@ def get_daily_plot(day):
     ax.set_ylim(0, desks_count + 5)
     ax.set_ylabel('Computers in Use')
 
-    ax.set_title('Lab Utilization {:%a %b %d}'.format(day))
+    ax.set_title(f'Lab Utilization {day:%a %b %d}')
     return fig

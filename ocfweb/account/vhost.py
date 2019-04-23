@@ -139,7 +139,7 @@ def request_vhost(request):
     else:
         form = VirtualHostForm(is_group, initial={'requested_subdomain': user + '.berkeley.edu'})
 
-    group_url = 'https://www.ocf.berkeley.edu/~{}/'.format(user)
+    group_url = f'https://www.ocf.berkeley.edu/~{user}/'
 
     return render(
         request,
