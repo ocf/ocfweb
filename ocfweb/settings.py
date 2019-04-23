@@ -152,8 +152,8 @@ DEBUG = conf.getboolean('django', 'debug')
 STATIC_URL = conf.get('django', 'static_url')
 STATIC_ROOT = os.environ.get('OCFWEB_STATIC_ROOT') or conf.get('django', 'static_root')
 
-CELERY_BROKER = conf.get('celery', 'broker')
-CELERY_BACKEND = conf.get('celery', 'backend')
+CELERY_BROKER = conf.get('celery', 'broker').replace('redis://', 'rediss://')
+CELERY_BACKEND = conf.get('celery', 'backend').replace('redis://', 'rediss://')
 
 OCFMAIL_USER = conf.get('ocfmail', 'user')
 OCFMAIL_PASSWORD = conf.get('ocfmail', 'password')
