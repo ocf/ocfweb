@@ -59,7 +59,7 @@ def get_markdown_docs():
             text, meta = text_and_meta(f)
 
         if 'title' not in meta:
-            raise ValueError('Document {} lacks required title meta variable.'.format(name))
+            raise ValueError(f'Document {name} lacks required title meta variable.')
 
         yield Document(
             name='/' + name,

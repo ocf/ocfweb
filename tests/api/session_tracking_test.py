@@ -25,8 +25,8 @@ def test_view_requires_post(client):
 TEST_SOURCE_IPS = (
     (OCF_DESKTOP_IP, 400, ''),  # valid IP but invalid data == 400, this is ok
     (OCF_DESKTOP_IP_V6, 400, ''),
-    (OCF_VM_IP, 400, 'IP {} does not belong to a desktop'.format(OCF_VM_IP)),
-    (OCF_VM_IP_V6, 400, 'IP {} does not belong to a desktop'.format(OCF_VM_IP_V6)),
+    (OCF_VM_IP, 400, f'IP {OCF_VM_IP} does not belong to a desktop'),
+    (OCF_VM_IP_V6, 400, f'IP {OCF_VM_IP_V6} does not belong to a desktop'),
     ('169.229.228.90', 401, 'Not Authorized'),
     ('8.8.8.8', 401, 'Not Authorized'),
     ('1.10.11.12', 401, 'Not Authorized'),

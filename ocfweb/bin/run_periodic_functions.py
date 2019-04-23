@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.7
 """Run periodic functions.
 
 This runs all periodic functions, either in a looping mode designed to run
@@ -42,7 +42,7 @@ def run_periodic_functions():
 
     for pf in periodic_functions:
         if pf.seconds_since_last_update() >= pf.period:
-            _logger.info(bold(green('Updating periodic function: {}'.format(pf))))
+            _logger.info(bold(green(f'Updating periodic function: {pf}')))
 
             try:
                 pf.update()
@@ -86,7 +86,7 @@ def run_periodic_functions():
                     raise
 
         else:
-            _logger.debug(bold(yellow('Not updating periodic function: {}'.format(pf))))
+            _logger.debug(bold(yellow(f'Not updating periodic function: {pf}')))
 
     if was_error:
         delay_on_error = min(DELAY_ON_ERROR_MAX, delay_on_error * 2)

@@ -447,7 +447,7 @@ def test_get_action_valid(action):
 def test_get_action_invalid(action, fake_error):
     with pytest.raises(fake_error) as ex:
         _get_action(fake_request(action=action))
-    assert ex.value.args[0] == 'Invalid action: "{}"'.format(action)
+    assert ex.value.args[0] == f'Invalid action: "{action}"'
 
 
 @pytest.mark.parametrize(
@@ -545,7 +545,7 @@ def test_get_addr_invalid_addr(addr, required, fake_error):
             'addr',
             required=required,
         )
-    assert ex.value.args[0] == 'Invalid address: "{}"'.format(addr)
+    assert ex.value.args[0] == f'Invalid address: "{addr}"'
 
 
 @pytest.mark.parametrize(
@@ -564,7 +564,7 @@ def test_get_addr_no_permission(addr, domain, required, fake_error):
             'addr',
             required=required,
         )
-    assert ex.value.args[0] == 'You cannot use the domain: "{}"'.format(domain)
+    assert ex.value.args[0] == f'You cannot use the domain: "{domain}"'
 
 
 @pytest.mark.parametrize(
@@ -609,7 +609,7 @@ def test_get_forward_to_no_addrs_provided(forward_to, fake_error):
 def test_get_forward_to_invalid_addrs_provided(forward_to, first_invalid, fake_error):
     with pytest.raises(fake_error) as ex:
         _get_forward_to(fake_request(forward_to=forward_to))
-    assert ex.value.args[0] == 'Invalid forwarding address: "{}"'.format(first_invalid)
+    assert ex.value.args[0] == f'Invalid forwarding address: "{first_invalid}"'
 
 
 def test_get_password_no_name():

@@ -69,7 +69,7 @@ class InvalidReferenceInTemplate(str):
     """
 
     def __mod__(self, ref):
-        raise TemplateSyntaxError('Invalid reference in template: {}'.format(ref))
+        raise TemplateSyntaxError(f'Invalid reference in template: {ref}')
 
 
 TEMPLATES = [{

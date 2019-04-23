@@ -77,7 +77,7 @@ def change_password(request):
                 task = change_password_task.delay(
                     account,
                     password,
-                    comment='Your password was reset online by {}.'.format(calnet_name),
+                    comment=f'Your password was reset online by {calnet_name}.',
                 )
                 result = task.wait(timeout=5)
                 if isinstance(result, Exception):

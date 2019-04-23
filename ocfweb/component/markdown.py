@@ -156,7 +156,7 @@ class HeaderRendererMixin:
             id = custom_id_match.group(2)
 
             if id in self.toc_ids:
-                raise ValueError('Duplicate header ID in Markdown: "{}"'.format(id))
+                raise ValueError(f'Duplicate header ID in Markdown: "{id}"')
         else:
             id = 'h{level}_{title}'.format(
                 level=level,

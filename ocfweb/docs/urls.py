@@ -70,6 +70,6 @@ urlpatterns = [
     # we use a complicated generated regex here so that we have actual
     # validation of URLs (in other words, if you try to make a link to a
     # missing document, it will fail)
-    url(r'^({redir_names})/$'.format(redir_names=redir_names), send_redirect),
-    url(r'^({doc_names})/$'.format(doc_names=doc_names), render_doc, name='doc'),
+    url(fr'^({redir_names})/$', send_redirect),
+    url(fr'^({doc_names})/$', render_doc, name='doc'),
 ]
