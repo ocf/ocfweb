@@ -38,7 +38,7 @@ OCF servers requires only just a little extra configuration.
 that you need that the OCF does not already have.  The benefit of having a virtualenv
 is that you can decide the dependencies you want, without being tied to the OCF defaults:
 ```
-    $ virtualenv -p python3.5 venv
+    $ virtualenv -p python3 venv
     $ . venv/bin/activate
     $ pip install flask
     $ pip install flup6
