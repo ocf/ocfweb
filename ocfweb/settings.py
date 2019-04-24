@@ -4,9 +4,10 @@ import socket
 import tempfile
 import warnings
 
-from django.core.cache import CacheKeyWarning
-from django.template.base import TemplateSyntaxError
+from django.core.cache.backends.base import CacheKeyWarning
+from django.template.exceptions import TemplateSyntaxError
 
+from typing import Dict, Any
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TESTING = os.environ.get('OCFWEB_TESTING') == '1'
@@ -88,7 +89,6 @@ TEMPLATES = [{
 
 WSGI_APPLICATION = 'ocfweb.wsgi.application'
 
-DATABASES = {}
 
 # store sessions in the cache
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
@@ -104,7 +104,7 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_PATH = '/'
 SESSION_COOKIE_NAME = 'OCFWEB_SESSIONID'
 
-CACHES = {  # sessions are stored here
+CACHES: Dict[str, Any] = {  # sessions are stored here
     'TIMEOUT': 60 * 60 * 12,  # 12 hours
     'OPTIONS': {
         'MAX_ENTRIES': 1000,

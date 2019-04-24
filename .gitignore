@@ -10,6 +10,7 @@
 /ocflib
 
 ## generic python stuff below
+.mypy_cache/
 __pycache__/
 *.py[cod]
 *$py.class

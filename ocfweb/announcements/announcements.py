@@ -11,7 +11,9 @@ from django.utils import timezone
 
 from ocfweb.component.blog import get_blog_posts
 
-announcements = ()
+from typing import Tuple
+
+announcements: Tuple['Announcement', ...] = ()
 
 
 class Announcement(namedtuple('Announcement', ('title', 'date', 'path', 'render'))):
