@@ -114,10 +114,12 @@ def _make_key(key):
 
     :param key: some iterable key (e.g. a tuple or list)
     """
-    return tuple(chain(
-        [ocfweb_version()],
-        key,
-    ))
+    return tuple(
+        chain(
+            [ocfweb_version()],
+            key,
+        ),
+    )
 
 
 def _make_function_call_key(fn, args, kwargs):
@@ -140,13 +142,15 @@ def _make_function_call_key(fn, args, kwargs):
 periodic_functions = set()
 
 
-class PeriodicFunction(namedtuple(
-    'PeriodicFunction', [
-        'function',
-        'period',
-        'ttl',
-    ],
-)):
+class PeriodicFunction(
+    namedtuple(
+        'PeriodicFunction', [
+            'function',
+            'period',
+            'ttl',
+        ],
+    ),
+):
 
     def __hash__(self):
         return hash(self.function_call_key)

@@ -39,10 +39,12 @@ def daily_graph_image(request):
 
     # redirect to canonical url
     if request.GET.get('date') != day.isoformat():
-        return redirect('{}?{}'.format(
-            reverse('daily_graph_image'),
-            urllib.parse.urlencode({'date': day.isoformat()}),
-        ))
+        return redirect(
+            '{}?{}'.format(
+                reverse('daily_graph_image'),
+                urllib.parse.urlencode({'date': day.isoformat()}),
+            ),
+        )
 
     if day == date.today():
         return _daily_graph_image()

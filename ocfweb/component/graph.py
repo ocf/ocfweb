@@ -66,13 +66,15 @@ def canonical_graph(hot_path=None, default_start_end=current_start_end):
                     request.GET.get('start') != start_day.isoformat() or
                     request.GET.get('end') != end_day.isoformat()
             ):
-                return redirect('{}?{}'.format(
-                    reverse(request.resolver_match.url_name),
-                    urllib.parse.urlencode({
-                        'start': start_day.isoformat(),
-                        'end': end_day.isoformat(),
-                    }),
-                ))
+                return redirect(
+                    '{}?{}'.format(
+                        reverse(request.resolver_match.url_name),
+                        urllib.parse.urlencode({
+                            'start': start_day.isoformat(),
+                            'end': end_day.isoformat(),
+                        }),
+                    ),
+                )
 
             if hot_path and start_day == default_start and end_day == default_end:
                 return hot_path()

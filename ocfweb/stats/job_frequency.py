@@ -38,10 +38,12 @@ def daily_jobs_image(request):
 
     # redirect to canonical url
     if request.GET.get('date') != day.isoformat():
-        return redirect('{}?{}'.format(
-            reverse('daily_job_image'),
-            urllib.parse.urlencode({'date': day.isoformat()}),
-        ))
+        return redirect(
+            '{}?{}'.format(
+                reverse('daily_job_image'),
+                urllib.parse.urlencode({'date': day.isoformat()}),
+            ),
+        )
 
     if day == date.today():
         return _jobs_graph_image()

@@ -672,10 +672,14 @@ def test_get_vhost_failure(domain):
 
 @pytest.fixture
 def fake_vhost():
-    return mock.Mock(**{'get_forwarding_addresses.return_value': [
-        mock.Mock(address='ckuehl@ocf.berkeley.edu'),
-        mock.Mock(address='a@gmail.com'),
-    ]})
+    return mock.Mock(
+        **{
+            'get_forwarding_addresses.return_value': [
+                mock.Mock(address='ckuehl@ocf.berkeley.edu'),
+                mock.Mock(address='a@gmail.com'),
+            ],
+        },
+    )
 
 
 @pytest.mark.parametrize('addr', ('ckuehl@ocf.berkeley.edu', 'a@gmail.com'))

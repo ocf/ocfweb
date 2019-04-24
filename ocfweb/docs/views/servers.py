@@ -127,12 +127,14 @@ def get_hosts():
                 children.append(child._replace(type='vm'))
                 hostnames_seen.add(child.hostname)
         description = servers[hypervisor_hostname].description if hypervisor_hostname in servers else None
-        servers_to_display.append(Host(
-            hostname=hypervisor_hostname,
-            type='hypervisor',
-            description=description,
-            children=children,
-        ))
+        servers_to_display.append(
+            Host(
+                hostname=hypervisor_hostname,
+                type='hypervisor',
+                description=description,
+                children=children,
+            ),
+        )
         hostnames_seen.add(hypervisor_hostname)
 
     # Handle special cases

@@ -92,8 +92,10 @@ def get_sessions_plot(start_day, end_day):
     ax.set_xticklabels(list(map(date.fromtimestamp, x))[::skip])
     ax.set_ylim(bottom=0)
     ax.set_ylabel('Duration (hours)')
-    ax.set_title('Mean session duration {} to {}'.format(
-        start_day.isoformat(),
-        end_day.isoformat(),
-    ))
+    ax.set_title(
+        'Mean session duration {} to {}'.format(
+            start_day.isoformat(),
+            end_day.isoformat(),
+        ),
+    )
     return fig

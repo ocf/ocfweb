@@ -57,8 +57,9 @@ class OcflibErrorMiddleware:
         headers = sanitize_wsgi_context(request.META)
 
         try:
-            send_problem_report(dedent(
-                """\
+            send_problem_report(
+                dedent(
+                    """\
                 An exception occured in ocfweb:
 
                 {traceback}
@@ -76,22 +77,25 @@ class OcflibErrorMiddleware:
                 Session:
                 {session}
                 """
-            ).format(
-                traceback=traceback,
-                request=request,
-                host=request.get_host(),
-                path=request.get_full_path(),
-                is_secure=request.is_secure(),
-                session=pformat(dict(request.session)),
-                headers=pformat(headers),
-            ))
+                ).format(
+                    traceback=traceback,
+                    request=request,
+                    host=request.get_host(),
+                    path=request.get_full_path(),
+                    is_secure=request.is_secure(),
+                    session=pformat(dict(request.session)),
+                    headers=pformat(headers),
+                ),
+            )
         except Exception as ex:
             print(ex)  # just in case it errors again here
-            send_problem_report(dedent(
-                """\
+            send_problem_report(
+                dedent(
+                    """\
                 An exception occured in ocfweb, but we errored trying to report it:
 
                 {traceback}
                 """
-            ).format(traceback=format_exc()))
+                ).format(traceback=format_exc()),
+            )
             raise
