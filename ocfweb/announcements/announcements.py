@@ -2,6 +2,7 @@ from collections import namedtuple
 from datetime import date
 from datetime import datetime
 from datetime import time
+from typing import Tuple
 
 from cached_property import cached_property
 from django.shortcuts import render
@@ -11,7 +12,7 @@ from django.utils import timezone
 
 from ocfweb.component.blog import get_blog_posts
 
-announcements = ()
+announcements: Tuple['Announcement', ...] = ()
 
 
 class Announcement(namedtuple('Announcement', ('title', 'date', 'path', 'render'))):

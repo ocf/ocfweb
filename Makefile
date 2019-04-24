@@ -14,12 +14,16 @@ DOCKER_TAG_STATIC = $(DOCKER_REPO)ocfweb-static:$(DOCKER_REVISION)
 # after running tests
 .PHONY: test
 test: export OCFWEB_TESTING ?= 1
-test: venv
+test: venv mypy
 	$(BIN)/py.test -v tests/
 	$(BIN)/pre-commit run --all-files
 ifneq ($(strip $(COVERALLS_REPO_TOKEN)),)
 	$(BIN)/coveralls
 endif
+
+.PHONY: mypy
+mypy: venv
+	$(BIN)/mypy -p ocfweb
 
 .PHONY: Dockerfile.%
 Dockerfile.%: Dockerfile.%.in

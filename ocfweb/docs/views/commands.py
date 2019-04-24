@@ -1,11 +1,15 @@
-from collections import namedtuple
+from typing import NamedTuple
+from typing import Optional
 
 from django.shortcuts import render
 
 
-Command = namedtuple('Command', ['name', 'args', 'desc', 'doc', 'doc_anchor'])
-# Default last two fields to None
-Command.__new__.__defaults__ = (None, None)
+class Command(NamedTuple):
+    name: str
+    args: Optional[str]
+    desc: str
+    doc: Optional[str] = None
+    doc_anchor: Optional[str] = None
 
 
 OCF_COMMANDS = [
