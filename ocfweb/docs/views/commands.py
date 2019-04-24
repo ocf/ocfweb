@@ -1,8 +1,8 @@
-from collections import namedtuple
+from typing import NamedTuple
+from typing import Optional
 
 from django.shortcuts import render
 
-from typing import NamedTuple, Optional
 
 class Command(NamedTuple):
     name: str
@@ -10,6 +10,7 @@ class Command(NamedTuple):
     desc: str
     doc: Optional[str] = None
     doc_anchor: Optional[str] = None
+
 
 OCF_COMMANDS = [
     Command(

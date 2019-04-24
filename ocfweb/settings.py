@@ -3,11 +3,11 @@ import os
 import socket
 import tempfile
 import warnings
+from typing import Any
+from typing import Dict
 
 from django.core.cache.backends.base import CacheKeyWarning
 from django.template.exceptions import TemplateSyntaxError
-
-from typing import Dict, Any
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TESTING = os.environ.get('OCFWEB_TESTING') == '1'
