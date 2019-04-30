@@ -1,6 +1,6 @@
 [[!meta title="Deploying Kubernetes Services"]]
 
-## Overview 
+## Overview
 Are you looking to deploy a new service to the OCF Kubernetes cluster or port
 an existing service from [[Marathon|doc staff/backend/mesos#h2_marathon]]? This
 document will cover the steps required to do so. Do note that this is not a
@@ -8,9 +8,9 @@ substitute for a Kubernetes tutorial or a Docker tutorial (there are many
 resources online for that) but a guide for getting your service running on the
 OCF.
 
-## Getting started 
+## Getting started
 This `HOWTO` will focus on one of the OCF's simplest services:
-[templates][templates]. Templates is service used internally by OCF staff
+[Templates][templates]. Templates is service used internally by OCF staff
 serving 'copy-pasteable' email templates. Right now you should use [[git|doc
 staff/backend/git]] to `clone` your repo. Now let's get the templates repo.
 
@@ -28,7 +28,7 @@ application is self-contained we need to create one file,
 Since templates is a web service we will first create a `Service` object.  The
 first step to make your Kubernetes service internet-facing is to make your
 application accessible within the Kubernetes cluster. In most cases you can
-simply fill in this template. 
+simply fill in this template.
 
 ```
 apiVersion: v1
@@ -37,7 +37,7 @@ metadata:
   name: <myapp>-service
 spec:
   selector:
-    app: <myapp> 
+    app: <myapp>
   ports:
     - port: 80
       targetPort: <docker-port>
@@ -69,7 +69,7 @@ spec:
 Great! Now let's move onto creating our pods! To do this we'll create a
 `Deployment` object. Deployments can get become complicated with application
 specific configuration, but the simplicity of Templates elucidates the
-bare-bones requirements for any Deployment. 
+bare-bones requirements for any Deployment.
 
 ```
 apiVersion: apps/v1
@@ -79,21 +79,21 @@ metadata:
   labels:
     app: <myapp>
 spec:
-  replicas: <#pods> 
+  replicas: <#pods>
   selector:
     matchLabels:
-      app: <myapp> 
+      app: <myapp>
   template:
     metadata:
       labels:
         app: <myapp>
     spec:
       containers:
-        - name: <container-name> 
+        - name: <container-name>
           image: "docker.ocf.berkeley.edu/<your-repo-name>:<%= version %>"
           resources:
             limits:
-              memory: <#Mi> 
+              memory: <#Mi>
               cpu: <cpus-in-millicores>m
           ports:
             - containerPort: <docker-port>
@@ -196,7 +196,7 @@ need to add this under your deployment `spec`.
           - "ocf.berkeley.edu"
 ```
 
-### NFS 
+### NFS
 
 If your application does not need access to the filesystem then you can skip
 this section. If your application needs to keep state, try to explore `MariaDB`
@@ -271,9 +271,9 @@ run `kinit`. This will obtain a [[kerberos|doc staff/backend/kerberos]] ticket
 giving us access to the Kubernetes cluster. Now run
 
 ```
-kubectl create namespace <myapp> 
-kubectl apply -n <myapp> -f <myapp>.yaml 
-``` 
+kubectl create namespace <myapp>
+kubectl apply -n <myapp> -f <myapp>.yaml
+```
 
 You can run `kubectl -n <myapp> get all` to Kubernetes create your `Service`
 and `Deployment` objects.
@@ -299,6 +299,22 @@ the Kubernetes masters (wait about 30 minutes) your service will be accessible,
 with TLS, at `<myapp>.ocf.berkeley.edu`. Congratulations!
 
 
+## Reference Material
+
+The best way to get services up-and-running is to read code for existing services.
+
+[templates][templates-deploy]: The simplest possible deployment. `nginx` server with static content.
+
+[kanboard][kanboard-deploy]: Project management software that makes use of `ldap` and mounts `nfs`.
+
+[mastodon][mastodon-deploy] (Advanced): Applies custom patches, uses `ldap`, mounts `nfs`, has pods for `redis`, `sidekiq`, and `http-streaming`.
+
+[kafka][kafka-deploy] (Advanced): Runs a `kafka` cluster inside of Kubernetes.
+
 [templates]: https://templates.ocf.berkeley.edu
 [dockerhub]: https://hub.docker.com
 [puppet]: https://github.com/ocf/puppet/tree/master/modules/ocf_kubernetes/files/persistent-volume-nfs
+[templates-deploy]: https://github.com/ocf/templates/tree/master/kubernetes
+[kanboard-deploy]: https://github.com/ocf/kanboard/tree/master/kubernetes
+[mastodon-deploy]: https://github.com/ocf/mastodon/tree/master/kubernetes
+[kafka-deploy]: https://github.com/ocf/kafka/tree/master/kubernetes
