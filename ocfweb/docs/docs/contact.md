@@ -64,7 +64,7 @@ to ever be read.
 Our address is:
 
     Open Computing Facility
-    2495 Bancroft Ave Ste. 171
+    2495 Bancroft Way Ste. 171
     University of California, Berkeley
     Berkeley, CA 94720-4520
 
