@@ -24,8 +24,8 @@ virtual host request form.
 ## Requesting app hosting
 
 To request app hosting, you need to first [[create an OCF group account|doc
-membership]]. Once you have an account, email `hostmaster@ocf` with at least
-the following information:
+membership]]. Once you have an account, email `hostmaster@ocf.berkeley.edu`
+with at least the following information:
 
 * Group's account name
 * Group's current website, if any (even if not hosted by OCF)
