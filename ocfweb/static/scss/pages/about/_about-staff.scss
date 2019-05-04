@@ -11,13 +11,13 @@ $color-penguin-yellow: #ffd700;
 $color-white: #EDF7F2;
 $color-green1: #ddee99;
 $color-yellow: #FFFFA6;
-$color-blue1: #2F2933;
+$color-dark-gray: #2F2933;
 $color-blue2: #01A2A6;
 $color-blue3: #29D9C2;
 
 .page-about-staff {
     .ocf-lab {
-        background-color: $color-blue1;
+        background-color: $color-dark-gray;
         color: white;
 
         padding: 20px;
@@ -64,11 +64,27 @@ $color-blue3: #29D9C2;
         img {
             width: 100%;
         }
+
+        .photo-align-top-left-col {
+            padding-top: 3em;
+
+            @media (max-width: 767px) {
+                padding-top: 1em;
+            }
+        }
+
+        .photo-align-bottom-right-col {
+            padding-bottom: 1.5em;
+
+            @media (max-width: 767px) {
+                padding-bottom: 1em;
+            }
+        }
     }
 
     .ocf-first {
         padding: 15px 0;
-        background-color: $color-blue1;
+        background-color: $color-dark-gray;
         color: white;
 
         a {

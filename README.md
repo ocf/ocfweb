@@ -3,6 +3,7 @@ ocfweb
 [![Build Status](https://jenkins.ocf.berkeley.edu/buildStatus/icon?job=ocfweb/master)](https://jenkins.ocf.berkeley.edu/job/ocfweb/job/master/)
 [![Coverage Status](https://coveralls.io/repos/github/ocf/ocfweb/badge.svg?branch=master)](https://coveralls.io/github/ocf/ocfweb?branch=master)
 [![Code Health](https://landscape.io/github/ocf/ocfweb/master/landscape.svg?style=flat)](https://landscape.io/github/ocf/ocfweb/master)
+[![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 
 [The main ocf website.](https://www.ocf.berkeley.edu/)
 
@@ -69,9 +70,9 @@ probably would have caught.
 ### Installing packages
 
 To install a package to the production environment, add it to
-`requirements-minimal.txt`, then run `make upgrade-requirements`. Similarly, to
+`requirements-minimal.txt`, then run `make update-requirements`. Similarly, to
 install to the development environment, add to `requirements-dev-minimal.txt`
-and run `make upgrade-requirements`. Use as loose a version requirement as
+and run `make update-requirements`. Use as loose a version requirement as
 possible, e.g. try `django` or `django>=1.10,<1.10.999` before
 `django==1.10.0`.
 

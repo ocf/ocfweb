@@ -26,10 +26,12 @@ def get_accounts_signatory_for(calnet_uid):
     def flatten(lst):
         return [item for sublist in lst for item in sublist]
 
-    group_accounts = flatten(map(
-        lambda group: group['accounts'],
-        groups_by_student_signat(calnet_uid).values(),
-    ))
+    group_accounts = flatten(
+        map(
+            lambda group: group['accounts'],
+            groups_by_student_signat(calnet_uid).values(),
+        ),
+    )
 
     # sanity check since we don't trust CalLink API that much:
     # if >= 10 groups, can't change online, sorry
@@ -59,12 +61,14 @@ def change_password(request):
         error = CALLINK_ERROR_MSG
 
     if not accounts and error is None:
-        error = mark_safe(render_to_string(
-            'account/partials/chpass-no-accounts.html',
-            {
-                'calnet_uid': calnet_uid,
-            },
-        ))
+        error = mark_safe(
+            render_to_string(
+                'account/partials/chpass-no-accounts.html',
+                {
+                    'calnet_uid': calnet_uid,
+                },
+            ),
+        )
 
     if request.method == 'POST':
         form = ChpassForm(accounts, calnet_uid, request.POST)
@@ -77,7 +81,7 @@ def change_password(request):
                 task = change_password_task.delay(
                     account,
                     password,
-                    comment='Your password was reset online by {}.'.format(calnet_name),
+                    comment=f'Your password was reset online by {calnet_name}.',
                 )
                 result = task.wait(timeout=5)
                 if isinstance(result, Exception):

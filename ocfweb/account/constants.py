@@ -12,6 +12,7 @@ TESTER_CALNET_UIDS = (
     1031366,  # mattmcal
     1099131,  # dkessler
     1101587,  # jvperrin
+    1511731,  # ethanhs
 )
 
 # comma separated tuples of CalLink OIDs and student group names

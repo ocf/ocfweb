@@ -75,8 +75,10 @@ def get_sessions_plot(start_day, end_day):
     ax.set_xticks(x[::skip])
     ax.set_xticklabels(list(map(date.fromtimestamp, x))[::skip])
     ax.set_ylim(bottom=0)
-    ax.set_title('Unique lab logins {} to {}'.format(
-        start_day.isoformat(),
-        end_day.isoformat(),
-    ))
+    ax.set_title(
+        'Unique lab logins {} to {}'.format(
+            start_day.isoformat(),
+            end_day.isoformat(),
+        ),
+    )
     return fig

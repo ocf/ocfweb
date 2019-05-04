@@ -52,9 +52,11 @@ def calnet_required(fn):
         if calnet_uid:
             return fn(request, *args, **kwargs)
         else:
-            return HttpResponseRedirect('{calnet_login}?{params}'.format(
-                calnet_login=reverse('calnet_login'),
-                params=urlencode({REDIRECT_FIELD_NAME: request.get_full_path()}),
-            ))
+            return HttpResponseRedirect(
+                '{calnet_login}?{params}'.format(
+                    calnet_login=reverse('calnet_login'),
+                    params=urlencode({REDIRECT_FIELD_NAME: request.get_full_path()}),
+                ),
+            )
 
     return wrapper

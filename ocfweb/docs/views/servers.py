@@ -16,7 +16,7 @@ PUPPET_CERT_DIR = '/etc/ocfweb/puppet-certs'
 class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
     @classmethod
     def from_ldap(cls, hostname, type='vm', children=()):
-        host = hosts_by_filter('(cn={})'.format(hostname))
+        host = hosts_by_filter(f'(cn={hostname})')
         if 'description' in host:
             description, = host['description']
         else:
@@ -127,12 +127,14 @@ def get_hosts():
                 children.append(child._replace(type='vm'))
                 hostnames_seen.add(child.hostname)
         description = servers[hypervisor_hostname].description if hypervisor_hostname in servers else None
-        servers_to_display.append(Host(
-            hostname=hypervisor_hostname,
-            type='hypervisor',
-            description=description,
-            children=children,
-        ))
+        servers_to_display.append(
+            Host(
+                hostname=hypervisor_hostname,
+                type='hypervisor',
+                description=description,
+                children=children,
+            ),
+        )
         hostnames_seen.add(hypervisor_hostname)
 
     # Handle special cases

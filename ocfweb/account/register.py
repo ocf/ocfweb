@@ -4,7 +4,7 @@ import ocflib.misc.validators
 import ocflib.ucb.directory as directory
 from Crypto.PublicKey import RSA
 from django import forms
-from django.forms.forms import NON_FIELD_ERRORS
+from django.core.exceptions import NON_FIELD_ERRORS
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse

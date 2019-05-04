@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.7
 """Run periodic functions.
 
 This runs all periodic functions, either in a looping mode designed to run
@@ -42,7 +42,7 @@ def run_periodic_functions():
 
     for pf in periodic_functions:
         if pf.seconds_since_last_update() >= pf.period:
-            _logger.info(bold(green('Updating periodic function: {}'.format(pf))))
+            _logger.info(bold(green(f'Updating periodic function: {pf}')))
 
             try:
                 pf.update()
@@ -52,8 +52,9 @@ def run_periodic_functions():
                     raise
 
                 try:
-                    send_problem_report(dedent(
-                        """\
+                    send_problem_report(
+                        dedent(
+                            """\
                         An exception occurred in an ocfweb periodic function:
 
                         {traceback}
@@ -66,27 +67,30 @@ def run_periodic_functions():
 
                         The background process will now pause for {delay} seconds.
                         """
-                    ).format(
-                        traceback=format_exc(),
-                        pf=pf,
-                        last_update=pf.last_update(),
-                        seconds_since_last_update=pf.seconds_since_last_update(),
-                        delay=delay_on_error,
-                    ))
+                        ).format(
+                            traceback=format_exc(),
+                            pf=pf,
+                            last_update=pf.last_update(),
+                            seconds_since_last_update=pf.seconds_since_last_update(),
+                            delay=delay_on_error,
+                        ),
+                    )
                     _logger.error(format_exc())
                 except Exception as ex:
                     print(ex)  # just in case it errors again here
-                    send_problem_report(dedent(
-                        """\
+                    send_problem_report(
+                        dedent(
+                            """\
                         An exception occured in ocfweb, but we errored trying to report it:
 
                         {traceback}
                         """
-                    ).format(traceback=format_exc()))
+                        ).format(traceback=format_exc()),
+                    )
                     raise
 
         else:
-            _logger.debug(bold(yellow('Not updating periodic function: {}'.format(pf))))
+            _logger.debug(bold(yellow(f'Not updating periodic function: {pf}')))
 
     if was_error:
         delay_on_error = min(DELAY_ON_ERROR_MAX, delay_on_error * 2)

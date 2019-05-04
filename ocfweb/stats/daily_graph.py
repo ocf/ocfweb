@@ -8,11 +8,10 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from matplotlib.dates import DateFormatter
 from matplotlib.figure import Figure
-from ocflib.lab.hours import Day
 from ocflib.lab.stats import list_desktops
 from ocflib.lab.stats import UtilizationProfile
 
-from ocfweb.api.hours import display_hours
+from ocfweb.api.hours import get_hours_listing
 from ocfweb.caching import periodic
 from ocfweb.component.graph import plot_to_image_bytes
 
@@ -40,10 +39,12 @@ def daily_graph_image(request):
 
     # redirect to canonical url
     if request.GET.get('date') != day.isoformat():
-        return redirect('{}?{}'.format(
-            reverse('daily_graph_image'),
-            urllib.parse.urlencode({'date': day.isoformat()}),
-        ))
+        return redirect(
+            '{}?{}'.format(
+                reverse('daily_graph_image'),
+                urllib.parse.urlencode({'date': day.isoformat()}),
+            ),
+        )
 
     if day == date.today():
         return _daily_graph_image()
@@ -57,24 +58,24 @@ def get_open_close(day):
 
     If the lab is closed all day (e.g. holiday), just return our weekday hours.
     """
-    d = Day.from_date(day)
-    regular_hours = display_hours()
+    hours_listing = get_hours_listing()
+    d = hours_listing.hours_on_date()
 
-    if not d.closed_all_day:
-        start = datetime(day.year, day.month, day.day, min(h.open.hour for h in d.hours))
-        end = datetime(day.year, day.month, day.day, max(h.close.hour for h in d.hours))
+    if d:
+        start = datetime(day.year, day.month, day.day, min(h.open.hour for h in d))
+        end = datetime(day.year, day.month, day.day, max(h.close.hour for h in d))
     else:
         start = datetime(
             day.year,
             day.month,
             day.day,
-            min(h.open.hour for hour_list in regular_hours.values() for h in hour_list),
+            min(h.open.hour for hour_list in hours_listing.regular.values() for h in hour_list),
         )
         end = datetime(
             day.year,
             day.month,
             day.day,
-            max(h.close.hour for hour_list in regular_hours.values() for h in hour_list),
+            max(h.close.hour for hour_list in hours_listing.regular.values() for h in hour_list),
         )
 
     return start, end
@@ -135,5 +136,5 @@ def get_daily_plot(day):
     ax.set_ylim(0, desks_count + 5)
     ax.set_ylabel('Computers in Use')
 
-    ax.set_title('Lab Utilization {:%a %b %d}'.format(day))
+    ax.set_title(f'Lab Utilization {day:%a %b %d}')
     return fig

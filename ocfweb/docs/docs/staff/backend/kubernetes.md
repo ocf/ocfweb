@@ -124,35 +124,35 @@ on bare-metal, we designed our own scheme for ingressing traffic.
 
 The figure below demonstrates a request made for `templates.ocf.berkeley.edu`.
 For the purpose of simplicity, we assume `deadlock` is the current `keepalived`
-master, and that `HAProxy` will send this request to `Worker1`.
+master, and that `nginx` will send this request to `Worker1`.
 
 ```
                                     ----------------------------------------------------
                                     |                 Kubernetes Cluster               |
-               HAProxy              |                                                  |
+                nginx               |                                                  |
              ----------             |                    Ingress          Ocfweb Pod   |
              |autocrat|             | Host: Templates   ---------         ---------    |
              ----------             |      --------->   |Worker1| -       |Worker1|    |
                                     |     /             ---------  \      ---------    |
                                     |    /                          |                  |
-               HAProxy              |   /                Ingress    |   Templates Pod  |
+                nginx               |   /                Ingress    |   Templates Pod  |
          -------------------  ✘ SSL /  /                ---------   |     ---------    |
 REQ -->  |    deadlock:    |   --->   -                 |Worker2|   --->  |Worker2|    |
          |keepalived master|        \                   ---------         ---------    |
          -------------------        |                                                  |
                                     |                                                  |
-               HAProxy              |                    Ingress         Grafana Pod   |
+                nginx               |                    Ingress         Grafana Pod   |
              ----------             |                   ---------         ---------    |
              |  coup  |             |                   |Worker3|         |Worker3|    |
              ----------             |                   ---------         ---------    |
                                     ----------------------------------------------------
 ```
 
-All three Kubernetes masters are running an instance of [HAProxy][haproxy].
+All three Kubernetes masters are running an instance of [Nginx][nginx].
 Furthermore, the masters are all running `keepalived`. The traffic for any
 Kubernetes HTTP service will go through the current `keepalived` master, which
 holds the virtual IP for all Kubernetes services. The `keepalived` master is
-randomly chosen but will move hosts in the case of failure.  `HAProxy` will
+randomly chosen but will move hosts in the case of failure.  `nginx` will
 terminate ssl and pass the request on to a worker running [Ingress
 Nginx][ingress-nginx].  Right now ingress is running as a [NodePort][nodeport]
 service on all workers (Note: we can easily change this to be a subset of
@@ -172,7 +172,7 @@ dynamically update our DNS, which sounds like a myriad of outages waiting to
 happen. `L3` mode would require the OCF dedicating a router to Kubernetes.
 
 
-### Why don't we copy Marathan and specify one port per service?
+### Why don't we copy Marathon and specify one port per service?
 
 In our current Marathon configuration, we give each service a port on the load
 balancer and traffic coming into that port is routed accordingly. First, in
@@ -200,7 +200,7 @@ in production][soundcloud-nodeport].
 [kubernetes-module]: https://github.com/puppetlabs/puppetlabs-kubernetes
 [kubernetes-pki]: https://kubernetes.io/docs/setup/certificates
 [puppetlabs-kubetool]: https://github.com/puppetlabs/puppetlabs-kubernetes#Setup
-[haproxy]: https://en.wikipedia.org/wiki/HAProxy
+[nginx]: https://nginx.org/
 [ingress-nginx]: https://github.com/kubernetes/ingress-nginx
 [nodeport]: https://kubernetes.io/docs/concepts/services-networking/service/#nodeport
 [soundcloud-nodeport]: https://developers.soundcloud.com/blog/how-soundcloud-uses-haproxy-with-kubernetes-for-user-facing-traffic

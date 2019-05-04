@@ -3,10 +3,10 @@ from datetime import timedelta
 from operator import attrgetter
 
 from django.shortcuts import render
-from ocflib.lab.hours import Day
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
 
 from ocfweb.announcements.announcements import announcements
+from ocfweb.api.hours import get_hours_listing
 from ocfweb.caching import periodic
 from ocfweb.component.blog import get_blog_posts
 from ocfweb.component.lab_status import get_lab_status
@@ -18,7 +18,14 @@ def get_staff_hours():
 
 
 def home(request):
-    hours = [Day.from_date(date.today() + timedelta(days=i)) for i in range(3)]
+    hours_listing = get_hours_listing()
+    hours = [
+        (
+            date.today() + timedelta(days=i),
+            hours_listing.hours_on_date(date.today() + timedelta(days=i)),
+        )
+        for i in range(3)
+    ]
     return render(
         request,
         'main/home.html',

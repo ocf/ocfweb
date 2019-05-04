@@ -70,8 +70,10 @@ def get_sessions_plot(start_day, end_day):
         x.append(time.mktime(day.timetuple()))
 
         row = days.get(day)
-        mean_duration_hours.append(row['mean_duration_seconds'] / 3600 if row else 0)
-
+        mean_duration_hours.append(
+            row['mean_duration_seconds'] /
+            3600 if (row and row['mean_duration_seconds'] / 3600 <= 4) else 0,
+        )
         day += ONE_DAY
 
     ax.grid(True)
@@ -90,8 +92,10 @@ def get_sessions_plot(start_day, end_day):
     ax.set_xticklabels(list(map(date.fromtimestamp, x))[::skip])
     ax.set_ylim(bottom=0)
     ax.set_ylabel('Duration (hours)')
-    ax.set_title('Mean session duration {} to {}'.format(
-        start_day.isoformat(),
-        end_day.isoformat(),
-    ))
+    ax.set_title(
+        'Mean session duration {} to {}'.format(
+            start_day.isoformat(),
+            end_day.isoformat(),
+        ),
+    )
     return fig

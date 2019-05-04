@@ -7,14 +7,16 @@ from ocfweb.caching import cache
 from ocfweb.docs.views.servers import Host
 
 
-class ThingToUpgrade(namedtuple(
-    'ThingToUpgrade', (
-        'host',
-        'status',
-        'comments',
-        'has_dev',
+class ThingToUpgrade(
+    namedtuple(
+        'ThingToUpgrade', (
+            'host',
+            'status',
+            'comments',
+            'has_dev',
+        ),
     ),
-)):
+):
     NEEDS_UPGRADE = 1
     BLOCKED = 2
     UPGRADED = 3

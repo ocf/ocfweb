@@ -16,17 +16,19 @@ from ocfweb.component.forms import wrap_validator
 JINJA_MAIL_ENV = Environment(loader=PackageLoader('ocfweb', ''))
 
 
-class NewReservationRequest(namedtuple(
-    'NewReservationRequest', [
-        'real_name',
-        'contact_email',
-        'group',
-        'reason',
-        'date',
-        'starttime',
-        'endtime',
-    ],
-)):
+class NewReservationRequest(
+    namedtuple(
+        'NewReservationRequest', [
+            'real_name',
+            'contact_email',
+            'group',
+            'reason',
+            'date',
+            'starttime',
+            'endtime',
+        ],
+    ),
+):
     __slots__ = ()
 
     def to_dict(self):
@@ -142,7 +144,7 @@ def send_request_to_officers(request):
     ).render(request=request)
     send_mail(
         'bod@ocf.berkeley.edu',
-        'New Lab Reservation Request: {}'.format(request.group),
+        f'New Lab Reservation Request: {request.group}',
         body,
         sender=request.contact_email,
     )

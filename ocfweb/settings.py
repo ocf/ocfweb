@@ -3,10 +3,11 @@ import os
 import socket
 import tempfile
 import warnings
+from typing import Any
+from typing import Dict
 
-from django.core.cache import CacheKeyWarning
-from django.template.base import TemplateSyntaxError
-
+from django.core.cache.backends.base import CacheKeyWarning
+from django.template.exceptions import TemplateSyntaxError
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TESTING = os.environ.get('OCFWEB_TESTING') == '1'
@@ -45,7 +46,6 @@ INSTALLED_APPS = (
 MIDDLEWARE = (
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -70,7 +70,7 @@ class InvalidReferenceInTemplate(str):
     """
 
     def __mod__(self, ref):
-        raise TemplateSyntaxError('Invalid reference in template: {}'.format(ref))
+        raise TemplateSyntaxError(f'Invalid reference in template: {ref}')
 
 
 TEMPLATES = [{
@@ -89,7 +89,6 @@ TEMPLATES = [{
 
 WSGI_APPLICATION = 'ocfweb.wsgi.application'
 
-DATABASES = {}
 
 # store sessions in the cache
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
@@ -105,18 +104,12 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_PATH = '/'
 SESSION_COOKIE_NAME = 'OCFWEB_SESSIONID'
 
-CACHES = {  # sessions are stored here
+CACHES: Dict[str, Any] = {  # sessions are stored here
     'TIMEOUT': 60 * 60 * 12,  # 12 hours
     'OPTIONS': {
         'MAX_ENTRIES': 1000,
     },
 }
-
-CORS_URLS_REGEX = r'^/api/.*$'
-CORS_ALLOW_METHODS = ('GET',)
-
-# Allow CORS from any ocf.berkeley.edu domain
-CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(.+\.)?ocf\.berkeley\.edu$', )
 
 # Silence cache key warnings, since we are using redis and not memcached.
 # https://docs.djangoproject.com/en/1.9/topics/cache/#cache-key-warnings

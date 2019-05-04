@@ -1,4 +1,4 @@
-﻿[[!meta title="Getting Involved"]]
+[[!meta title="Getting Involved"]]
 
 ## How can I get involved in the OCF?
 
@@ -60,11 +60,16 @@ more information.
 
 #### GitHub Issues
 
-All of our code is on GitHub ([github.com/ocf][ocf-github]). Sometimes you can find ways to
-contribute by reading open issues, but they can sometimes be hard to understand
-since they’re short on context. Some issues are also marked as “good first
-issue.” Here’s a list of our most active repos, with some examples of things we
-can do with them:
+All of our code is on GitHub ([github.com/ocf][ocf-github]). You can find good
+ways to contribute by browsing open issues, but they can sometimes be hard to
+understand if they’re short on context. The following links can be helpful:
+(note that you must be logged in to GitHub to see these links)
+
+* [All OCF GitHub issues][ocf-github-issues]
+* [OCF GitHub issues marked "good first issue"][ocf-github-issues-starter]
+
+If you'd like, you can also look at issues within specific repos. Here’s a
+list of our most active repos, with some examples of they're used for:
 
 * [puppet][puppet] ([issues][puppet/issues]) - contains Puppet modules, which
   controls the software and configuration on all of our servers.
@@ -211,6 +216,8 @@ community.
 [mirror-healthcheck-puppet]: ️https://github.com/ocf/puppet/blob/master/modules/ocf_mirrors/manifests/monitoring.pp
 [mirror-healthcheck]: https://github.com/ocf/puppet/blob/master/modules/ocf_mirrors/files/healthcheck
 [ocf-github]: https://github.com/ocf
+[ocf-github-issues]: https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+archived%3Afalse+user%3Aocf+
+[ocf-github-issues-starter]: https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+user%3Aocf+label%3A%22good+first+issue%22
 [ocflib-account]: https://github.com/ocf/ocflib/tree/master/ocflib/account
 [ocflib-mail]: https://github.com/ocf/ocflib/blob/master/ocflib/misc/mail.py
 [ocflib-mysql]: https://github.com/ocf/ocflib/blob/master/ocflib/infra/mysql.py

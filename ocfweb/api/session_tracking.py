@@ -43,7 +43,7 @@ def log_session(request):
         host = _get_desktops().get(remote_ip)
 
         if not host:
-            raise ValueError('IP {} does not belong to a desktop'.format(remote_ip))
+            raise ValueError(f'IP {remote_ip} does not belong to a desktop')
 
         body = json.loads(request.body.decode('utf-8'))
         state = State[body.get('state')]  # triggers KeyError

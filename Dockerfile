@@ -16,9 +16,7 @@ RUN apt-get update \
         libxml2-dev \
         locales \
         nginx \
-        python3 \
-        python3-dev \
-        python3-pip \
+        python3.7-dev \
         redis-tools \
         runit \
         virtualenv \
@@ -29,7 +27,7 @@ RUN apt-get update \
 RUN install -d --owner=nobody /opt/ocfweb /opt/ocfweb/venv /etc/ocfweb
 
 COPY requirements.txt /opt/ocfweb/
-RUN virtualenv -ppython3 /opt/ocfweb/venv \
+RUN virtualenv -ppython3.7 /opt/ocfweb/venv \
     && /opt/ocfweb/venv/bin/pip install pip==8.1.2 \
     && /opt/ocfweb/venv/bin/pip install \
         -r /opt/ocfweb/requirements.txt

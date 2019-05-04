@@ -28,10 +28,10 @@ def cache_lookup(key):
     is_hit = retval is not cache_miss_sentinel
 
     if not is_hit:
-        _logger.debug('Cache miss: {}'.format(key))
-        raise KeyError('Key "{}" is not in the cache.'.format(key))
+        _logger.debug(f'Cache miss: {key}')
+        raise KeyError(f'Key "{key}" is not in the cache.')
     else:
-        _logger.debug('Cache hit: {}'.format(key))
+        _logger.debug(f'Cache hit: {key}')
         return retval
 
 
@@ -59,7 +59,7 @@ def cache_lookup_with_fallback(key, fallback, ttl=None, force_miss=False):
         result = cache_lookup(key)
 
         if settings.DEBUG:
-            _logger.debug('Cache hit for "{}", but forcing miss due to DEBUG.'.format(key))
+            _logger.debug(f'Cache hit for "{key}", but forcing miss due to DEBUG.')
             raise KeyError('Forcing miss due to DEBUG mode.')
 
         return result
@@ -114,10 +114,12 @@ def _make_key(key):
 
     :param key: some iterable key (e.g. a tuple or list)
     """
-    return tuple(chain(
-        [ocfweb_version()],
-        key,
-    ))
+    return tuple(
+        chain(
+            [ocfweb_version()],
+            key,
+        ),
+    )
 
 
 def _make_function_call_key(fn, args, kwargs):
@@ -140,13 +142,15 @@ def _make_function_call_key(fn, args, kwargs):
 periodic_functions = set()
 
 
-class PeriodicFunction(namedtuple(
-    'PeriodicFunction', [
-        'function',
-        'period',
-        'ttl',
-    ],
-)):
+class PeriodicFunction(
+    namedtuple(
+        'PeriodicFunction', [
+            'function',
+            'period',
+            'ttl',
+        ],
+    ),
+):
 
     def __hash__(self):
         return hash(self.function_call_key)
@@ -155,7 +159,7 @@ class PeriodicFunction(namedtuple(
         return self.function_call_key == other.function_call_key
 
     def __str__(self):
-        return 'PeriodicFunction({})'.format(self.function_call_key)
+        return f'PeriodicFunction({self.function_call_key})'
 
     @cached_property
     def function_call_key(self):

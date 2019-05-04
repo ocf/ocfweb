@@ -38,10 +38,12 @@ def daily_jobs_image(request):
 
     # redirect to canonical url
     if request.GET.get('date') != day.isoformat():
-        return redirect('{}?{}'.format(
-            reverse('daily_job_image'),
-            urllib.parse.urlencode({'date': day.isoformat()}),
-        ))
+        return redirect(
+            '{}?{}'.format(
+                reverse('daily_job_image'),
+                urllib.parse.urlencode({'date': day.isoformat()}),
+            ),
+        )
 
     if day == date.today():
         return _jobs_graph_image()
@@ -88,6 +90,6 @@ def get_jobs_plot(day):
     ax.yaxis.grid(True)
     ax.set_ylim(bottom=0)
     ax.set_ylabel('Number of Jobs Printed')
-    ax.set_title('Print Job Distribution {:%a %b %d}'.format(day))
+    ax.set_title(f'Print Job Distribution {day:%a %b %d}')
 
     return fig

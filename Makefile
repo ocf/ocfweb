@@ -3,7 +3,7 @@ PYTHON := $(BIN)/python
 SHELL := /bin/bash
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
 LISTEN_IP := 0.0.0.0
-DOCKER_REPO ?=
+DOCKER_REPO ?= docker-push.ocf.berkeley.edu/
 DOCKER_REVISION ?= testing-$(USER)
 DOCKER_TAG_BASE = ocfweb-base-$(USER)
 DOCKER_TAG_WEB = $(DOCKER_REPO)ocfweb-web:$(DOCKER_REVISION)
@@ -14,12 +14,16 @@ DOCKER_TAG_STATIC = $(DOCKER_REPO)ocfweb-static:$(DOCKER_REVISION)
 # after running tests
 .PHONY: test
 test: export OCFWEB_TESTING ?= 1
-test: venv
+test: venv mypy
 	$(BIN)/py.test -v tests/
 	$(BIN)/pre-commit run --all-files
 ifneq ($(strip $(COVERALLS_REPO_TOKEN)),)
 	$(BIN)/coveralls
 endif
+
+.PHONY: mypy
+mypy: venv
+	$(BIN)/mypy -p ocfweb
 
 .PHONY: Dockerfile.%
 Dockerfile.%: Dockerfile.%.in
@@ -49,7 +53,7 @@ local-dev: LISTEN_IP=127.0.0.1
 local-dev: dev
 
 venv: requirements.txt requirements-dev.txt
-	python ./vendor/venv-update venv= venv -ppython3 install= -r requirements.txt -r requirements-dev.txt
+	python3.7 ./vendor/venv-update venv= venv -ppython3.7 install= -r requirements.txt -r requirements-dev.txt
 
 .PHONY: install-hooks
 install-hooks: venv

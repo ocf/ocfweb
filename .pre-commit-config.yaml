@@ -1,7 +1,7 @@
 exclude: (^vendor/|^ocfweb/static/fonts/bootstrap/)
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    sha: v2.1.0
+    rev: v2.2.1
     hooks:
     -   id: check-added-large-files
     -   id: check-ast
@@ -28,35 +28,34 @@ repos:
     -   id: sort-simple-yaml
     -   id: trailing-whitespace
 -   repo: https://gitlab.com/pycqa/flake8
-    rev: '3.7.3'
+    rev: 3.7.7
     hooks:
     - id: flake8
-      language_version: python3.5
 -   repo: https://github.com/pre-commit/mirrors-autopep8
-    sha: v1.4.3
+    rev: v1.4.4
     hooks:
     -   id: autopep8
 -   repo: https://github.com/asottile/reorder_python_imports
-    sha: v1.3.4
+    rev: v1.4.0
     hooks:
     -   id: reorder-python-imports
 -   repo: https://github.com/asottile/pyupgrade
-    sha: v1.11.0
+    rev: v1.16.1
     hooks:
     -   id: pyupgrade
-        args: ['--py3-plus']
+        args: ['--py36-plus']
 -   repo: https://github.com/asottile/add-trailing-comma
-    sha: v0.7.1
+    rev: v1.0.0
     hooks:
     -   id: add-trailing-comma
-        args: ['--py35-plus']
+        args: ['--py36-plus']
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
-    sha: v1.1.6
+    rev: v1.1.6
     hooks:
     -   id: remove-tabs
     -   id: remove-crlf
 -   repo: https://github.com/pre-commit/mirrors-scss-lint
-    sha: v0.57.1
+    rev: v0.57.1-1
     hooks:
     -   id: scss-lint
 -   repo: local
@@ -64,7 +63,7 @@ repos:
     -   id: no-top-level-header
         language: pygrep
         name: No top-level headers (markdown)
-        entry: ^#[^#]
+        entry: ^#[^#!]
         files: \.md$
     # In Django, if you have an app like "announcements" and another app like
     # "docs", it's not okay for both to provide templates with the same name
