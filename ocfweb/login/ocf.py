@@ -6,6 +6,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from ocflib.account.search import user_is_sorried
 
 from ocfweb.auth import login_required
 from ocfweb.component.forms import Form
@@ -38,14 +39,16 @@ def login(request):
 
             try:
                 if (
-                        validators.user_exists(username) and
+                        validators.user_exists(username) and not
+                        user_is_sorried(username) and
                         utils.password_matches(username, password)
                 ):
                     session_login(request, username)
                     return redirect_back(request)
                 else:
                     error = (
-                        'Authentication failed. Did you type the wrong username or password?'
+                        'Authentication failed. Your account may be disabled, '
+                        'or you may have typed the wrong username or password.'
                     )
             except ValueError as ex:
                 error = 'Authentication failed: {error}'.format(
