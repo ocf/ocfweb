@@ -79,6 +79,13 @@ everything else. Make sure to include the relevant printer IDs in the email. If
 there are any questions about the terms of our service agreement, direct them to
 the UC Berkeley PMP Coordinator.
 
+The following is a list of our printers and their IDs, from left to right:
+
+|  Printer name | ID # |
+|---------------|------|
+| papercut      | 1782 |
+| logjam        | 1786 |
+| pagefault     | 1781 |
 
 ## Stats
 
