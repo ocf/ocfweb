@@ -244,7 +244,7 @@ community.
 [slack]: https://ocf.io/slack
 [slackbridge/issues]: https://github.com/ocf/slackbridge/issues
 [slackbridge]: https://github.com/ocf/slackbridge
-[sourcegraph-todo]: https://sourcegraph.ocf.berkeley.edu/search?q=TODO
+[sourcegraph-todo]: https://sourcegraph.ocf.berkeley.edu/search?q=TODO+case:yes
 [staffhours]: https://ocf.io/staffhours
 [utils-acct]: https://github.com/ocf/utils/tree/master/acct
 [utils-lab-wakeup]: https://github.com/ocf/utils/blob/master/staff/lab/lab-wakeup
