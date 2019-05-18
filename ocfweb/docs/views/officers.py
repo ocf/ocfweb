@@ -223,6 +223,9 @@ def _bod_terms():
             'Spring 2019', gms=['abizer', 'awelty'], sms=['bzh', 'dkessler'],
             dgms=['asai'], dsms=['ethanhs', 'cooperc'],
         ),
+        Term(
+            'Fall 2019', gms=['cooperc', 'php'], sms=['ethanhs', 'fydai'],
+        ),
     ]
 
 
