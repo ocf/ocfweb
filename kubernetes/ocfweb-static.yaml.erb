@@ -37,6 +37,20 @@ spec:
               value: "0"
           ports:
             - containerPort: 8000
+          livenessProbe:
+            httpGet:
+              path: /js/site.js
+              port: 8000
+            initialDelaySeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              path: /js/site.js
+              port: 8000
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            periodSeconds: 5
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress

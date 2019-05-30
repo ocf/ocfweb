@@ -44,6 +44,26 @@ spec:
           env:
             - name: OCFWEB_TESTING
               value: "0"
+          livenessProbe:
+            httpGet:
+              path: /
+              httpHeaders:
+                - name: Host
+                  value: www.ocf.berkeley.edu
+              port: 8000
+            initialDelaySeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              httpHeaders:
+                - name: Host
+                  value: www.ocf.berkeley.edu
+              path: /
+              port: 8000
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            periodSeconds: 5
       volumes:
         - name: ocfweb-secrets
           hostPath:
