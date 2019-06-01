@@ -9,3 +9,13 @@ def docs_index(request):
             'title': 'Documentation',
         },
     )
+
+
+def staffdocs_index(request):
+    return render(
+        request,
+        'docs/staff_index.html',
+        {
+            'title': 'Staff Documentation',
+        },
+    )

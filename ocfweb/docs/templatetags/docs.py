@@ -85,3 +85,8 @@ def doc_toc(toc, collapsible=False):
         'html': html,
         'collapsible': collapsible,
     }
+
+
+@register.inclusion_tag('docs/partials/doc-masonry.html')
+def doc_masonry(*args, **kwargs):
+    return doc_tree(*args, **kwargs)

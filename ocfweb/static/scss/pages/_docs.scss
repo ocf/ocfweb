@@ -112,6 +112,33 @@
     display: block;
 }
 
+.ocf-doc-categories {
+    column-count: 2;
+}
+
+.ocf-category-box {
+    width: 100%;
+    padding: 0.625em;
+    margin: 0.625em;
+    display: inline-block;
+
+    h4 {
+        font-size: 1.3em;
+        margin: 0 0 0.3em 0.1em;
+    }
+
+    ul {
+        margin-left: 1.5em;
+        padding: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .ocf-doc-categories {
+        column-count: 3;
+    }
+}
+
 @media (max-width: 767px) {
     .ocf-doc-toc {
         display: block;
@@ -119,5 +146,9 @@
 
     .ocf-sidebar .ocf-doc-toc {
         display: none;
+    }
+
+    .ocf-doc-categories {
+        column-count: unset;
     }
 }

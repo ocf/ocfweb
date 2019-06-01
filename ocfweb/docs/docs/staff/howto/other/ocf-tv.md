@@ -9,7 +9,7 @@ start a VNC session to the TV. If you do not specify the host it will use the
 TV by default.
 
 `ocf-tv connect` will open up a VNC window using `xvncviewer` to the host.
-The TV uses [[i3wm|doc staff/i3wm]], a tiling window manager, so if you are
+The TV uses [[i3wm|doc staff/howto/other/i3wm]], a tiling window manager, so if you are
 unsure of how to use it read the linked documentation.
 
 If you'd like to just change the volume on the host, you can use the

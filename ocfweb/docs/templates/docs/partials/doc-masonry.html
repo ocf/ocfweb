@@ -1,0 +1,9 @@
+<h3>{{tree.title}}</h3>
+<div class="ocf-doc-categories">
+{% for child in tree.children %}
+    <div class="ocf-category-box">
+        <h4 class="ocf-category-heading">{{child.title}}</h4>
+        {% include 'docs/partials/doc-tree-node.html' with node=child cur_path=cur_path suppress_root=True only %}
+    </div>
+{% endfor %}
+</div>

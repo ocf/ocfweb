@@ -83,7 +83,7 @@ Port Channel Port-Channel7:
 
 More details can be found on the EOS guide online, in the [Port Channel section][lacp-guide].
 
-LACP also needs to be configured on the [[host side | doc staff/procedures/setting-up-lacp]].
+LACP also needs to be configured on the [[host side | doc staff/howto/infrastructure/setting-up-lacp]].
 
 [primary-switch]: https://www.arista.com/assets/data/pdf/Datasheets/7050SX-128_64_Datasheet.pdf
 [secondary-switch]: https://www.arista.com/assets/data/pdf/Datasheets/7048T-A_DataSheet.pdf

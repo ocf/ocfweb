@@ -25,7 +25,7 @@ direct them to an OCF officer.
   to see what constitutes acceptable documentation.
 
 * If the group is a registered student group, you can look up the requester's
-  signatory status by name with [[signat|doc staff/scripts/signat]].
+  signatory status by name with [[signat|doc staff/howto/account-management/signat]].
 
   ```text
   $ signat name matthew mcallister

@@ -3,7 +3,7 @@
 New individual accounts have a `calnetUid` attribute in
 [[LDAP|doc staff/backend/ldap]] which is used for
 [[changing passwords online|change_password]], querying CalNet when running
-[[`check`|doc staff/scripts/check]], and producing aggregate counts of
+[[`check`|doc staff/howto/account-management/check]], and producing aggregate counts of
 the number of members by university affiliation.
 
 Similarly, group accounts have a `callinkOid` attribute.

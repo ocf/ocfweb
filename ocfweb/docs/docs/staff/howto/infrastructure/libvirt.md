@@ -79,7 +79,7 @@ then you would run `vncviewer -via jaws 127.0.0.1:10` (or `localhost:10`).
 
 ### How do I create a VM?
 
-See [[Creating new hosts|doc staff/procedures/new-host]].
+See [[Creating new hosts|doc staff/howto/infrastructure/new-host]].
 
 ### How do I delete a VM?
 
@@ -97,7 +97,7 @@ On the hypervisor:
 
 ### How do I move a VM from one host to another?
 
-Use the [[migrate-vm|doc staff/scripts/migrate-vm]] script.
+Use the [[migrate-vm|doc staff/howto/infrastructure/migrate-vm]] script.
 
 ### Oh no, I've got a VM with broken networking. How can I access it?
 

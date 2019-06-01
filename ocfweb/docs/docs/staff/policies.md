@@ -5,7 +5,7 @@ read and be aware of these policies.
 
  * [[Staff policy|doc staff/policies/staff-policy]]
  * [[Keycard policy|doc staff/policies/keycard]]
- * The [[restarting services procedure|doc staff/procedures/restarting-services]]
+ * The [[restarting services procedure|doc staff/howto/infrastructure/restarting-services]]
 
 OCF staff should also familiarize themselves with the
 [University's IT Policies](https://security.berkeley.edu/policy/policy-catalog).
