@@ -40,6 +40,15 @@ when you close the terminal.
 To do so, just type `pyrc` and hit enter. irssi will launch; press alt +
 left/right to switch which channel you're viewing.
 
+### Option 4: Over XMPP
+
+If you have an XMPP account, you can join IRC channels with room name
+`#channelname` and server name `irc.ocf.berkeley.edu` (alternatively,
+`#channelname@irc.ocf.berkeley.edu` depending on your client).
+
+An [[`ocf.berkeley.edu` XMPP account|doc services/xmpp]] can be used, but an
+account on any federated server will work.
+
 ## Authenticating with NickServ
 
 To make sure that you can keep the same username, even after being disconnected
