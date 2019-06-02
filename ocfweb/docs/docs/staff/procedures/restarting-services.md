@@ -33,7 +33,7 @@ reboot hypervisors.
 So you've gotten the necessary permission and made a post on the
 [status blog][status]/updated the MOTD (if it's a scheduled restart). What now?
 
-If you are planning to shut down login servers (i.e. tsunami, werewolves and
+If you are planning to shut down login servers (i.e. tsunami, vampires and
 corruption), run the `shutdown` command on these machines as soon as possible in
 order to schedule the shutdown and warn users in advance. You can do this with
 a command like
