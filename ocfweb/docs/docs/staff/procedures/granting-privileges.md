@@ -10,7 +10,7 @@ editing the group in LDAP:
 ```text
 $ kinit you/admin
 you/admin@OCF.BERKELEY.EDU's Password:
-$ ldapvi '(cn=ocfstaff)'
+$ ldapvi cn=ocfstaff
 ```
 
 Then add or remove the appropriate `memberUid` attribute.
