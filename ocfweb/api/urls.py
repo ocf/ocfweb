@@ -9,7 +9,7 @@ from ocfweb.api import staff_hours
 
 
 urlpatterns = [
-    path('announce/blog/<int:limit>', announce.get_blog_posts, name='blog_posts'),
+    path('announce/blog', announce.get_blog_posts, name='blog_posts'),
     path('hours/staff', staff_hours.get_staff_hours, name='staff_hours'),
     path('hours/today', hours.get_hours_today, name='hours_today'),
     path('lab/desktops', lab.desktop_usage, name='desktop_usage'),
