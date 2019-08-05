@@ -40,7 +40,7 @@ On the hypervisor, run `sudo virsh start <vm-name>`.
 ### How do I turn off a VM?
 
 You can SSH into the VM and run the `shutdown` command, or you can run
-`sudo virsh stop <vm-name>` on the hypervisor which hosts it.
+`sudo virsh shutdown <vm-name>` on the hypervisor which hosts it.
 
 If it's a public-facing VM (e.g. tsunami), remember to give a positive amount
 of time to the shutdown command, so users have adequate warning.
