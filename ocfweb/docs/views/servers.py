@@ -116,7 +116,11 @@ def get_hosts():
     hypervisors_hostnames = dict(format_query_output(item) for item in query_puppet(PQL_IS_HYPERVISOR))
     all_children = dict(format_query_output(item) for item in query_puppet(PQL_GET_VMS))
 
-    hostnames_seen = set()
+    hostnames_seen = {
+        # These are manually added later, with the correct type
+        'overheat',
+        'tornado',
+    }
     servers_to_display = []
     # Add children to hypervisors
     for hypervisor_hostname in hypervisors_hostnames:
