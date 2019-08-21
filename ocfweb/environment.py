@@ -8,12 +8,11 @@ def ocfweb_version():
     """Return string representing ocfweb version.
 
     In dev, returns 'dev'. In prod, returns a version
-    similar to '2015.12.06.02.25-gitb98c8cb6'.
+    similar to '2019-08-20-T21-10-57-gite0ca5b9'.
     """
-    # On Marathon, read it out of environ
+    # On Kubernetes, read it out of environ
     try:
-        docker_image, tag = os.environ['MARATHON_APP_DOCKER_IMAGE'].split(':', 1)
-        return tag
+        return os.environ['OCFWEB_PROD_VERSION']
     except KeyError:
         pass
 
