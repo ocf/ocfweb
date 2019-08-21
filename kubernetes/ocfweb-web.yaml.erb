@@ -44,6 +44,8 @@ spec:
           env:
             - name: OCFWEB_TESTING
               value: "0"
+            - name: OCFWEB_PROD_VERSION
+              value: "<%= version %>"
           livenessProbe:
             httpGet:
               path: /
