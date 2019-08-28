@@ -72,7 +72,7 @@ with the campus (e.g. Richmond Field Station))
 
 ### Student groups registered on CalLink
 
-* Current Cal ID of the requesting person, and signatory status or a letter
+* Current Cal ID of the requesting person, and signatory status or an email
   from a signatory authorizing the account request
 
 ### Department-sponsored groups (e.g. research groups)
@@ -83,18 +83,18 @@ with the campus (e.g. Richmond Field Station))
 
 ### Staff organizations
 
-* Letter from an officer or sponsor of the organization stating that the person
+* Email from an officer or sponsor of the organization stating that the person
   requesting the account is authorized to make the request
 
 ### ASUC bodies not registered on CalLink
 
-* Letter from the relevant ASUC Executive Officer, Appointed Officer, Senator,
+* Email from the relevant ASUC Executive Officer, Appointed Officer, Senator,
   Commissioner/Commission Chair, or General Committee Chair stating that the
   person requesting the account is authorized to make the request
 
 ### Graduate Assembly bodies not registered on CalLink
 
-* Letter from the relevent GA Executive, Officer, or Project Director stating
+* Email from the relevent GA Executive, Officer, or Project Director stating
   that the person requesting the account is authorized to make the request
 
 Each individual and each group is entitled to one account. Requests for
