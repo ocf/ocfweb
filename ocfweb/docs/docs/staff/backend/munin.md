@@ -60,6 +60,6 @@ field1.warning min:max
 ...
 ```
 
-[gen-munin-nodes]: https://github.com/ocf/puppet/blob/master/modules/ocf_stats/files/munin/gen-munin-nodes
-[mail-munin-alert]: https://github.com/ocf/puppet/blob/master/modules/ocf_stats/files/munin/mail-munin-alert
+[gen-munin-nodes]: https://github.com/ocf/puppet/blob/master/modules/ocf_munin/files/gen-munin-nodes
+[mail-munin-alert]: https://github.com/ocf/puppet/blob/master/modules/ocf_munin/templates/mail-munin-alert.erb
 [ocf_munin_plugin]: https://github.com/ocf/puppet/blob/master/modules/ocf/manifests/munin/plugin.pp
