@@ -1,4 +1,4 @@
-[[!meta title="Printhost"]]
+[[!meta title="Printing Infrastructure"]]
 
 ## Introduction
 
