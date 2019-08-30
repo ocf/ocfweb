@@ -9,6 +9,10 @@ Examples of PDFs that commonly fail include many Econ 136 and Bio 1B papers,
 PDFs with strange images or scanned components in them, and things people try
 to print straight from Gmail attachment viewer.
 
+Normally, our printing system already performs PDF rasterization before sending
+the job off to our printing server. However, in the case of troublesome PDFs,
+it may help to rasterize the PDF beforehand.
+
 If a user comes asking why their paper isn't printing right, first download the
 PDF, then run `pdf-open $pdf_file`. Don't forget the hyphen, and make sure the
 filename doesn't have any spaces or weird characters in it. After
