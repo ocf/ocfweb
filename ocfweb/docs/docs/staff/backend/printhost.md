@@ -61,15 +61,15 @@ looks like this:
 
 The first stage of printing is handled by the application that sends the print
 job, such as Evince. The application opens up a system print dialog, which gets
-a list of available printers and options from the local CUPS client. The 
-application renders the desired pages to a PostScript, PDF, or other 
+a list of available printers and options from the local CUPS client. The
+application renders the desired pages to a PostScript, PDF, or other
 CUPS-compatible format.
 
 The local CUPS server queues the job, first sending it to a backend filter,
 [raster-filter][raster-filter], which catches any PDF print jobs and rasterizes
-the job beforehand, using the ImageMagick program [convert][convert]. Having 
-this initial rasterization performed locally reduces the processing load on 
-printhost, as running convert may take a nonnegligible amount of time and 
+the job beforehand, using the ImageMagick program [convert][convert]. Having
+this initial rasterization performed locally reduces the processing load on
+printhost, as running convert may take a nonnegligible amount of time and
 resources per job. The filtered jobs are then passed on to whiteout via IPP.
 
 The CUPS server on printhost receives the job and print options and queues
@@ -108,8 +108,8 @@ least total cost to print the document.
 
 On each local machine, we use [Tea4CUPS][Tea4CUPS], a Python CUPS wrapper, to
 run `raster-filter` on each local machine. As mentioned above, `raster-filter`
-uses convert to rasterize PDF jobs, producing a PDF of lower complexity. If 
-convert returns any errors, the error messages are emailed to the root mailing 
+uses convert to rasterize PDF jobs, producing a PDF of lower complexity. If
+convert returns any errors, the error messages are emailed to the root mailing
 list (root@ocf.berkeley.edu) via the [convert-failure][convert-failure] script,
 and the original, non-rasterized PDF is sent toward printhost.
 
