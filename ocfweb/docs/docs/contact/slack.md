@@ -6,17 +6,49 @@ We also offer IRC as a chat service. If that is what you were looking for head o
 
 ### Join the OCF Slack Workspace
 
-Joining the OCF Slack requires an OCF account. If you don't have one already,
-you can create one [here][join]. Head over to the [OCF Slack][slack] and create
-an account with your <ocfusername>@ocf.berkeley.edu email address. This will
-*only* work with an OCF email address. Note that your OCF email by default will
-forward to your CalNet email address (e.g. oski@berkeley.edu). Using the
-confirmation link in your email, you should now be able to set a display name
-and password and join the OCF workspace. We recommend setting your display name
-to your OCF username for consistency.
+1. Create an OCF account [here][join].
+
+2. Go to the OCF Slack workspace [here][slack] and click the "If you have an
+@ocf.berkeley.edu email address, you can create an account." button.
+
+3. Enter your OCF username in the box, this should send an email your Berkeley
+   email. If you don't recieve an email, please contact a staff member for
+   assistance.
+
+4. Click the link in your Berkeley email and follow the instructions to complete
+   setup. We recommend setting your display name to your OCF username for
+   consistency.
+
+5. Join some channels!
 
 [join]: https://ocf.io/join
 [slack]: https://fco.slack.com
+
+### List of Major OCF Channels
+
+*#announcements*: Low volume announcements channel
+
+*#administrivia*: Administrative discussion
+
+*#henlo*: Social chat for current staff
+
+*#ocf*: General alumni hangout channel and non-OCF tech discussion
+
+*#rebuild*: Technical discussion
+
+*#test*: Spam
+
+### List of Minor OCF channels
+
+*#cs162-fa19*, *cs170-fa19* and others: Per-class discussions
+
+*#decal-general*: DeCal student chat
+
+*#decalcomm*: DeCal administrative channel
+
+*#stf*: OCF internal Student Tech Fund renewal discussion
+
+*#xcf*: XCF discussion
 
 ### Optional: Using wee-slack
 
