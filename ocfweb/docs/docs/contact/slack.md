@@ -9,14 +9,14 @@ We also offer IRC as a chat service. If that is what you were looking for head o
 1. Create an OCF account [here][join].
 
 2. Go to the OCF Slack workspace [here][slack] and click the "If you have an
-@ocf.berkeley.edu email address, you can create an account." button.
+   @ocf.berkeley.edu email address, you can create an account." button.
 
-3. Enter your OCF username in the box, this should send an email your Berkeley
+3. Enter your OCF username in the box, this should send an email to your Berkeley
    email. If you don't recieve an email, please contact a staff member for
    assistance.
 
 4. Click the link in your Berkeley email and follow the instructions to complete
-   setup. We recommend setting your display name to your OCF username for
+   setup. We *strongly* recommend setting your display name to your OCF username for
    consistency.
 
 5. Join some channels!
@@ -36,7 +36,9 @@ We also offer IRC as a chat service. If that is what you were looking for head o
 
 *#rebuild*: Technical discussion
 
-*#test*: Spam
+*#rebuild-spam*: Information on Github changes/PRs (spammy)
+
+*#test*: Actual spam
 
 ### List of Minor OCF channels
 
