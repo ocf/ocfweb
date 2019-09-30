@@ -7,8 +7,7 @@ start of each semester.
 Printing is currently limited to:
 
  * 200 pages per semester
- * 20 pages per day on weekdays
- * 20 pages per day on weekends
+ * 20 pages per day
 
 Please note:
 
