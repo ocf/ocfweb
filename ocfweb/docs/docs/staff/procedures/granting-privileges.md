@@ -68,16 +68,3 @@ authorize the request. As of Fall 2017, the
 worked to get new people added to the firewall, although it is likely that
 this process will change in Spring/Fall 2018 when the firewall is changed as
 part of the [bSecure](https://bsecure.berkeley.edu) project.
-
-
-## Giving people InCommon DCA access
-
-We are able to obtain signed certificates at no charge through the campus
-InCommon-Comodo certificate service. In order to gain access to this service, a
-staffer needs to be listed as a Departmental Certificate Administrator for the
-OCF. A current DCA can add other DCAs by sending a request to
-[calnet-admin@berkeley.edu](mailto:calnet-admin@berkeley.edu).
-
- Refer to the service's [help
-page](https://calnetweb.berkeley.edu/calnet-technologists/calnet-incommon-comodo-certificate-service)
-for more information.
