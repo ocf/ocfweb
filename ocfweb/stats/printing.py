@@ -2,6 +2,7 @@ import time
 from collections import defaultdict
 from datetime import date
 from datetime import timedelta
+from functools import partial
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -151,8 +152,11 @@ def _pages_per_day():
                 ORDER BY date ASC, printer ASC
         ''')
 
+        # Resolves the issue of possible missing dates.
+        # defaultdict(lambda: defaultdict(int)) doesn't work due to inability to pickle local objects like lambdas;
+        # this effectively does the same thing as that.
+        pages_printed = defaultdict(partial(defaultdict, int))
         last_seen = {}
-        pages_printed = {}
 
         for row in cursor:
             if row['printer'] in last_seen:
