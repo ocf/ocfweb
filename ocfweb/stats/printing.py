@@ -2,6 +2,7 @@ import time
 from collections import defaultdict
 from datetime import date
 from datetime import timedelta
+from functools import partial
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -152,7 +153,7 @@ def _pages_per_day():
         ''')
 
         last_seen = {}
-        pages_printed = {}
+        pages_printed = pages_printed = defaultdict(partial(defaultdict, int))
         for row in cursor:
             if row['printer'] in last_seen:
                 pages_printed.setdefault(row['date'], defaultdict(int))
@@ -161,10 +162,10 @@ def _pages_per_day():
                 )
             last_seen[row['printer']] = row['value']
 
-    # Fix missing rows in table (if data collection failed)
-    for day in (date.today() - timedelta(n) for n in range(30)):
-        if day not in pages_printed.keys():
-            pages_printed[day] = defaultdict(int)
+    # # Fix missing rows in table (if data collection failed)
+    # for day in (date.today() - timedelta(n) for n in range(30)):
+    #     if day not in pages_printed.keys():
+    #     pages_printed[day] = defaultdict(int)
 
     return pages_printed
 
