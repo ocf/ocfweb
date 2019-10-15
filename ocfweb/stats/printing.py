@@ -153,7 +153,6 @@ def _pages_per_day():
 
         last_seen = {}
         pages_printed = {}
-
         for row in cursor:
             if row['printer'] in last_seen:
                 pages_printed.setdefault(row['date'], defaultdict(int))
@@ -161,6 +160,11 @@ def _pages_per_day():
                     row['value'] - last_seen[row['printer']]
                 )
             last_seen[row['printer']] = row['value']
+
+    # Fix missing rows in table (if data collection failed)
+    for day in (date.today() - timedelta(n) for n in range(30)):
+        if day not in pages_printed.keys():
+            pages_printed[day] = defaultdict(int)
 
     return pages_printed
 
