@@ -55,7 +55,7 @@ def _semester_histogram():
     fig = Figure(figsize=(10, 5))
     ax = fig.add_subplot(1, 1, 1)
     ax.locator_params(nbins=20)
-    ax.hist(users, bins=list(range(0, 105, 5)))
+    ax.hist(users, bins=list(range(0, SEMESTERLY_QUOTA + 5, 5)))
     ax.grid(True)
     ax.set_xlim(SEMESTERLY_QUOTA, 0)
     ax.set_ylabel('Number of users')
