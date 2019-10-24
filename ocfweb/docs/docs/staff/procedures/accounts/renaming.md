@@ -10,5 +10,5 @@ the user's `calnetUID` manually. Be sure to `note` the reason and previous
 username in the new account note file.
 
 #### Note
-When using the OCF web interface the user will see old account as a dropdown option,
+When using the OCF web interface the user will see the old account as a drop-down option,
 however user cannot use the old accoun as it is sorried.
