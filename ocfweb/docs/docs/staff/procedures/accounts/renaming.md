@@ -3,7 +3,7 @@
 We should sparingly rename a user account, and only do so when it is
 necessary (e.g. typo in the username).
 
-To rename a individual account, `sorry` the account with the old name and
+To rename an individual account, `sorry` the account with the old name and
 make a `note` of why you are changing the username. Then manually create an
 account using `approve`, and [[associate|doc staff/procedures/accounts/association]]
 the user's `calnetUID` manually. Be sure to `note` the reason and previous
