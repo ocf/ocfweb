@@ -1,6 +1,6 @@
 [[!meta title="Rename an account"]]
 
-We should sparingly rename an user account, and only do so when it is
+We should sparingly rename a user account, and only do so when it is
 necessary (e.g. typo in the username).
 
 To rename a individual account, `sorry` the account with the old name and
