@@ -11,4 +11,4 @@ username in the new account note file.
 
 #### Note
 When using the OCF web interface the user will see the old account as a drop-down option,
-however user cannot use the old accoun as it is sorried.
+however the user cannot use the old account, as it is sorried.
