@@ -1,3 +1,8 @@
+from datetime import datetime
+from typing import Any
+from typing import Sequence
+from typing import Sized
+
 import ocflib.printing.quota as quota
 from django.http import HttpResponse
 from matplotlib.figure import Figure
@@ -11,7 +16,7 @@ from ocfweb.component.graph import plot_to_image_bytes
 
 
 @canonical_graph(default_start_end=semester_dates)
-def weekday_jobs_image(request, start_day, end_day):
+def weekday_jobs_image(request: Any, start_day: datetime, end_day: datetime) -> HttpResponse:
     return HttpResponse(
         plot_to_image_bytes(get_jobs_plot('weekday', start_day, end_day), format='svg'),
         content_type='image/svg+xml',
@@ -19,7 +24,7 @@ def weekday_jobs_image(request, start_day, end_day):
 
 
 @canonical_graph(default_start_end=semester_dates)
-def weekend_jobs_image(request, start_day, end_day):
+def weekend_jobs_image(request: Any, start_day: datetime, end_day: datetime) -> HttpResponse:
     return HttpResponse(
         plot_to_image_bytes(get_jobs_plot('weekend', start_day, end_day), format='svg'),
         content_type='image/svg+xml',
@@ -58,9 +63,9 @@ graphs = {
 
 
 def freq_plot(
-    data, title,
-    ylab='Number of Jobs Printed',
-):
+    data: Sized, title: Sequence[Any],
+    ylab: str = 'Number of Jobs Printed',
+) -> Figure:
     """takes in data, title, and ylab and makes a histogram, with
     the 1:len(data) as the xaxis
     """
@@ -81,13 +86,15 @@ def freq_plot(
     return fig
 
 
-def get_jobs_plot(graph, start_day, end_day):
+def get_jobs_plot(graph: str, start_day: datetime, end_day: datetime) -> HttpResponse:
     """Return matplotlib plot of the number of jobs of different page-jobs"""
     graph_config = graphs[graph]
     with quota.get_connection() as cursor:
+        # Fix mypy error unsupported left operand type for + (Sequence[Any])
+        q: Any = graph_config['quota']
         cursor.execute(
             graph_config['query'],
-            graph_config['quota'] + (start_day, end_day),
+            q + (start_day, end_day),
         )
         data = cursor.fetchall()
 

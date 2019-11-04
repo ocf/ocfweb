@@ -1,3 +1,7 @@
+from typing import Any
+from typing import List
+from typing import Set
+
 from django.http import JsonResponse
 from ocflib.infra.hosts import hostname_from_domain
 from ocflib.lab.stats import get_connection
@@ -8,12 +12,12 @@ from ocfweb.caching import periodic
 
 
 @cache()
-def _list_public_desktops():
+def _list_public_desktops() -> List[Any]:
     return list_desktops(public_only=True)
 
 
 @periodic(5)
-def _get_desktops_in_use():
+def _get_desktops_in_use() -> Set[Any]:
     """List which desktops are currently in use."""
 
     # https://github.com/ocf/ocflib/blob/90f9268a89ac9d53c089ab819c1aa95bdc38823d/ocflib/lab/ocfstats.sql#L70
@@ -27,7 +31,7 @@ def _get_desktops_in_use():
     return {hostname_from_domain(session['host']) for session in c}
 
 
-def desktop_usage(request):
+def desktop_usage(request: Any) -> JsonResponse:
     public_desktops = _list_public_desktops()
 
     desktops_in_use = _get_desktops_in_use()

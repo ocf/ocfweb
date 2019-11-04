@@ -2,7 +2,11 @@ import logging
 from datetime import date
 from datetime import datetime
 from operator import attrgetter
+from typing import Any
+from typing import Callable
+from typing import List
 
+from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.lab.stats import current_semester_start
 from ocflib.lab.stats import list_desktops
@@ -20,12 +24,11 @@ from ocflib.printing.printers import PRINTERS
 from ocfweb.caching import periodic
 from ocfweb.stats.daily_graph import get_open_close
 
-
 _logger = logging.getLogger(__name__)
 
 
 @periodic(60)
-def desktop_profiles():
+def desktop_profiles() -> List[Any]:
     open_, close = get_open_close(date.today())
     now = datetime.today()
 
@@ -47,34 +50,34 @@ def desktop_profiles():
 
 
 @periodic(30)
-def staff_in_lab():
+def staff_in_lab() -> List[Any]:
     return real_staff_in_lab()
 
 
 @periodic(300)
-def top_staff_alltime():
+def top_staff_alltime() -> List[Any]:
     return real_top_staff_alltime()
 
 
 @periodic(300)
-def top_staff_semester():
+def top_staff_semester() -> List[Any]:
     return real_top_staff_semester()
 
 
 @periodic(30)
-def users_in_lab_count():
+def users_in_lab_count() -> int:
     return real_users_in_lab_count()
 
 
 @periodic(30)
-def staff_in_lab_count():
+def staff_in_lab_count() -> int:
     return real_staff_in_lab_count()
 
 
 @periodic(60)
-def printers():
-    def silence(f):
-        def inner(*args, **kwargs):
+def printers() -> List[Any]:
+    def silence(f: Callable[..., Any]) -> Callable[..., Any]:
+        def inner(*args: Any, **kwargs: Any) -> Any:
             try:
                 return f(*args, **kwargs)
             except (OSError, ValueError) as ex:
@@ -88,7 +91,7 @@ def printers():
     )
 
 
-def summary(request):
+def summary(request: Any) -> HttpResponse:
     return render(
         request,
         'stats/summary.html',

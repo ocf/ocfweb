@@ -1,12 +1,15 @@
 from datetime import date
 from datetime import timedelta
+from typing import Any
 
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from ocfweb.api.hours import get_hours_listing
+from ocfweb.docs.doc import Document
 
 
-def lab(doc, request):
+def lab(doc: Document, request: Any) -> HttpResponse:
     hours_listing = get_hours_listing()
     return render(
         request,

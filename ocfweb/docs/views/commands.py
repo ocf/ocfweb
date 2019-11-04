@@ -1,7 +1,11 @@
+from typing import Any
 from typing import NamedTuple
 from typing import Optional
 
+from django.http import HttpResponse
 from django.shortcuts import render
+
+from ocfweb.docs.doc import Document
 
 
 class Command(NamedTuple):
@@ -80,7 +84,7 @@ FILE_COMMANDS = [
 ]
 
 
-def commands(doc, request):
+def commands(doc: Document, request: Any) -> HttpResponse:
     return render(
         request,
         'docs/commands.html',

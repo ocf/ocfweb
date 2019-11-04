@@ -1,4 +1,7 @@
 # TODO: move this file into ocfweb.component.session?
+from typing import Any
+from typing import Callable
+from typing import Optional
 from urllib.parse import urlencode
 
 from django.contrib.auth import REDIRECT_FIELD_NAME
@@ -11,8 +14,8 @@ from ocfweb.component.session import is_logged_in
 from ocfweb.component.session import logged_in_user
 
 
-def login_required(function):
-    def _decorator(request, *args, **kwargs):
+def login_required(function: Callable[..., Any]) -> Callable[..., Any]:
+    def _decorator(request: Any, *args: Any, **kwargs: Any) -> Any:
         if is_logged_in(request):
             return function(request, *args, **kwargs)
 
@@ -22,10 +25,10 @@ def login_required(function):
     return _decorator
 
 
-def group_account_required(function):
-    def _decorator(request, *args, **kwargs):
+def group_account_required(function: Callable[..., Any]) -> Callable[..., Any]:
+    def _decorator(request: Any, *args: Any, **kwargs: Any) -> Any:
         try:
-            user = logged_in_user(request)
+            user: Optional[str] = logged_in_user(request)
         except KeyError:
             user = None
 
@@ -41,13 +44,13 @@ def group_account_required(function):
     return _decorator
 
 
-def calnet_required(fn):
+def calnet_required(fn: Callable[..., Any]) -> Callable[..., Any]:
     """Decorator for views that require CalNet auth
 
     Checks if "calnet_uid" is in the request.session dictionary. If the value
     is not a valid uid, the user is rediected to CalNet login view.
     """
-    def wrapper(request, *args, **kwargs):
+    def wrapper(request: Any, *args: Any, **kwargs: Any) -> Any:
         calnet_uid = request.session.get('calnet_uid')
         if calnet_uid:
             return fn(request, *args, **kwargs)

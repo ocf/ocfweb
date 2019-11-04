@@ -4,6 +4,13 @@ import math
 from collections import namedtuple
 from datetime import datetime
 from itertools import chain
+from typing import Any
+from typing import Callable
+from typing import Dict
+from typing import Hashable
+from typing import Iterable
+from typing import Optional
+from typing import Tuple
 
 from cached_property import cached_property
 from django.conf import settings
@@ -11,11 +18,10 @@ from django.core.cache import cache as django_cache
 
 from ocfweb.environment import ocfweb_version
 
-
 _logger = logging.getLogger(__name__)
 
 
-def cache_lookup(key):
+def cache_lookup(key: Hashable) -> Any:
     """Look up a key in the cache, raising KeyError if it's a miss."""
     # The "get" method returns `None` both for cached values of `None`,
     # and keys which aren't in the cache.
@@ -23,7 +29,7 @@ def cache_lookup(key):
     # The recommended workaround is using a sentinel as a default
     # return value for when a key is missing. This allows us to still
     # cache functions which return None.
-    cache_miss_sentinel = {}
+    cache_miss_sentinel: Dict[Any, Any] = {}
     retval = django_cache.get(key, cache_miss_sentinel)
     is_hit = retval is not cache_miss_sentinel
 
@@ -35,7 +41,9 @@ def cache_lookup(key):
         return retval
 
 
-def cache_lookup_with_fallback(key, fallback, ttl=None, force_miss=False):
+def cache_lookup_with_fallback(
+    key: Hashable, fallback: Callable[[], Any], ttl: Optional[int] = None, force_miss: bool = False,
+) -> Any:
     """Look up a key in the cache, falling back to a function if it's a miss.
 
     We first check if the key is in the cache, and if so, return it. If not, we
@@ -69,7 +77,7 @@ def cache_lookup_with_fallback(key, fallback, ttl=None, force_miss=False):
         return result
 
 
-def cache(ttl=None):
+def cache(ttl: Optional[int] = None) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
     """Caching function decorator, with an optional ttl.
 
     The optional ttl (in seconds) specifies how long cache entries should live.
@@ -94,8 +102,8 @@ def cache(ttl=None):
         def my_changing_function(a, b, c):
             ....
     """
-    def outer(fn):
-        def inner(*args, **kwargs):
+    def outer(fn: Callable[..., Any]) -> Callable[..., Any]:
+        def inner(*args: Any, **kwargs: Any) -> Any:
             return cache_lookup_with_fallback(
                 _make_function_call_key(fn, args, kwargs),
                 lambda: fn(*args, **kwargs),
@@ -105,7 +113,7 @@ def cache(ttl=None):
     return outer
 
 
-def _make_key(key):
+def _make_key(key: Iterable[Any]) -> Tuple[Any, ...]:
     """Return a key suitable for caching.
 
     The returned key prepends a version tag so that we don't share the cache
@@ -122,7 +130,7 @@ def _make_key(key):
     )
 
 
-def _make_function_call_key(fn, args, kwargs):
+def _make_function_call_key(fn: Callable[..., Any], args: Iterable[Any], kwargs: Dict[Any, Any]) -> Tuple[Any, ...]:
     """Return a key for a function call.
 
     The key will eventually be converted to a string and used as a cache key.
@@ -152,21 +160,25 @@ class PeriodicFunction(
     ),
 ):
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.function_call_key)
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
+        # Mypy note: It is recommended for __eq__ to work with arbitrary objects.
+        if not isinstance(other, PeriodicFunction):
+            return NotImplemented
+
         return self.function_call_key == other.function_call_key
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'PeriodicFunction({self.function_call_key})'
 
     @cached_property
-    def function_call_key(self):
+    def function_call_key(self) -> Tuple[Any, ...]:
         """Return the function's cache key."""
         return _make_function_call_key(self.function, (), {})
 
-    def function_with_timestamp(self):
+    def function_with_timestamp(self) -> Tuple[datetime, Any]:
         """Return a tuple (timestamp, result).
 
         This is the value we actually store in the cache; the benefit is that
@@ -176,7 +188,7 @@ class PeriodicFunction(
         """
         return (datetime.now(), self.function())
 
-    def last_update(self):
+    def last_update(self) -> Any:
         """Return the timestamp of the last update of this function.
 
         If the function has never been updated, returns None."""
@@ -186,7 +198,7 @@ class PeriodicFunction(
         except KeyError:
             return None
 
-    def seconds_since_last_update(self):
+    def seconds_since_last_update(self) -> float:
         """Return the number of seconds since the last update.
 
         If we've never updated, we return the number of seconds since
@@ -195,7 +207,7 @@ class PeriodicFunction(
         last_update = self.last_update() or datetime.fromtimestamp(0)
         return (datetime.now() - last_update).total_seconds()
 
-    def result(self, **kwargs):
+    def result(self, **kwargs: Any) -> Any:
         """Return the result of this periodic function.
 
         In most cases, we can read it from the cache and so it is nearly
@@ -212,7 +224,7 @@ class PeriodicFunction(
         )
         return result
 
-    def update(self):
+    def update(self) -> Any:
         """Run this periodic function and cache the result."""
         cache_lookup_with_fallback(
             self.function_call_key,
@@ -222,7 +234,7 @@ class PeriodicFunction(
         )
 
 
-def periodic(period, ttl=None):
+def periodic(period: float, ttl: Optional[float] = None) -> Callable[[Callable[..., Any]], Any]:
     """Caching function decorator for functions which desire TTL-based caching.
 
     Using this decorator on a function registers it as a "periodic function",
@@ -259,7 +271,7 @@ def periodic(period, ttl=None):
     elif ttl is None:
         ttl = period * 2
 
-    def outer(fn):
+    def outer(fn: Callable[..., Any]) -> Any:
         pf = PeriodicFunction(
             function=fn,
             period=period,

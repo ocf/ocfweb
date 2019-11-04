@@ -4,7 +4,7 @@ from functools import lru_cache
 
 
 @lru_cache()
-def ocfweb_version():
+def ocfweb_version() -> str:
     """Return string representing ocfweb version.
 
     In dev, returns 'dev'. In prod, returns a version

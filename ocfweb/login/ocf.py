@@ -1,8 +1,13 @@
 import re
+from typing import Any
+from typing import Match
+from typing import Optional
+from typing import Union
 
 import ocflib.account.utils as utils
 import ocflib.account.validators as validators
 from django import forms
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -15,7 +20,7 @@ from ocfweb.component.session import login as session_login
 from ocfweb.component.session import logout as session_logout
 
 
-def _valid_return_path(return_to):
+def _valid_return_path(return_to: str) -> Optional[Match[Any]]:
     """Make sure this is a valid relative path to prevent redirect attacks."""
     return re.match(
         '^/[^/]',
@@ -23,7 +28,7 @@ def _valid_return_path(return_to):
     )
 
 
-def login(request):
+def login(request: Any) -> Union[HttpResponseRedirect, HttpResponse]:
     error = None
 
     return_to = request.GET.get('next')
@@ -69,7 +74,7 @@ def login(request):
 
 
 @login_required
-def logout(request):
+def logout(request: Any) -> Union[HttpResponseRedirect, HttpResponse]:
     return_to = request.GET.get('next')
     if return_to and _valid_return_path(return_to):
         request.session['login_return_path'] = return_to
@@ -93,7 +98,7 @@ def logout(request):
     )
 
 
-def redirect_back(request):
+def redirect_back(request: Any) -> HttpResponseRedirect:
     """Return the user to the page they were trying to access, or the home
     page if we don't know what they were trying to access.
     """
@@ -116,6 +121,6 @@ class LoginForm(Form):
         max_length=64,
     )
 
-    def clean_username(self):
+    def clean_username(self) -> str:
         username = self.cleaned_data.get('username', '')
         return username.strip().lower()

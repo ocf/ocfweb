@@ -1,6 +1,8 @@
 import urllib.parse
 from datetime import date
 from datetime import datetime
+from typing import Any
+from typing import Optional
 
 import numpy as np
 import ocflib.printing.quota as quota
@@ -14,13 +16,13 @@ from ocfweb.caching import periodic
 from ocfweb.component.graph import plot_to_image_bytes
 
 
-def pyday_to_sqlday(pyday):
+def pyday_to_sqlday(pyday: int) -> int:
     """Converting weekday index from python to mysql."""
     return (pyday + 1) % 7 + 1
 
 
 @periodic(1800)
-def _jobs_graph_image(day=None):
+def _jobs_graph_image(day: Optional[date] = None) -> HttpResponse:
     if not day:
         day = date.today()
 
@@ -30,7 +32,7 @@ def _jobs_graph_image(day=None):
     )
 
 
-def daily_jobs_image(request):
+def daily_jobs_image(request: Any) -> Any:
     try:
         day = datetime.strptime(request.GET.get('date', ''), '%Y-%m-%d').date()
     except ValueError:
@@ -51,11 +53,11 @@ def daily_jobs_image(request):
         return _jobs_graph_image(day=day)
 
 
-def get_jobs_plot(day):
+def get_jobs_plot(day: date) -> Figure:
     """Return matplotlib plot showing the number i-page-job to the day."""
 
-    day_of_week = pyday_to_sqlday(day.weekday())
-    day_quota = quota.daily_quota(datetime.combine(day, datetime.min.time()))
+    day_of_week: int = pyday_to_sqlday(day.weekday())
+    day_quota: int = quota.daily_quota(datetime.combine(day, datetime.min.time()))
 
     sql_today_freq = '''
     SELECT `pages`,  SUM(`count`) AS `count`

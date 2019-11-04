@@ -1,4 +1,9 @@
+from typing import Any
+from typing import Iterator
+from typing import List
+
 from django import forms
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
@@ -15,15 +20,14 @@ from ocfweb.auth import calnet_required
 from ocfweb.component.celery import change_password as change_password_task
 from ocfweb.component.forms import Form
 
-
 CALLINK_ERROR_MSG = (
     "Couldn't connect to CalLink API. Resetting group "
     'account passwords online is unavailable.'
 )
 
 
-def get_accounts_signatory_for(calnet_uid):
-    def flatten(lst):
+def get_accounts_signatory_for(calnet_uid: str) -> List[Any]:
+    def flatten(lst: Iterator[Any]) -> List[Any]:
         return [item for sublist in lst for item in sublist]
 
     group_accounts = flatten(
@@ -40,7 +44,7 @@ def get_accounts_signatory_for(calnet_uid):
     return group_accounts
 
 
-def get_accounts_for(calnet_uid):
+def get_accounts_for(calnet_uid: str) -> List[Any]:
     accounts = users_by_calnet_uid(calnet_uid)
 
     if calnet_uid in TESTER_CALNET_UIDS:
@@ -51,7 +55,7 @@ def get_accounts_for(calnet_uid):
 
 
 @calnet_required
-def change_password(request):
+def change_password(request: Any) -> HttpResponse:
     calnet_uid = request.session['calnet_uid']
     error = None
     accounts = get_accounts_for(calnet_uid)
@@ -118,14 +122,16 @@ def change_password(request):
 
 class ChpassForm(Form):
 
-    def __init__(self, ocf_accounts, calnet_uid, *args, **kwargs):
+    def __init__(self, ocf_accounts: List[str], calnet_uid: str, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.calnet_uid = calnet_uid
         self.fields['ocf_account'] = forms.ChoiceField(
             choices=[(x, x) for x in ocf_accounts],
             label='OCF account',
         )
-        self.fields.keyOrder = [
+
+        # mypy expects fields to be a dict, but it isn't. This is defined in django so it can't be fixed
+        self.fields.keyOrder = [  # type: ignore
             'ocf_account',
             'new_password',
             'confirm_password',
@@ -141,7 +147,7 @@ class ChpassForm(Form):
         label='Confirm password',
     )
 
-    def clean_ocf_account(self):
+    def clean_ocf_account(self) -> str:
         data = self.cleaned_data['ocf_account']
         if not user_exists(data):
             raise forms.ValidationError('OCF user account does not exist.')
@@ -161,7 +167,7 @@ class ChpassForm(Form):
 
         return data
 
-    def clean_confirm_password(self):
+    def clean_confirm_password(self) -> str:
         new_password = self.cleaned_data.get('new_password')
         confirm_password = self.cleaned_data.get('confirm_password')
 

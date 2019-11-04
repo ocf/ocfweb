@@ -1,4 +1,7 @@
 from datetime import date
+from typing import Any
+from typing import Iterable
+from typing import Optional
 
 from django import template
 
@@ -6,7 +9,7 @@ register = template.Library()
 
 
 @register.simple_tag
-def lab_hours_holiday(holidays, when=None):
+def lab_hours_holiday(holidays: Iterable[Any], when: Optional[date] = None) -> str:
     if when is None:
         when = date.today()
 
@@ -17,7 +20,7 @@ def lab_hours_holiday(holidays, when=None):
 
 
 @register.filter
-def lab_hours_time(hours):
+def lab_hours_time(hours: Optional[Iterable[Any]]) -> str:
     if hours:
         return ',\xa0\xa0'.join(  # two non-breaking spaces
             f'{hour.open:%-I:%M%P}–{hour.close:%-I:%M%P}'

@@ -3,10 +3,17 @@ import io
 import re
 from contextlib import contextmanager
 from textwrap import dedent
+from typing import Any
+from typing import Collection
+from typing import Dict
+from typing import Generator
+from typing import Optional
+from typing import Tuple
 
 from django.conf import settings
 from django.contrib import messages
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -21,7 +28,6 @@ from ocfweb.auth import group_account_required
 from ocfweb.auth import login_required
 from ocfweb.component.errors import ResponseException
 from ocfweb.component.session import logged_in_user
-
 
 EXAMPLE_CSV = dedent("""\
     president,john.doe@berkeley.edu
@@ -42,7 +48,7 @@ class InvalidEmailError(ValueError):
 
 @login_required
 @group_account_required
-def vhost_mail(request):
+def vhost_mail(request: Any) -> HttpResponse:
     user = logged_in_user(request)
     vhosts = []
 
@@ -69,12 +75,13 @@ def vhost_mail(request):
 @login_required
 @group_account_required
 @require_POST
-def vhost_mail_update(request):
+def vhost_mail_update(request: Any) -> HttpResponseRedirect:
     user = logged_in_user(request)
 
     # All requests are required to have these
     action = _get_action(request)
-    addr_name, addr_domain, addr_vhost = _get_addr(request, user, 'addr', required=True)
+    # _get_addr should either return a valid tuple or error.
+    addr_name, addr_domain, addr_vhost = _get_addr(request, user, 'addr', required=True)  # type: ignore
     addr = (addr_name or '') + '@' + addr_domain
 
     # These fields are optional; some might be None
@@ -137,7 +144,7 @@ def vhost_mail_update(request):
 
 @login_required
 @group_account_required
-def vhost_mail_csv_export(request, domain):
+def vhost_mail_csv_export(request: Any, domain: str) -> HttpResponse:
     user = logged_in_user(request)
     vhost = _get_vhost(user, domain)
     if not vhost:
@@ -161,7 +168,7 @@ def vhost_mail_csv_export(request, domain):
 @login_required
 @group_account_required
 @require_POST
-def vhost_mail_csv_import(request, domain):
+def vhost_mail_csv_import(request: Any, domain: str) -> HttpResponseRedirect:
     user = logged_in_user(request)
     vhost = _get_vhost(user, domain)
     if not vhost:
@@ -204,7 +211,7 @@ def vhost_mail_csv_import(request, domain):
     return _redirect_back()
 
 
-def _write_csv(addresses):
+def _write_csv(addresses: Generator[Any, None, None]) -> Any:
     """Turn a collection of vhost forwarding addresses into a CSV
     string for user download."""
     buf = io.StringIO()
@@ -218,14 +225,14 @@ def _write_csv(addresses):
     return buf.getvalue()
 
 
-def _parse_csv(request, domain):
+def _parse_csv(request: Any, domain: str) -> Dict[str, Any]:
     """Parse, validate, and return addresses from the file uploaded
     with the CSV upload button/form."""
     csv_file = request.FILES.get('csv_file')
     if not csv_file:
         _error(request, 'Missing CSV file!')
 
-    addresses = {}
+    addresses: Dict[str, Collection[Any]] = {}
     try:
         with io.TextIOWrapper(csv_file, encoding='utf-8') as f:
             reader = csv.reader(f)
@@ -247,12 +254,12 @@ def _parse_csv(request, domain):
                 except ValueError as e:
                     _error(request, 'Error parsing CSV: row {}: {}'.format(i + 1, e))
     except UnicodeDecodeError as e:
-        _error(f'Uploaded file is not valid UTF-8 encoded: "{e}"')
+        _error(request, f'Uploaded file is not valid UTF-8 encoded: "{e}"')
 
     return addresses
 
 
-def _parse_csv_forward_addrs(string):
+def _parse_csv_forward_addrs(string: str) -> Collection[Any]:
     """Parse and validate emails from a commas-and-whitespace separated
     list string."""
     # Allow any combination of whitespace and , as separators
@@ -269,24 +276,26 @@ def _parse_csv_forward_addrs(string):
     return frozenset(to_addrs)
 
 
-def _error(request, msg):
+def _error(request: Any, msg: str) -> None:
     messages.add_message(request, messages.ERROR, msg)
     raise ResponseException(_redirect_back())
 
 
-def _redirect_back():
+def _redirect_back() -> Any:
     return redirect(reverse('vhost_mail'))
 
 
-def _get_action(request):
+def _get_action(request: Any) -> Optional[Any]:
     action = request.POST.get('action')
     if action not in {'add', 'update', 'delete'}:
         _error(request, f'Invalid action: "{action}"')
     else:
         return action
 
+    return None
 
-def _parse_addr(addr, allow_wildcard=False):
+
+def _parse_addr(addr: str, allow_wildcard: bool = False) -> Optional[Tuple[str, str]]:
     """Safely parse an email, returning first component and domain."""
     m = re.match(
         (
@@ -302,8 +311,10 @@ def _parse_addr(addr, allow_wildcard=False):
     if '.' in domain:
         return name, domain
 
+    return None
 
-def _get_addr(request, user, field, required=True):
+
+def _get_addr(request: Any, user: Any, field: str, required: bool = True) -> Optional[Tuple[Any, Any, Any]]:
     original = request.POST.get(field)
     if original is not None:
         addr = original.strip()
@@ -322,8 +333,10 @@ def _get_addr(request, user, field, required=True):
     elif required:
         _error(request, 'You must provide an address!')
 
+    return None
 
-def _get_forward_to(request):
+
+def _get_forward_to(request: Any) -> Optional[Collection[Any]]:
     forward_to = request.POST.get('forward_to')
 
     if forward_to is None:
@@ -346,7 +359,7 @@ def _get_forward_to(request):
     return frozenset(parsed_addrs)
 
 
-def _get_password(request, addr_name):
+def _get_password(request: Any, addr_name: Optional[str]) -> Any:
     # If addr_name is None, then this is a wildcard address, and those can't
     # have passwords.
     if addr_name is None:
@@ -365,21 +378,21 @@ def _get_password(request, addr_name):
             return crypt_password(password)
 
 
-def _get_vhost(user, domain):
+def _get_vhost(user: Any, domain: str) -> Any:
     vhosts = vhosts_for_user(user)
     for vhost in vhosts:
         if vhost.domain == domain:
             return vhost
 
 
-def _find_addr(c, vhost, addr):
+def _find_addr(c: Any, vhost: Any, addr: str) -> Any:
     for addr_obj in vhost.get_forwarding_addresses(c):
         if addr_obj.address == addr:
             return addr_obj
 
 
 @contextmanager
-def _txn(**kwargs):
+def _txn(**kwargs: Any) -> Generator[Any, None, None]:
     with get_connection(
         user=settings.OCFMAIL_USER,
         password=settings.OCFMAIL_PASSWORD,

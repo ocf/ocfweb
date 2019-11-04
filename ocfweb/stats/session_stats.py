@@ -1,3 +1,7 @@
+from typing import Any
+from typing import List
+
+from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.lab.stats import current_semester_start
 from ocflib.lab.stats import SESSIONS_EPOCH
@@ -8,16 +12,16 @@ from ocfweb.caching import periodic
 
 
 @periodic(300)
-def top_staff_alltime():
+def top_staff_alltime() -> List[Any]:
     return real_top_staff_alltime()
 
 
 @periodic(300)
-def top_staff_semester():
+def top_staff_semester() -> List[Any]:
     return real_top_staff_semester()
 
 
-def session_stats(request):
+def session_stats(request: Any) -> HttpResponse:
     return render(
         request,
         'stats/session_stats.html',

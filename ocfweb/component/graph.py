@@ -3,25 +3,32 @@ import urllib.parse
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
+from typing import Any
+from typing import Callable
+from typing import Optional
+from typing import Tuple
 
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
 from matplotlib.backends.backend_agg import FigureCanvasAgg
-
+from matplotlib.figure import Figure
 
 MIN_DAYS = 1
 MAX_DAYS = 365 * 5
 DEFAULT_DAYS = 14
 
 
-def current_start_end():
+def current_start_end() -> Tuple[date, date]:
     """Return current default start and end date."""
     end = date.today()
     return end - timedelta(days=DEFAULT_DAYS), end
 
 
-def canonical_graph(hot_path=None, default_start_end=current_start_end):
+def canonical_graph(
+    hot_path: Optional[Callable[..., Any]] = None,
+    default_start_end: Callable[..., Tuple[date, date]] = current_start_end,
+) -> Callable[..., Any]:
     """Decorator to make graphs with a start_day and end_day.
 
     It does three primary things:
@@ -42,9 +49,9 @@ def canonical_graph(hot_path=None, default_start_end=current_start_end):
     :param default_start_end: optional, function to get current start/end date
                               (default: current_start_end)
     """
-    def decorator(fn):
-        def wrapper(request):
-            def _day_from_params(param, default):
+    def decorator(fn: Callable[[Any, date, date], Any]) -> Callable[[Any], Any]:
+        def wrapper(request: Any) -> Any:
+            def _day_from_params(param: str, default: date) -> date:
                 try:
                     return datetime.strptime(request.GET.get(param, ''), '%Y-%m-%d').date()
                 except ValueError:
@@ -85,7 +92,7 @@ def canonical_graph(hot_path=None, default_start_end=current_start_end):
     return decorator
 
 
-def plot_to_image_bytes(fig, format='svg', **kwargs):
+def plot_to_image_bytes(fig: Figure, format: str = 'svg', **kwargs: Any) -> bytes:
     """Return bytes representing the plot image."""
     buf = io.BytesIO()
     FigureCanvasAgg(fig).print_figure(buf, format=format, **kwargs)

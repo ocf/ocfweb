@@ -2,9 +2,11 @@ import datetime
 import re
 import socket
 from textwrap import dedent
+from typing import Any
 
 from django import forms
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -23,18 +25,18 @@ from ocfweb.component.forms import Form
 from ocfweb.component.session import logged_in_user
 
 
-def available_domain(domain):
+def available_domain(domain: str) -> bool:
     if not re.match(r'^[a-zA-Z0-9]+\.berkeley\.edu$', domain):
         return False
     return not host_exists(domain)
 
 
-def valid_domain_external(domain):
+def valid_domain_external(domain: str) -> bool:
     return bool(re.match(r'([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,}', domain))
 
 
 @login_required
-def request_vhost(request):
+def request_vhost(request: Any) -> HttpResponse:
     user = logged_in_user(request)
     attrs = user_attrs(user)
     is_group = 'callinkOid' in attrs
@@ -156,7 +158,7 @@ def request_vhost(request):
     )
 
 
-def request_vhost_success(request):
+def request_vhost_success(request: Any) -> HttpResponse:
     return render(
         request,
         'account/vhost/success.html',
@@ -231,7 +233,7 @@ class VirtualHostForm(Form):
         max_length=1024,
     )
 
-    def __init__(self, is_group=True, *args, **kwargs):
+    def __init__(self, is_group: bool = True, *args: Any, **kwargs: Any) -> None:
         super(Form, self).__init__(*args, **kwargs)
 
         # It's pretty derpy that we have to set the labels here, but we can't
@@ -266,7 +268,7 @@ class VirtualHostForm(Form):
                 max_length=64,
             )
 
-    def clean_requested_subdomain(self):
+    def clean_requested_subdomain(self) -> str:
         requested_subdomain = self.cleaned_data['requested_subdomain'].lower().strip()
 
         if self.cleaned_data['requested_own_domain']:
@@ -291,7 +293,7 @@ class VirtualHostForm(Form):
 
         return requested_subdomain
 
-    def clean_your_email(self):
+    def clean_your_email(self) -> str:
         your_email = self.cleaned_data['your_email']
         if not valid_email(your_email):
             raise forms.ValidationError(

@@ -4,13 +4,17 @@ from os.path import dirname
 from os.path import isfile
 from os.path import join
 from os.path import realpath
+from typing import Any
+from typing import Optional
+from typing import Tuple
+from typing import Union
 
 from django.http import Http404
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 
 from ocfweb.caching import cache
-
 
 # images not in PNG that we now redirect to PNG versions
 LEGACY_IMAGES = [
@@ -36,7 +40,7 @@ HOSTING_LOGOS_PATH = join(dirname(dirname(__file__)), 'static', 'img', 'hosting-
 
 
 @cache()
-def get_image(image):
+def get_image(image: str) -> Tuple[bytes, Optional[str]]:
     match = re.match(r'^[a-z0-9_\-]+\.(png|svg)$', image)
     if not match:
         raise Http404()
@@ -55,7 +59,7 @@ def get_image(image):
         return f.read(), content_type
 
 
-def hosting_logo(request, image):
+def hosting_logo(request: Any, image: str) -> Union[HttpResponse, HttpResponseRedirect]:
     """Hosting logos must be served from the root since they are linked by
     student group websites."""
     # legacy images

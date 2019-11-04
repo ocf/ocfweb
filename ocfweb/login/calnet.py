@@ -1,3 +1,6 @@
+from typing import Any
+from typing import Optional
+from typing import Union
 from urllib.parse import urlencode
 from urllib.parse import urljoin
 
@@ -8,7 +11,7 @@ from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
 
 
-def _service_url(request, next_page):
+def _service_url(request: Any, next_page: str) -> str:
     protocol = ('http://', 'https://')[request.is_secure()]
     host = request.get_host()
     service = protocol + host + request.path
@@ -18,7 +21,7 @@ def _service_url(request, next_page):
     return url
 
 
-def _redirect_url(request):
+def _redirect_url(request: Any) -> str:
     """ Redirects to referring page """
     next_page = request.META.get('HTTP_REFERER')
     prefix = ('http://', 'https://')[request.is_secure()] + request.get_host()
@@ -27,7 +30,7 @@ def _redirect_url(request):
     return next_page
 
 
-def _login_url(service):
+def _login_url(service: str) -> str:
     params = {
         'service': service,
         'renew': 'true',
@@ -37,7 +40,7 @@ def _login_url(service):
     )
 
 
-def _logout_url(request, next_page=None):
+def _logout_url(request: Any, next_page: Optional[str] = None) -> str:
     url = urljoin(cas.CAS_URL, 'logout')
     if next_page:
         protocol = ('http://', 'https://')[request.is_secure()]
@@ -46,7 +49,7 @@ def _logout_url(request, next_page=None):
     return url
 
 
-def _next_page_response(next_page):
+def _next_page_response(next_page: str) -> Union[HttpResponse, HttpResponseRedirect]:
     if next_page:
         return HttpResponseRedirect(next_page)
     else:
@@ -55,7 +58,7 @@ def _next_page_response(next_page):
         )
 
 
-def login(request, next_page=None):
+def login(request: Any, next_page: Optional[str] = None) -> HttpResponse:
     next_page = request.GET.get(REDIRECT_FIELD_NAME)
     if not next_page:
         next_page = _redirect_url(request)
@@ -77,7 +80,7 @@ def login(request, next_page=None):
     return HttpResponseRedirect(_login_url(service))
 
 
-def logout(request, next_page=None):
+def logout(request: Any, next_page: Optional[str] = None) -> Union[HttpResponse, HttpResponseRedirect]:
     if 'calnet_uid' in request.session:
         del request.session['calnet_uid']
     if not next_page:

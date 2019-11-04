@@ -1,4 +1,10 @@
 import re
+from typing import Any
+from typing import List
+from typing import Match
+from typing import Set
+from typing import Tuple
+from typing import TYPE_CHECKING
 
 import mistune
 from django.urls import reverse
@@ -14,24 +20,37 @@ from ocfweb.caching import cache
 # tags of a format like: [[!meta title="Backups"]]
 META_REGEX = re.compile(r'\[\[!meta ([a-z]+)="([^"]*)"\]\]')
 
+# Make mypy play nicely with mixins https://github.com/python/mypy/issues/5837
 
-class HtmlCommentsLexerMixin:
+
+class MixinBase:
+    def __init__(self, rules: Any, default_rules: Any) -> None:
+        self.rules = rules
+        self.default_rules = default_rules
+
+
+_Base: Any = object
+if TYPE_CHECKING:
+    _Base = MixinBase
+
+
+class HtmlCommentsLexerMixin(_Base):
     """Strip HTML comments as entire blocks or inside lines."""
 
-    def enable_html_comments(self):
+    def enable_html_comments(self) -> None:
         self.rules.html_comment = re.compile(
             r'^<!--(.*?)-->',
         )
         self.default_rules.insert(0, 'html_comment')
 
-    def output_html_comment(self, m):
+    def output_html_comment(self, m: Match[Any]) -> str:
         return ''
 
-    def parse_html_comment(self, m):
+    def parse_html_comment(self, m: Match[Any]) -> None:
         pass
 
 
-class BackslashLineBreakLexerMixin:
+class BackslashLineBreakLexerMixin(_Base):
     """Convert lines that end in a backslash into a simple line break.
 
     This follows GitHub-flavored Markdown on backslashes at the end of lines
@@ -50,22 +69,22 @@ class BackslashLineBreakLexerMixin:
         with a line break
     """
 
-    def enable_backslash_line_breaks(self):
+    def enable_backslash_line_breaks(self) -> None:
         self.rules.backslash_line_break = re.compile(
             '^\\\\\n',
         )
         self.default_rules.insert(0, 'backslash_line_break')
 
-    def output_backslash_line_break(self, m):
+    def output_backslash_line_break(self, m: Match[Any]) -> str:
         return '<br>'
 
 
-class CodeRendererMixin:
+class CodeRendererMixin(_Base):
     """Render highlighted code."""
     # TODO: don't use inline styles; see http://pygments.org/docs/formatters/
     html_formatter = HtmlFormatter(noclasses=True)
 
-    def block_code(self, code, lang):
+    def block_code(self, code: str, lang: str) -> str:
         try:
             if lang:
                 lexer = get_lexer_by_name(lang, stripall=True)
@@ -77,7 +96,7 @@ class CodeRendererMixin:
         return highlight(code, lexer, CodeRendererMixin.html_formatter)
 
 
-class DjangoLinkInlineLexerMixin:
+class DjangoLinkInlineLexerMixin(_Base):
     """Turn special Markdown link syntax into Django links.
 
     In Django templates, we can use `url` tags, such as:
@@ -95,7 +114,7 @@ class DjangoLinkInlineLexerMixin:
 
     split_words = re.compile(r'((?:\S|\\ )+)')
 
-    def enable_django_links(self):
+    def enable_django_links(self) -> None:
         self.rules.django_link = re.compile(
             r'^\[\[(?!\!)'
             r'([\s\S]+?)'
@@ -106,10 +125,10 @@ class DjangoLinkInlineLexerMixin:
         )
         self.default_rules.insert(0, 'django_link')
 
-    def output_django_link(self, m):
+    def output_django_link(self, m: Match[Any]) -> str:
         text, target, fragment = m.group(1), m.group(2), m.group(3)
 
-        def href(link, fragment):
+        def href(link: str, fragment: str) -> str:
             if fragment:
                 return link + '#' + fragment
             return link
@@ -123,7 +142,7 @@ class DjangoLinkInlineLexerMixin:
         )
 
 
-class HeaderRendererMixin:
+class HeaderRendererMixin(_Base):
     """Mixin to render headers with auto-generated IDs (or provided IDs).
 
     If headers are written as usual, they'll be given automatically-generated
@@ -142,14 +161,14 @@ class HeaderRendererMixin:
     rendering a document and read afterwards.
     """
 
-    def reset_toc(self):
-        self.toc = []
-        self.toc_ids = set()
+    def reset_toc(self) -> None:
+        self.toc: List[Any] = []
+        self.toc_ids: Set[Any] = set()
 
-    def get_toc(self):
+    def get_toc(self) -> List[Any]:
         return self.toc
 
-    def header(self, text, level, raw=None):
+    def header(self, text: str, level: int, raw: None = None) -> str:
         custom_id_match = re.match(r'^(.*?)\s+{([a-z0-9\-_]+)}\s*$', text)
         if custom_id_match:
             text = custom_id_match.group(1)
@@ -220,12 +239,12 @@ _markdown = mistune.Markdown(
 )
 
 
-def markdown(text):
+def markdown(text: str) -> mistune.Markdown:
     _renderer.reset_toc()
     return _markdown(text)
 
 
-def text_and_meta(f):
+def text_and_meta(f: Any) -> Tuple[str, Any]:
     """Return tuple (text, meta dict) for the given file.
 
     Meta tags are stripped from the Markdown source, but the Markdown is
@@ -234,7 +253,7 @@ def text_and_meta(f):
     text = f.read()
     meta = {}
 
-    def repl(match):
+    def repl(match: Match[Any]) -> str:
         meta[match.group(1)] = match.group(2)
         return ''
 
@@ -243,7 +262,7 @@ def text_and_meta(f):
 
 
 @cache()
-def markdown_and_toc(text):
+def markdown_and_toc(text: str) -> Tuple[Any, Any]:
     """Return tuple (html, toc) for the given text."""
     html = markdown(text)
     return html, _renderer.get_toc()

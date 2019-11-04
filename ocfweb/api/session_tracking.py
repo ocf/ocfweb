@@ -2,6 +2,8 @@ import json
 from enum import Enum
 from functools import partial
 from ipaddress import ip_address
+from typing import Any
+from typing import Dict
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -28,7 +30,7 @@ get_connection = partial(
 
 @require_POST
 @csrf_exempt
-def log_session(request):
+def log_session(request: Any) -> HttpResponse:
     """Primary API endpoint for session tracking.
 
     Desktops have a cronjob that calls this endpoint: https://git.io/vpIKX
@@ -63,7 +65,7 @@ def log_session(request):
         return HttpResponseBadRequest(e)
 
 
-def _new_session(host, user):
+def _new_session(host: str, user: str) -> None:
     """Register new session in when a user logs into a desktop."""
 
     _close_sessions(host)
@@ -75,7 +77,7 @@ def _new_session(host, user):
         )
 
 
-def _session_exists(host, user):
+def _session_exists(host: str, user: str) -> bool:
     """Returns whether an open session already exists for a given host and user."""
 
     with get_connection() as c:
@@ -87,7 +89,7 @@ def _session_exists(host, user):
         return c.fetchone()['count'] > 0
 
 
-def _refresh_session(host, user):
+def _refresh_session(host: str, user: str) -> None:
     """Keep a session around if the user is still logged in."""
 
     with get_connection() as c:
@@ -97,7 +99,7 @@ def _refresh_session(host, user):
         )
 
 
-def _close_sessions(host):
+def _close_sessions(host: str) -> None:
     """Close all sessions for a particular host."""
 
     with get_connection() as c:
@@ -108,7 +110,7 @@ def _close_sessions(host):
 
 
 @cache(600)
-def _get_desktops():
+def _get_desktops() -> Dict[Any, Any]:
     """Return IPv4 and 6 address to fqdn mapping for OCF desktops from LDAP."""
 
     desktops = {}

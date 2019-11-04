@@ -1,6 +1,11 @@
 import re
 from collections import namedtuple
 from operator import attrgetter
+from typing import Any
+from typing import Collection
+from typing import Dict
+from typing import List
+from typing import Optional
 
 from django import template
 from django.utils.html import strip_tags
@@ -11,7 +16,7 @@ from ocfweb.docs.urls import DOCS
 class Node(namedtuple('Node', ['path', 'title', 'children'])):
 
     @property
-    def url_path(self):
+    def url_path(self) -> str:
         return self.path.lstrip('/').rstrip('/')
 
 
@@ -19,14 +24,19 @@ register = template.Library()
 
 
 @register.inclusion_tag('docs/partials/doc-tree.html')
-def doc_tree(root='/', suppress_root=True, cur_path=None, exclude='$^'):
+def doc_tree(
+    root: str = '/',
+    suppress_root: bool = True,
+    cur_path: Optional[str] = None,
+    exclude: Any = '$^',
+) -> Dict[str, Any]:
     # root is expected to be like '/' or '/services/' or '/services/web/'
     assert root.startswith('/')
     assert root.endswith('/')
 
     exclude = re.compile(exclude)
 
-    def _make_tree(root):
+    def _make_tree(root: str) -> Node:
         path = root[:-1]
         doc = DOCS.get(path)
         return Node(
@@ -54,10 +64,10 @@ def doc_tree(root='/', suppress_root=True, cur_path=None, exclude='$^'):
 
 
 @register.inclusion_tag('docs/partials/doc-toc.html')
-def doc_toc(toc, collapsible=False):
+def doc_toc(toc: Collection[Any], collapsible: bool = False) -> Dict[str, Any]:
     if len(toc) > 3:  # heuristic to avoid dumb tables of contents
-        levels = list(sorted({entry[0] for entry in toc}))
-        cur = levels[0]
+        levels: List[Any] = list(sorted({entry[0] for entry in toc}))
+        cur: int = levels[0]
 
         html = '<ol>'
 

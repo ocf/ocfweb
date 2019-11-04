@@ -15,19 +15,22 @@ Markdown documents can specify the meta attributes:
 import os
 from functools import partial
 from pathlib import Path
+from typing import Any
+from typing import Dict
+from typing import Generator
 
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from ocfweb.component.markdown import markdown_and_toc
 from ocfweb.component.markdown import text_and_meta
 from ocfweb.docs.doc import Document
 
-
 DOCS_DIR = Path(__file__).parent.joinpath('docs')
 
 
-def render_markdown_doc(path, meta, text, doc, request):
+def render_markdown_doc(path: Path, meta: Dict[str, Any], text: str, doc: Document, request: Any) -> HttpResponse:
 
     # Reload markdown docs if in development
     if settings.DEBUG:
@@ -48,7 +51,7 @@ def render_markdown_doc(path, meta, text, doc, request):
     )
 
 
-def get_markdown_docs():
+def get_markdown_docs() -> Generator[Document, None, None]:
     for path in DOCS_DIR.glob('**/*.md'):
         name, _ = os.path.splitext(str(path.relative_to(DOCS_DIR)))
 

@@ -2,6 +2,9 @@ import urllib.parse
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
+from typing import Any
+from typing import Optional
+from typing import Tuple
 
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -15,13 +18,12 @@ from ocfweb.api.hours import get_hours_listing
 from ocfweb.caching import periodic
 from ocfweb.component.graph import plot_to_image_bytes
 
-
 # Binomial-shaped weights for moving average
 AVERAGE_WEIGHTS = tuple(zip(range(-2, 3), (n / 16 for n in (1, 4, 6, 4, 1))))
 
 
 @periodic(60)
-def _daily_graph_image(day=None):
+def _daily_graph_image(day: Optional[date] = None) -> HttpResponse:
     if not day:
         day = date.today()
 
@@ -31,7 +33,7 @@ def _daily_graph_image(day=None):
     )
 
 
-def daily_graph_image(request):
+def daily_graph_image(request: Any) -> Any:
     try:
         day = datetime.strptime(request.GET.get('date', ''), '%Y-%m-%d').date()
     except ValueError:
@@ -52,7 +54,7 @@ def daily_graph_image(request):
         return _daily_graph_image(day=day)
 
 
-def get_open_close(day):
+def get_open_close(day: date) -> Tuple[datetime, datetime]:
     """Return datetime objects representing open and close for a day rounded
     down to the hour.
 
@@ -82,14 +84,14 @@ def get_open_close(day):
 
 
 # TODO: caching; we can cache for a long time if it's a day that's already happened
-def get_daily_plot(day):
+def get_daily_plot(day: date) -> Figure:
     """Return matplotlib plot representing a day's plot."""
     start, end = get_open_close(day)
     desktops = list_desktops(public_only=True)
     profiles = UtilizationProfile.from_hostnames(desktops, start, end).values()
     desks_count = len(desktops)
 
-    now = datetime.now()
+    now: Any = datetime.now()
     latest = min(end, now)
     minute = timedelta(minutes=1)
     times = [start + i * minute for i in range((latest - start) // minute + 1)]
@@ -104,7 +106,7 @@ def get_daily_plot(day):
         sums.append(in_use)
 
     # Do a weighted moving average to smooth out the data
-    processed = [0] * len(sums)
+    processed = [0.0] * len(sums)
     for i in range(len(sums)):
         for delta_i, weight in AVERAGE_WEIGHTS:
             m = i if (i + delta_i < 0 or i + delta_i >= len(sums)) else i + delta_i

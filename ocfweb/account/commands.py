@@ -1,5 +1,8 @@
+from typing import Any
+
 from django import forms
 from django.forms import widgets
+from django.http import HttpResponse
 from django.shortcuts import render
 from paramiko import AuthenticationException
 from paramiko import SSHClient
@@ -8,7 +11,7 @@ from paramiko.hostkeys import HostKeyEntry
 from ocfweb.component.forms import Form
 
 
-def commands(request):
+def commands(request: Any) -> HttpResponse:
     command_to_run = ''
     output = ''
     error = ''

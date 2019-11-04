@@ -1,3 +1,6 @@
+from typing import Any
+from typing import Callable
+
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -9,7 +12,7 @@ class Form(forms.Form):
     required_css_class = 'required'
 
 
-def wrap_validator(validator):
+def wrap_validator(validator: Callable[..., Any]) -> Callable[..., None]:
     """Wraps a validator which raises some kind of Exception, and instead
     returns a Django ValidationError with the same message.
 
@@ -21,7 +24,7 @@ def wrap_validator(validator):
     >>> validator('ocf')
     ValidationError: Username is reserved
     """
-    def wrapped_validator(*args, **kwargs):
+    def wrapped_validator(*args: Any, **kwargs: Any) -> None:
         try:
             validator(*args, **kwargs)
         except Exception as ex:

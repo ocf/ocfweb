@@ -1,3 +1,6 @@
+from typing import Any
+from typing import Union
+
 import ocflib.account.search as search
 import ocflib.account.validators as validators
 import ocflib.misc.validators
@@ -5,6 +8,7 @@ import ocflib.ucb.directory as directory
 from Crypto.PublicKey import RSA
 from django import forms
 from django.core.exceptions import NON_FIELD_ERRORS
+from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
@@ -29,7 +33,7 @@ from ocfweb.component.forms import wrap_validator
 
 
 @calnet_required
-def request_account(request):
+def request_account(request: Any) -> Union[HttpResponseRedirect, HttpResponse]:
     calnet_uid = request.session['calnet_uid']
     status = 'new_request'
 
@@ -61,7 +65,7 @@ def request_account(request):
     real_name = directory.name_by_calnet_uid(calnet_uid)
 
     if request.method == 'POST':
-        form = ApproveForm(request.POST)
+        form: Any = ApproveForm(request.POST)
         if form.is_valid():
             req = NewAccountRequest(
                 user_name=form.cleaned_data['ocf_login_name'],
@@ -114,7 +118,7 @@ def request_account(request):
     )
 
 
-def recommend(request):
+def recommend(request: Any) -> Union[JsonResponse, HttpResponseBadRequest]:
     real_name = request.GET.get('real_name', None)
     if real_name is None:
         return HttpResponseBadRequest('No real_name in recommend request')
@@ -127,7 +131,7 @@ def recommend(request):
     )
 
 
-def validate(request):
+def validate(request: Any) -> Union[HttpResponseBadRequest, JsonResponse]:
     real_name = request.GET.get('real_name', None)
     if real_name is None:
         return HttpResponseBadRequest('No real_name in validate request')
@@ -149,7 +153,7 @@ def validate(request):
         })
 
 
-def wait_for_account(request):
+def wait_for_account(request: Any) -> Union[HttpResponse, HttpResponseRedirect]:
     if 'approve_task_id' not in request.session:
         return render(
             request,
@@ -180,11 +184,11 @@ def wait_for_account(request):
     return render(request, 'account/register/wait/error-probably-not-created.html', {})
 
 
-def account_pending(request):
+def account_pending(request: Any) -> HttpResponse:
     return render(request, 'account/register/pending.html', {'title': 'Account request pending'})
 
 
-def account_created(request):
+def account_created(request: Any) -> HttpResponse:
     return render(request, 'account/register/success.html', {'title': 'Account request successful'})
 
 
@@ -232,7 +236,7 @@ class ApproveForm(Form):
         },
     )
 
-    def clean_verify_password(self):
+    def clean_verify_password(self) -> str:
         password = self.cleaned_data.get('password')
         verify_password = self.cleaned_data.get('verify_password')
 
@@ -241,7 +245,7 @@ class ApproveForm(Form):
                 raise forms.ValidationError("Your passwords don't match.")
         return verify_password
 
-    def clean_verify_contact_email(self):
+    def clean_verify_contact_email(self) -> str:
         email = self.cleaned_data.get('contact_email')
         verify_contact_email = self.cleaned_data.get('verify_contact_email')
 
@@ -250,7 +254,8 @@ class ApproveForm(Form):
                 raise forms.ValidationError("Your emails don't match.")
         return verify_contact_email
 
-    def clean(self):
+    # clean incompatible with supertype BaseForm which is defined in django. Might want to look into this one
+    def clean(self) -> None:  # type: ignore
         cleaned_data = super().clean()
 
         # validate password (requires username to check similarity)

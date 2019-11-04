@@ -1,10 +1,12 @@
-from django import template
+from typing import Any
+from typing import Dict
 
+from django import template
 register = template.Library()
 
 
 @register.inclusion_tag('partials/progress-bar.html')
-def progress_bar(label, value, max):
+def progress_bar(label: str, value: int, max: int) -> Dict[str, Any]:
     """Render a Bootstrap progress bar.
 
     :param label:

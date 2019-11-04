@@ -1,8 +1,11 @@
 import re
 from itertools import chain
+from typing import Any
 
 from django.conf.urls import url
 from django.http import Http404
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 
@@ -16,7 +19,6 @@ from ocfweb.docs.views.index import docs_index
 from ocfweb.docs.views.lab import lab
 from ocfweb.docs.views.officers import officers
 from ocfweb.docs.views.servers import servers
-
 
 DOCS = {
     doc.name: doc
@@ -40,7 +42,7 @@ REDIRECTS = {
 }
 
 
-def render_doc(request, doc_name):
+def render_doc(request: Any, doc_name: str) -> HttpResponse:
     """Render a document given a request."""
     doc = DOCS['/' + doc_name]
     if not doc:
@@ -48,13 +50,13 @@ def render_doc(request, doc_name):
     return doc.render(doc, request)
 
 
-def send_redirect(request, redir_src):
+def send_redirect(request: Any, redir_src: str) -> HttpResponseRedirect:
     """Send a redirect to the actual document given the redirecting page."""
     redir_dest = REDIRECTS['/' + redir_src]
     return redirect(reverse('doc', args=(redir_dest,)), permanent=True)
 
 
-def doc_name(doc_name):
+def doc_name(doc_name: str) -> str:
     # we can't actually deal with escaping into a regex, so we just use a whitelist
     assert re.match(r'^/[a-zA-Z0-9\-/]+$', doc_name), 'Bad document name: ' + doc_name
     return doc_name[1:].replace('-', '\\-')
