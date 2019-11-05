@@ -7,6 +7,7 @@ from typing import Callable
 from typing import Tuple
 
 from cached_property import cached_property
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.templatetags.static import static
@@ -52,7 +53,7 @@ def announcement(title: str, date: date, path: str) -> Callable[[Any], Any]:
     return wrapper
 
 
-def index(request: Any) -> HttpResponse:
+def index(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'announcements/index.html',
@@ -74,7 +75,7 @@ def index(request: Any) -> HttpResponse:
     date(2016, 5, 12),
     'ocf-eff-alliance',
 )
-def eff_alliance(title: str, request: Any) -> HttpResponse:
+def eff_alliance(title: str, request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'announcements/2016-05-12-ocf-eff-alliance.html',
@@ -89,7 +90,7 @@ def eff_alliance(title: str, request: Any) -> HttpResponse:
     date(2016, 4, 1),
     'renaming-ocf',
 )
-def renaming_announcement(title: str, request: Any) -> HttpResponse:
+def renaming_announcement(title: str, request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'announcements/2016-04-01-renaming.html',
@@ -110,7 +111,7 @@ def renaming_announcement(title: str, request: Any) -> HttpResponse:
     date(2016, 2, 9),
     'printing',
 )
-def printing_announcement(title: str, request: Any) -> HttpResponse:
+def printing_announcement(title: str, request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'announcements/2016-02-09-printing.html',
@@ -125,7 +126,7 @@ def printing_announcement(title: str, request: Any) -> HttpResponse:
     date(2017, 3, 1),
     'hpc-survey',
 )
-def hpc_survey(title: str, request: Any) -> HttpResponse:
+def hpc_survey(title: str, request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'announcements/2017-03-01-hpc-survey.html',
@@ -140,7 +141,7 @@ def hpc_survey(title: str, request: Any) -> HttpResponse:
     date(2017, 3, 20),
     'hiring-2017',
 )
-def hiring_2017(title: str, request: Any) -> HttpResponse:
+def hiring_2017(title: str, request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'announcements/2017-03-20-hiring.html',
@@ -155,7 +156,7 @@ def hiring_2017(title: str, request: Any) -> HttpResponse:
     date(2018, 10, 30),
     'hiring-2018',
 )
-def hiring_2018(title: str, request: Any) -> HttpResponse:
+def hiring_2018(title: str, request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'announcements/2018-10-30-hiring.html',

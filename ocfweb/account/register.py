@@ -8,6 +8,7 @@ import ocflib.ucb.directory as directory
 from Crypto.PublicKey import RSA
 from django import forms
 from django.core.exceptions import NON_FIELD_ERRORS
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponseRedirect
@@ -33,7 +34,7 @@ from ocfweb.component.forms import wrap_validator
 
 
 @calnet_required
-def request_account(request: Any) -> Union[HttpResponseRedirect, HttpResponse]:
+def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpResponse]:
     calnet_uid = request.session['calnet_uid']
     status = 'new_request'
 
@@ -118,7 +119,7 @@ def request_account(request: Any) -> Union[HttpResponseRedirect, HttpResponse]:
     )
 
 
-def recommend(request: Any) -> Union[JsonResponse, HttpResponseBadRequest]:
+def recommend(request: HttpRequest) -> Union[JsonResponse, HttpResponseBadRequest]:
     real_name = request.GET.get('real_name', None)
     if real_name is None:
         return HttpResponseBadRequest('No real_name in recommend request')
@@ -131,7 +132,7 @@ def recommend(request: Any) -> Union[JsonResponse, HttpResponseBadRequest]:
     )
 
 
-def validate(request: Any) -> Union[HttpResponseBadRequest, JsonResponse]:
+def validate(request: HttpRequest) -> Union[HttpResponseBadRequest, JsonResponse]:
     real_name = request.GET.get('real_name', None)
     if real_name is None:
         return HttpResponseBadRequest('No real_name in validate request')
@@ -153,7 +154,7 @@ def validate(request: Any) -> Union[HttpResponseBadRequest, JsonResponse]:
         })
 
 
-def wait_for_account(request: Any) -> Union[HttpResponse, HttpResponseRedirect]:
+def wait_for_account(request: HttpRequest) -> Union[HttpResponse, HttpResponseRedirect]:
     if 'approve_task_id' not in request.session:
         return render(
             request,
@@ -184,11 +185,11 @@ def wait_for_account(request: Any) -> Union[HttpResponse, HttpResponseRedirect]:
     return render(request, 'account/register/wait/error-probably-not-created.html', {})
 
 
-def account_pending(request: Any) -> HttpResponse:
+def account_pending(request: HttpRequest) -> HttpResponse:
     return render(request, 'account/register/pending.html', {'title': 'Account request pending'})
 
 
-def account_created(request: Any) -> HttpResponse:
+def account_created(request: HttpRequest) -> HttpResponse:
     return render(request, 'account/register/success.html', {'title': 'Account request successful'})
 
 

@@ -12,6 +12,7 @@ from typing import Tuple
 
 from django.conf import settings
 from django.contrib import messages
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
@@ -48,7 +49,7 @@ class InvalidEmailError(ValueError):
 
 @login_required
 @group_account_required
-def vhost_mail(request: Any) -> HttpResponse:
+def vhost_mail(request: HttpRequest) -> HttpResponse:
     user = logged_in_user(request)
     vhosts = []
 
@@ -75,7 +76,7 @@ def vhost_mail(request: Any) -> HttpResponse:
 @login_required
 @group_account_required
 @require_POST
-def vhost_mail_update(request: Any) -> HttpResponseRedirect:
+def vhost_mail_update(request: HttpRequest) -> HttpResponseRedirect:
     user = logged_in_user(request)
 
     # All requests are required to have these
@@ -144,7 +145,7 @@ def vhost_mail_update(request: Any) -> HttpResponseRedirect:
 
 @login_required
 @group_account_required
-def vhost_mail_csv_export(request: Any, domain: str) -> HttpResponse:
+def vhost_mail_csv_export(request: HttpRequest, domain: str) -> HttpResponse:
     user = logged_in_user(request)
     vhost = _get_vhost(user, domain)
     if not vhost:
@@ -168,7 +169,7 @@ def vhost_mail_csv_export(request: Any, domain: str) -> HttpResponse:
 @login_required
 @group_account_required
 @require_POST
-def vhost_mail_csv_import(request: Any, domain: str) -> HttpResponseRedirect:
+def vhost_mail_csv_import(request: HttpRequest, domain: str) -> HttpResponseRedirect:
     user = logged_in_user(request)
     vhost = _get_vhost(user, domain)
     if not vhost:
@@ -225,10 +226,10 @@ def _write_csv(addresses: Generator[Any, None, None]) -> Any:
     return buf.getvalue()
 
 
-def _parse_csv(request: Any, domain: str) -> Dict[str, Any]:
+def _parse_csv(request: HttpRequest, domain: str) -> Dict[str, Any]:
     """Parse, validate, and return addresses from the file uploaded
     with the CSV upload button/form."""
-    csv_file = request.FILES.get('csv_file')
+    csv_file: Any = request.FILES.get('csv_file')
     if not csv_file:
         _error(request, 'Missing CSV file!')
 
@@ -276,7 +277,7 @@ def _parse_csv_forward_addrs(string: str) -> Collection[Any]:
     return frozenset(to_addrs)
 
 
-def _error(request: Any, msg: str) -> None:
+def _error(request: HttpRequest, msg: str) -> None:
     messages.add_message(request, messages.ERROR, msg)
     raise ResponseException(_redirect_back())
 
@@ -285,7 +286,7 @@ def _redirect_back() -> Any:
     return redirect(reverse('vhost_mail'))
 
 
-def _get_action(request: Any) -> Optional[Any]:
+def _get_action(request: HttpRequest) -> Optional[Any]:
     action = request.POST.get('action')
     if action not in {'add', 'update', 'delete'}:
         _error(request, f'Invalid action: "{action}"')
@@ -314,7 +315,7 @@ def _parse_addr(addr: str, allow_wildcard: bool = False) -> Optional[Tuple[str, 
     return None
 
 
-def _get_addr(request: Any, user: Any, field: str, required: bool = True) -> Optional[Tuple[Any, Any, Any]]:
+def _get_addr(request: HttpRequest, user: Any, field: str, required: bool = True) -> Optional[Tuple[Any, Any, Any]]:
     original = request.POST.get(field)
     if original is not None:
         addr = original.strip()
@@ -336,7 +337,7 @@ def _get_addr(request: Any, user: Any, field: str, required: bool = True) -> Opt
     return None
 
 
-def _get_forward_to(request: Any) -> Optional[Collection[Any]]:
+def _get_forward_to(request: HttpRequest) -> Optional[Collection[Any]]:
     forward_to = request.POST.get('forward_to')
 
     if forward_to is None:
@@ -359,7 +360,7 @@ def _get_forward_to(request: Any) -> Optional[Collection[Any]]:
     return frozenset(parsed_addrs)
 
 
-def _get_password(request: Any, addr_name: Optional[str]) -> Any:
+def _get_password(request: HttpRequest, addr_name: Optional[str]) -> Any:
     # If addr_name is None, then this is a wildcard address, and those can't
     # have passwords.
     if addr_name is None:

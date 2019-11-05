@@ -8,6 +8,7 @@ from typing import Callable
 from typing import Optional
 from typing import Tuple
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -50,7 +51,7 @@ def canonical_graph(
                               (default: current_start_end)
     """
     def decorator(fn: Callable[[Any, date, date], Any]) -> Callable[[Any], Any]:
-        def wrapper(request: Any) -> Any:
+        def wrapper(request: HttpRequest) -> Any:
             def _day_from_params(param: str, default: date) -> date:
                 try:
                     return datetime.strptime(request.GET.get(param, ''), '%Y-%m-%d').date()

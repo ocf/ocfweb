@@ -3,6 +3,7 @@ from typing import Any
 from typing import Optional
 from typing import Tuple
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.misc.validators import host_exists
@@ -199,7 +200,7 @@ def _get_servers() -> Tuple[Any, ...]:
     )
 
 
-def buster_upgrade(doc: Document, request: Any) -> HttpResponse:
+def buster_upgrade(doc: Document, request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'docs/buster_upgrade.html',

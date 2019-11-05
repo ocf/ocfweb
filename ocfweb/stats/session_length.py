@@ -5,6 +5,7 @@ from datetime import timedelta
 from typing import Any
 from typing import Tuple
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from matplotlib.figure import Figure
 from ocflib.lab.stats import get_connection
@@ -32,7 +33,7 @@ def _todays_session_image() -> HttpResponse:
     hot_path=_todays_session_image,
     default_start_end=current_start_end,
 )
-def session_length_image(request: Any, start_day: datetime, end_day: datetime) -> HttpResponse:
+def session_length_image(request: HttpRequest, start_day: datetime, end_day: datetime) -> HttpResponse:
     return _sessions_image(start_day, end_day)
 
 

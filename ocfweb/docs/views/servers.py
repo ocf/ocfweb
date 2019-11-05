@@ -8,6 +8,7 @@ from typing import Tuple
 import dns.resolver
 import requests
 from cached_property import cached_property
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.infra.hosts import hosts_by_filter
@@ -168,7 +169,7 @@ def get_hosts() -> List[Any]:
     return sorted(servers_to_display)
 
 
-def servers(doc: Document, request: Any) -> HttpResponse:
+def servers(doc: Document, request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'docs/servers.html',

@@ -7,6 +7,7 @@ from typing import Union
 import ocflib.account.utils as utils
 import ocflib.account.validators as validators
 from django import forms
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -28,7 +29,7 @@ def _valid_return_path(return_to: str) -> Optional[Match[Any]]:
     )
 
 
-def login(request: Any) -> Union[HttpResponseRedirect, HttpResponse]:
+def login(request: HttpRequest) -> Union[HttpResponseRedirect, HttpResponse]:
     error = None
 
     return_to = request.GET.get('next')
@@ -74,7 +75,7 @@ def login(request: Any) -> Union[HttpResponseRedirect, HttpResponse]:
 
 
 @login_required
-def logout(request: Any) -> Union[HttpResponseRedirect, HttpResponse]:
+def logout(request: HttpRequest) -> Union[HttpResponseRedirect, HttpResponse]:
     return_to = request.GET.get('next')
     if return_to and _valid_return_path(return_to):
         request.session['login_return_path'] = return_to
@@ -98,7 +99,7 @@ def logout(request: Any) -> Union[HttpResponseRedirect, HttpResponse]:
     )
 
 
-def redirect_back(request: Any) -> HttpResponseRedirect:
+def redirect_back(request: HttpRequest) -> HttpResponseRedirect:
     """Return the user to the page they were trying to access, or the home
     page if we don't know what they were trying to access.
     """

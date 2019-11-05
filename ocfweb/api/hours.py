@@ -2,6 +2,7 @@ from datetime import time
 from json import JSONEncoder
 from typing import Any
 
+from django.http import HttpRequest
 from django.http import JsonResponse
 from ocflib.lab.hours import Hour
 from ocflib.lab.hours import HoursListing
@@ -27,7 +28,7 @@ def get_hours_listing() -> HoursListing:
     return read_hours_listing()
 
 
-def get_hours_today(request: Any) -> JsonResponse:
+def get_hours_today(request: HttpRequest) -> JsonResponse:
     return JsonResponse(
         get_hours_listing().hours_on_date(),
         encoder=JSONHoursEncoder,

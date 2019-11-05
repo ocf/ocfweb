@@ -4,6 +4,7 @@ from typing import Sequence
 from typing import Sized
 
 import ocflib.printing.quota as quota
+from django.http import HttpRequest
 from django.http import HttpResponse
 from matplotlib.figure import Figure
 from matplotlib.ticker import MaxNLocator
@@ -16,7 +17,7 @@ from ocfweb.component.graph import plot_to_image_bytes
 
 
 @canonical_graph(default_start_end=semester_dates)
-def weekday_jobs_image(request: Any, start_day: datetime, end_day: datetime) -> HttpResponse:
+def weekday_jobs_image(request: HttpRequest, start_day: datetime, end_day: datetime) -> HttpResponse:
     return HttpResponse(
         plot_to_image_bytes(get_jobs_plot('weekday', start_day, end_day), format='svg'),
         content_type='image/svg+xml',
@@ -24,7 +25,7 @@ def weekday_jobs_image(request: Any, start_day: datetime, end_day: datetime) -> 
 
 
 @canonical_graph(default_start_end=semester_dates)
-def weekend_jobs_image(request: Any, start_day: datetime, end_day: datetime) -> HttpResponse:
+def weekend_jobs_image(request: HttpRequest, start_day: datetime, end_day: datetime) -> HttpResponse:
     return HttpResponse(
         plot_to_image_bytes(get_jobs_plot('weekend', start_day, end_day), format='svg'),
         content_type='image/svg+xml',

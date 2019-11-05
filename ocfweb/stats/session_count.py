@@ -1,8 +1,8 @@
 import time
 from datetime import date
 from datetime import timedelta
-from typing import Any
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from matplotlib.figure import Figure
 from ocflib.lab.stats import get_connection
@@ -21,7 +21,7 @@ def _todays_session_image() -> HttpResponse:
 
 
 @canonical_graph(hot_path=_todays_session_image)
-def session_count_image(request: Any, start_day: date, end_day: date) -> HttpResponse:
+def session_count_image(request: HttpRequest, start_day: date, end_day: date) -> HttpResponse:
     return _sessions_image(start_day, end_day)
 
 

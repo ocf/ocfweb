@@ -1,9 +1,9 @@
 import re
 from itertools import chain
-from typing import Any
 
 from django.conf.urls import url
 from django.http import Http404
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
@@ -42,7 +42,7 @@ REDIRECTS = {
 }
 
 
-def render_doc(request: Any, doc_name: str) -> HttpResponse:
+def render_doc(request: HttpRequest, doc_name: str) -> HttpResponse:
     """Render a document given a request."""
     doc = DOCS['/' + doc_name]
     if not doc:
@@ -50,7 +50,7 @@ def render_doc(request: Any, doc_name: str) -> HttpResponse:
     return doc.render(doc, request)
 
 
-def send_redirect(request: Any, redir_src: str) -> HttpResponseRedirect:
+def send_redirect(request: HttpRequest, redir_src: str) -> HttpResponseRedirect:
     """Send a redirect to the actual document given the redirecting page."""
     redir_dest = REDIRECTS['/' + redir_src]
     return redirect(reverse('doc', args=(redir_dest,)), permanent=True)

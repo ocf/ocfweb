@@ -6,6 +6,7 @@ from typing import Any
 from typing import Dict
 
 from django.conf import settings
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
@@ -30,7 +31,7 @@ get_connection = partial(
 
 @require_POST
 @csrf_exempt
-def log_session(request: Any) -> HttpResponse:
+def log_session(request: HttpRequest) -> HttpResponse:
     """Primary API endpoint for session tracking.
 
     Desktops have a cronjob that calls this endpoint: https://git.io/vpIKX

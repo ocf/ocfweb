@@ -8,6 +8,7 @@ from typing import Dict
 from typing import Iterable
 
 from django.conf import settings
+from django.http import HttpRequest
 from django.http.response import Http404
 from ocflib.misc.mail import send_problem_report
 
@@ -41,10 +42,10 @@ class OcflibErrorMiddleware:
     def __init__(self, get_response: Callable[..., Any]) -> None:
         self.get_response = get_response
 
-    def __call__(self, request: Any) -> Any:
+    def __call__(self, request: HttpRequest) -> Any:
         return self.get_response(request)
 
-    def process_exception(self, request: Any, exception: Exception) -> Any:
+    def process_exception(self, request: HttpRequest, exception: Exception) -> Any:
         if isinstance(exception, ResponseException):
             return exception.response
 

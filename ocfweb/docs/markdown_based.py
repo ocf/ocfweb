@@ -20,6 +20,7 @@ from typing import Dict
 from typing import Generator
 
 from django.conf import settings
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -30,7 +31,9 @@ from ocfweb.docs.doc import Document
 DOCS_DIR = Path(__file__).parent.joinpath('docs')
 
 
-def render_markdown_doc(path: Path, meta: Dict[str, Any], text: str, doc: Document, request: Any) -> HttpResponse:
+def render_markdown_doc(
+    path: Path, meta: Dict[str, Any], text: str, doc: Document, request: HttpRequest,
+) -> HttpResponse:
 
     # Reload markdown docs if in development
     if settings.DEBUG:

@@ -1,6 +1,7 @@
 from typing import Any
 from typing import List
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.lab.stats import current_semester_start
@@ -21,7 +22,7 @@ def top_staff_semester() -> List[Any]:
     return real_top_staff_semester()
 
 
-def session_stats(request: Any) -> HttpResponse:
+def session_stats(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'stats/session_stats.html',

@@ -2,6 +2,7 @@ from typing import Any
 from typing import List
 from typing import Set
 
+from django.http import HttpRequest
 from django.http import JsonResponse
 from ocflib.infra.hosts import hostname_from_domain
 from ocflib.lab.stats import get_connection
@@ -31,7 +32,7 @@ def _get_desktops_in_use() -> Set[Any]:
     return {hostname_from_domain(session['host']) for session in c}
 
 
-def desktop_usage(request: Any) -> JsonResponse:
+def desktop_usage(request: HttpRequest) -> JsonResponse:
     public_desktops = _list_public_desktops()
 
     desktops_in_use = _get_desktops_in_use()

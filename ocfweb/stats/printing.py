@@ -7,6 +7,7 @@ from typing import Any
 from typing import Dict
 from typing import List
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from matplotlib.figure import Figure
@@ -22,7 +23,7 @@ ALL_PRINTERS = ('papercut', 'pagefault', 'logjam', 'logjam-old', 'deforestation'
 ACTIVE_PRINTERS = ('papercut', 'pagefault', 'logjam')
 
 
-def stats_printing(request: Any) -> HttpResponse:
+def stats_printing(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'stats/printing.html',
@@ -39,7 +40,7 @@ def stats_printing(request: Any) -> HttpResponse:
     )
 
 
-def semester_histogram(request: Any) -> HttpResponse:
+def semester_histogram(request: HttpRequest) -> HttpResponse:
     return HttpResponse(
         plot_to_image_bytes(_semester_histogram(), format='svg'),
         content_type='image/svg+xml',
@@ -209,7 +210,7 @@ def _pages_printed_data() -> List[Any]:
     ]
 
 
-def pages_printed(request: Any) -> HttpResponse:
+def pages_printed(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'stats/printing/pages-printed.html',

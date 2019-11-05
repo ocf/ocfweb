@@ -6,6 +6,7 @@ from typing import Optional
 
 import numpy as np
 import ocflib.printing.quota as quota
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -32,7 +33,7 @@ def _jobs_graph_image(day: Optional[date] = None) -> HttpResponse:
     )
 
 
-def daily_jobs_image(request: Any) -> Any:
+def daily_jobs_image(request: HttpRequest) -> Any:
     try:
         day = datetime.strptime(request.GET.get('date', ''), '%Y-%m-%d').date()
     except ValueError:

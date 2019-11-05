@@ -1,8 +1,8 @@
 from datetime import date
 from datetime import timedelta
 from operator import attrgetter
-from typing import Any
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
@@ -19,7 +19,7 @@ def get_staff_hours() -> str:
     return get_staff_hours_soonest_first()[:2]
 
 
-def home(request: Any) -> HttpResponse:
+def home(request: HttpRequest) -> HttpResponse:
     hours_listing = get_hours_listing()
     hours = [
         (

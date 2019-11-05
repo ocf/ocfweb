@@ -1,10 +1,9 @@
-from typing import Any
-
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 
 
-def lab_open_source(request: Any) -> HttpResponse:
+def lab_open_source(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'about/lab-open-source.html',
@@ -14,7 +13,7 @@ def lab_open_source(request: Any) -> HttpResponse:
     )
 
 
-def lab_vote(request: Any) -> HttpResponse:
+def lab_vote(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'about/lab-vote.html',

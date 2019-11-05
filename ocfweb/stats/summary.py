@@ -6,6 +6,7 @@ from typing import Any
 from typing import Callable
 from typing import List
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.lab.stats import current_semester_start
@@ -91,7 +92,7 @@ def printers() -> List[Any]:
     )
 
 
-def summary(request: Any) -> HttpResponse:
+def summary(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'stats/summary.html',

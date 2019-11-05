@@ -8,6 +8,7 @@ from typing import Optional
 from typing import Tuple
 from typing import Union
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.account.search import user_attrs
@@ -241,7 +242,7 @@ def _bod_terms() -> List[Any]:
     ]
 
 
-def officers(doc: Any, request: Any) -> HttpResponse:
+def officers(doc: Any, request: HttpRequest) -> HttpResponse:
     terms = _bod_terms()
     return render(
         request,

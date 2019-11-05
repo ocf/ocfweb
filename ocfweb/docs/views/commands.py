@@ -1,7 +1,7 @@
-from typing import Any
 from typing import NamedTuple
 from typing import Optional
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -84,7 +84,7 @@ FILE_COMMANDS = [
 ]
 
 
-def commands(doc: Document, request: Any) -> HttpResponse:
+def commands(doc: Document, request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'docs/commands.html',

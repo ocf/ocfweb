@@ -6,12 +6,13 @@ from urllib.parse import urljoin
 
 import ocflib.ucb.cas as cas
 from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
 
 
-def _service_url(request: Any, next_page: str) -> str:
+def _service_url(request: HttpRequest, next_page: str) -> str:
     protocol = ('http://', 'https://')[request.is_secure()]
     host = request.get_host()
     service = protocol + host + request.path
@@ -21,7 +22,7 @@ def _service_url(request: Any, next_page: str) -> str:
     return url
 
 
-def _redirect_url(request: Any) -> str:
+def _redirect_url(request: HttpRequest) -> Optional[Any]:
     """ Redirects to referring page """
     next_page = request.META.get('HTTP_REFERER')
     prefix = ('http://', 'https://')[request.is_secure()] + request.get_host()
@@ -40,7 +41,7 @@ def _login_url(service: str) -> str:
     )
 
 
-def _logout_url(request: Any, next_page: Optional[str] = None) -> str:
+def _logout_url(request: HttpRequest, next_page: Optional[str] = None) -> str:
     url = urljoin(cas.CAS_URL, 'logout')
     if next_page:
         protocol = ('http://', 'https://')[request.is_secure()]
@@ -58,7 +59,7 @@ def _next_page_response(next_page: str) -> Union[HttpResponse, HttpResponseRedir
         )
 
 
-def login(request: Any, next_page: Optional[str] = None) -> HttpResponse:
+def login(request: HttpRequest, next_page: Any = None) -> HttpResponse:
     next_page = request.GET.get(REDIRECT_FIELD_NAME)
     if not next_page:
         next_page = _redirect_url(request)
@@ -80,7 +81,7 @@ def login(request: Any, next_page: Optional[str] = None) -> HttpResponse:
     return HttpResponseRedirect(_login_url(service))
 
 
-def logout(request: Any, next_page: Optional[str] = None) -> Union[HttpResponse, HttpResponseRedirect]:
+def logout(request: HttpRequest, next_page: Optional[str] = None) -> Union[HttpResponse, HttpResponseRedirect]:
     if 'calnet_uid' in request.session:
         del request.session['calnet_uid']
     if not next_page:

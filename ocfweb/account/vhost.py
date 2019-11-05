@@ -6,6 +6,7 @@ from typing import Any
 
 from django import forms
 from django.conf import settings
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -36,7 +37,7 @@ def valid_domain_external(domain: str) -> bool:
 
 
 @login_required
-def request_vhost(request: Any) -> HttpResponse:
+def request_vhost(request: HttpRequest) -> HttpResponse:
     user = logged_in_user(request)
     attrs = user_attrs(user)
     is_group = 'callinkOid' in attrs
@@ -139,7 +140,9 @@ def request_vhost(request: Any) -> HttpResponse:
                 else:
                     return redirect(reverse('request_vhost_success'))
     else:
-        form = VirtualHostForm(is_group, initial={'requested_subdomain': user + '.berkeley.edu'})
+        # Unsupported left operand type for + ("None") because form might not have been instantiated at this point...
+        # but this doesn't matter because of if-else clause
+        form = VirtualHostForm(is_group, initial={'requested_subdomain': user + '.berkeley.edu'})  # type: ignore
 
     group_url = f'https://www.ocf.berkeley.edu/~{user}/'
 
@@ -158,7 +161,7 @@ def request_vhost(request: Any) -> HttpResponse:
     )
 
 
-def request_vhost_success(request: Any) -> HttpResponse:
+def request_vhost_success(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'account/vhost/success.html',

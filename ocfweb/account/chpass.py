@@ -3,6 +3,7 @@ from typing import Iterator
 from typing import List
 
 from django import forms
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
@@ -55,7 +56,7 @@ def get_accounts_for(calnet_uid: str) -> List[Any]:
 
 
 @calnet_required
-def change_password(request: Any) -> HttpResponse:
+def change_password(request: HttpRequest) -> HttpResponse:
     calnet_uid = request.session['calnet_uid']
     error = None
     accounts = get_accounts_for(calnet_uid)
