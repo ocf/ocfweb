@@ -90,9 +90,6 @@ def _toner_used_by_printer(printer: str, cutoff: float = .05, since: date = stat
     count diffs that are smaller than a cutoff which empirically seems to be
     more accurate.
     """
-    # if not since:
-    #     since = stats.current_semester_start()
-
     with stats.get_connection() as cursor:
         cursor.execute(
             '''

@@ -81,7 +81,7 @@ def vhost_mail_update(request: HttpRequest) -> HttpResponseRedirect:
 
     # All requests are required to have these
     action = _get_action(request)
-    # _get_addr should either return a valid tuple or error.
+    # _get_addr should either return a valid tuple or error so it's not necessary to verify the Optional type
     addr_name, addr_domain, addr_vhost = _get_addr(request, user, 'addr', required=True)  # type: ignore
     addr = (addr_name or '') + '@' + addr_domain
 

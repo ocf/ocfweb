@@ -78,8 +78,7 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
         default = 3
         return (ranking.get(self.type, default), self.type, self.hostname)
 
-    # Incompable with supertype tuple
-    def __lt__(self: Any, other_host: Any) -> bool:  # type: ignore
+    def __lt__(self: Any, other_host: Any) -> bool:
         return self.__key() < other_host.__key()
 
 

@@ -255,7 +255,7 @@ class ApproveForm(Form):
                 raise forms.ValidationError("Your emails don't match.")
         return verify_contact_email
 
-    # clean incompatible with supertype BaseForm which is defined in django. Might want to look into this one
+    # clean incompatible with supertype BaseForm which is defined in django.
     def clean(self) -> None:  # type: ignore
         cleaned_data = super().clean()
 
