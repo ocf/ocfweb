@@ -2,7 +2,7 @@
 
 
 These are the official **Bylaws of the Open Computing Facility**, as last
-amended at the Board meeting of February 26, 2018.
+amended at the Board meeting of November 4, 2019.
 
 1. [Repealed]
 
@@ -26,8 +26,9 @@ amended at the Board meeting of February 26, 2018.
 6. Attendance lists and minutes for all OCF meetings shall be maintained for
    the decisions of that meeting to be valid.
 
-7. BoD appointments will take effect at 12:00 midnight after the conclusion of
-   the meeting at which the appointment took place.
+7. BoD appointments, resignations, and removals will take effect at 12:00
+   midnight after the conclusion of the meeting at which the appointment took
+   place.
 
 8. [Repealed]
 
@@ -93,14 +94,16 @@ amended at the Board meeting of February 26, 2018.
 14. Any non-Director member who attends a Board meeting can request to be
     appointed as a Director at that meeting. In that case, they shall be
     automatically appointed unless at the same meeting a Director moves for a
-    vote on their appointment, in which case the candidate will be appointed if
-    not more than three-fifths of Directors present vote against their
+    vote on their appointment, in which case the candidate will be appointed
+    unless more than three-fifths of Directors present vote against their
     appointment.
 
-    Directors not in good standing shall be disqualified from the Board until
-    they are in good standing again.
-
 15. The Board of Directors may select and recall a Faculty Sponsor for the OCF.
+
+16. During the final meeting of each Fall and Spring semester, each Director
+    will be asked to confirm their ability to serve as a Director during the
+    following Fall semester or Spring semester. Directors who do not confirm or
+    are not present will be removed from the Board.
 
 Bylaws 1–4 amended at the general meeting of March 21, 2008. Bylaws 5–6 from
 the revision of the bylaws last amended February 7, 1995. Bylaw 8 added at the
@@ -110,4 +113,6 @@ Bylaw 7 amended at the Board meeting of October 31, 2016. Bylaws 1 and 8
 repealed, bylaw 7 amended, and bylaw 15 added at the general meeting of
 November 14, 2016. Bylaws 13.2, 11.3, 12.3 amended, and bylaws 10.4 and 10.5
 added at the Board meeting of March 6, 2017. Bylaws 13.2 and 13.3 repealed and
-Bylaw 14 amended at the Board meeting of August 28, 2017. Bylaws 9.1 and 13.1 amended at the Board meeting of February 26, 2018.
+Bylaw 14 amended at the Board meeting of August 28, 2017. Bylaws 9.1 and 13.1
+amended at the Board meeting of February 26, 2018. Bylaws 7 and 14 amended and
+bylaw 16 added at the Board meeting of November 4, 2019.
