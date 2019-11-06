@@ -137,9 +137,6 @@ class ChpassForm(Form):
             label='OCF account',
         )
 
-        # mypy expects fields to be a dict, but it isn't. This is defined in django so it can't be fixed
-        # self.fields.keyOrder = field_order
-
     new_password = forms.CharField(
         widget=forms.PasswordInput,
         label='New password',
