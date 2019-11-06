@@ -21,6 +21,8 @@ from ocfweb.caching import cache
 META_REGEX = re.compile(r'\[\[!meta ([a-z]+)="([^"]*)"\]\]')
 
 # Make mypy play nicely with mixins https://github.com/python/mypy/issues/5837
+# TODO: issue has been resolved in mypy, patch when next version of mypy gets released
+# More info: https://github.com/python/mypy/pull/7860
 
 
 class MixinBase:

@@ -7,6 +7,7 @@ from typing import Any
 from typing import Collection
 from typing import Dict
 from typing import Generator
+from typing import NoReturn
 from typing import Optional
 from typing import Tuple
 
@@ -81,8 +82,10 @@ def vhost_mail_update(request: HttpRequest) -> HttpResponseRedirect:
 
     # All requests are required to have these
     action = _get_action(request)
-    # _get_addr should either return a valid tuple or error so it's not necessary to verify the Optional type
-    addr_name, addr_domain, addr_vhost = _get_addr(request, user, 'addr', required=True)  # type: ignore
+    # _get_addr may return None, but never with this particular call
+    addr_info = _get_addr(request, user, 'addr', required=True)
+    assert addr_info is not None
+    addr_name, addr_domain, addr_vhost = addr_info
     addr = (addr_name or '') + '@' + addr_domain
 
     # These fields are optional; some might be None
@@ -277,7 +280,7 @@ def _parse_csv_forward_addrs(string: str) -> Collection[Any]:
     return frozenset(to_addrs)
 
 
-def _error(request: HttpRequest, msg: str) -> None:
+def _error(request: HttpRequest, msg: str) -> NoReturn:
     messages.add_message(request, messages.ERROR, msg)
     raise ResponseException(_redirect_back())
 
@@ -286,7 +289,7 @@ def _redirect_back() -> Any:
     return redirect(reverse('vhost_mail'))
 
 
-def _get_action(request: HttpRequest) -> Optional[Any]:
+def _get_action(request: HttpRequest) -> Any:
     action = request.POST.get('action')
     if action not in {'add', 'update', 'delete'}:
         _error(request, f'Invalid action: "{action}"')

@@ -12,7 +12,7 @@ from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
 
 
-def _service_url(request: HttpRequest, next_page: str) -> str:
+def _service_url(request: HttpRequest, next_page: Optional[str]) -> str:
     protocol = ('http://', 'https://')[request.is_secure()]
     host = request.get_host()
     service = protocol + host + request.path
@@ -50,7 +50,7 @@ def _logout_url(request: HttpRequest, next_page: Optional[str] = None) -> str:
     return url
 
 
-def _next_page_response(next_page: str) -> Union[HttpResponse, HttpResponseRedirect]:
+def _next_page_response(next_page: Optional[str]) -> Union[HttpResponse, HttpResponseRedirect]:
     if next_page:
         return HttpResponseRedirect(next_page)
     else:

@@ -122,6 +122,12 @@ def change_password(request: HttpRequest) -> HttpResponse:
 
 
 class ChpassForm(Form):
+    # fix self.fields.keyOrder type error in mypy
+    field_order = [
+        'ocf_account',
+        'new_password',
+        'confirm_password',
+    ]
 
     def __init__(self, ocf_accounts: List[str], calnet_uid: str, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -132,11 +138,7 @@ class ChpassForm(Form):
         )
 
         # mypy expects fields to be a dict, but it isn't. This is defined in django so it can't be fixed
-        self.fields.keyOrder = [  # type: ignore
-            'ocf_account',
-            'new_password',
-            'confirm_password',
-        ]
+        # self.fields.keyOrder = field_order
 
     new_password = forms.CharField(
         widget=forms.PasswordInput,
