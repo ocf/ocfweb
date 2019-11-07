@@ -1,4 +1,3 @@
-from typing import Any
 from typing import Union
 
 import ocflib.account.search as search
@@ -65,7 +64,7 @@ def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpRes
     real_name = directory.name_by_calnet_uid(calnet_uid)
 
     if request.method == 'POST':
-        form: Any = ApproveForm(request.POST)
+        form = ApproveForm(request.POST)
         if form.is_valid():
             req = NewAccountRequest(
                 user_name=form.cleaned_data['ocf_login_name'],
