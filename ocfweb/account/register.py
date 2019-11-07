@@ -1,3 +1,4 @@
+from typing import Any
 from typing import Union
 
 import ocflib.account.search as search
@@ -64,7 +65,7 @@ def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpRes
     real_name = directory.name_by_calnet_uid(calnet_uid)
 
     if request.method == 'POST':
-        form = ApproveForm(request.POST)
+        form: Any = ApproveForm(request.POST)
         if form.is_valid():
             req = NewAccountRequest(
                 user_name=form.cleaned_data['ocf_login_name'],
@@ -90,10 +91,10 @@ def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpRes
             if isinstance(task.result, NewAccountResponse):
                 if task.result.status == NewAccountResponse.REJECTED:
                     status = 'has_errors'
-                    form.add_error('NON_FIELD_ERRORS', task.result.errors)
+                    form.add_error(None, task.result.errors)
                 elif task.result.status == NewAccountResponse.FLAGGED:
                     status = 'has_warnings'
-                    form.add_error('NON_FIELD_ERRORS', task.result.errors)
+                    form.add_error(None, task.result.errors)
                 elif task.result.status == NewAccountResponse.PENDING:
                     return HttpResponseRedirect(reverse('account_pending'))
                 else:
