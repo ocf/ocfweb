@@ -2,6 +2,8 @@ from datetime import date
 from datetime import timedelta
 from operator import attrgetter
 
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
 
@@ -13,11 +15,11 @@ from ocfweb.component.lab_status import get_lab_status
 
 
 @periodic(60, ttl=86400)
-def get_staff_hours():
+def get_staff_hours() -> str:
     return get_staff_hours_soonest_first()[:2]
 
 
-def home(request):
+def home(request: HttpRequest) -> HttpResponse:
     hours_listing = get_hours_listing()
     hours = [
         (

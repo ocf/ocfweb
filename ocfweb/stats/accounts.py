@@ -2,7 +2,14 @@ import time
 from collections import defaultdict
 from datetime import date
 from datetime import timedelta
+from typing import Any
+from typing import DefaultDict
+from typing import Dict
+from typing import Hashable
+from typing import List
 
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.infra.ldap import ldap_ocf
 from ocflib.infra.ldap import OCF_LDAP_PEOPLE
@@ -10,7 +17,7 @@ from ocflib.infra.ldap import OCF_LDAP_PEOPLE
 from ocfweb.caching import cache
 
 
-def stats_accounts(request):
+def stats_accounts(request: HttpRequest) -> HttpResponse:
     account_data = _get_account_stats()
     return render(
         request,
@@ -38,7 +45,7 @@ def stats_accounts(request):
 
 
 @cache(ttl=600)
-def _get_account_stats():
+def _get_account_stats() -> Dict[str, List[Any]]:
     with ldap_ocf() as c:
         c.search(OCF_LDAP_PEOPLE, '(cn=*)', attributes=['creationTime', 'uidNumber', 'callinkOid'])
         response = c.response
@@ -48,8 +55,8 @@ def _get_account_stats():
     start_date = date(1995, 8, 21)
     last_creation_time = start_date
     sorted_accounts = sorted(response, key=lambda record: record['attributes']['uidNumber'])
-    counts = defaultdict(int)
-    group_counts = defaultdict(int)
+    counts: DefaultDict[Hashable, int] = defaultdict(int)
+    group_counts: DefaultDict[Hashable, int] = defaultdict(int)
 
     for account in sorted_accounts:
         creation_time = account['attributes'].get('creationTime', None)

@@ -2,6 +2,7 @@ import time
 from datetime import date
 from datetime import timedelta
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from matplotlib.figure import Figure
 from ocflib.lab.stats import get_connection
@@ -11,28 +12,27 @@ from ocfweb.component.graph import canonical_graph
 from ocfweb.component.graph import current_start_end
 from ocfweb.component.graph import plot_to_image_bytes
 
-
 ONE_DAY = timedelta(days=1)
 
 
 @periodic(60)
-def _todays_session_image():
+def _todays_session_image() -> HttpResponse:
     return _sessions_image(*current_start_end())
 
 
 @canonical_graph(hot_path=_todays_session_image)
-def session_count_image(request, start_day, end_day):
+def session_count_image(request: HttpRequest, start_day: date, end_day: date) -> HttpResponse:
     return _sessions_image(start_day, end_day)
 
 
-def _sessions_image(start_day, end_day):
+def _sessions_image(start_day: date, end_day: date) -> HttpResponse:
     return HttpResponse(
         plot_to_image_bytes(get_sessions_plot(start_day, end_day), format='svg'),
         content_type='image/svg+xml',
     )
 
 
-def get_sessions_plot(start_day, end_day):
+def get_sessions_plot(start_day: date, end_day: date) -> Figure:
     """Return matplotlib plot representing unique sessions between start and
     end day.."""
 

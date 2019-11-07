@@ -1,8 +1,12 @@
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 
+from ocfweb.docs.doc import Document
 
-def hosting_badges(doc, request):
+
+def hosting_badges(doc: Document, request: HttpRequest) -> HttpResponse:
     badges = [
         (name, request.build_absolute_uri(reverse('hosting-logo', args=(name,))))
         for name in [

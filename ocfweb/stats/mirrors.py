@@ -1,5 +1,9 @@
 from datetime import date
+from typing import Any
+from typing import Tuple
 
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.lab.stats import bandwidth_by_dist
 from ocflib.lab.stats import current_semester_start
@@ -10,7 +14,7 @@ from ocfweb.caching import periodic
 MIRRORS_EPOCH = date(2017, 1, 1)
 
 
-def stats_mirrors(request):
+def stats_mirrors(request: HttpRequest) -> HttpResponse:
 
     semester_total, semester_dists = bandwidth_semester()
     all_time_total, all_time_dists = bandwidth_all_time()
@@ -30,7 +34,7 @@ def stats_mirrors(request):
 
 
 @periodic(86400)
-def bandwidth_semester():
+def bandwidth_semester() -> Tuple[Any, Any]:
 
     data = bandwidth_by_dist(current_semester_start())
 
@@ -41,7 +45,7 @@ def bandwidth_semester():
 
 
 @periodic(86400)
-def bandwidth_all_time():
+def bandwidth_all_time() -> Tuple[Any, Any]:
 
     data = bandwidth_by_dist(MIRRORS_EPOCH)
 

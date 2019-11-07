@@ -12,6 +12,8 @@ import time
 from argparse import ArgumentParser
 from textwrap import dedent
 from traceback import format_exc
+from typing import Any
+from typing import Optional
 
 from django.conf import settings
 from ocflib.misc.mail import send_problem_report
@@ -21,17 +23,16 @@ from ocflib.misc.shell import yellow
 
 from ocfweb.caching import periodic_functions
 
-
 _logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 # seconds to pause worker after encountering an error
 DELAY_ON_ERROR_MIN = 30
 DELAY_ON_ERROR_MAX = 1800  # 30 minutes
-delay_on_error = DELAY_ON_ERROR_MIN
+delay_on_error: float = DELAY_ON_ERROR_MIN
 
 
-def run_periodic_functions():
+def run_periodic_functions() -> None:
     global delay_on_error
 
     # First, import urls so that views are imported, decorators are run, and
@@ -99,7 +100,7 @@ def run_periodic_functions():
         delay_on_error = max(DELAY_ON_ERROR_MIN, delay_on_error / 2)
 
 
-def main(argv=None):
+def main(argv: Optional[Any] = None) -> int:
     os.environ['DJANGO_SETTINGS_MODULE'] = 'ocfweb.settings'
 
     parser = ArgumentParser(description='Run ocfweb periodic functions')
@@ -120,6 +121,8 @@ def main(argv=None):
         while True:
             run_periodic_functions()
             time.sleep(1)
+
+    return 0
 
 
 if __name__ == '__main__':

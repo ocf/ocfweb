@@ -6,7 +6,7 @@ from cached_property import cached_property
 class Document(namedtuple('Document', ['name', 'title', 'render'])):
 
     @cached_property
-    def category(self):
+    def category(self) -> str:
         """Return full category path of the document.
 
         For example, "/" or "/staff/backend/".
@@ -14,7 +14,7 @@ class Document(namedtuple('Document', ['name', 'title', 'render'])):
         return self.name.rsplit('/', 1)[0] + '/'
 
     @cached_property
-    def category_for_sidebar(self):
+    def category_for_sidebar(self) -> str:
         """Return the category to show similar pages for in the sidebar.
 
         If this page isn't at the root category, we just return this page's
@@ -29,7 +29,7 @@ class Document(namedtuple('Document', ['name', 'title', 'render'])):
             return self.category
 
     @cached_property
-    def edit_url(self):
+    def edit_url(self) -> str:
         """Return a GitHub edit URL for this page."""
         return (
             'https://github.com/ocf/ocfweb/edit/master/ocfweb/docs/docs' +
@@ -38,7 +38,7 @@ class Document(namedtuple('Document', ['name', 'title', 'render'])):
         )
 
     @cached_property
-    def history_url(self):
+    def history_url(self) -> str:
         """Return a GitHub history URL for this page."""
         return (
             'https://github.com/ocf/ocfweb/commits/master/ocfweb/docs/docs' +

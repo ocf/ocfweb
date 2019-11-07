@@ -3,7 +3,11 @@ from collections import defaultdict
 from datetime import date
 from datetime import timedelta
 from functools import partial
+from typing import Any
+from typing import Dict
+from typing import List
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from matplotlib.figure import Figure
@@ -15,12 +19,11 @@ from ocflib.printing.quota import SEMESTERLY_QUOTA
 from ocfweb.caching import periodic
 from ocfweb.component.graph import plot_to_image_bytes
 
-
 ALL_PRINTERS = ('papercut', 'pagefault', 'logjam', 'logjam-old', 'deforestation')
 ACTIVE_PRINTERS = ('papercut', 'pagefault', 'logjam')
 
 
-def stats_printing(request):
+def stats_printing(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'stats/printing.html',
@@ -37,7 +40,7 @@ def stats_printing(request):
     )
 
 
-def semester_histogram(request):
+def semester_histogram(request: HttpRequest) -> HttpResponse:
     return HttpResponse(
         plot_to_image_bytes(_semester_histogram(), format='svg'),
         content_type='image/svg+xml',
@@ -45,7 +48,7 @@ def semester_histogram(request):
 
 
 @periodic(300)
-def _semester_histogram():
+def _semester_histogram() -> Figure:
     with get_connection() as c:
         c.execute(
             'SELECT `user`, `semester` FROM `printed` WHERE `semester` > 0',
@@ -66,7 +69,7 @@ def _semester_histogram():
 
 
 @periodic(3600)
-def _toner_changes():
+def _toner_changes() -> List[Any]:
     return [
         (
             printer,
@@ -76,7 +79,7 @@ def _toner_changes():
     ]
 
 
-def _toner_used_by_printer(printer, cutoff=.05, since=None):
+def _toner_used_by_printer(printer: str, cutoff: float = .05, since: date = stats.current_semester_start()) -> float:
     """Returns toner used for a printer since a given date (by default it
     returns toner used for this semester).
 
@@ -87,9 +90,6 @@ def _toner_used_by_printer(printer, cutoff=.05, since=None):
     count diffs that are smaller than a cutoff which empirically seems to be
     more accurate.
     """
-    if not since:
-        since = stats.current_semester_start()
-
     with stats.get_connection() as cursor:
         cursor.execute(
             '''
@@ -143,7 +143,7 @@ def _toner_used_by_printer(printer, cutoff=.05, since=None):
 
 
 @periodic(120)
-def _pages_per_day():
+def _pages_per_day() -> Dict[str, int]:
     with stats.get_connection() as cursor:
         cursor.execute('''
             SELECT max(value) as value, cast(date as date) as date, printer
@@ -155,8 +155,8 @@ def _pages_per_day():
         # Resolves the issue of possible missing dates.
         # defaultdict(lambda: defaultdict(int)) doesn't work due to inability to pickle local objects like lambdas;
         # this effectively does the same thing as that.
-        pages_printed = defaultdict(partial(defaultdict, int))
-        last_seen = {}
+        pages_printed: Dict[Any, Any] = defaultdict(partial(defaultdict, int))
+        last_seen: Dict[Any, Any] = {}
 
         for row in cursor:
             if row['printer'] in last_seen:
@@ -169,7 +169,7 @@ def _pages_per_day():
     return pages_printed
 
 
-def _pages_printed_for_printer(printer, resolution=100):
+def _pages_printed_for_printer(printer: str, resolution: int = 100) -> List[Any]:
     with stats.get_connection() as cursor:
         cursor.execute(
             '''
@@ -196,7 +196,7 @@ def _pages_printed_for_printer(printer, resolution=100):
 
 
 @periodic(3600)
-def _pages_printed_data():
+def _pages_printed_data() -> List[Any]:
     return [
         {
             'name': printer,
@@ -207,7 +207,7 @@ def _pages_printed_data():
     ]
 
 
-def pages_printed(request):
+def pages_printed(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'stats/printing/pages-printed.html',

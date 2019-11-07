@@ -1,4 +1,7 @@
 import json as json_
+from typing import Any
+from typing import Iterable
+from typing import MutableMapping
 
 from django import template
 
@@ -6,7 +9,7 @@ register = template.Library()
 
 
 @register.filter
-def getitem(obj, item):
+def getitem(obj: MutableMapping[Any, Any], item: Any) -> Any:
     """Grab the item from the object.
 
     Example usage:
@@ -16,13 +19,13 @@ def getitem(obj, item):
 
 
 @register.filter
-def sum_values(obj):
+def sum_values(obj: Any) -> Any:
     """Return sum of the object's values."""
     return sum(obj.values())
 
 
 @register.filter
-def sort(items):
+def sort(items: Iterable[Any]) -> Iterable[Any]:
     """Sort items.
 
     Consider using the built-in `dictsort` filter if you're sorting
@@ -35,7 +38,7 @@ def sort(items):
 
 
 @register.filter
-def join(items, s):
+def join(items: Iterable[Any], s: str) -> str:
     """Join items (probably of an array).
 
     Example usage:
@@ -45,5 +48,5 @@ def join(items, s):
 
 
 @register.filter
-def json(obj):
+def json(obj: object) -> str:
     return json_.dumps(obj)

@@ -1,6 +1,8 @@
 from datetime import time
 from json import JSONEncoder
+from typing import Any
 
+from django.http import HttpRequest
 from django.http import JsonResponse
 from ocflib.lab.hours import Hour
 from ocflib.lab.hours import HoursListing
@@ -10,7 +12,7 @@ from ocfweb.caching import periodic
 
 
 class JSONHoursEncoder(JSONEncoder):
-    def default(self, obj):
+    def default(self, obj: Any) -> Any:
         if isinstance(obj, HoursListing):
             return obj.__dict__
         elif isinstance(obj, Hour):
@@ -22,11 +24,11 @@ class JSONHoursEncoder(JSONEncoder):
 
 
 @periodic(60)
-def get_hours_listing():
+def get_hours_listing() -> HoursListing:
     return read_hours_listing()
 
 
-def get_hours_today(request):
+def get_hours_today(request: HttpRequest) -> JsonResponse:
     return JsonResponse(
         get_hours_listing().hours_on_date(),
         encoder=JSONHoursEncoder,

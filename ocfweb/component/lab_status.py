@@ -14,7 +14,7 @@ LabStatus = namedtuple(
 
 
 @periodic(60, ttl=86400)
-def get_lab_status():
+def get_lab_status() -> LabStatus:
     """Get the front page banner message from the default location."""
     with open('/etc/ocf/lab_status.yaml') as f:
         tree = yaml.safe_load(f)

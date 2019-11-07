@@ -1,17 +1,30 @@
 import math
 from collections import namedtuple
 from datetime import date
+from typing import Any
+from typing import Callable
+from typing import List
+from typing import Optional
+from typing import Tuple
+from typing import Union
 
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.account.search import user_attrs
 
 from ocfweb import caching
 
-
 _Term = namedtuple('_Term', ['name', 'gms', 'sms', 'dgms', 'dsms'])
 
 
-def Term(name, gms, sms, dgms=None, dsms=None):
+def Term(
+    name: str,
+    gms: List[Any],
+    sms: List[Any],
+    dgms: Optional[List[Any]] = None,
+    dsms: Optional[List[Any]] = None,
+) -> _Term:
     gms = list(map(Officer.from_uid_or_info, gms))
     sms = list(map(Officer.from_uid_or_info, sms))
     dgms = list(map(Officer.from_uid_or_info, dgms or []))
@@ -22,7 +35,7 @@ def Term(name, gms, sms, dgms=None, dsms=None):
 class Officer(namedtuple('Officer', ['uid', 'name', 'start', 'end', 'acting'])):
 
     @classmethod
-    def from_uid_or_info(cls, uid_or_info):
+    def from_uid_or_info(cls: Callable[..., Any], uid_or_info: Union[Tuple[Any, ...], str]) -> Any:
         if isinstance(uid_or_info, tuple):
             if len(uid_or_info) == 3:
                 uid, start, end = uid_or_info
@@ -40,10 +53,10 @@ class Officer(namedtuple('Officer', ['uid', 'name', 'start', 'end', 'acting'])):
         return cls(uid=uid, name=name, start=start, end=end, acting=acting)
 
     @property
-    def full_term(self):
+    def full_term(self) -> bool:
         return self.start is None and self.end is None
 
-    def __str__(self):
+    def __str__(self) -> str:
         s = f'{self.name} <{self.uid}>'
         if self.acting:
             if self.end is not None and self.end < date(2016, 11, 14):
@@ -77,7 +90,7 @@ MISSING_NAMES = {
 # This function makes approximately five million LDAP queries, so it's
 # important that these terms aren't loaded at import time.
 @caching.periodic(math.inf)
-def _bod_terms():
+def _bod_terms() -> List[Any]:
     return [
         Term(
             'Spring 1989',
@@ -229,7 +242,7 @@ def _bod_terms():
     ]
 
 
-def officers(doc, request):
+def officers(doc: Any, request: HttpRequest) -> HttpResponse:
     terms = _bod_terms()
     return render(
         request,

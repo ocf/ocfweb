@@ -1,7 +1,11 @@
 import time
 from datetime import date
+from datetime import datetime
 from datetime import timedelta
+from typing import Any
+from typing import Tuple
 
+from django.http import HttpRequest
 from django.http import HttpResponse
 from matplotlib.figure import Figure
 from ocflib.lab.stats import get_connection
@@ -10,19 +14,18 @@ from ocfweb.caching import periodic
 from ocfweb.component.graph import canonical_graph
 from ocfweb.component.graph import plot_to_image_bytes
 
-
 DEFAULT_DAYS = 90
 ONE_DAY = timedelta(days=1)
 
 
-def current_start_end():
+def current_start_end() -> Tuple[date, date]:
     """Return current default start and end date."""
     end = date.today()
     return end - timedelta(days=DEFAULT_DAYS), end
 
 
 @periodic(60)
-def _todays_session_image():
+def _todays_session_image() -> HttpResponse:
     return _sessions_image(*current_start_end())
 
 
@@ -30,18 +33,18 @@ def _todays_session_image():
     hot_path=_todays_session_image,
     default_start_end=current_start_end,
 )
-def session_length_image(request, start_day, end_day):
+def session_length_image(request: HttpRequest, start_day: datetime, end_day: datetime) -> HttpResponse:
     return _sessions_image(start_day, end_day)
 
 
-def _sessions_image(start_day, end_day):
+def _sessions_image(start_day: Any, end_day: Any) -> HttpResponse:
     return HttpResponse(
         plot_to_image_bytes(get_sessions_plot(start_day, end_day), format='svg'),
         content_type='image/svg+xml',
     )
 
 
-def get_sessions_plot(start_day, end_day):
+def get_sessions_plot(start_day: datetime, end_day: datetime) -> Figure:
     """Return matplotlib plot representing median session length between start
     and end day.."""
 

@@ -1,10 +1,11 @@
 from textwrap import dedent
 
 from django.conf import settings
+from django.http import HttpRequest
 from django.http import HttpResponse
 
 
-def robots_dot_txt(request):
+def robots_dot_txt(request: HttpRequest) -> HttpResponse:
     """Serve /robots.txt file."""
     if settings.DEBUG:
         resp = """\

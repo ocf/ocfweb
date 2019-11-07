@@ -1,10 +1,13 @@
+from typing import Union
+
 import ocflib.account.search as search
 import ocflib.account.validators as validators
 import ocflib.misc.validators
 import ocflib.ucb.directory as directory
 from Crypto.PublicKey import RSA
 from django import forms
-from django.core.exceptions import NON_FIELD_ERRORS
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
@@ -29,7 +32,7 @@ from ocfweb.component.forms import wrap_validator
 
 
 @calnet_required
-def request_account(request):
+def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpResponse]:
     calnet_uid = request.session['calnet_uid']
     status = 'new_request'
 
@@ -87,10 +90,10 @@ def request_account(request):
             if isinstance(task.result, NewAccountResponse):
                 if task.result.status == NewAccountResponse.REJECTED:
                     status = 'has_errors'
-                    form._errors[NON_FIELD_ERRORS] = form.error_class(task.result.errors)
+                    form.add_error('NON_FIELD_ERRORS', task.result.errors)
                 elif task.result.status == NewAccountResponse.FLAGGED:
                     status = 'has_warnings'
-                    form._errors[NON_FIELD_ERRORS] = form.error_class(task.result.errors)
+                    form.add_error('NON_FIELD_ERRORS', task.result.errors)
                 elif task.result.status == NewAccountResponse.PENDING:
                     return HttpResponseRedirect(reverse('account_pending'))
                 else:
@@ -114,7 +117,7 @@ def request_account(request):
     )
 
 
-def recommend(request):
+def recommend(request: HttpRequest) -> Union[JsonResponse, HttpResponseBadRequest]:
     real_name = request.GET.get('real_name', None)
     if real_name is None:
         return HttpResponseBadRequest('No real_name in recommend request')
@@ -127,7 +130,7 @@ def recommend(request):
     )
 
 
-def validate(request):
+def validate(request: HttpRequest) -> Union[HttpResponseBadRequest, JsonResponse]:
     real_name = request.GET.get('real_name', None)
     if real_name is None:
         return HttpResponseBadRequest('No real_name in validate request')
@@ -149,7 +152,7 @@ def validate(request):
         })
 
 
-def wait_for_account(request):
+def wait_for_account(request: HttpRequest) -> Union[HttpResponse, HttpResponseRedirect]:
     if 'approve_task_id' not in request.session:
         return render(
             request,
@@ -180,11 +183,11 @@ def wait_for_account(request):
     return render(request, 'account/register/wait/error-probably-not-created.html', {})
 
 
-def account_pending(request):
+def account_pending(request: HttpRequest) -> HttpResponse:
     return render(request, 'account/register/pending.html', {'title': 'Account request pending'})
 
 
-def account_created(request):
+def account_created(request: HttpRequest) -> HttpResponse:
     return render(request, 'account/register/success.html', {'title': 'Account request successful'})
 
 
@@ -232,7 +235,7 @@ class ApproveForm(Form):
         },
     )
 
-    def clean_verify_password(self):
+    def clean_verify_password(self) -> str:
         password = self.cleaned_data.get('password')
         verify_password = self.cleaned_data.get('verify_password')
 
@@ -241,7 +244,7 @@ class ApproveForm(Form):
                 raise forms.ValidationError("Your passwords don't match.")
         return verify_password
 
-    def clean_verify_contact_email(self):
+    def clean_verify_contact_email(self) -> str:
         email = self.cleaned_data.get('contact_email')
         verify_contact_email = self.cleaned_data.get('verify_contact_email')
 
@@ -250,7 +253,8 @@ class ApproveForm(Form):
                 raise forms.ValidationError("Your emails don't match.")
         return verify_contact_email
 
-    def clean(self):
+    # clean incompatible with supertype BaseForm which is defined in django.
+    def clean(self) -> None:  # type: ignore
         cleaned_data = super().clean()
 
         # validate password (requires username to check similarity)

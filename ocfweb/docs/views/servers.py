@@ -1,13 +1,20 @@
 import os
 from collections import namedtuple
+from typing import Any
+from typing import Dict
+from typing import List
+from typing import Tuple
 
 import dns.resolver
 import requests
 from cached_property import cached_property
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.infra.hosts import hosts_by_filter
 
 from ocfweb.caching import cache
+from ocfweb.docs.doc import Document
 
 PUPPETDB_URL = 'https://puppetdb:8081/pdb/query/v4'
 PUPPET_CERT_DIR = '/etc/ocfweb/puppet-certs'
@@ -15,7 +22,7 @@ PUPPET_CERT_DIR = '/etc/ocfweb/puppet-certs'
 
 class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
     @classmethod
-    def from_ldap(cls, hostname, type='vm', children=()):
+    def from_ldap(cls: Any, hostname: str, type: str = 'vm', children: Any = ()) -> Any:
         host = hosts_by_filter(f'(cn={hostname})')
         if 'description' in host:
             description, = host['description']
@@ -29,21 +36,22 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
         )
 
     @cached_property
-    def ipv4(self):
+    def ipv4(self) -> str:
         try:
-            return str(dns.resolver.query(self.hostname, 'A')[0])
+            # for this and ipv6 below: dns.resolver.query is not typed but is within a package.
+            return str(dns.resolver.query(self.hostname, 'A')[0])  # type: ignore
         except dns.resolver.NXDOMAIN:
             return 'No IPv4 Address'
 
     @cached_property
-    def ipv6(self):
+    def ipv6(self) -> str:
         try:
-            return str(dns.resolver.query(self.hostname, 'AAAA')[0])
+            return str(dns.resolver.query(self.hostname, 'AAAA')[0])  # type: ignore
         except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
             return 'No IPv6 address'
 
     @cached_property
-    def english_type(self):
+    def english_type(self) -> str:
         return {
             'desktop': 'Desktop',
             'hypervisor': 'Hypervisor',
@@ -57,10 +65,10 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
         }[self.type]
 
     @cached_property
-    def has_munin(self):
+    def has_munin(self) -> bool:
         return self.type in ('hypervisor', 'vm', 'server', 'desktop')
 
-    def __key(self):
+    def __key(self) -> Tuple[Any, str, str]:
         """Key function used for comparison."""
         ranking = {
             'hypervisor': 1,
@@ -70,11 +78,11 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
         default = 3
         return (ranking.get(self.type, default), self.type, self.hostname)
 
-    def __lt__(self, other_host):
+    def __lt__(self: Any, other_host: Any) -> bool:
         return self.__key() < other_host.__key()
 
 
-def is_hidden(host):
+def is_hidden(host: Dict[Any, Any]) -> bool:
     return host['cn'][0].startswith('hozer-') or host['cn'][0].startswith('dev-')
 
 
@@ -82,7 +90,7 @@ PQL_GET_VMS = "facts { name = 'vms' }"
 PQL_IS_HYPERVISOR = 'resources[certname] { type = "Class" and title = "Ocf_kvm" }'
 
 
-def query_puppet(query):
+def query_puppet(query: str) -> Dict[Any, Any]:
     """Accepts a PQL query, returns a parsed json result."""
     r = requests.get(
         PUPPETDB_URL,
@@ -96,12 +104,12 @@ def query_puppet(query):
     return r.json() if r.status_code == 200 else None
 
 
-def format_query_output(item):
+def format_query_output(item: Dict[Any, Any]) -> Tuple[Any, Any]:
     """Converts an item of a puppet query to tuple(hostname, query_value)."""
     return item['certname'].split('.')[0], item.get('value')
 
 
-def ldap_to_host(item):
+def ldap_to_host(item: Any) -> Tuple[Any, Any]:
     """Accepts an ldap output item, returns tuple(hostname, host_object)."""
     description = item.get('description', [''])[0]
     hostname = item['cn'][0]
@@ -109,12 +117,12 @@ def ldap_to_host(item):
 
 
 @cache()
-def get_hosts():
+def get_hosts() -> List[Any]:
     ldap_output = hosts_by_filter('(|(type=server)(type=desktop)(type=printer))')
-    servers = dict(ldap_to_host(item) for item in ldap_output if not is_hidden(item))
+    servers: Dict[Any, Any] = dict(ldap_to_host(item) for item in ldap_output if not is_hidden(item))
 
-    hypervisors_hostnames = dict(format_query_output(item) for item in query_puppet(PQL_IS_HYPERVISOR))
-    all_children = dict(format_query_output(item) for item in query_puppet(PQL_GET_VMS))
+    hypervisors_hostnames: Dict[Any, Any] = dict(format_query_output(item) for item in query_puppet(PQL_IS_HYPERVISOR))
+    all_children: Dict[Any, Any] = dict(format_query_output(item) for item in query_puppet(PQL_GET_VMS))
 
     hostnames_seen = {
         # These are manually added later, with the correct type
@@ -160,7 +168,7 @@ def get_hosts():
     return sorted(servers_to_display)
 
 
-def servers(doc, request):
+def servers(doc: Document, request: HttpRequest) -> HttpResponse:
     return render(
         request,
         'docs/servers.html',
