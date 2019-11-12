@@ -1,6 +1,7 @@
 from typing import Any
 from typing import Iterator
 from typing import List
+from typing import Optional
 
 from django import forms
 from django.http import HttpRequest
@@ -13,13 +14,13 @@ from ocflib.account.search import users_by_calnet_uid
 from ocflib.ucb.directory import name_by_calnet_uid
 from ocflib.ucb.groups import groups_by_student_signat
 from requests.exceptions import ConnectionError
-from requests.exceptions import ReadTimeout
 
 from ocfweb.account.constants import TEST_OCF_ACCOUNTS
 from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
 from ocfweb.component.celery import change_password as change_password_task
 from ocfweb.component.forms import Form
+# from requests.exceptions import ReadTimeout
 
 CALLINK_ERROR_MSG = (
     "Couldn't connect to CalLink API. Resetting group "
@@ -58,12 +59,13 @@ def get_accounts_for(calnet_uid: str) -> List[Any]:
 @calnet_required
 def change_password(request: HttpRequest) -> HttpResponse:
     calnet_uid = request.session['calnet_uid']
-    error = None
+    error: Optional[str] = None
     accounts = get_accounts_for(calnet_uid)
-    try:
-        accounts += get_accounts_signatory_for(calnet_uid)
-    except (ConnectionError, ReadTimeout):
-        error = CALLINK_ERROR_MSG
+    # Removed until CalLink access is fixed.
+    # try:
+    #     accounts += get_accounts_signatory_for(calnet_uid)
+    # except (ConnectionError, ReadTimeout):
+    #     error = CALLINK_ERROR_MSG
 
     if not accounts and error is None:
         error = mark_safe(
