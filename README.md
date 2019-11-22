@@ -58,7 +58,7 @@ You can run individual tests with `venv/bin/pytest -k <test_name>` or
 
 ### Running pre-commit
 
-We use [pre-commit](http://pre-commit.com/) to lint our code before commiting.
+We use [pre-commit](https://pre-commit.com/) to lint our code before commiting.
 While some of the rules might seem a little arbitrary, it helps keep the style
 consistent, and ensure annoying things like trailing whitespace don't creep in.
 

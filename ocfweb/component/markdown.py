@@ -83,7 +83,7 @@ class BackslashLineBreakLexerMixin(_Base):
 
 class CodeRendererMixin(_Base):
     """Render highlighted code."""
-    # TODO: don't use inline styles; see http://pygments.org/docs/formatters/
+    # TODO: don't use inline styles; see https://pygments.org/docs/formatters.html
     html_formatter = HtmlFormatter(noclasses=True)
 
     def block_code(self, code: str, lang: str) -> str:

@@ -316,7 +316,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
        sudo service rt4-fcgi restart
 
 9. Install the RT [mailgate
-   program](http://requesttracker.wikia.com/wiki/EmailInterface#RT.27s_mail_gate)
+   program](https://rt-wiki.bestpractical.com/wiki/EmailInterface#RT.27s_mail_gate)
    on the mail server.
 
    squeeze-backports is required here too.
@@ -369,7 +369,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
    be artificially limited in rights elsewhere on RT for your own protection:
    ["Starting from version 3.2 (or 3.4?) RT doesn't show users with the
    SuperUser right in a ticket owner
-   select-box."](http://requesttracker.wikia.com/wiki/SuperUser)
+   select-box."](https://rt-wiki.bestpractical.com/wiki/SuperUser)
 
    Re-enable Kerberos password authentication in Apache configuration and
    force-reload Apache.
@@ -387,7 +387,7 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
    In this configuration I see the set of RT privileged users to be the same as
    the set of users in group "Staff". This may change.
 
-2. Enable user rights. [This](http://requesttracker.wikia.com/wiki/Rights)
+2. Enable user rights. [This](https://rt-wiki.bestpractical.com/wiki/Rights)
    guide is being followed.
 
    Go to Tools > Configuration > Global > Group Rights.
@@ -484,8 +484,8 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 
    References:
    [1](http://lists.bestpractical.com/pipermail/rt-users/2005-February/028837.html)
-   [2](http://requesttracker.wikia.com/wiki/UntouchedInHours)
-   [3](http://requesttracker.wikia.com/wiki/TimedNotifications)
+   [2](https://rt-wiki.bestpractical.com/wiki/UntouchedInHours)
+   [3](https://rt-wiki.bestpractical.com/wiki/TimedNotifications)
 
 ## Notes
 
@@ -498,12 +498,12 @@ Both Apache 2 and Nginx installation are listed below. Pick your poison...
 * Fix Chrome double login, if possible.
   * Doesn't occur when running Nginx, only Apache 2.
 * Set up ticket autoclose using
-  http://requesttracker.wikia.com/wiki/UntouchedInHours or
-  http://requesttracker.wikia.com/wiki/TimedNotifications
+  https://rt-wiki.bestpractical.com/wiki/UntouchedInHours or
+  https://rt-wiki.bestpractical.com/wiki/TimedNotifications
 
 ## References
 
-* http://requesttracker.wikia.com/wiki/HomePage
+* https://rt-wiki.bestpractical.com/wiki/Main_Page
 
 [rt-puppet]: https://github.com/ocf/puppet/tree/fc6d4242ba773cefbc9e7c1ea542f8f7de3e8785/modules/ocf_rt
 [rt-docker]: https://github.com/ocf/rt

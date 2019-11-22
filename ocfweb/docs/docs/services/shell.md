@@ -44,7 +44,7 @@ On Windows, use [PuTTY][putty] (download the `putty.exe` file):
 * Host Name: `ssh.ocf.berkeley.edu`
 * Port: 22
 
-[putty]: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+[putty]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
 #### Mosh
 
@@ -62,7 +62,7 @@ you can use the command line utility `sftp`, or a graphical program such as
 
 [sftp]: https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol
 [filezilla]: https://filezilla-project.org/
-[winscp]: http://winscp.net/
+[winscp]: https://winscp.net/eng/index.php
 [cyberduck]: https://cyberduck.io/
 
 Otherwise, use the following information in your SFTP client.

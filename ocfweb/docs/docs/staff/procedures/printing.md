@@ -95,8 +95,8 @@ The following is a list of our printers and their IDs, from left to right:
    pages printed over time)
 
 
-[toner]: http://www.staples.com/HP-64X-Black-Toner-Cartridge-CC364XD-High-Yield-Twin-Pack/product_821762
-[pmp]: http://campuslifeservices.ucsf.edu/documentsmedia/services/print_management
+[toner]: https://www.staples.com/HP-64X-Black-Toner-Cartridge-CC364XD-High-Yield-Twin-Pack/product_821762
+[pmp]: https://campuslifeservices.ucsf.edu/documentsmedia/services/print_management
 [printer-dashboard]: https://ocf.io/printers
 [printer-summary]: https://www.ocf.berkeley.edu/stats/
 [pages-printed]: https://www.ocf.berkeley.edu/stats/printing/pages-printed

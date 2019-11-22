@@ -47,5 +47,5 @@ We are whitelisted by
 
 We are also registered with
 
- - [abuse.net](http://abuse.net/lookup.phtml?domain=ocf.berkeley.edu)
+ - [abuse.net](https://www.abuse.net/lookup.phtml?domain=ocf.berkeley.edu)
  - SpamCop (ISP account set to receive summary reports)

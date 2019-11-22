@@ -2,7 +2,7 @@
 
 It seems like we often either need a newer version of a package, or to apply
 our own patch to some package. We have [an apt
-repo](http://apt.ocf.berkeley.edu/) to which we upload these packages.
+repo](https://apt.ocf.berkeley.edu/) to which we upload these packages.
 
 There is a useful Debian wiki page
 [SimpleBackportCreation](https://wiki.debian.org/SimpleBackportCreation) but

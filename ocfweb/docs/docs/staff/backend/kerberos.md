@@ -215,5 +215,5 @@ or a HTTP Kerberos login, then they make more requests to the KDC:
    will verify the ticket with the KDC when used, to make sure it is valid for
    the user issuing the request.
 
-[eli5]: http://www.roguelynn.com/words/explain-like-im-5-kerberos/
+[eli5]: https://www.roguelynn.com/words/explain-like-im-5-kerberos/
 [kdc]: https://github.com/ocf/puppet/blob/17bc94b395e254529d97c84fb044f76931439fd7/modules/ocf_kerberos/files/kdc.conf#L13
