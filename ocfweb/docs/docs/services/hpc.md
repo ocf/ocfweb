@@ -178,6 +178,6 @@ able to interface with the GPUs.
 [mac_install]: https://singularity.lbl.gov/install-mac
 [win_install]: https://singularity.lbl.gov/install-windows
 [linux_install]: https://singularity.lbl.gov/install-linux
-[brc_slurm]: http://research-it.berkeley.edu/services/high-performance-computing/running-your-jobs
+[brc_slurm]: https://research-it.berkeley.edu/services/high-performance-computing/running-your-jobs
 [corruption-cpu]: https://ark.intel.com/products/92984/Intel-Xeon-Processor-E5-2640-v4-25M-Cache-2-40-GHz-
 [stf]: https://techfund.berkeley.edu

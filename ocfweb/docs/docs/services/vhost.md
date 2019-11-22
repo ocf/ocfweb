@@ -126,7 +126,7 @@ groups.
 
 [computer-use]: https://security.berkeley.edu/policy/usepolicy.html
 [dns-policy]: https://security.berkeley.edu/policy/dns
-[rso-domains]: http://lead.berkeley.edu/wp-content/uploads/2014/12/student-org-domain-guidelines.pdf
+[rso-domains]: https://lead.berkeley.edu/wp-content/uploads/2014/12/student-org-domain-guidelines.pdf
 
 In particular,
 

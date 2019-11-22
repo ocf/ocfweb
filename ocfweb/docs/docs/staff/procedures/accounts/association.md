@@ -24,7 +24,7 @@ Open the LDAP record for editing.
     $ kinit <staffusername>/admin ldapvi uid=<username>
 
 After looking up the user's UID in the [University
-directory](http://www.berkeley.edu/directory), add it to the record with a line
+directory](https://www.berkeley.edu/directory), add it to the record with a line
 like this:
 
     calnetUid: 6081

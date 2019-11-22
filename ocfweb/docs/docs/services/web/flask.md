@@ -4,9 +4,9 @@
 If you are using a group account, you may wish to consider
 [[apphosting|doc services/webapps]] instead.**
 
-[Flask](http://flask.pocoo.org/) is a popular microframework for Python web
-development. Using it on the OCF servers requires only just a little extra
-configuration.
+[Flask](https://palletsprojects.com/p/flask/) is a popular microframework for
+Python web development. Using it on the OCF servers requires only just a little
+extra configuration.
 
 
 ## Setting up a Flask project

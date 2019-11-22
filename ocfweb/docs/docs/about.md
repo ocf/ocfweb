@@ -61,8 +61,8 @@ The Open Computing Facility is a student group acting independently of the
 University of California.  We take full responsibility for our organization and
 this website.
 
-[asuc]: http://asuc.org
-[berkeley]: http://berkeley.edu
+[asuc]: https://asuc.org
+[berkeley]: https://www.berkeley.edu
 [decal]: https://decal.ocf.berkeley.edu
-[csua]: http://csua.berkeley.edu
+[csua]: https://www.csua.berkeley.edu
 [minutes]: https://www.ocf.berkeley.edu/~staff/bod/

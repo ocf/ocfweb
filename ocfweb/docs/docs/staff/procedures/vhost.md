@@ -9,7 +9,7 @@
   undue effort and links to the OCF home page
 * Request is made by a registered and active student organization in CalLink
   (LEAD Center), request is sponsored by an [administrative
-  official](http://compliance.berkeley.edu/delegation/principles), or request
+  official](https://compliance.berkeley.edu/delegation/principles), or request
   is for the account of a faculty or staff member
 * For RSOs, request is made by a signatory of the group in question (use
   `signat group <group>` to see signatories)
@@ -17,7 +17,7 @@
   their department
 * Account does not already have a virtual host, or has an exception from a Site
   Manager
-* For RSOs, domain name complies with [LEAD Center guidelines](http://lead.berkeley.edu/wp-content/uploads/2014/12/student-org-domain-guidelines.pdf). In
+* For RSOs, domain name complies with [LEAD Center guidelines](https://lead.berkeley.edu/wp-content/uploads/2014/12/student-org-domain-guidelines.pdf). In
   particular, requested domain name is sufficiently similar to their official
   name and wouldn't potentially be confused with a university department.
 * For non-berkeley.edu domains, domain name has been approved by a (D)GM or
@@ -38,7 +38,7 @@ about an additional hour to take effect (for the first hour, it will be
 HTTP-only).
 
 Next, request the following DNS records from the [University
-hostmaster](http://www.net.berkeley.edu/hostmaster/):
+hostmaster][campus-hostmistress]:
 
     hostname.Berkeley.EDU. IN A 169.229.226.23
     hostname.Berkeley.EDU. IN AAAA 2607:f140:8801::1:23
@@ -110,8 +110,7 @@ Once the cronjob completes, the application will be available at:
 `VHOST_NAME` is the configured name from above.
 
 Once the website is developed and meets policy checklist, request the following
-DNS record from the [University
-hostmaster](http://www.net.berkeley.edu/hostmaster/):
+DNS record from the [University hostmaster][campus-hostmistress]:
 
     hostname.Berkeley.EDU. IN A 169.229.226.49
     hostname.Berkeley.EDU. IN AAAA 2607:f140:8801::1:49
@@ -121,3 +120,5 @@ Remember to request that any existing records be dropped as well. You can check
 for records with `dig hostname.berkeley.edu [A|AAAA|MX]`. The nginx running on
 apphosting server will return a `502 Bad Gateway` or actual content if the
 apphost is configured properly, and a `403 Forbidden` otherwise.
+
+[campus-hostmistress]: https://ucb.service-now.com/kb_view.do?sysparm_article=KBT0012470

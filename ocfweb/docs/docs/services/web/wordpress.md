@@ -32,7 +32,7 @@ simple instructions:
    ```
 
    This will download the latest version of WordPress into your web directory
-   using [wp-cli](http://wp-cli.org/).
+   using [wp-cli](https://wp-cli.org/).
 
 5. Visit your web admin dashboard and complete the installation process. Your
    website will be `https://www.ocf.berkeley.edu/~username` and the dashboard
@@ -187,4 +187,4 @@ you may additionally need to edit the `.htaccess` file in the root of your
 WordPress installation. Specifically, you should replace `/~yourgroup/` with
 `/` whenever it occurs in that file.
 
-[wp-cli]: http://wp-cli.org/
+[wp-cli]: https://wp-cli.org/

@@ -3,19 +3,19 @@
 `death`, the OCF webserver, currently runs PHP 7.0 with the following
 non-standard packages installed:
 
-* [APCu](http://php.net/manual/en/book.apcu.php) (opcode caching)
-* [BC Math](http://php.net/manual/en/book.bc.php) (arbitrary precision math)
-* [Bzip2](http://php.net/manual/en/book.bzip2.php) (compression library)
-* [cURL](http://php.net/manual/en/book.curl.php) (networking library)
-* [DBA](http://php.net/manual/en/book.dba.php) (database connector)
-* [GD](http://php.net/manual/en/book.image.php) (graphics library)
-* [MB String](http://php.net/manual/en/book.mbstring.php) (string encoding)
-* [Mcrypt](http://php.net/manual/en/book.mcrypt.php) (cryptography library)
-* [MySQL](http://php.net/manual/en/book.mysqli.php) (database connector)
-* [SQLite](http://php.net/manual/en/book.sqlite.php) (database connector)
-* [SOAP](http://php.net/manual/en/book.soap.php) (messaging protocol library)
-* [XML](http://php.net/manual/en/book.xml.php) (markup parsing library)
-* [ZIP](http://php.net/manual/en/book.zip.php) (compression library)
+* [APCu](https://www.php.net/manual/en/book.apcu.php) (opcode caching)
+* [BC Math](https://www.php.net/manual/en/book.bc.php) (arbitrary precision math)
+* [Bzip2](https://www.php.net/manual/en/book.bzip2.php) (compression library)
+* [cURL](https://www.php.net/manual/en/book.curl.php) (networking library)
+* [DBA](https://www.php.net/manual/en/book.dba.php) (database connector)
+* [GD](https://www.php.net/manual/en/book.image.php) (graphics library)
+* [MB String](https://www.php.net/manual/en/book.mbstring.php) (string encoding)
+* [Mcrypt](https://www.php.net/manual/en/book.mcrypt.php) (cryptography library)
+* [MySQL](https://www.php.net/manual/en/book.mysqli.php) (database connector)
+* [SQLite](https://www.php.net/manual/en/book.sqlite.php) (database connector)
+* [SOAP](https://www.php.net/manual/en/book.soap.php) (messaging protocol library)
+* [XML](https://www.php.net/manual/en/book.xml.php) (markup parsing library)
+* [ZIP](https://www.php.net/manual/en/book.zip.php) (compression library)
 
 For a full list of available modules, run `phpinfo()` from a PHP script.
 Plase [[contact us|doc contact]] if you are missing a module that you need

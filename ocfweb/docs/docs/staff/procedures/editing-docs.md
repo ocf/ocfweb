@@ -45,5 +45,5 @@ on working with OCF repos.
 [markdown]: https://daringfireball.net/projects/markdown/syntax
 [ocfweb]: https://github.com/ocf/ocfweb
 [mistune]: https://github.com/lepture/mistune
-[pygments]: http://pygments.org/
+[pygments]: https://pygments.org/
 [jenkins]: https://jenkins.ocf.berkeley.edu

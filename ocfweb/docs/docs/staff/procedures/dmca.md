@@ -15,7 +15,7 @@ An example of instructions for a DMCA takedown notice is the
 If a DMCA takedown notice is received, refer to
 [Guidelines for Compliance with the Online Service Provider Provisions
 of the Digital Millennium Copyright
-Act](http://policy.ucop.edu/doc/7000472/DMCA), a 6-page document by the
+Act](https://policy.ucop.edu/doc/7000472/DMCA), a 6-page document by the
 University, which describes the procedure that we should follow:
 
  > 1. "Notice" is sent to the service provider by the complaining party.

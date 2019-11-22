@@ -126,4 +126,4 @@ authenticate with NickServ if you get disconnected from ZNC.
 [webirc]: https://irc.ocf.berkeley.edu
 [thelounge]: https://thelounge.github.io
 [hexchat]: https://hexchat.github.io
-[nickserv]: http://wiki.znc.in/Nickserv
+[nickserv]: https://wiki.znc.in/Nickserv
