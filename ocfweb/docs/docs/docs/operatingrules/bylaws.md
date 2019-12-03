@@ -2,7 +2,7 @@
 
 
 These are the official **Bylaws of the Open Computing Facility**, as last
-amended at the Board meeting of November 4, 2019.
+amended at the Board meeting of November 18, 2019.
 
 1. [Repealed]
 
@@ -26,9 +26,8 @@ amended at the Board meeting of November 4, 2019.
 6. Attendance lists and minutes for all OCF meetings shall be maintained for
    the decisions of that meeting to be valid.
 
-7. BoD appointments, resignations, and removals will take effect at 12:00
-   midnight after the conclusion of the meeting at which the appointment took
-   place.
+7. BoD appointments and removals will take effect at 12:00 midnight after the
+   conclusion of the meeting at which the appointment or removal took place.
 
 8. [Repealed]
 
@@ -105,6 +104,10 @@ amended at the Board meeting of November 4, 2019.
     following Fall semester or Spring semester. Directors who do not confirm or
     are not present will be removed from the Board.
 
+17. Any director who is banned from the OCF or has their account disabled due
+    to misuse will be removed from the board and is not eligible for
+    membership on the Board of Directors.
+
 Bylaws 1–4 amended at the general meeting of March 21, 2008. Bylaws 5–6 from
 the revision of the bylaws last amended February 7, 1995. Bylaw 8 added at the
 Board meeting of April 30, 2014. Bylaws 9–13 added at the Board meeting of
@@ -115,4 +118,5 @@ November 14, 2016. Bylaws 13.2, 11.3, 12.3 amended, and bylaws 10.4 and 10.5
 added at the Board meeting of March 6, 2017. Bylaws 13.2 and 13.3 repealed and
 Bylaw 14 amended at the Board meeting of August 28, 2017. Bylaws 9.1 and 13.1
 amended at the Board meeting of February 26, 2018. Bylaws 7 and 14 amended and
-bylaw 16 added at the Board meeting of November 4, 2019.
+bylaw 16 added at the Board meeting of November 4, 2019. Bylaw 7 amended and
+bylaw 17 added at the Board meeting of November 18, 2019.
