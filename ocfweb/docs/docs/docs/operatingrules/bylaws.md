@@ -2,7 +2,7 @@
 
 
 These are the official **Bylaws of the Open Computing Facility**, as last
-amended at the Board meeting of November 18, 2019.
+amended at the Board meeting of December 2, 2019.
 
 1. [Repealed]
 
@@ -34,42 +34,13 @@ amended at the Board meeting of November 18, 2019.
 9. The Cabinet
 
    1. The Cabinet of the Open Computing Facility shall consist of the General
-      Manager, Site Manager, Deputy General Managers, and Deputy Site Managers.
+      Manager, Site Manager, committee heads, and Deputy Site Managers.
 
    2. The General Manager shall be chair of the cabinet.
 
-10. Deputy Managers
+10. [Repealed]
 
-   1. Deputy Managers shall be appointed and removed by the General Manager or
-      Site Manager, subject to the OCF Decision Making Process.
-
-   2. Deputy General Managers and Deputy Site Managers shall be _ex officio_
-      Deputy Managers.
-
-   3. The authority of Deputy Managers derives jointly from the General Manager
-      and Site Manager, and their actions can be overruled by either the
-      General Manager or the Site Manager.
-
-   4. A Deputy Manager elected to an elected office shall cease to be a Deputy
-      Manager upon taking that office.
-
-   5. Only persons who have been students at some time during the last 12
-      months shall be eligible to hold the offices of Deputy Manager, Deputy
-      General Manager, or Deputy Site Manager.
-
-11. Deputy General Managers
-
-   1. Deputy General Managers shall be appointed and removed by the General
-      Manager, subject to the OCF Decision Making Process.
-
-   2. Deputy General Managers shall assist the General Manager with his or her
-      duties.
-
-   3. The term of office of a Deputy General Manager shall expire at the
-      beginning of a new term of a General Manager.
-
-   4. The resignation, dismissal, or completion of term of a Deputy General
-      Manager shall not apply to their status as a Deputy Manager.
+11. [Repealed]
 
 12. Deputy Site Managers
 
@@ -82,13 +53,11 @@ amended at the Board meeting of November 18, 2019.
    3. The term of office of a Deputy Site Manager shall expire at the beginning
       of a new term of a Site Manager.
 
-   4. The resignation, dismissal, or completion of term of a Deputy Site
-      Manager shall not apply to their status as a Deputy Manager.
+   4. [Repealed]
 
 13. Officers
 
-   1. All Cabinet members and Deputy Managers shall be Officers of the Open
-      Computing Facility.
+   1. All Cabinet members shall be Officers of the Open Computing Facility.
 
 14. Any non-Director member who attends a Board meeting can request to be
     appointed as a Director at that meeting. In that case, they shall be
@@ -108,6 +77,52 @@ amended at the Board meeting of November 18, 2019.
     to misuse will be removed from the board and is not eligible for
     membership on the Board of Directors.
 
+18. Committees
+
+    1. The Board of Directors includes the following permanent committees:
+
+       1. The University Affairs Committee manages relationships between the
+          OCF and other entities within UC Berkeley, such as the ASUC, the
+          Graduate Assembly, the LEAD Center, the ASUC Student Union, IST, and
+          other campus administrators and student organizations.
+
+       2. The Internal Committee promotes the interests of staff within the
+          OCF and empowers staff to make meaningful contributions to the OCF.
+
+       3. The Industry and Alumni Relations Committee manages relationships
+          with companies, OCF alumni, and other individuals or groups that are
+          external to UC Berkeley.
+
+       4. The Finance Committee oversees the finances of the OCF and ensures
+          that the OCF is adequately funded.
+
+       5. The Communication Committee keeps OCF staff up to date with
+          happenings in the organization and promotes OCF services and events
+          to the broader campus community as appropriate.
+
+       6. The DeCal Committee runs the Linux System Administration DeCal.
+
+    2. Additional committees may be established on an ad-hoc basis by the OCF
+       Decision Making Process.
+
+    3. Committee heads are selected by election at the final Board of
+       Directors meeting in the Fall and Spring semester, with the following
+       exceptions:
+
+       1. The University Affairs Committee is headed by the General Managers,
+          and an election for University Affairs Committee head will not be held.
+
+       2. Election dates for heads to the DeCal Committee and ad-hoc
+          committees may be set by the OCF Decision Making Process. Election
+          dates may not be set for fewer than 14 days in the future. Elections
+          must be announced to all Board members at least 14 days in advance.
+
+    4. The terms of permanent committee heads begin on the first day following
+       the end of the semester in which they were elected. The terms of ad-hoc
+       committees heads will be specified according to the OCF Decision Making
+       Process.
+
+
 Bylaws 1–4 amended at the general meeting of March 21, 2008. Bylaws 5–6 from
 the revision of the bylaws last amended February 7, 1995. Bylaw 8 added at the
 Board meeting of April 30, 2014. Bylaws 9–13 added at the Board meeting of
@@ -119,4 +134,6 @@ added at the Board meeting of March 6, 2017. Bylaws 13.2 and 13.3 repealed and
 Bylaw 14 amended at the Board meeting of August 28, 2017. Bylaws 9.1 and 13.1
 amended at the Board meeting of February 26, 2018. Bylaws 7 and 14 amended and
 bylaw 16 added at the Board meeting of November 4, 2019. Bylaw 7 amended and
-bylaw 17 added at the Board meeting of November 18, 2019.
+bylaw 17 added at the Board meeting of November 18, 2019. Bylaws 9.1 and 13.1
+amended, bylaws 10, 11, and 12.4 repealed, and bylaw 18 added at the Board
+meeting of December 2, 2019.
