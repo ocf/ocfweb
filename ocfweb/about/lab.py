@@ -21,3 +21,13 @@ def lab_vote(request: HttpRequest) -> HttpResponse:
             'title': 'OCF: Register to vote',
         },
     )
+
+
+def lab_survey(request: HttpRequest) -> HttpResponse:
+    return render(
+        request,
+        'about/lab-survey.html',
+        {
+            'title': 'STF Renewal Survey',
+        },
+    )
