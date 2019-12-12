@@ -15,7 +15,8 @@ from ocflib.account.search import user_attrs
 
 from ocfweb import caching
 
-_Term = namedtuple('_Term', ['name', 'gms', 'sms', 'dgms', 'dsms'])
+_Term = namedtuple('_Term', ['name', 'gms', 'sms', 'dgms', 'dsms', 'heads'])
+Committee = namedtuple('Committee', ['name', 'heads'])
 
 
 def Term(
@@ -24,12 +25,17 @@ def Term(
     sms: List[Any],
     dgms: Optional[List[Any]] = None,
     dsms: Optional[List[Any]] = None,
+    heads: Optional[List[Tuple[str, List[Any]]]] = None,
 ) -> _Term:
     gms = list(map(Officer.from_uid_or_info, gms))
     sms = list(map(Officer.from_uid_or_info, sms))
     dgms = list(map(Officer.from_uid_or_info, dgms or []))
     dsms = list(map(Officer.from_uid_or_info, dsms or []))
-    return _Term(name, gms, sms, dgms, dsms)
+    heads = [
+        Committee(committee[0], list(map(Officer.from_uid_or_info, committee[1])))
+        for committee in heads or []
+    ]
+    return _Term(name, gms, sms, dgms, dsms, heads)
 
 
 class Officer(namedtuple('Officer', ['uid', 'name', 'start', 'end', 'acting'])):
@@ -237,7 +243,25 @@ def _bod_terms() -> List[Any]:
             dgms=['asai'], dsms=['ethanhs', 'cooperc'],
         ),
         Term(
-            'Fall 2019', gms=['cooperc', 'php'], sms=['ethanhs', 'fydai'],
+            'Fall 2019',
+            gms=['cooperc', 'php'],
+            sms=[
+                ('ethanhs', date(2019, 5, 18), date(2019, 11, 18)),
+                'fydai',
+            ],
+        ),
+        Term(
+            'Spring 2020',
+            gms=['dphan', 'bernardzhao'],
+            sms=['cooperc', 'jaw'],
+            heads=[
+                ('University Affairs', ['dphan', 'bernardzhao']),
+                ('Internal', ['php', 'kmo']),
+                ('Industry and Alumni Relations', ['asai', 'rachy']),
+                ('Finance', ['ncberberi', 'nint']),
+                ('Communication', ['rachy']),
+                ('DeCal', ['exiang', 'bencuan', 'kmo']),
+            ],
         ),
     ]
 
@@ -250,6 +274,6 @@ def officers(doc: Any, request: HttpRequest) -> HttpResponse:
         {
             'title': doc.title,
             'current_term': terms[-1],
-            'previous_terms': reversed(terms[:-1]),
+            'previous_terms': terms[-2::-1],
         },
     )
