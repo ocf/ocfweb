@@ -80,6 +80,26 @@
           the OCF lab and other services. They are elected by the Board of
           Directors at the end of each semester.
         </p>
+      {% if current_term.heads|length > 0 %}
+        <h3>
+          Committee Heads
+        </h3>
+          {% for committee in current_term.heads %}
+            <h4>{{ committee.name }} Committee Heads</h4>
+              <p>
+                {% for head in committee.heads %}
+                  {% if head.end is None %}
+                    <strong>{{ head.name }}</strong> &lt;{{ head.uid }}&gt;
+                    {% if head.acting %} (acting) {% endif %}<br>
+                  {% endif %}
+                {% endfor %}
+              </p>
+          {% endfor %}
+          <p>
+            Committee heads guide the work of the various committees that
+            function within the OCF.
+          </p>
+      {% endif %}
     <h2>Previous officers</h2>
     <p>
       Terms began and ended during the ninth week of the semester until Fall
