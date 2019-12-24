@@ -33,7 +33,7 @@
             {% endif %}
           {% endfor %}
         </p>
-        {% if current_term.dgms|length > 0 %}
+        {% if current_term.dgms %}
           <h4>
             Deputy General Managers
           </h4>
@@ -62,7 +62,7 @@
             {% endif %}
           {% endfor %}
         </p>
-        {% if current_term.dsms|length > 0 %}
+        {% if current_term.dsms %}
           <h4>
             Deputy Site Managers
           </h4>
@@ -80,7 +80,7 @@
           the OCF lab and other services. They are elected by the Board of
           Directors at the end of each semester.
         </p>
-      {% if current_term.heads|length > 0 %}
+      {% if current_term.heads %}
         <h3>
           Committee Heads
         </h3>
