@@ -8,7 +8,7 @@ make a `note` of why you are changing the username. To run `sorry` you need
 to be a root user. Follow the prompts of the script.
 
 ```
-sorry username_to_rename
+sudo sorry username_to_rename
 
 note -u username_to_rename
 ```
