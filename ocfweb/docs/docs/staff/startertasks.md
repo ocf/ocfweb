@@ -119,3 +119,110 @@ host. For this exercise, you won’t need to make modifications to ocflib.
 
 [ocflib]: https://github.com/ocf/ocflib
 [sourcegraph]: https://sourcegraph.ocf.berkeley.edu
+
+## Make a pull request!\*
+Whenever a technical change to the OCF is made, we use [a pull
+request][github-pull-request] on GitHub. Pull requests allow staffers to propose
+changes in discrete chunks and get feedback before the code goes live.
+
+You're going to make a pull request to [ocfweb][ocfweb]. Specifically, you'll
+add your name to [[the list of everyone who's completed this task|doc
+staff/startertasks/completed]].
+
+### Set up
+1. Log into [GitHub](https://github.com). If your [[OCF email|doc
+   services/mail]] (`<OCF username>@ocf.berkeley.edu`) is not connected to your
+   account, [add it to your account emails](https://github.com/settings/emails).
+2. Create your personal [fork][github-fork] of [ocfweb][ocfweb].
+3. [[Log into supernova|doc staff/procedures/ssh-supernova]].
+4. Optional: For easier authentication to GitHub, [generate an SSH
+   key][github-ssh-keygen] and [add it to your GitHub account][github-add-key].
+   Note: the `xclip` commands will probably not work. Instead, just run `cat
+   ~/.ssh/id_rsa.pub` and manually copy it to your clipboard.
+5. Return to **your new fork** of ocfweb and [clone the
+   repository][github-clone]. Enter your clone with `cd ocfweb`.
+6. Take a look at the README. It will tell you to run a few commands to finish
+   setting up.
+
+You only have to do this part once. Now that your fork is set up, all future
+pull requests to ocfweb will use this same clone.
+
+### Make your change
+1. First, you want to create a [new branch][git-branch] to separate this change
+   from other changes that you or other people are making. To do this, choose a
+   very short name for your branch and run `git checkout -b <branch-name>`. You
+   have now created and switched to your new branch.
+2. Now, you can edit the file and add your username. Figure out which file
+   corresponds to [[the completion list|doc staff/startertasks/completed]] and
+   add your username to that file. (Just add the name for now, don't worry about
+   adding the URL or brackets.)
+
+   There are a few options for editing the file:
+   - If you are familiar with a console text editor like `vim` or `emacs`, you
+     can use that to edit the file.
+   - If you are using a desktop in the OCF lab, you can use the `~/remote`
+     folder on the desktop, which is synced to your home directory on supernova.
+   - Other editors may have plugins to let you edit files over SSH, such as [VS
+     Code][vscode-remote].
+3. Now that you've made the change, check out the README to see how to run
+   ocfweb in development mode. Once you're running in dev-mode, navigate to the
+   page in your browser and visually check it.
+4. Run tests! The instructions for running the tests are also in the README. We
+   didn't make any drastic changes, so the tests should hopefully pass without
+   any issue.
+5. If everything looks good, stage your changes using `git add`, and make a commit
+   using `git commit`.
+6. Push the change to your fork by running `git push origin <branch-name>`.
+7. Return to the GitHub page for your fork. You should see a button to open a
+   pull request for the change you just pushed. Go ahead and open that PR!
+
+Once the pull request has been submitted, other OCF staff will have a change to
+review your changes and make sure they look good. Once one or two people
+approve, the pull request can be merged and your change will go live.
+
+### Update your PR (optional)
+Sometimes you will want to update a pull request after it has been created,
+because you thought of something new or because another staffer suggested a
+change. In this case, you'll update your pull request so that your username on
+the list links to the pull request you made.
+
+1. If you have disconnected, log back into supernova and navigate to your ocfweb
+   folder.
+2. Copy the URL to the GitHub pull request you opened in the last part. Edit the
+   list file again, and replace your username with
+   `[username](https://link.to/pull/request)`. The brackets and parentheses
+   indicate that this is a [link in Markdown][markdown-link], which is the
+   markup language we use for the docs.
+4. As before, stage your changes and commit them.
+5. Optional: Squash your changes. A pull request often will accumulate lots of
+   little commits that are not very important. You can "squash" all these
+   commits together to make things cleaner.
+   1. Run `git rebase -i HEAD~2` (`~2` is the number of commits to rebase) to do an
+      "interactive [rebase][git-rebase]" of the last two commits.
+   2. A text editor will open with a line for each commit. Leave the first
+      commit marked as "pick", but for the second commit, replace "pick" with
+      "squash" to squash it into the first one. Save and exit.
+   3. You will get a chance to edit the commit message for the squashed commit.
+      By default, it just puts the two commit messages together. You might want
+      to delete the second message. Save and exit.
+   4. You did it! You can run `git log` to check: you should only see one commit
+      at the top that is authored by you, instead of two.
+6. Push your new changes as before. If you did the optional step, you will have
+   to add the argument `--force-with-lease` after `push`.
+
+After pushing, the pull request on GitHub will automatically update with the new
+changes.
+
+Congrats on making your PR! If you want to learn more about what you can do with
+git, check out our [[documentation on git|doc staff/backend/git]].
+
+[github-pull-request]: https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests
+[ocfweb]: https://github.com/ocf/ocfweb
+[github-fork]: https://help.github.com/en/github/getting-started-with-github/fork-a-repo
+[github-ssh-keygen]: https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key
+[github-add-key]: https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
+[github-clone]: https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository
+[git-branch]: https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+[vscode-remote]: https://code.visualstudio.com/docs/remote/ssh
+[markdown-link]: https://daringfireball.net/projects/markdown/syntax#link
+[git-rebase]: https://git-scm.com/book/en/v2/Git-Branching-Rebasing
