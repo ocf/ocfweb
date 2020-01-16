@@ -31,6 +31,20 @@ See http://www.irchelp.org/clients/ for more recommendations.
 
 Once you’ve joined IRC, pick any channel (#rebuild, #henlo, etc) and say hi!
 
+## Get familiar with the command line
+All of [[our servers|doc staff/backend/servers]] run Linux, and we interact with
+them over the command line. There are a lot of online resources about using the
+Linux command line, so if you're confused about something, try Googling it!
+
+If you haven't used the command line before, you can go to our [[command
+reference|doc services/shell/commands]] page and try running some commands. You
+can also connect to [[our ssh server|doc services/shell]]
+(`ssh.ocf.berkeley.edu`) using your own SSH client.
+
+If you want to get more comfortable, try completing [lab
+1](https://decal.ocf.berkeley.edu/labs/b1) from the OCF/XCF Linux System
+Administration DeCal.
+
 ## Run the IRC bot in development mode\* (requires being on IRC)
 Our chat bot is named `create` and its source code can be found at
 https://github.com/ocf/ircbot. Before testing the IRC bot right away, make sure
