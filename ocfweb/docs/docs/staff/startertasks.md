@@ -6,8 +6,8 @@ free to ask for help in our [Slack workspace](https://ocf.io/slack) or in person
 during [staff hours](https://ocf.io/staffhours)!
 
 Tasks marked with an asterisk (\*) require staff privileges. If you want to work
-on these but aren't on staff, let a current staffer know you’re working on
- starter tasks and we will add you.
+on these but haven't officially been given staff privileges yet, let a current
+staffer know you’re working on starter tasks and we will add you.
 
 These tasks don’t have to be completed in order.
 
@@ -43,7 +43,8 @@ you know how to use it:
 
 Once you’ve learned about `create`, you can start making changes to it!
 
-1. Follow the steps in the GitHub README to run the bot in development mode.
+1. Follow the steps in the [GitHub README](https://github.com/ocf/ircbot) to run
+   the bot in development mode.
 2. Make sure you can talk to the bot in development mode-- it will be named
    `create-yourusername` instead of simply `create`.
 3. Make a simple change and test that it works.
@@ -53,38 +54,54 @@ Once you’ve learned about `create`, you can start making changes to it!
 ## Play with staff utilities\*
 OCF staff use a collection of scripts when interacting with the campus
 community. For example, before creating an account for a student organization,
-we make sure the person requesting the account is listed as a signatory for
-that group. Staff members use the `signat` command to perform this check.
+we make sure the person requesting the account is listed as a signatory for that
+group. Staff members use the
+[`signat`](https://ocf.io/docs/staff/scripts/signat) command to perform this
+check.
 
-1. [Log into
-   supernova](https://www.ocf.berkeley.edu/docs/staff/procedures/ssh-supernova/).
+1. [[Log into supernova|doc staff/procedures/ssh-supernova]].
 2. Use the `signat` command to list the signatories for the Open Computing
-   Facility or another student organization of your choice.
+   Facility or another student organization of your choice. Hint: if you are not
+   sure how to use the `signat` command, try running `signat --help`. This trick
+   works with most commands. OCF scripts also have [[documentation on this
+   website|doc staff/scripts/signat]].
 3. Find the source code for this script on GitHub. Hint: if you’re not sure
-which repository something is in, you can use [OCF
-   Sourcegraph](https://sourcegraph.ocf.berkeley.edu) to search across all repositories!
+   which repository something is in, you can use [OCF Sourcegraph][sourcegraph]
+   to search across all repositories!
 
 ## Play with your webspace
-Every OCF account has [web
-hosting](https://www.ocf.berkeley.edu/docs/services/web/) enabled at
-https://www.ocf.berkeley.edu/~yourusername. As an example, check out
-[ckuehl’s website](https://www.ocf.berkeley.edu/~ckuehl/).
+Every OCF account has [[web hosting|doc services/web]] enabled at
+https://www.ocf.berkeley.edu/~yourusername. As an example, check out [ckuehl’s
+website](https://www.ocf.berkeley.edu/~ckuehl/).
 
 1. Add some files to your webspace and preview it in your web browser.
 2. (optional) Most student groups that host with the OCF use WordPress. Install
    WordPress in your webspace. (hint: instructions for this are on our website)
 
 ## Play with ocflib\*
-[ocflib](https://github.com/ocf/ocflib) is a Python library we maintain which is
-installed on every OCF host. For this exercise, you won’t need to make
-modifications to ocflib.
+[ocflib][ocflib] is a Python library we maintain which is installed on every OCF
+host. For this exercise, you won’t need to make modifications to ocflib.
 
-1. Log into supernova and start an IPython3 shell (the `ipython3` command).
-2. Run `import ocflib`.
-3. Use ocflib functions to get the following information in your interactive
-   Python shell:
+1. [[Log into supernova|doc staff/procedures/ssh-supernova]] and start an
+   IPython3 shell (the `ipython3` command).
+2. To make sure things are working:
+   1. Run `import ocflib.lab.staff_hours` to import utilities relating to
+      [[staff hours|staff-hours]].
+   2. Run `staffhours = ocflib.lab.staff_hours.get_staff_hours()` to get the
+      list of staff hours.
+   3. Take a look at the list `staffhours` and check that it matches the info
+      on [[the staff hours page|staff-hours]]. For instance, you should be able
+      to run `staffhours[0]` to see the info corresponding to the first staff
+      hour entry on the page.
+3. Your turn! Use ocflib functions to get the following information in your
+   interactive Python shell:
+   1. Get the list of signatories for the OCF, and your favorite student org.
+   (hint: look at the signat source code from before!)
+   2. Find the toner levels of each printer.
+   3. Find the hours the OCF was open on your most recent birthday.
 
-    a. Get the list of signatories for the OCF, and your favorite student org.
-    (hint: look at the signat source code from before!)
+   If you get stuck, don't forget that you can search the [GitHub repo][ocflib]
+   or [Sourcegraph][sourcegraph] to find more info.
 
-    b. Find the toner levels of each printer.
+[ocflib]: https://github.com/ocf/ocflib
+[sourcegraph]: https://sourcegraph.ocf.berkeley.edu
