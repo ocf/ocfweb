@@ -15,10 +15,14 @@ Most SSH/SFTP clients will prompt you to accept an unknown key when you first
 connect. Our SSH fingerprint can be used to verify that you're connecting to
 the correct server:
 
-    2048 55:0a:e3:4f:4b:2c:15:f8:d4:7d:f9:93:bf:a0:41:21 tsunami.ocf.berkeley.edu (RSA)
-    1024 7e:19:bc:fd:b5:cd:5c:e3:42:a4:a5:74:eb:ce:5d:2e tsunami.ocf.berkeley.edu (DSA)
-    256  a2:4b:d5:17:43:2e:a7:ea:50:d7:ab:1f:63:45:a9:6c tsunami.ocf.berkeley.edu (ECDSA)
-    256  SHA256:h6Rnqg1tyl6VMFrotrR+DSnNW6DF8wQylVllkp03DIw tsunami.ocf.berkeley.edu (ECDSA)
+    1024 SHA256:xz0N4OqJtabwVvdAy6AvmXSG/Ct1cVyoSv7Ag75eYg8  tsunami.ocf.berkeley.edu (DSA)
+    1024 MD5:7e:19:bc:fd:b5:cd:5c:e3:42:a4:a5:74:eb:ce:5d:2e tsunami.ocf.berkeley.edu (DSA)
+    256  SHA256:h6Rnqg1tyl6VMFrotrR+DSnNW6DF8wQylVllkp03DIw  tsunami.ocf.berkeley.edu (ECDSA)
+    256  MD5:a2:4b:d5:17:43:2e:a7:ea:50:d7:ab:1f:63:45:a9:6c tsunami.ocf.berkeley.edu (ECDSA)
+    256  SHA256:queQQ1NML1znAVQTaYirF/R5WKEVSAPnRXjEVQug7Xw  tsunami.ocf.berkeley.edu (ED25519)
+    256  MD5:c6:dc:62:4f:51:8b:b1:c3:72:cf:d4:63:65:92:6f:2d tsunami.ocf.berkeley.edu (ED25519)
+    2048 SHA256:X5sl/Pw8Knjl4evLlFyC9kkq02aVZjaIIsubMN/NZ8s  tsunami.ocf.berkeley.edu (RSA)
+    2048 MD5:55:0a:e3:4f:4b:2c:15:f8:d4:7d:f9:93:bf:a0:41:21 tsunami.ocf.berkeley.edu (RSA)
 
 ## SSH
 
