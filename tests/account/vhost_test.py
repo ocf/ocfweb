@@ -7,7 +7,7 @@ from ocfweb.account.vhost import valid_domain_external
 @pytest.mark.parametrize(
     'domain,expected', [
         # nxdomain (should be available)
-        ('asdfghjkl.berkeley.edu', True),
+        ('asdfghjk.berkeley.edu', True),
         ('kljasdlgjlsafdfhsadf.berkeley.edu', True),
 
         # mx record only
