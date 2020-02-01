@@ -68,13 +68,13 @@ default, which is 2 days.
 
 On `hpcctl.ocf.berkeley.edu`:
 
-```
+```bash
 srun [command-line flags] [command to run]
 ```
 
 For example, to run a job that uses 4 CPUs, 8 GB of RAM, and 1 GPU:
 
-```
+```bash
 bzh@hpcctl:~$ srun --ntasks=1 --cpus-per-task=4 --mem=8G --gres=gpu:1 echo "Hello world!"
 
 Hello world!
@@ -86,7 +86,7 @@ To start up an interactive terminal on a compute node, use the `--pty [your
 terminal of choice]` flag. For most everyone, you'll be using `bash`, so to
 start an interactive terminal on a node, run:
 
-```
+```bash
 srun [other command-line flags] --pty bash
 ```
 
@@ -102,7 +102,7 @@ must be after the shebang but before any non-comments**.
 For example, a batch script which uses 4 CPUs, 8 GB of RAM, and 1 GPU has its
 contents as:
 
-```
+```bash
  #!/bin/bash
  #SBATCH --ntasks=1
  #SBATCH --cpus-per-task=4
@@ -114,7 +114,7 @@ contents as:
 
 You submit batch scripts to Slurm with:
 
-```
+```bash
 sbatch [path to batch script]
 ```
 

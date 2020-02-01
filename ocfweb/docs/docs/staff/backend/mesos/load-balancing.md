@@ -18,7 +18,7 @@ These are general steps:
 3. Take one of the `server` entries from the previous step and try to curl it.
    For example, if you saw the line:
 
-   ```haproxy
+   ```
    server hal_169_229_226_10_31754 169.229.226.10:31754 check inter 60s fall 4
    ```
 
@@ -71,7 +71,7 @@ If everything is working, you should see a backend for each app exposed on the
 load balancer, with one or more servers in it. For example, here is a working
 ocfweb backend with three servers:
 
-```haproxy
+```
 backend ocfweb_web_10002
   balance roundrobin
   mode tcp

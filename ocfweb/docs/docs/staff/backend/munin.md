@@ -16,7 +16,7 @@ machine, e.g. if disk usage goes above 92%. Some plugins have configurable
 warning and critical levels for each field, which are usually set in the node
 config like so:
 
-```text
+```
 [pluginname]
 env.fieldname_warning min:max
 env.fieldname_critical min:max
@@ -42,7 +42,7 @@ server. Writing a plugin is very easy, should you need to do so. When called
 without arguments, it should print to standard output a list of variable names
 and values:
 
-```text
+```
 field1.value <value>
 field2.value <value>
 ...
@@ -51,7 +51,7 @@ field2.value <value>
 When given the lone argument `config`, it should print display information for
 Munin graphs and variable warning levels:
 
-```text
+```
 graph_title Title
 graph_vlabel yaxis
 graph_scale no

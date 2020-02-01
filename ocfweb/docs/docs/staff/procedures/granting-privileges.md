@@ -7,7 +7,7 @@
 If you have root privileges, you can add or remove people from `ocfstaff` by
 editing the group in LDAP:
 
-```text
+```
 $ kinit you/admin
 you/admin@OCF.BERKELEY.EDU's Password:
 $ ldapvi cn=ocfstaff
@@ -26,7 +26,7 @@ modifying LDAP, you will also have to create their `/root` and `/admin`
 principals (if those don't already exist). For example, to create the
 `/admin` principal, you would do:
 
-```text
+```
 $ kadmin
 kadmin> add otherstaffer/admin
 you/admin@OCF.BERKELEY.EDU's Password:

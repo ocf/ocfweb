@@ -63,7 +63,7 @@ so simply follow the instructions [provided by the wee-slack team][wee-slack].
 Just make sure you are in a python virtual environment before running the
 command:
 
-```
+```bash
 python pip install websocket-client
 ```
 

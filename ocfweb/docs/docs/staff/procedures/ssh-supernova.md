@@ -15,7 +15,7 @@ member and we can add you! All are welcome and encouraged to join.
 ## Logging in
 To log in, open a terminal window and type in:
 
-```
+```bash
 ssh username@supernova.ocf.berkeley.edu
 ```
 
@@ -34,7 +34,7 @@ section of [[staff documentation|doc staff]].
 You can `git clone` OCF repositories and run them on `supernova`. An example
 for `ocfweb`:
 
-```
+```bash
 git clone https://github.com/ocf/ocfweb # clone the repository
 cd ocfweb # change directory into the repository
 

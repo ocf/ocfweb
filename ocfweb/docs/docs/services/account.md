@@ -45,7 +45,7 @@ Use [[SSH|doc services/shell]] to run the command `passwd` and follow the
 prompts as shown below. No text will appear when you are entering in a
 password, just press enter when done after each prompt.
 
-```text
+```
 $ passwd
 myusername@OCF.BERKELEY.EDU's Password: <my current password>
 New password: <my new password>

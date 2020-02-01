@@ -66,7 +66,7 @@ extra configuration.
 
 5. Create `~/public_html/flask/.htaccess` with these contents:
 
-   ```htaccess
+   ```apacheconf
    RewriteEngine On
    RewriteBase /
    RewriteCond %{REQUEST_FILENAME} !-f

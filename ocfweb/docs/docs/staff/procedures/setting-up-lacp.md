@@ -78,19 +78,19 @@ for debugging and initial configuration but does not survive reboots.
 
 ### Create a bonding interface
 
-```
+```bash
 $ ip link add bond0 type bond mode 4 miimon 100
 ```
 
 ### Bind physical interfaces to the bond interface
 
-```
+```bash
 $ ip link set <iface> master bond0
 ```
 
 ### Show bound interfaces
 
-```
+```bash
 $ ip link show type bond_slave
 ```
 

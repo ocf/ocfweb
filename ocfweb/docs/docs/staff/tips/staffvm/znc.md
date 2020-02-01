@@ -22,7 +22,7 @@ It's useful along with [[OCF's IRC server|doc contact/irc]].
 
    The settings I use (everything else I accept defaults):
 
-   ```text
+   ```
    ckuehl@raptors:~$ znc --makeconf
    [ ?? ] What port would you like ZNC to listen on? (1025 to 65535): 4095
 
@@ -72,7 +72,7 @@ It's useful along with [[OCF's IRC server|doc contact/irc]].
 
    kpengboy's preferences, in addition to most of the above, include:
 
-   ```text
+   ```
    [ ?? ] Number of lines to buffer per channel [50]: 200
    [ ?? ] Would you like to clear channel buffers after replay? (yes/no) [yes]: no
    ```
