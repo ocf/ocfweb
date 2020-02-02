@@ -84,6 +84,7 @@ def _get_servers() -> Tuple[Any, ...]:
         ThingToUpgrade.from_hostname(
             'flood',
             status=ThingToUpgrade.NEEDS_UPGRADE,
+            comments='dev-flood is migrated already',
         ),
         ThingToUpgrade.from_hostname(
             'pestilence',
@@ -109,11 +110,6 @@ def _get_servers() -> Tuple[Any, ...]:
             status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
-            'fallingrocks',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
-            comments='to be replaced with dev-fallingrocks',
-        ),
-        ThingToUpgrade.from_hostname(
             'gridlock',
             status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
@@ -129,7 +125,6 @@ def _get_servers() -> Tuple[Any, ...]:
             'segfault',
             status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
-        ThingToUpgrade.from_hostname('tornado', status=ThingToUpgrade.NEEDS_UPGRADE),
 
         # mesos servers
         ThingToUpgrade.from_hostname(
@@ -144,22 +139,23 @@ def _get_servers() -> Tuple[Any, ...]:
             'monsoon',
             status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
+        ThingToUpgrade.from_hostname(
+            'fraud',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
 
         # kubernetes servers
         ThingToUpgrade.from_hostname(
             'coup',
             status=ThingToUpgrade.NEEDS_UPGRADE,
-            comments='',
         ),
         ThingToUpgrade.from_hostname(
             'autocrat',
             status=ThingToUpgrade.NEEDS_UPGRADE,
-            comments='',
         ),
         ThingToUpgrade.from_hostname(
             'deadlock',
             status=ThingToUpgrade.NEEDS_UPGRADE,
-            comments='',
         ),
 
         # raspberry pi
@@ -168,18 +164,18 @@ def _get_servers() -> Tuple[Any, ...]:
             status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
 
-        # physical servers
+        # physical hosts
         ThingToUpgrade.from_hostname(
             'riptide',
             status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
             'jaws',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
             'pandemic',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
             'hal',
@@ -190,12 +186,29 @@ def _get_servers() -> Tuple[Any, ...]:
             status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
+            'dataloss',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
+        ThingToUpgrade.from_hostname(
+            'bedbugs',
+            status=ThingToUpgrade.UPGRADED,
+        ),
+        ThingToUpgrade.from_hostname(
             'corruption',
             status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
         ThingToUpgrade.from_hostname(
-            'dev-fallingrocks',
+            'fallingrocks',
             status=ThingToUpgrade.NEEDS_UPGRADE,
+            comments='dev-fallingrocks is migrated already',
+        ),
+        ThingToUpgrade.from_hostname(
+            'tornado',
+            status=ThingToUpgrade.NEEDS_UPGRADE,
+        ),
+        ThingToUpgrade.from_hostname(
+            'y2k',
+            status=ThingToUpgrade.UPGRADED,
         ),
     )
 
