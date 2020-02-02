@@ -41,7 +41,7 @@ COPY ocfweb /opt/ocfweb/ocfweb/
 COPY conf /etc/ocfweb/
 ENV MATPLOTLIBRC /etc/ocfweb
 
-# Marathon will set this to 0, but we set it to 1 in case staff run this
+# Kubernetes will set this to 0, but we set it to 1 in case staff run this
 # locally to prevent ocflib report emails.
 ENV OCFWEB_TESTING 1
 
