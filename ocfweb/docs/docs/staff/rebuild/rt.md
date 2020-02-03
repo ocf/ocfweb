@@ -1,7 +1,7 @@
 [[!meta title="Request Tracker"]]
 
-**Note:** RT is now deployed as a Marathon service running in Docker, so these
-instructions aren't super useful for OCF staff. This page is kept as a
+**Note:** RT is now deployed as a Kubernetes service running in Docker, so
+these instructions aren't super useful for OCF staff. This page is kept as a
 reference for others who might come across it (it ranks pretty highly on
 Google). If you're one of these people, you might find one of these useful:
 
@@ -10,8 +10,8 @@ Google). If you're one of these people, you might find one of these useful:
     worked well for us for a long time.
 
   * [Our Dockerized RT service.][rt-docker]
-    We run this on Marathon, but you should easily be able to get it running on
-    something like Kubernetes or Docker Swarm, too.
+    We run this on Kubernetes, but you should easily be able to get it running
+    on something like Mesos/Marathon or Docker Swarm, too.
 
 ## Installation
 

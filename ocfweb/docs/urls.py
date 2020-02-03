@@ -1,10 +1,12 @@
 import re
 from itertools import chain
+from typing import Union
 
 from django.conf.urls import url
 from django.http import Http404
 from django.http import HttpRequest
 from django.http import HttpResponse
+from django.http import HttpResponsePermanentRedirect
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -19,6 +21,7 @@ from ocfweb.docs.views.index import docs_index
 from ocfweb.docs.views.lab import lab
 from ocfweb.docs.views.officers import officers
 from ocfweb.docs.views.servers import servers
+
 
 DOCS = {
     doc.name: doc
@@ -50,7 +53,7 @@ def render_doc(request: HttpRequest, doc_name: str) -> HttpResponse:
     return doc.render(doc, request)
 
 
-def send_redirect(request: HttpRequest, redir_src: str) -> HttpResponseRedirect:
+def send_redirect(request: HttpRequest, redir_src: str) -> Union[HttpResponseRedirect, HttpResponsePermanentRedirect]:
     """Send a redirect to the actual document given the redirecting page."""
     redir_dest = REDIRECTS['/' + redir_src]
     return redirect(reverse('doc', args=(redir_dest,)), permanent=True)

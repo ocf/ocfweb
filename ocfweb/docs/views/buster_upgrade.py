@@ -125,8 +125,6 @@ def _get_servers() -> Tuple[Any, ...]:
             'segfault',
             status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
-
-        # mesos servers
         ThingToUpgrade.from_hostname(
             'whirlwind',
             status=ThingToUpgrade.NEEDS_UPGRADE,

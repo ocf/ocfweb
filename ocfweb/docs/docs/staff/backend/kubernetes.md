@@ -1,13 +1,13 @@
 [[!meta title="Kubernetes"]]
 
-At the OCF we are in the process of moving production services from
-[[Mesos/Marathon|doc staff/backend/mesos]] to [Kubernetes][kubernetes]. In this
-document we will explain the design of our Kubernetes cluster while also
-touching briefly on relevant core concepts. This page is _not_ a `HOWTO` for
-deploying services or troubleshooting a bad cluster. Rather, it is meant to
-explain architectural considerations such that current work can be built upon.
-Although, reading this document will help you both deploy services in the OCF
-Kubernetes cluster and debug issues when they arise.
+At the OCF we have fully migrated all services from Mesos/Marathon to
+[Kubernetes][kubernetes]. In this document we will explain the design of our
+Kubernetes cluster while also touching briefly on relevant core concepts. This
+page is _not_ a `HOWTO` for deploying services or troubleshooting a bad
+cluster. Rather, it is meant to explain architectural considerations such that
+current work can be built upon.  Although, reading this document will help you
+both deploy services in the OCF Kubernetes cluster and debug issues when they
+arise.
 
 ## Kubernetes
 
@@ -174,7 +174,7 @@ happen. `L3` mode would require the OCF dedicating a router to Kubernetes.
 
 ### Why don't we copy Marathon and specify one port per service?
 
-In our current Marathon configuration, we give each service a port on the load
+In our previous Marathon configuration, we gave each service a port on the load
 balancer and traffic coming into that port is routed accordingly. First, in
 Kubernetes we would emulate this behavior using `NodePort` services, and all
 Kubernetes documentation discourages this. Second, it's ugly. Every time we add
