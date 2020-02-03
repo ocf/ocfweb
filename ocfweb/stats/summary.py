@@ -82,7 +82,7 @@ def printers() -> List[Any]:
             try:
                 return f(*args, **kwargs)
             except (OSError, ValueError) as ex:
-                _logger.warn(f'Silencing exception reading printer data: {ex}')
+                _logger.warning(f'Silencing exception reading printer data: {ex}')
                 return None
         return inner
 

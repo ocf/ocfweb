@@ -17,7 +17,6 @@ development mode with minimal extra setup.
 
 Clone the repo, and be sure to check out submodules:
 
-    $ git clone git@github.com:ocf/ocfweb.git
     $ git submodule update --init
     $ make install-hooks
 
