@@ -12,7 +12,7 @@ Remember to reset Economode to on using the same script once you're done.
 
 ## Usage
 
-```text
+```
 $ economode on
 Enter printer password:
 Setting economode to on for papercut... OK

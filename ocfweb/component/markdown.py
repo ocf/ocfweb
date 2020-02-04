@@ -12,8 +12,6 @@ from django.utils.html import strip_tags
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name
-from pygments.lexers import guess_lexer
-from pygments.util import ClassNotFound
 
 from ocfweb.caching import cache
 
@@ -83,17 +81,14 @@ class BackslashLineBreakLexerMixin(_Base):
 
 class CodeRendererMixin(_Base):
     """Render highlighted code."""
-    # TODO: don't use inline styles; see https://pygments.org/docs/formatters.html
+    # TODO: don't use inline styles; see https://pygments.org/docs/formatters/
     html_formatter = HtmlFormatter(noclasses=True)
 
     def block_code(self, code: str, lang: str) -> str:
-        try:
-            if lang:
-                lexer = get_lexer_by_name(lang, stripall=True)
-            else:
-                lexer = guess_lexer(code)
-        except ClassNotFound:
-            lexer = get_lexer_by_name('shell')
+        if lang:
+            lexer = get_lexer_by_name(lang, stripall=True)
+        else:
+            lexer = get_lexer_by_name('text')
 
         return highlight(code, lexer, CodeRendererMixin.html_formatter)
 

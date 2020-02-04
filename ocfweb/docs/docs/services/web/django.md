@@ -78,7 +78,7 @@ that.
 
 7. In the same directory, create another file called `.htaccess` with these contents:
 
-   ```htaccess
+   ```apacheconf
    RewriteEngine on
    RewriteBase /
    RewriteCond %{REQUEST_FILENAME} !-f

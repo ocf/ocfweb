@@ -88,7 +88,7 @@ user@tsunami:~/public_html$ chmod +x dispatch.fcgi
 Create a file called `.htaccess` in your web root (or a subdirectory)
 containing the following lines:
 
-```htaccess
+```apacheconf
 RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
