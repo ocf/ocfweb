@@ -7,7 +7,7 @@ To rename an individual account, `sorry` the account with the old name and
 make a `note` of why you are changing the username. To run `sorry` you need
 to be a root user. Follow the prompts of the script.
 
-```
+```bash
 sudo sorry username_to_rename
 
 note -u username_to_rename
@@ -19,7 +19,7 @@ the user's `calnetUID` manually, and delete `callinkOID` attribute. You will nee
 to be a root user to do this. Be sure to `note` the reason and previous username
 in the new account note file.
 
-```
+```bash
 approve
 
 note -u new_username

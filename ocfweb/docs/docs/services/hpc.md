@@ -27,7 +27,7 @@ expected to be needed.
 Once you submit your proposal and are approved access you will be able to
 connect to our Slurm master node via SSH by running the following command:
 
-```
+```bash
 ssh my_ocf_username@hpcctl.ocf.berkeley.edu
 ```
 
@@ -69,7 +69,7 @@ First you can use a [virtual environment][venv] if you are using Python
 packages. To create a virtual environment navigate to your home directory
 and run the following commands:
 
-```
+```bash
 virtualenv -p python3 venv
 . venv/bin/activate
 ```
@@ -93,7 +93,7 @@ We recommend that you do your development on our HPC infrastructure, but you
 can also develop on your own machine if you would like. If you are running
 Linux on your system, you can install Singularity from the official `apt` repos:
 
-```
+```bash
 sudo apt install singularity-container
 ```
 
@@ -103,7 +103,7 @@ look [here][mac_install], or Windows [here][win_install].
 
 #### Building Your Container
 
-```
+```bash
 singularity build --sandbox ./my_container docker://ubuntu
 ```
 This will create a Singularity container named `my_container`. If you are
@@ -123,7 +123,7 @@ at `/home/containers` on the Slurm master node.
 
 #### Using Your Container
 
-```
+```bash
 singularity shell my_container
 ```
 The above command will allow you to shell into your container. By default your
@@ -131,7 +131,7 @@ home directory in the container is linked to your real home directory outside
 of the container environment, which helps you avoid having to transfer files
 in and out of the container.
 
-```
+```bash
 singularity exec --nv my_container ./my_executable.sh
 ```
 This command will open your container and run the `my_executable.sh` script in
@@ -145,19 +145,19 @@ If you were using a sandboxed container for testing, we suggest you convert it
 to a Singularity image file. This is because images are more portable and
 easier to interact with than sandboxed containers. You can make this
 conversion using the following command:
-```
+```bash
 sudo singularity build my_image.simg ./my_sandboxed_container
 ```
 
 If you were working on the image on your own computer, you can transfer it over
 to your home directory on our infrastructure using the following command:
-```
+```bash
 scp my_image.simg my_ocf_username@hpcctl.ocf.berkeley.edu:~/
 ```
 
 To actually submit a Slurm job that uses your Singularity container and runs
 your script `my_executable.sh`, run the following command:
-```
+```bash
 srun --gres=gpu --partition=ocf-hpc singularity exec --nv my_image.simg ./my_executable.sh
 ```
 This will submit a Slurm job to run your executable on the `ocf-hpc` Slurm

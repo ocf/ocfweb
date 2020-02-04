@@ -32,7 +32,7 @@ the desktops and other devices.
 The primary switch is named `blackhole` and can be accessed over SSH from inside
 the OCF subnet.
 
-```
+```bash
 $ ssh admin@blackhole.ocf.berkeley.edu
 Password:
 blackhole.ocf.berkeley.edu>

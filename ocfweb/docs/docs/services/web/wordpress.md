@@ -131,7 +131,7 @@ hours|staff-hours]] instead.
 
 4. Reset your password using the username given above.
 
-   ```
+   ```shell
    $ wp user update admin --user_pass=new_password
    ```
 

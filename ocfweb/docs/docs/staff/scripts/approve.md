@@ -27,7 +27,7 @@ direct them to an OCF officer.
 * If the group is a registered student group, you can look up the requester's
   signatory status by name with [[signat|doc staff/scripts/signat]].
 
-  ```text
+  ```
   $ signat name matthew mcallister
   Searching for people... Found 1 entry.
   Searching for signatories...
@@ -46,7 +46,7 @@ direct them to an OCF officer.
   check that the group doesn't already have an account using
   `checkacct`.
 
-  ```text
+  ```
   $ checkacct privacy
   Login: bipla              Name: Berkeley Information Privacy Law Association
   ```

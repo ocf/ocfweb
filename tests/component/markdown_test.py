@@ -72,7 +72,7 @@ def test_comments_get_stripped():
     )
 
 
-@pytest.mark.parametrize('language', ('python', 'asdf', ''))
+@pytest.mark.parametrize('language', ('python', 'apacheconf', ''))
 def test_code_rendering(language):
     with mock.patch.object(
             ocfweb.component.markdown,
