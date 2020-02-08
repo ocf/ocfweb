@@ -5,5 +5,5 @@ The following staffers have successfully made a pull request to
 
 <!-- Please keep this list alphabetical! -->
 
-- bngo
+- [bngo](https://github.com/ocf/ocfweb/pull/578)
 - [cooperc](https://github.com/ocf/ocfweb/pull/569)
