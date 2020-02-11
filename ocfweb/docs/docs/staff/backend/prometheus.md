@@ -1,6 +1,6 @@
 [[!meta title="Prometheus"]]
 
-We use Prometheus to provide real-time monitoring of our [[hardware|doc staff/backend. The master is [[dementors|doc staff/backend/servers]] which
+We use Prometheus to provide real-time monitoring of our [[hardware|doc staff/backend]]. The master is [[dementors|doc staff/backend/servers]] which
 uses the Node Exporter to collect data from other servers.
 
 We monitor servers, desktops, and staff VMs, but not the hozer boxes.
@@ -36,6 +36,12 @@ Prometheus supports querying a wide variety of metrics. (For a full list, go to 
 ```
 metric{label="value", label2="value2", ...}
 ```
+
+Some labels used frequently are:
+ - **instance:** The name of the device that the data was collected from. Some examples are `papercut`, `avalanche`, or `supernova`.
+ - **host_type:** The type of device that is being queried. Valid types are `desktop`, `server`, and `staffvm`.
+ - **job:** The name of the job/exporter that collected the data. Some examples are `node`, `printer`, and `slurm`.
+
 For example, if you would like to view the total RAM installed on each of the [[servers|doc staff/backend/servers]] you can query `node_memory_Active_bytes{host_type="server"}`.
 
 To view the per-second rate of a metric, use
@@ -43,6 +49,8 @@ To view the per-second rate of a metric, use
 rate(metric{label="value",...})
 ```
 For example, the data sent in bytes/second over the past 5 minutes by `fallingrocks` can be retrieved using `rate(node_network_transmit_bytes_total{instance="fallingrocks"}`.
+
+For more info about querying, see the [official documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/).
 
 Queries are best used in conjunction with Grafana, as to produce more readable results and save them for future reference. The next section will give more details on how to do this.
 
