@@ -1,6 +1,6 @@
 [[!meta title="Prometheus"]]
 
-We use Prometheus to provide real-time monitoring of our hardware. The master is [[dementors|doc staff/backend/servers]] which
+We use Prometheus to provide real-time monitoring of our [[hardware|doc staff/backend. The master is [[dementors|doc staff/backend/servers]] which
 uses the Node Exporter to collect data from other servers.
 
 We monitor servers, desktops, and staff VMs, but not the hozer boxes.
@@ -10,7 +10,25 @@ Additionally, we don't receive email alerts for staff VMs. Monitoring for the ne
 
 Alerts can be viewed at [prometheus.ocf.berkeley.edu/alerts](https://prometheus.ocf.berkeley.edu/alerts). They are configured at [this folder][prometheus-puppet] in the Puppet configs.
 
+Alerts can be
+
 Alerts are currently under development and may not be fully comprehensive.
+
+## Metrics
+
+Prometheus uses [metrics](https://prometheus.io/docs/concepts/metric_types/) to collect and visualize different types of data.
+
+The main way Prometheus collects metrics in the OCF is [Node Exporter](https://github.com/prometheus/node_exporter). Another important exporter we use is the [SNMP Exporter](https://github.com/prometheus/snmp_exporter) which monitors information from printers, and possibly in the future, network switches.
+
+A full list of exporters is available in the [Prometheus documentation](https://prometheus.io/docs/instrumenting/exporters/). In order to take advantage of these exporters, we define them in the [Puppet config for the Prometheus server][puppet-config].
+
+### Custom Metrics
+
+There are three main ways to generate custom metrics:
+
+1. If metrics can be generated from a VM, run a script on a cronjob that writes to `/srv/prometheus`. These automatically get bundled into Node Exporter. We do this for CUPS monitoring - [here is an example of this in practice](https://github.com/ocf/puppet/blob/master/modules/ocf_printhost/manifests/monitor.pp).
+2. Run a metrics server over HTTP and add them manually to the Puppet config. This is the most ideal method of using a prewritten exporter, like the Apache or Postfix exporters, both of which we use. An example of this is in the [Prometheus server config][puppet-config].
+3. Run your exporter in Kubernetes if it doesn't matter which host it runs on. This is how we run the SNMP exporter. Again, this is done in the [Prometheus server config][puppet-config].
 
 ## Custom Queries
 
@@ -44,3 +62,4 @@ Configuring Grafana dashboards does not require editing Puppet configs. Simply g
 
 [prometheus-puppet]: https://github.com/ocf/puppet/tree/master/modules/ocf_prometheus/files/rules.d
 [grafana]: https://grafana.ocf.berkeley.edu
+[puppet-config]: https://github.com/ocf/puppet/blob/master/modules/ocf_prometheus/manifests/server.pp
