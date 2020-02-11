@@ -31,11 +31,13 @@ Queries are best used in conjunction with Grafana, as to produce more readable r
 ## Grafana
 
 The frontend for Prometheus is [Grafana][grafana], which displays statistics collected by Prometheus in a user-friendly manner. Some of the more useful dashboards available are:
- - **[Servers](https://grafana.ocf.berkeley.edu/d/7n0r8PUWz/servers?orgId=1&refresh=10s):** Displays usage information for the physical servers and hypervisors (fallingrocks, riptide, etc).
- - **[Desktops](https://grafana.ocf.berkeley.edu/d/-VCUTE8Zk/desktops?orgId=1&refresh=10s):** Displays usage information for lab computers (cyclone, acid, etc).
- - **[Printers](https://grafana.ocf.berkeley.edu/d/SKl6_71iz/printers?orgId=1):** Displays printer usage and resource information.
- - **[Mirrors](https://grafana.ocf.berkeley.edu/d/Jo_bRsyiz/mirrors?orgId=1):** Displays information about mirror staleness.
- - **[HPC](https://grafana.ocf.berkeley.edu/d/N7Sb3nwik/hpc-slurm-dashboard?orgId=1&refresh=30s):** Displays usage information for the [[HPC cluster|doc services/hpc]].
+ - **[Servers](https://ocf.io/serverstats):** Displays usage information for the physical servers and hypervisors (fallingrocks, riptide, etc).
+ - **[Desktops](https://ocf.io/desktopstats):** Displays usage information for lab computers (cyclone, acid, etc).
+ - **[Printers](https://ocf.io/printerstats):** Displays printer usage and resource information.
+ - **[Mirrors](https://ocf.io/mirrorstats):** Displays information about mirror staleness.
+ - **[HPC](hhttps://ocf.io/hpcstats):** Displays usage information for the [[HPC cluster|doc services/hpc]].
+
+There are more dashboards available, which can be accessed by clicking the dropdown arrow on the top left of the Grafana page.
 
 Configuring Grafana dashboards does not require editing Puppet configs. Simply go to [Grafana][grafana], login using your OCF account, and click the plus icon on the left toolbar to begin visually creating a custom dashboard. Grafana uses [Prometheus queries](https://prometheus.io/docs/prometheus/latest/querying/basics/) to fetch data to be displayed.
 
