@@ -10,7 +10,7 @@ Additionally, we don't receive email alerts for staff VMs. Monitoring for the ne
 
 Alerts can be viewed at [prometheus.ocf.berkeley.edu/alerts](https://prometheus.ocf.berkeley.edu/alerts). They are configured at [this folder][prometheus-puppet] in the Puppet configs.
 
-Alerts can be
+Alerts can additionally be configured using the [alert manager](prometheus.ocf.berkeley.edu/alertmanager). Alertmanager handles notifications for alerts via communication through email and Slack. Alerts can be inhibited or silenced. Alertmanager documentation can be found [here](https://prometheus.io/docs/alerting/alertmanager/).
 
 Alerts are currently under development and may not be fully comprehensive.
 
