@@ -82,8 +82,6 @@ the following:
 * Chanop status on IRC
 * Services Root Adminship for Anope
 * Access to the firewall configuration interface
-* Being a Departmental Certificate Administrator for the [InCommon certificate
-  service](https://cert-manager.com/customer/incommon)
 * Knowledge of the root password
 * Access to [NetReg](https://netreg.berkeley.edu/)
 * Access to view Google Analytics data for ocfweb
