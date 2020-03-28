@@ -1,25 +1,43 @@
 [[!meta title="Using Twitch and OBS"]]
 
-## Setting Up Your Stream
+## Preparing Your Stream
 
-In your settings on Twitch, please enable VODs (video on demand) especially if you're working on OCF stuff.
-To do this, go to https://dashboard.twitch.tv/settings/channel and enable "Store past broadcasts".
+In your settings on Twitch, please enable VODs (video on demand) especially if you're working on OCF stuff. To do this, go to your [Twitch channel settings](https://dashboard.twitch.tv/settings/channel) and enable "Store past broadcasts". Note that VODs do not last forever (14 days for regular Twitch users); see the recommendations section below on how to save your stream.
 
-When streaming, keep the stream manager open (ideally on another screen) to see chat: https://dashboard.twitch.tv/stream-manager.
+When streaming, keep the Stream Manager open (ideally on another screen) to see chat. You can get to this from https://dashboard.twitch.tv/stream-manager.
 
 ## Setting up OBS to stream to Twitch
 
-OBS is pretty straightforward to configure. You can install it as you would any other software (arch pkg: obs-studio).
+OBS is pretty straightforward to configure. You can install OBS from the [official site here](https://obsproject.com/download), and you can find additional guidance from the [OBS official wiki here](https://obsproject.com/wiki/).
 
-Please record on OBS as well streaming! (Click both the "Start Streaming" and "Start Recording" buttons.)
-This will let us upload the streams to another source like YouTube. Twitch only saves VODs for a short period of time
-It's recommended to set up at least two scenes in OBS: one that shows your desktop and one that does not. This way, you can hide your screen if you need to work with passwords or otherwise sensitive stuff. Keep in mind that "it only showed for a split second" is not an excuse to not hide things. Twitch allows people to clip and rewatch anything frame-by-frame.
+When you first open OBS, you'll encounter a first-time setup screen. Be sure to run through the options and make sure to optimize for streaming over recording.
 
-Please stream with a mic so you can explain what you're doing and talk to chat. You can see the mic level in OBS. Ideally this should be hovering around the yellow range, but it should never hit the far right of the bar. If you're maxing out, decrease the mic volume. You can apply filters to the mic by clicking the gear icon.
+OBS operates by providing **sources** (input from your computer and connected devices) that you can assemble into custom arrangements called a **scene**. We recommend setting up at least two scenes in OBS: one that shows your desktop and one that does not. This way, you can hide your screen if you need to work with passwords or otherwise sensitive stuff. You can switch streams by clicking on the scene on OBS or assigning hotkeys to each scene.
 
-I (cooperc) would recommend adding Noise Supression (reduces noise) and Noise Gate (cuts off all sound below a certain volume level). For Noise Gate, to set the thresholds, be quiet and see where the mic level ends up. Set the close threshold there, and set the open threshold 10dB higher.
+A beginning setup could look like the following:
 
-If you know what a compressor is, you can add one as well. (Not like gzip or mp3 you nerds. Audio compression means something entirely different.)
+1. Scene 1 ("Normal")
+  - Audio Input Capture (microphones, etc)
+  - Audio Output Capture (streams audio from the computer)
+  - Screen Capture (screen capture)
+  - Video Capture Device (webcams -- optional)
+2. Scene 2 ("Desktop Hidden")
+  - Picture
+  - Text ("Be right back!")
+
+Once you've configured everything properly and connected OBS to Twitch, press "Start Streaming" to begin streaming to Twitch.
+
+## Streaming Reminders & Recommendations
+
+- Please record on OBS while streaming! Click both the "Start Streaming" and "Start Recording" buttons. This will let us upload the streams to another source like YouTube. Twitch only saves VODs for a short period of time.
+
+- We advise streamers to be careful about what they show on screen; Twitch allows people to clip and rewatch anything frame-by-frame.
+
+- Please stream with a mic so you can explain what you're doing and talk to chat. You can see the mic level in OBS. Ideally this should be hovering around the yellow range, but it should never hit the far right of the bar. If you're maxing out, decrease the mic volume. You can apply filters to the mic by clicking the gear icon.
+
+- OBS has several options that will optimize stream quality. If you have a GPU, enable hardware acceleration.
+
+- We recommend adding Noise Supression (reduces noise) and Noise Gate (cuts off all sound below a certain volume level). For Noise Gate, to set the thresholds, be quiet and see where the mic level ends up. Set the close threshold there, and set the open threshold 10dB higher.
 
 ## Screencasting in Arch on Wayland GNOME
 
