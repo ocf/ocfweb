@@ -1,4 +1,5 @@
 import operator
+from typing import Any
 from typing import Union
 
 import ocflib.account.search as search
@@ -227,7 +228,7 @@ def account_created(request: HttpRequest) -> HttpResponse:
 
 class ApproveForm(Form):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         association_choices = kwargs.pop('association_choices', None)
         super().__init__(*args, **kwargs)
         if association_choices:
