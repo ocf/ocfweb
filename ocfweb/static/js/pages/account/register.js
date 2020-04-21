@@ -1,11 +1,12 @@
 function validate_username() {
-    var $username_field = $('#id_ocf_login_name'),
+    var $association_field = $('#id_account_association option:selected'),
+        $username_field = $('#id_ocf_login_name'),
         $username_feedback = $('#username-feedback');
     $.ajax({
          type: 'GET',
          url: 'validate/',
          data: {'username': $username_field.val(),
-                'real_name': $('#real-name').text()},
+                'real_name': $association_field.text()},
          success: function(data) {
              var msg = data.msg;
 
