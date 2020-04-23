@@ -83,7 +83,7 @@ def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpRes
     if request.method == 'POST':
         form = ApproveForm(request.POST, association_choices=association_choices)
         if form.is_valid():
-            is_group_account = form.cleaned_data['account_association'] == calnet_uid
+            is_group_account = form.cleaned_data['account_association'] != calnet_uid
             if is_group_account:
                 req = NewAccountRequest(
                     user_name=form.cleaned_data['ocf_login_name'],
