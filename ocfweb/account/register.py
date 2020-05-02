@@ -41,15 +41,16 @@ def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpRes
     status = 'new_request'
 
     existing_accounts = search.users_by_calnet_uid(calnet_uid)
-    eligible_signatory_groups = groups_by_student_signat(calnet_uid)
+    groups_for_user = groups_by_student_signat(calnet_uid)
 
-    # disallow creation forr groups already have accounts
-    existing_group_accounts = {}
-    for group_oid in list(eligible_signatory_groups.keys()):
-        if len(group_by_oid(group_oid)['accounts']) and group_oid not in [group[0] for group in TEST_GROUP_ACCOUNTS]:
-            existing_group_accounts[group_oid] = eligible_signatory_groups.pop(group_oid)
+    eligible_new_group_accounts, existing_group_accounts = {}, {}
+    for group_oid in groups_for_user:
+        if not group_by_oid(group_oid)['accounts'] or group_oid in [group[0] for group in TEST_GROUP_ACCOUNTS]:
+            eligible_new_group_accounts[group_oid] = groups_for_user[group_oid]
+        else:
+            existing_group_accounts[group_oid] = groups_for_user[group_oid]
 
-    if existing_accounts and not eligible_signatory_groups and calnet_uid not in TESTER_CALNET_UIDS:
+    if existing_accounts and not eligible_new_group_accounts and calnet_uid not in TESTER_CALNET_UIDS:
         return render(
             request,
             'account/register/already-has-account.html',
@@ -77,20 +78,21 @@ def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpRes
     association_choices = []
     if not existing_accounts or calnet_uid in TESTER_CALNET_UIDS:
         association_choices.append((calnet_uid, real_name))
-    for group_oid, group in eligible_signatory_groups.items():
+    for group_oid, group in eligible_new_group_accounts.items():
         association_choices.append((group_oid, group['name']))
 
     if request.method == 'POST':
         form = ApproveForm(request.POST, association_choices=association_choices)
         if form.is_valid():
-            is_group_account = form.cleaned_data['account_association'] != calnet_uid
+            assoc_id = form.cleaned_data['account_association']
+            is_group_account = assoc_id != calnet_uid
             if is_group_account:
                 req = NewAccountRequest(
                     user_name=form.cleaned_data['ocf_login_name'],
-                    real_name=eligible_signatory_groups[form.cleaned_data['account_association']],
+                    real_name=eligible_new_group_accounts[assoc_id]['name'],
                     is_group=True,
                     calnet_uid=None,
-                    callink_oid=form.cleaned_data['account_association'],
+                    callink_oid=assoc_id,
                     email=form.cleaned_data['contact_email'],
                     encrypted_password=encrypt_password(
                         form.cleaned_data['password'],
@@ -142,6 +144,7 @@ def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpRes
         request,
         'account/register/index.html',
         {
+            'calnet_uid': calnet_uid,
             'existing_accounts': existing_accounts,
             'existing_group_accounts': existing_group_accounts,
             'form': form,
