@@ -70,8 +70,10 @@ $("select[name='account_association']").change(function () {
         $association_id.parent().addClass("has-warning");
         msg = "This group account will be associated with the " + association_name
             + ". Make sure you did not intend to create a personal OCF account.";
-        $association_feedback.removeClass('alert-success')
-                                  .addClass('alert-warning');
+        $association_feedback.addClass('alert-warning');
+    } else {
+        $association_id.parent().removeClass("has-warning");;
+        $association_feedback.removeClass('alert-warning');
     }
 
     $association_feedback.show().text(msg);
