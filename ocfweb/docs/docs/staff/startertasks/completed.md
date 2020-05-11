@@ -8,3 +8,4 @@ The following staffers have successfully made a pull request to
 - [bngo](https://github.com/ocf/ocfweb/pull/578)
 - [cooperc](https://github.com/ocf/ocfweb/pull/569)
 - [kmo](https://github.com/ocf/ocfweb/pull/588)
+- [njha](https://github.com/ocf/ocfweb/pull/598)
