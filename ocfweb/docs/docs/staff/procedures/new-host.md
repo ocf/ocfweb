@@ -13,11 +13,14 @@ running `virsh undefine hozer-{num}` to remove the VM and `lvremove
 ## Step 0. Pick a hostname and IP
 
 If you are creating a brand-new host, you can find a list of IP addresses
-already in use in our [DNS repo on GitHub][github-ip-list]. Hostnames must be
-based on (un)natural disasters; check out `~staff/server_name_ideas` if you're
-having trouble thinking of one.
+already in use in our [DNS repo on GitHub][github-ip-list]. There is also [a
+spreadsheet of currently used IPs][ips-sheet] containing more information,
+although this may not always be up to date. Hostnames must be based on
+(un)natural disasters; check out `~staff/server_name_ideas` if you're having
+trouble thinking of one.
 
 [github-ip-list]: https://github.com/ocf/dns/blob/master/etc/zones/db.226.229.169.in-addr.arpa
+[ips-sheet]: https://ocf.io/s/ips
 
 
 ## Step 1. (New hosts only) Add to LDAP, DNS, Puppet, Kerberos
@@ -29,9 +32,11 @@ Unfortunately, these steps tend to change a lot as our infrastructure evolves.
 
 ### Step 1.1. Add the LDAP entry
 
-On supernova, `kinit $USER/admin ldap-add-host <hostname> <ip>`. If setting up
-a desktop, also do `kinit $USER/admin ldapvi cn=<hostname>` and set the `type`
-attribute to `desktop`. If doing a staff VM, set it to `staffvm` instead.
+On supernova, `kinit $USER/admin ldap-add-host <hostname> <ip-last-octet>`.
+`<ip-last-octet>` is the part after the last `.` in the IP address, like `42`
+for the address `169.229.226.42`. If setting up a desktop, add a final argument
+`desktop`, which will set the `type` to `desktop`. If doing a staff VM, add to
+`staffvm` instead.
 
 
 ### Step 1.2. Add the DNS record

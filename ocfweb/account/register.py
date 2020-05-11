@@ -1,3 +1,4 @@
+from typing import Any
 from typing import Union
 
 import ocflib.account.search as search
@@ -21,8 +22,11 @@ from ocflib.account.creation import ValidationError
 from ocflib.account.creation import ValidationWarning
 from ocflib.account.search import user_attrs_ucb
 from ocflib.account.submission import NewAccountResponse
+from ocflib.ucb.groups import group_by_oid
+from ocflib.ucb.groups import groups_by_student_signat
 
 import ocfweb.account.recommender as recommender
+from ocfweb.account.constants import TEST_GROUP_ACCOUNTS
 from ocfweb.account.constants import TESTER_CALNET_UIDS
 from ocfweb.auth import calnet_required
 from ocfweb.component.celery import celery_app
@@ -37,8 +41,16 @@ def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpRes
     status = 'new_request'
 
     existing_accounts = search.users_by_calnet_uid(calnet_uid)
+    groups_for_user = groups_by_student_signat(calnet_uid)
 
-    if existing_accounts and calnet_uid not in TESTER_CALNET_UIDS:
+    eligible_new_group_accounts, existing_group_accounts = {}, {}
+    for group_oid in groups_for_user:
+        if not group_by_oid(group_oid)['accounts'] or group_oid in [group[0] for group in TEST_GROUP_ACCOUNTS]:
+            eligible_new_group_accounts[group_oid] = groups_for_user[group_oid]
+        else:
+            existing_group_accounts[group_oid] = groups_for_user[group_oid]
+
+    if existing_accounts and not eligible_new_group_accounts and calnet_uid not in TESTER_CALNET_UIDS:
         return render(
             request,
             'account/register/already-has-account.html',
@@ -63,22 +75,45 @@ def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpRes
 
     real_name = directory.name_by_calnet_uid(calnet_uid)
 
+    association_choices = []
+    if not existing_accounts or calnet_uid in TESTER_CALNET_UIDS:
+        association_choices.append((calnet_uid, real_name))
+    for group_oid, group in eligible_new_group_accounts.items():
+        association_choices.append((group_oid, group['name']))
+
     if request.method == 'POST':
-        form = ApproveForm(request.POST)
+        form = ApproveForm(request.POST, association_choices=association_choices)
         if form.is_valid():
-            req = NewAccountRequest(
-                user_name=form.cleaned_data['ocf_login_name'],
-                real_name=real_name,
-                is_group=False,
-                calnet_uid=calnet_uid,
-                callink_oid=None,
-                email=form.cleaned_data['contact_email'],
-                encrypted_password=encrypt_password(
-                    form.cleaned_data['password'],
-                    RSA.importKey(CREATE_PUBLIC_KEY),
-                ),
-                handle_warnings=NewAccountRequest.WARNINGS_WARN,
-            )
+            assoc_id = int(form.cleaned_data['account_association'])
+            is_group_account = assoc_id != calnet_uid
+            if is_group_account:
+                req = NewAccountRequest(
+                    user_name=form.cleaned_data['ocf_login_name'],
+                    real_name=eligible_new_group_accounts[assoc_id]['name'],
+                    is_group=True,
+                    calnet_uid=None,
+                    callink_oid=assoc_id,
+                    email=form.cleaned_data['contact_email'],
+                    encrypted_password=encrypt_password(
+                        form.cleaned_data['password'],
+                        RSA.importKey(CREATE_PUBLIC_KEY),
+                    ),
+                    handle_warnings=NewAccountRequest.WARNINGS_WARN,
+                )
+            else:
+                req = NewAccountRequest(
+                    user_name=form.cleaned_data['ocf_login_name'],
+                    real_name=real_name,
+                    is_group=False,
+                    calnet_uid=calnet_uid,
+                    callink_oid=None,
+                    email=form.cleaned_data['contact_email'],
+                    encrypted_password=encrypt_password(
+                        form.cleaned_data['password'],
+                        RSA.importKey(CREATE_PUBLIC_KEY),
+                    ),
+                    handle_warnings=NewAccountRequest.WARNINGS_WARN,
+                )
             if 'warnings-submit' in request.POST:
                 req = req._replace(
                     handle_warnings=NewAccountRequest.WARNINGS_SUBMIT,
@@ -103,12 +138,15 @@ def request_account(request: HttpRequest) -> Union[HttpResponseRedirect, HttpRes
                 request.session['approve_task_id'] = task.result
                 return HttpResponseRedirect(reverse('wait_for_account'))
     else:
-        form = ApproveForm()
+        form = ApproveForm(association_choices=association_choices)
 
     return render(
         request,
         'account/register/index.html',
         {
+            'calnet_uid': calnet_uid,
+            'existing_accounts': existing_accounts,
+            'existing_group_accounts': existing_group_accounts,
             'form': form,
             'real_name': real_name,
             'status': status,
@@ -192,6 +230,17 @@ def account_created(request: HttpRequest) -> HttpResponse:
 
 
 class ApproveForm(Form):
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        association_choices = kwargs.pop('association_choices', None)
+        super().__init__(*args, **kwargs)
+        if association_choices:
+            self.fields['account_association'].choices = association_choices
+
+    account_association = forms.ChoiceField(
+        label='CalNet/CalLink account association',
+        widget=forms.Select(),
+    )
 
     ocf_login_name = forms.CharField(
         label='OCF account name',
