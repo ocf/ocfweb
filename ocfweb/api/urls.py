@@ -18,8 +18,4 @@ urlpatterns = [
     path('shorturl/<path:slug>', shorturls.bounce_shorturl, name='bounce_shorturl'),
     path('lab/num_users', stats.get_num_users_in_lab, name='get_num_users_in_lab'),
     path('lab/staff', stats.get_staff_in_lab, name='get_staff_in_lab'),
-    # path('stats/printing/pages')
-    # path('stats/accounts')
-    # path('stats/mirrors')
-    # path('stats/sessions')
 ]
