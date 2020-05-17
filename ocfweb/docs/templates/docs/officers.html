@@ -85,7 +85,7 @@
           Committee Heads
         </h3>
           {% for committee in current_term.heads %}
-            <h4>{{ committee.name }} Committee Heads</h4>
+            <h4>{{ committee.name }} Heads</h4>
               <p>
                 {% for head in committee.heads %}
                   {% if head.end is None %}
@@ -111,8 +111,7 @@
       <thead>
         <tr>
           <th>Term</th>
-          <th>General Managers</th>
-          <th>Site Managers</th>
+          <th colspan="2">Officers</th>
         </tr>
       </thead>
       <tbody>
@@ -120,6 +119,7 @@
           <tr>
             <td>{{ term.name }}</td>
             <td>
+              <p><strong>General Managers</strong></p>
               {% for gm in term.gms %}
                 <p>{{ gm }}</p>
               {% endfor %}
@@ -131,6 +131,7 @@
               {% endif %}
             </td>
             <td>
+              <p><strong>Site Managers</strong></p>
               {% for sm in term.sms %}
                 <p>{{ sm }}</p>
               {% endfor %}
@@ -142,6 +143,24 @@
               {% endif %}
             </td>
           </tr>
+          {% if term.heads %}
+            <tr>
+              <td style="border: none;" />
+              <td colspan="2">
+                <details>
+                  <summary style="display: list-item;">
+                    Committee Heads
+                  </summary>
+                  {% for committee in term.heads %}
+                    <h5>{{ committee.name }}</h5>
+                    {% for head in committee.heads %}
+                      <p>{{ head }}</p>
+                    {% endfor %}
+                  {% endfor %}
+                </details>
+              </td>
+            </tr>
+          {% endif %}
         {% endfor %}
       </tbody>
     </table>

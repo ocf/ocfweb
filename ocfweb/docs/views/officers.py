@@ -259,8 +259,27 @@ def _bod_terms() -> List[Any]:
                 ('Internal', ['php', 'kmo']),
                 ('Industry and Alumni Relations', ['asai', 'rachy']),
                 ('Finance', ['ncberberi', 'nint']),
-                ('Communication', ['rachy']),
+                (
+                    'Communications', [
+                        ('rachy', date(2019, 12, 21), date(2020, 3, 8)),
+                        ('snarain', date(2020, 3, 30), date(2020, 4, 6), True),
+                        ('snarain', date(2020, 4, 6), date(2020, 5, 15)),
+                    ],
+                ),
                 ('DeCal', ['exiang', 'bencuan', 'kmo']),
+            ],
+        ),
+        Term(
+            'Fall 2020',
+            gms=['dphan', 'kmo'],
+            sms=['fydai', 'jaw'],
+            heads=[
+                ('University Affairs', ['dphan', 'kmo']),
+                ('Internal', ['wqnguyen', 'snarain']),
+                ('Industry and Alumni Relations', ['bernardzhao']),
+                ('Finance', ['ncberberi']),
+                ('Communications', ['snarain', 'nint']),
+                ('DeCal', ['njha', 'bencuan', 'bernardzhao']),
             ],
         ),
     ]
