@@ -45,7 +45,7 @@ Follow this procedure to get a group account:
 
 **[[Request a group account online|register]]**
 
-1. **If you are an RSO, have a signatory sign up using the link above.**
+1. **If you are a registered student organization, have a signatory sign up using the link above.**
    While campus remains online due to the effects of COVID-19, you can
    create a group account online by having a signatory register using the link above.
 
