@@ -173,15 +173,15 @@ def request_vhost_success(request: HttpRequest) -> HttpResponse:
 
 class VirtualHostForm(Form):
     # requested subdomain
-    requested_own_domain = forms.ChoiceField(
+    requested_domain_type = forms.ChoiceField(
         choices=[
             (
-                False, 'I would like to request a berkeley.edu domain \
+                'berkeley', 'I would like to request a berkeley.edu domain \
                      (most student groups want this).',
             ),
-            (True, 'I want to use the domain I already own.'),
+            ('own', 'I want to use the domain I already own.'),
         ],
-        widget=forms.RadioSelect(),
+        widget=forms.RadioSelect,
     )
 
     requested_subdomain = forms.CharField(
@@ -273,8 +273,7 @@ class VirtualHostForm(Form):
 
     def clean_requested_subdomain(self) -> str:
         requested_subdomain = self.cleaned_data['requested_subdomain'].lower().strip()
-
-        if self.cleaned_data['requested_own_domain']:
+        if self.cleaned_data['requested_domain_type'] == 'own':
             if not valid_domain_external(requested_subdomain):
                 raise forms.ValidationError(
                     'This does not appear to be a valid domain. '
