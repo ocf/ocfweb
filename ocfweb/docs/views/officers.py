@@ -1,8 +1,9 @@
 import math
-from collections import namedtuple
+from dataclasses import dataclass
 from datetime import date
 from typing import Any
 from typing import Callable
+from typing import cast
 from typing import List
 from typing import Optional
 from typing import Tuple
@@ -15,39 +16,63 @@ from ocflib.account.search import user_attrs
 
 from ocfweb import caching
 
-_Term = namedtuple('_Term', ['name', 'gms', 'sms', 'dgms', 'dsms', 'heads'])
-Committee = namedtuple('Committee', ['name', 'heads'])
+OfficerUidOrInfo = Union[str, Tuple[str, date, date], Tuple[str, date, date, bool]]
 
 
-def Term(
-    name: str,
-    gms: List[Any],
-    sms: List[Any],
-    dgms: Optional[List[Any]] = None,
-    dsms: Optional[List[Any]] = None,
-    heads: Optional[List[Tuple[str, List[Any]]]] = None,
-) -> _Term:
-    gms = list(map(Officer.from_uid_or_info, gms))
-    sms = list(map(Officer.from_uid_or_info, sms))
-    dgms = list(map(Officer.from_uid_or_info, dgms or []))
-    dsms = list(map(Officer.from_uid_or_info, dsms or []))
-    heads = [
-        Committee(committee[0], list(map(Officer.from_uid_or_info, committee[1])))
-        for committee in heads or []
-    ]
-    return _Term(name, gms, sms, dgms, dsms, heads)
+@dataclass
+class Committee:
+    name: str
+    heads: 'List[Officer]'
 
 
-class Officer(namedtuple('Officer', ['uid', 'name', 'start', 'end', 'acting'])):
+@dataclass
+class Term:
+    name: str
+    gms: 'List[Officer]'
+    sms: 'List[Officer]'
+    dgms: 'List[Officer]'
+    dsms: 'List[Officer]'
+    heads: List[Committee]
+
+    def __init__(
+        self,
+        name: str,
+        gms: List[OfficerUidOrInfo],
+        sms: List[OfficerUidOrInfo],
+        dgms: Optional[List[OfficerUidOrInfo]] = None,
+        dsms: Optional[List[OfficerUidOrInfo]] = None,
+        heads: Optional[List[Tuple[str, List[OfficerUidOrInfo]]]] = None,
+    ):
+        self.name = name
+        self.gms = list(map(Officer.from_uid_or_info, gms))
+        self.sms = list(map(Officer.from_uid_or_info, sms))
+        self.dgms = list(map(Officer.from_uid_or_info, dgms or []))
+        self.dsms = list(map(Officer.from_uid_or_info, dsms or []))
+        self.heads = [
+            Committee(committee[0], list(map(Officer.from_uid_or_info, committee[1])))
+            for committee in heads or []
+        ]
+
+
+@dataclass
+class Officer:
+    uid: str
+    name: str
+    start: Optional[date]
+    end: Optional[date]
+    acting: bool
 
     @classmethod
-    def from_uid_or_info(cls: Callable[..., Any], uid_or_info: Union[Tuple[Any, ...], str]) -> Any:
+    def from_uid_or_info(cls: 'Callable[..., Officer]', uid_or_info: OfficerUidOrInfo) -> 'Officer':
+        start: Optional[date]
+        end: Optional[date]
+
         if isinstance(uid_or_info, tuple):
             if len(uid_or_info) == 3:
-                uid, start, end = uid_or_info
+                uid, start, end = cast(Tuple[str, date, date], uid_or_info)
                 acting = False
             else:
-                uid, start, end, acting = uid_or_info
+                uid, start, end, acting = cast(Tuple[str, date, date, bool], uid_or_info)
         else:
             uid = uid_or_info
             start = end = None
@@ -72,6 +97,7 @@ class Officer(namedtuple('Officer', ['uid', 'name', 'start', 'end', 'acting'])):
             else:
                 s += ' (acting)'
         if not self.full_term:
+            assert self.start is not None
             s += ' ({}–{})'.format(
                 self.start.strftime('%m/%d/%y'),
                 self.end.strftime('%m/%d/%y') if self.end is not None else '',
@@ -96,7 +122,7 @@ MISSING_NAMES = {
 # This function makes approximately five million LDAP queries, so it's
 # important that these terms aren't loaded at import time.
 @caching.periodic(math.inf)
-def _bod_terms() -> List[Any]:
+def _bod_terms() -> List[Term]:
     return [
         Term(
             'Spring 1989',
