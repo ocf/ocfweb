@@ -137,21 +137,8 @@ and for vCPUs:
 
 ### How do I edit my VM's disk size?
 
-Find the lvm vg
-
-    virsh dumpxml <vm> | grep -C3 path
-
-On the hypervisor,
-
-    virsh dominfo <vm>
-    virsh domblkinfo <vm>
-    lvextend /dev/vg/<vm> -L20G
-    virsh blockresize <vm> /dev/vda 20G
-
-On the vm,
-
-    fdisk /dev/vda        # if needed, very carefully
-    partprobe /dev/vda1
-    resize2fs /dev/vda1
-
-If you'd like to shrink a partition on-line, see [Unix SE](https://unix.stackexchange.com/questions/226872/how-to-shrink-root-filesystem-without-booting-a-livecd#227318).
+There's [[a full guide for this in the docs|doc staff/procedures/live-resize]]
+with step-by-step instructions for how to live-resize your VM to have _more_
+disk size. However, if you'd instead like to _shrink_ a partition on-line, see
+[this Unix SE answer](https://unix.stackexchange.com/a/227318). It's much more
+complicated (and a rarer procedure) to shrink a VM's disk than increase it.

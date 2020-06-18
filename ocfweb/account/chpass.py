@@ -88,7 +88,7 @@ def change_password(request: HttpRequest) -> HttpResponse:
                     password,
                     comment=f'Your password was reset online by {calnet_name}.',
                 )
-                result = task.wait(timeout=5)
+                result = task.wait(timeout=10)
                 if isinstance(result, Exception):
                     raise result
             except ValueError as ex:

@@ -202,7 +202,7 @@ def _get_servers() -> Tuple[Any, ...]:
         ),
         ThingToUpgrade.from_hostname(
             'tornado',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
             'y2k',

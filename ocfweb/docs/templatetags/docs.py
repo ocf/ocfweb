@@ -52,7 +52,7 @@ def doc_tree(
                         if doc.name.startswith(root) and not exclude.match(doc.name)
                     }
                 ],
-                key=attrgetter('path'),
+                key=attrgetter('title'),
             ),
         )
 

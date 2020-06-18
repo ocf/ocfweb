@@ -43,16 +43,18 @@ Then, wait for your account to be created. (below)
 
 Follow this procedure to get a group account:
 
-1. **Prepare appropriate documents and identification.** See the [[membership
-   eligibility|doc membership/eligibility]] page for information on the
-   documents and identification you will be asked to present for verification
-   at the time you submit your account form.
+**[[Request a group account online|register]]**
 
-2. **Have the authorized person come to [[staff hours|staff-hours]].** For
-   groups registered with the LEAD Center, that means a signatory. Otherwise,
-   it's the person named in the documentation letter (and yes, you must bring
-   documentation!).  The account will be created during your visit.
+1. **If you are a registered student organization, have a signatory sign up using the link above.**
+   While campus remains online due to the effects of COVID-19, you can
+   create a group account online by having a signatory register using the link above.
 
+2. **Otherwise, email help@ocf.berkeley.edu.**
+   Please include the following information in your request:
+   * Desired group username (list up to 3 in case any are taken).
+   * Full group name
+   * Group contact email address. Ideally, a group one that is monitored regularly.
+   * Private email address for us to send a temporary password to.
 
 ## Account life
 

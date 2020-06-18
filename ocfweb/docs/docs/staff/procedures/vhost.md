@@ -30,12 +30,13 @@
 
 ### Web
 
-Edit the file `~staff/vhost/vhost.conf`, adding a new line. The format is
-documented at the top.
+Edit the file `configs/vhost.conf` in the [`ocf/etc` repo][ocf-etc], adding new
+entries at the top. The format is documented at the top of that file.
 
-This takes effect at the top of every hour when a cronjob runs. HTTPS takes
-about an additional hour to take effect (for the first hour, it will be
-HTTP-only).
+This takes effect at the top of every hour when a cronjob runs. HTTPS should
+available shortly afterwards (within 5-10 minutes). Keep in mind that vhosts
+are not available without HTTPS, so there may be a short period of time where
+the new vhost is unavailable or giving a certificate error.
 
 Next, request the following DNS records from the [University
 hostmaster][campus-hostmistress]:
@@ -51,20 +52,20 @@ new DNS requests.
 
 ### Mail (if requested)    {mail}
 
-Edit the file `~staff/vhost/vhost-mail.conf`, adding a new line for the group.
-The format is simply:
+Edit the file `configs/vhost-mail.conf` in the [`ocf/etc` repo][ocf-etc],
+adding a new line for the group at the top of the file. The format is simply:
 
     groupname domainname
 
-This immediately takes effect, allowing the group to [[edit their email
-config|vhost_mail]] (and the mail server will start accepting incoming/outgoing
-mail), but you still need to update the DNS so that they can actually receive
-mail.
+This takes effect after around 30 minutes (once puppet has run and synced
+ocf/etc), allowing the group to [[edit their email config|vhost_mail]] (and the
+mail server will start accepting incoming/outgoing mail), but you still need to
+update the DNS so that they can actually receive mail.
 
 We request the same DNS records for mail hosting as for web hosting. First,
 check if any DNS records already exist with
 
-    dig hostname.berkeley.edu [A|AAA|MX]
+    dig hostname.berkeley.edu A AAAA MX
 
 for IPv4/IPv6/mail records, respectively. If they have all the records from the
 previous section, you don't have to do anything else.
@@ -95,13 +96,15 @@ You will need a `/admin` principal to modify apphosting entries.
       memberUid: ggroup
       memberUid: GROUP_USERNAME
 
-* Add apphost entry: edit `~staff/vhost/vhost-app.conf`. The file syntax is
+* Add a new apphost entry to the top of `configs/vhost-app.conf` in the
+  [`ocf/etc` repo][ocf-etc]. The file syntax is:
 
       account vhost_name socket_name ssl_name
 
   The config file contains examples and more documentation.
 
-* Wait for cronjob to update configurations (runs every 10 minutes).
+* Wait for puppet to sync `/etc/ocf` and for the cronjob to update
+  configurations (runs every 10 minutes).
 
 Once the cronjob completes, the application will be available at:
 
@@ -121,4 +124,5 @@ for records with `dig hostname.berkeley.edu [A|AAAA|MX]`. The nginx running on
 apphosting server will return a `502 Bad Gateway` or actual content if the
 apphost is configured properly, and a `403 Forbidden` otherwise.
 
+[ocf-etc]: https://github.com/ocf/etc
 [campus-hostmistress]: https://ucb.service-now.com/kb_view.do?sysparm_article=KBT0012470
