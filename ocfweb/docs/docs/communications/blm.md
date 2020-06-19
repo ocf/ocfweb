@@ -6,7 +6,7 @@ This month commemorates Juneteenth and the Stonewall riots, which are upheld as 
 
 ## Taking Action
 
-You can [help out now](https://blacklivesmatters.carrd.co) or [learn how to be an effective ally](https://docs.google.com/document/u/2/d/1H-Vxs6jEUByXylMS2BjGH1kQ7mEuZnHpPSs1Bpaqmw0/mobilebasic). There is a [list of resources specific to UC students](https://docs.google.com/document/u/1/d/1nkX6-WMWCgcIOV5v_q0xNF0MQ4_dvyUol1CnYh1RlHE/mobilebasic).
+You can [help out now](https://blacklivesmatters.carrd.co) or [learn how to be an effective ally](https://docs.google.com/document/d/1H-Vxs6jEUByXylMS2BjGH1kQ7mEuZnHpPSs1Bpaqmw0/preview). There is a [list of resources specific to UC students](https://docs.google.com/document/d/1nkX6-WMWCgcIOV5v_q0xNF0MQ4_dvyUol1CnYh1RlHE/preview).
 
 We welcome any suggestions on how the OCF can better help your cause, whether with computational resources or any other support. Contact us at [help@ocf.berkeley.edu](mailto:help@ocf.berkeley.edu).
 
