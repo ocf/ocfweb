@@ -102,6 +102,7 @@
         background-image: url('../img/penguin-swing.svg');
         background-repeat: no-repeat;
         background-size: 366px 407px;
+        pointer-events: none;
 
         // responsive penguin ftw
         @media (min-width: $screen-lg-min) {
@@ -131,6 +132,8 @@
     .ocf-hero {
         padding-top: 10px;
         padding-bottom: 0;
+        background-color: #222;
+        color: #fff;
 
         font-size: 16px;
 
