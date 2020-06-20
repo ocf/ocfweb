@@ -17,7 +17,9 @@
         </div>
         <div class="row">
             <div class="col-sm-8">
+                <br />
                 <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
+                <p>We're passionate about open source and free software.</p>
                 <p class="ocf-button-holder">
                 <a href="{% url 'about-staff' %}" class="btn btn-lg">Learn what we do</a>
                 <a href="{% url 'register' %}" class="btn btn-lg">Create an account</a>
@@ -34,12 +36,7 @@
 
         {{lab_status.banner_html | safe}}
 
-        <p>
-            The Open Computing Facility is an all-volunteer student
-            organization located at the University of California, Berkeley.
-            We're passionate about open source and free software.
-        </p>
-        <p>Our volunteers maintain services for the Berkeley community. Among others, we offer:</p>
+        <p>OCF volunteers maintain services for the Berkeley community, including:</p>
         <ul>
             <li><a href="{% url 'doc' 'services/lab' %}">A spiffy computer lab</a> in 171 MLK Student Union</li>
             <li><a href="{% url 'doc' 'services/web' %}">Web &amp; email hosting</a> for thousands of student groups and individuals</li>
