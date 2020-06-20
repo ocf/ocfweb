@@ -2,7 +2,7 @@
 
 The OCF believes in freedom: we support free software and a free society. We believe that everyone deserves favorable opportunities and to that end are committed to providing free computational resources for Berkeley students and staff. When certain groups are targeted by structural violence, it hurts everyone, and we must speak up.
 
-This month commemorates Juneteenth and the Stonewall riots, which are upheld as monuments of society’s progression. At the same time, widespread protests and police brutality underscore the reality for many people that the current system remains deeply flawed. Structural injustices in the US continue to deny equity to people of color and queer folk; we commend those who take action against these injustices.
+This month commemorates Juneteenth and the Stonewall riots, which are upheld as monuments of society’s progression. At the same time, widespread protests and police brutality underscore the reality for many people that the current system remains deeply flawed. Structural injustices in the US continue to deny equity to people of color and queer folk; we commend those who take action against these injustices. [Defund the police.](https://www.8toabolition.com)
 
 ## Taking Action
 
