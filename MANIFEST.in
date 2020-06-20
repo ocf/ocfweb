@@ -1,3 +1,0 @@
-recursive-include ocfweb *.html
-recursive-include ocfweb *.md
-recursive-include ocfweb/static *
