@@ -44,8 +44,9 @@ def commands(request: HttpRequest) -> HttpResponse:
                 error = 'Authentication failed. Did you type the wrong username or password?'
 
             if not error:
-                _, ssh_stdout, _ = ssh.exec_command(command_to_run, get_pty=True)
+                _, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run, get_pty=True)
                 output = ssh_stdout.read().decode()
+                error = ssh_stderr.read().decode()
     else:
         form = CommandForm()
 
