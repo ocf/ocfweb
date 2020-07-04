@@ -48,7 +48,7 @@
         </div>
 
         <h3>Today's Lab Utilization</h3>
-        <table class="table table-striped table-hover">
+        <table id="todays-lab-utilization" class="table table-striped table-hover">
             <tr>
                 <th>Desktop</th>
                 <th>Idle (min)</th>
@@ -69,4 +69,13 @@
             {% endfor %}
         </table>
     </div>
+{% endblock %}
+
+{% block sortable_lab_utilization %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+<script>
+$(function() {
+    $("#todays-lab-utilization").tablesorter();
+  });
+</script>
 {% endblock %}
