@@ -12,4 +12,4 @@ We welcome any suggestions on how the OCF can better help your cause, whether wi
 
 ## OCF Donation Matching
 
-The OCF will be matching donations to BLM-related causes, up to $1000 total. These donations will come from our miscellaneous funds, sourced primarily from OCF staff. You can participate by sending the receipt of your donation made on or after 19 June 2020 to [help@ocf.berkeley.edu](mailto:help@ocf.berkeley.edu).
+The OCF will be matching donations to BLM-related causes, up to $1000 total. These donations will come from our miscellaneous funds, sourced primarily from OCF staff. You can participate by submitting [this form](https://www.ocf.io/s/blmdonation), including the receipt of your donation made on or after 19 June 2020. The deadline for submitting a donation is currently September 4th.
