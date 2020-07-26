@@ -67,7 +67,7 @@ def _get_servers() -> Tuple[Any, ...]:
         ),
         ThingToUpgrade.from_hostname(
             'maelstrom',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
             'supernova',
@@ -83,8 +83,7 @@ def _get_servers() -> Tuple[Any, ...]:
         ),
         ThingToUpgrade.from_hostname(
             'flood',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
-            comments='dev-flood is migrated already',
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
             'pestilence',
