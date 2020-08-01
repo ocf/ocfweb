@@ -29,16 +29,17 @@ def google_map(width: float, height: float, show_info: bool = True) -> Dict[str,
 
 
 @register.inclusion_tag('partials/google-map-static.html')
-def google_map_static(width: float, height: float) -> Dict[str, Any]:
+def google_map_static(width: float, height: float, display_width: str) -> Dict[str, Any]:
     return {
         'url': 'https://maps.googleapis.com/maps/api/staticmap?{}'.format(
             urlencode({
                 'size': f'{width}x{height}',
                 'zoom': 17,
                 'center': f'{OCF_LATITUDE},{OCF_LONGITUDE}',
-                'markers': f'label:OCF|size:mid|{OCF_LATITUDE},{OCF_LONGITUDE}',
-
+                'markers': f'size:mid|{OCF_LATITUDE},{OCF_LONGITUDE}',
+                'scale': 2,
                 'key': OCF_API_KEY,
             }),
         ),
+        'display_width': display_width,
     }
