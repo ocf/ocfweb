@@ -76,7 +76,11 @@
             The lab is located in
             <a href="{% url 'doc' 'services/lab' %}">171 MLK Student Union</a>.
         </p>
-        {% google_map '100%' '151px' show_info=False %}
+        <div>
+            <a href="https://goo.gl/maps/XyJStVp8xF9imQWE8">
+                {% google_map_static '300' '151' '100%' %}
+            </a>
+        </div>
 
         <p><strong>Upcoming Lab Hours</strong></p>
         <div class="ocf-hours">
