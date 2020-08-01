@@ -97,7 +97,7 @@ def _get_servers() -> Tuple[Any, ...]:
             'whiteout',
             status=ThingToUpgrade.NEEDS_UPGRADE,
         ),
-        ThingToUpgrade.from_hostname('reaper', status=ThingToUpgrade.NEEDS_UPGRADE),
+        ThingToUpgrade.from_hostname('reaper', status=ThingToUpgrade.UPGRADED),
         ThingToUpgrade.from_hostname('democracy', status=ThingToUpgrade.NEEDS_UPGRADE),
         ThingToUpgrade.from_hostname(
             'zombies',
