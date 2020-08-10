@@ -69,6 +69,10 @@ servicePipeline(
 )
 ```
 
+**NOTE**: While Jenkins is supposed to scan all of the repositories in the organization,
+it won't necessarily be triggered if you transfter a repository over. Trigger the job
+in the Jenkins UI manually if you don't see it come up.
+
 ## Kubernetes
 
 In the root of your project create a `kubernetes` folder. This is where all
@@ -318,10 +322,12 @@ this `PVC` into our docker container. Under the `container` resource add:
 
 ## Wrapping up
 
-Now we have all the necessary configuration to deploy our service.  To see if
-everything works, we will deploy the service manually.  On `supernova`, first
-run `kinit`. This will obtain a [[kerberos|doc staff/backend/kerberos]] ticket
-giving us access to the Kubernetes cluster. Now run
+Now we have all the necessary configuration to deploy our service. At this point
+everything should already be deployed automatically by Jenkins. If deploying on
+`dev-kubernetes` we can run these commands to deploy the service manually.
+On `supernova`, first run `kinit`. This will obtain a
+[[kerberos|doc staff/backend/kerberos]] ticket giving us access to the Kubernetes cluster.
+Now run
 
 ```
 kubectl create namespace <myapp>
