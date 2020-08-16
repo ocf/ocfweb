@@ -202,7 +202,7 @@ what was covered. You can also ask a veteran staffer to bring you up to speed.
 
 You can still be part of OCF staff! Even if you can't make meetings, the
 suggestions on this page are useful for getting started. Staying in touch
-by being active in Discord/Matrix/Slack/IRC and email are great ways to be
+by being active in Slack/Discord/Matrix/IRC and email are great ways to be
 part of the OCF community.
 
 [account-chpass]: https://github.com/ocf/ocfweb/blob/master/ocfweb/account/chpass.py
