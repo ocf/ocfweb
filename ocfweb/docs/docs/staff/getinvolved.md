@@ -165,12 +165,13 @@ attending staff hours can serve multiple purposes:
    * Get context and more information on a particular area you’re interested
      in contributing in
 
-### Slack or IRC
+### Slack, Discord, Matrix, or IRC
 
-OCF staff often communicate on Slack or IRC. For instructions on how to join
-Slack, see [ocf.io/slack][slack]. See [[IRC docs|doc contact/irc]] for how to
-join IRC. Slack and IRC are bridged together, so joining either one lets you
-participate in the same discussions. Some important channels:
+OCF staff often communicate on [Slack](https://ocf.io/slack),
+[Discord](https://ocf.io/discord), [Matrix](https://chat.ocf.berkeley.edu),
+or [[IRC|doc contact/irc]]. These chat services are bridged together,
+so joining any of them lets you participate in the same discussions.
+Some important channels:
 
    * #rebuild - technical discussion
    * #administrivia - non-technical discussion
@@ -201,8 +202,8 @@ what was covered. You can also ask a veteran staffer to bring you up to speed.
 
 You can still be part of OCF staff! Even if you can't make meetings, the
 suggestions on this page are useful for getting started. Staying in touch
-by being active in Slack/IRC and email are great ways to be part of the OCF
-community.
+by being active in Slack/Discord/Matrix/IRC and email are great ways to be
+part of the OCF community.
 
 [account-chpass]: https://github.com/ocf/ocfweb/blob/master/ocfweb/account/chpass.py
 [account-register]: https://github.com/ocf/ocfweb/blob/master/ocfweb/account/register.py

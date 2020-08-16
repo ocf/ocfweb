@@ -13,7 +13,7 @@ Whenever a staffer restarts a production service, whether permission is
 required or not, or restarts a machine that other users have running processes
 on, they must give notice to other staffers of their actions as soon as
 possible and ideally receive acknowledgement. The staffer should preferably do
-this on IRC/Slack.
+this on Slack/Discord/Matrix/IRC.
 
 Staffers scheduling downtime for public-facing services should make a blog post
 at [status.ocf.berkeley.edu][status] to give users sufficient advance notice.
