@@ -26,9 +26,9 @@ We hold two meetings every Monday:
 
 #### Board of Directors (BoD)
 
-**Mondays 7-8pm**
+**Wednesday 8-9pm**
 
-The OCF Board of Directors has open meetings from 7-8 pm every Monday. BoD is
+The OCF Board of Directors has open meetings from 8-9 pm every Wednesday. BoD is
 where we discuss and vote on administrative decisions. If you are interested in
 gaining insight into the internal operations the OCF from an administrative
 perspective, please come to BoD meetings! Meetings always are open to all.
