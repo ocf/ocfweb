@@ -39,7 +39,7 @@ Your data is secured via electronic safeguards that only allow access by our vol
 
 We may make changes to this privacy policy at any time, and a notice will be posted visibly on the home page (https://ocf.berkeley.edu) for a period of time after.
 
-This policy was last updated on **August 30th, 2020**.
+This policy was last updated on **September 9th, 2020**.
 
 ## Contact information
 
