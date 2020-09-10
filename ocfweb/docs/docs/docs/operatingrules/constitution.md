@@ -6,12 +6,13 @@ established on November 14, 2016 and amended on:
 1. [March 6, 2017](#amended-2017-03-06)
 2. [November 20, 2017](#amended-2017-11-20)
 3. February 11, 2019 (Sections [4.7](#amended-2019-02-11-4-7),
-   [5.2.4](#amended-2019-02-11-5-2-4), and [5.3.1](#amended-2019-02-11-5-3-1))
+   [5.2.4](#amended-2019-02-11-5-2-4), and [5.3.1](#amended-2020-09-09-5-3-1))
 4. December 2, 2019 (Sections [3.4](#amended-2019-12-02-3-4),
    [4.1](#amended-2019-12-02-4-1), [4.4](#amended-2019-12-02-4-4),
    [4.5](#amended-2019-12-02-4-5), [4.11](#amended-2019-12-02-4-11),
    [5.2.1](#amended-2019-12-02-5-2-1), and
    [5.2.2](#amended-2019-12-02-5-2-2))
+5. September 9, 2020 (Section [5.3.1](#amended-2020-09-09-5-3-1))
 
 
 ## Preamble
@@ -229,14 +230,13 @@ _[Added at the Board meeting of February 11, 2019]._
 #### 5.3 Voting
 
 
-##### 5.3.1 Election of Officers {amended-2019-02-11-5-3-1}
-The election of officers shall be by secret ballot.  A simple majority of those
-casting votes is required. If on the first ballot no candidate receives a simple
-majority, then there will be a runoff between the top two candidates. The voting
-will continue until one candidate receives a simple majority. Write-in votes
+##### 5.3.1 Election of Officers {amended-2020-09-09-5-3-1}
+The election of officers shall be by secret ballot. Each ballot shall be a
+ranked list of candidate preferences. A candidate wins if there is a unique
+Condorcet Beatpath winner, otherwise the election will repeat. Write-in votes
 shall not be counted during the election.
 
-_[Amended at the Board meeting of February 11, 2019]._
+_[Amended at the Board meeting of September 9, 2020]._
 
 
 ##### 5.3.2 Other Votes
