@@ -47,8 +47,7 @@ amended at the Board meeting of December 2, 2019.
    1. Deputy Site Managers shall be appointed and removed by the Site Manager,
       subject to the OCF Decision Making Process.
 
-   2. Deputy Site Managers shall assist the Site Manager with his or her
-      duties.
+   2. Deputy Site Managers shall assist the Site Manager with their duties.
 
    3. The term of office of a Deputy Site Manager shall expire at the beginning
       of a new term of a Site Manager.
@@ -102,6 +101,9 @@ amended at the Board meeting of December 2, 2019.
 
        6. The DeCal Committee runs the Linux System Administration DeCal.
 
+       7. The Lab Space Committee is responsible for matters regarding the
+          physical lab space.
+
     2. Additional committees may be established on an ad-hoc basis by the OCF
        Decision Making Process.
 
@@ -117,11 +119,33 @@ amended at the Board meeting of December 2, 2019.
           dates may not be set for fewer than 14 days in the future. Elections
           must be announced to all Board members at least 14 days in advance.
 
+       3. If there is no elected head for the Lab Space Committee, it is headed
+          by the Site Managers.
+
     4. The terms of permanent committee heads begin on the first day following
        the end of the semester in which they were elected. The terms of ad-hoc
        committees heads will be specified according to the OCF Decision Making
        Process.
 
+19. Board Budget
+
+   1. The Board of Directors may approve a semesterly budget that authorizes
+      committees to spend funds according to the committee’s purpose as defined
+      by bylaw.
+
+   2. A committee may spend funds only upon approval by a committee head and a
+      Director who is not a head of said committee.
+
+   3. A committee head’s approval is void if there is a Director who makes
+      their dissent known in a forum available to all directors within forty
+      eight (48) hours of the approval, and that Director has not given their
+      approval.
+
+   4. Transactions of at least $100 require approval from the Board of
+      Directors.
+
+   5. The Finance Committee may upon approval by the Board of Directors add
+      additional restrictions to the use of committee budgets.
 
 Bylaws 1–4 amended at the general meeting of March 21, 2008. Bylaws 5–6 from
 the revision of the bylaws last amended February 7, 1995. Bylaw 8 added at the
@@ -136,4 +160,5 @@ amended at the Board meeting of February 26, 2018. Bylaws 7 and 14 amended and
 bylaw 16 added at the Board meeting of November 4, 2019. Bylaw 7 amended and
 bylaw 17 added at the Board meeting of November 18, 2019. Bylaws 9.1 and 13.1
 amended, bylaws 10, 11, and 12.4 repealed, and bylaw 18 added at the Board
-meeting of December 2, 2019.
+meeting of December 2, 2019. Bylaw 12.2 amended and bylaws 18.1.7, 18.3.3,
+and 19 added at the Board meeting of September 9, 2020.
