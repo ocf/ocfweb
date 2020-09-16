@@ -100,9 +100,24 @@
         <div class="ocf-status-bar">
             <div class="container">
                 <p>
-                    <strong>The OCF supports Black Lives Matter.</strong>
-                    We are matching donations to BLM-related causes, up to $1000 total.
-                    <a class="unsubtle nowrap" href="{% url 'doc' 'communications/blm' %}">read more &raquo;</a>
+                    {% if not lab_status.force_lab_closed %}
+                        {% if lab_is_open %}
+                            <strong>Lab Currently Open</strong>
+                        {% else %}
+                            <strong>Lab Currently Closed</strong>
+                        {% endif %}
+                        <span class="nowrap">
+                            {% if not lab_is_open and current_lab_hours %}
+                                Hours:
+                            {% endif %}
+                            {{current_lab_hours|lab_hours_time}}
+                            on {% now "l" %} {% lab_hours_holiday holidays %}
+                            <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
+                        </span>
+                    {% else %}
+                        <strong>Lab Temporarily Closed</strong>
+                        <a class="subtle" href="{% url 'home' %}">more &raquo;</a>
+                    {% endif %}
                 </p>
             </div>
         </div>
