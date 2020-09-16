@@ -63,8 +63,12 @@
                                         {{hours_date | date:'l, M d'}}
                                     </th>
                                     <td>
-                                        {{hours | lab_hours_time}}
-                                        {% lab_hours_holiday holidays hours_date %}
+                                        {% if lab_status.force_lab_closed %}
+                                            Temporarily Closed
+                                        {% else %}
+                                            {{hours | lab_hours_time}}
+                                            {% lab_hours_holiday holidays hours_date %}
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}
