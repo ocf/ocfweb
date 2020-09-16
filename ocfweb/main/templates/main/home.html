@@ -85,7 +85,7 @@
                         {{hours_date | date:'l'}}<br />
                     </div>
                     <div class="col-sm-7 col-md-9 ocf-hour-hours">
-                        {% if hour == today and lab_status.force_lab_closed %}
+                        {% if lab_status.force_lab_closed %}
                             Temporarily Closed
                         {% else %}
                             {{hour | lab_hours_time}}
