@@ -14,7 +14,7 @@
                 <div class="title">
                     <strong>{{staff_hour.day}}</strong>
                     {{staff_hour.time}}
-                    {% if staff_hour.cancelled or staff_hour.day == today and lab_status.force_lab_closed %}
+                    {% if staff_hour.cancelled %}
                         <span class="cancelled-text">cancelled this week</span>
                     {% endif %}
                 </div>
