@@ -1,4 +1,4 @@
-ocfweb
+ocfweb (open connectivity foundation)
 ==========
 [![Build Status](https://jenkins.ocf.berkeley.edu/buildStatus/icon?job=ocf/ocfweb/master)](https://jenkins.ocf.berkeley.edu/job/ocf/job/ocfweb/job/master)
 [![Coverage Status](https://coveralls.io/repos/github/ocf/ocfweb/badge.svg?branch=master)](https://coveralls.io/github/ocf/ocfweb?branch=master)
