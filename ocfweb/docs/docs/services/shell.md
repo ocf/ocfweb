@@ -35,7 +35,7 @@ Your shell account can be controlled remotely using
 If you just need to access SSH quickly, you can use our [web-based SSH
 interface](https://ssh.ocf.berkeley.edu/) from your web browser.
 
-#### Mac OS X or Linux
+#### Mac OS X, Linux, or Windows 10 (Version 1803 and above)
 
 On Mac OS X or Linux, enter in the terminal:
 
