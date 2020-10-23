@@ -31,9 +31,9 @@ special snowflake (e.g. perhaps a user wants to host their research or
 something on OCF, which we encourage).
 
 To make an exception, just change their quota individually using `edquota -u
-{username}`. This will open a file in your editor showing their quota. Change
-the `soft` and `hard` columns to the number of kibibytes you wish to allocate,
-then save the file.
+{username}` on `dataloss`. This will open a file in your editor showing their
+quota. Change the `soft` and `hard` columns to the number of kibibytes you wish
+to allocate, then save the file.
 
 You can disable the quota entirely by setting `0` for both the `soft` and
 `hard` limit, but this is **not recommended** because the next time somebody
