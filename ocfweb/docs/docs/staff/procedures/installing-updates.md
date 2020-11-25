@@ -8,9 +8,9 @@ again after being updated (MySQL, LDAP, and Kerberos are the common offenders).
 
 ## apt-dater
 
-We install updates using [apt-dater](https://www.ibh.de/apt-dater/). We wrap it
-in a script that builds a list of hosts from LDAP and sends a summary email to
-root.
+We install updates using [apt-dater](https://github.com/DE-IBH/apt-dater). We
+wrap it in a script that builds a list of hosts from LDAP and sends a summary
+email to root.
 
 To install updates:
 
