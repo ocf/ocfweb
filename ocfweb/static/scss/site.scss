@@ -27,6 +27,7 @@ $color-penguin-yellow: #ffd700;
 
 $navbar-height: 60px;
 
+$hero-color: $color-green-light;
 $hero-button-color: #f7f7f7;
 $hero-button-color-hover: #fff;
 
@@ -235,18 +236,9 @@ h6 {
 }
 
 .ocf-hero {
-    background-color: #222;
-    color: #fff;
+    background-color: $hero-color;
     font-size: 16px;
     padding: 0 10px;
-
-    a {
-        color: #3af;
-
-        &:hover {
-            color: #38e;
-        }
-    }
 
     @media (max-width: $screen-xs-max) {
         padding: 5px;
