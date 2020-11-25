@@ -78,9 +78,12 @@ Once you've configured everything properly and connected OBS to Twitch, press
 but is in development for wlroots (sway)
 https://github.com/emersion/xdg-desktop-portal-wlr and KDE)
 
-- Install OBS: community/obs-studio
+- Install Wayland OBS: aur/obs-studio-wayland
 - Install desktop portal: extra/xdg-desktop-portal, extra/xdg-desktop-portal-gtk
 - Install OBS plugin: aur/obs-xdg-portal-git
+
+Start OBS with the environment variable `QT_QPA_PLATFORM=wayland` to
+make sure it runs in Wayland instead of XWayland.
 
 In OBS, add the "Desktop Screencast (Wayland/X11)" source to your scene.
 
