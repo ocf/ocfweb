@@ -1,4 +1,4 @@
-exclude: (^kubernetes/|^vendor/|^ocfweb/static/fonts/bootstrap/)
+exclude: (^kubernetes/|^vendor/|^ocfweb/static/fonts/bootstrap/|.activate.sh)
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.2.1
