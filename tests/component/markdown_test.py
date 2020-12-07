@@ -34,7 +34,7 @@ def test_simple_markdown():
             <li>bullet</li>
             <li>bullet 2</li>
             </ul>
-        '''
+        ''',
     )
 
 
@@ -52,7 +52,7 @@ def test_backslash_linebreak():
             <ul>
             <li>And a list<br>with a newline in it</li>
             </ul>
-        '''
+        ''',
     )
 
 
@@ -68,7 +68,7 @@ def test_comments_get_stripped():
         '''\
             <p>this is some paragraph text</p>
             <p>also  lol</p>
-        '''
+        ''',
     )
 
 
@@ -94,7 +94,7 @@ def test_code_rendering(language):
                 <p>this is some paragraph text</p>
                 <this would be code>
                 <p>yup</p>
-            '''
+            ''',
         )
 
 
@@ -108,7 +108,7 @@ def test_django_links():
         '''\
             <p>this is <a href="/staff-hours">a link</a></p>
             <p>this is <a href="/staff-hours#yolo">a link with a fragment</a></p>
-        '''
+        ''',
     )
 
 
@@ -119,7 +119,7 @@ def test_header_default_id():
         ''',
         '''\
             <h1 id="h1_this-is-an-h1">this is an h1 <a class="anchor" href="#h1_this-is-an-h1"><span></span></a></h1>
-        '''
+        ''',
     )
 
 
@@ -130,7 +130,7 @@ def test_header_custom_id():
         ''',
         '''\
             <h3 id="something-here">this is an h3 <a class="anchor" href="#something-here"><span></span></a></h3>
-        '''
+        ''',
     )
 
 
@@ -143,7 +143,7 @@ def test_header_with_collision_automatic():
         '''\
             <h1 id="h1_this-is-an-h1">this is an h1 <a class="anchor" href="#h1_this-is-an-h1"><span></span></a></h1>
             <h1 id="h1_this-is-an-h1_">this is an h1 <a class="anchor" href="#h1_this-is-an-h1_"><span></span></a></h1>
-        '''
+        ''',
     )
 
 

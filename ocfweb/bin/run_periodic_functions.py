@@ -67,7 +67,7 @@ def run_periodic_functions() -> None:
                           * TTL: {pf.ttl}
 
                         The background process will now pause for {delay} seconds.
-                        """
+                        """,
                         ).format(
                             traceback=format_exc(),
                             pf=pf,
@@ -85,7 +85,7 @@ def run_periodic_functions() -> None:
                         An exception occured in ocfweb, but we errored trying to report it:
 
                         {traceback}
-                        """
+                        """,
                         ).format(traceback=format_exc()),
                     )
                     raise
