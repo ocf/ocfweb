@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^$', index, name='announcements'),
 ] + [
     url(
-        '^{}/{}$'.format(announcement.date.isoformat(), announcement.path),
+        f'^{announcement.date.isoformat()}/{announcement.path}$',
         announcement.render,
         name=announcement.route_name,
     )

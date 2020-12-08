@@ -1,7 +1,7 @@
 exclude: (^kubernetes/|^vendor/|^ocfweb/static/fonts/bootstrap/|^\.activate.sh)
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.2.1
+    rev: v3.3.0
     hooks:
     -   id: check-added-large-files
     -   id: check-ast
@@ -28,34 +28,34 @@ repos:
     -   id: sort-simple-yaml
     -   id: trailing-whitespace
 -   repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.7
+    rev: 3.8.4
     hooks:
     - id: flake8
 -   repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v1.4.4
+    rev: v1.5.4
     hooks:
     -   id: autopep8
 -   repo: https://github.com/asottile/reorder_python_imports
-    rev: v1.4.0
+    rev: v2.3.6
     hooks:
     -   id: reorder-python-imports
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v1.16.1
+    rev: v2.7.4
     hooks:
     -   id: pyupgrade
         args: ['--py36-plus']
 -   repo: https://github.com/asottile/add-trailing-comma
-    rev: v1.0.0
+    rev: v2.0.1
     hooks:
     -   id: add-trailing-comma
         args: ['--py36-plus']
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.6
+    rev: v1.1.9
     hooks:
     -   id: remove-tabs
     -   id: remove-crlf
 -   repo: https://github.com/pre-commit/mirrors-scss-lint
-    rev: v0.57.1-1
+    rev: v0.59.0
     hooks:
     -   id: scss-lint
 -   repo: local
