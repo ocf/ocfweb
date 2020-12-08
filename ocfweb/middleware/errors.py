@@ -80,7 +80,7 @@ class OcflibErrorMiddleware:
 
                 Session:
                 {session}
-                """
+                """,
                 ).format(
                     traceback=traceback,
                     request=request,
@@ -99,7 +99,7 @@ class OcflibErrorMiddleware:
                 An exception occured in ocfweb, but we errored trying to report it:
 
                 {traceback}
-                """
+                """,
                 ).format(traceback=format_exc()),
             )
             raise
