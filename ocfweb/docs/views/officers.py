@@ -308,6 +308,18 @@ def _bod_terms() -> List[Term]:
                 ('DeCal', ['njha', 'bencuan', 'bernardzhao']),
             ],
         ),
+        Term(
+            'Spring 2021',
+            gms=['kmo', 'snarain'],
+            sms=['njha', 'fydai'],
+            heads=[
+                ('Internal', ['jaw', 'ronitnath']),
+                ('Industry and Alumni Relations', ['rrchan', 'asai']),
+                ('Finance', ['ncberberi', 'ronitnath']),
+                ('Communications', ['bencuan', 'ronitnath']),
+                ('DeCal', ['bencuan', 'hexhu']),
+            ],
+        ),
     ]
 
 
