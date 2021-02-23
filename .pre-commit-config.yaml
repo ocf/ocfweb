@@ -83,3 +83,6 @@ repos:
         name: App templates must be prefixed with app name
         entry: bash -c 'echo "Make sure to prefix your template directories! (See .pre-commit-config.yaml for details)" && exit 1'
         files: ^ocfweb/[^/]+/templates/[^/]+\.html$
+
+ci:
+    submodules: true
