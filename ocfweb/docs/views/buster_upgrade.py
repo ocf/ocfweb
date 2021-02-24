@@ -122,19 +122,11 @@ def _get_servers() -> Tuple[Any, ...]:
         ),
         ThingToUpgrade.from_hostname(
             'segfault',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
-        ),
-        ThingToUpgrade.from_hostname(
-            'whirlwind',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
-        ),
-        ThingToUpgrade.from_hostname(
-            'pileup',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
             'monsoon',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
             'fraud',
@@ -192,7 +184,7 @@ def _get_servers() -> Tuple[Any, ...]:
         ),
         ThingToUpgrade.from_hostname(
             'corruption',
-            status=ThingToUpgrade.NEEDS_UPGRADE,
+            status=ThingToUpgrade.UPGRADED,
         ),
         ThingToUpgrade.from_hostname(
             'fallingrocks',
