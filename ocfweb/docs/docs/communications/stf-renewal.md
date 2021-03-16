@@ -23,3 +23,4 @@ Students can vote at [https://callink.berkeley.edu](https://callink.berkeley.edu
  - [Student Technology Fund](https://techfund.berkeley.edu/)
  - [Open Computing Facility at Student Technology Fund](https://techfund.berkeley.edu/open-computing-facility)
  - [Student Technology Fund's impact](https://techfund.berkeley.edu/impact)
+ - [STF Renewal on the Ballot](https://techfund.berkeley.edu/renewal-ballot)
