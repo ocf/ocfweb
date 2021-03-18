@@ -11,7 +11,7 @@ chardet==3.0.4
 cracklib==2.9.3
 cryptography==3.3.2
 cycler==0.10.0
-Django==3.0.8
+Django==3.1.6
 django-bootstrap-form==3.4
 django-ipware==2.1.0
 django-mathfilters==0.4.0
