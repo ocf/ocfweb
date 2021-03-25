@@ -48,7 +48,7 @@ pysmi==0.3.4
 pysnmp==4.4.12
 python-dateutil==2.8.1
 pytz==2019.3
-PyYAML==5.3
+PyYAML==5.4
 redis==3.4.0
 requests==2.22.0
 setuptools==45.1.0
