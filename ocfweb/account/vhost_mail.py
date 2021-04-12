@@ -256,7 +256,7 @@ def _parse_csv(request: HttpRequest, domain: str) -> Dict[str, Any]:
 
                     addresses[from_addr] = to_addrs
                 except ValueError as e:
-                    _error(request, 'Error parsing CSV: row {}: {}'.format(i + 1, e))
+                    _error(request, f'Error parsing CSV: row {i + 1}: {e}')
     except UnicodeDecodeError as e:
         _error(request, f'Uploaded file is not valid UTF-8 encoded: "{e}"')
 
