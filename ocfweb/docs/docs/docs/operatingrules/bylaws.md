@@ -2,7 +2,7 @@
 
 
 These are the official **Bylaws of the Open Computing Facility**, as last
-amended at the Board meeting of December 2, 2019.
+amended at the Board meeting of April 13, 2021.
 
 1. [Repealed]
 
@@ -104,6 +104,10 @@ amended at the Board meeting of December 2, 2019.
        7. The Lab Space Committee is responsible for matters regarding the
           physical lab space.
 
+       8. The Service Committee is responsible for maintaining user-facing
+          services and providing help to those in need through the request
+          tracking system.
+
     2. Additional committees may be established on an ad-hoc basis by the OCF
        Decision Making Process.
 
@@ -114,12 +118,15 @@ amended at the Board meeting of December 2, 2019.
        1. The University Affairs Committee is headed by the General Managers,
           and an election for University Affairs Committee head will not be held.
 
-       2. Election dates for heads to the DeCal Committee and ad-hoc
+       2. The Service Committee is headed by the Site Managers, and an election
+          for Service Committee head will not be held.
+
+       3. Election dates for heads to the DeCal Committee and ad-hoc
           committees may be set by the OCF Decision Making Process. Election
           dates may not be set for fewer than 14 days in the future. Elections
           must be announced to all Board members at least 14 days in advance.
 
-       3. If there is no elected head for the Lab Space Committee, it is headed
+       4. If there is no elected head for the Lab Space Committee, it is headed
           by the Site Managers.
 
     4. The terms of permanent committee heads begin on the first day following
@@ -161,4 +168,5 @@ bylaw 16 added at the Board meeting of November 4, 2019. Bylaw 7 amended and
 bylaw 17 added at the Board meeting of November 18, 2019. Bylaws 9.1 and 13.1
 amended, bylaws 10, 11, and 12.4 repealed, and bylaw 18 added at the Board
 meeting of December 2, 2019. Bylaw 12.2 amended and bylaws 18.1.7, 18.3.3,
-and 19 added at the Board meeting of September 9, 2020.
+and 19 added at the Board meeting of September 9, 2020. Bylaws 18.1.8 and
+18.3.2 added at the Board meeting of April 13, 2021.
