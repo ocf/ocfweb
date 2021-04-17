@@ -9,15 +9,11 @@ STF provides funding for:
 
 Without the STF, students would need to acquire licenses for much of the software they use on a daily basis, and STF-funded projects would need to seek alternate funding (or become defunct).
 
-The Student Technology Fund was voted into place by students in 2014. It will expire if it's not renewed at the Associated Students of the University of California (ASUC) ballot taking place __April 5-7, 2021__.
+The Student Technology Fund was voted into place by students in 2014. The STF was up for renewal in 2021 and has passed! It will be effective until 2028.
 
 ### STF's Renewal Efforts
 
 Students are leading STF's renewal efforts through an independent non-University entity called the STF Referendum Renewal Group (RReG).  To date, there is no known opposition group to the STF's renewal.
-
-### Take Action
-
-Students can vote at [https://callink.berkeley.edu](https://callink.berkeley.edu) during the ASUC elections on April 5-7.
 
 ### Read More
  - [Student Technology Fund](https://techfund.berkeley.edu/)
