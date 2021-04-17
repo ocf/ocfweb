@@ -8,7 +8,7 @@ discussion-type questions.
 We normally chat in the `#rebuild` channel. For historical reasons, `#ocf` is
 mostly for non-OCF-related discussion.
 
-You have four simple options for chatting:
+You have a couple of options for chatting:
 
 ### Option 1: Use our web client
 
