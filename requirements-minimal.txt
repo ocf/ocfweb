@@ -1,3 +1,4 @@
+cryptography<=3.3.2 # Due to Rust requirements (ok to remove once rustc is puppeted or we just install Rust in the container)
 cached-property
 celery[redis]
 django
