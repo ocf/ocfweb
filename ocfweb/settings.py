@@ -105,9 +105,11 @@ SESSION_COOKIE_PATH = '/'
 SESSION_COOKIE_NAME = 'OCFWEB_SESSIONID'
 
 CACHES: Dict[str, Any] = {  # sessions are stored here
-    'TIMEOUT': 60 * 60 * 12,  # 12 hours
-    'OPTIONS': {
-        'MAX_ENTRIES': 1000,
+    'default': {
+        'TIMEOUT': 60 * 60 * 12,  # 12 hours
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+        },
     },
 }
 

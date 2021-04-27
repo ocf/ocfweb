@@ -8,7 +8,7 @@ from django.urls import reverse
 
 register = template.Library()
 
-_NavItem = namedtuple('NavItem', ['url', 'title', 'active'])
+_NavItem = namedtuple('_NavItem', ['url', 'title', 'active'])
 
 
 @register.inclusion_tag('stats/partials/stats-navbar.html', takes_context=True)
