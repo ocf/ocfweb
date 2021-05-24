@@ -43,7 +43,7 @@ def doc_tree(
             path=path,
             title=doc.title if doc else root,
             children=sorted(
-                [
+                (
                     _make_tree(child)
                     for child in
                     {
@@ -51,7 +51,7 @@ def doc_tree(
                         for doc in DOCS.values()
                         if doc.name.startswith(root) and not exclude.match(doc.name)
                     }
-                ],
+                ),
                 key=attrgetter('title'),
             ),
         )
