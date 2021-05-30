@@ -97,18 +97,30 @@
             </div>
         </div>
 
-        <div class="ocf-status-bar">
+        <!-- <div class="ocf-status-bar">
             <div class="container">
                 <p>
-                    <strong>Vote for the Student Tech Fund's renewal during the ASUC Elections @ April 5-7!</strong>
-                    <span>
-                        <br>
-                        The OCF is funded by the Student Technology Fund, which will expire if not renewed.
-                        <a href="{% url 'doc' 'communications/stf-renewal' %}">read more &raquo;</a>
-                    </span>
+                    {% if not lab_status.force_lab_closed %}
+                        {% if lab_is_open %}
+                            <strong>Lab Currently Open</strong>
+                        {% else %}
+                            <strong>Lab Currently Closed</strong>
+                        {% endif %}
+                        <span class="nowrap">
+                            {% if not lab_is_open and current_lab_hours %}
+                                Hours:
+                            {% endif %}
+                            {{current_lab_hours|lab_hours_time}}
+                            on {% now "l" %} {% lab_hours_holiday holidays %}
+                            <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
+                        </span>
+                    {% else %}
+                        <strong>Lab Temporarily Closed</strong>
+                        <a class="subtle" href="{% url 'home' %}">more &raquo;</a>
+                    {% endif %}
                 </p>
             </div>
-        </div>
+        </div> -->
 
         {% block hero %}
             {% if title %}
