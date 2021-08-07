@@ -14,7 +14,7 @@ send mail. The details of how to use these addresses are below.
 By default, groups only have regular web virtual hosting.
 
 If you'd like to get started using mail virtual hosting, you should set up
-a group account and 
+a group account and
 [request a vhost from us](https://www.ocf.berkeley.edu/docs/services/vhost/#h3_instructions),
 if you have not already. Please include that you would like mail virtual hosting
 in your request for a vhost. If you already have a vhost with us, send
