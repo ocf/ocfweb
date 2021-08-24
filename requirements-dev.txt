@@ -27,4 +27,14 @@ pytest-xdist==2.3.0
 requirements-tools==2.0.0
 toml==0.10.2
 typed-ast==1.4.3
+types-cryptography==3.3.5
+types-enum34==0.1.8
+types-ipaddress==0.1.5
+types-paramiko==0.1.9
+types-python-dateutil==0.1.6
+types-pytz==2021.1.2
+types-PyYAML==5.4.6
+types-requests==2.25.6
+types-setuptools==57.0.2
+types-toml==0.1.5
 virtualenv==20.7.2
