@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 ocf-content-block">
+            <p>
+                Please bring this QR code to the lab to start your print job. You may want to take a photo of it with your phone.
+            </p>
+            {% if qr_b64 %}
+                <div class="well">
+                    <img alt="QR code to print" src="{{ qr_b64 }}" />
+                </div>
+            {% endif %}
+
+            {% if error %}
+                <p><strong>{{ error|linebreaks }}</strong></p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
