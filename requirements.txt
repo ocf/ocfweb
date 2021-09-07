@@ -39,7 +39,7 @@ numpy==1.20.3
 ocflib
 paramiko==2.7.2
 pexpect==4.8.0
-Pillow==8.2.0
+Pillow==8.3.2
 ply==3.11
 prometheus-client==0.11.0
 prompt-toolkit==3.0.18
