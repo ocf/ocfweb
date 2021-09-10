@@ -64,7 +64,7 @@ requests==2.24.0
 setuptools==57.0.0
 six==1.16.0
 SQLAlchemy==1.4.17
-sqlparse==0.4.1
+sqlparse==0.4.2
 typing-extensions==3.10.0.0
 urllib3==1.25.11
 vine==5.0.0
