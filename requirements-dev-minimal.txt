@@ -8,3 +8,6 @@ pytest-django
 pytest-env
 pytest-xdist
 requirements-tools
+types-paramiko
+types-python-dateutil
+types-requests
