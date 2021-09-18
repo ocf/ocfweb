@@ -1,28 +1,27 @@
 import base64
+import mimetypes
+import os.path
+import subprocess
+import uuid
 from email.message import EmailMessage
 from email.utils import make_msgid
 from email.utils import parseaddr
-import mimetypes
-import os.path
-import uuid
 from io import BytesIO
-import subprocess
 
+import ocflib.misc.validators as validators
 import qrcode
 from django import forms
 from django.forms import widgets
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
+from ocflib.misc.mail import MAIL_FROM
+from ocflib.misc.mail import SENDMAIL_PATH
 from paramiko import AuthenticationException
 from paramiko import SSHClient
 from paramiko.hostkeys import HostKeyEntry
 
 from ocfweb.component.forms import Form
-
-import ocflib.misc.validators as validators
-from ocflib.misc.mail import MAIL_FROM
-from ocflib.misc.mail import SENDMAIL_PATH
 
 
 PRINT_FOLDER = '.user_print'
@@ -61,20 +60,23 @@ def send_qr_mail(username: str, qr_code: bytes) -> None:
     msg['To'] = f'{username}@ocf.berkeley.edu'
 
     msg.set_content(
-        'Sorry, we were unable to display your QR, please use the QR code on the website!.'
+        'Sorry, we were unable to display your QR, please use the QR code on the website!.',
     )
 
     image_cid = make_msgid(domain='ocf.berkeley.edu')
     msg.add_alternative(EMAIL_BODY.format(username=username, image_cid=image_cid), subtype='html')
-    msg.get_payload()[1].add_related(qr_code,
-                                     maintype='image',
-                                     subtype='png',
-                                     cid=image_cid
-                                     )
+    msg.get_payload()[1].add_related(
+        qr_code,
+        maintype='image',
+        subtype='png',
+        cid=image_cid,
+    )
     # we send the message via sendmail because direct traffic to port 25
     # is firewalled off
-    p = subprocess.Popen((SENDMAIL_PATH, '-t', '-oi'),
-                         stdin=subprocess.PIPE)
+    p = subprocess.Popen(
+        (SENDMAIL_PATH, '-t', '-oi'),
+        stdin=subprocess.PIPE,
+    )
     p.communicate(msg.as_string().encode('utf8'))
 
 
