@@ -1,14 +1,11 @@
 import base64
-import mimetypes
 import os.path
 import subprocess
 import uuid
 from email.message import EmailMessage
 from email.utils import make_msgid
-from email.utils import parseaddr
 from io import BytesIO
 
-import ocflib.misc.validators as validators
 import qrcode
 from django import forms
 from django.forms import widgets
