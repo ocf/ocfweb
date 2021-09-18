@@ -1,7 +1,12 @@
 import base64
+from email.message import EmailMessage
+from email.utils import make_msgid
+from email.utils import parseaddr
+import mimetypes
 import os.path
 import uuid
 from io import BytesIO
+import subprocess
 
 import qrcode
 from django import forms
@@ -15,7 +20,62 @@ from paramiko.hostkeys import HostKeyEntry
 
 from ocfweb.component.forms import Form
 
+import ocflib.misc.validators as validators
+from ocflib.misc.mail import MAIL_FROM
+from ocflib.misc.mail import SENDMAIL_PATH
+
+
 PRINT_FOLDER = '.user_print'
+
+EMAIL_BODY = '''
+<html>
+    <body>
+        <p>
+            Hi {username},
+        </p>
+
+        <p>
+            Below you can find the QR code to start your print in the OCF computer lab.
+            Show the QR code in front of the camera at the remote printing computer,
+            and it will start printing your document.
+        </p>
+        <img src="cid:{image_cid}">
+        <p>
+            Thanks for flying OCF! <br>
+            ~ OCF volunteer staff
+        </p>
+    </body>
+</html>
+'''
+
+
+def send_qr_mail(username: str, qr_code: bytes) -> None:
+    """Send the QR code needed to start the print in the lab to the user.
+
+    Based on https://stackoverflow.com/a/49098251/9688107
+    """
+
+    msg = EmailMessage()
+    msg['Subject'] = 'OCF Remote Printing QR Code'
+    msg['From'] = MAIL_FROM
+    msg['To'] = f'{username}@ocf.berkeley.edu'
+
+    msg.set_content(
+        'Sorry, we were unable to display your QR, please use the QR code on the website!.'
+    )
+
+    image_cid = make_msgid(domain='ocf.berkeley.edu')
+    msg.add_alternative(EMAIL_BODY.format(username=username, image_cid=image_cid), subtype='html')
+    msg.get_payload()[1].add_related(qr_code,
+                                     maintype='image',
+                                     subtype='png',
+                                     cid=image_cid
+                                     )
+    # we send the message via sendmail because direct traffic to port 25
+    # is firewalled off
+    p = subprocess.Popen((SENDMAIL_PATH, '-t', '-oi'),
+                         stdin=subprocess.PIPE)
+    p.communicate(msg.as_string().encode('utf8'))
 
 
 def print(request: HttpRequest) -> HttpResponse:
@@ -88,7 +148,12 @@ def print(request: HttpRequest) -> HttpResponse:
                     img = qr.make_image(fill='black', back_color='white')
                     buff = BytesIO()
                     img.save(buff, format='PNG')
-                    qr_b64 = b'data:image/png;base64,%b' % base64.b64encode(buff.getvalue())
+                    qr_data = buff.getvalue()
+                    qr_b64 = b'data:image/png;base64,%b' % base64.b64encode(qr_data)
+        send_qr_mail(
+            username=username,
+            qr_code=qr_data,
+        )
         return render(
             request,
             'account/print/qr.html',
