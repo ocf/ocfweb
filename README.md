@@ -1,7 +1,6 @@
 ocfweb
 ==========
 [![Build Status](https://jenkins.ocf.berkeley.edu/buildStatus/icon?job=ocf/ocfweb/master)](https://jenkins.ocf.berkeley.edu/job/ocf/job/ocfweb/job/master)
-[![Coverage Status](https://coveralls.io/repos/github/ocf/ocfweb/badge.svg?branch=master)](https://coveralls.io/github/ocf/ocfweb?branch=master)
 [![Code Health](https://landscape.io/github/ocf/ocfweb/master/landscape.svg?style=flat)](https://landscape.io/github/ocf/ocfweb/master)
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 
