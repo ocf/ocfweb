@@ -15,8 +15,8 @@ click-repl==0.2.0
 cracklib==2.9.3
 cryptography==3.3.2
 cycler==0.10.0
-Deprecated==1.2.12
-Django==3.2.6
+Deprecated==1.2.13
+Django==3.2.7
 django-bootstrap-form==3.4
 django-ipware==4.0.0
 django-mathfilters==1.0.0
@@ -26,9 +26,9 @@ dnspython==2.1.0
 greenlet==1.1.1
 gunicorn==20.1.0
 idna==2.10
-importlib-metadata==4.6.4
+importlib-metadata==4.8.1
 Jinja2==3.0.1
-kiwisolver==1.3.1
+kiwisolver==1.3.2
 kombu==5.1.0
 ldap3==2.9.1
 libsass==0.21.0
@@ -39,7 +39,7 @@ numpy==1.21.2
 ocflib
 paramiko==2.7.2
 pexpect==4.8.0
-Pillow==8.3.1
+Pillow==8.3.2
 ply==3.11
 prometheus-client==0.11.0
 prompt-toolkit==3.0.20
@@ -62,11 +62,11 @@ PyYAML==5.4.1
 qrcode==7.3
 redis==3.5.3
 requests==2.24.0
-setuptools==57.4.0
+setuptools==58.0.4
 six==1.16.0
 SQLAlchemy==1.4.23
-sqlparse==0.4.1
-typing-extensions==3.10.0.0
+sqlparse==0.4.2
+typing-extensions==3.10.0.2
 urllib3==1.25.11
 vine==5.0.0
 wcwidth==0.2.5
