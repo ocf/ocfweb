@@ -14,8 +14,10 @@ mistune
 numpy
 ocflib
 paramiko
+pillow
 pyasn1
 pycryptodome
 pygments
 pymysql
 python-dateutil
+qrcode

@@ -102,6 +102,7 @@
         <ul>
             <li><a href="{% url 'commands' %}">Check Account</a></li>
             <li><a href="{% url 'change_password' %}">Reset Password</a></li>
+            <li><a href="{% url 'print' %}">Print Remotely</a></li>
 
             {% if is_ocf_ip %}
                 <li><a href="https://printhost.ocf.berkeley.edu/jobs/">View Print Queue</a></li>

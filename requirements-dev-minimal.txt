@@ -7,6 +7,13 @@ pytest-django
 pytest-env
 pytest-xdist
 requirements-tools
+types-cryptography
+types-enum34
+types-ipaddress
 types-paramiko
 types-python-dateutil
+types-pytz
+types-PyYAML
 types-requests
+types-setuptools
+types-toml
