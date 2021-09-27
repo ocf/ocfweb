@@ -20,7 +20,7 @@ class JSONHoursEncoder(JSONEncoder):
         elif isinstance(obj, time):
             return obj.strftime('%H:%M:%S')
         else:
-            return JSONEncoder.default(self, obj)
+            return super().default(obj)
 
 
 @periodic(60)
