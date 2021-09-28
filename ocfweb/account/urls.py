@@ -2,7 +2,6 @@ from django.conf.urls import url
 
 from ocfweb.account.chpass import change_password
 from ocfweb.account.commands import commands
-from ocfweb.account.print import print
 from ocfweb.account.register import account_created
 from ocfweb.account.register import account_pending
 from ocfweb.account.register import recommend
@@ -20,7 +19,6 @@ from ocfweb.account.vhost_mail import vhost_mail_update
 urlpatterns = [
     url(r'^password/$', change_password, name='change_password'),
     url(r'^commands/$', commands, name='commands'),
-    url(r'^print/$', print, name='print'),
 
     # account creation
     url(r'^register/$', request_account, name='register'),
