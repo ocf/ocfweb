@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block hero %}{% endblock %}
+{% block hero %}
+    <div class="ocf-hero ocf-page-title">
+        <div class="container">
+                <h1>ocf.io Short Link Translations</h1>
+        <br/>
+            <p class="ocf-button-holder">
+            <a href="https://www.ocf.berkeley.edu/docs/" class="btn btn-lg" style="background-color:#f7f7f7; color:#000;">Documentation</a>
+                </p>
+        </div>
+    </div>
+{% endblock %}
 {% block container %}
-    <div class="m-3" style="margin:30px;">
-            <h1>ocf.io short link translations</h1>
-            <h5><a href="https://www.ocf.berkeley.edu/docs/">Documentation</a></h5>
-            <hr />
+    <div class="ocf-content container">
             <table class="table">
                 <thead>
                     <tr>
