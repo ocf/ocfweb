@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ocf.io shorturls</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-</head>
-    <body>
-        <div class="m-3">
+{% extends 'base.html' %}
+{% load static %}
+{% block hero %}{% endblock %}
+{% block container %}
+    <div class="m-3" style="margin:30px;">
             <h1>ocf.io short link translations</h1>
             <h5><a href="https://www.ocf.berkeley.edu/docs/">Documentation</a></h5>
             <hr />
@@ -82,5 +79,5 @@
             window.onload = init;
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    </body>
-</html>
+{% endblock %}
+{% block footer-top %}{% endblock %}
