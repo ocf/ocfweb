@@ -23,7 +23,6 @@ from ocfweb.main.staff_hours import staff_hours
 from ocfweb.stats.urls import urlpatterns as stats
 from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
-from ocfweb.test.shorturl import test_shorturl
 from ocfweb.tv.urls import urlpatterns as tv
 
 urlpatterns = [
@@ -31,7 +30,6 @@ urlpatterns = [
     url(r'^test/status$', lambda _: HttpResponse('ok'), name='status'),
     url(r'^test/session$', test_session, name='test_session'),
     url(r'^test/periodic$', test_list_periodic_functions, name='test_list_periodic_functions'),
-    url(r'^test/shorturl$', test_shorturl, name='test_shorturl'),
 
     # prometheus metrics
     url('', include('django_prometheus.urls')),
