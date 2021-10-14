@@ -18,7 +18,6 @@ def paper_quota(request: HttpRequest) -> HttpResponse:
 
         with get_connection() as c:
             quota = get_quota(c, user)
-            print(type(quota))
             return JsonResponse({
                 'user': quota.user,
                 'daily': quota.daily,
