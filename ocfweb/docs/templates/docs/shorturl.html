@@ -20,71 +20,72 @@
                 <th scope="col">Long</th>
             </tr>
         </thead>
-        <tbody id="shurl-tbl"></tbody>
+        <tbody id="shurl-tbl">
+    </tbody>
     </table>
 </div>
 <script type="text/javascript">
 
-"use strict";
+    "use strict";
+    let fixup = (item) => {
 
-let fixup = (item) => {
+        let [r,u] = item;
 
-    let [r,u] = item;
+        // remove regex prefix / postfix
+        if(r.startsWith("^")) r = r.slice(1);
+        if(r.endsWith("$")) r = r.slice(0, -1);
 
-    // remove regex prefix / postfix
-    if(r.startsWith("^")) r = r.slice(1);
-    if(r.endsWith("$")) r = r.slice(0, -1);
+        r = r.replace(/\?(\:)*/g, ""); // remove negative lookbacks
+        r = r.replace(/\{.*?\}|[\+\?]|\.[\+\?\*]/g, "*"); // remove quantifiers
+        r = r.replace(/\(?!.*?\)/g, ""); // remove negative capture groups
+        r = r.replace(/\[\^.*?\]/g, ""); // remove negative brackets
+        r = r.replace(/\(|\)/g, ""); // remove parens
 
-    r = r.replace(/\?(\:)*/g, ""); // remove negative lookbacks
-    r = r.replace(/\{.*?\}|[\+\?]|\.[\+\?\*]/g, "*"); // remove quantifiers
-    r = r.replace(/\(?!.*?\)/g, ""); // remove negative capture groups
-    r = r.replace(/\[\^.*?\]/g, ""); // remove negative brackets
-    r = r.replace(/\(|\)/g, ""); // remove parens
+        u = u.replace(/\$\d/g, "*"); // replace $ in url
 
-    u = u.replace(/\$\d/g, "*"); // replace $ in url
+        return [r, u];
+    };
 
-    return [r, u];
-};
-let add = (item) => {
-    let tr = document.createElement("tr");
+    let add = (item) => {
+        let tr = document.createElement("tr");
 
-    let short = document.createElement("td");
-    let long = document.createElement("td");
+        let short = document.createElement("td");
+        let long = document.createElement("td");
 
-    let longA = document.createElement("a");
+        let longA = document.createElement("a");
 
-    short.innerHTML = item[0];
-    longA.href = item[1].replace(/\*/g, ""); // remove * from href
-    longA.innerHTML = item[1];
+        short.innerHTML = item[0];
+        longA.href = item[1].replace(/\*/g, ""); // remove * from href
+        longA.innerHTML = item[1];
 
-    long.appendChild(longA);
+        long.appendChild(longA);
 
-    tr.appendChild(short);
-    tr.appendChild(long);
+        tr.appendChild(short);
+        tr.appendChild(long);
 
-    document.querySelector("#shurl-tbl").appendChild(tr);
-};
-let init = async () => {
-    // fetch shorturl.pp
-    let pp = await (await fetch("https://raw.githubusercontent.com/ocf/puppet/master/modules/ocf_www/manifests/site/shorturl.pp")).text();
+        document.querySelector("#shurl-tbl").appendChild(tr);
+    };
+    let init = async () => {
+        // fetch shorturl.pp
+        let pp = await (await fetch("https://raw.githubusercontent.com/ocf/puppet/master/modules/ocf_www/manifests/site/shorturl.pp")).text();
 
-    // extract all lines with 'rewrite_rule'
-    let rewrites = pp.split("\n").filter(l => l.includes("rewrite_rule")).map(l => l.trim().replace(/\\/g, ""));
+        // extract all lines with 'rewrite_rule'
+        let rewrites = pp.split("\n").filter(l => l.includes("rewrite_rule")).map(l => l.trim().replace(/\\/g, ""));
 
-    // extract regex and url from each line
-    rewrites = rewrites.map(r => r.split(" => '")[1].split(" [")[0].split("$ "));
+        // extract regex and url from each line
+        rewrites = rewrites.map(r => r.split(" => '")[1].split(" [")[0].split("$ "));
 
-    // remove ' from beginning of regex
-    rewrites = rewrites.map(r => [r[0].slice(1), r[1]]);
+        // remove ' from beginning of regex
+        rewrites = rewrites.map(r => [r[0].slice(1), r[1]]);
 
-    // make sure url begins with http
-    rewrites = rewrites.filter(r => r[1].startsWith("http"));
+        // make sure url begins with http
+        rewrites = rewrites.filter(r => r[1].startsWith("http"));
 
-    for (let rewrite of rewrites) {
-        add(fixup(rewrite));
-    }
-};
-window.addEventListener('DOMContentLoaded', init);
+        for (let rewrite of rewrites) {
+            add(fixup(rewrite));
+        }
+    };
+    window.addEventListener('DOMContentLoaded', init);
 </script>
 {% endblock %}
 {% block footer-top %}{% endblock %}

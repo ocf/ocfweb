@@ -34,8 +34,10 @@ We also often give out these shorturls in RT tickets:
 
 ## More shorturls
 
-You can find a full list of `ocf.io` shorturls in a table at [ocf.io/shorturl](https://ocf.io/shorturl). The shorturls are created in the Apache configuration
-via Puppet at [ocf.io/shorturlpp](https://ocf.io/shorturlpp).
+You can find a full list of `ocf.io` shorturls in a table at
+[ocf.io/shorturl](https://ocf.io/shorturl).
+The shorturls are created in the Apache configuration via Puppet at
+[ocf.io/shorturlpp](https://ocf.io/shorturlpp).
 
 You can add additional shorturls to this list. When doing so, make sure that:
 
