@@ -14,7 +14,7 @@ def get_meetings_list(request: HttpRequest) -> JsonResponse:
 def get_next_meeting(request: HttpRequest) -> JsonResponse:
     next_meeting = read_next_meeting()
     if next_meeting is None:
-        return JsonResponse()
+        return JsonResponse({})
     
     return JsonResponse(
         next_meeting._asdict(),
@@ -24,7 +24,7 @@ def get_next_meeting(request: HttpRequest) -> JsonResponse:
 def get_current_meeting(request: HttpRequest) -> JsonResponse:
     current_meeting = read_current_meeting()
     if current_meeting is None:
-        return JsonResponse()
+        return JsonResponse({})
     
     return JsonResponse(
         current_meeting._asdict(),
