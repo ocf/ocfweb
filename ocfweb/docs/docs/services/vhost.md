@@ -33,7 +33,8 @@ of the virtual-hosted site (`yourgroup.berkeley.edu`).
      account; faculty and staff may use their personal account.
 2.   **Set up real site.** Set up your webspace and upload your website (if you
      haven't already done so). The website should be developed already, not a
-     placeholder.
+     placeholder. Third-party website hosts (ie. Wix, Google Sites, etc.) are
+     not supported.
 3.   **Include OCF hosting banner.** Place a [[Hosted by OCF banner|doc
      services/vhost/badges]] on your home page that links to the OCF front
      page. If none of these images are appropriate for your site, you may
@@ -95,7 +96,7 @@ accounts.
 
 ### Limitations on non-berkeley.edu
 
-The OCF may host non-berkeley.edu domains, however the process is more
+The OCF may host domains that do not end in berkeley.edu, however the process is more
 complicated in this case. At the discretion of an OCF (Deputy) Site Manager,
 permission may be granted to those who can demonstrate a specific need for the
 OCF to host a website outside of the berkeley.edu domain. For such domains, the
@@ -130,15 +131,15 @@ groups.
 
 In particular,
 
-* **No off-site (third-party) hosting**: Circumventions around off-site
-hosting, including (but not limited to) proxies, redirects, and substantial
-inline frames (iframes) of non-berkeley.edu domains are not allowed. The OCF
-does not process nor advise off-site hosting requests, which can be
-[submitted directly to the university][offsite] (however, feel free to keep
-us informed if you have an existing OCF account).
+* **No off-site (third-party) hosting**: To comply with university policy,
+the OCF may only provide virtual hosting for websites that are hosted on OCF
+servers. [Google Sites are not included.](https://bconnected.berkeley.edu/collaboration-services/google/sites)
 
-   In other words, to comply with university policy, the OCF may only provide
-   virtual hosting for websites that are hosted on OCF servers.
+  Circumventions around off-site hosting, including (but not limited
+  to) proxies, redirects, and substantial inline frames (iframes) of non-
+  berkeley.edu domains are not allowed. The OCF does not process nor advise
+  off-site hosting requests, which can be [submitted directly to the university](https://offsitehosting.berkeley.edu/)
+  (however, feel free to keep us informed if you have an existing OCF account).
 
 * **Relevant domain name**: Registered Student Organizations may only use
 domains or request subdomains that are the officially recognized name of the
