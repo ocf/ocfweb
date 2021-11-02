@@ -30,7 +30,8 @@ def stats_mirrors(request: HttpRequest) -> HttpResponse:
             'all_time_total': all_time_total,
             'all_time_dists': all_time_dists,
             'start_date': current_semester_start() if (
-                current_semester_start() > MIRRORS_REPORTING_FIXED) else MIRRORS_REPORTING_FIXED,
+                current_semester_start() > MIRRORS_REPORTING_FIXED
+            ) else MIRRORS_REPORTING_FIXED,
         },
     )
 
