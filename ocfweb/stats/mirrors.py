@@ -14,6 +14,7 @@ from ocfweb.caching import periodic
 MIRRORS_EPOCH = date(2017, 1, 1)
 MIRRORS_REPORTING_FIXED = date(2021, 10, 11)
 
+
 def stats_mirrors(request: HttpRequest) -> HttpResponse:
 
     semester_total, semester_dists = bandwidth_semester()
