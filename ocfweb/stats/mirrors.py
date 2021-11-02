@@ -12,7 +12,7 @@ from ocflib.lab.stats import humanize_bytes
 from ocfweb.caching import periodic
 
 MIRRORS_EPOCH = date(2017, 1, 1)
-
+MIRRORS_REPORTING_FIXED = date(2021, 10, 11)
 
 def stats_mirrors(request: HttpRequest) -> HttpResponse:
 
@@ -35,8 +35,10 @@ def stats_mirrors(request: HttpRequest) -> HttpResponse:
 
 @periodic(86400)
 def bandwidth_semester() -> Tuple[Any, Any]:
-
-    data = bandwidth_by_dist(current_semester_start())
+    if current_semester_start() > MIRRORS_REPORTING_FIXED:
+        data = bandwidth_by_dist(current_semester_start())
+    else:
+        data = bandwidth_by_dist(MIRRORS_REPORTING_FIXED)
 
     total = humanize_bytes(sum(x[1] for x in data))
     by_dist = [(dist, humanize_bytes(bw)) for dist, bw in data]
