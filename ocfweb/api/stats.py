@@ -30,7 +30,6 @@ def get_printers_summary(request: HttpRequest) -> JsonResponse:
         printers(),
         safe=False,
     )
-    response['Access-Control-Allow-Origin'] = '*'  # MUST REMOVE THIS
     return response
 
 
@@ -39,10 +38,7 @@ def get_desktop_usage(request: HttpRequest) -> JsonResponse:
     Copy desktop usage from Django API by grabbing class attributes that
     can't be serialized to JSON
     """
-    # responseList = list(desktop_profiles())
-    # responseSet = desktop_profiles()
-    # for i in range(len(responseList)):
-    #     responseList[i] = list(responseList[i])
+
     responseList = []
     for profile in desktop_profiles():
         minutes_idle = profile.minutes_idle
@@ -58,7 +54,6 @@ def get_desktop_usage(request: HttpRequest) -> JsonResponse:
         responseList,
         safe=False,
     )
-    response['Access-Control-Allow-Origin'] = '*'  # MUST REMOVE THIS
     return response
 
 
@@ -67,24 +62,19 @@ def get_mirrors_showcase(request: HttpRequest) -> JsonResponse:
     In human-readable form, sorted with biggest bandwidth first
     """
     mirrors_showcase = [['ubuntu', 0], ['debian', 0], ['archlinux', 0]]
-    # week_ago = datetime.datetime.now() - datetime.timedelta(days=7)
-    # REMOVE THIS-- bandwidth is by semester
 
     total, by_dist = bandwidth_semester(humanize=False)
 
-    for proj in mirrors_showcase:
+    for m in mirrors_showcase:
         bw = 0
         for dist in by_dist:
-            if dist[0].startswith(proj[0]):
+            if dist[0].startswith(m[0]):
                 bw += dist[1]
-        proj[1] = bw
+        m[1] = bw
     mirrors_showcase.sort(key=lambda m: m[1], reverse=True)
     response = JsonResponse(
         [[b[0], humanize_bytes(b[1])] for b in mirrors_showcase],
         safe=False,
     )
-    response['Access-Control-Allow-Origin'] = '*'  # MUST REMOVE THIS
 
     return response
-
-# Idea: Package summary stats together into one function
