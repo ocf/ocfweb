@@ -16,6 +16,9 @@ urlpatterns = [
     path('lab/desktops', lab.desktop_usage, name='desktop_usage'),
     path('lab/num_users', stats.get_num_users_in_lab, name='get_num_users_in_lab'),
     path('lab/staff', stats.get_staff_in_lab, name='get_staff_in_lab'),
+    path('lab/printers_summary', stats.get_printers_summary, name='get_printers_summary'),
+    path('lab/desktop_usage', stats.get_desktop_usage, name='get_desktop_usage'),
+    path('lab/mirrors_showcase', stats.get_mirrors_showcase, name='get_mirrors_showcase'),
     path('session/log', session_tracking.log_session, name='log_session'),
     path('shorturl/<path:slug>', shorturls.bounce_shorturl, name='bounce_shorturl'),
 ]
