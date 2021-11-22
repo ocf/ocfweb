@@ -61,7 +61,7 @@ def get_mirrors_showcase(request: HttpRequest) -> JsonResponse:
     """ Return bandwidth for a few mirrors that we showcase on stats page
     In human-readable form, sorted with biggest bandwidth first
     """
-    mirrors_showcase = [['ubuntu', 0], ['debian', 0], ['archlinux', 0]]
+    mirrors_showcase: List[Tuple[str, int]] = [('ubuntu', 0), ('debian', 0), ('archlinux', 0)]
 
     total, by_dist = bandwidth_semester(humanize=False)
 
