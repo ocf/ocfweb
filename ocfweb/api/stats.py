@@ -7,7 +7,7 @@ from ocfweb.stats.summary import desktop_profiles
 from ocfweb.stats.summary import printers
 from ocfweb.stats.summary import staff_in_lab
 from ocfweb.stats.summary import users_in_lab_count
-
+from typing import List, Tuple
 # These endpoints are for ocfstatic stats
 
 
