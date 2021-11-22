@@ -63,19 +63,22 @@ def get_mirrors_showcase(request: HttpRequest) -> JsonResponse:
     """ Return bandwidth for a few mirrors that we showcase on stats page
     In human-readable form, sorted with biggest bandwidth first
     """
-    mirrors_showcase: List[Tuple[str, int]] = [('ubuntu', 0), ('debian', 0), ('archlinux', 0)]
+
+    mirrors_showcase = ['ubuntu', 'debian', 'archlinux']
 
     total, by_dist = bandwidth_semester(humanize=False)
+    mirrors_showcase_data: List[Tuple[str, int]] = []
 
     for m in mirrors_showcase:
-        bw = 0
-        for dist in by_dist:
-            if dist[0].startswith(m[0]):
-                bw += dist[1]
-        m[1] = bw
-    mirrors_showcase.sort(key=lambda m: m[1], reverse=True)
+        bw_sum = 0
+        for dist, bw in by_dist:
+            if dist.startswith(m):
+                bw_sum += bw
+        mirrors_showcase_data.append((m, bw_sum))
+
+    mirrors_showcase_data.sort(key=lambda m: m[1], reverse=True)
     response = JsonResponse(
-        [[b[0], humanize_bytes(b[1])] for b in mirrors_showcase],
+        [(b[0], humanize_bytes(b[1])) for b in mirrors_showcase_data],
         safe=False,
     )
 
