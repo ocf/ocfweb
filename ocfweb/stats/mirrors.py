@@ -37,7 +37,7 @@ def stats_mirrors(request: HttpRequest) -> HttpResponse:
 
 
 @periodic(86400)
-def bandwidth_semester(humanize=True) -> Tuple[Any, Any]:
+def bandwidth_semester(humanize: bool = True) -> Tuple[Any, Any]:
     if current_semester_start() > MIRRORS_REPORTING_FIXED:
         data = bandwidth_by_dist(current_semester_start())
     else:
