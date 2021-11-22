@@ -1,3 +1,6 @@
+from typing import List
+from typing import Tuple
+
 from django.http import HttpRequest
 from django.http import JsonResponse
 from ocflib.lab.stats import humanize_bytes
@@ -7,7 +10,6 @@ from ocfweb.stats.summary import desktop_profiles
 from ocfweb.stats.summary import printers
 from ocfweb.stats.summary import staff_in_lab
 from ocfweb.stats.summary import users_in_lab_count
-from typing import List, Tuple
 # These endpoints are for ocfstatic stats
 
 
