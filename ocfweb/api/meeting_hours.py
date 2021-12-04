@@ -9,7 +9,7 @@ def get_meetings_list(request: HttpRequest) -> JsonResponse:
     return JsonResponse(
         [item._asdict() for item in read_meeting_list()],
         safe=False,
-    ) 
+    )
 
 
 def get_next_meeting(request: HttpRequest) -> JsonResponse:
