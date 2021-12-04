@@ -20,6 +20,9 @@ urlpatterns = [
     path('meetings/current', meeting_hours.get_current_meeting, name='current_meeting'),
     path('meetings/next', meeting_hours.get_next_meeting, name='next_meeting'),
     path('meetings/list', meeting_hours.get_meetings_list, name='meetings_list'),
+    path('lab/printers_summary', stats.get_printers_summary, name='get_printers_summary'),
+    path('lab/desktop_usage', stats.get_desktop_usage, name='get_desktop_usage'),
+    path('lab/mirrors_showcase', stats.get_mirrors_showcase, name='get_mirrors_showcase'),
     path('session/log', session_tracking.log_session, name='log_session'),
     path('shorturl/<path:slug>', shorturls.bounce_shorturl, name='bounce_shorturl'),
 ]
