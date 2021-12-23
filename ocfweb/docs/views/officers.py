@@ -343,6 +343,7 @@ def _bod_terms() -> List[Term]:
                 ('DeCal', ['lmathias', 'laksith']),
             ],
         ),
+    ]
 
 def officers(doc: Any, request: HttpRequest) -> HttpResponse:
     terms = _bod_terms()
