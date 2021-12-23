@@ -13,7 +13,7 @@ established on November 14, 2016 and amended on:
    [5.2.1](#amended-2019-12-02-5-2-1), and
    [5.2.2](#amended-2019-12-02-5-2-2))
 5. September 9, 2020 (Section [5.3.1](#amended-2020-09-09-5-3-1))
-6. November 22, 2021 (Sections [4.9](#amemded-2021-11-22-4-9),
+6. November 22, 2021 (Sections [4.9](#amended-2021-11-22-4-9),
    [4.10](#amended-2021-11-22-4-10), and [4.12](#amended-2021-11-22-4-12))
 
 
