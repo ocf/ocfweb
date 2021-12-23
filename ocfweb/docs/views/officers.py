@@ -332,8 +332,17 @@ def _bod_terms() -> List[Term]:
                 ('DeCal', ['bencuan']),
             ],
         ),
-    ]
-
+        Term(
+            'Spring 2022',
+            gms=['jyxzhang', 'bencuan'],
+            sms=['rjz', 'etw'],
+            heads=[
+                ('Internal', ['kian', 'bryli']),
+                ('External', ['ncograin', 'anddone']),
+                ('Finance', ['snarain', 'rayh', 'ncberberi']),
+                ('DeCal', ['lmathias', 'laksith']),
+            ],
+        ),
 
 def officers(doc: Any, request: HttpRequest) -> HttpResponse:
     terms = _bod_terms()
