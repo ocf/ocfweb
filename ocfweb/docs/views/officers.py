@@ -345,6 +345,7 @@ def _bod_terms() -> List[Term]:
         ),
     ]
 
+
 def officers(doc: Any, request: HttpRequest) -> HttpResponse:
     terms = _bod_terms()
     return render(
