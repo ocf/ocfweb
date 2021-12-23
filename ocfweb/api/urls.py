@@ -4,6 +4,7 @@ from ocfweb.api import announce
 from ocfweb.api import hours
 from ocfweb.api import lab
 from ocfweb.api import meeting_hours
+from ocfweb.api import printing_stats
 from ocfweb.api import session_tracking
 from ocfweb.api import shorturls
 from ocfweb.api import staff_hours
@@ -23,6 +24,10 @@ urlpatterns = [
     path('lab/printers_summary', stats.get_printers_summary, name='get_printers_summary'),
     path('lab/desktop_usage', stats.get_desktop_usage, name='get_desktop_usage'),
     path('lab/mirrors_showcase', stats.get_mirrors_showcase, name='get_mirrors_showcase'),
+    path('printing/pages_per_day', printing_stats.get_pages_per_day, name='get_pages_per_day'),
+    path('printing/active_printers', printing_stats.get_active_printers, name='get_active_printers'),
+    path('printing/lifetime_data', printing_stats.get_lifetime_data, name='get_lifetime_data'),
+    path('printing/toner_changes', printing_stats.get_toner_changes, name='get_toner_changes'),
     path('session/log', session_tracking.log_session, name='log_session'),
     path('shorturl/<path:slug>', shorturls.bounce_shorturl, name='bounce_shorturl'),
 ]
