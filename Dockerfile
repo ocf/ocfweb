@@ -32,8 +32,6 @@ RUN virtualenv -ppython3.7 /opt/ocfweb/venv \
     && /opt/ocfweb/venv/bin/pip install \
         -r /opt/ocfweb/requirements.txt
 
-RUN rm -rf /usr/lib/python3.7/distutils
-
 ARG ocflib_version=
 RUN /opt/ocfweb/venv/bin/pip install ocflib${ocflib_version}
 
