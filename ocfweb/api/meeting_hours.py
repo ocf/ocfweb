@@ -31,7 +31,7 @@ def get_current_meeting(request: HttpRequest) -> JsonResponse:
     if current_meeting is None:
         return JsonResponse(
             {},
-            status=200,
+            status=204,
         )
 
     return JsonResponse(
