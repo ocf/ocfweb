@@ -14,9 +14,6 @@ def assert_does_not_error(client, path):
     if resp.status_code not in (
         # OK!
         200,
-        # No content but success. Some API endpoints return this when
-        # there's no data.
-        204,
         # Bad request. This usually happens when the view requires
         # arguments (e.g. GET params), but we don't have a sane way to
         # guess what to provide in this test.
