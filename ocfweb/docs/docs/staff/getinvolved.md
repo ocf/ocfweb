@@ -5,7 +5,7 @@
 Glad you asked! Students from all backgrounds are welcome to join staff. We
 don’t interview or have a selection process for joining—you simply have to
 express interest and show up to our weekly meetings. We don't impose a specific
-time commitment; some volunteers work many hours per week, others contribute
+time commitment; some volunteers work many hours per week, while others contribute
 occasionally. If you want to learn more and be an active participant, there are
 multiple ways to get started:
 
@@ -41,6 +41,25 @@ In these meetings, all OCF staff (that includes you!) get together to discuss
 technology, learn from each other, and work on OCF projects. These meetings will
 be a mix of presentations, work time, and socializing. Our goal is to build OCF
 staff into a strong community of capable individuals.
+
+### Starter Tasks
+
+There are no prerequisites to joining staff, other than a willingness to learn and participate! If you have no prior experience with coding, Linux, working with servers, etc. and would like to learn how to contribute to the OCF technically, we have a variety of starter tasks, beginner projects, and other resources to help you get acquainted.
+
+The most effective way to get started is to come to the lab during weekly meetings and after-hours to talk to staff members! We can help you figure out your interests at the OCF and provide more direction towards contributing.
+
+#### Staff Training
+
+The [staff training resources][staff-training] contain a number of weekly collaborative exercises, working up from the basics to eventually making a substantial contribution of your own. 
+
+#### Linux SysAdmin DeCal
+
+If you'd like to learn about many of the tools we use around the OCF in a more traditional course setting, we regularly offer the [Linux SysAdmin DeCal][decal]. All lectures and lab assignments are [open source][decal-web] and available for free on the website, and you are more than welcome to use them even if you aren't officially enrolled in the course.
+
+#### Starter Tasks Page
+
+The [[Starter Tasks page|doc staff/startertasks]] in our documentation contains a variety of intermediate-difficulty exercises that are another great way to get some practice working with OCF infrastructure.
+
 
 ### Contribute
 
@@ -210,6 +229,8 @@ part of the OCF community.
 [account]: https://github.com/ocf/ocfweb/tree/master/ocfweb/account
 [announce]: https://ocf.io/announce
 [api-hours]: https://github.com/ocf/ocfweb/blob/master/ocfweb/api/hours.py
+[decal]: https://decal.ocf.berkeley.edu/
+[decal-web]: https://github.com/0xcf/decal-web
 [docs-src]: https://github.com/ocf/ocfweb/tree/master/ocfweb/docs/docs
 [getinvolved-src]: https://github.com/ocf/ocfweb/blob/master/ocfweb/docs/docs/staff/getinvolved.md
 [ircbot/issues]: https://github.com/ocf/ircbot/issues
@@ -247,6 +268,7 @@ part of the OCF community.
 [slackbridge]: https://github.com/ocf/slackbridge
 [sourcegraph-todo]: https://sourcegraph.ocf.berkeley.edu/search?q=TODO+case:yes
 [staffhours]: https://ocf.io/staffhours
+[staff-training]: https://decal.ocf.io/resources
 [utils-acct]: https://github.com/ocf/utils/tree/master/acct
 [utils-lab-wakeup]: https://github.com/ocf/utils/blob/master/staff/lab/lab-wakeup
 [utils-makehttp]: https://github.com/ocf/utils/blob/master/makeservices/makehttp
