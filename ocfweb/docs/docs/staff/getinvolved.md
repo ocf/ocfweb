@@ -50,7 +50,7 @@ The most effective way to get started is to come to the lab during weekly meetin
 
 #### Staff Training
 
-The [staff training resources][staff-training] contain a number of weekly collaborative exercises, working up from the basics to eventually making a substantial contribution of your own. 
+The [staff training resources][staff-training] contain a number of weekly collaborative exercises, working up from the basics to eventually making a substantial contribution of your own.
 
 #### Linux SysAdmin DeCal
 
