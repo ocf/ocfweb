@@ -16,7 +16,7 @@ from pygments.lexers import get_lexer_by_name
 from ocfweb.caching import cache
 
 # tags of a format like: [[!meta title="Backups"]]
-META_REGEX = re.compile(r'\[\[!meta ([a-z]+)="([^"]*)"\]\]')
+META_REGEX = re.compile(r'---\n(?:(\w+): "((?:\w|\s)+)"\n)*---(?:\n|\s)*')
 
 # Make mypy play nicely with mixins https://github.com/python/mypy/issues/5837
 # TODO: issue has been resolved in mypy, patch when next version of mypy gets released
