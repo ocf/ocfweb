@@ -15,8 +15,9 @@ from pygments.lexers import get_lexer_by_name
 
 from ocfweb.caching import cache
 
-# tags of a format like: [[!meta title="Backups"]]
-META_REGEX = re.compile(r'---\n(?:(\w+): "([^"]+)"\n)*---(?:\n|\s)*')
+# yaml front-matter
+FRONT_MATTER_REGEX = re.compile(r'^\s*---\n((?:.|\n)*?)\n---\s*')
+YAML_REGEX = re.compile(r'^(\S+):\s+"([^"]+)"$', re.MULTILINE)
 
 # Make mypy play nicely with mixins https://github.com/python/mypy/issues/5837
 # TODO: issue has been resolved in mypy, patch when next version of mypy gets released
@@ -250,11 +251,12 @@ def text_and_meta(f: Any) -> Tuple[str, Any]:
     text = f.read()
     meta = {}
 
-    def repl(match: Match[Any]) -> str:
-        meta[match.group(1)] = match.group(2)
+    def yaml_parse(yaml_match: Match[str]) -> str:
+        for match in YAML_REGEX.findall(yaml_match.group(1)):
+            meta[match[0]] = match[1]
         return ''
 
-    text = META_REGEX.sub(repl, text)
+    text = FRONT_MATTER_REGEX.sub(yaml_parse, text, 1)
     return text, meta
 
 
