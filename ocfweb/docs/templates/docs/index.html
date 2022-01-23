@@ -12,7 +12,7 @@
             We recommend starting off by reading the
             <a href="{% url 'doc' 'faq' %}">FAQ</a>. If you experience
             difficulties that can't be answered here, feel free to
-            <a href="{% url 'doc' 'contact' %}">contact us</a>.
+            <a href="{% url 'doc' 'internal/contact' %}">contact us</a>.
         </p>
         {% doc_tree root='/' exclude='^/staff' %}
 
@@ -39,7 +39,7 @@
             Feel free to send us a pull request with your suggestion!
         </p>
         <p>
-        (You could also just <a href="{% url 'doc' 'contact' %}">send us an email</a>.)
+        (You could also just <a href="{% url 'doc' 'internal/contact' %}">send us an email</a>.)
         </p>
     </div>
 </div>

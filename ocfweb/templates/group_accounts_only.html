@@ -5,7 +5,7 @@
 {% block content %}
 
 <p>The page you tried to request is only available for group accounts. You are currently logged in as <strong>{{ user }}</strong>, which we believe is an individual OCF account.</p>
-<p>If you believe this is an error and your account is actually a group account, please <a href="{% url 'doc' 'contact' %}">contact us</a>.</p>
+<p>If you believe this is an error and your account is actually a group account, please <a href="{% url 'doc' 'internal/contact' %}">contact us</a>.</p>
 <hr />
 <p>If you'd like to log out, <a href="{% url 'logout' %}">click here</a>.</p>
 
