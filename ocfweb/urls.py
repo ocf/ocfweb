@@ -72,19 +72,23 @@ urlpatterns = [
     url(r'^index\.s?html$', lambda _: redirect(reverse('home'), permanent=True)),
     url(r'^staff_hours(?:\.cgi)?$', lambda _: redirect(reverse('staff-hours'), permanent=True)),
     url(r'^staff-hours\.cgi$', lambda _: redirect(reverse('staff-hours'), permanent=True)),
-    url(r'^OCF/(?:index\.shtml)?$', lambda _: redirect(reverse('doc', args=('about',)), permanent=True)),
+    url(r'^OCF/(?:index\.shtml)?$', lambda _: redirect(reverse('doc', args=('internal/about',)), permanent=True)),
     url(
         r'^OCF/(?:past_)?officers.shtml$',
-        lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True),
+        lambda _: redirect(reverse('doc', args=('internal/about/officers',)), permanent=True),
     ),
     url(r'^OCF/staff/(?:index\.shtml)?$', lambda _: redirect(reverse('doc', args=('staff',)), permanent=True)),
     url(
         r'^OCF/staff/where-now\.shtml$',
-        lambda _: redirect(reverse('doc', args=('about/formerstaff',)), permanent=True),
+        lambda _: redirect(reverse('doc', args=('internal/about/formerstaff',)), permanent=True),
     ),
     url(r'^OCF/policies(?:/|$)', lambda _: redirect(reverse('docs'), permanent=True)),
     url(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(reverse('doc', args=('faq',)), permanent=True)),
-    url(r'^OCF/officers_.*\.s?html$', lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True)),
+    url(
+        r'^OCF/officers_.*\.s?html$',
+        lambda _: redirect(reverse('doc', args=('internal/about/officers',)), permanent=True),
+    ),
     url(r'^OCF/staff/how-to-join\.shtml$', lambda _: redirect(reverse('about-staff'), permanent=True)),
     url(r'^mlk$', lambda _: redirect(reverse('doc', args=('services/lab',)), permanent=True)),
+    url(r'^docs/contact$', lambda _: redirect(reverse('doc', args=('internal/contact',)), permanent=True)),
 ]
