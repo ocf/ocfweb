@@ -29,13 +29,13 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="hidden-sm"><a href="{% url 'register' %}">Join</a></li>
                         <li class="dropdown">
-                            <a href="{% url 'doc' 'about' %}" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="{% url 'doc' 'internal/about' %}" class="dropdown-toggle" data-toggle="dropdown">
                                 About <span class="hidden-sm">Us</span> <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{% url 'doc' 'about' %}">Our Organization</a></li>
-                                <li><a href="{% url 'about-staff' %}">Joining the Staff Team</a></li>
+                                <li><a href="{% url 'doc' 'internal/about' %}">Our Organization</a></li>
+                                <li><a href="{% url 'doc' 'staff/getinvolved' %}">Joining the Staff Team</a></li>
                                 <li><a href="{% url 'stats' %}">Lab Statistics</a></li>
                                 <li><a href="{% url 'doc' 'staff/backend' %}">Backend Infrastructure</a></li>
                             </ul>
@@ -169,10 +169,10 @@
                             <h5>About the OCF</h5>
                             <ul class="list-unstyled">
                                 <li><a href="{% url 'doc' 'internal/about' %}">Overview</a></li>
-                                <li><a href="{% url 'doc' 'about/officers' %}">Officers</a></li>
+                                <li><a href="{% url 'doc' 'internal/about/officers' %}">Officers</a></li>
                                 <li><a href="{% url 'doc' 'internal/docs' %}">Official Documents</a></li>
                                 <li><a href="https://www.ocf.berkeley.edu/~staff/bod/">Board Meeting Minutes</a></li>
-                                <li><a href="{% url 'doc' 'privacy' %}">Privacy Policy</a></li>
+                                <li><a href="{% url 'doc' 'internal/privacy' %}">Privacy Policy</a></li>
                             </ul>
                         </div>
 

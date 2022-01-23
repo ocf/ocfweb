@@ -27,7 +27,7 @@ DOCS = {
     doc.name: doc
     for doc in chain(
         [
-            Document(name='/about/officers', title='Officers', render=officers),
+            Document(name='/internal/about/officers', title='Officers', render=officers),
             Document(name='/staff/backend/servers', title='Servers', render=servers),
             Document(name='/staff/backend/buster', title='Debian Buster upgrade', render=buster_upgrade),
             Document(name='/services/account/account-policies', title='Account policies', render=account_policies),
