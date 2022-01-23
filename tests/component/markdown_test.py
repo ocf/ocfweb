@@ -191,9 +191,12 @@ def test_table_of_contents():
 def test_text_and_meta():
     text, meta = text_and_meta(
         io.StringIO('''
-        [[!meta title="Frequently asked questions"]]
-        [[!meta herp="derp"]]
-        hello world
+---
+title: "Frequently asked questions"
+herp: "derp"
+---
+
+hello world
         '''),
     )
 
