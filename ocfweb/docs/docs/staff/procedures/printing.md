@@ -9,6 +9,14 @@ from the CUPS classes:
 3. Remove the offending printer from the list of selected printers
 4. GOTO 2, repeat for the `single` class
 
+Alternatively, this can be done using the CUPS command `lpadmin` with proper authentication.
+
+    lpadmin -p printername -r classname
+
+The `printername` is the physical name of the printer (for example, 
+`logjam-double` or `logjam-single`) while the `classname` is the name 
+of the user-facing CUPS class (`double` or `single`).
+
 (In theory pausing printers should have the same effect, but the current CUPS
 version still queues jobs for them for some unknown reason, causing half of
 user jobs to not print.)
@@ -16,7 +24,9 @@ user jobs to not print.)
 ## Restoring printer service
 
 Perform the reverse of the above (add the printers back to the classes), then
-double-check that the printers are not paused. Even if staff don't pause them,
+double-check that the printers are not paused. This can also be done by 
+replacing the `-r` flag from the above command with `-c`.
+Even if staff don't pause them,
 CUPS will pause them automatically if they fail.
 
 ## Replacing toner
