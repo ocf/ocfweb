@@ -13,7 +13,7 @@ Alternatively, this can be done using the `utils` command `mod-printer` with pro
 
     mod-printer remove [printer]
 
-The `printer` is the name of the physical printer (currently: `logjam`, 
+The `printer` is the name of the physical printer (currently: `logjam`,
 `papercut`, or `pagefault`). This will prompt you to enter your password
 twice, once for `single` and again for `double`.
 
