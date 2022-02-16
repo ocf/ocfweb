@@ -9,13 +9,13 @@ from the CUPS classes:
 3. Remove the offending printer from the list of selected printers
 4. GOTO 2, repeat for the `single` class
 
-Alternatively, this can be done using the CUPS command `lpadmin` with proper authentication.
+Alternatively, this can be done using the `utils` command `mod-printer` with proper authentication.
 
-    lpadmin -p printername -r classname
+    mod-printer remove [printer]
 
-The `printername` is the physical name of the printer (for example,
-`logjam-double` or `logjam-single`) while the `classname` is the name
-of the user-facing CUPS class (`double` or `single`).
+The `printer` is the name of the physical printer (currently: `logjam`, 
+`papercut`, or `pagefault`). This will prompt you to enter your password
+twice, once for `single` and again for `double`.
 
 (In theory pausing printers should have the same effect, but the current CUPS
 version still queues jobs for them for some unknown reason, causing half of
@@ -25,7 +25,7 @@ user jobs to not print.)
 
 Perform the reverse of the above (add the printers back to the classes), then
 double-check that the printers are not paused. This can also be done by
-replacing the `-r` flag from the above command with `-c`.
+replacing `remove` in the above `mod-printer` command with `add`.
 Even if staff don't pause them,
 CUPS will pause them automatically if they fail.
 
