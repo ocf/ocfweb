@@ -14,7 +14,7 @@ def get_meetings_list(request: HttpRequest) -> JsonResponse:
     )
 
 
-@periodic(60)
+@periodic(30)
 def get_next_meeting(request: HttpRequest) -> JsonResponse:
     next_meeting = read_next_meeting()
     if next_meeting is None:
@@ -29,7 +29,7 @@ def get_next_meeting(request: HttpRequest) -> JsonResponse:
     )
 
 
-@periodic(60)
+@periodic(30)
 def get_current_meeting(request: HttpRequest) -> JsonResponse:
     current_meeting = read_current_meeting()
     if current_meeting is None:
