@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, List
 from django.http import HttpRequest
 from django.http import JsonResponse
 from ocflib.org.meeting_hours import read_current_meeting
@@ -43,15 +43,15 @@ def get_current_meeting(request: HttpRequest) -> JsonResponse:
     )
 
 
-def _read_meeting_list() -> List:
+def _read_meeting_list() -> List[Any]:
     return read_meeting_list()
 
 
 @periodic(5)
-def _read_next_meeting() -> List:
+def _read_next_meeting() -> List[Any]:
     return read_next_meeting()
 
 
 @periodic(5)
-def _read_current_meeting() -> List:
+def _read_current_meeting() -> List[Any]:
     return read_current_meeting()
