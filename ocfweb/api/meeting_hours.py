@@ -1,4 +1,6 @@
-from typing import Any, List
+from typing import Any
+from typing import List
+
 from django.http import HttpRequest
 from django.http import JsonResponse
 from ocflib.org.meeting_hours import read_current_meeting
