@@ -1,9 +1,10 @@
 from django.http import HttpRequest
 from django.http import JsonResponse
-from django.views.decorators.cache import never_cache
 from ocflib.org.meeting_hours import read_current_meeting
 from ocflib.org.meeting_hours import read_meeting_list
 from ocflib.org.meeting_hours import read_next_meeting
+
+from ocfweb.caching import periodic
 
 
 def get_meetings_list(request: HttpRequest) -> JsonResponse:
@@ -13,7 +14,7 @@ def get_meetings_list(request: HttpRequest) -> JsonResponse:
     )
 
 
-@never_cache
+@periodic(60)
 def get_next_meeting(request: HttpRequest) -> JsonResponse:
     next_meeting = read_next_meeting()
     if next_meeting is None:
@@ -28,7 +29,7 @@ def get_next_meeting(request: HttpRequest) -> JsonResponse:
     )
 
 
-@never_cache
+@periodic(60)
 def get_current_meeting(request: HttpRequest) -> JsonResponse:
     current_meeting = read_current_meeting()
     if current_meeting is None:
