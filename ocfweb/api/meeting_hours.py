@@ -9,14 +9,13 @@ from ocfweb.caching import periodic
 
 def get_meetings_list(request: HttpRequest) -> JsonResponse:
     return JsonResponse(
-        [item._asdict() for item in read_meeting_list()],
+        [item._asdict() for item in _read_meeting_list()],
         safe=False,
     )
 
 
-@periodic(30)
 def get_next_meeting(request: HttpRequest) -> JsonResponse:
-    next_meeting = read_next_meeting()
+    next_meeting = _read_next_meeting()
     if next_meeting is None:
         return JsonResponse(
             {},
@@ -29,9 +28,8 @@ def get_next_meeting(request: HttpRequest) -> JsonResponse:
     )
 
 
-@periodic(30)
 def get_current_meeting(request: HttpRequest) -> JsonResponse:
-    current_meeting = read_current_meeting()
+    current_meeting = _read_current_meeting()
     if current_meeting is None:
         return JsonResponse(
             {},
@@ -42,3 +40,17 @@ def get_current_meeting(request: HttpRequest) -> JsonResponse:
         current_meeting._asdict(),
         safe=False,
     )
+
+
+def _read_meeting_list() -> list:
+    return read_meeting_list()
+
+
+@periodic(5)
+def _read_next_meeting() -> list:
+    return read_next_meeting()
+
+
+@periodic(5)
+def _read_current_meeting() -> list:
+    return read_current_meeting()
