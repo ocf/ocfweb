@@ -17,6 +17,8 @@ The `printer` is the name of the physical printer (currently: `logjam`,
 `papercut`, or `pagefault`). This will prompt you to enter your password
 twice, once for `single` and again for `double`.
 
+**Note**: this command must be used from [`whiteout`](https://www.ocf.berkeley.edu/docs/staff/backend/servers/#whiteout).
+
 (In theory pausing printers should have the same effect, but the current CUPS
 version still queues jobs for them for some unknown reason, causing half of
 user jobs to not print.)
@@ -25,7 +27,7 @@ user jobs to not print.)
 
 Perform the reverse of the above (add the printers back to the classes), then
 double-check that the printers are not paused. This can also be done by
-replacing `remove` in the above `mod-printer` command with `add`.
+replacing `remove` in the above `mod-printer` command with `add` (again only if called from `whiteout`).
 Even if staff don't pause them,
 CUPS will pause them automatically if they fail.
 
