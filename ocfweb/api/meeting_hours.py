@@ -26,7 +26,7 @@ def get_next_meetings(request: HttpRequest) -> JsonResponse:
         )
 
     return JsonResponse(
-        next_meetings._asdict(),
+        [next_meeting._asdict() for next_meeting in next_meetings],
         safe=False,
     )
 
@@ -40,7 +40,7 @@ def get_current_meetings(request: HttpRequest) -> JsonResponse:
         )
 
     return JsonResponse(
-        current_meetings._asdict(),
+        [current_meeting._asdict() for current_meeting in current_meetings],
         safe=False,
     )
 
