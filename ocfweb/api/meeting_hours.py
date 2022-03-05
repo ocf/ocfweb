@@ -17,7 +17,7 @@ def get_meetings_list(request: HttpRequest) -> JsonResponse:
     )
 
 
-def get_next_meeting(request: HttpRequest) -> JsonResponse:
+def get_next_meetings(request: HttpRequest) -> JsonResponse:
     next_meetings = _read_next_meetings()
     if next_meetings is None:
         return JsonResponse(
@@ -31,7 +31,7 @@ def get_next_meeting(request: HttpRequest) -> JsonResponse:
     )
 
 
-def get_current_meeting(request: HttpRequest) -> JsonResponse:
+def get_current_meetings(request: HttpRequest) -> JsonResponse:
     current_meetings = _read_current_meetings()
     if current_meetings is None:
         return JsonResponse(
