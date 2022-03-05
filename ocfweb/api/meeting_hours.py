@@ -3,9 +3,9 @@ from typing import List
 
 from django.http import HttpRequest
 from django.http import JsonResponse
-from ocflib.org.meeting_hours import read_current_meeting
+from ocflib.org.meeting_hours import read_current_meetings
 from ocflib.org.meeting_hours import read_meeting_list
-from ocflib.org.meeting_hours import read_next_meeting
+from ocflib.org.meeting_hours import read_next_meetings
 
 from ocfweb.caching import periodic
 
@@ -18,29 +18,29 @@ def get_meetings_list(request: HttpRequest) -> JsonResponse:
 
 
 def get_next_meeting(request: HttpRequest) -> JsonResponse:
-    next_meeting = _read_next_meeting()
-    if next_meeting is None:
+    next_meetings = _read_next_meetings()
+    if next_meetings is None:
         return JsonResponse(
             {},
             status=204,
         )
 
     return JsonResponse(
-        next_meeting._asdict(),
+        next_meetings._asdict(),
         safe=False,
     )
 
 
 def get_current_meeting(request: HttpRequest) -> JsonResponse:
-    current_meeting = _read_current_meeting()
-    if current_meeting is None:
+    current_meetings = _read_current_meetings()
+    if current_meetings is None:
         return JsonResponse(
             {},
             status=204,
         )
 
     return JsonResponse(
-        current_meeting._asdict(),
+        current_meetings._asdict(),
         safe=False,
     )
 
@@ -50,10 +50,10 @@ def _read_meeting_list() -> List[Any]:
 
 
 @periodic(5)
-def _read_next_meeting() -> List[Any]:
-    return read_next_meeting()
+def _read_next_meetings() -> List[Any]:
+    return read_next_meetings()
 
 
 @periodic(5)
-def _read_current_meeting() -> List[Any]:
-    return read_current_meeting()
+def _read_current_meetings() -> List[Any]:
+    return read_current_meetings()
