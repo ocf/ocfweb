@@ -36,11 +36,11 @@ repos:
     hooks:
     -   id: autopep8
 -   repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.6.0
+    rev: v3.0.1
     hooks:
     -   id: reorder-python-imports
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v2.31.0
+    rev: v2.31.1
     hooks:
     -   id: pyupgrade
         args: ['--py36-plus']
@@ -50,7 +50,7 @@ repos:
     -   id: add-trailing-comma
         args: ['--py36-plus']
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.10
+    rev: v1.1.13
     hooks:
     -   id: remove-tabs
     -   id: remove-crlf
