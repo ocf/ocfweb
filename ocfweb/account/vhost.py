@@ -67,6 +67,8 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
 
         if form.is_valid():
             requested_subdomain = form.cleaned_data['requested_subdomain']
+            university_purpose = form.cleaned_data['university_purpose']
+            university_contact = form.cleaned_data['university_contact']
             comments = form.cleaned_data['comments']
             your_name = form.cleaned_data['your_name'] if is_group else attrs['cn'][0]
             your_email = form.cleaned_data['your_email']
@@ -92,6 +94,10 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
                       - Requested Subdomain: {requested_subdomain}
                       - Current URL: https://www.ocf.berkeley.edu/~{user}/
 
+                    University Hostmaster Questions:
+                      - Purpose: {university_purpose}
+                      - Contact: {university_contact}
+
                     Comments/Special Requests:
                     {comments}
 
@@ -108,6 +114,8 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
                     user=user,
                     title=attrs['cn'][0],
                     requested_subdomain=requested_subdomain,
+                    university_purpose=university_purpose,
+                    university_contact=university_contact,
                     comments=comments,
                     your_name=your_name,
                     your_position=your_position,
@@ -216,16 +224,39 @@ class VirtualHostForm(Form):
                this box and move on.)',
     )
 
-    your_email = forms.EmailField(
-        label='Your email address:',
-        min_length=1,
-        max_length=64,
+    # required disclaimer by the university hostmaster
+    website_hostmaster_policy = forms.BooleanField(
+        label='You acknowledge that all relevant university \
+               policies will be followed, including those pertaining \
+               to <a href="https://dac.berkeley.edu/web-accessibility">\
+               campus website accessibility</a>'
     )
 
     # also see __init__
     your_position = forms.CharField(
         min_length=1,
         max_length=64,
+    )
+
+    your_email = forms.EmailField(
+        label='Your email address:',
+        min_length=1,
+        max_length=64,
+    )
+
+    university_contact = forms.EmailField(
+        label='Contact email address for the university (may be the same as your email):',
+        min_length=1,
+        max_length=64,
+    )
+
+    university_purpose = forms.CharField(
+        widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}),
+        label='The purpose of your requested subdomain, who will be using it,\
+               and its relationship to the university\'s mission.',
+        required=False,
+        min_length=1,
+        max_length=1024,
     )
 
     comments = forms.CharField(
