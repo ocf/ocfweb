@@ -229,7 +229,7 @@ class VirtualHostForm(Form):
         label='You acknowledge that all relevant university \
                policies will be followed, including those pertaining \
                to <a href="https://dac.berkeley.edu/web-accessibility">\
-               campus website accessibility</a>'
+               campus website accessibility</a>',
     )
 
     # also see __init__

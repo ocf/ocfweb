@@ -48,7 +48,7 @@ hostmaster][campus-hostmistress]:
 Use the domain requested by the group in place of `hostname`. We have a
 [reusable email
 template](https://templates.ocf.berkeley.edu/#hostmaster-new-domain) for making
-new DNS requests. This email should be sent to hostmaster@nic.berkeley.edu 
+new DNS requests. This email should be sent to hostmaster@nic.berkeley.edu
 and sm+vhost@ocf.berkeley.edu.
 
 Answers to the following questions (provided by the requestor of the subdomain)
@@ -58,7 +58,7 @@ should be sent to the University hostmaster along with the DNS request itself.
 2. A responsible contact for the hostname
 
 3. Acknowledgment that all relevant university policies will be followed, including those pertaining to [campus website accessibility][campus-accessibility]
-    
+
 
 ### Mail (if requested)    {mail}
 
