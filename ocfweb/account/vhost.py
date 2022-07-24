@@ -253,10 +253,10 @@ class VirtualHostForm(Form):
     university_purpose = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}),
         label='The purpose of your requested subdomain, who will be using it,\
-               and its relationship to the university\'s mission.',
+               and its relationship to the university\'s mission:',
         required=False,
         min_length=1,
-        max_length=1024,
+        max_length=2048,
     )
 
     comments = forms.CharField(
