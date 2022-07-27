@@ -285,9 +285,9 @@ class VirtualHostForm(Form):
             'You acknowledge that all relevant university '
             'policies will be followed, including those pertaining '
             'to <a href="https://dac.berkeley.edu/web-accessibility"> '
-            'campus website accessibility.</a>'
+            'campus website accessibility.</a>',
         )
-    
+
         # These just require some runtime info
         self.fields['your_position'].label = mark_safe(
             'Your position in group:' if is_group else 'Your academic post:',
