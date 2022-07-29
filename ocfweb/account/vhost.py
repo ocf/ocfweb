@@ -225,12 +225,7 @@ class VirtualHostForm(Form):
     )
 
     # required disclaimer by the university hostmaster
-    website_hostmaster_policy = forms.BooleanField(
-        label='You acknowledge that all relevant university \
-               policies will be followed, including those pertaining \
-               to <a href="https://dac.berkeley.edu/web-accessibility">\
-               campus website accessibility</a>',
-    )
+    website_hostmaster_policy = forms.BooleanField()
 
     # also see __init__
     your_position = forms.CharField(
@@ -285,6 +280,13 @@ class VirtualHostForm(Form):
             'There is a <a href="{}">Hosted by the OCF</a> banner image '
             'visible on the home page.'
         ).format(reverse('doc', args=('services/vhost/badges',))))
+
+        self.fields['website_hostmaster_policy'].label = mark_safe(
+            'You acknowledge that all relevant university '
+            'policies will be followed, including those pertaining '
+            'to <a href="https://dac.berkeley.edu/web-accessibility"> '
+            'campus website accessibility</a>.',
+        )
 
         # These just require some runtime info
         self.fields['your_position'].label = mark_safe(
