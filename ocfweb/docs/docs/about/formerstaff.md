@@ -50,6 +50,7 @@ Some of the places OCF staffers have gone on to work at:
 * Compaq
 * CRL Network Services
 * Digital Equipment Corporation (acquired by Compaq)
+* [Dots](http://dots.dev)
 * [Drogin, Kakigi, & Assoc.](http://www.dkstat.com/)
 * [Eventbrite](https://www.eventbrite.com)
 * [Facebook](https://www.facebook.com)
