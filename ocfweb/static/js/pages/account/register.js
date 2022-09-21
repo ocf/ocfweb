@@ -70,7 +70,7 @@ function show_account_association_warning() {
     msg = '';
     if ($association_id.val() != calnet_uid) {
         $association_id.parent().addClass("has-warning");
-        msg = "This group account will be associated with the " + association_name
+        msg = "This group account will be associated with " + association_name
             + ". Make sure you did not intend to create a personal OCF account.";
         $association_feedback.addClass('alert-warning');
     } else {

@@ -54,7 +54,7 @@
                 <p id="calnet-uid">{{calnet_uid|title}}</p>
 
                 {% if existing_accounts %}
-                <p><strong>Existing OCF user accounts</strong>
+                <p><strong>Existing OCF personal user accounts</strong>
                 <p>{{existing_accounts|join:", "}}</p>
                 {% endif %}
 
@@ -64,9 +64,13 @@
                         <p>{{account.name}}: {{account.accounts|join:", "}}</p>
                     {% endfor %}
                 {% endif %}
+
+                {% if existing_accounts or existing_group_accounts %}
+                <div class="alert alert-warning" role="alert">You already have an account with the OCF! Please verify that you are not intending to use one of the above existing accounts before continuing. If you have forgotten the password to your account, you can reset it at <a href="https://ocf.io/password">ocf.io/password</a>.</div>
+                {% endif %}
                 <hr />
 
-                <p>You should select the identity that your new account will be associated with. This is either yourself or an RSO that you are a signatory for. Note that identities already associated to an OCF account will not show up here.</p>
+                <p>You should select the identity that your new account will be associated with. This is either yourself or an RSO that you are a signatory for. <b>Note that identities already associated to an OCF account will not show up here.</b></p>
                 <p id="account-association">{{form.account_association|bootstrap}}</p>
                 <div class="alert association-feedback" role="alert" id="association-feedback"></div>
                 <hr />
