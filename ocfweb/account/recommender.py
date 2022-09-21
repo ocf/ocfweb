@@ -1,4 +1,6 @@
+from functools import lru_cache
 from random import randint
+from re import sub
 from typing import Any
 from typing import List
 
@@ -7,8 +9,11 @@ from ocflib.account.creation import ValidationError
 from ocflib.account.creation import ValidationWarning
 
 
+@lru_cache(maxsize=32)
 def recommend(real_name: str, n: int) -> List[Any]:
-    name_fields: List[str] = [name.lower() for name in real_name.split()]
+    split_name: List[str] = sub(r'[^a-zA-Z0-9 ]', '', real_name).split()  # remove special characters from names
+    # ignore any names longer than 4 words (typically long group names)
+    name_fields: List[str] = [name.lower() for name in split_name[:4]]
 
     # Can reimplement name_field_abbrevs to only remove vowels or consonants
     name_field_abbrevs: List[List[str]] = [[] for i in range(len(name_fields))]

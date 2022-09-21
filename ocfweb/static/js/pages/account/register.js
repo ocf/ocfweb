@@ -33,10 +33,12 @@ function validate_username() {
  }
 
 function recommend() {
+    var account_name = $('#id_account_association option:selected').text() || $('#real-name').text();
+    $('#recommendations').empty();
     $.ajax({
          type: 'GET',
          url: 'recommend',
-         data: {'real_name': $('#real-name').text()},
+         data: {'real_name': account_name},
          success: function(data) {
              $('#recommendations').empty();
              var recommendations = data['recommendations'];
@@ -81,6 +83,7 @@ function show_account_association_warning() {
 
 $("select[name='account_association']").change(show_account_association_warning);
 $("select[name='account_association']").ready(show_account_association_warning);
+$("select[name='account_association']").change(recommend);
 
 $(document).ready(function() {
     // Quick validation of username field
