@@ -60,6 +60,9 @@ function recommend() {
      });
 }
 
+$("select[name='account_association']").change(recommend);
+$("select[name='account_association']").ready(recommend);
+
 function show_account_association_warning() {
     var $association_id = $('#id_account_association');
     var $association_feedback = $('#association-feedback');
@@ -83,7 +86,6 @@ function show_account_association_warning() {
 
 $("select[name='account_association']").change(show_account_association_warning);
 $("select[name='account_association']").ready(show_account_association_warning);
-$("select[name='account_association']").change(recommend);
 
 $(document).ready(function() {
     // Quick validation of username field
