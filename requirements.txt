@@ -35,7 +35,7 @@ libsass==0.21.0
 MarkupSafe==2.0.1
 matplotlib==3.4.3
 mistune==0.8.4
-numpy==1.21.2
+numpy==1.22.0
 ocflib
 paramiko==2.7.2
 pexpect==4.8.0
