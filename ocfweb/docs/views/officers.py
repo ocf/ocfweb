@@ -354,6 +354,17 @@ def _bod_terms() -> List[Term]:
                 ('DeCal', ['lmathias', 'laksith', 'idham']),
             ],
         ),
+        Term(
+            'Spring 2023',
+            gms=['kian', 'ncograin'],
+            sms=['etw', 'njha'],
+            heads=[
+                ('Internal', ['ericyang', 'ethanhu', 'dapark']),
+                ('External', ['anddone', 'ethanhu', 'btorres']),
+                ('Finance', ['amangalampalli', 'rjz', 'trinityc']),
+                ('DeCal', ['laksith', 'lmathias', 'idham']),
+            ],
+        ),
     ]
 
 
