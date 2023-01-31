@@ -52,6 +52,6 @@ good `.user.ini` file.
 ## Security
 
 To prevent websites from being compromised, outbound HTTP requests via
-either `curl_exec()` or `file_get_contents()` are blocked.  
+either `curl_exec()` or `file_get_contents()` are blocked.
 Consider using different frameworks if your website requires outbound
 HTTP requests.
