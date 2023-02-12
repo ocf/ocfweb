@@ -182,7 +182,7 @@ If that's the case, you can fix it by:
    ```
 
    You may also need to run a full search and replace on all URLs on the site:
-   
+
    ```shell
    $ wp search-replace 'www.ocf.berkeley.edu/~example' 'example.berkeley.edu'
    ```
