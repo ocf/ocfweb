@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 ocf-content-block">
+            <h3>Campus wants to rename your website and email addresses</h3>
+            <p><em>March 1, 2023</em></p>
+            <hr />
+            <p>
+                <strong>TL;DR:</strong> The university plans to revoke all *.berkeley.edu domains registered to student organizations and prevent all new allocations. This will greatly impact all student groups, and no student groups have been consulted in this decision. If you represent a student group, we would greatly appreciate your support on the following action item(s):
+                <ul>
+                    <li>Sign the <a href="https://ocf.io/s/SubdomainSenateResolution" target="_blank" rel="noopener">ASUC Senate resolution</a></li>
+                    <li>Share the resolution and spread awareness with others who will be affected!</li>
+                </ul>
+            </p>
+
+            <h3>General Overview</h3>
+            <p>
+                Since 1998, the Open Computing Facility has hosted websites for UC Berkeley students, faculty, and staff. Currently we host websites for 633 student organizations. As an integral part of the UC Berkeley community, student groups until recently were allowed to register a subdomain of berkeley.edu for these websites (i.e. group.berkeley.edu). Sites must be pre-approved by both the OCF team and the university hostmaster (who allocates the subdomains). The OCF constantly monitors these sites for violations of university policy after their release, and resolves each issue in a timely manner.
+            </p>
+            <p>
+                Recently, the UC Berkeley Department of Marketing and Digital Communications has decided that no registered student organizations shall be allowed to have a berkeley.edu subdomain. Their main concerns are (1) that sudent websites are not accessible to the standard required by the WCAG 2.0 (AA) Success Criteria and (2) that this then places liability on the university for the use of its brand image by student groups. Notably, however, student groups are exempt from the WCAG 2.0 (AA) Success Criteria.
+            </p>
+            <p>
+                Despite several attempts to explain the importance of a berkeley.edu subdomain and massive impacts of removing this service (as well as providing suggestions for compromises), the marketing department has not changed their plans. As of today, this is the official policy of UC Berkeley - student groups may not hold berkeley.edu domains. All existing subdomains must be changed. As far as we are aware, there will be no exceptions to this rule.
+            </p>
+            <p>
+                The OCF recently conducted a survey of all hosted student organizations. Almost 90% of these groups responded that they oppose the change and nearly all feel it is a negative step for the university.
+            </p>
+            <p>
+                Mainly, this change will break all links pointing to all student sites. Every flyer, poster, document, and more produced over the last 20 years will have to be reprinted at the expense of the student group. Each and every industry contact at every student organization will have to be told to change their contact - otherwise the contact will be lost forever.
+            </p>
+            <p>
+                Groups may then favor a shorter .org or .com domain. Since we do not provide these domains, we cannot regulate them and ensure they comply with campus technical, legal, and marketing requirements. Not to mention the price that groups would have to pay to purchase and continually renew an external domain.
+            </p>
+            <p>
+                The OCF, in response to this, is committed to opposing the change on behalf of the student body. An attempt like this was made in 2013, but was successfully repealed by the OCF with the support of students, staff, and faculty. Students are what makes UC Berkeley a world-class educational institution, and should be afforded the technical tools required to maintain that reputation. Questions, comments, or support should be directed to <a href="mailto:subdomains@ocf.berkeley.edu" target="_blank" rel="noopener">subdomains@ocf.berkeley.edu</a>.
+            </p>
+            <h3>Historical Timeline</h3>
+            <p>
+                Below is a list of the major developments that have occurred since we were made aware of this issue. Between each of these landmarks, the OCF has been meeting with relevant entities to attempt to resolve this issue.
+            </p>
+            <ul>
+                <li>06/24/2022: The university requires all new *.berkeley.edu domains requested by student groups to submit responses to new screening questions</li>
+                <li>09/29/2022: The first domain is rejected by the university</li>
+                <li>11/03/2022: After a long chain of communication with various campus entites, the OCF makes contact with the Department of Marketing and Digital Communications</li>
+                <li>11/12/2022: OCF sends out a survey to student organizations that have a *.berkeley.edu domain to gather feedback on the change</li>
+                <li>03/01/2022: OCF &amp; ASUC Office of the CTO launch an <a href="https://ocf.io/s/SubdomainSenateResolution" target="_blank" rel="noopener">ASUC Senate resolution</a> opposing the change publicly</li>
+            </ul>
+
+            <hr />
+            <p><em>
+                The Open Facility for Computing is an all-volunteer, student-run
+                organization. It was founded in 1989 to serve the interests of
+                the UC Berkeley campus community.
+            </em></p>
+            <p><em>
+                Questions or comments about this change? Please reach out to
+                <a href="mailto:subdomains@ocf.berkeley.edu">subdomains@ocf.berkeley.edu</a>.
+            </em></p>
+        </div>
+
+        <div class="col-sm-4 ocf-sidebar">
+          <hr class="visible-sm" />
+            <h3>About the OCF</h3>
+            <p>
+              The OCF is an all-volunteer, student-run, Chartered Program of the
+              <a href="https://asuc.org">Associated Students of the University of California (ASUC)</a>
+              dedicated to free computing for all <a href="https://berkeley.edu">University of California at Berkeley</a>
+              students, faculty, and staff. The mission of the OCF is to provide an environment where no member of Berkeley's
+              campus community is denied the computer resources they seek, to appeal to all members of the Berkeley
+              campus community with unsatisfied computing needs, and to provide a place for those interested in computing to
+              fully explore that interest.
+            </p>
+            <p>
+                We provide a variety of services to the campus community, including the following:
+            </p>
+            <ul>
+                <li>
+                    <a href="{% url 'doc' 'services/lab' %}">
+                        A spiffy computer lab in 171 MLK</a>, visited by around
+                    500 students per day, and over 10,000 per year
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/web' %}">Web, application,
+                        and email hosting</a> for over 80% of student groups and
+                    thousands of individual students
+                </li>
+                <li>
+                    <a href="{% url 'doc' 'services/lab/printing' %}">Free
+                        printing</a>, used by over 5,000 students per semester
+                </li>
+            </ul>
+            <hr />
+            <p class="text-center">
+                <img src="{% static 'img/penguin.svg' %}" />
+            </p>
+        </div>
+    </div>
+{% endblock %}
