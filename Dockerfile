@@ -18,10 +18,11 @@ RUN apt-get update \
         nginx \
         redis-tools \
         runit \
-        virtualenv \
         yui-compressor \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip install virtualenv
 
 RUN install -d --owner=nobody /opt/ocfweb /opt/ocfweb/venv /etc/ocfweb
 
