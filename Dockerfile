@@ -1,6 +1,6 @@
 # A base ocfweb Dockerfile containing the code and dependencies.
 # This doesn't run the website or the background worker; see Dockerfile.* for those.
-FROM docker.ocf.berkeley.edu/theocf/debian:buster
+FROM docker.ocf.berkeley.edu/theocf/debian:bullseye-py
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -16,7 +16,6 @@ RUN apt-get update \
         libxml2-dev \
         locales \
         nginx \
-        python3.7-dev \
         redis-tools \
         runit \
         virtualenv \
