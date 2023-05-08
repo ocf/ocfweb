@@ -39,16 +39,15 @@ where you can ask questions and talk to us about anything HPC.
 
 ## The Cluster
 
-As of Fall 2018, the OCF HPC cluster is composed of one server, with the
+As of Spring 2023, the OCF HPC cluster is composed of one server, with the
 following specifications:
 
-* 2 Intel Xeon [E5-2640v4][corruption-cpu] CPUs (10c/20t @ 2.4GHz)
-* 4 NVIDIA 1080Ti GPUs
-* 256GB ECC DDR4-2400 RAM
+* 2 Intel Xeon Platinum [8352Y][corruption-cpu] CPUs (32c/64t @ 2.2GHz)
+* 4 NVIDIA RTX A6000 GPUs
+* 256GB ECC DDR4-3200 RAM
 
 We have plans to expand the cluster with additional nodes of comparable
-specifications as funding becomes available. The current hardware was
-generously funded by a series of grants from the [Student Tech Fund][stf].
+specifications as funding becomes available.
 
 ## Slurm
 
