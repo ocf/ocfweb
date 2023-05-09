@@ -35,7 +35,7 @@ so you will need to manually `cd` into the directory. The snapshots are time-
 stamped, so you can find the snapshot you want to restore from by looking at the
 date string in the snapshot name. For example, if you wanted to restore the
 `public_html` directory of user `foo` with the backup from 2023-05-01, you
-should enter the 
+should enter the
 ```
 /backup/encrypted/rsnapshot/.sync/nfs/opt/homes/services/http/users/f/.zfs
 ```
