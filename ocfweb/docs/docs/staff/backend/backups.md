@@ -1,7 +1,7 @@
 [[!meta title="Backups"]]
 ## Backup Storage
 
-We currently store our on-site backups across a RAID mirror on `hal`:
+We currently store our on-site backups across a ZFS RAID1 mirror on `hal`:
 
 * `hal:/backup` (16 TB usable; 2x 16 TB WD drives in ZFS mirror)
 
