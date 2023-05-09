@@ -1,13 +1,14 @@
 [[!meta title="Kubernetes"]]
 
+**NOTE:** This is the documentation for the oldk8s cluster at the OCF.
+
 At the OCF we have fully migrated all services from Mesos/Marathon to
 [Kubernetes][kubernetes]. In this document we will explain the design of our
 Kubernetes cluster while also touching briefly on relevant core concepts. This
-page is _not_ a `HOWTO` for deploying services or troubleshooting a bad
-cluster. Rather, it is meant to explain architectural considerations such that
-current work can be built upon.  Although, reading this document will help you
-both deploy services in the OCF Kubernetes cluster and debug issues when they
-arise.
+page is _not_ a `HOWTO` for deploying services or troubleshooting a bad cluster.
+Rather, it is meant to explain architectural considerations such that current
+work can be built upon.  Although, reading this document will help you both
+deploy services in the OCF Kubernetes cluster and debug issues when they arise.
 
 ## Kubernetes
 
@@ -30,8 +31,8 @@ cluster has three masters.
 ### Masters
 
 Kubernetes masters share state via [etcd][etcd-io], a distributed key-value
-store (KVS) implementing the [Raft][raft] protocol. The three main goals of
-Raft are:
+store (KVS) implementing the [Raft][raft] protocol. The three main goals of Raft
+are:
 
 1. Leader elections in case of failure.
 2. Log replication across all masters.
@@ -56,11 +57,11 @@ read more [here][failure-tolerance].
 
 Workers are the brawn in the Kubernetes cluster. While master nodes are
 constantly sharing data, managing the control plane (routing inside the
-Kubernetes cluster), and scheduling services, workers primarily run
-[pods][pod].  `kubelet` is the service that executes pods as dictated by the
-control plane, performs health checks, and recovers from pod failures should
-they occur.  Workers also run an instance of `kube-proxy`, which forwards
-control plane traffic to the correct `kubelet`.
+Kubernetes cluster), and scheduling services, workers primarily run [pods][pod].
+`kubelet` is the service that executes pods as dictated by the control plane,
+performs health checks, and recovers from pod failures should they occur.
+Workers also run an instance of `kube-proxy`, which forwards control plane
+traffic to the correct `kubelet`.
 
 ### Pods
 
@@ -71,10 +72,9 @@ composed of several containers—the web container, static container, and worker
 container.  In Kubernetes, together these three containers form one pod, and it
 is pods that can be scaled up or down. A failure in any of these containers
 indicates a failure in the entire pod. An astute reader might wonder: _if pods
-can be broken down into containers, how can pods possibly be the smallest
-unit?_ Do note that if one wished to deploy a singleton container, it would
-still need to be wrapped in the pod abstraction for Kubernetes to do anything
-with it.
+can be broken down into containers, how can pods possibly be the smallest unit?_
+Do note that if one wished to deploy a singleton container, it would still need
+to be wrapped in the pod abstraction for Kubernetes to do anything with it.
 
 While pods are essential for understanding Kubernetes, when writing services we
 don't actually deal in pods but one further abstraction,
@@ -108,19 +108,19 @@ re-run of [kubetool][puppetlabs-kubetool] to generate new `etcd server` and
 
 ### OCF Kubernetes Configuration
 
-Currently, the OCF has three Kubernetes masters: (1) `deadlock`, (2) `coup`,
-and (3) `autocrat`. A Container Networking Interface (`cni`) is the last piece
+Currently, the OCF has three Kubernetes masters: (1) `deadlock`, (2) `coup`, and
+(3) `autocrat`. A Container Networking Interface (`cni`) is the last piece
 required for a working cluster. The `cni`'s purpose is to faciltate intra-pod
 communication. `puppetlabs-kubernetes` supports two choices: `weave` and
-`flannel`. Both solutions work out-the-box, and we've had success with
-`flannel` thus far so we've stuck with it.
+`flannel`. Both solutions work out-the-box, and we've had success with `flannel`
+thus far so we've stuck with it.
 
 ## Getting traffic into the cluster
 
 One of the challenges with running Kubernetes on bare-metal is getting traffic
 into the cluster. Kubernetes is commonly deployed on `AWS`, `GCP`, or `Azure`,
-so Kubernetes has native support for ingress on these providers. Since we are
-on bare-metal, we designed our own scheme for ingressing traffic.
+so Kubernetes has native support for ingress on these providers. Since we are on
+bare-metal, we designed our own scheme for ingressing traffic.
 
 The figure below demonstrates a request made for `templates.ocf.berkeley.edu`.
 For the purpose of simplicity, we assume `deadlock` is the current `keepalived`
@@ -158,16 +158,16 @@ Nginx][ingress-nginx].  Right now ingress is running as a [NodePort][nodeport]
 service on all workers (Note: we can easily change this to be a subset of
 workers if our cluster scales such that this is no longer feasible).  The
 ingress worker will inspect the `Host` header and forward the request on to the
-appropriate pod where the request is finally processed. _Do note that the
-target pod is not necessarily on the same worker that routed the traffic_.
+appropriate pod where the request is finally processed. _Do note that the target
+pod is not necessarily on the same worker that routed the traffic_.
 
 
 ### Why didn't we use MetalLB?
 
 `MetalLB` was created so a bare-metal Kubernetes cluster could use `Type:
 LoadBalancer` in Service definitions. The problem is, in `L2` mode, it takes a
-pool of IPs and puts your service on a random IP in that pool. How one makes
-DNS work in this configuration is completely unspecified. We would need to
+pool of IPs and puts your service on a random IP in that pool. How one makes DNS
+work in this configuration is completely unspecified. We would need to
 dynamically update our DNS, which sounds like a myriad of outages waiting to
 happen. `L3` mode would require the OCF dedicating a router to Kubernetes.
 
@@ -179,8 +179,8 @@ balancer and traffic coming into that port is routed accordingly. First, in
 Kubernetes we would emulate this behavior using `NodePort` services, and all
 Kubernetes documentation discourages this. Second, it's ugly. Every time we add
 a new service we need to modify the load balancer configuration in Puppet. With
-our Kubernetes configuration we can add unlimited HTTP services without
-touching Puppet.
+our Kubernetes configuration we can add unlimited HTTP services without touching
+Puppet.
 
 But wait! The Kubernetes documentation says not to use `NodePort` services in
 production, and you just said that above too! True, but we only run _one_
@@ -193,14 +193,18 @@ in production][soundcloud-nodeport].
 [cncf]: https://cncf.io
 [etcd-io]: https://github.com/etcd-io/etcd
 [raft]: https://raft.github.io/raft.pdf
-[failure-tolerance]: https://coreos.com/etcd/docs/latest/faq.html#what-is-failure-tolerance
+[failure-tolerance]:
+    https://coreos.com/etcd/docs/latest/faq.html#what-is-failure-tolerance
 [pod]: https://kubernetes.io/docs/concepts/workloads/pods/pod/
 [ocfweb]: https://github.com/ocf/ocfweb/tree/master/services
-[deployment]: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+[deployment]:
+    https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 [kubernetes-module]: https://github.com/puppetlabs/puppetlabs-kubernetes
 [kubernetes-pki]: https://kubernetes.io/docs/setup/certificates
 [puppetlabs-kubetool]: https://github.com/puppetlabs/puppetlabs-kubernetes#Setup
 [nginx]: https://nginx.org/
 [ingress-nginx]: https://github.com/kubernetes/ingress-nginx
-[nodeport]: https://kubernetes.io/docs/concepts/services-networking/service/#nodeport
-[soundcloud-nodeport]: https://developers.soundcloud.com/blog/how-soundcloud-uses-haproxy-with-kubernetes-for-user-facing-traffic
+[nodeport]:
+    https://kubernetes.io/docs/concepts/services-networking/service/#nodeport
+[soundcloud-nodeport]:
+    https://developers.soundcloud.com/blog/how-soundcloud-uses-haproxy-with-kubernetes-for-user-facing-traffic

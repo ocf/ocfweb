@@ -54,9 +54,9 @@ Attributes that define a POSIX group:
 ### `ldapsearch`
 
 For most staff, their primary interface to LDAP will be `ldapsearch`.
-`ldapsearch` is a powerful program that allows queries of the LDAP database.
-For most usage, you want to type in `-x`, which skips authentication. After
-that you provide a search filter (in this case UID).
+`ldapsearch` is a powerful program that allows queries of the LDAP database. For
+most usage, you want to type in `-x`, which skips authentication. After that you
+provide a search filter (in this case UID).
 
 Searching for an account:
 
@@ -107,8 +107,8 @@ Kerberos and then run `ldapvi` all in one step.
     loginShell: /bin/bash
     calnetUid: 872544
 
-Now if you make changes to some attributes (say, change the shell to `tcsh`)
-and try to save the temporary file which has been opened in a text editor:
+Now if you make changes to some attributes (say, change the shell to `tcsh`) and
+try to save the temporary file which has been opened in a text editor:
 
           1 entry read
     add: 0, rename: 0, modify: 1, delete: 0
@@ -121,8 +121,8 @@ You can enter `v` to view the LDIF change record (or `?` for help).
     replace: loginShell
     loginShell: /bin/tcsh
 
-You can enter `y` to apply changes, `q` to save the LDIF change record as a
-file in your current directory, or `Q` to discard.
+You can enter `y` to apply changes, `q` to save the LDIF change record as a file
+in your current directory, or `Q` to discard.
 
 
 ### `ldapadd`
