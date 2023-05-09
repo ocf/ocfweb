@@ -17,14 +17,14 @@ Then add or remove the appropriate `memberUid` attribute.
 
 ### `ocfroot`
 
-Before giving anyone root privileges, make sure to obtain authorization from
-the SM.
+Before giving anyone root privileges, make sure to obtain authorization from the
+SM.
 
-Adding or removing people from `ocfroot` is similar to modifying
-`ocfstaff`. However, if you are adding someone to root staff, in addition to
-modifying LDAP, you will also have to create their `/root` and `/admin`
-principals (if those don't already exist). For example, to create the
-`/admin` principal, you would do:
+Adding or removing people from `ocfroot` is similar to modifying `ocfstaff`.
+However, if you are adding someone to root staff, in addition to modifying LDAP,
+you will also have to create their `/root` and `/admin` principals (if those
+don't already exist). For example, to create the `/admin` principal, you would
+do:
 
 ```
 $ kadmin
@@ -42,14 +42,15 @@ Verify password - otherstaffer/admin@OCF.BERKELEY.EDU's Password:
 
 At the very first prompt, you are prompted for your password. It's safe to
 accept the defaults for the next few prompts. The last two prompts should be
-filled in by the new root staffer; it will become the password for their
-`/root` or `/admin` principal.
+filled in by the new root staffer; it will become the password for their `/root`
+or `/admin` principal.
 
 After you've created these principals, you'll need to grant them powers in the
-[Kerberos ACL file in Puppet](https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl).
+[Kerberos ACL file in
+Puppet](https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl).
 
-Also add the new root staffer to the Admin team in our GitHub org and grant
-them RT admin privileges.
+Also add the new root staffer to the Admin team in our GitHub org and grant them
+RT admin privileges.
 
 
 ## Granting IRC chanop status
@@ -59,12 +60,12 @@ TODO
 
 ## Granting firewall access
 
-In order to gain access to the firewall, it is necessary to email someone
-from the ASUC Student Union to ask them to fill out the Telecom Shopping
-Cart on your behalf. Send them an email with the CalNet IDs of the people
-you want to add to the firewall, and have an existing firewall administrator
-authorize the request. As of Fall 2017, the
-[Facilities Coordinator](https://studentunion.berkeley.edu/our-team/) has
-worked to get new people added to the firewall, although it is likely that
-this process will change in Spring/Fall 2018 when the firewall is changed as
-part of the [bSecure](https://bsecure.berkeley.edu) project.
+In order to gain access to the firewall, it is necessary to email someone from
+the ASUC Student Union to ask them to fill out the Telecom Shopping Cart on your
+behalf. Send them an email with the CalNet IDs of the people you want to add to
+the firewall, and have an existing firewall administrator authorize the request.
+As of Fall 2017, the [Facilities
+Coordinator](https://studentunion.berkeley.edu/our-team/) has worked to get new
+people added to the firewall, although it is likely that this process will
+change in Spring/Fall 2018 when the firewall is changed as part of the
+[bSecure](https://bsecure.berkeley.edu) project.
