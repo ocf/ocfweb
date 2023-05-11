@@ -126,6 +126,7 @@ MISSING_NAMES = {
     'alanw': 'Alan Wong',
     'amangalampalli': 'Aditya Mangalampalli',
     'anddone': 'Andrei Dones',
+    'anirudhsuresh': 'Anirudh Suresh',
     'aoaks': 'Aaron Oaks',
     'aoshi': 'Randy Aoshi Chung',
     'ari': 'Ari Zilka',
@@ -135,6 +136,7 @@ MISSING_NAMES = {
     'bencuan': 'Ben Cuan',
     'benortiz': 'Benjamin Eugene Ortiz',
     'bernardzhao': 'Bernard Zhao',
+    'bplate': 'Ben Plate',
     'brando': 'Brandon Jue',
     'bryli': 'Bryan Li',
     'btorres': 'Benjamin Torres',
@@ -176,6 +178,7 @@ MISSING_NAMES = {
     'idham': 'Ishaan Dham',
     'jameson': 'Jameson J Lee',
     'jaw': 'Ja (Thanakul) Wattanawong',
+    'jaysa': 'Jaysa Garcia',
     'jchu': 'Jonathan Rich Chu (milki)',
     'jeffe': 'Jeff Emrich',
     'jenni': 'Jennifer Coopersmith',
@@ -208,6 +211,7 @@ MISSING_NAMES = {
     'nickimp': 'Nick Impicciche',
     'nint': 'Brian Blair',
     'njha': 'Nikhil Jha',
+    'oliverni': 'Oliver Ni',
     'percival': 'John W. Percival',
     'php': 'Patricia Hanus',
     'psb': 'Partha S. Banerjee',
@@ -238,6 +242,7 @@ MISSING_NAMES = {
     'wjm': 'William Mallard',
     'wqnguyen': 'Wilson Nguyen',
     'wyc': 'Wayne Yu-Wing Chan',
+    'yehchanyoo': 'Yehchan Yoo',
     'yury': 'Yury Arkady Sobolev',
 }
 
@@ -486,6 +491,17 @@ def _bod_terms() -> List[Term]:
                 ('External', ['anddone', 'ethanhu', 'btorres']),
                 ('Finance', ['amangalampalli', 'rjz', 'trinityc']),
                 ('DeCal', ['laksith', 'lmathias', 'idham']),
+            ],
+        ),
+        Term(
+            'Fall 2023',
+            gms=['dapark', 'jaysa'],
+            sms=['oliverni', 'rjz'],
+            heads=[
+                ('Internal', ['bryli', 'trinityc', 'yehchanyoo']),
+                ('External', ['anddone', 'btorres', 'ethanhu']),
+                ('Finance', ['amangalampalli', 'anirudhsuresh', 'yehchanyoo']),
+                ('DeCal', ['amangalampalli', 'btorres', 'trinityc']),
             ],
         ),
     ]
