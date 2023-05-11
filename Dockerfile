@@ -16,6 +16,8 @@ RUN apt-get update \
         libxml2-dev \
         locales \
         nginx \
+        python3-dev \
+        python3-pip \
         python-is-python3 \
         redis-tools \
         runit \
