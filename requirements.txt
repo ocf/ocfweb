@@ -60,13 +60,13 @@ python-dateutil==2.8.2
 pytz==2021.1
 PyYAML==5.4.1
 redis==4.4.4
-requests==2.24.0
+requests==2.30.0
 setuptools==65.5.1
 six==1.16.0
 SQLAlchemy==1.4.23
 sqlparse==0.4.4
 typing-extensions==3.10.0.2
-urllib3==1.26.5
+urllib3<2
 vine==5.0.0
 wcwidth==0.2.5
 wrapt==1.12.1
