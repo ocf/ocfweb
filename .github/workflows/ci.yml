@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  transpire-ci:
+    uses: ocf/transpire-ci/.github/workflows/trigger.yml@master
+    with:
+      module_name: ocfweb
+    secrets:
+      TRANSPIRE_CI_PAT: ${{ secrets.TRANSPIRE_CI_PAT }}
