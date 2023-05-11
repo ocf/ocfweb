@@ -36,7 +36,7 @@ def objects():
         {
             "name": "sync-etc",
             "image": "harbor.ocf.berkeley.edu/ocf/etc/sync:4c3eb1f6ba456ec30a2fbf21423364eaf0ae40bd",
-            "args": ["/etc/ocf"],
+            "args": ["/etc/ocf", "--repeat-delay", "60"],
             "volumeMounts": [{"name": "etc", "mountPath": "/etc/ocf"}],
         }
     )
