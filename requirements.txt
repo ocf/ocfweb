@@ -16,7 +16,7 @@ cracklib==2.9.3
 cryptography==39.0.1
 cycler==0.10.0
 Deprecated==1.2.13
-Django==3.2.16
+Django==3.2.19
 django-bootstrap-form==3.4
 django-ipware==4.0.0
 django-mathfilters==1.0.0
@@ -59,12 +59,12 @@ pysnmp==4.4.12
 python-dateutil==2.8.2
 pytz==2021.1
 PyYAML==5.4.1
-redis==3.5.3
+redis==4.4.4
 requests==2.24.0
 setuptools==65.5.1
 six==1.16.0
 SQLAlchemy==1.4.23
-sqlparse==0.4.2
+sqlparse==0.4.4
 typing-extensions==3.10.0.2
 urllib3==1.25.11
 vine==5.0.0

@@ -164,3 +164,18 @@ def hiring_2018(title: str, request: HttpRequest) -> HttpResponse:
             'title': title,
         },
     )
+
+
+@announcement(
+    'Student Organization Subdomain Moratorium',
+    date(2023, 3, 1),
+    'subdomains',
+)
+def subdomains(title: str, request: HttpRequest) -> HttpResponse:
+    return render(
+        request,
+        'announcements/2023-03-01-subdomains.html',
+        {
+            'title': title,
+        },
+    )
