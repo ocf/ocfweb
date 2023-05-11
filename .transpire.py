@@ -59,7 +59,6 @@ def objects():
         "httpGet": {
             "path": "/",
             "port": 8000,
-            "scheme": "HTTP",
             "httpHeaders": [{"name": "Host", "value": "www.ocf.berkeley.edu"}],
         },
         "initialDelaySeconds": 5,
@@ -70,7 +69,6 @@ def objects():
         "httpGet": {
             "path": "/",
             "port": 8000,
-            "scheme": "HTTP",
             "httpHeaders": [{"name": "Host", "value": "www.ocf.berkeley.edu"}],
         },
         "initialDelaySeconds": 10,
