@@ -16,6 +16,7 @@ RUN apt-get update \
         libxml2-dev \
         locales \
         nginx \
+        python-is-python3 \
         redis-tools \
         runit \
         rustc \
@@ -23,7 +24,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install virtualenv
+RUN pip3 install virtualenv
 
 RUN install -d --owner=nobody /opt/ocfweb /opt/ocfweb/venv /etc/ocfweb
 
