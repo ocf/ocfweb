@@ -37,8 +37,8 @@ def objects():
         {"name": "secrets", "secret": {"secretName": "ocfweb"}},
     ]
 
-    dep.obj.spec.template.spec.dnsPolicy = "ClusterFirst"
-    dep.obj.spec.template.spec.dnsConfig = {"searches": ["ocf.berkeley.edu"]}
+    dep.obj.spec.template.spec.dns_policy = "ClusterFirst"
+    dep.obj.spec.template.spec.dns_config = {"searches": ["ocf.berkeley.edu"]}
 
     dep.obj.spec.template.spec.containers.append(
         {
