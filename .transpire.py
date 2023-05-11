@@ -41,10 +41,10 @@ def objects():
         }
     )
 
-    dep.obj.spec.template.spec.containers[0].volume_mounts.append(
+    dep.obj.spec.template.spec.containers[0].volume_mounts = [
         {"name": "etc", "mountPath": "/etc/ocf"},
         {"name": "secrets", "mountPath": "/etc/ocfweb"},
-    )
+    ]
 
     dep.obj.spec.template.spec.containers[0].readiness_probe = {
         "httpGet": {
