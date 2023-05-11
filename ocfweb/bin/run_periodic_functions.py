@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python3
 """Run periodic functions.
 
 This runs all periodic functions, either in a looping mode designed to run
