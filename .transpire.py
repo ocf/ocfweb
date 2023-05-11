@@ -1,10 +1,18 @@
+import requests
 from transpire.resources import Deployment, Ingress, Secret, Service
-from transpire.utils import get_revision
 
 name = "ocfweb"
 
 
+def get_latest_tag(image_name):
+    r = requests.get(f"https://docker.ocf.berkeley.edu/v2/{image_name}/tags/list")
+    r.raise_for_status()
+    return max(r.json()["tags"])
+
+
 def objects():
+    ocfweb_web_tag = get_latest_tag("ocfweb-web")
+
     yield Secret(
         name="ocfweb",
         string_data={
@@ -19,8 +27,8 @@ def objects():
     ).build()
 
     dep = Deployment(
-        name="hedgedoc",
-        image="docker.ocf.berkeley.edu/ocfweb-web-deployment:latest",
+        name="ocfweb",
+        image=f"docker.ocf.berkeley.edu/ocfweb-web:{ocfweb_web_tag}",
         ports=[8000],
     )
 
@@ -72,7 +80,7 @@ def objects():
     dep.obj.spec.template.spec.containers[0].env = [
         {"name": "PUPPET_CERT_DIR", "value": "/etc/ocfweb"},
         {"name": "OCFWEB_TESTING", "value": "0"},
-        {"name": "OCFWEB_PROD_VERSION", "value": get_revision()},
+        {"name": "OCFWEB_PROD_VERSION", "value": ocfweb_web_tag},
     ]
 
     yield dep.build()
