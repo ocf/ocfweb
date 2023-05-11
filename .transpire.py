@@ -24,7 +24,7 @@ def objects():
         ports=[8000],
     )
 
-    dep.obj.spec.template.spec.volumes += [
+    dep.obj.spec.template.spec.volumes = [
         {"name": "etc", "emptyDir": {}},
         {"name": "secrets", "secret": {"secretName": "ocfweb"}},
     ]
