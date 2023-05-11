@@ -18,6 +18,7 @@ RUN apt-get update \
         nginx \
         redis-tools \
         runit \
+        rustc \
         yui-compressor \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
