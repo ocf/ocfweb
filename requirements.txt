@@ -4,7 +4,7 @@ attrs==21.2.0
 bcrypt==3.2.0
 billiard==3.6.4.0
 cached-property==1.5.2
-celery==5.1.2
+celery==5.2.2
 certifi==2022.12.7
 cffi==1.14.6
 chardet==3.0.4
