@@ -17,7 +17,7 @@ from ocfweb.caching import cache
 from ocfweb.docs.doc import Document
 
 PUPPETDB_URL = 'https://puppetdb:8081/pdb/query/v4'
-PUPPET_CERT_DIR = '/etc/ocfweb/puppet-certs'
+PUPPET_CERT_DIR = os.getenv('PUPPET_CERT_DIR', '/etc/ocfweb/puppet-certs')
 
 
 class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
