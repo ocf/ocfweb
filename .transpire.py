@@ -1,18 +1,19 @@
-import requests
+from pathlib import Path
+
 from transpire.resources import Deployment, Ingress, Secret, Service
+from transpire.types import Image
+from transpire.utils import get_image_tag, get_revision
 
 name = "ocfweb"
 
 
-def get_latest_tag(image_name):
-    r = requests.get(f"https://docker.ocf.berkeley.edu/v2/{image_name}/tags/list")
-    r.raise_for_status()
-    return max(r.json()["tags"])
+def images():
+    yield Image(name="web", path=Path("/"), target="web")
+    yield Image(name="worker", path=Path("/"), target="worker")
+    yield Image(name="static", path=Path("/"), target="static")
 
 
 def objects():
-    ocfweb_web_tag = get_latest_tag("ocfweb-web")
-
     yield Secret(
         name="ocfweb",
         string_data={
@@ -28,7 +29,7 @@ def objects():
 
     dep = Deployment(
         name="ocfweb",
-        image=f"docker.ocf.berkeley.edu/ocfweb-web:{ocfweb_web_tag}",
+        image=get_image_tag("web"),
         ports=[8000],
     )
 
@@ -80,7 +81,7 @@ def objects():
     dep.obj.spec.template.spec.containers[0].env = [
         {"name": "PUPPET_CERT_DIR", "value": "/etc/ocfweb"},
         {"name": "OCFWEB_TESTING", "value": "0"},
-        {"name": "OCFWEB_PROD_VERSION", "value": ocfweb_web_tag},
+        {"name": "OCFWEB_PROD_VERSION", "value": get_revision()},
     ]
 
     yield dep.build()
