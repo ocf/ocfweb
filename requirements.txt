@@ -1,4 +1,4 @@
-amqp==5.0.6
+amqp<6
 asgiref==3.4.1
 attrs==21.2.0
 bcrypt==3.2.0
@@ -8,7 +8,7 @@ celery<5.3
 certifi==2023.5.7
 cffi==1.14.6
 chardet==3.0.4
-click==7.1.2
+click<9
 click-didyoumean==0.0.3
 click-plugins==1.1.1
 click-repl==0.2.0
