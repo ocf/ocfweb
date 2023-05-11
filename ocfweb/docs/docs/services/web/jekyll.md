@@ -28,9 +28,11 @@ static, it makes for very fast and simple websites.
 
    # The path used for jekyll below should be printed out as a warning when you
    # install jekyll using the above command, it'll be something like
-   # "/home/u/us/username/.gem/ruby/2.3.0/bin" but can vary by Ruby version.
-   user@tsunami:~/jekyll$ ~/.gem/ruby/2.3.0/bin/jekyll new --skip-bundle .
-   user@tsunami:~/jekyll$ bundle install --path vendor/bundle
+   # "/home/u/us/username/.local/share/gem/ruby/2.7.0/bin/jekyll" but can vary
+   # by Ruby version. Use `gem environment` to find the appropriate path.
+   user@tsunami:~/jekyll$ ~/.local/share/gem/ruby/2.7.0/bin/jekyll new --skip-bundle .
+   user@tsunami:~/jekyll$ bundle config set --local path 'vendor/bundle'
+   user@tsunami:~/jekyll$ bundle install
    ```
 
 ## Deploy your new site
