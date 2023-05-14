@@ -128,7 +128,7 @@ def objects():
         path_prefix="/",
     )
     ing_web.obj.metadata.annotations[
-        "nginx.ingress.kubernetes.io/ssl-redirect"
+        "ingress.kubernetes.io/force-ssl-redirect"
     ] = "false"
     yield ing_web.build()
 
