@@ -1,6 +1,6 @@
 # A base ocfweb Dockerfile containing the code and dependencies.
 # This doesn't run the website or the background worker; see Dockerfile.* for those.
-FROM docker.ocf.berkeley.edu/theocf/debian:bullseye
+FROM theocf/debian:bullseye-py AS base
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -51,3 +51,44 @@ ENV OCFWEB_TESTING 1
 WORKDIR /opt/ocfweb
 
 CMD ["runsvdir", "/opt/ocfweb/services"]
+
+##########
+# static #
+##########
+
+FROM base AS static
+
+RUN /opt/ocfweb/venv/bin/pysassc /opt/ocfweb/ocfweb/static/scss/site.scss /opt/ocfweb/ocfweb/static/scss/site.scss.css
+RUN find /opt/ocfweb/ocfweb/ \( -name '*.js' -o -name '*.css' \) -exec yui-compressor -o {} {} \;
+RUN mkdir /opt/ocfweb/static
+ENV OCFWEB_STATIC_ROOT /opt/ocfweb/static
+RUN /opt/ocfweb/venv/bin/python /opt/ocfweb/manage.py collectstatic --noinput
+
+COPY services/static /opt/ocfweb/services/static
+RUN chown -R nobody:nogroup /opt/ocfweb/services
+
+USER nobody
+
+#######
+# web #
+#######
+
+FROM base as web
+
+COPY services/web /opt/ocfweb/services/
+RUN chown -R nobody:nogroup /opt/ocfweb/services
+
+USER nobody
+
+##########
+# worker #
+##########
+
+FROM base as worker
+
+COPY services/worker /opt/ocfweb/services/worker
+RUN chown -R nobody:nogroup /opt/ocfweb/services
+
+USER nobody
+
+# vim: ft=Dockerfile

@@ -179,10 +179,10 @@ if not DEBUG:
     }
 
     CSRF_COOKIE_SECURE = True
-    CSRF_COOKIE_DOMAIN = 'www.ocf.berkeley.edu'
-    CSRF_TRUSTED_ORIGINS = ['www.ocf.berkeley.edu']
+    CSRF_COOKIE_DOMAIN = os.getenv('OCFWEB_COOKIE_DOMAIN', 'www.ocf.berkeley.edu')
+    CSRF_TRUSTED_ORIGINS = [CSRF_COOKIE_DOMAIN]
     SESSION_COOKIE_SECURE = True
-    SESSION_COOKIE_DOMAIN = 'www.ocf.berkeley.edu'
+    SESSION_COOKIE_DOMAIN = CSRF_COOKIE_DOMAIN
 else:
     # Dev-only settings.
     CACHES['default'] = {
