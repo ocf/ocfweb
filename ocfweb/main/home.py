@@ -14,7 +14,7 @@ from ocfweb.component.blog import get_blog_posts
 from ocfweb.component.lab_status import get_lab_status
 
 
-@periodic(60, ttl=86400)
+@periodic(60)
 def get_staff_hours() -> str:
     return get_staff_hours_soonest_first()[:2]
 
