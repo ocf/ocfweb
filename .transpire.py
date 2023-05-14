@@ -127,6 +127,9 @@ def objects():
         host="www.ocf.berkeley.edu",
         path_prefix="/",
     )
+    ing_web.obj.metadata.annotations[
+        "nginx.ingress.kubernetes.io/ssl-redirect"
+    ] = "false"
     yield ing_web.build()
 
     ing_static = Ingress.from_svc(
