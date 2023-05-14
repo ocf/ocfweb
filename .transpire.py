@@ -13,33 +13,14 @@ def images():
     yield Image(name="static", path=Path("/"), target="static")
 
 
-def objects():
-    yield Secret(
-        name="ocfweb",
-        string_data={
-            "metrics.htpasswd": "",
-            "ocfweb.conf": "",
-            "puppet-ca.pem": "",
-            "puppet-cert.pem": "",
-            "puppet-private.pem": "",
-            "puppet-public.pem": "",
-            "puppet-signed.pem": "",
-        },
-    ).build()
-
-    dep = Deployment(
-        name="ocfweb",
-        image=get_image_tag("web"),
-        ports=[8000],
-    )
+def add_ocfweb_common(dep):
+    dep.obj.spec.template.spec.dns_policy = "ClusterFirst"
+    dep.obj.spec.template.spec.dns_config = {"searches": ["ocf.berkeley.edu"]}
 
     dep.obj.spec.template.spec.volumes = [
         {"name": "etc", "emptyDir": {}},
         {"name": "secrets", "secret": {"secretName": "ocfweb"}},
     ]
-
-    dep.obj.spec.template.spec.dns_policy = "ClusterFirst"
-    dep.obj.spec.template.spec.dns_config = {"searches": ["ocf.berkeley.edu"]}
 
     dep.obj.spec.template.spec.containers.append(
         {
@@ -55,9 +36,17 @@ def objects():
         {"name": "secrets", "mountPath": "/etc/ocfweb"},
     ]
 
+    dep.obj.spec.template.spec.containers[0].env = [
+        {"name": "PUPPET_CERT_DIR", "value": "/etc/ocfweb"},
+        {"name": "OCFWEB_TESTING", "value": "0"},
+        {"name": "OCFWEB_PROD_VERSION", "value": get_revision()},
+    ]
+
+
+def add_probes(dep, path="/"):
     dep.obj.spec.template.spec.containers[0].readiness_probe = {
         "httpGet": {
-            "path": "/",
+            "path": path,
             "port": 8000,
             "httpHeaders": [{"name": "Host", "value": "www.ocf.berkeley.edu"}],
         },
@@ -67,7 +56,7 @@ def objects():
 
     dep.obj.spec.template.spec.containers[0].liveness_probe = {
         "httpGet": {
-            "path": "/",
+            "path": path,
             "port": 8000,
             "httpHeaders": [{"name": "Host", "value": "www.ocf.berkeley.edu"}],
         },
@@ -76,27 +65,73 @@ def objects():
         "failureThreshold": 6,
     }
 
-    dep.obj.spec.template.spec.containers[0].env = [
-        {"name": "PUPPET_CERT_DIR", "value": "/etc/ocfweb"},
-        {"name": "OCFWEB_TESTING", "value": "0"},
-        {"name": "OCFWEB_PROD_VERSION", "value": get_revision()},
-    ]
 
-    yield dep.build()
-
-    svc = Service(
+def objects():
+    yield Secret(
         name="ocfweb",
-        selector=dep.get_selector(),
+        string_data={
+            "metrics.htpasswd": "",
+            "ocfweb.conf": "",
+            "puppet-ca.pem": "",
+            "puppet-cert.pem": "",
+            "puppet-private.pem": "",
+            "puppet-public.pem": "",
+            "puppet-signed.pem": "",
+        },
+    ).build()
+
+    dep_web = Deployment(
+        name="ocfweb",
+        image=get_image_tag("web"),
+        ports=[8000],
+    )
+    add_ocfweb_common(dep_web)
+    add_probes(dep_web)
+    yield dep_web.build()
+
+    dep_worker = Deployment(
+        name="ocfweb-worker",
+        image=get_image_tag("worker"),
+        ports=[8000],
+    )
+    add_ocfweb_common(dep_worker)
+    yield dep_worker.build()
+
+    dep_static = Deployment(
+        name="ocfweb-static",
+        image=get_image_tag("static"),
+        ports=[8000],
+    )
+    add_ocfweb_common(dep_static)
+    add_probes(dep_static, path="/js/site.js")
+    yield dep_static.build()
+
+    svc_web = Service(
+        name="ocfweb",
+        selector=dep_web.get_selector(),
         port_on_pod=8000,
         port_on_svc=80,
     )
+    yield svc_web.build()
 
-    yield svc.build()
+    svc_static = Service(
+        name="ocfweb-static",
+        selector=dep_static.get_selector(),
+        port_on_pod=8000,
+        port_on_svc=80,
+    )
+    yield svc_static.build()
 
-    ing = Ingress.from_svc(
-        svc=svc,
+    ing_web = Ingress.from_svc(
+        svc=svc_web,
         host="www.ocf.berkeley.edu",
         path_prefix="/",
     )
+    yield ing_web.build()
 
-    yield ing.build()
+    ing_static = Ingress.from_svc(
+        svc=svc_static,
+        host="static.ocf.berkeley.edu",
+        path_prefix="/",
+    )
+    yield ing_static.build()
