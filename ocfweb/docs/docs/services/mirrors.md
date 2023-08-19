@@ -43,6 +43,7 @@ mirroring service, please [[contact us|doc contact]].
 - [MELPA](https://melpa.org/)
 - [MX Linux](https://mxlinux.org/)
 - [OpenBSD](https://www.openbsd.org/)
+- [openEuler](https://openeuler.org/)
 - [OpenSUSE](https://www.opensuse.org/)
 - [OpenWRT](https://openwrt.org/)
 - [Parabola](https://www.parabola.nu/)
