@@ -16,7 +16,7 @@ provides more flexibility.
 ## App hosting eligibility
 
 App hosting is *only available for student groups with [[virtually-hosting
-domain names|doc services/vhost]]* (either group.berkeley.edu, or your own
+domain names|doc services/vhost]]* (either group.studentorg.berkeley.edu, or your own
 separately-purchased domain name). If you don't already have a virtual host and
 want to use app hosting, see below for instructions; please don't fill out a
 virtual host request form.
@@ -29,7 +29,7 @@ with at least the following information:
 
 * Group's account name
 * Group's current website, if any (even if not hosted by OCF)
-* Desired domain name for the app (either group.berkeley.edu, or your own
+* Desired domain name for the app (either group.studentorg.berkeley.edu, or your own
   domain)
 * The technologies/languages your site is built on
 

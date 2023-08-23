@@ -16,7 +16,7 @@ accounts.
 ## Student groups
 
 We provide email virtual hosting for student groups who have a [[virtual
-host|doc services/vhost]] (e.g. mygroup.berkeley.edu). See [[here|doc
+host|doc services/vhost]] (e.g. mygroup.studentorg.berkeley.edu). See [[here|doc
 services/vhost/mail]] for instructions on requesting email hosting and
 configuring email addresses.
 

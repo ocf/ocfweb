@@ -45,7 +45,7 @@ or Berkeley email for these steps.
 
      * **SMTP Server:** `smtp.ocf.berkeley.edu`
      * **Username:** The *full email address*, including
-       `@mygroup.berkeley.edu` at the end.
+       `@mygroup.studentorg.berkeley.edu` at the end.
      * **Password:** The password you chose in step 2.
      * **Port:** 587 (the default)
      * **Secured connection:** Using TLS (the default)
