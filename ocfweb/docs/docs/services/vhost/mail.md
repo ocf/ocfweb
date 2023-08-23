@@ -2,8 +2,8 @@
 
 
 Our regular virtual hosting gives your group a website at
-`mygroup.berkeley.edu`. By contrast, *mail virtual hosting* lets you create as
-many email addresses as you'd like `@mygroup.berkeley.edu`.
+`mygroup.studentorg.berkeley.edu`. By contrast, *mail virtual hosting* lets you create as
+many email addresses as you'd like `@mygroup.studentorg.berkeley.edu`.
 
 These addresses can be used both to receive mail (via mail forwarding), and
 send mail. The details of how to use these addresses are below.
@@ -28,9 +28,9 @@ The OCF does not provide "true" mail hosting -- we do not store mail on our
 servers, nor do we provide a new mailbox for you to monitor. Instead, we
 provide:
 
-* Mail forwarding: forward emails sent to `xxxx@yourgroup.berkeley.edu` to an
+* Mail forwarding: forward emails sent to `xxxx@yourgroup.studentorg.berkeley.edu` to an
   email address you already own.
-* Mail sending: send an email as `xxxx@yourgroup.berkeley.edu`.
+* Mail sending: send an email as `xxxx@yourgroup.studentorg.berkeley.edu`.
 * Lightweight user management: create different email addresses and configure
   who to forward them to.
 

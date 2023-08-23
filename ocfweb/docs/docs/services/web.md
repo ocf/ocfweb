@@ -9,7 +9,7 @@ All accounts include hosting with a web address at:
 where `user` is the account name.
 
 Groups, faculty, and staff may also request a [[virtual host|doc
-services/vhost]] for another domain (e.g., group.berkeley.edu).
+services/vhost]] for another domain (e.g., group.studentorg.berkeley.edu).
 
 ## Uploading Files
 
