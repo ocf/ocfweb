@@ -5,6 +5,7 @@ from transpire.types import Image
 from transpire.utils import get_image_tag, get_revision
 
 name = "ocfweb"
+auto_sync = True
 
 
 def images():
