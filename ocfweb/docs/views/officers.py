@@ -118,13 +118,13 @@ MISSING_NAMES = {
     'sls': 'Sam Shen',
     # temporary fix for lengthy ldap calls
     'abizer': 'Abizer Lokhandwala',
+    'adi': 'Aditya Mangalampalli',
     'ahilan': 'Ahilan Anantha',
     'ajani': 'Bem Ajani Jones-Bey',
     'akit': 'Angel Kittiyachavalit',
     'akopps': 'Akop Pogosian',
     'alanc': 'Alan Coopersmith',
     'alanw': 'Alan Wong',
-    'amangalampalli': 'Aditya Mangalampalli',
     'anddone': 'Andrei Dones',
     'anirudhsuresh': 'Anirudh Suresh',
     'aoaks': 'Aaron Oaks',
@@ -489,7 +489,7 @@ def _bod_terms() -> List[Term]:
             heads=[
                 ('Internal', ['ericyang', 'ethanhu', 'dapark']),
                 ('External', ['anddone', 'ethanhu', 'btorres']),
-                ('Finance', ['amangalampalli', 'rjz', 'trinityc']),
+                ('Finance', ['adi', 'rjz', 'trinityc']),
                 ('DeCal', ['laksith', 'lmathias', 'idham']),
             ],
         ),
@@ -500,8 +500,8 @@ def _bod_terms() -> List[Term]:
             heads=[
                 ('Internal', ['bryli', 'trinityc', 'yehchanyoo']),
                 ('External', ['anddone', 'btorres', 'ethanhu']),
-                ('Finance', ['amangalampalli', 'anirudhsuresh', 'yehchanyoo']),
-                ('DeCal', ['amangalampalli', 'btorres', 'trinityc']),
+                ('Finance', ['adi', 'anirudhsuresh', 'yehchanyoo']),
+                ('DeCal', ['adi', 'btorres', 'trinityc']),
             ],
         ),
     ]
