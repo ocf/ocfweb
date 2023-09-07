@@ -150,7 +150,7 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
     else:
         # Unsupported left operand type for + ("None") because form might not have been instantiated at this point...
         # but this doesn't matter because of if-else clause
-        form = VirtualHostForm(is_group, initial={'requested_subdomain': user + '.berkeley.edu'})  # type: ignore
+        form = VirtualHostForm(is_group, initial={'requested_subdomain': user + '.studentorg.berkeley.edu'})  # type: ignore
 
     group_url = f'https://www.ocf.berkeley.edu/~{user}/'
 
@@ -184,7 +184,7 @@ class VirtualHostForm(Form):
     requested_domain_type = forms.ChoiceField(
         choices=[
             (
-                'berkeley', 'I would like to request a berkeley.edu domain \
+                'berkeley', 'I would like to request a studentorg.berkeley.edu domain \
                      (most student groups want this).',
             ),
             ('own', 'I want to use the domain I already own.'),
@@ -196,7 +196,7 @@ class VirtualHostForm(Form):
         label='Requested domain:',
         min_length=1,
         max_length=32,
-        widget=forms.TextInput(attrs={'placeholder': 'mysite.berkeley.edu'}),
+        widget=forms.TextInput(attrs={'placeholder': 'mysite.studentorg.berkeley.edu'}),
     )
 
     # website requirements
