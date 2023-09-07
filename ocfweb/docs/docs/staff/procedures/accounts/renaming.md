@@ -1,7 +1,7 @@
 [[!meta title="Rename an account"]]
 
 We should sparingly rename a user account, and only do so when it is
-necessary (e.g. typo in the username).
+necessary (e.g. typo in the username or update of their lived name).
 
 To rename an individual account, `sorry` the account with the old name and
 make a `note` of why you are changing the username. To run `sorry` you need
