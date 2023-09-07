@@ -148,14 +148,12 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
                 else:
                     return redirect(reverse('request_vhost_success'))
     else:
-        # Unsupported left operand type for + ("None") because form might not have been instantiated at this point...
-        # but this doesn't matter because of if-else clause
         form = VirtualHostForm(
-            is_group, initial={
-                'requested_subdomain': user +
-                '.studentorg.berkeley.edu',
+            is_group,
+            initial={
+                'requested_subdomain': f'{user}.studentorg.berkeley.edu',
             },
-        )  # type: ignore
+        )
 
     group_url = f'https://www.ocf.berkeley.edu/~{user}/'
 
