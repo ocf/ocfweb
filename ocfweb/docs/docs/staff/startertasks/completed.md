@@ -10,3 +10,4 @@ The following staffers have successfully made a pull request to
 - [dphan](https://github.com/ocf/ocfweb/pull/579)
 - [kmo](https://github.com/ocf/ocfweb/pull/588)
 - [njha](https://github.com/ocf/ocfweb/pull/598)
+- [jimfang](https://github.com/ocf/ocfweb/pull/824)
