@@ -23,38 +23,33 @@ servers with a key that only that machine can read.
 
 ### Usability advantages
 
-Kerberos makes passwordless login easy, since after the first password is
-input, a ticket can be used for future logins instead of having to type the
-same password again and go through the whole authentication process a second
-time. Keep in mind that all of the authentication will have to be done every 10
-hours, as tickets do expire, but passwords have to be typed far less with
-Kerberos in place. Tickets are invalidated on logout, so that makes sure that
-someone can't steal a ticket and use it after you have left, as a little added
-security.
+Kerberos makes passwordless login easy, since after the first password is input,
+a ticket can be used for future logins instead of having to type the same
+password again and go through the whole authentication process a second time.
+Keep in mind that all of the authentication will have to be done every 10 hours,
+as tickets do expire, but passwords have to be typed far less with Kerberos in
+place. Tickets are invalidated on logout, so that makes sure that someone can't
+steal a ticket and use it after you have left, as a little added security.
 
 
 ## Versions
 
 There are two major free versions of Kerberos: MIT and Heimdal Kerberos. At the
-OCF, we use Heimdal Kerberos; if you look up documentation, it might instead
-be for the MIT version, so be careful to make sure the commands work. Kerberos
-also has 2 main versions that are still used: version 4 and version 5. Version
-5 fixes a lot of the security and design flaws of version 4, so we use version
-5 of the protocol.
+OCF, we use Heimdal Kerberos; if you look up documentation, it might instead be
+for the MIT version, so be careful to make sure the commands work.
 
 
 ## Terminology
 
 Unfortunately, Kerberos is a complicated protocol that involves a lot of
-technical jargon. Here's a bunch of different terms that you might run into
-when reading about or working on Kerberos and an attempt to explain what they
-mean:
+technical jargon. Here's a bunch of different terms that you might run into when
+reading about or working on Kerberos and an attempt to explain what they mean:
 
 - **KDC** (**K**ey **D**istribution **C**enter): The central server that issues
   tickets for Kerberos communication and stores all users' keys. If the KDC is
   compromised, you are going to have a very bad time and [will not go to space
-  today][xkcd-space]. Our current KDC is firestorm, but that could change in
-  the future, as servers are moved around or rebuilt.
+  today][xkcd-space]. Our current KDC is firestorm, but that could change in the
+  future, as servers are moved around or rebuilt.
 
 - **Realm**: A kerberos domain, usually identified with the domain name in all
   caps (e.g. `OCF.BERKELEY.EDU`). Two hosts are in the same realm if they share
@@ -70,8 +65,8 @@ mean:
   `@OCF.BERKELEY.EDU` since it is the realm the OCF uses.
 
   - **User**: `[user]` or `[user]/[instance]` e.g. `jvperrin` or
-    `mattmcal/root`. Used for user logins or for user privileges such as
-    editing LDAP or running commands with `sudo`.
+    `mattmcal/root`. Used for user logins or for user privileges such as editing
+    LDAP or running commands with `sudo`.
 
   - **Host**: `host/[hostname]` e.g. `host/supernova.ocf.berkeley.edu`. Used by
     Kerberos to allow clients to verify they are communicating with the correct
@@ -84,14 +79,14 @@ mean:
     particular host, such as `http`, which (for instance) enables logins to RT,
     or `smtp`, which allows email authentication.
 
-- **Ticket**: Tickets are issued by the TGS (see below) to clients. Tickets
-  have an expiration time, which is set to the default of 10 hours after being
+- **Ticket**: Tickets are issued by the TGS (see below) to clients. Tickets have
+  an expiration time, which is set to the default of 10 hours after being
   issued.
 
-- **Keytab**: A keytab is essentially the equivalent of a password, but one
-  that can be used easily by a script. If someone has read access to a keytab,
-  they can retrieve all the keys in it, so be very careful what permissions are
-  set on keytabs.
+- **Keytab**: A keytab is essentially the equivalent of a password, but one that
+  can be used easily by a script. If someone has read access to a keytab, they
+  can retrieve all the keys in it, so be very careful what permissions are set
+  on keytabs.
 
 - **TGT** (**T**icket **G**ranting **T**icket): A special ticket that is used
   for communication between the client machine and the KDC.
@@ -100,13 +95,14 @@ mean:
   the job of the TGS is to grant tickets (see above) for different network
   services.
 
-- **GSS-API**: The API used by different applications to be able to
-  authenticate with Kerberos.
+- **GSS-API**: The API used by different applications to be able to authenticate
+  with Kerberos.
 
 - **SASL**: An authentication layer that many different applications can use.
 
 [xkcd-space]: https://xkcd.com/1133/
-[kdc-location]: https://github.com/ocf/puppet/blob/17bc94b395e254529d97c84fb044f76931439fd7/modules/ocf/files/auth/krb5.conf#L27
+[kdc-location]:
+    https://github.com/ocf/puppet/blob/17bc94b395e254529d97c84fb044f76931439fd7/modules/ocf/files/auth/krb5.conf#L27
 
 
 ## Commands
@@ -126,8 +122,8 @@ All conveniently prefixed with the letter `k`.
 
 - `kadmin`: Administration utility for Kerberos to make changes to the Kerberos
   database, either locally (with `-l`), or remotely by connecting to the KDC.
-  Can retrieve information about principals, modify principal attributes,
-  change principal passwords, show privileges allowed, etc.
+  Can retrieve information about principals, modify principal attributes, change
+  principal passwords, show privileges allowed, etc.
 
 - `kdestroy`: Remove a principal or ticket file. This is essentially the
   opposite of `kinit`, so it invalidates tickets you have, logging you out from
@@ -157,23 +153,24 @@ will have to enter it every time they want to edit LDAP or run commands with
 when running `sudo` commands and for changing user passwords, whereas the
 `[user]/admin` principal is used mainly for modifying LDAP.
 
-Next, to give the principal actual privileges, add the principals and
-privileges assigned to the [kadmind.acl file][2] used by Puppet. Notice that
-the `all` privilege does not actually give *all* privileges, since the
-`get-keys` privilege is separate.  The `get-keys` privilege is used to fetch
-principals' keys, which is equivalent to knowing the password hash in other
-authentication systems, so it is not a privilege to be handed out lightly.
+Next, to give the principal actual privileges, add the principals and privileges
+assigned to the [kadmind.acl file][2] used by Puppet. Notice that the `all`
+privilege does not actually give *all* privileges, since the `get-keys`
+privilege is separate.  The `get-keys` privilege is used to fetch principals'
+keys, which is equivalent to knowing the password hash in other authentication
+systems, so it is not a privilege to be handed out lightly.
 
-[2]: https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl
+[2]:
+    https://github.com/ocf/puppet/blob/master/modules/ocf_kerberos/files/kadmind.acl
 
 
 ## How does it actually work?
 
 Kerberos is pretty complicated, so explaining exactly how it works gets messy
-very quickly, but here are the main steps that are taken by Kerberos when a
-user logs in to their machine. A great guide on these steps is [Lynn Root's
-_Explain it like I'm 5: Kerberos_][eli5], and explains it better and in more
-depth than the rather cursory overview found here:
+very quickly, but here are the main steps that are taken by Kerberos when a user
+logs in to their machine. A great guide on these steps is [Lynn Root's _Explain
+it like I'm 5: Kerberos_][eli5], and explains it better and in more depth than
+the rather cursory overview found here:
 
 1. The user enters their username. Their login is sent to the KDC to receieve a
    ticket.
@@ -184,9 +181,9 @@ depth than the rather cursory overview found here:
    KDC).
 
 3. The client gets the encrypted TGT and decrypts it with the user's entered
-   password. Note the user's password was never directly sent across the
-   network at any stage in the process. Then the TGT is stored in the cache on
-   the client machine until it expires, when it is requested again if needed.
+   password. Note the user's password was never directly sent across the network
+   at any stage in the process. Then the TGT is stored in the cache on the
+   client machine until it expires, when it is requested again if needed.
 
 4. The user can then use this TGT to make requests for service tickets from the
    KDC.
@@ -198,11 +195,11 @@ otherwise the key in the TGT could just be cracked offline by an attacker using
 a dictionary attack. This preauthentication typically takes the form of
 something like the current time encrypted with the user's key. If an attacker
 intercepts this communication, they do not have the exact timestamp or the
-user's key to attempt to decrypt it. We require pre-authentication at the OCF
-by specifying `require-preauth = true` in [/var/lib/heimdal-kdc/kdc.conf][kdc].
+user's key to attempt to decrypt it. We require pre-authentication at the OCF by
+specifying `require-preauth = true` in [/var/lib/heimdal-kdc/kdc.conf][kdc].
 
-Then, if the user wants to communicate with other services or hosts, like SSH
-or a HTTP Kerberos login, then they make more requests to the KDC:
+Then, if the user wants to communicate with other services or hosts, like SSH or
+a HTTP Kerberos login, then they make more requests to the KDC:
 
 1. The client will request a service or host principal from the TGS (Ticket
    Granting Service) using the TGT received before. The TGS in our case is the
@@ -211,9 +208,10 @@ or a HTTP Kerberos login, then they make more requests to the KDC:
    contacting a service and authenticating until the service ticket expires.
 
 2. The client can then use this service ticket to send with requests to
-   Kerberos-enabled services, like SSH, as user authentication. The service
-   will verify the ticket with the KDC when used, to make sure it is valid for
-   the user issuing the request.
+   Kerberos-enabled services, like SSH, as user authentication. The service will
+   verify the ticket with the KDC when used, to make sure it is valid for the
+   user issuing the request.
 
 [eli5]: https://www.roguelynn.com/words/explain-like-im-5-kerberos/
-[kdc]: https://github.com/ocf/puppet/blob/17bc94b395e254529d97c84fb044f76931439fd7/modules/ocf_kerberos/files/kdc.conf#L13
+[kdc]:
+    https://github.com/ocf/puppet/blob/17bc94b395e254529d97c84fb044f76931439fd7/modules/ocf_kerberos/files/kdc.conf#L13

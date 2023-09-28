@@ -1,6 +1,6 @@
 [[!meta title="PHP"]]
 
-`death`, the OCF webserver, currently runs PHP 7.0 with the following
+`death`, the OCF webserver, currently runs PHP 7.4 with the following
 non-standard packages installed:
 
 * [APCu](https://www.php.net/manual/en/book.apcu.php) (opcode caching)

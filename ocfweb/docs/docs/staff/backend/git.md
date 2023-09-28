@@ -8,29 +8,28 @@ distributed).
 ## Workflow
 
 Although Git is a great tool for large-scale distributed development, for us a
-Subversion-like workflow with a "central repository" (where you clone/fetch
-from and push to) and linear history makes more sense. The instructions below
-assume that development is happening in a single branch.
+Subversion-like workflow with a "central repository" (where you clone/fetch from
+and push to) and linear history makes more sense. The instructions below assume
+that development is happening in a single branch.
 
 **Only commit your own, original work**.  You may commit another staff member's
 work if you have permission and change the author appropriately (e.g.,
 `--author="Guest User <guser@ocf.berkeley.edu>"`). When committing, `git config
 user.name` should be your name and `git config user.email` should be your OCF
-email address -- this should be taken care of by [[LDAP|doc
-staff/backend/ldap]] and `/etc/mailname` on OCF machines.
+email address -- this should be taken care of by [[LDAP|doc staff/backend/ldap]]
+and `/etc/mailname` on OCF machines.
 
 ### To "update"
 
-Get the latest commits from the central repository and update your working
-tree.
+Get the latest commits from the central repository and update your working tree.
 
     git pull --rebase
 
-This will `git fetch` (update your local copy of the remote repository) and
-`git rebase` (rewrite current branch in terms of tracked branch). The rebase
-prevents unnecessary merge commits by moving your local commits on top of the
-latest remote commit (`FETCH_HEAD`). This is a good thing if you have any local
-commits which have not yet been pushed to the remote repository.
+This will `git fetch` (update your local copy of the remote repository) and `git
+rebase` (rewrite current branch in terms of tracked branch). The rebase prevents
+unnecessary merge commits by moving your local commits on top of the latest
+remote commit (`FETCH_HEAD`). This is a good thing if you have any local commits
+which have not yet been pushed to the remote repository.
 
 If you have "dirty" uncommitted changes, you'll need to commit them or stash
 them before rebasing (`git stash`).
@@ -104,8 +103,8 @@ Advanced:
   * line of changes in a repository, default branch is `master`
 * fast-forward
   * advance branch forward in a linear sequence
-  * this is usually what we want: the new commit builds directly on the
-    previous commit
+  * this is usually what we want: the new commit builds directly on the previous
+    commit
 * hooks
   * optional scripts that can be executed during git operations
   * for example, validate syntax before accepting a commit or deploy code to a
@@ -114,8 +113,8 @@ Advanced:
   * files that are ready to be stored in your next commit
 * references (aka refs)
   * SHA-1 hashes that identify commits
-  * `HEAD` points to the latest commit ref in the current branch (`HEAD^` to
-    the one before it)
+  * `HEAD` points to the latest commit ref in the current branch (`HEAD^` to the
+    one before it)
 * remote
   * upstream repository that you can `git fetch` from or `git push` to, default
     is `origin`
@@ -123,11 +122,12 @@ Advanced:
     `origin/master`)
 * working tree (aka workspace or working directory)
   * directory that checked out files reside
-  * this includes the current branch and any "dirty" uncommitted changes
-    (staged or not)
+  * this includes the current branch and any "dirty" uncommitted changes (staged
+    or not)
 
 ## Recommended reading
 
 * [A Visual Git Reference](https://marklodato.github.io/visual-git-guide/)
 * [Git Immersion](http://www.gitimmersion.com/)
-* [The Case for Git Rebase](http://darwinweb.net/articles/the-case-for-git-rebase)
+* [The Case for Git
+  Rebase](http://darwinweb.net/articles/the-case-for-git-rebase)

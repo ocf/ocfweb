@@ -1,6 +1,8 @@
 [[!meta title="Munin"]]
 
-**NOTE:** We are currently in the process of migrating many of our monitoring services to Prometheus. For more information, visit the documentation page for Prometheus [[here|doc staff/backend/prometheus]].
+**NOTE:** Munin has been deprecated at the OCF in favor of Prometheus. For more
+information, visit the documentation page for Prometheus [[here|doc
+staff/backend/prometheus]].
 
 We use [Munin](https://munin.ocf.berkeley.edu) to provide real-time monitoring
 of our hardware. The master is [[dementors|doc staff/backend/servers]] which
@@ -13,10 +15,10 @@ Additionally, we don't receive email alerts for staff VMs.
 
 ## Automated alerts
 
-Munin sends mail to root whenever certain stats run out of bounds for a
-machine, e.g. if disk usage goes above 92%. Some plugins have configurable
-warning and critical levels for each field, which are usually set in the node
-config like so:
+Munin sends mail to root whenever certain stats run out of bounds for a machine,
+e.g. if disk usage goes above 92%. Some plugins have configurable warning and
+critical levels for each field, which are usually set in the node config like
+so:
 
 ```
 [pluginname]
@@ -30,11 +32,10 @@ underscores, the display name for a variable's warning levels takes the form
 `fieldname.warning` or `fieldname.critical`.
 
 When `munin-limits` finds a variable in warning or critical range, it pipes the
-alert text to [another script][mail-munin-alert] which filters out
-uninteresting or noisy messages and emails the rest to root. Munin itself isn't
-very flexible about disabling alerts from plugins, so, if there is a noisy
-variable you want to ignore alerts for, you can add it to the list of
-`IGNORED_WARNINGS`.
+alert text to [another script][mail-munin-alert] which filters out uninteresting
+or noisy messages and emails the rest to root. Munin itself isn't very flexible
+about disabling alerts from plugins, so, if there is a noisy variable you want
+to ignore alerts for, you can add it to the list of `IGNORED_WARNINGS`.
 
 ## Custom plugins
 
@@ -62,6 +63,9 @@ field1.warning min:max
 ...
 ```
 
-[gen-munin-nodes]: https://github.com/ocf/puppet/blob/master/modules/ocf_munin/files/gen-munin-nodes
-[mail-munin-alert]: https://github.com/ocf/puppet/blob/master/modules/ocf_munin/templates/mail-munin-alert.erb
-[ocf_munin_plugin]: https://github.com/ocf/puppet/blob/master/modules/ocf/manifests/munin/plugin.pp
+[gen-munin-nodes]:
+    https://github.com/ocf/puppet/blob/master/modules/ocf_munin/files/gen-munin-nodes
+[mail-munin-alert]:
+    https://github.com/ocf/puppet/blob/master/modules/ocf_munin/templates/mail-munin-alert.erb
+[ocf_munin_plugin]:
+    https://github.com/ocf/puppet/blob/master/modules/ocf/manifests/munin/plugin.pp

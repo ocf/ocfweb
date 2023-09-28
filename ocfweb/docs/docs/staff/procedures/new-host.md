@@ -19,7 +19,8 @@ although this may not always be up to date. Hostnames must be based on
 (un)natural disasters; check out `~staff/server_name_ideas` if you're having
 trouble thinking of one.
 
-[github-ip-list]: https://github.com/ocf/dns/blob/master/etc/zones/db.226.229.169.in-addr.arpa
+[github-ip-list]:
+    https://github.com/ocf/dns/blob/master/etc/zones/db.226.229.169.in-addr.arpa
 [ips-sheet]: https://ocf.io/s/ips
 
 
@@ -41,8 +42,8 @@ for the address `169.229.226.42`. If setting up a desktop, add a final argument
 
 ### Step 1.2. Add the DNS record
 
-Clone the [DNS repo][github-dns] from GitHub, run `make`, and push a commit
-with the new records.
+Clone the [DNS repo][github-dns] from GitHub, run `make`, and push a commit with
+the new records.
 
 [github-dns]: https://github.com/ocf/dns
 
@@ -74,8 +75,8 @@ We have a handy script, `makevm`, that:
 * Waits for the Debian installer to finish
 * SSHs to the new server and sets its IP
 
-To use it, log on to the target physical server (`riptide`, `hal`, `pandemic`, or `jaws`),
-and run `makevm --help`. A typical invocation looks something like:
+To use it, log on to the target physical server (`riptide`, `hal`, `pandemic`,
+or `jaws`), and run `makevm --help`. A typical invocation looks something like:
 
     makevm -m 4096 -c 2 -s 15 arsenic 169.229.226.47
 
@@ -83,8 +84,8 @@ and run `makevm --help`. A typical invocation looks something like:
 ### Physical hosts
 
 All you need to do to run the Debian installer is PXE boot. On desktops, you
-sometimes need to enable this in the BIOS before you can select it from the
-boot menu.
+sometimes need to enable this in the BIOS before you can select it from the boot
+menu.
 
 Be warned that the default action (automated install) happens after 5 seconds.
 So don't PXE-boot your laptop and walk away!
@@ -114,14 +115,14 @@ should run:
    1. Edit `/etc/hostname` so it has the desired hostname instead of
       dhcp-_whatever_.
    2. Run `hostname -F /etc/hostname`.
-   3. Find out what the ethernet interface's name and current IP address is
-      by running `ip addr`. The ethernet interface should be named something
-      like `eno1` or `enp4s2`. (In the following instructions, substitute
-      `eno1` with the correct name.)
-   4. Remove the incorrect IP addresses with `ip addr del $WRONG_ADDRESS
-      dev eno1`.
-   5. Add the correct IP addresses with `ip addr add $CORRECT_ADDRESS
-      dev eno1`. Make sure that $CORRECT_ADDRESS includes the netmask.
+   3. Find out what the ethernet interface's name and current IP address is by
+      running `ip addr`. The ethernet interface should be named something like
+      `eno1` or `enp4s2`. (In the following instructions, substitute `eno1` with
+      the correct name.)
+   4. Remove the incorrect IP addresses with `ip addr del $WRONG_ADDRESS dev
+      eno1`.
+   5. Add the correct IP addresses with `ip addr add $CORRECT_ADDRESS dev eno1`.
+      Make sure that $CORRECT_ADDRESS includes the netmask.
 
 3. `puppet agent --test`
 
@@ -129,14 +130,15 @@ should run:
 ## Step 4. Sign the Puppet cert and run Puppet
 
 On the puppetmaster, `sudo puppetserver ca list` to see pending requests. When
-you see yours, use `sudo puppetserver ca sign --certname hostname.ocf.berkeley.edu`.
+you see yours, use `sudo puppetserver ca sign --certname
+hostname.ocf.berkeley.edu`.
 
-Log back into the host and run `puppet agent --test` to start the Puppet
-run. You may need to repeat this once or twice until the run converges.
+Log back into the host and run `puppet agent --test` to start the Puppet run.
+You may need to repeat this once or twice until the run converges.
 
 
 ### Step 4.1. Upgrade packages
 
 The first Puppet run and various other things may be broken if one or more
-packages are out of date, e.g. Puppet. Remedy this with an `apt update &&
-apt upgrade`.
+packages are out of date, e.g. Puppet. Remedy this with an `apt update && apt
+upgrade`.

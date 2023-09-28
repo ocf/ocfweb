@@ -74,7 +74,8 @@ Firewall rules are added by using `firewall_multi` and
    since such resources wouldn't be subject to the [ordering constraints
    generally placed on firewall resources][ordering].
 
-[ordering]: https://github.com/ocf/puppet/blob/f3fdd5912a5dc5eafd9995412a9c5e85874dee31/manifests/site.pp#L50-L58
+[ordering]:
+    https://github.com/ocf/puppet/blob/f3fdd5912a5dc5eafd9995412a9c5e85874dee31/manifests/site.pp#L50-L58
 [puppetlabs-firewall]: https://forge.puppet.com/puppetlabs/firewall
 
 
@@ -113,10 +114,10 @@ For IPv6 firewall rules, you need to use the `ip6tables` command instead. The
 invocation is the same as for `iptables`.
 
 Iptables rules are not automatically persisted across reboots. In order for your
-changes to iptables to be preserved across reboots, you need to additionally
-run `service netfilter-persistent save`. This is done automatically after
-every Puppet run which results in iptables rules being modified, but if you
-manually fiddle with iptables you may need to run it yourself.
+changes to iptables to be preserved across reboots, you need to additionally run
+`service netfilter-persistent save`. This is done automatically after every
+Puppet run which results in iptables rules being modified, but if you manually
+fiddle with iptables you may need to run it yourself.
 
 ### Disabling firewalls through hiera
 

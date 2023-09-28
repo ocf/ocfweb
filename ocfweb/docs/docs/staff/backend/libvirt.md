@@ -39,11 +39,11 @@ On the hypervisor, run `sudo virsh start <vm-name>`.
 
 ### How do I turn off a VM?
 
-You can SSH into the VM and run the `shutdown` command, or you can run
-`sudo virsh shutdown <vm-name>` on the hypervisor which hosts it.
+You can SSH into the VM and run the `shutdown` command, or you can run `sudo
+virsh shutdown <vm-name>` on the hypervisor which hosts it.
 
-If it's a public-facing VM (e.g. tsunami), remember to give a positive amount
-of time to the shutdown command, so users have adequate warning.
+If it's a public-facing VM (e.g. tsunami), remember to give a positive amount of
+time to the shutdown command, so users have adequate warning.
 
 ### How do I make a VM automatically turn on when the hypervisor boots?
 
@@ -91,8 +91,8 @@ On the hypervisor:
    or delete it. You may want to also dump the contents of the disk to a file,
    compressing it, and placing that file in `/opt/backups/live/misc/servers` on
    the server which contains backups (which is `hal` at the time of this
-   writing). You may also want to save the VM's XML definition by running
-   `sudo virsh dumpxml [vm-name] > [vm-name].xml` and placing it in the same
+   writing). You may also want to save the VM's XML definition by running `sudo
+   virsh dumpxml [vm-name] > [vm-name].xml` and placing it in the same
    aforementioned directory.
 
 ### How do I move a VM from one host to another?
@@ -123,8 +123,8 @@ won't work if you're trying to diagnose boot problems.
 On the hypervisor, run `sudo virsh edit <vm-name>` to edit the VM's XML
 definition.
 
-To query and modify virtual hardware state for your vm, use the following commands,
-for RAM:
+To query and modify virtual hardware state for your vm, use the following
+commands, for RAM:
 
     virsh dommemstat <vm-name> [[--config] [--live] | [--current]]
     virsh setmaxmem <vm-name> <size> [[--config] [--live] | [--current]]
