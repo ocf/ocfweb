@@ -11,3 +11,4 @@ The following staffers have successfully made a pull request to
 - [kmo](https://github.com/ocf/ocfweb/pull/588)
 - [erilu]()
 - [njha](https://github.com/ocf/ocfweb/pull/598)
+- [jimfang](https://github.com/ocf/ocfweb/pull/824)
