@@ -43,11 +43,13 @@ As of Fall 2023, the OCF HPC cluster is composed of one server, with the
 following specifications:
 
 * 2 Intel Xeon [E5-2640v4][corruption-cpu] CPUs (10c/20t @ 2.4GHz)
-* 4 NVIDIA A6000 GPUs
+* 4 NVIDIA RTX A6000 GPUs
 * 256GB ECC DDR4-2400 RAM
 
 The current hardware was generously funded by a series of grants from
-the [Student Tech Fund][stf].
+the [Student Tech Fund][stf] and the GPUs were gifted by NVIDIA through
+the [NVIDIA Academic Hardware Grant Program]
+(https://mynvidia.force.com/HardwareGrant/s/Application).
 
 ## Slurm
 
