@@ -46,7 +46,7 @@ following specifications:
 * 4 NVIDIA A6000 GPUs
 * 256GB ECC DDR4-2400 RAM
 
-The current hardware was generously funded by a series of grants from 
+The current hardware was generously funded by a series of grants from
 the [Student Tech Fund][stf].
 
 ## Slurm
