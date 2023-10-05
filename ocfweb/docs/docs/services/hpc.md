@@ -49,7 +49,7 @@ following specifications:
 The current hardware was generously funded by a series of grants from
 the [Student Tech Fund][stf] and the GPUs were gifted by NVIDIA through
 the [NVIDIA Academic Hardware Grant Program]
-(https://mynvidia.force.com/HardwareGrant/s/Application).
+(https://developer.nvidia.com/higher-education-and-research).
 
 ## Slurm
 
