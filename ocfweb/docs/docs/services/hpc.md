@@ -42,13 +42,12 @@ where you can ask questions and talk to us about anything HPC.
 As of Fall 2023, the OCF HPC cluster is composed of one server, with the
 following specifications:
 
-* 2 Intel Xeon [E5-2640v4][corruption-cpu] CPUs (10c/20t @ 2.4GHz)
+* 2 Intel Xeon [Platinum 8352Y][corruption-cpu] CPUs (32c/64t @ 2.4GHz)
 * 4 NVIDIA RTX A6000 GPUs
-* 256GB ECC DDR4-2400 RAM
+* 256GB ECC DDR4-3200 RAM
 
-The current hardware was generously funded by a series of grants from
-the [Student Tech Fund][stf] and the GPUs were gifted by NVIDIA through
-the [NVIDIA Academic Hardware Grant Program]
+The current hardware were funded with our ASUC budget and the GPUs were 
+gifted by NVIDIA through the [NVIDIA Academic Hardware Grant Program]
 (https://developer.nvidia.com/higher-education-and-research).
 
 ## Slurm
@@ -168,7 +167,7 @@ able to interface with the GPUs.
 
 [docker_hub]: https://hub.docker.com/
 [singularity_hub]: https://singularity-hub.org/
-[singularity_article]: http://www.admin-magazine.com/HPC/Articles/Singularity-A-Container-for-HPC
+[singularity_article]: https://www.admin-magazine.com/HPC/Articles/Singularity-A-Container-for-HPC
 [slurm]: https://slurm.schedmd.com/
 [singularity]: https://singularity.lbl.gov/
 [group]: https://www.ocf.berkeley.edu/docs/membership/#h2_group-accounts
@@ -180,5 +179,4 @@ able to interface with the GPUs.
 [win_install]: https://singularity.lbl.gov/install-windows
 [linux_install]: https://singularity.lbl.gov/install-linux
 [brc_slurm]: https://research-it.berkeley.edu/services/high-performance-computing/running-your-jobs
-[corruption-cpu]: https://ark.intel.com/products/92984/Intel-Xeon-Processor-E5-2640-v4-25M-Cache-2-40-GHz-
-[stf]: https://techfund.berkeley.edu
+[corruption-cpu]: https://ark.intel.com/content/www/us/en/ark/products/212284/intel-xeon-platinum-8352y-processor-48m-cache-2-20-ghz.html
