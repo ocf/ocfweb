@@ -4,7 +4,7 @@ Want to dive into learning about technical infrastructure at the OCF, but not
 sure where to start? Here are some self-paced tasks you can do on your own. Feel
 free to ask for help in our [Slack](https://ocf.io/slack),
 [Discord](https://ocf.io/discord), [Matrix](https://chat.ocf.berkeley.edu),
-[Slack](https://ocf.io/slack), or in person during
+[IRC](https://ocf.io/irc), or in person during
 [staff hours](https://ocf.io/staffhours)!
 
 Tasks marked with an asterisk (\*) require staff privileges. If you want to work
