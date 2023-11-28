@@ -24,7 +24,7 @@ or Berkeley email for these steps.
 3. **From Gmail, go to the settings page and start adding a new address.**
 
    From your Gmail account, click on the settings wheel in the top-right
-   corner, then click "Settings".
+   corner, then click "See all settings".
 
    At the top of the Settings page, click the tab that says "Accounts".
 
