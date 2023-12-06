@@ -176,6 +176,7 @@ MISSING_NAMES = {
     'gwh': 'George William Herbert',
     'hexhu': 'Leo Huang',
     'idham': 'Ishaan Dham',
+    'inurzhanov': 'Isabelle Nurzhanov',
     'jameson': 'Jameson J Lee',
     'jaw': 'Ja (Thanakul) Wattanawong',
     'jaysa': 'Jaysa Garcia',
@@ -502,6 +503,17 @@ def _bod_terms() -> List[Term]:
                 ('External', ['anddone', 'btorres', 'ethanhu']),
                 ('Finance', ['adi', 'anirudhsuresh', 'yehchanyoo']),
                 ('DeCal', ['adi', 'btorres', 'trinityc']),
+            ],
+        ),
+        Term(
+            'Spring 2024',
+            gms=['bryli', 'ronitnath'],
+            sms=['oliverni', 'njha'],
+            heads=[
+                ('Internal', ['adi']),
+                ('External', ['inurzhanov']),
+                ('Finance', ['anirudhsuresh']),
+                ('DeCal', ['jaysa', 'kian']),
             ],
         ),
     ]
