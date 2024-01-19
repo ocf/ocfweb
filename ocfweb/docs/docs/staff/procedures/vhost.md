@@ -38,10 +38,10 @@ available shortly afterwards (within 5-10 minutes). Keep in mind that vhosts
 are not available without HTTPS, so there may be a short period of time where
 the new vhost is unavailable or giving a certificate error.
 
-Next, request the following DNS records from the [University
+Next, request the following DNS record from the [University
 hostmaster][campus-hostmistress]:
 
-    hostname.berkeley.edu. IN CNAME hosting.ocf.berkeley.edu
+    hostname.berkeley.edu. IN CNAME hosting.ocf.berkeley.edu.
 
 Use the domain requested by the group in place of `hostname`. We have a
 [reusable email
