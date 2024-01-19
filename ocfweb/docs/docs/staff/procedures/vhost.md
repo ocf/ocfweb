@@ -41,9 +41,7 @@ the new vhost is unavailable or giving a certificate error.
 Next, request the following DNS records from the [University
 hostmaster][campus-hostmistress]:
 
-    hostname.Berkeley.EDU. IN A 169.229.226.23
-    hostname.Berkeley.EDU. IN AAAA 2607:f140:8801::1:23
-    hostname.Berkeley.EDU. IN MX 5 anthrax.OCF.Berkeley.EDU.
+    hostname.berkeley.edu. IN CNAME hosting.ocf.berkeley.edu
 
 Use the domain requested by the group in place of `hostname`. We have a
 [reusable email
