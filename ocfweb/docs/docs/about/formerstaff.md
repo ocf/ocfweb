@@ -25,7 +25,7 @@ Some of the places OCF staffers have gone on to work at:
 * Residential Computing Services, Housing and Dining (now called [Student
   Technology Services](https://studenttech.berkeley.edu/home))
 * [School of Information Management and Systems](https://www.ischool.berkeley.edu/)
-* [School of Law - Boalt Hall](https://www.law.berkeley.edu/)
+* [School of Law](https://www.law.berkeley.edu/)
 * [Statistical Computing Facility](http://statistics.berkeley.edu/computing)
 
 ### Elsewhere
@@ -50,12 +50,13 @@ Some of the places OCF staffers have gone on to work at:
 * Compaq
 * CRL Network Services
 * Digital Equipment Corporation (acquired by Compaq)
+* [Dots](http://dots.dev)
 * [Drogin, Kakigi, & Assoc.](http://www.dkstat.com/)
 * [Eventbrite](https://www.eventbrite.com)
 * [Facebook](https://www.facebook.com)
 * Forte Software (now part of [Sun Microsystems](https://www.oracle.com/sun/))
 * Framed Data (acquired by [Square](https://squareup.com/us/en))
-* [Fry's Electronics](https://www.frys.com/)
+* [Fry's Electronics](https://en.wikipedia.org/wiki/Fry%27s_Electronics)
 * Global Network Navigator, Inc.
 * [Goldman Sachs](https://www.goldmansachs.com/)
 * [Google](https://www.google.com)

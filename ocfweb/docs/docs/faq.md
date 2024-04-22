@@ -59,16 +59,20 @@ See [[account|doc services/account]].
 
 See [[account|doc services/account]].
 
-#### [[Web hosting|doc services/web]]: How do I get group.berkeley.edu ([[virtual hosting|doc services/vhost]])?
+#### [[Web hosting|doc services/web]]: How do I get group.studentorg.berkeley.edu ([[virtual hosting|doc services/vhost]])?
 
 First, you need to have a group [[account|doc membership]] and a working
 [[website|doc services/web]]. Then, request [[virtual hosting|doc
 services/vhost]].
 
-#### [[Email hosting|doc services/mail]]: How do I get @group.berkeley.edu ([[virtual hosting|doc services/vhost]])?
+#### [[Email hosting|doc services/mail]]: How do I get @group.studentorg.berkeley.edu ([[virtual hosting|doc services/vhost]])?
 
 First, set up regular [[virtual hosting|doc services/vhost]].
 Then, request [[email virtual hosting|doc services/vhost/mail]].
+
+#### My group already has a group.berkeley.edu domain. Will I have to migrate to group.studentorg.berkeley.edu?
+
+All student organizations will be transistioned to studentorg.berkeley.edu in the coming months. If you are part of a research lab, faculty, or have a subdomain within a department (e.g. site.eecs.berkeley.edu) you will be exempt from the transition. We will provide more communication in the coming months on how this process will work.
 
 #### [[Printing|doc services/lab/printing]]: I have a printing question/problem.
 

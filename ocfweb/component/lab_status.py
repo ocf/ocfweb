@@ -13,7 +13,7 @@ LabStatus = namedtuple(
 )
 
 
-@periodic(60, ttl=86400)
+@periodic(60)
 def get_lab_status() -> LabStatus:
     """Get the front page banner message from the default location."""
     with open('/etc/ocf/lab_status.yaml') as f:

@@ -1,9 +1,9 @@
-[[!meta title="Virtual hosting (group.berkeley.edu)"]]
+[[!meta title="Virtual hosting (group.studentorg.berkeley.edu)"]]
 
 
 Virtual hosting allows group accounts to have their website available on a
 different domain, typically under berkeley.edu. For example, a group's site can
-be made available at `yourgroup.berkeley.edu` in addition to the standard
+be made available at `yourgroup.studentorg.berkeley.edu` in addition to the standard
 address under `ocf.berkeley.edu`. Faculty and staff are also eligible
 for virtual hosting, but must obtain their own domains (e.g.
 `name.dept.berkeley.edu`).
@@ -24,7 +24,7 @@ email forwarding must be requested separately.
 After the virtual host is set up, the files in the `public_html` directory of
 your group account (ordinarily accessible at
 `https://www.ocf.berkeley.edu/~accountname`) will appear at the root directory
-of the virtual-hosted site (`yourgroup.berkeley.edu`).
+of the virtual-hosted site (`yourgroup.studentorg.berkeley.edu`).
 
 ### Instructions
 
@@ -66,7 +66,7 @@ groups) contain the following text on each page:
 
 ## Email Forwarding    {email}
 
-Want to send and receive email from `@mygroup.berkeley.edu` addresses? You can
+Want to send and receive email from `@mygroup.studentorg.berkeley.edu` addresses? You can
 do that!
 
 We call this *mail virtual hosting*. To learn more, [[check out our page about

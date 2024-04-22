@@ -82,7 +82,7 @@ class CommandForm(Form):
             'paper quota -- how many pages you have remaining this semester',
         ),
         (
-            '/usr/bin/quota -svQ',
+            '/usr/bin/quota -vQs',
             'disk quota -- how much disk space you have used and how much you ' +
             'have left',
         ),

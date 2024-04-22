@@ -5,7 +5,6 @@ RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
 LISTEN_IP := 0.0.0.0
 DOCKER_REPO ?= docker-push.ocf.berkeley.edu/
 DOCKER_REVISION ?= testing-$(USER)
-DOCKER_TAG_BASE = ocfweb-base-$(USER)
 DOCKER_TAG_WEB = $(DOCKER_REPO)ocfweb-web:$(DOCKER_REVISION)
 DOCKER_TAG_WORKER = $(DOCKER_REPO)ocfweb-worker:$(DOCKER_REVISION)
 DOCKER_TAG_STATIC = $(DOCKER_REPO)ocfweb-static:$(DOCKER_REVISION)
@@ -20,17 +19,13 @@ test: venv mypy
 mypy: venv
 	$(BIN)/mypy -p ocfweb
 
-.PHONY: Dockerfile.%
-Dockerfile.%: Dockerfile.%.in
-	sed 's/{tag}/$(DOCKER_TAG_BASE)/g' "$<" > "$@"
-
 .PHONY: cook-image
-cook-image: Dockerfile.web Dockerfile.worker Dockerfile.static
+cook-image:
 	$(eval OCFLIB_VERSION := ==$(shell curl https://pypi.org/pypi/ocflib/json | jq -r .info.version))
-	docker build --pull --build-arg ocflib_version=$(OCFLIB_VERSION) -t $(DOCKER_TAG_BASE) .
-	docker build -t $(DOCKER_TAG_WEB) -f Dockerfile.web .
-	docker build -t $(DOCKER_TAG_WORKER) -f Dockerfile.worker .
-	docker build -t $(DOCKER_TAG_STATIC) -f Dockerfile.static .
+	docker build --pull --build-arg ocflib_version=$(OCFLIB_VERSION) --target base .
+	docker build -t $(DOCKER_TAG_WEB) --target web .
+	docker build -t $(DOCKER_TAG_WORKER) --target worker .
+	docker build -t $(DOCKER_TAG_STATIC) --target static .
 
 .PHONY: push-image
 push-image:
@@ -48,7 +43,7 @@ local-dev: LISTEN_IP=127.0.0.1
 local-dev: dev
 
 venv: requirements.txt requirements-dev.txt
-	python3.7 ./vendor/venv-update venv= venv -ppython3.7 install= -r requirements.txt -r requirements-dev.txt
+	python3 ./vendor/venv-update venv= venv -ppython3.9 install= -r requirements.txt -r requirements-dev.txt
 
 .PHONY: install-hooks
 install-hooks: venv

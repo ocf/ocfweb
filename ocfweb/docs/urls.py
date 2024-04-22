@@ -21,7 +21,7 @@ from ocfweb.docs.views.index import docs_index
 from ocfweb.docs.views.lab import lab
 from ocfweb.docs.views.officers import officers
 from ocfweb.docs.views.servers import servers
-
+from ocfweb.docs.views.shorturl import shorturl
 
 DOCS = {
     doc.name: doc
@@ -34,6 +34,7 @@ DOCS = {
             Document(name='/services/vhost/badges', title='Hosting badges', render=hosting_badges),
             Document(name='/services/lab', title='Computer lab', render=lab),
             Document(name='/services/shell/commands', title='Command reference', render=commands),
+            Document(name='/staff/tips/shorturl-tbl', title='ShortURL table', render=shorturl),
         ],
         get_markdown_docs(),
     )

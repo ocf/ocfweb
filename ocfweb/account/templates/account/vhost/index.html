@@ -4,7 +4,7 @@
 {% block content %}
     <div class="ocf-content-block">
         <p>
-            One of the benefits of hosting your website with the OCF is that department and student groups have the option of using an address like "mygroup.berkeley.edu" to access their site.
+            One of the benefits of hosting your website with the OCF is that department and student groups have the option of using an address like "mygroup.studentorg.berkeley.edu" to access their site.
             However, in order to use a custom domain name for your site, you must meet both university policies regarding acceptable use of berkeley.edu names, as well as OCF policies for virtual hosting.
         </p>
         <p>
@@ -69,12 +69,15 @@
                 {{form.website_ocf_banner|bootstrap}}
                 {{form.website_disclaimer_text|bootstrap}}
                 {{form.website_updated_software|bootstrap}}
+                {{form.website_hostmaster_policy|bootstrap}}
 
                 {% if is_group %}
                     {{form.your_name|bootstrap}}
                 {% endif %}
-                {{form.your_email|bootstrap}}
                 {{form.your_position|bootstrap}}
+                {{form.your_email|bootstrap}}
+                {{form.university_contact|bootstrap}}
+                {{form.university_purpose|bootstrap}}
                 {{form.comments|bootstrap}}
 
                 <hr />

@@ -24,7 +24,7 @@ or Berkeley email for these steps.
 3. **From Gmail, go to the settings page and start adding a new address.**
 
    From your Gmail account, click on the settings wheel in the top-right
-   corner, then click "Settings".
+   corner, then click "See all settings".
 
    At the top of the Settings page, click the tab that says "Accounts".
 
@@ -45,7 +45,7 @@ or Berkeley email for these steps.
 
      * **SMTP Server:** `smtp.ocf.berkeley.edu`
      * **Username:** The *full email address*, including
-       `@mygroup.berkeley.edu` at the end.
+       `@mygroup.studentorg.berkeley.edu` at the end.
      * **Password:** The password you chose in step 2.
      * **Port:** 587 (the default)
      * **Secured connection:** Using TLS (the default)

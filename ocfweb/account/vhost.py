@@ -67,6 +67,8 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
 
         if form.is_valid():
             requested_subdomain = form.cleaned_data['requested_subdomain']
+            university_purpose = form.cleaned_data['university_purpose']
+            university_contact = form.cleaned_data['university_contact']
             comments = form.cleaned_data['comments']
             your_name = form.cleaned_data['your_name'] if is_group else attrs['cn'][0]
             your_email = form.cleaned_data['your_email']
@@ -92,6 +94,10 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
                       - Requested Subdomain: {requested_subdomain}
                       - Current URL: https://www.ocf.berkeley.edu/~{user}/
 
+                    University Hostmaster Questions:
+                      - Purpose: {university_purpose}
+                      - Contact: {university_contact}
+
                     Comments/Special Requests:
                     {comments}
 
@@ -108,6 +114,8 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
                     user=user,
                     title=attrs['cn'][0],
                     requested_subdomain=requested_subdomain,
+                    university_purpose=university_purpose,
+                    university_contact=university_contact,
                     comments=comments,
                     your_name=your_name,
                     your_position=your_position,
@@ -140,9 +148,12 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
                 else:
                     return redirect(reverse('request_vhost_success'))
     else:
-        # Unsupported left operand type for + ("None") because form might not have been instantiated at this point...
-        # but this doesn't matter because of if-else clause
-        form = VirtualHostForm(is_group, initial={'requested_subdomain': user + '.berkeley.edu'})  # type: ignore
+        form = VirtualHostForm(
+            is_group,
+            initial={
+                'requested_subdomain': f'{user}.studentorg.berkeley.edu',
+            },
+        )
 
     group_url = f'https://www.ocf.berkeley.edu/~{user}/'
 
@@ -176,7 +187,7 @@ class VirtualHostForm(Form):
     requested_domain_type = forms.ChoiceField(
         choices=[
             (
-                'berkeley', 'I would like to request a berkeley.edu domain \
+                'berkeley', 'I would like to request a studentorg.berkeley.edu domain \
                      (most student groups want this).',
             ),
             ('own', 'I want to use the domain I already own.'),
@@ -188,7 +199,7 @@ class VirtualHostForm(Form):
         label='Requested domain:',
         min_length=1,
         max_length=32,
-        widget=forms.TextInput(attrs={'placeholder': 'mysite.berkeley.edu'}),
+        widget=forms.TextInput(attrs={'placeholder': 'mysite.studentorg.berkeley.edu'}),
     )
 
     # website requirements
@@ -216,16 +227,34 @@ class VirtualHostForm(Form):
                this box and move on.)',
     )
 
+    # required disclaimer by the university hostmaster
+    website_hostmaster_policy = forms.BooleanField()
+
+    # also see __init__
+    your_position = forms.CharField(
+        min_length=1,
+        max_length=64,
+    )
+
     your_email = forms.EmailField(
         label='Your email address:',
         min_length=1,
         max_length=64,
     )
 
-    # also see __init__
-    your_position = forms.CharField(
+    university_contact = forms.EmailField(
+        label='Contact email address for the university (may be the same as your email):',
         min_length=1,
         max_length=64,
+    )
+
+    university_purpose = forms.CharField(
+        widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}),
+        label='The purpose of your requested subdomain, who will be using it,\
+               and its relationship to the university\'s mission:',
+        required=False,
+        min_length=1,
+        max_length=2048,
     )
 
     comments = forms.CharField(
@@ -254,6 +283,13 @@ class VirtualHostForm(Form):
             'There is a <a href="{}">Hosted by the OCF</a> banner image '
             'visible on the home page.'
         ).format(reverse('doc', args=('services/vhost/badges',))))
+
+        self.fields['website_hostmaster_policy'].label = mark_safe(
+            'You acknowledge that all relevant university '
+            'policies will be followed, including those pertaining '
+            'to <a href="https://dac.berkeley.edu/web-accessibility"> '
+            'campus website accessibility</a>.',
+        )
 
         # These just require some runtime info
         self.fields['your_position'].label = mark_safe(

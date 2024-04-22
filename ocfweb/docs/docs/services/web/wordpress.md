@@ -4,7 +4,7 @@ WordPress is a popular CMS (content management system) on the Web.
 
 OCF's [[web hosting|doc services/web]] supports local WordPress installations,
 and groups using WordPress are eligible for [[virtual hosting|doc
-services/vhost]] (mygroup.berkeley.edu names).
+services/vhost]] (mygroup.studentorg.berkeley.edu names).
 
 Instructions for using WordPress are provided below; you can also [[drop by
 during staff hours|staff-hours]] for in-person assistance.
@@ -174,15 +174,21 @@ If that's the case, you can fix it by:
    cd ~/public_html
    ```
 
-3. Run the following commands, substituting the correct URL for `example.com`:
+3. Run the following commands, substituting the correct URL for `example.berkeley.edu`:
 
    ```shell
-   $ wp option update home 'https://example.com'
-   $ wp option update siteurl 'https://example.com'
+   $ wp option update home 'https://example.berkeley.edu'
+   $ wp option update siteurl 'https://example.berkeley.edu'
+   ```
+
+   You may also need to run a full search and replace on all URLs on the site:
+
+   ```shell
+   $ wp search-replace 'www.ocf.berkeley.edu/~example' 'example.berkeley.edu'
    ```
 
 If you've just received virtual hosting and you're changing your site URL from
-`https://www.ocf.berkeley.edu/~yourgroup` to `https://yourgroup.berkeley.edu`,
+`https://www.ocf.berkeley.edu/~yourgroup` to `https://yourgroup.studentorg.berkeley.edu`,
 you may additionally need to edit the `.htaccess` file in the root of your
 WordPress installation. Specifically, you should replace `/~yourgroup/` with
 `/` whenever it occurs in that file.

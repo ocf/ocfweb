@@ -6,7 +6,6 @@ non-standard packages installed:
 * [APCu](https://www.php.net/manual/en/book.apcu.php) (opcode caching)
 * [BC Math](https://www.php.net/manual/en/book.bc.php) (arbitrary precision math)
 * [Bzip2](https://www.php.net/manual/en/book.bzip2.php) (compression library)
-* [cURL](https://www.php.net/manual/en/book.curl.php) (networking library)
 * [DBA](https://www.php.net/manual/en/book.dba.php) (database connector)
 * [GD](https://www.php.net/manual/en/book.image.php) (graphics library)
 * [MB String](https://www.php.net/manual/en/book.mbstring.php) (string encoding)
@@ -49,3 +48,10 @@ good `.user.ini` file.
 
 
 [.user.ini]: https://secure.php.net/manual/en/configuration.file.per-user.php
+
+## Security
+
+To prevent websites from being compromised, outbound HTTP requests via
+either `curl_exec()` or `file_get_contents()` are blocked.
+Consider using different frameworks if your website requires outbound
+HTTP requests.

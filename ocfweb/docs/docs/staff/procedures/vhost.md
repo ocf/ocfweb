@@ -48,7 +48,17 @@ hostmaster][campus-hostmistress]:
 Use the domain requested by the group in place of `hostname`. We have a
 [reusable email
 template](https://templates.ocf.berkeley.edu/#hostmaster-new-domain) for making
-new DNS requests.
+new DNS requests. This email should be sent to hostmaster@nic.berkeley.edu
+and sm+vhost@ocf.berkeley.edu.
+
+Answers to the following questions (provided by the requestor of the subdomain)
+should be sent to the University hostmaster along with the DNS request itself.
+1. The purpose of the hostname, who will be using it, and its relationship to the university's mission
+
+2. A responsible contact for the hostname
+
+3. Acknowledgment that all relevant university policies will be followed, including those pertaining to [campus website accessibility][campus-accessibility]
+
 
 ### Mail (if requested)    {mail}
 
@@ -81,6 +91,8 @@ We have a
 [reusable email
 template](https://templates.ocf.berkeley.edu/#hostmaster-add-mail) for making
 DNS mail requests for groups that have old `CNAME` records.
+
+Mail virtual hosting may be requested separately from website virtual hosting and without a completely developed website.
 
 
 ### Application hosting
@@ -126,3 +138,4 @@ apphost is configured properly, and a `403 Forbidden` otherwise.
 
 [ocf-etc]: https://github.com/ocf/etc
 [campus-hostmistress]: https://ucb.service-now.com/kb_view.do?sysparm_article=KBT0012470
+[campus-accessibility]: https://dac.berkeley.edu/web-accessibility

@@ -2,7 +2,7 @@
 
 
 These are the official **Bylaws of the Open Computing Facility**, as last
-amended at the Board meeting of April 13, 2021.
+amended at the Board meeting of November 17, 2021.
 
 1. [Repealed]
 
@@ -18,10 +18,13 @@ amended at the Board meeting of April 13, 2021.
 
 5. Resolutions by the Board of Directors can be put to a vote electronically.
    When putting a resolution to the Board in this manner, all Board members
-   must be included in the request for votes. To pass an issue this way, at
-   least half of all the Board members must agree. If the motion fails to
-   achieve a majority within seventy-two hours of being called to such a vote,
-   the motion fails. The results of the vote will be posted in roll call form.
+   must be included in the request for votes. To pass an issue this way,
+   either at least half of all the Board members agree, or, quorum is achieved
+   and a majority of voting Board members agree after allowing a period of
+   forty-eight hours for Board members to vote. If the motion fails to achieve
+   quorum with a majority of voting Board members agreeing after forty-eight
+   hours of being called to such a vote, the motion fails. The results of the
+   vote will be posted in roll call form.
 
 6. Attendance lists and minutes for all OCF meetings shall be maintained for
    the decisions of that meeting to be valid.
@@ -78,35 +81,23 @@ amended at the Board meeting of April 13, 2021.
 
 18. Committees
 
-    1. The Board of Directors includes the following permanent committees:
+    1. The Board of Directors includes the following permanent committees in no particular order:
 
-       1. The University Affairs Committee manages relationships between the
-          OCF and other entities within UC Berkeley, such as the ASUC, the
-          Graduate Assembly, the LEAD Center, the ASUC Student Union, IST, and
-          other campus administrators and student organizations.
+       1. The Internal Committee promotes the interests of staff within the
+          OCF and empowers staff to make meaningful contributions to the OCF,
+          including training and onboarding. The Internal Committee is
+          responsible for communicating with staff members.
 
-       2. The Internal Committee promotes the interests of staff within the
-          OCF and empowers staff to make meaningful contributions to the OCF.
+       2. The External Committee promotes OCF services and events to the broader
+          campus community as appropriate, and manages relationships with companies,
+          OCF alumni, and other individuals or groups that are external to
+          UC Berkeley, and manages OCF public relations and image.
 
-       3. The Industry and Alumni Relations Committee manages relationships
-          with companies, OCF alumni, and other individuals or groups that are
-          external to UC Berkeley.
+       3. The Finance Committee oversees the finances of the OCF and  ensures
+          that the OCF is adequately funded. The Finance Committee should also
+          routinely explore funding opportunities.
 
-       4. The Finance Committee oversees the finances of the OCF and ensures
-          that the OCF is adequately funded.
-
-       5. The Communication Committee keeps OCF staff up to date with
-          happenings in the organization and promotes OCF services and events
-          to the broader campus community as appropriate.
-
-       6. The DeCal Committee runs the Linux System Administration DeCal.
-
-       7. The Lab Space Committee is responsible for matters regarding the
-          physical lab space.
-
-       8. The Service Committee is responsible for maintaining user-facing
-          services and providing help to those in need through the request
-          tracking system.
+       4. The DeCal Committee runs the Linux System Administration DeCal.
 
     2. Additional committees may be established on an ad-hoc basis by the OCF
        Decision Making Process.
@@ -115,24 +106,19 @@ amended at the Board meeting of April 13, 2021.
        Directors meeting in the Fall and Spring semester, with the following
        exceptions:
 
-       1. The University Affairs Committee is headed by the General Managers,
-          and an election for University Affairs Committee head will not be held.
-
-       2. The Service Committee is headed by the Site Managers, and an election
-          for Service Committee head will not be held.
-
-       3. Election dates for heads to the DeCal Committee and ad-hoc
+       1. Election dates for heads to the DeCal Committee and ad-hoc
           committees may be set by the OCF Decision Making Process. Election
           dates may not be set for fewer than 14 days in the future. Elections
           must be announced to all Board members at least 14 days in advance.
-
-       4. If there is no elected head for the Lab Space Committee, it is headed
-          by the Site Managers.
 
     4. The terms of permanent committee heads begin on the first day following
        the end of the semester in which they were elected. The terms of ad-hoc
        committees heads will be specified according to the OCF Decision Making
        Process.
+
+    5. Each committee is required to maintain and follow a runbook which
+       enlists specific responsibilities of that committee as well as all
+       tasks needed to run said committee.
 
 19. Board Budget
 
@@ -169,4 +155,5 @@ bylaw 17 added at the Board meeting of November 18, 2019. Bylaws 9.1 and 13.1
 amended, bylaws 10, 11, and 12.4 repealed, and bylaw 18 added at the Board
 meeting of December 2, 2019. Bylaw 12.2 amended and bylaws 18.1.7, 18.3.3,
 and 19 added at the Board meeting of September 9, 2020. Bylaws 18.1.8 and
-18.3.2 added at the Board meeting of April 13, 2021.
+18.3.2 added at the Board meeting of April 13, 2021. Bylaw 5 and 18 amended
+at the Board meeting of November 17, 2021.

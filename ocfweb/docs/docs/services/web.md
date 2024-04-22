@@ -9,7 +9,7 @@ All accounts include hosting with a web address at:
 where `user` is the account name.
 
 Groups, faculty, and staff may also request a [[virtual host|doc
-services/vhost]] for another domain (e.g., group.berkeley.edu).
+services/vhost]] for another domain (e.g., group.studentorg.berkeley.edu).
 
 ## Uploading Files
 
@@ -37,11 +37,11 @@ Both individual hosting and student group hosting are done entirely over HTTPS.
 
 ### Supported languages
 
-* PHP 7.0.33
-* Perl 5.24.1
-* Python 2.7.13, and 3.5.3; Django 1.10.7; Flask 0.12.1
-* Ruby 2.3.3; Rails 4.2.7.1
-* NodeJS 4.8.2
+* PHP 7.4
+* Perl 5.32.1
+* Python 3.7 and 3.9; Django; Flask 1.1.2
+* Ruby 2.7; Rails 6.0.3.7
+* NodeJS 12
 
 Other flavors of the day may work but are not currently supported. We may be
 able to install additional packages on request, but will generally advise you
@@ -77,12 +77,12 @@ Here are two easy ways to re-create the symlink:
 #### via SSH
 
 1. Login to your account via [[SSH|doc services/shell]].
-2. After you go past all system messages, you will see prompt:
+2. After you go past all system messages, you will see a command prompt:
 
-        tsunami$
+        user@tsunami:~$
 
     At this prompt, type `makehttp`. This command will create your web
-    directory. Here's a sample screen output:
+    directory. Here's a sample command output:
 
-        tsunami$ makehttp
-        public_html folder has been created successfully.
+        user@tsunami:~$ makehttp
+        Your public_html directory is ready to use!

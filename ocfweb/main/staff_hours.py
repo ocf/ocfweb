@@ -11,7 +11,7 @@ from ocfweb.caching import periodic
 from ocfweb.component.lab_status import get_lab_status
 
 
-@periodic(60, ttl=86400)
+@periodic(60)
 def get_staff_hours() -> List[Any]:
     return real_get_staff_hours()
 

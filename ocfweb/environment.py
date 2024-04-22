@@ -3,7 +3,7 @@ import os
 from functools import lru_cache
 
 
-@lru_cache()
+@lru_cache
 def ocfweb_version() -> str:
     """Return string representing ocfweb version.
 
