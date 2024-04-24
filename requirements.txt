@@ -1,6 +1,6 @@
 amqp<6
 asgiref==3.4.1
-attrs==21.2.0
+attrs>=21.2.0
 bcrypt==3.2.0
 billiard==3.6.4.0
 cached-property==1.5.2
@@ -36,7 +36,7 @@ MarkupSafe==2.0.1
 matplotlib==3.4.3
 mistune==0.8.4
 numpy<1.25
-ocflib
+ocflib>=2024.4.23
 paramiko==3.1.0
 pexpect==4.8.0
 Pillow==9.5.0
