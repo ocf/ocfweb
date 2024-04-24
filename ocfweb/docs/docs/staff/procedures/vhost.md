@@ -41,7 +41,7 @@ the new vhost is unavailable or giving a certificate error.
 Next, request the following DNS record from the [University
 hostmaster][campus-hostmistress]:
 
-    hostname.berkeley.edu. IN CNAME hosting.ocf.berkeley.edu.
+    hostname.studentorg.berkeley.edu. IN CNAME hosting.ocf.berkeley.edu.
 
 Use the domain requested by the group in place of `hostname`. We have a
 [reusable email
@@ -125,9 +125,7 @@ Once the cronjob completes, the application will be available at:
 Once the website is developed and meets policy checklist, request the following
 DNS record from the [University hostmaster][campus-hostmistress]:
 
-    hostname.Berkeley.EDU. IN A 169.229.226.49
-    hostname.Berkeley.EDU. IN AAAA 2607:f140:8801::1:49
-    hostname.Berkeley.EDU. IN MX 5 anthrax.OCF.Berkeley.EDU.
+    hostname.studentorg.berkeley.edu. IN CNAME hosting.ocf.berkeley.edu.
 
 Remember to request that any existing records be dropped as well. You can check
 for records with `dig hostname.berkeley.edu [A|AAAA|MX]`. The nginx running on
