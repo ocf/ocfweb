@@ -38,7 +38,7 @@ available shortly afterwards (within 5-10 minutes). Keep in mind that vhosts
 are not available without HTTPS, so there may be a short period of time where
 the new vhost is unavailable or giving a certificate error.
 
-Next, request the following DNS records from the [University
+Next, request the following DNS record from the [University
 hostmaster][campus-hostmistress]:
 
     hostname.studentorg.berkeley.edu. IN CNAME hosting.ocf.berkeley.edu.
@@ -49,9 +49,11 @@ template](https://templates.ocf.berkeley.edu/#hostmaster-new-domain) for making
 new DNS requests. This email should be sent to hostmaster@nic.berkeley.edu
 and sm+vhost@ocf.berkeley.edu.
 
+**Make sure to include the name and CalLink OID of the requesting RSO.**
+
 Answers to the following questions (provided by the requestor of the subdomain)
 should be sent to the University hostmaster along with the DNS request itself.
-1. The purpose of the hostname, who will be using it, and its relationship to the university's mission
+1. The purpose of the hostname and who will be using it
 
 2. A responsible contact for the hostname
 
