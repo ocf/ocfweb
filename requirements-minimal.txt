@@ -12,7 +12,7 @@ libsass
 matplotlib
 mistune
 numpy
-ocflib
+ocflib>=2024.4.23
 paramiko
 pyasn1
 pycryptodome
