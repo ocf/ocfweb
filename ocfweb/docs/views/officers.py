@@ -221,7 +221,6 @@ MISSING_NAMES = {
     'psb': 'Partha S. Banerjee',
     'rachy': 'Rachel Trujillo',
     'rayh': 'Raymond Huang',
-    'rjz': 'Jonathan Zhang',
     'ronitnath': 'Ronit Nath',
     'rrchan': 'Ryan-chan',
     'rsr': 'Roy S. Rapoport',
