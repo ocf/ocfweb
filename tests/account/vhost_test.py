@@ -7,8 +7,8 @@ from ocfweb.account.vhost import valid_domain_external
 @pytest.mark.parametrize(
     'domain,expected', [
         # nxdomain (should be available)
-        ('asdfghjk.berkeley.edu', True),
-        ('kljasdlgjlsafdfhsadf.berkeley.edu', True),
+        ('asdfghjk.studentorg.berkeley.edu', True),
+        ('kljasdlgjlsafdfhsadf.studentorg.berkeley.edu', True),
 
         # mx record only
         ('g.berkeley.edu', False),
@@ -22,6 +22,7 @@ from ocfweb.account.vhost import valid_domain_external
         # existing domains
         ('ocf.berkeley.edu', False),
         ('cs.berkeley.edu', False),
+        ('tbp.studentorg.berkeley.edu', False),
 
         # existing subdomains
         ('cory.eecs.berkeley.edu', False),

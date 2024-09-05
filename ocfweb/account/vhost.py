@@ -27,7 +27,7 @@ from ocfweb.component.session import logged_in_user
 
 
 def available_domain(domain: str) -> bool:
-    if not re.match(r'^[a-zA-Z0-9]+\.berkeley\.edu$', domain):
+    if not re.match(r'^[a-zA-Z0-9]+\.studentorg\.berkeley\.edu$', domain):
         return False
     return not host_exists(domain)
 
@@ -317,10 +317,10 @@ class VirtualHostForm(Form):
                 )
             return requested_subdomain
 
-        if not requested_subdomain.endswith('.berkeley.edu'):
+        if not requested_subdomain.endswith('.studentorg.berkeley.edu'):
             raise forms.ValidationError(
-                'The domain you entered does not end in ".berkeley.edu". '
-                'Maybe add ".berkeley.edu" to the end?',
+                'The domain you entered does not end in ".studentorg.berkeley.edu". '
+                'Maybe add ".studentorg.berkeley.edu" to the end?',
             )
 
         if not available_domain(requested_subdomain):
