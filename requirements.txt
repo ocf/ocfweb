@@ -65,9 +65,9 @@ setuptools==65.5.1
 six==1.16.0
 SQLAlchemy==1.4.52
 sqlparse==0.4.4
-typing-extensions==3.10.0.2
+typing-extensions==4.12.2
 urllib3<2
-vine==5.0.0
+vine==5.1.0
 wcwidth==0.2.5
 wrapt==1.12.1
 zipp==3.5.0
