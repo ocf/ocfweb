@@ -31,7 +31,7 @@ DOCS = {
             Document(name='/about/officers', title='Officers', render=officers),
             Document(name='/staff/backend/servers', title='Servers', render=servers),
             Document(name='/staff/backend/buster', title='Debian Buster upgrade', render=buster_upgrade),
-            Document(name='/staff/backend/buster', title='Debian Buster upgrade', render=buster_upgrade),
+            Document(name='/staff/backend/nixos', title='NixOS upgrade', render=desktop_upgrade),
             Document(name='/services/account/account-policies', title='Account policies', render=account_policies),
             Document(name='/services/vhost/badges', title='Hosting badges', render=hosting_badges),
             Document(name='/services/lab', title='Computer lab', render=lab),
