@@ -1,7 +1,7 @@
 [[!meta title="Web hosting"]]
 
 
-All accounts include hosting with a web address at:
+All OCF accounts include web hosting with an address at:
 
 * **`https://www.ocf.berkeley.edu/~user`** (canonical version)
 * **`https://ocf.io/user`** (shorter version)
@@ -10,6 +10,52 @@ where `user` is the account name.
 
 Groups, faculty, and staff may also request a [[virtual host|doc
 services/vhost]] for another domain (e.g., group.studentorg.berkeley.edu).
+
+#### Off-site hosting
+
+One question that often comes up is if the OCF is able to host websites
+from services such as Squarespace, Wix, Weebly, Tumblr, etc. Unfortunately
+due to logistical considerations and University policy, the OCF is unable
+to do so. More specifically, the OCF cannot point  <group>.berkeley.edu
+domain names to off-campus hosting providers, but it can, however, host
+websites exported from such providers.
+
+Many website building services like Wix and Weebly make their money by
+using a proprietary service to allow users to design their websites, and
+subsequently charge users to host those sites. This means providing the
+servers, storage space, internet connection, and configurations to allow
+these sites to show up on the internet. Obviously, the OCF is unable to
+access this proprietary software and is therefore unable to host sites
+developed using them. However, the OCF is capable of hosting anything made
+using the free and open-source backends we support, including Wordpress,
+Django, Ruby on Rails, Node.js, PHP, and others. You may wish to consider
+building your website with those if you desire to host with the OCF.
+
+Furthermore, University policy prohibits campus DNS from redirection to
+off-site hosts without explicit permission from the University. This means
+that, if you want to host your website with Wix or some other provider, we
+cannot give you a URL like group.berkeley.edu that points to that website.
+If you would like to host off-site, OCF is not the appropriate point of
+contact in such cases - one would have to
+[contact the university](https://offsitehosting.berkeley.edu/) directly
+to request permission. This is primarily relevant to student groups.
+
+Similarly, the OCF does not generally allow hosting under custom domain names
+for student groups. This means we do not usually support things like
+"you_or_your_group.com" pointing to a website whose files are hosted on OCF
+servers. However, we may agree to host websites under custom domains on a
+case-by-case basis, usually for University affiliates such as faculty members,
+ASUC/University programs, and others. Please [[contact us|doc contact]] for
+more information.
+
+For reference, a typical web hosting scenario involves two things: the domain
+name, and the hosting server. The domain name is purchased from a registrar,
+and using it involves setting Domain Name System (DNS) records to point to
+the address of a hosting server. This server is purchased from any variety
+of sources, and must be configured to respond to web requests to the domain
+name in question. While the OCF provides both, only a limited subset of their
+functionality are available for general use by the campus community due to the
+legal, technical, and policy considerations explained above.
 
 ## Uploading Files
 
