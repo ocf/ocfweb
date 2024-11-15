@@ -24,6 +24,9 @@ from ocfweb.stats.urls import urlpatterns as stats
 from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
 from ocfweb.tv.urls import urlpatterns as tv
+from ocfweb.webprint.new_print_request import new_print_request
+from ocfweb.webprint.view_code import view_webprint_code
+from ocfweb.webprint.webprint_home import webprint_home
 
 urlpatterns = [
     # test pages
@@ -59,6 +62,11 @@ urlpatterns = [
 
     # API endpoints
     url(r'^api/', include(api)),
+
+    # printing
+    url(r'^print$', webprint_home, name='webprint-home'),
+    url(r'^print/code$', view_webprint_code, name='webprint-view-code'),
+    url(r'^print/new$', new_print_request, name='webprint-new-request'),
 
     # hosting logos
     url(

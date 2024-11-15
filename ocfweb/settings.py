@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'ocfweb.tv',
     'ocfweb.api',
     'ocfweb.lab_reservations',
+    'ocfweb.webprint',
 )
 
 MIDDLEWARE = (

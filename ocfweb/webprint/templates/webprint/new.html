@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script>
+    /**
+     * Format bytes as human-readable text.
+     * Source: https://stackoverflow.com/a/14919494/9096067
+     *
+     * @param bytes Number of bytes.
+     * @param si True to use metric (SI) units, aka powers of 1000. False to use
+     *           binary (IEC), aka powers of 1024.
+     * @param dp Number of decimal places to display.
+     *
+     * @return Formatted string.
+     */
+    function humanFileSize(bytes, si=false, dp=1) {
+        const thresh = si ? 1000 : 1024;
+
+        if (Math.abs(bytes) < thresh) {
+            return bytes + ' B';
+        }
+
+        const units = si
+            ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+            : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+        let u = -1;
+        const r = 10**dp;
+
+        do {
+            bytes /= thresh;
+            ++u;
+        } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1);
+
+
+        return bytes.toFixed(dp) + ' ' + units[u];
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = function(){
+        var count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
+        const filePagesElement = document.getElementById("file-pages");
+        filePagesElement.innerText = count;
+        const fileOverflowElement = document.getElementById("file-page-overflow");
+
+        const pagesRemaining = Number(document.getElementById("pages-remaining-day").innerText);
+
+        if (count > pagesRemaining) {
+            document.getElementById("print-button").disabled = true;
+            filePagesElement.style.color = "red"; // Set the file-pages element to red if it exceeds remaining pages
+            fileOverflowElement.style.display = "inline";
+        } else {
+            document.getElementById("print-button").disabled = false;
+            filePagesElement.style.color = ""; // Reset the color if it does not exceed remaining pages
+            fileOverflowElement.style.display = "none";
+        }
+    }
+
+    function handleFileChange(event) {
+        const file = event.target.files[0];
+        console.log(file);
+        document.getElementById("file-name").innerText = file.name;
+        document.getElementById("file-size").innerText = humanFileSize(file.size);
+        document.getElementById("print-request-config-pane").style.display = "block";
+        reader.readAsBinaryString(file);
+    }
+
+    function handleNumCopiesChange(event) {
+        const pagesRemaining = Number(document.getElementById("pages-remaining-day").innerText);
+        const numCopies = Number(event.target.value);
+        const numPages = Number(document.getElementById("file-pages").innerText);
+        if (numCopies * numPages > pagesRemaining) {
+            document.getElementById("print-button").disabled = true;
+        } else {
+            document.getElementById("print-button").disabled = false;
+        }
+    }
+</script>
+
+<div class="ocf-content-block" style="margin-bottom: 50px;">
+    {% include 'webprint/components/webprint-new.html' %}
+
+    <h3>Page Quota</h3>
+    <p>You have <u id="pages-remaining-day">{{remaining_pages_day}}</u> pages remaining for today.</p>
+    <p>You have <u id="pages-remaining-semester">{{remaining_pages_semester}}</u> pages remaining for this semester.</p>
+
+    <h3>Upload</h3>
+    <div style="margin-bottom: 20px;">
+        <div style="margin-bottom: 10px;">Upload your document (PDF only):</div>
+        <div id="file-drop-zone">
+            <div id="file-drop-zone-text">
+                Drag and drop a PDF file here or click to upload
+            </div>
+            <input type="file" id="file-input" accept=".pdf" onchange="handleFileChange(event)" style="display: none;" />
+        </div>
+        <script>
+            const dropZone = document.getElementById('file-drop-zone');
+            const fileInput = document.getElementById('file-input');
+
+            dropZone.addEventListener('click', () => fileInput.click());
+
+            dropZone.addEventListener('dragover', (event) => {
+                event.preventDefault();
+                dropZone.style.borderColor = '#000';
+            });
+
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.style.borderColor = '#ccc';
+            });
+
+            dropZone.addEventListener('drop', (event) => {
+                event.preventDefault();
+                dropZone.style.borderColor = '#ccc';
+                const files = event.dataTransfer.files;
+
+                if (files.length > 0 && files[0].type === 'application/pdf') {
+                    fileInput.files = files;
+                    handleFileChange({ target: fileInput });
+                } else {
+                    alert('Please upload a PDF file.');
+                }
+            });
+        </script>
+    </div>
+    <div class="ocf-content-block" id="print-request-config-pane" style="display: none;">
+        <h3>Print Settings</h3>
+        <div style="margin-bottom: 10px; margin-top: 10px; padding: 8px; border: 1px solid #ccc;">
+            <p><strong>Name:</strong> <span id="file-name"></span></p>
+            <p><strong>Size:</strong> <span id="file-size"></span></p>
+            <p>
+                <strong>Pages:</strong>
+                <span id="file-pages"></span>
+                <span id="file-page-overflow" style="color: red; font-weight: bold; display: none;">[EXCEEDS QUOTA]</span>
+            </p>
+        </div>
+        <div style="margin-top: 10px; margin-bottom: 8px; margin-right: 10px;">Print style:</div>
+        <div style="display: flex; flex-direction: row; gap: 20px;">
+            <div>
+                <input type="radio" id="single-sided" name="print-type" value="single">
+                <label for="single-sided">Single-sided</label>
+            </div>
+            <div>
+                <input type="radio" id="double-sided" name="print-type" value="double" checked>
+                <label for="double-sided">Double-sided</label>
+            </div>
+        </div>
+
+        <div style="margin-top: 10px; margin-bottom: 8px; margin-right: 10px;">Page orientation:</div>
+        <div style="display: flex; flex-direction: row; gap: 20px;">
+            <div>
+                <input type="radio" id="portrait" name="page-orientation" value="portrait" checked>
+                <label for="portrait">Portrait</label>
+            </div>
+            <div>
+                <input type="radio" id="landscape" name="page-orientation" value="landscape">
+                <label for="landscape">Landscape</label>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; flex-direction: row; align-items: center;">
+
+            <div style="margin-right: 10px;">Number of copies:</div>
+            <input type="number" id="num-copies" min="1" value="1" style="width: 72px;" step="1"
+                onchange="handleNumCopiesChange(event)" />
+        </div>
+
+        <div style="margin-top: 20px; display: flex; flex-direction: row; gap: 10px;">
+            <a class="btn btn-default" id="cancel-button" href="{% url 'webprint-home' %}">Cancel</a>
+            <button class="btn btn-primary" id="print-button">Create Print Request</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    #file-drop-zone {
+        cursor: pointer;
+        width: 100%;
+        border: 2px dashed #ccc;
+        padding: 20px;
+        text-align: center;
+        background-color: #f9f9f9;
+        border-radius: 2px;
+    }
+</style>
+{% endblock %}
