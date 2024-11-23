@@ -161,7 +161,7 @@ MISSING_NAMES = {
     'emarkp': 'E. Mark Ping',
     'ericyang': 'Eric Yang',
     'erikm': 'Erik Muller',
-    'ethanhs': 'Ethan Smith',
+    'ethanhs': 'Emma Smith',
     'ethanhu': 'Ethan Hu',
     'etw': 'Ethan Wu',
     'ewhatt': 'Emily Watt',
