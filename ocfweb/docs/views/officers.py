@@ -159,6 +159,7 @@ MISSING_NAMES = {
     'eleen': 'Eleen Chiang',
     'elliot': 'Elliot Block',
     'emarkp': 'E. Mark Ping',
+    'erdaifuu': 'Carl Luo',
     'ericyang': 'Eric Yang',
     'erikm': 'Erik Muller',
     'ethanhs': 'Emma Smith',
@@ -185,7 +186,9 @@ MISSING_NAMES = {
     'jeffe': 'Jeff Emrich',
     'jenni': 'Jennifer Coopersmith',
     'jerjou': 'Jerjou Cheng',
+    'jingwenyang': 'Jingwen Yang',
     'jkit': 'Jimmy Kittiyachavalit',
+    'joiew': 'Joie Wu',
     'jones': 'Devin Jones',
     'jvperrin': 'Jason Perrin',
     'jyxzhang': 'Justin Zhang',
@@ -228,6 +231,7 @@ MISSING_NAMES = {
     'runes': 'Rune Stromsness',
     'sahnn': 'Sue Hyun Ahnn',
     'sanjayk': 'Sanjay Krishnan',
+    'sawansri': 'Sawan Srivastava',
     'shasan': 'Sahil Hasan',
     'sherryg': 'Sherry Ann Gong',
     'shyguy': 'David Shih',
@@ -529,6 +533,18 @@ def _bod_terms() -> List[Term]:
                 ('Finance', ['adi']),
                 ('DeCal', ['kian', 'aly']),
             ],
+        ),
+        Term(
+            'Fall 2024',
+            gms=['storce', 'ronitnath'],
+            sms=['oliverni', 'laksith'],
+            heads=[
+                ('Internal', ['lukepeters', 'joiew']),
+                ('Finance', ['jaysa', 'rsang']),
+                ('DeCal', ['sawansri', 'erdaifuu']),
+                ('Design', ['jingwenyang', 'rjz']),
+            ],
+
         ),
     ]
 
