@@ -9,7 +9,7 @@ computing for all [University of California at Berkeley][berkeley] students,
 faculty, and staff.  The mission of the OCF is to provide an environment where
 no member of Berkeley's campus community is denied the computer resources they
 seek, to appeal to all members of the Berkeley campus community with unsatisfied
-computing needs, and to provide a place for those interested in computing to 
+computing needs, and to provide a place for those interested in computing to
 fully explore that interest.
 
 ## What do we do?
