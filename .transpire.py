@@ -9,9 +9,9 @@ auto_sync = True
 
 
 def images():
-    yield Image(name="web", path=Path("/"), target="web")
-    yield Image(name="worker", path=Path("/"), target="worker")
-    yield Image(name="static", path=Path("/"), target="static")
+    yield Image(name="web", path=Path("/"), target="web", registry="ghcr")
+    yield Image(name="worker", path=Path("/"), target="worker", registry="ghcr")
+    yield Image(name="static", path=Path("/"), target="static", registry="ghcr")
 
 
 def add_ocfweb_common(dep):
