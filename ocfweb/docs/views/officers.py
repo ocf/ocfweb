@@ -535,7 +535,7 @@ def _bod_terms() -> List[Term]:
             ],
         ),
         Term(
-            'Fall 2024',
+            'Spring 2025',
             gms=['storce', 'ronitnath'],
             sms=['oliverni', 'laksith'],
             heads=[
