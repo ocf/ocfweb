@@ -17,16 +17,16 @@ def _relative_timestr(timestamp: datetime) -> str:
     """
     now = datetime.now()
 
-    diff = (timestamp - now).total_seconds() / 3600
+    diff_minutes = int((timestamp - now).total_seconds() / 60)
 
-    if diff < 0:
+    if diff_minutes < 0:
         return 'expired'
-    elif diff < 1:
-        return 'in <1 hour'
-    elif diff < 2:
+    elif diff_minutes < 60:
+        return f'in {diff_minutes} minutes'
+    elif diff_minutes < 120:
         return 'in 1 hour'
     else:
-        return f'in {int(diff)} hours'
+        return f'in {diff_minutes // 60} hours'
 
 
 @login_required
