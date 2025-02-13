@@ -166,6 +166,11 @@ OCFSTATS_USER = conf.get('ocfstats', 'user')
 OCFSTATS_PASSWORD = conf.get('ocfstats', 'password')
 OCFSTATS_DB = conf.get('ocfstats', 'db')
 
+OCFWEBPRINT_USER = conf.get('ocfwebprint', 'user')
+OCFWEBPRINT_PASSWORD = conf.get('ocfwebprint', 'password')
+OCFWEBPRINT_KEY = conf.get('ocfwebprint', 'worker_key')
+OCFWEBPRINT_DB = conf.get('ocfwebprint', 'db')
+
 if not DEBUG:
     # Prod-only settings.
     CACHES['default'] = {
