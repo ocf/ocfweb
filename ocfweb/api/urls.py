@@ -9,6 +9,7 @@ from ocfweb.api import session_tracking
 from ocfweb.api import shorturls
 from ocfweb.api import staff_hours
 from ocfweb.api import stats
+from ocfweb.api import webprint
 
 
 urlpatterns = [
@@ -27,4 +28,5 @@ urlpatterns = [
     path('session/log', session_tracking.log_session, name='log_session'),
     path('shorturl/<path:slug>', shorturls.bounce_shorturl, name='bounce_shorturl'),
     path('quotas/paper', paper.paper_quota, name='paper_quota'),
+    path('webprint/new', webprint.submit_print_request, name='new_webprint_request'),
 ]

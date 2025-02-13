@@ -11,6 +11,7 @@ from ocfweb.about.staff import about_staff
 from ocfweb.account.urls import urlpatterns as account
 from ocfweb.announcements.urls import urlpatterns as announcements
 from ocfweb.api.urls import urlpatterns as api
+from ocfweb.api.webprint import submit_print_request
 from ocfweb.docs.urls import urlpatterns as docs
 from ocfweb.lab_reservations.urls import urlpatterns as lab_reservations
 from ocfweb.login.urls import urlpatterns as login
@@ -67,6 +68,7 @@ urlpatterns = [
     url(r'^print$', webprint_home, name='webprint-home'),
     url(r'^print/code$', view_webprint_code, name='webprint-view-code'),
     url(r'^print/new$', new_print_request, name='webprint-new-request'),
+    url(r'^print/submit$', submit_print_request, name='webprint-submit-request'),
 
     # hosting logos
     url(

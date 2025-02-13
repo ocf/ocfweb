@@ -84,13 +84,14 @@
     <p>You have <u id="pages-remaining-semester">{{remaining_pages_semester}}</u> pages remaining for this semester.</p>
 
     <h3>Upload</h3>
-    <div style="margin-bottom: 20px;">
+    <form method="post" action="{% url 'webprint-submit-request' %}" style="margin-bottom: 20px;" enctype="multipart/form-data">
+        {% csrf_token %}
         <div style="margin-bottom: 10px;">Upload your document (PDF only):</div>
         <div id="file-drop-zone">
             <div id="file-drop-zone-text">
                 Drag and drop a PDF file here or click to upload
             </div>
-            <input type="file" id="file-input" accept=".pdf" onchange="handleFileChange(event)" style="display: none;" />
+            <input type="file" id="file-input" name="file_input" accept=".pdf" onchange="handleFileChange(event)" style="display: none;" />
         </div>
         <script>
             const dropZone = document.getElementById('file-drop-zone');
@@ -135,11 +136,11 @@
         <div style="margin-top: 10px; margin-bottom: 8px; margin-right: 10px;">Print style:</div>
         <div style="display: flex; flex-direction: row; gap: 20px;">
             <div>
-                <input type="radio" id="single-sided" name="print-type" value="single">
+                <input type="radio" id="single-sided" name="print_type" value="single">
                 <label for="single-sided">Single-sided</label>
             </div>
             <div>
-                <input type="radio" id="double-sided" name="print-type" value="double" checked>
+                <input type="radio" id="double-sided" name="print_type" value="double" checked>
                 <label for="double-sided">Double-sided</label>
             </div>
         </div>
@@ -147,11 +148,11 @@
         <div style="margin-top: 10px; margin-bottom: 8px; margin-right: 10px;">Page orientation:</div>
         <div style="display: flex; flex-direction: row; gap: 20px;">
             <div>
-                <input type="radio" id="portrait" name="page-orientation" value="portrait" checked>
+                <input type="radio" id="portrait" name="page_orientation" value="portrait" checked>
                 <label for="portrait">Portrait</label>
             </div>
             <div>
-                <input type="radio" id="landscape" name="page-orientation" value="landscape">
+                <input type="radio" id="landscape" name="page_orientation" value="landscape">
                 <label for="landscape">Landscape</label>
             </div>
         </div>
@@ -160,14 +161,14 @@
 
             <div style="margin-right: 10px;">Number of copies:</div>
             <input type="number" id="num-copies" min="1" value="1" style="width: 72px;" step="1"
-                onchange="handleNumCopiesChange(event)" />
+                name="n_copies" onchange="handleNumCopiesChange(event)" />
         </div>
 
         <div style="margin-top: 20px; display: flex; flex-direction: row; gap: 10px;">
             <a class="btn btn-default" id="cancel-button" href="{% url 'webprint-home' %}">Cancel</a>
             <button class="btn btn-primary" id="print-button">Create Print Request</button>
         </div>
-    </div>
+    </form>
 </div>
 
 <style>
