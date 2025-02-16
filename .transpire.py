@@ -26,7 +26,7 @@ def add_ocfweb_common(dep):
     dep.obj.spec.template.spec.containers.append(
         {
             "name": "sync-etc",
-            "image": "harbor.ocf.berkeley.edu/ocf/etc/sync:4c3eb1f6ba456ec30a2fbf21423364eaf0ae40bd",
+            "image": "ghcr.io/ocf/etc-sync:0407f4c3b294910e4f0361745ed7d508b64ffda9",
             "args": ["/etc/ocf", "--repeat-delay", "60"],
             "volumeMounts": [{"name": "etc", "mountPath": "/etc/ocf"}],
         }
