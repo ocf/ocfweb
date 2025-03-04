@@ -21,7 +21,7 @@ directory.
 ## Additional details
 
 The web server runs Apache 2.4 with FastCGI (mod_fcgid) and suEXEC.
-Access and error logs are accessible in `/opt/httpd` using [[SSH|doc
+Access and error logs are accessible in `var/log/apache2/vhost_error.log at death@ocf.berkeley.edu` using [[SSH|doc
 services/shell]].
 
 The web server itself runs as a dedicated user. If your .htaccess file is not
