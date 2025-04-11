@@ -540,7 +540,7 @@ def _bod_terms() -> List[Term]:
             sms=[
                     ('oliverni', date(2025, 1, 1), date(2025, 4, 2)),
                     'laksith', 
-                    ('rjz', date(2025, 4, 9), date(2025, 5, 16)),
+                    ('rjz', date(2025, 4, 9)),
                 ],
             heads=[
                 ('Internal', ['lukepeters', 'joiew']),
