@@ -204,8 +204,13 @@ class VirtualHostForm(Form):
     # requested hosting (static/application)
     requested_hosting_type = forms.ChoiceField(
         choices=[
-            ('application', 'Application Hosting'),
-            ('static', 'Static Hosting'),
+            (
+                'static', 'Static Hosting (most student groups want this)',
+            ),
+            (
+                'application', 'Application Hosting \
+                     (only choose this if you absolutely need a backend server!)',
+            ),
         ],
         widget=forms.RadioSelect,
     )
@@ -219,8 +224,8 @@ class VirtualHostForm(Form):
 
     # website requirements
     website_complete = forms.BooleanField(
-        label='The website is already complete and uploaded to the OCF \
-               server. It is not just a placeholder.',
+        label='If requesting static hosting: our website is already complete and uploaded to the OCF server.\
+                If requesting apphost: our website is complete and tested.',
     )
 
     website_hosted_by_ocf = forms.BooleanField(
