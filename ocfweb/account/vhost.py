@@ -67,6 +67,7 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
 
         if form.is_valid():
             requested_subdomain = form.cleaned_data['requested_subdomain']
+            requested_hosting_type = form.cleaned_data['requested_hosting_type']
             university_purpose = form.cleaned_data['university_purpose']
             university_contact = form.cleaned_data['university_contact']
             comments = form.cleaned_data['comments']
@@ -91,6 +92,7 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
                     Virtual Hosting Request:
                       - OCF Account: {user}
                       - OCF Account Title: {title}
+                      - Hosting Type: {requested_hosting_type}
                       - Requested Subdomain: {requested_subdomain}
                       - Current URL: https://www.ocf.berkeley.edu/~{user}/
 
@@ -113,6 +115,7 @@ def request_vhost(request: HttpRequest) -> HttpResponse:
                     {full_path}''').format(
                     user=user,
                     title=attrs['cn'][0],
+                    requested_hosting_type=requested_hosting_type,
                     requested_subdomain=requested_subdomain,
                     university_purpose=university_purpose,
                     university_contact=university_contact,
@@ -194,6 +197,15 @@ class VirtualHostForm(Form):
                 'own', 'I am a campus-affiliated lab/department so I want a .berkeley.edu domain \
                      (most student groups cannot have this).',
             ),
+        ],
+        widget=forms.RadioSelect,
+    )
+
+    # requested hosting (static/application)
+    requested_hosting_type = forms.ChoiceField(
+        choices=[
+            ('application', 'Application Hosting'),
+            ('static', 'Static Hosting'),
         ],
         widget=forms.RadioSelect,
     )
