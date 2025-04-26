@@ -224,8 +224,8 @@ class VirtualHostForm(Form):
 
     # website requirements
     website_complete = forms.BooleanField(
-        label='If requesting static hosting: our website is already complete and uploaded to the OCF server.\
-                If requesting apphost: our website is complete and tested.',
+        label='If requesting static hosting: your website is already complete and uploaded to the OCF server.\
+                If requesting apphost: your website is already complete and tested.',
     )
 
     website_hosted_by_ocf = forms.BooleanField(
