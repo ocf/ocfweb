@@ -224,8 +224,8 @@ class VirtualHostForm(Form):
 
     # website requirements
     website_complete = forms.BooleanField(
-        label='If requesting static hosting: your website is already complete and uploaded to the OCF server.\
-                If requesting apphost: your website is already complete and tested.',
+        label='If requesting static hosting: the website is already complete and uploaded to the OCF server.\
+                If requesting apphost: the website is already complete and tested locally.',
     )
 
     website_hosted_by_ocf = forms.BooleanField(
@@ -295,8 +295,8 @@ class VirtualHostForm(Form):
         # Normally using `reverse_lazy` would fix that, but we can't use that
         # either because `mark_safe` isn't lazy.
         self.fields['website_disclaimer_text'].label = mark_safe((
-            'If we are a student group, we have placed the <a href="{}">university-mandated '
-            'disclaimer</a> on each page of our site.'
+            'If you are a student group, there is the <a href="{}">university-mandated '
+            'disclaimer</a> on each page of your website.'
         ).format(reverse('doc', args=('services/vhost',))))
 
         self.fields['website_ocf_banner'].label = mark_safe((
