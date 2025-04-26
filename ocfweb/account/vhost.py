@@ -190,7 +190,10 @@ class VirtualHostForm(Form):
                 'berkeley', 'I would like to request a studentorg.berkeley.edu domain \
                      (most student groups want this).',
             ),
-            ('own', 'I want to use the domain I already own.'),
+            (
+                'own', 'I am a campus-affiliated lab/department so I want a .berkeley.edu domain \
+                     (most student groups cannot have this).',
+            ),
         ],
         widget=forms.RadioSelect,
     )
