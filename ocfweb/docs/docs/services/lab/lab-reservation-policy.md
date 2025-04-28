@@ -14,7 +14,7 @@ the lab to the general population may be available.
 
 Here are a few important things to note:
 
-- All OCF computers run on Debian Linux, so operating system specific
+- All OCF computers run on Linux NixOS, so operating system specific
   applications such as Microsoft Word will not be available. However,
   browser-based tools, such as Google Docs, will work. If software you need is
   available for Debian, it may be installed at the discretion of an OCF Site
