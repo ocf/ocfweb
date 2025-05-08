@@ -9,9 +9,9 @@ amended at the Board meeting of May 7, 2025.
 2. The OCF Board of Directors shall meet at least once every two weeks while
    the OCF is formally in session.
 
-3. Any Director appointed to the Board by the Decision Making Process missin 
+3. Any Director appointed to the Board by the Decision Making Process missin
    two regularly scheduled meetings will be removed from the Board, regardless
-   of whether the meetings achieve quorum. The only exception to this is if the 
+   of whether the meetings achieve quorum. The only exception to this is if the
    Director informs the General Manager before the meeting of an emergency,
    including, but not limited to: a conflicting examination, a medical emergency,
    or a family emergency.
@@ -66,7 +66,7 @@ amended at the Board meeting of May 7, 2025.
 
 14. Any non-Director member who attends a Board meeting can request to be
     appointed as a Director at that meeting. A current Director must then
-    nominate them, before it is put to a discussion, then the candidate will 
+    nominate them, before it is put to a discussion, then the candidate will
     be appointed under a majority vote of present Directors. The candidate may
     be asked to leave the facilities during Director deliberations.
 
@@ -84,7 +84,7 @@ amended at the Board meeting of May 7, 2025.
 
     3. It is assumed that the interim BoD shall not unreasonably withhold consent
     for a previous Director to continue their directorship. An example of reasonable
-    grounds to withhold consent is if there are serious reasons that a previous 
+    grounds to withhold consent is if there are serious reasons that a previous
     Board member will not be able to fulfill their duties (e.g. due to medical or
     other concerns).
 
