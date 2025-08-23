@@ -232,6 +232,7 @@ MISSING_NAMES = {
     'sahnn': 'Sue Hyun Ahnn',
     'sanjayk': 'Sanjay Krishnan',
     'sawansri': 'Sawan Srivastava',
+    'sbwilliams': 'Sophia Williams',
     'shasan': 'Sahil Hasan',
     'sherryg': 'Sherry Ann Gong',
     'shyguy': 'David Shih',
@@ -546,6 +547,18 @@ def _bod_terms() -> List[Term]:
             ],
 
         ),
+        Term(
+            'Fall 2025',
+            gms=['fengyihuang', 'lukepeters'],
+            sms=['sbwilliams', 'storce'],
+            heads=[
+                ('Internal', ['joiew', 'ncostello']),
+                ('Finance', ['finwan', 'rsang']),
+                ('DeCal', ['erdaifuu', 'lic', 'sawansri']),
+                ('Design', ['jingwenyang', 'msonmez']),
+            ],
+
+        )
     ]
 
 
