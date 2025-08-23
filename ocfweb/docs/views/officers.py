@@ -558,7 +558,7 @@ def _bod_terms() -> List[Term]:
                 ('Design', ['jingwenyang', 'msonmez']),
             ],
 
-        )
+        ),
     ]
 
 
