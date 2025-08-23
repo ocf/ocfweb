@@ -23,7 +23,7 @@ django-mathfilters==1.0.0
 django-prometheus==2.1.0
 django-redis==5.0.0
 dnspython==2.1.0
-greenlet==1.1.1
+greenlet==3.2.4
 gunicorn==20.1.0
 idna==2.10
 importlib-metadata==4.8.1
@@ -33,7 +33,7 @@ kombu<6
 ldap3==2.9.1
 libsass==0.21.0
 MarkupSafe==2.0.1
-matplotlib==3.4.3
+matplotlib==3.10.5
 mistune==0.8.4
 numpy<1.25
 ocflib>=2024.4.23
