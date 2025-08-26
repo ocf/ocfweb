@@ -1,5 +1,4 @@
-from django.conf.urls import include
-from django.conf.urls import re_path
+from django.urls import include, re_path
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse

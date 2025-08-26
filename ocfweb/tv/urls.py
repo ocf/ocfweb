@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from ocfweb.tv import main
 
 urlpatterns = [
-    url(r'^$', main.tv_main, name='tv_main'),
-    url(r'^labmap$', main.tv_labmap, name='tv_labmap'),
+    re_path(r'^$', main.tv_main, name='tv_main'),
+    re_path(r'^labmap$', main.tv_labmap, name='tv_labmap'),
 ]

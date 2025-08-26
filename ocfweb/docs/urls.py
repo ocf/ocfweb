@@ -2,7 +2,7 @@ import re
 from itertools import chain
 from typing import Union
 
-from django.conf.urls import url
+from django.urls import re_path
 from django.http import Http404
 from django.http import HttpRequest
 from django.http import HttpResponse
@@ -71,11 +71,11 @@ redir_names = '|'.join(map(doc_name, REDIRECTS.keys()))
 
 
 urlpatterns = [
-    url(r'^$', docs_index, name='docs'),
+    re_path(r'^$', docs_index, name='docs'),
 
     # we use a complicated generated regex here so that we have actual
     # validation of URLs (in other words, if you try to make a link to a
     # missing document, it will fail)
-    url(fr'^({redir_names})/$', send_redirect),
-    url(fr'^({doc_names})/$', render_doc, name='doc'),
+    re_path(fr'^({redir_names})/$', send_redirect),
+    re_path(fr'^({doc_names})/$', render_doc, name='doc'),
 ]

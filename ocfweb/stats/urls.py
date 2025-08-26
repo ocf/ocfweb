@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from ocfweb.stats.accounts import stats_accounts
 from ocfweb.stats.daily_graph import daily_graph_image
@@ -15,18 +15,18 @@ from ocfweb.stats.session_stats import session_stats
 from ocfweb.stats.summary import summary
 
 urlpatterns = [
-    url(r'^$', summary, name='stats'),
-    url(r'^daily-graph/graph$', daily_graph_image, name='daily_graph_image'),
-    url(r'^session-count/graph$', session_count_image, name='session_count_image'),
-    url(r'^session-length/graph$', session_length_image, name='session_length_image'),
-    url(r'^printing/$', stats_printing, name='stats_printing'),
-    url(r'^accounts/$', stats_accounts, name='stats_accounts'),
-    url(r'^printing/semester-histogram/graph$', semester_histogram, name='semester_histogram'),
-    url(r'^printing/pages-printed$', pages_printed, name='pages_printed'),
-    url(r'^printing/daily-job/graph$', daily_jobs_image, name='daily_job_image'),
-    url(r'^printing/weekend-jobs/graph$', weekend_jobs_image, name='weekend_jobs_image'),
-    url(r'^printing/weekday-jobs/graph$', weekday_jobs_image, name='weekday_jobs_image'),
+    re_path(r'^$', summary, name='stats'),
+    re_path(r'^daily-graph/graph$', daily_graph_image, name='daily_graph_image'),
+    re_path(r'^session-count/graph$', session_count_image, name='session_count_image'),
+    re_path(r'^session-length/graph$', session_length_image, name='session_length_image'),
+    re_path(r'^printing/$', stats_printing, name='stats_printing'),
+    re_path(r'^accounts/$', stats_accounts, name='stats_accounts'),
+    re_path(r'^printing/semester-histogram/graph$', semester_histogram, name='semester_histogram'),
+    re_path(r'^printing/pages-printed$', pages_printed, name='pages_printed'),
+    re_path(r'^printing/daily-job/graph$', daily_jobs_image, name='daily_job_image'),
+    re_path(r'^printing/weekend-jobs/graph$', weekend_jobs_image, name='weekend_jobs_image'),
+    re_path(r'^printing/weekday-jobs/graph$', weekday_jobs_image, name='weekday_jobs_image'),
 
-    url(r'^mirrors/$', stats_mirrors, name='stats_mirrors'),
-    url(r'^session-stats/$', session_stats, name='session-stats'),
+    re_path(r'^mirrors/$', stats_mirrors, name='stats_mirrors'),
+    re_path(r'^session-stats/$', session_stats, name='session-stats'),
 ]
