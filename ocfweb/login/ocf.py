@@ -6,7 +6,6 @@ from typing import Union
 
 import ocflib.account.utils as utils
 import ocflib.account.validators as validators
-import ocflib.account.search as search
 from django import forms
 from django.http import HttpRequest
 from django.http import HttpResponse
@@ -46,7 +45,7 @@ def login(request: HttpRequest) -> Union[HttpResponseRedirect, HttpResponse]:
 
             try:
                 if (
-                        search.user_exists(username) and not
+                        validators.user_exists(username) and not
                         user_is_sorried(username) and
                         utils.password_matches(username, password)
                 ):
