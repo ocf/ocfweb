@@ -1,6 +1,7 @@
-from django.urls import include, re_path
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.urls import include
+from django.urls import re_path
 from django.urls import reverse
 
 from ocfweb.about.lab import lab_open_source
