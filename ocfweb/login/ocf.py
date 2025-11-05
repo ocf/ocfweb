@@ -4,9 +4,9 @@ from typing import Match
 from typing import Optional
 from typing import Union
 
+import ocflib.account.search as search
 import ocflib.account.utils as utils
 import ocflib.account.validators as validators
-import ocflib.account.search as search
 from django import forms
 from django.http import HttpRequest
 from django.http import HttpResponse
