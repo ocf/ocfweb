@@ -2,13 +2,13 @@ import re
 from itertools import chain
 from typing import Union
 
-from django.urls import re_path
 from django.http import Http404
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponsePermanentRedirect
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
+from django.urls import re_path
 from django.urls import reverse
 
 from ocfweb.docs.doc import Document
