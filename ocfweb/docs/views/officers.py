@@ -162,7 +162,6 @@ MISSING_NAMES = {
     'erdaifuu': 'Carl Luo',
     'ericyang': 'Eric Yang',
     'erikm': 'Erik Muller',
-    'ethanhs': 'Emma Smith',
     'ethanhu': 'Ethan Hu',
     'etw': 'Ethan Wu',
     'ewhatt': 'Emily Watt',
@@ -404,13 +403,13 @@ def _bod_terms() -> List[Term]:
         ),
         Term(
             'Spring 2019', gms=['abizer', 'awelty'], sms=['bzh', 'dkessler'],
-            dgms=['asai'], dsms=['ethanhs', 'cooperc'],
+            dgms=['asai'], dsms=['ehs', 'cooperc'],
         ),
         Term(
             'Fall 2019',
             gms=['cooperc', 'php'],
             sms=[
-                ('ethanhs', date(2019, 5, 18), date(2019, 11, 18)),
+                ('ehs', date(2019, 5, 18), date(2019, 11, 18)),
                 'fydai',
             ],
         ),
@@ -461,7 +460,7 @@ def _bod_terms() -> List[Term]:
         Term(
             'Fall 2021',
             gms=['snarain', 'ncberberi'],
-            sms=['ethanhs', 'njha'],
+            sms=['ehs', 'njha'],
             heads=[
                 ('Internal', ['rjz', 'ronitnath']),
                 ('Industry and Alumni Relations', ['kmo']),
