@@ -6,8 +6,9 @@ start of each semester.
 
 Printing is currently limited to:
 
- * 200 pages per semester
- * 20 pages per day
+ * 200 sides per semester in B&W
+ * 10 sides per semester in color
+ * 30 sides per day in B&W
 
 Please note:
 
