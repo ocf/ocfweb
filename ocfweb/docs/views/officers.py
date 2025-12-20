@@ -558,6 +558,18 @@ def _bod_terms() -> List[Term]:
             ],
 
         ),
+        Term(
+            'Spring 2026',
+            gms=['storce', 'rsang'],
+            sms=['sbwilliams', 'jaysa'],
+            heads=[
+                ('Internal', ['joiew', 'msonmez']),
+                ('Finance', ['finwan']),
+                ('DeCal', ['erdaifuu', 'sawansri']),
+                ('Design', ['jingwenyang']),
+            ],
+
+        ),
     ]
 
 
