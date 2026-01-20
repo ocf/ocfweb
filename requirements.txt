@@ -23,7 +23,7 @@ django-mathfilters==1.0.0
 django-prometheus==2.4.1
 django-redis==6.0.0
 dnspython==2.7.0
-fonttools==4.59.1
+fonttools==4.61.0
 greenlet==3.2.4
 gunicorn==23.0.0
 idna==3.10
