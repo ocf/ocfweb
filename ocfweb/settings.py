@@ -146,7 +146,12 @@ LOGGING = {
 # We populate this file in dev with fake values or values for development
 # databases, so this still works (as long as you're on supernova).
 conf = configparser.ConfigParser()
-conf.read('/etc/ocfweb/ocfweb.conf')
+# Try local config first for development, then fall back to system config
+local_conf = os.path.join(BASE_DIR, 'conf', 'ocfweb.conf')
+if os.path.exists(local_conf):
+    conf.read(local_conf)
+else:
+    conf.read('/etc/ocfweb/ocfweb.conf')
 
 SECRET_KEY = conf.get('django', 'secret')
 DEBUG = conf.getboolean('django', 'debug')

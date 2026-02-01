@@ -126,7 +126,7 @@ def timid_relpath(arg):
 
 
 def shellescape(args):
-    from pipes import quote
+    from shlex import quote
     return ' '.join(quote(timid_relpath(arg)) for arg in args)
 
 

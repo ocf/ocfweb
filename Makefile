@@ -43,7 +43,10 @@ local-dev: LISTEN_IP=127.0.0.1
 local-dev: dev
 
 venv: requirements.txt requirements-dev.txt
-	python3 ./vendor/venv-update venv= venv -ppython3.11 install= -r requirements.txt -r requirements-dev.txt
+	test -d venv || python3.11 -m venv venv
+	$(BIN)/pip install --upgrade pip
+	$(BIN)/pip install -r requirements.txt -r requirements-dev.txt
+	touch venv
 
 .PHONY: install-hooks
 install-hooks: venv
