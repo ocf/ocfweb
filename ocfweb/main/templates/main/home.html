@@ -33,13 +33,13 @@
         <p>OCF volunteers maintain services for the Berkeley community, including:</p>
         <ul>
             <li><a href="{% url 'doc' 'services/lab' %}">A spiffy computer lab</a> in 171 MLK Student Union</li>
-            <li><a href="{% url 'doc' 'services/web' %}">Web &amp; email hosting</a> for thousands of student groups and individuals</li>
-            <li><a href="{% url 'doc' 'services/lab/printing' %}">Free printing</a> for all UC Berkeley students</li>
-            <li><a href="{% url 'doc' 'services/shell' %}">Shell accounts</a> on our powerful <a href="{% url 'doc' 'staff/backend/servers' %}">on-campus servers</a></li>
-        <li><a href="{% url 'doc' 'services/hpc' %}">High-performance computing</a> on our GPU server</li>
-            <li>...and <a href="{% url 'doc' 'services' %}">lots more!</a></li>
+            <li><a href="https://bestdocs.ocf.io/user-docs/services/web/">Web &amp; email hosting</a> for thousands of student groups and individuals</li>
+            <li><a href="https://bestdocs.ocf.io/user-docs/services/lab/printing/">Free printing</a> for all UC Berkeley students</li>
+            <li><a href="https://bestdocs.ocf.io/user-docs/services/shell/">Shell accounts</a> on our powerful <a href="{% url 'doc' 'staff/backend/servers' %}">on-campus servers</a></li>
+        <li><a href="https://bestdocs.ocf.io/user-docs/services/hpc/">High-performance computing</a> on our GPU server</li>
+            <li>...and <a href="https://bestdocs.ocf.io/user-docs/services">lots more!</a></li>
         </ul>
-        <p>Check out the events on the <a href="https://ocf.io/gcal">OCF calendar</a>.</p>
+        <p>Check out upcoming events on the <a href="https://bestdocs.ocf.io/news/">OCF Newsletter</a>.</p>
         <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop by to ask questions or just to hang out!</p>
 
         <hr />
@@ -100,12 +100,8 @@
 
         <p><strong>Account Tools</strong></p>
         <ul>
-            <li><a href="{% url 'commands' %}">Check Account</a></li>
             <li><a href="{% url 'change_password' %}">Reset Password</a></li>
-
-            {% if is_ocf_ip %}
-                <li><a href="https://printhost.ocf.berkeley.edu/jobs/">View Print Queue</a></li>
-            {% endif %}
+            <li><a href="{% url 'vhost_mail' %}">Mail Virtual Hosting</a></li>
         </ul>
 
         <div class="ocf-staffhours">
