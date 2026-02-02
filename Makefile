@@ -1,6 +1,6 @@
 BIN := venv/bin
 PYTHON := $(BIN)/python
-SHELL := /bin/bash
+SHELL := /usr/bin/env bash
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
 LISTEN_IP := 0.0.0.0
 DOCKER_REPO ?= docker-push.ocf.berkeley.edu/
