@@ -33,13 +33,13 @@
         <p>OCF volunteers maintain services for the Berkeley community, including:</p>
         <ul>
             <li><a href="{% url 'doc' 'services/lab' %}">A spiffy computer lab</a> in 171 MLK Student Union</li>
-            <li><a href="https://bestdocs.ocf.io/user-docs/services/web/">Web &amp; email hosting</a> for thousands of student groups and individuals</li>
-            <li><a href="https://bestdocs.ocf.io/user-docs/services/lab/printing/">Free printing</a> for all UC Berkeley students</li>
-            <li><a href="https://bestdocs.ocf.io/user-docs/services/shell/">Shell accounts</a> on our powerful <a href="{% url 'doc' 'staff/backend/servers' %}">on-campus servers</a></li>
-        <li><a href="https://bestdocs.ocf.io/user-docs/services/hpc/">High-performance computing</a> on our GPU server</li>
-            <li>...and <a href="https://bestdocs.ocf.io/user-docs/services">lots more!</a></li>
+            <li><a href="{{docs_url}}/user-docs/services/web/">Web &amp; email hosting</a> for thousands of student groups and individuals</li>
+            <li><a href="{{docs_url}}/user-docs/services/lab/printing/">Free printing</a> for all UC Berkeley students</li>
+            <li><a href="{{docs_url}}/user-docs/services/shell/">Shell accounts</a> on our powerful <a href="{% url 'doc' 'staff/backend/servers' %}">on-campus servers</a></li>
+        <li><a href="{{docs_url}}/user-docs/services/hpc/">High-performance computing</a> on our GPU server</li>
+            <li>...and <a href="{{docs_url}}/user-docs/services">lots more!</a></li>
         </ul>
-        <p>Check out upcoming events on the <a href="https://bestdocs.ocf.io/news/">OCF Newsletter</a>.</p>
+        <p>Check out upcoming events on the <a href="{{docs_url}}/news/">OCF Newsletter</a>.</p>
         <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop by to ask questions or just to hang out!</p>
 
         <hr />

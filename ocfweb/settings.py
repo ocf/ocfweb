@@ -125,6 +125,8 @@ USE_TZ = True
 
 X_FRAME_OPTIONS = 'DENY'
 
+DOCS_URL = 'https://bestdocs.ocf.io'
+
 # log exceptions to stderr
 LOGGING = {
     'version': 1,
