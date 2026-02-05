@@ -13,7 +13,6 @@ click-didyoumean==0.3.1
 click-plugins==1.1.1.2
 click-repl==0.3.0
 contourpy==1.3.3
-cracklib==2.9.6
 cryptography==39.0.1
 cycler==0.12.1
 Django==5.2.5
@@ -37,6 +36,7 @@ MarkupSafe==3.0.2
 matplotlib==3.10.5
 mistune==0.8.4
 numpy==2.3.2
+ocflib
 packaging==25.0
 paramiko==4.0.0
 pexpect==4.9.0

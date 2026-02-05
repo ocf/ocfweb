@@ -4,6 +4,7 @@ from typing import Any
 from typing import Dict
 from typing import Generator
 
+from django.conf import settings
 from django.http import HttpRequest
 from django.urls import reverse
 from ipware import get_client_ip
@@ -32,6 +33,7 @@ def ocf_template_processor(request: HttpRequest) -> Dict[str, Any]:
     user = logged_in_user(request)
     return {
         'base_css_classes': ' '.join(get_base_css_classes(request)),
+        'docs_url': settings.DOCS_URL,
         'current_lab_hours': hours_listing.hours_on_date(),
         'holidays': hours_listing.holidays,
         'is_ocf_ip': is_ocf_ip(ip_address(real_ip)) if real_ip else True,

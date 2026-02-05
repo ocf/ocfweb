@@ -13,7 +13,7 @@
                     <img style="float: left; margin-right: 20px; margin-bottom: 10px;" class="visible-xs" src="{% static 'img/penguin.svg' %}" width="90" />
                     <h1>What is the Open Computing Facility?</h1>
                     <p>We're a student organization dedicated to providing free computing for all UC Berkeley students, faculty, and staff.</p>
-                    <p>We run a <a href="{% url 'doc' 'services/lab' %}">computer lab</a> on southside, have a <a href="{% url 'doc' 'staff/backend/servers' %}">wicked set of servers</a> for staff to play on, and provide <a href="{% url 'doc' 'services' %}">cool services</a> to the Berkeley community.</p>
+                    <p>We run a <a href="{% url 'doc' 'services/lab' %}">computer lab</a> on southside, have a <a href="{% url 'doc' 'staff/backend/servers' %}">wicked set of servers</a> for staff to play on, and provide <a href="{{docs_url}}/user-docs/services/">cool services</a> to the Berkeley community.</p>
                 </div>
             </div>
         </div>
@@ -48,9 +48,9 @@
                         <strong style="font-size: 18px;">Sound interesting?</strong><br />
                         <ul>
                             <li>Subscribe to our <a href="https://ocf.io/announce">mailing list</a> for meeting recaps</li>
-                            <li>Chat with us on <a href="{% url 'doc' 'contact/slack' %}">Slack</a>, <a href="http://ocf.io/discord">Discord</a>, <a href="https://chat.ocf.berkeley.edu">Matrix</a>, or <a href="{% url 'doc' 'contact/irc'%}">IRC</a></li>
-                            <li>Drop by and say hello, or <a href="{% url 'doc' 'contact' %}">email the staff team</a></li>
-                            <li>See more ways to <a href="{% url 'doc' 'staff/getinvolved' %}">contribute and get involved</a></li>
+                            <li>Chat with us on <a href="{{docs_url}}/user-docs/contact/chat/">Matrix, IRC, or Discord.</a>
+                            <li>Drop by and say hello, or <a href="{{docs_url}}/user-docs/contact/">email the staff team</a></li>
+                            <li>See more ways to <a href="{{docs_url}}/staff-docs/get-involved/">contribute and get involved</a></li>
                         </ul>
                     </p>
                 </div>
