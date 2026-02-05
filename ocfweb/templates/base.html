@@ -149,7 +149,7 @@
                         <div class="col-sm-3">
                             <h5>About the OCF</h5>
                             <ul class="list-unstyled">
-                                <li><a href="https://www.ocf.berkeley.edu/about/staff">About Us</a></li>
+                                <li><a href="{% url 'about-staff' %}">About Us</a></li>
                                 <li><a href="{{docs_url}}/user-docs/officers/">Officers</a></li>
                                 <li><a href="{{docs_url}}/user-docs/docs/">Official Documents</a></li>
                                 <li><a href="{{docs_url}}/bod/">Board Meeting Minutes</a></li>
@@ -160,9 +160,9 @@
                         <div class="col-sm-3">
                             <h5>Account Tools</h5>
                             <ul class="list-unstyled">
-                                <li><a href="https://www.ocf.berkeley.edu/account/register/">Create Account</a></li>
+                                <li><a href="{% url 'register' %}">Create Account</a></li>
                                 <li><a href="{% url 'change_password' %}">Reset Password</a></li>
-                                <li><a href="https://www.ocf.berkeley.edu/account/vhost/mail/">Mail Virtual Hosting</a></li>
+                                <li><a href="{% url 'vhost_mail' %}">Mail Virtual Hosting</a></li>
                             </ul>
                         </div>
 
