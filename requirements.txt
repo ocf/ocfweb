@@ -36,6 +36,7 @@ MarkupSafe==3.0.2
 matplotlib==3.10.5
 mistune==0.8.4
 numpy==2.3.2
+ocflib
 packaging==25.0
 paramiko==4.0.0
 pexpect==4.9.0
