@@ -2,7 +2,7 @@ from typing import Any
 from typing import Optional
 
 from django.http import HttpRequest
-from ocflib.account.validators import user_exists
+from ocflib.account.search import user_exists
 
 
 def is_logged_in(request: HttpRequest) -> bool:

@@ -162,7 +162,6 @@ MISSING_NAMES = {
     'erdaifuu': 'Carl Luo',
     'ericyang': 'Eric Yang',
     'erikm': 'Erik Muller',
-    'ethanhs': 'Emma Smith',
     'ethanhu': 'Ethan Hu',
     'etw': 'Ethan Wu',
     'ewhatt': 'Emily Watt',
@@ -232,6 +231,7 @@ MISSING_NAMES = {
     'sahnn': 'Sue Hyun Ahnn',
     'sanjayk': 'Sanjay Krishnan',
     'sawansri': 'Sawan Srivastava',
+    'sbwilliams': 'Sophia Williams',
     'shasan': 'Sahil Hasan',
     'sherryg': 'Sherry Ann Gong',
     'shyguy': 'David Shih',
@@ -403,13 +403,13 @@ def _bod_terms() -> List[Term]:
         ),
         Term(
             'Spring 2019', gms=['abizer', 'awelty'], sms=['bzh', 'dkessler'],
-            dgms=['asai'], dsms=['ethanhs', 'cooperc'],
+            dgms=['asai'], dsms=['ehs', 'cooperc'],
         ),
         Term(
             'Fall 2019',
             gms=['cooperc', 'php'],
             sms=[
-                ('ethanhs', date(2019, 5, 18), date(2019, 11, 18)),
+                ('ehs', date(2019, 5, 18), date(2019, 11, 18)),
                 'fydai',
             ],
         ),
@@ -460,7 +460,7 @@ def _bod_terms() -> List[Term]:
         Term(
             'Fall 2021',
             gms=['snarain', 'ncberberi'],
-            sms=['ethanhs', 'njha'],
+            sms=['ehs', 'njha'],
             heads=[
                 ('Internal', ['rjz', 'ronitnath']),
                 ('Industry and Alumni Relations', ['kmo']),
@@ -537,12 +537,36 @@ def _bod_terms() -> List[Term]:
         Term(
             'Spring 2025',
             gms=['storce', 'ronitnath'],
-            sms=['oliverni', 'laksith'],
+            sms=['oliverni', 'laksith', 'rjz'],
             heads=[
                 ('Internal', ['lukepeters', 'joiew']),
                 ('Finance', ['jaysa', 'rsang']),
                 ('DeCal', ['sawansri', 'erdaifuu']),
                 ('Design', ['jingwenyang', 'rjz']),
+            ],
+
+        ),
+        Term(
+            'Fall 2025',
+            gms=['fengyihuang', 'lukepeters'],
+            sms=['sbwilliams', 'storce'],
+            heads=[
+                ('Internal', ['joiew', 'ncostello']),
+                ('Finance', ['finwan', 'rsang']),
+                ('DeCal', ['erdaifuu', 'lic', 'sawansri']),
+                ('Design', ['jingwenyang', 'msonmez']),
+            ],
+
+        ),
+        Term(
+            'Spring 2026',
+            gms=['storce', 'rsang'],
+            sms=['sbwilliams', 'jaysa'],
+            heads=[
+                ('Internal', ['joiew', 'msonmez']),
+                ('Finance', ['finwan']),
+                ('DeCal', ['erdaifuu', 'sawansri']),
+                ('Design', ['jingwenyang']),
             ],
 
         ),

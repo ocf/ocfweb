@@ -125,6 +125,8 @@ USE_TZ = True
 
 X_FRAME_OPTIONS = 'DENY'
 
+DOCS_URL = 'https://bestdocs.ocf.io'
+
 # log exceptions to stderr
 LOGGING = {
     'version': 1,
@@ -146,7 +148,12 @@ LOGGING = {
 # We populate this file in dev with fake values or values for development
 # databases, so this still works (as long as you're on supernova).
 conf = configparser.ConfigParser()
-conf.read('/etc/ocfweb/ocfweb.conf')
+# Try local config first for development, then fall back to system config
+local_conf = os.path.join(BASE_DIR, 'conf', 'ocfweb.conf')
+if os.path.exists(local_conf):
+    conf.read(local_conf)
+else:
+    conf.read('/etc/ocfweb/ocfweb.conf')
 
 SECRET_KEY = conf.get('django', 'secret')
 DEBUG = conf.getboolean('django', 'debug')
@@ -180,7 +187,7 @@ if not DEBUG:
 
     CSRF_COOKIE_SECURE = True
     CSRF_COOKIE_DOMAIN = os.getenv('OCFWEB_COOKIE_DOMAIN', 'www.ocf.berkeley.edu')
-    CSRF_TRUSTED_ORIGINS = [CSRF_COOKIE_DOMAIN]
+    CSRF_TRUSTED_ORIGINS = ['https://' + CSRF_COOKIE_DOMAIN]
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_DOMAIN = CSRF_COOKIE_DOMAIN
 else:

@@ -13,7 +13,7 @@
                     <img style="float: left; margin-right: 20px; margin-bottom: 10px;" class="visible-xs" src="{% static 'img/penguin.svg' %}" width="90" />
                     <h1>What is the Open Computing Facility?</h1>
                     <p>We're a student organization dedicated to providing free computing for all UC Berkeley students, faculty, and staff.</p>
-                    <p>We run a <a href="{% url 'doc' 'services/lab' %}">super awesome computer lab</a> on southside, have a <a href="{% url 'doc' 'staff/backend/servers' %}">wicked set of servers</a> for staff to play on, and provide <a href="{% url 'doc' 'services' %}">cool services</a> to the Berkeley community.</p>
+                    <p>We run a <a href="{% url 'doc' 'services/lab' %}">computer lab</a> on southside, have a <a href="{% url 'doc' 'staff/backend/servers' %}">wicked set of servers</a> for staff to play on, and provide <a href="{{docs_url}}/user-docs/services/">cool services</a> to the Berkeley community.</p>
                 </div>
             </div>
         </div>
@@ -23,12 +23,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Spring 2025 OCF Onboarding</h2>
+                    <h2>Spring 2026 OCF Onboarding</h2>
                     <p>
                             Fill out the interest form below to receive updates!
                     </p>
                     <p class="ocf-button-holder">
-                    <a href="https://forms.gle/9FAm7SQX5y2aDshH6" class="btn btn-lg">Interest Form</a>
+                    <a href="https://ocf.io/apply" class="btn btn-lg">Interest Form</a>
                     </p>
                 </div>
             </div>
@@ -48,9 +48,9 @@
                         <strong style="font-size: 18px;">Sound interesting?</strong><br />
                         <ul>
                             <li>Subscribe to our <a href="https://ocf.io/announce">mailing list</a> for meeting recaps</li>
-                            <li>Chat with us on <a href="{% url 'doc' 'contact/slack' %}">Slack</a>, <a href="http://ocf.io/discord">Discord</a>, <a href="https://chat.ocf.berkeley.edu">Matrix</a>, or <a href="{% url 'doc' 'contact/irc'%}">IRC</a></li>
-                            <li>Drop by and say hello, or <a href="{% url 'doc' 'contact' %}">email the staff team</a></li>
-                            <li>See more ways to <a href="{% url 'doc' 'staff/getinvolved' %}">contribute and get involved</a></li>
+                            <li>Chat with us on <a href="{{docs_url}}/user-docs/contact/chat/">Matrix, IRC, or Discord.</a>
+                            <li>Drop by and say hello, or <a href="{{docs_url}}/user-docs/contact/">email the staff team</a></li>
+                            <li>See more ways to <a href="{{docs_url}}/staff-docs/get-involved/">contribute and get involved</a></li>
                         </ul>
                     </p>
                 </div>
@@ -59,7 +59,7 @@
                         <h2>OCF Staff Meetings</h2>
                         <p>OCF Staff meet to discuss technology, learn from each other, and work on OCF projects.</p>
                         <p>Drop-in visitors are always welcome, especially those interested in joining the staff team!</p>
-                        <p><strong>When:</strong> Every Wednesday at 7:10pm</p>
+                        <p><strong>When:</strong> Every Wednesday at 7:30pm</p>
                         <p><strong>Where:</strong> <a href="{% url 'doc' 'services/lab' %}">OCF Computer lab (171 MLK)</a></p>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>We meet every Wednesday at 7:10pm <a href="{% url 'doc' 'services/lab' %}">in the lab</a>.</h2>
+                    <h2>We meet every Wednesday at 7:30pm <a href="{% url 'doc' 'services/lab' %}">in the lab</a>.</h2>
                     <h3>We hope to see you there!</h3>
                 </div>
             </div>

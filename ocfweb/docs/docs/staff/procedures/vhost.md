@@ -49,6 +49,8 @@ template](https://templates.ocf.berkeley.edu/#hostmaster-new-domain) for making
 new DNS requests. This email should be sent to hostmaster@nic.berkeley.edu
 and sm+vhost@ocf.berkeley.edu.
 
+Update 2025-08-26: Use this link instead: [DNS DHCP and IP Addressing](https://berkeley.service-now.com/itservicehub?id=sc_cat_item&sys_id=3a50d1b2974cae10b7f2f077f053afaf&sysparm_category=219af86cdb349340a785f3861d961985&catalog_id=e0d08b13c3330100c8b837659bba8fb4)
+
 **Make sure to include the name and CalLink OID of the requesting RSO.**
 
 Answers to the following questions (provided by the requestor of the subdomain)

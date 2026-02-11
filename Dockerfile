@@ -1,6 +1,6 @@
 # A base ocfweb Dockerfile containing the code and dependencies.
 # This doesn't run the website or the background worker; see Dockerfile.* for those.
-FROM theocf/debian:bullseye-py AS base
+FROM theocf/debian:bookworm AS base
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -18,6 +18,7 @@ RUN apt-get update \
         nginx \
         python3-dev \
         python3-pip \
+        python3-virtualenv \
         python-is-python3 \
         redis-tools \
         runit \
@@ -26,12 +27,10 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install virtualenv
-
 RUN install -d --owner=nobody /opt/ocfweb /opt/ocfweb/venv /etc/ocfweb
 
 COPY requirements.txt /opt/ocfweb/
-RUN virtualenv -ppython3.9 /opt/ocfweb/venv \
+RUN virtualenv -ppython3.11 /opt/ocfweb/venv \
     && /opt/ocfweb/venv/bin/pip install \
         -r /opt/ocfweb/requirements.txt
 

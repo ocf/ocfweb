@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from ocfweb.lab_reservations.reserve import request_reservation
 from ocfweb.lab_reservations.reserve import request_reservation_success
@@ -6,8 +6,8 @@ from ocfweb.lab_reservations.reserve import request_reservation_success
 
 urlpatterns = [
     # reservation creation form
-    url(r'^request/$', request_reservation, name='request_reservation'),
+    re_path(r'^request/$', request_reservation, name='request_reservation'),
 
     # reservation pending
-    url(r'^request/pending/$', request_reservation_success, name='request_reservation_success'),
+    re_path(r'^request/pending/$', request_reservation_success, name='request_reservation_success'),
 ]
