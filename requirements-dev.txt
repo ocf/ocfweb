@@ -6,7 +6,7 @@ django-stubs==1.9.0
 django-stubs-ext==0.3.1
 docopt==0.6.2
 execnet==1.9.0
-filelock==3.0.12
+filelock==3.20.3
 identify==2.2.14
 iniconfig==1.1.1
 mypy==0.910
@@ -33,4 +33,4 @@ types-python-dateutil==2.8.0
 types-pytz==2021.1.2
 types-PyYAML==5.4.10
 types-requests==2.25.6
-virtualenv==20.7.2
+virtualenv==20.36.1
