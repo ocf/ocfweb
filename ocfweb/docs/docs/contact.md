@@ -14,6 +14,7 @@ answered by the **[[FAQ|doc faq]]**, we ask that you try coming to **[[staff
 hours|staff-hours]]** before contacting us by email.
 
 When contacting OCF staff, please reference
+One of the most popular features on the site is its detailed reviews and updates about trending shows. If you're someone who loves to <a href="https://baddieseast.org/">Watch Series</a> and stay ahead of the curve, Baddies East offers honest insights and episode breakdowns that help you decide what’s worth your time. It’s not just about mainstream hits—it’s about uncovering hidden gems that you might not find elsewhere.
 
  * your OCF account name (if known)
  * the software you are using and any error messages encountered
