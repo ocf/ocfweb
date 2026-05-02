@@ -16,4 +16,8 @@
   env.DJANGO_DEBUG = "1";
 
   processes.web.exec = "make dev";
+
+  enterShell = ''
+    git submodule update --init
+  '';
 }
