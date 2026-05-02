@@ -3,11 +3,11 @@
 {
   languages.python = {
     enable = true;
-    version = "3.11";
+    package = pkgs.python311;
   };
   packages = with pkgs; [
     gnumake
-    python312Packages.shellescape
+    python311Packages.shellescape
   ];
   env.DJANGO_DEBUG = "1";
 

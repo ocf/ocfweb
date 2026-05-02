@@ -1,6 +1,6 @@
 BIN := venv/bin
 PYTHON := $(BIN)/python
-SHELL := /bin/bash
+SHELL := /usr/bin/env bash
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
 LISTEN_IP := 0.0.0.0
 DOCKER_REPO ?= docker-push.ocf.berkeley.edu/
@@ -69,7 +69,7 @@ gunicorn: venv
 # phony because it depends on other files, too many to express
 .PHONY: ocfweb/static/scss/site.scss.css
 ocfweb/static/scss/site.scss.css: ocfweb/static/scss/site.scss venv
-	$(BIN)/pysassc "$<" "$@"
+	$(BIN)/pysassc -I bootstrap-scss/assets/stylesheets "$<" "$@"
 
 .PHONY: watch-scss
 watch-scss: venv
