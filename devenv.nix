@@ -1,9 +1,10 @@
 { pkgs, lib, config, inputs, ... }:
 
 {
+  cachix.enable = false;
   languages.python = {
     enable = true;
-    version = "3.11";
+    package = pkgs.python311;
     venv = {
       enable = true;
       requirements = builtins.readFile ./requirements.txt + builtins.readFile ./requirements-dev.txt;
