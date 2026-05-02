@@ -9,6 +9,10 @@ ocfweb
 
 ## Working on `ocfweb`
 
+It may take about 5 minutes for all of the dependencies to install the first time.
+
+---
+
 We recommend following all of these steps
 [on supernova](https://www.ocf.berkeley.edu/docs/staff/procedures/ssh-supernova/),
 the staff login server, because it is already configured to run ocfweb in

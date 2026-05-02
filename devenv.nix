@@ -9,4 +9,7 @@
     gnumake
     python312Packages.shellescape
   ];
+  env.DJANGO_DEBUG = "1";
+
+  processes.web.exec = "make dev";
 }

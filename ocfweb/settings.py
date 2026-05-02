@@ -156,7 +156,7 @@ else:
     conf.read('/etc/ocfweb/ocfweb.conf')
 
 SECRET_KEY = conf.get('django', 'secret')
-DEBUG = conf.getboolean('django', 'debug')
+DEBUG = os.getenv('DJANGO_DEBUG') == '1' or conf.getboolean('django', 'debug')
 
 STATIC_URL = conf.get('django', 'static_url')
 STATIC_ROOT = os.environ.get('OCFWEB_STATIC_ROOT') or conf.get('django', 'static_root')
