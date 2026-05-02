@@ -1,5 +1,4 @@
-BIN := venv/bin
-PYTHON := $(BIN)/python
+PYTHON := python
 SHELL := /usr/bin/env bash
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) )))
 LISTEN_IP := 0.0.0.0
@@ -11,13 +10,13 @@ DOCKER_TAG_STATIC = $(DOCKER_REPO)ocfweb-static:$(DOCKER_REVISION)
 
 .PHONY: test
 test: export OCFWEB_TESTING ?= 1
-test: venv mypy
-	$(BIN)/py.test -v tests/
-	$(BIN)/pre-commit run --all-files
+test: mypy
+	py.test -v tests/
+	pre-commit run --all-files
 
 .PHONY: mypy
-mypy: venv
-	$(BIN)/mypy -p ocfweb
+mypy:
+	mypy -p ocfweb
 
 .PHONY: cook-image
 cook-image:
@@ -34,45 +33,39 @@ push-image:
 	docker push $(DOCKER_TAG_STATIC)
 
 .PHONY: dev
-dev: venv ocfweb/static/scss/site.scss.css
-	@echo -e "\e[1m\e[93mRunning on http://$(shell hostname -f ):$(RANDOM_PORT)/\e[0m"
+dev: ocfweb/static/scss/site.scss.css
+	@echo -e "\e[1m\e[93mRunning on http://localhost:$(RANDOM_PORT)/ (run: ssh -L $(RANDOM_PORT):localhost:$(RANDOM_PORT) $(shell hostname -s))\e[0m"
 	$(PYTHON) ./manage.py runserver $(LISTEN_IP):$(RANDOM_PORT)
 
 .PHONY: local-dev
 local-dev: LISTEN_IP=127.0.0.1
 local-dev: dev
 
-venv: requirements.txt requirements-dev.txt
-	test -d venv || python3.11 -m venv venv
-	$(BIN)/pip install --upgrade pip
-	$(BIN)/pip install -r requirements.txt -r requirements-dev.txt
-	touch venv
-
 .PHONY: install-hooks
-install-hooks: venv
-	$(BIN)/pre-commit install -f --install-hooks
+install-hooks:
+	pre-commit install -f --install-hooks
 
 .PHONY: lint
-lint: venv
-	$(BIN)/pre-commit run --all-files
+lint:
+	pre-commit run --all-files
 
 .PHONY: clean
 clean:
-	rm -rf *.egg-info venv
+	rm -rf *.egg-info
 
 # closer to prod
 .PHONY: gunicorn
-gunicorn: venv
+gunicorn:
 	@echo "Running on port $(RANDOM_PORT)"
-	$(BIN)/gunicorn -b 0.0.0.0:$(RANDOM_PORT) ocfweb.wsgi
+	gunicorn -b 0.0.0.0:$(RANDOM_PORT) ocfweb.wsgi
 
 # phony because it depends on other files, too many to express
 .PHONY: ocfweb/static/scss/site.scss.css
-ocfweb/static/scss/site.scss.css: ocfweb/static/scss/site.scss venv
-	$(BIN)/pysassc -I bootstrap-scss/assets/stylesheets "$<" "$@"
+ocfweb/static/scss/site.scss.css: ocfweb/static/scss/site.scss
+	pysassc -I bootstrap-scss/assets/stylesheets "$<" "$@"
 
 .PHONY: watch-scss
-watch-scss: venv
+watch-scss:
 	while :; do \
 		make ocfweb/static/scss/site.scss.css; \
 		find ocfweb/static -type f -name '*.scss' | \
@@ -80,6 +73,6 @@ watch-scss: venv
 	done
 
 .PHONY: update-requirements
-update-requirements: venv
-	$(BIN)/upgrade-requirements
+update-requirements:
+	upgrade-requirements
 	sed -i 's/^ocflib==.*/ocflib/' requirements.txt

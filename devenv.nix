@@ -3,11 +3,15 @@
 {
   languages.python = {
     enable = true;
-    package = pkgs.python311;
+    version = "3.11";
+    venv = {
+      enable = true;
+      requirements = builtins.readFile ./requirements.txt + builtins.readFile ./requirements-dev.txt;
+    };
+    uv.enable = true;
   };
   packages = with pkgs; [
     gnumake
-    python311Packages.shellescape
   ];
   env.DJANGO_DEBUG = "1";
 

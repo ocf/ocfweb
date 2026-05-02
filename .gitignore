@@ -6,6 +6,7 @@
 /.version
 /ocfweb/static/scss/**/*.css
 /venv
+/venv-*/
 /virtualenv_run
 /ocflib
 
