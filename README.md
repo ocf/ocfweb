@@ -9,17 +9,18 @@ ocfweb
 
 ## Working on `ocfweb` on the ocfstaff remote dev server
 
-1. Run `devenv up`
+1. Open a terminal on your local host and run `ssh koi.ocf.io`.
+2. Then, run `git clone git@github.com:ocf/ocfweb.git`, `cd ocfweb`, then `devenv up`.
     - It may take about several minutes for all of the dependencies to install the first time. Give it at least 10 min.
     - You will see a process-compose tui appear, with a process called "web" and the logs visible. Your user's port is what is generated in the log line `Running on https://koi.ocf.berkeley.edu:YOUROWNPORT`, based on your uid. This is to avoid conflicts with other users who might also be running dev servers on koi.
-2. Open an SSH tunnel on your local host (**not** on `koi` or other OCF servers): `ssh -L YOUROWNPORT:localhost:YOUROWNPORT koi`
+3. Open an SSH tunnel on your local host (**not** on `koi` or other OCF servers): `ssh -L YOUROWNPORT:localhost:YOUROWNPORT koi`
     - to avoid this extra step in the future, add the following to your `~/.ssh/config`:
     ```
     Host koi
         HostName koi.ocf.berkeley.edu
         LocalForward YOUROWNPORT localhost:YOUROWNPORT
     ```
-3. Go to https://localhost:YOUROWNPORT in your local browser!
+4. Go to https://localhost:YOUROWNPORT in your local browser!
 
 
 ## BELOW THIS IS OUTDATED. WIP
