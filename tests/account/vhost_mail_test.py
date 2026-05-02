@@ -1,4 +1,3 @@
-import crypt
 import csv
 import io
 import re
@@ -7,6 +6,7 @@ from datetime import datetime
 from textwrap import dedent
 from unittest import mock
 
+import crypt
 import pytest
 from django.contrib import messages
 from django.http import HttpResponseRedirect
