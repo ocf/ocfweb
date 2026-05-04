@@ -28,6 +28,31 @@
 
             .ocf-hour-hours {
                 padding: 0 5px;
+
+                .ocf-staffer {
+                    padding-top: 4px;
+
+                    .ocf-staffer-face {
+                        padding: 4px 0;
+                    }
+                }
+            }
+
+            p {
+              margin: 0;
+            }
+
+            .cancelled p {
+                color: #999;
+            }
+
+            .cancelled-text {
+                color: #b20000;
+                font-weight: bold;
+            }
+
+            .cancelled .ocf-staffer {
+                opacity: 0.6;
             }
         }
     }
@@ -55,39 +80,6 @@
 
     .see-more {
         font-size: 14px;
-    }
-
-    .ocf-staffhours {
-        p {
-            margin: 0;
-        }
-
-        h3 {
-            margin-bottom: 0;
-        }
-
-        .cancelled p {
-            color: #999;
-        }
-
-        .cancelled-text {
-            color: #b20000;
-            font-weight: bold;
-        }
-
-        .ocf-staffhours-faces img {
-            margin-right: 10px;
-            margin-bottom: 10px;
-
-            @media (max-width: $screen-sm-max) {
-                margin-right: 5px;
-                margin-bottom: 5px;
-            }
-        }
-
-        .cancelled .ocf-staffhours-faces {
-            opacity: 0.6;
-        }
     }
 
     .ocf-penguin-swing {
