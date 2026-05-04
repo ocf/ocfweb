@@ -1,10 +1,12 @@
+from typing import Any
+
 from django import template
 
 register = template.Library()
 
 
 @register.filter
-def tv_lab_hours(hour):
+def tv_lab_hours(hour: Any) -> Any:
     if hour:
         if hour.open.minute != 0 or hour.close.minute != 0:
             fmt = '{:%-I:%M%P}–{:%-I:%M%P}'
@@ -15,7 +17,7 @@ def tv_lab_hours(hour):
 
 
 @register.filter
-def tv_lab_hours_css(hours):
+def tv_lab_hours_css(hours: Any) -> str:
     # 9:30 = hours-small, 9:00 = hours-large
     return 'hours-small' if any(
         block.open.minute != 0 or

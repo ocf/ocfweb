@@ -86,13 +86,13 @@ def get_sessions_plot(start_day: datetime, end_day: datetime) -> Figure:
     kwargs = {'marker': 'o'}
     if end_day - start_day > timedelta(days=60):
         del kwargs['marker']
-    ax.plot(x, mean_duration_hours, linewidth=2, **kwargs)
+    ax.plot(x, mean_duration_hours, linewidth=2, **kwargs)  # type: ignore[arg-type]
 
     ax.set_xlim(x[0], x[-1])
 
     skip = max(1, len(x) // 5)  # target 5 labels
     ax.set_xticks(x[::skip])
-    ax.set_xticklabels(list(map(date.fromtimestamp, x))[::skip])
+    ax.set_xticklabels([str(d) for d in list(map(date.fromtimestamp, x))[::skip]])
     ax.set_ylim(bottom=0)
     ax.set_ylabel('Duration (hours)')
     ax.set_title(

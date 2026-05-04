@@ -1,6 +1,7 @@
 cached-property
+setuptools
 celery[redis]
-cryptography<39.0.2 # Due to Rust requirements (ok to remove once rustc is puppeted or we just install Rust in the container)
+cryptography
 django
 django-bootstrap-form
 django-ipware
@@ -12,7 +13,7 @@ libsass
 matplotlib
 mistune
 numpy
-ocflib>=2024.4.23
+ocflib @ git+https://github.com/ocf/ocflib.git@upgrade-python-314
 paramiko
 pyasn1
 pycryptodome

@@ -1,8 +1,12 @@
 from collections import namedtuple
 from datetime import datetime
+from typing import Any
+from typing import Optional
 
 import ocflib.misc.validators
 from django import forms
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -31,7 +35,7 @@ class NewReservationRequest(
 ):
     __slots__ = ()
 
-    def to_dict(self):
+    def to_dict(self) -> dict[str, Any]:
         return self._asdict()
 
 
@@ -89,7 +93,7 @@ class RequestForm(forms.Form):
         },
     )
 
-    def clean_verify_(self):
+    def clean_verify_(self) -> Optional[str]:
         email = self.cleaned_data.get('contact_email')
         verify_contact_email = self.cleaned_data.get('verify_contact_email')
 
@@ -99,7 +103,7 @@ class RequestForm(forms.Form):
 
 
 @calnet_required
-def request_reservation(request):
+def request_reservation(request: HttpRequest) -> HttpResponse:
     status = 'new_request'
 
     if request.method == 'POST':
@@ -134,11 +138,11 @@ def request_reservation(request):
     )
 
 
-def request_reservation_success(request):
+def request_reservation_success(request: HttpRequest) -> HttpResponse:
     return render(request, 'lab_reservations/pending.html', {'title': 'Reservation request successful'})
 
 
-def send_request_to_officers(request):
+def send_request_to_officers(request: NewReservationRequest) -> None:
     body = JINJA_MAIL_ENV.get_template(
         'lab_reservations/mail_templates/officer_notification.jinja',
     ).render(request=request)
@@ -150,7 +154,7 @@ def send_request_to_officers(request):
     )
 
 
-def send_request_confirmation(request):
+def send_request_confirmation(request: NewReservationRequest) -> None:
     body = JINJA_MAIL_ENV.get_template(
         'lab_reservations/mail_templates/user_notification.jinja',
     ).render(request=request)

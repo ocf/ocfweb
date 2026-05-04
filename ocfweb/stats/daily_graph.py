@@ -123,7 +123,7 @@ def get_daily_plot(day: date) -> Figure:
     ax = fig.add_subplot(1, 1, 1)
 
     ax.grid(True)
-    ax.plot_date(times, processed, fmt='b-', color='k', linewidth=1.5)
+    ax.plot_date(times, processed, fmt='b-', color='k', linewidth=1.5)  # type: ignore[arg-type]
 
     # Draw a vertical line, if applicable, showing current time
     if now:
@@ -131,10 +131,10 @@ def get_daily_plot(day: date) -> Figure:
 
     # Draw a horizontal line for total desktops
     ax.axhline(desks_count, ls='dashed')
-    ax.annotate('   Total desktops', xy=(start, desks_count + 1))
+    ax.annotate('   Total desktops', xy=(start, desks_count + 1))  # type: ignore[arg-type]
 
-    ax.xaxis.set_major_formatter(DateFormatter('%-I%P'))
-    ax.set_xlim(start, end)
+    ax.xaxis.set_major_formatter(DateFormatter('%-I%P'))  # type: ignore[no-untyped-call]
+    ax.set_xlim(start, end)  # type: ignore[arg-type]
 
     ax.set_ylim(0, desks_count + 5)
     ax.set_ylabel('Computers in Use')

@@ -1,11 +1,11 @@
 django-stubs
-mypy
+mypy>=1.0
 pre-commit
-pytest
-pytest-cov
-pytest-django
-pytest-env
-pytest-xdist
+pytest>=8.0
+pytest-cov>=4.0
+pytest-django>=4.5
+pytest-env>=1.0
+pytest-xdist>=3.0
 requirements-tools
 types-paramiko
 types-python-dateutil

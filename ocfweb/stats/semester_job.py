@@ -1,7 +1,6 @@
 from datetime import datetime
 from typing import Any
 from typing import Sequence
-from typing import Sized
 
 import ocflib.printing.quota as quota
 from django.http import HttpRequest
@@ -64,7 +63,7 @@ graphs = {
 
 
 def freq_plot(
-    data: Sized, title: Sequence[Any],
+    data: Sequence[int], title: str,
     ylab: str = 'Number of Jobs Printed',
 ) -> Figure:
     """takes in data, title, and ylab and makes a histogram, with
@@ -87,7 +86,7 @@ def freq_plot(
     return fig
 
 
-def get_jobs_plot(graph: str, start_day: datetime, end_day: datetime) -> HttpResponse:
+def get_jobs_plot(graph: str, start_day: datetime, end_day: datetime) -> Figure:
     """Return matplotlib plot of the number of jobs of different page-jobs"""
     graph_config = graphs[graph]
     with quota.get_connection() as cursor:
@@ -102,4 +101,4 @@ def get_jobs_plot(graph: str, start_day: datetime, end_day: datetime) -> HttpRes
     jobs_dict = {row['pages']: row['count'] for row in data}
     jobs_count = [jobs_dict.get(i, 0) for i in range(1, graph_config['quota'][0] + 1)]
 
-    return freq_plot(jobs_count, graph_config['title'])
+    return freq_plot(jobs_count, str(graph_config['title']))

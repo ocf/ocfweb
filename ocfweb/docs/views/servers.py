@@ -3,6 +3,7 @@ from collections import namedtuple
 from typing import Any
 from typing import Dict
 from typing import List
+from typing import Optional
 from typing import Tuple
 
 import dns.resolver
@@ -39,14 +40,14 @@ class Host(namedtuple('Host', ['hostname', 'type', 'description', 'children'])):
     def ipv4(self) -> str:
         try:
             # for this and ipv6 below: dns.resolver.query is not typed but is within a package.
-            return str(dns.resolver.query(self.hostname, 'A')[0])  # type: ignore
+            return str(dns.resolver.query(self.hostname, 'A')[0])
         except dns.resolver.NXDOMAIN:
             return 'No IPv4 Address'
 
     @cached_property
     def ipv6(self) -> str:
         try:
-            return str(dns.resolver.query(self.hostname, 'AAAA')[0])  # type: ignore
+            return str(dns.resolver.query(self.hostname, 'AAAA')[0])
         except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
             return 'No IPv6 address'
 
@@ -90,7 +91,7 @@ PQL_GET_VMS = "facts { name = 'vms' }"
 PQL_IS_HYPERVISOR = 'resources[certname] { type = "Class" and title = "Ocf_kvm" }'
 
 
-def query_puppet(query: str) -> Dict[Any, Any]:
+def query_puppet(query: str) -> Optional[Dict[Any, Any]]:
     """Accepts a PQL query, returns a parsed json result."""
     r = requests.get(
         PUPPETDB_URL,
@@ -121,8 +122,8 @@ def get_hosts() -> List[Any]:
     ldap_output = hosts_by_filter('(|(type=server)(type=desktop)(type=printer))')
     servers: Dict[Any, Any] = dict(ldap_to_host(item) for item in ldap_output if not is_hidden(item))
 
-    hypervisors_hostnames: Dict[Any, Any] = dict(format_query_output(item) for item in query_puppet(PQL_IS_HYPERVISOR))
-    all_children: Dict[Any, Any] = dict(format_query_output(item) for item in query_puppet(PQL_GET_VMS))
+    hypervisors_hostnames: Dict[Any, Any] = dict(format_query_output(item) for item in (query_puppet(PQL_IS_HYPERVISOR) or []))
+    all_children: Dict[Any, Any] = dict(format_query_output(item) for item in (query_puppet(PQL_GET_VMS) or []))
 
     hostnames_seen = {
         # These are manually added later, with the correct type
