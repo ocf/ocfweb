@@ -104,23 +104,36 @@
             <li><a href="{% url 'vhost_mail' %}">Mail Virtual Hosting</a></li>
         </ul>
 
-        <div class="ocf-staffhours">
+        <h3>Staff Hours</h3>
+        <div class="ocf-hours">
             {% for staff_hour in staff_hours %}
-                <h3>Staff Hours {{staff_hour.day}}</h3>
-                <div class="{% if staff_hour.cancelled %} cancelled {% endif %}">
-                    <p>
-                        {{staff_hour.time}}
-                        {% if staff_hour.cancelled %}
-                            <span class="cancelled-text">cancelled this week</span>
-                        {% endif %}
-                    </p>
-                    <div class="ocf-staffhours-faces">
-                      <!--  XXX: html comment to avoid spaces between images
-                        {% for staffer in staff_hour.staff %}
-                            --><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" /><!--
-                        {% endfor %}
-                      -->
+                <div class="ocf-hour row {% cycle 'odd' 'even' %}">
+                    <div class="col-sm-5 col-md-3 ocf-hour-title">
+                        {{staff_hour.day}}<br />
                     </div>
+                    <div class="col-sm-7 col-md-9 ocf-hour-hours {% if staff_hour.cancelled %} cancelled {% endif %}">
+                        <p>
+                            {{staff_hour.time}}
+                            {% if staff_hour.cancelled %}
+                                <span class="cancelled-text">cancelled this week</span>
+                            {% endif %}
+                        </p>
+                          <!--  XXX: html comment to avoid spaces between images
+                            {% for staffer in staff_hour.staff %}
+                              --><div class="ocf-staffer">
+                              <div class="ocf-staffer-face">
+                                <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" />
+                              </div>
+                              <div class="ocf-staffer-name">
+                                {{staffer.real_name}} <code>&lt;{{staffer.user_name}}&gt;</code>
+                              </div><!--
+                            {% endfor %}
+                          -->
+                        </div>
+                    </div>
+                </div>
+                <strong></strong>
+                <div class="{% if staff_hour.cancelled %} cancelled {% endif %}">
                 </div>
             {% endfor %}
 
