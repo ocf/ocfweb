@@ -8,9 +8,9 @@ from ocfweb.api import session_tracking
 from ocfweb.api.session_tracking import log_session
 
 # something we know is a desktop or VM
-OCF_DESKTOP_IP = '169.229.226.118'
-OCF_DESKTOP_IP_V6 = '2607:f140:8801::1:118'
-OCF_DESKTOP_HOST = 'blackout.ocf.berkeley.edu'
+OCF_DESKTOP_IP = '169.229.226.145'
+OCF_DESKTOP_IP_V6 = '2607:f140:8801::1:145'
+OCF_DESKTOP_HOST = 'fred.ocf.berkeley.edu'
 OCF_VM_IP = '169.229.226.36'
 OCF_VM_IP_V6 = '2607:f140:8801::1:36'
 
