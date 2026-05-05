@@ -6,7 +6,7 @@ from datetime import datetime
 from textwrap import dedent
 from unittest import mock
 
-import crypt
+from passlib.hash import sha512_crypt
 import pytest
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -127,7 +127,7 @@ class VerifyPassword:
         if self.password is None:
             return other is None
         else:
-            return crypt.crypt(self.password, salt=other)
+            return sha512_crypt.verify(self.password, other)
 
 
 @pytest.mark.parametrize(
