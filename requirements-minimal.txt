@@ -1,5 +1,4 @@
 cached-property
-setuptools
 celery[redis]
 cryptography
 django
@@ -20,3 +19,4 @@ pycryptodome
 pygments
 pymysql
 python-dateutil
+setuptools

@@ -84,7 +84,10 @@ urlpatterns = [
     ),
     re_path(r'^OCF/policies(?:/|$)', lambda _: redirect(reverse('docs'), permanent=True)),
     re_path(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(reverse('doc', args=('faq',)), permanent=True)),
-    re_path(r'^OCF/officers_.*\.s?html$', lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True)),
+    re_path(
+        r'^OCF/officers_.*\.s?html$',
+        lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True),
+    ),
     re_path(r'^OCF/staff/how-to-join\.shtml$', lambda _: redirect(reverse('about-staff'), permanent=True)),
     re_path(r'^mlk$', lambda _: redirect(reverse('doc', args=('services/lab',)), permanent=True)),
 ]

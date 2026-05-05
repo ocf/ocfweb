@@ -6,12 +6,12 @@ from datetime import datetime
 from textwrap import dedent
 from unittest import mock
 
-from passlib.hash import sha512_crypt
 import pytest
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from ocflib.vhost.mail import MailForwardingAddress
+from passlib.hash import sha512_crypt
 
 from ocfweb.account import vhost_mail
 from ocfweb.account.vhost_mail import _error

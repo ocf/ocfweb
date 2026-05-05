@@ -122,7 +122,9 @@ def get_hosts() -> List[Any]:
     ldap_output = hosts_by_filter('(|(type=server)(type=desktop)(type=printer))')
     servers: Dict[Any, Any] = dict(ldap_to_host(item) for item in ldap_output if not is_hidden(item))
 
-    hypervisors_hostnames: Dict[Any, Any] = dict(format_query_output(item) for item in (query_puppet(PQL_IS_HYPERVISOR) or []))
+    hypervisors_hostnames: Dict[Any, Any] = dict(
+        format_query_output(item) for item in (query_puppet(PQL_IS_HYPERVISOR) or [])
+    )
     all_children: Dict[Any, Any] = dict(format_query_output(item) for item in (query_puppet(PQL_GET_VMS) or []))
 
     hostnames_seen = {
