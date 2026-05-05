@@ -146,14 +146,12 @@ LOGGING = {
 
 # Load the rest of the config from a file.
 # We populate this file in dev with fake values or values for development
-# databases, so this still works (as long as you're on supernova).
+# databases, so this still works (as long as you're on koi).
+# The system config overrides the local config, so real credentials on the
+# host take precedence over placeholders in the repo.
 conf = configparser.ConfigParser()
-# Try local config first for development, then fall back to system config
 local_conf = os.path.join(BASE_DIR, 'conf', 'ocfweb.conf')
-if os.path.exists(local_conf):
-    conf.read(local_conf)
-else:
-    conf.read('/etc/ocfweb/ocfweb.conf')
+conf.read([local_conf, '/etc/ocfweb/ocfweb.conf'])
 
 SECRET_KEY = conf.get('django', 'secret')
 DEBUG = os.getenv('DJANGO_DEBUG') == '1' or conf.getboolean('django', 'debug')
