@@ -11,12 +11,12 @@ DOCKER_TAG_STATIC = $(DOCKER_REPO)ocfweb-static:$(DOCKER_REVISION)
 .PHONY: test
 test: export OCFWEB_TESTING ?= 1
 test: mypy
-	py.test -v tests/
+	uv run py.test -v tests/
 	pre-commit run --all-files
 
 .PHONY: mypy
 mypy:
-	mypy -p ocfweb
+	uv run mypy -p ocfweb
 
 .PHONY: cook-image
 cook-image:
