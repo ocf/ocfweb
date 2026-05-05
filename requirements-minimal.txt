@@ -13,7 +13,7 @@ libsass
 matplotlib
 mistune
 numpy
-ocflib @ git+https://github.com/ocf/ocflib.git@upgrade-python-314
+ocflib
 paramiko
 pyasn1
 pycryptodome
