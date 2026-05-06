@@ -108,6 +108,5 @@ def summary(request: HttpRequest) -> HttpResponse:
             'top_staff_semester': top_staff_semester()[:15],
             'users_in_lab_count': users_in_lab_count(),
             'staff_in_lab_count': staff_in_lab_count(),
-            'printers': printers(),
         },
     )

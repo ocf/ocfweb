@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load common %}
 {% load stats %}
+{% load ui_components %}
 
 {% block content %}
     <div class="ocf-content-block">
@@ -11,6 +12,46 @@
             <img class="img-responsive" src="{% url 'weekend_jobs_image' %}" />
             <img class="img-responsive" src="{% url 'semester_histogram' %}" />
         </p>
+
+        <h2>Printer Status</h2>
+        <div class="row">
+            {% for printer, toner, maintkit, status, trays in printers %}
+                <div class="col-sm-4">
+                    <h4>{{printer}}</h4>
+                    {% if toner %}
+                        <p><strong>Toner: </strong> {% widthratio toner|getitem:0 toner|getitem:1 100 %}% remaining</p>
+                        {% progress_bar label='' value=toner|getitem:0 max=toner|getitem:1 %}
+                    {% else %}
+                        <p><strong>Toner: </strong> <em>unable to read</em></p>
+                    {% endif %}
+                    {% if maintkit %}
+                        <p><strong>Maintenance Kit: </strong> {% widthratio maintkit|getitem:0 maintkit|getitem:1 100 %}% remaining</p>
+                        {% progress_bar label='' value=maintkit|getitem:0 max=maintkit|getitem:1 %}
+                    {% else %}
+                        <p><strong>Maintenance Kit: </strong> <em>unable to read</em></p>
+                    {% endif %}
+                    {% if trays %}
+                        {% for tray_name, tray_cur, tray_max in trays %}
+                            <p><strong>{{tray_name}}: </strong> {% widthratio tray_cur tray_max 100 %}% full</p>
+                            {% progress_bar label='' value=tray_cur max=tray_max %}
+                        {% endfor %}
+                    {% elif trays is not None %}
+                        <p><strong>Paper Trays: </strong> <em>no data</em></p>
+                    {% else %}
+                        <p><strong>Paper Trays: </strong> <em>unable to read</em></p>
+                    {% endif %}
+                    <p><strong>Status: </strong>
+                    {% if status %}
+                        {% for msg in status %}{{msg}}{% if not forloop.last %}; {% endif %}{% endfor %}
+                    {% elif status is not None %}
+                        <em>ok</em>
+                    {% else %}
+                        <em>unable to read</em>
+                    {% endif %}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
 
         <h2>Pages printed per day</h2>
         <div class="row">
