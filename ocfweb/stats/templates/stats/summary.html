@@ -45,7 +45,7 @@
                     {% endif %}
                     {% if trays %}
                         {% for tray_name, tray_cur, tray_max in trays %}
-                            <p><strong>{{tray_name}}: </strong> {% widthratio tray_cur tray_max 100 %}% full ({{tray_cur}}/{{tray_max}} sheets)</p>
+                            <p><strong>{{tray_name}}: </strong> {% widthratio tray_cur tray_max 100 %}% full</p>
                             {% progress_bar label='' value=tray_cur max=tray_max %}
                         {% endfor %}
                     {% elif trays is not None %}
