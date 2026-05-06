@@ -57,7 +57,7 @@ CMD ["runsvdir", "/opt/ocfweb/services"]
 
 FROM base AS static
 
-RUN /opt/ocfweb/venv/bin/pysassc /opt/ocfweb/ocfweb/static/scss/site.scss /opt/ocfweb/ocfweb/static/scss/site.scss.css
+RUN /opt/ocfweb/venv/bin/pysassc -I /opt/ocfweb/bootstrap-scss/assets/stylesheets /opt/ocfweb/ocfweb/static/scss/site.scss /opt/ocfweb/ocfweb/static/scss/site.scss.css
 RUN find /opt/ocfweb/ocfweb/ \( -name '*.js' -o -name '*.css' \) -exec yui-compressor -o {} {} \;
 RUN mkdir /opt/ocfweb/static
 ENV OCFWEB_STATIC_ROOT /opt/ocfweb/static
