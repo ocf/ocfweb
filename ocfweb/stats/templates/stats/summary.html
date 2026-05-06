@@ -28,7 +28,7 @@
 
         <h3>Printers</h3>
         <div class="row">
-            {% for printer, toner, maintkit, status in printers %}
+            {% for printer, toner, maintkit, status, trays in printers %}
                 <div class="col-sm-4">
                     <h4>{{printer}}</h4>
                     {% if toner %}
@@ -42,6 +42,16 @@
                         {% progress_bar label='' value=maintkit|getitem:0 max=maintkit|getitem:1 %}
                     {% else %}
                         <p><strong>Maintenance Kit: </strong> <em>unable to read</em></p>
+                    {% endif %}
+                    {% if trays %}
+                        {% for tray_name, tray_cur, tray_max in trays %}
+                            <p><strong>{{tray_name}}: </strong> {% widthratio tray_cur tray_max 100 %}% full ({{tray_cur}}/{{tray_max}} sheets)</p>
+                            {% progress_bar label='' value=tray_cur max=tray_max %}
+                        {% endfor %}
+                    {% elif trays is not None %}
+                        <p><strong>Paper Trays: </strong> <em>no data</em></p>
+                    {% else %}
+                        <p><strong>Paper Trays: </strong> <em>unable to read</em></p>
                     {% endif %}
                     <p><strong>Status: </strong>
                     {% if status %}
