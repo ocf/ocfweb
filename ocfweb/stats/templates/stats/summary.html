@@ -28,7 +28,7 @@
 
         <h3>Printers</h3>
         <div class="row">
-            {% for printer, toner, maintkit in printers %}
+            {% for printer, toner, maintkit, status in printers %}
                 <div class="col-sm-4">
                     <h4>{{printer}}</h4>
                     {% if toner %}
@@ -43,6 +43,15 @@
                     {% else %}
                         <p><strong>Maintenance Kit: </strong> <em>unable to read</em></p>
                     {% endif %}
+                    <p><strong>Status: </strong>
+                    {% if status %}
+                        {% for msg in status %}{{msg}}{% if not forloop.last %}; {% endif %}{% endfor %}
+                    {% elif status is not None %}
+                        <em>ok</em>
+                    {% else %}
+                        <em>unable to read</em>
+                    {% endif %}
+                    </p>
                 </div>
             {% endfor %}
         </div>
