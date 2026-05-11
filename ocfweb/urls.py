@@ -20,6 +20,7 @@ from ocfweb.main.hosting_logos import hosting_logo
 from ocfweb.main.robots import robots_dot_txt
 from ocfweb.main.security import security_dot_txt
 from ocfweb.main.staff_hours import staff_hours
+from ocfweb.main.lab import lab
 from ocfweb.stats.urls import urlpatterns as stats
 from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
@@ -40,6 +41,7 @@ urlpatterns = [
     re_path(r'^.well-known/security\.txt$', security_dot_txt, name='security.txt'),
 
     re_path(r'^staff-hours$', staff_hours, name='staff-hours'),
+    re_path(r'^lab$', lab, name='lab'),
 
     re_path(r'^account/', include(account)),
     re_path(r'^announcements/', include(announcements)),

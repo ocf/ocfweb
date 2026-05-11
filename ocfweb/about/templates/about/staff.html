@@ -13,7 +13,7 @@
                     <img style="float: left; margin-right: 20px; margin-bottom: 10px;" class="visible-xs" src="{% static 'img/penguin.svg' %}" width="90" />
                     <h1>What is the Open Computing Facility?</h1>
                     <p>We're a student organization dedicated to providing free computing for all UC Berkeley students, faculty, and staff.</p>
-                    <p>We run a <a href="{% url 'doc' 'services/lab' %}">computer lab</a> on southside, have a <a href="{% url 'doc' 'staff/backend/servers' %}">wicked set of servers</a> for staff to play on, and provide <a href="{{docs_url}}/user-docs/services/">cool services</a> to the Berkeley community.</p>
+                    <p>We run a <a href="{% url 'lab' %}">computer lab</a> on southside, have a <a href="{% url 'doc' 'staff/backend/servers' %}">wicked set of servers</a> for staff to play on, and provide <a href="{{docs_url}}/user-docs/services/">cool services</a> to the Berkeley community.</p>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                         <p>OCF Staff meet to discuss technology, learn from each other, and work on OCF projects.</p>
                         <p>Drop-in visitors are always welcome, especially those interested in joining the staff team!</p>
                         <p><strong>When:</strong> Every Wednesday at 7:30pm</p>
-                        <p><strong>Where:</strong> <a href="{% url 'doc' 'services/lab' %}">OCF Computer lab (171 MLK)</a></p>
+                        <p><strong>Where:</strong> <a href="{% url 'lab' %}">OCF Computer lab (171 MLK)</a></p>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                 <div class="col-md-5 photo-align-bottom-right-col">
                     <h2>We have a spiffy computer lab on southside.</h2>
                     <h3><a href="{% url 'register' %}">Create an account</a> and drop by!</h3>
-                    <p>Our computer lab, located in <a href="{% url 'doc' 'services/lab' %}">171 MLK Student Union</a>, features high-res scanners, free printing, and high-end desktops with mechanical keyboards and GTX graphics cards, all running Debian GNU/Linux.</p>
+                    <p>Our computer lab, located in <a href="{% url 'lab' %}">171 MLK Student Union</a>, features high-res scanners, free printing, and high-end desktops with mechanical keyboards and GTX graphics cards, all running Debian GNU/Linux.</p>
                     <img src="{% static 'img/about/servers.jpg' %}" alt="a photo of servers in the rack, 2019 Spring" />
                 </div>
             </div>
@@ -149,7 +149,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>We meet every Wednesday at 7:30pm <a href="{% url 'doc' 'services/lab' %}">in the lab</a>.</h2>
+                    <h2>We meet every Wednesday at 7:30pm <a href="{% url 'lab' %}">in the lab</a>.</h2>
                     <h3>We hope to see you there!</h3>
                 </div>
             </div>
