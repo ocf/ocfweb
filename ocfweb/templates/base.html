@@ -35,7 +35,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{% url 'doc' 'services/lab' %}">Computer Lab</a></li>
+                                <li><a href="{% url 'lab' %}">Computer Lab</a></li>
                                 <li><a href="{% url 'doc' 'staff/backend/servers' %}">Servers</a></li>
                                 <li><a href="{% url 'staff-hours' %}">Staff Hours</a></li>
                                 <li><a href="{% url 'stats' %}">Lab Statistics</a></li>
@@ -93,7 +93,7 @@
                             {% endif %}
                             {{current_lab_hours|lab_hours_time}}
                             on {% now "l" %} {% lab_hours_holiday holidays %}
-                            <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
+                            <a class="subtle" href="{% url 'lab' %}">more &raquo;</a>
                         </span>
                     {% else %}
                         <strong>Lab Temporarily Closed</strong>
