@@ -91,5 +91,5 @@ urlpatterns = [
         lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True),
     ),
     re_path(r'^OCF/staff/how-to-join\.shtml$', lambda _: redirect(reverse('about-staff'), permanent=True)),
-    re_path(r'^mlk$', lambda _: redirect(reverse('doc', args=('services/lab',)), permanent=True)),
+    re_path(r'^mlk$', lambda _: redirect(reverse('lab'), permanent=True)),
 ]
