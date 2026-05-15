@@ -15,6 +15,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from ocfweb.component.blog import get_blog_posts
+from ocfweb.component.blog import get_news_posts
 
 announcements: Tuple['Announcement', ...] = ()
 
@@ -65,7 +66,8 @@ def index(request: HttpRequest) -> HttpResponse:
                 key=lambda announcement: announcement.date,
                 reverse=True,
             ),
-            'blog_posts': get_blog_posts()[:10],
+            'news_posts': get_news_posts()[:10],
+            'status_posts': get_blog_posts()[:10],
         },
     )
 

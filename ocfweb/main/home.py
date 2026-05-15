@@ -11,6 +11,7 @@ from ocfweb.announcements.announcements import announcements
 from ocfweb.api.hours import get_hours_listing
 from ocfweb.caching import periodic
 from ocfweb.component.blog import get_blog_posts
+from ocfweb.component.blog import get_news_posts
 from ocfweb.component.lab_status import get_lab_status
 
 
@@ -41,7 +42,7 @@ def home(request: HttpRequest) -> HttpResponse:
             'staff_hours': get_staff_hours(),
             'hours': hours,
             'announcements': sorted(
-                get_blog_posts() + list(announcements), key=attrgetter('datetime'),
+                get_blog_posts() + get_news_posts(), key=attrgetter('datetime'),
                 reverse=True,
             )[:2],
             'today': hours[0],
