@@ -132,13 +132,9 @@
                         </div>
                     </div>
                 </div>
-                <strong></strong>
-                <div class="{% if staff_hour.cancelled %} cancelled {% endif %}">
-                </div>
             {% endfor %}
-
-            <p><a href="{% url 'staff-hours' %}" class="see-more">See more staff hours &raquo;</a></p>
         </div>
+        <p><a href="{% url 'staff-hours' %}" class="see-more">See more staff hours &raquo;</a></p>
     </div>
 </div>
 {% endblock %}
