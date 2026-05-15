@@ -17,10 +17,10 @@ from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
+from ocfweb.main.lab import lab
 from ocfweb.main.robots import robots_dot_txt
 from ocfweb.main.security import security_dot_txt
 from ocfweb.main.staff_hours import staff_hours
-from ocfweb.main.lab import lab
 from ocfweb.stats.urls import urlpatterns as stats
 from ocfweb.test.periodic import test_list_periodic_functions
 from ocfweb.test.session import test_session
