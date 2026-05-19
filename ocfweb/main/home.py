@@ -44,7 +44,7 @@ def home(request: HttpRequest) -> HttpResponse:
             'announcements': sorted(
                 get_blog_posts() + get_news_posts(), key=attrgetter('datetime'),
                 reverse=True,
-            )[:2],
+            )[:3],
             'today': hours[0],
             'lab_status': get_lab_status(),
         },
