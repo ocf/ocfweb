@@ -48,6 +48,7 @@ class Post(
         attrs['pubDate'] = dateutil.parser.parse(attrs['pubDate'])
         return cls(**attrs)
 
+
 @periodic(60)
 def get_news_posts() -> List[Any]:
     """Parse the OCF mkdocs news RSS feed into a list of Posts.
@@ -78,6 +79,7 @@ def get_news_posts() -> List[Any]:
             namespaces=_namespaces,
         )
     ]
+
 
 @periodic(60)
 def get_blog_posts() -> List[Any]:

@@ -7,7 +7,6 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
 
-from ocfweb.announcements.announcements import announcements
 from ocfweb.api.hours import get_hours_listing
 from ocfweb.caching import periodic
 from ocfweb.component.blog import get_blog_posts
