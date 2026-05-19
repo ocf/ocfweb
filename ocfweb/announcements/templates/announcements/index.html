@@ -6,17 +6,23 @@
     <div class="row">
         <div class="col-sm-8 ocf-content-block">
             <p>
-                We try to keep things running smoothly, but occasionally need
-                to announce service disruptions or other changes. Below is a
-                list of recent updates.
+                From time to time, the OCF makes announcements about new
+                events, operational changes, or service interruptions. Below
+                is a list of recent updates.
             </p>
 
             <h3>Organizational updates</h3>
+
+            <p>
+                The full archive of our past announcements is available in
+                <a href="{{docs_url}}/news">our documentation</a>.
+            </p>
+
             <ul>
-                {% for announcement in announcements %}
+                {% for news_post in news_posts %}
                     <li>
-                        <a href="{% url announcement.route_name %}">{{announcement.title}}</a><br />
-                        {{announcement.datetime | naturaltime}}
+                        <a href="{{news_post.link}}">{{news_post.title}}</a><br />
+                        {{news_post.pubDate | naturaltime}}
                     </li>
                 {% endfor %}
             </ul>
@@ -25,18 +31,18 @@
 
             <p>
                 Service information is primarily posted to
-                <a href="{{docs_url}}/news">our documentation blog</a>.
-                Consider bookmarking it for information even when the rest of the OCF is down.
+                <a href="https://status.ocf.berkeley.edu">our dedicated status blog</a>.
+                Consider bookmarking it or subscribiting to the for information even when the rest of the OCF is down.
             </p>
             <p>
                 Here are some recent updates from it:
             </p>
 
             <ul>
-                {% for blog_post in blog_posts %}
+                {% for status_post in status_posts %}
                     <li>
-                        <a href="{{blog_post.link}}">{{blog_post.title}}</a><br />
-                        {{blog_post.pubDate | naturaltime}}
+                        <a href="{{status_post.link}}">{{status_post.title}}</a><br />
+                        {{status_post.pubDate | naturaltime}}
                     </li>
                 {% endfor %}
             </ul>
@@ -53,7 +59,7 @@
             </p>
             <ul>
                 <li>
-                    <a href="{% url 'doc' 'services/lab' %}">
+                    <a href="{% url 'lab' %}">
                         A spiffy computer lab in 171 MLK</a>
                 </li>
                 <li>

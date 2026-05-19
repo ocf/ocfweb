@@ -17,6 +17,7 @@ from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
+from ocfweb.main.lab import lab
 from ocfweb.main.robots import robots_dot_txt
 from ocfweb.main.security import security_dot_txt
 from ocfweb.main.staff_hours import staff_hours
@@ -40,6 +41,7 @@ urlpatterns = [
     re_path(r'^.well-known/security\.txt$', security_dot_txt, name='security.txt'),
 
     re_path(r'^staff-hours$', staff_hours, name='staff-hours'),
+    re_path(r'^lab$', lab, name='lab'),
 
     re_path(r'^account/', include(account)),
     re_path(r'^announcements/', include(announcements)),
@@ -89,5 +91,5 @@ urlpatterns = [
         lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True),
     ),
     re_path(r'^OCF/staff/how-to-join\.shtml$', lambda _: redirect(reverse('about-staff'), permanent=True)),
-    re_path(r'^mlk$', lambda _: redirect(reverse('doc', args=('services/lab',)), permanent=True)),
+    re_path(r'^mlk$', lambda _: redirect(reverse('lab'), permanent=True)),
 ]

@@ -32,7 +32,7 @@
 
         <p>OCF volunteers maintain services for the Berkeley community, including:</p>
         <ul>
-            <li><a href="{% url 'doc' 'services/lab' %}">A spiffy computer lab</a> in 171 MLK Student Union</li>
+            <li><a href="{% url 'lab' %}">A spiffy computer lab</a> in 171 MLK Student Union</li>
             <li><a href="{{docs_url}}/user-docs/services/web/">Web &amp; email hosting</a> for thousands of student groups and individuals</li>
             <li><a href="{{docs_url}}/user-docs/services/lab/printing/">Free printing</a> for all UC Berkeley students</li>
             <li><a href="{{docs_url}}/user-docs/services/shell/">Shell accounts</a> on our powerful <a href="{% url 'doc' 'staff/backend/servers' %}">on-campus servers</a></li>
@@ -45,16 +45,16 @@
         <hr />
         <div class="row">
             <div class="col-sm-6">
-                <h4>Interested in free &amp; open-source software?</h4>
+                <h3>Want to help out?</h3>
                 <p>Our volunteer staff team helps create and maintain the OCF services you use.</p>
                 <p>We're always on the lookout for new members interested in
-                learning more about technology and open source!</p>
+                learning more about technology and open source.</p>
+                <p>Chat with us on <a href="https://ocf.io/discord">Discord</a>, <a href="https://chat.ocf.io">Matrix</a>, or <a href="{{docs_url}}/user-docs/contact/chat/#2-internet-relay-chat-irc">IRC</a>, or come to our meetings in the lab every Wednesday at 7:30p.</p>
                 <p><a href="{% url 'about-staff' %}">Learn more about getting involved!</a></p>
                 <p>Or see a list of our <a href="https://github.com/orgs/ocf/projects/13">technical projects</a>.</p>
             </div>
             <div class="col-sm-6">
-                <h4>News from the staff team</h4>
-
+                <h3>Recent news</h3>
                 {% for announcement in announcements %}
                     <p>
                         <a href="{{announcement.link}}">{{announcement.title}}</a><br />
@@ -69,8 +69,8 @@
     <div class="col-sm-4 ocf-sidebar">
         <h3>OCF Computer Lab</h3>
         <p>
-            The lab is located in
-            <a href="{% url 'doc' 'services/lab' %}">171 MLK Student Union</a>.
+            Our lab is located at 171 MLK Student Union. Whether you're looking to print &amp; scan, burn CDs, do work, or have fun, here's
+            <a href="{% url 'lab' %}">how to get there</a>.
         </p>
         <div>
             <a href="https://goo.gl/maps/XyJStVp8xF9imQWE8">
@@ -78,7 +78,7 @@
             </a>
         </div>
 
-        <p><strong>Upcoming Lab Hours</strong></p>
+        <h4>Upcoming Lab Hours</h4>
         <div class="ocf-hours">
             {% for hours_date, hour in hours %}
                 <div class="ocf-hour row {% cycle 'odd' 'even' %}">
@@ -96,36 +96,47 @@
                 </div>
             {% endfor %}
         </div>
-        <p><a href="{% url 'doc' 'services/lab' %}" class="see-more">See more lab hours &raquo;</a></p>
+        <p><a href="{% url 'lab' %}" class="see-more">See more lab hours &raquo;</a></p>
 
-        <p><strong>Account Tools</strong></p>
-        <ul>
-            <li><a href="{% url 'change_password' %}">Reset Password</a></li>
-            <li><a href="{% url 'vhost_mail' %}">Mail Virtual Hosting</a></li>
-        </ul>
+        <!-- <p><strong>Account Tools</strong></p> -->
+        <!-- <ul> -->
+        <!--     <li><a href="{% url 'change_password' %}">Reset Password</a></li> -->
+        <!--     <li><a href="{% url 'vhost_mail' %}">Mail Virtual Hosting</a></li> -->
+        <!-- </ul> -->
 
-        <div class="ocf-staffhours">
+        <h4>Staff Hours</h4>
+        <div class="ocf-hours">
             {% for staff_hour in staff_hours %}
-                <h3>Staff Hours {{staff_hour.day}}</h3>
-                <div class="{% if staff_hour.cancelled %} cancelled {% endif %}">
-                    <p>
-                        {{staff_hour.time}}
-                        {% if staff_hour.cancelled %}
-                            <span class="cancelled-text">cancelled this week</span>
-                        {% endif %}
-                    </p>
-                    <div class="ocf-staffhours-faces">
-                      <!--  XXX: html comment to avoid spaces between images
-                        {% for staffer in staff_hour.staff %}
-                            --><img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" /><!--
-                        {% endfor %}
-                      -->
+                <div class="ocf-hour row {% cycle 'odd' 'even' %}">
+                    <div class="col-sm-5 col-md-3 ocf-hour-title">
+                        {{staff_hour.day}}<br />
+                    </div>
+                    <div class="col-sm-7 col-md-9 ocf-hour-hours {% if staff_hour.cancelled %} cancelled {% endif %}">
+                        <p>
+                            {{staff_hour.time}}
+                            {% if staff_hour.cancelled %}
+                                <span class="cancelled-text">cancelled this week</span>
+                            {% endif %}
+                        </p>
+                          <!--  XXX: html comment to avoid spaces between images
+                            {% for staffer in staff_hour.staff %}
+                              --><div class="ocf-staffer">
+                              <div class="ocf-staffer-face">
+                                <img alt="{{staffer.user_name}}" src="{{staffer|gravatar:77}}" />
+                              </div>
+                              <div class="ocf-staffer-name">
+                                {{staffer.real_name}} <code>&lt;{{staffer.user_name}}&gt;</code>
+                              </div><!--
+                            {% endfor %}
+                          -->
+                        </div>
                     </div>
                 </div>
+            {% empty %}
+            <p>No staff hours currently scheduled. Stay tuned!</p>
             {% endfor %}
-
-            <p><a href="{% url 'staff-hours' %}" class="see-more">See more staff hours &raquo;</a></p>
         </div>
+        <p><a href="{% url 'staff-hours' %}" class="see-more">See more staff hours &raquo;</a></p>
     </div>
 </div>
 {% endblock %}

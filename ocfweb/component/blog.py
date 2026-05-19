@@ -50,8 +50,8 @@ class Post(
 
 
 @periodic(60)
-def get_blog_posts() -> List[Any]:
-    """Parse the OCF mkdocs blog RSS feed into a list of Posts.
+def get_news_posts() -> List[Any]:
+    """Parse the OCF mkdocs news RSS feed into a list of Posts.
 
     RSS has been flakey so we use it inside a loop and fail silently if it
     doesn't succeed.
@@ -61,6 +61,38 @@ def get_blog_posts() -> List[Any]:
             tree = etree.fromstring(
                 requests.get(
                     'https://bestdocs.ocf.io/feed_rss_created.xml',
+                    timeout=2,
+                ).content,
+            )
+        except RequestException:
+            pass
+        else:
+            break
+    else:
+        # fail silently
+        return []
+
+    return [
+        Post.from_element(post)
+        for post in tree.findall(
+            './/item',
+            namespaces=_namespaces,
+        )
+    ]
+
+
+@periodic(60)
+def get_blog_posts() -> List[Any]:
+    """Parse the OCF status blog RSS feed into a list of Posts.
+
+    RSS has been flakey so we use it inside a loop and fail silently if it
+    doesn't succeed.
+    """
+    for _ in range(5):
+        try:
+            tree = etree.fromstring(
+                requests.get(
+                    'https://status.ocf.berkeley.edu/feed_rss_created.xml',
                     timeout=2,
                 ).content,
             )

@@ -35,7 +35,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{% url 'doc' 'services/lab' %}">Computer Lab</a></li>
+                                <li><a href="{% url 'lab' %}">Computer Lab</a></li>
                                 <li><a href="{% url 'doc' 'staff/backend/servers' %}">Servers</a></li>
                                 <li><a href="{% url 'staff-hours' %}">Staff Hours</a></li>
                                 <li><a href="{% url 'stats' %}">Lab Statistics</a></li>
@@ -78,7 +78,7 @@
             </div>
         </div>
 
-        <!-- <div class="ocf-status-bar">
+        <div class="ocf-status-bar">
             <div class="container">
                 <p>
                     {% if not lab_status.force_lab_closed %}
@@ -93,7 +93,7 @@
                             {% endif %}
                             {{current_lab_hours|lab_hours_time}}
                             on {% now "l" %} {% lab_hours_holiday holidays %}
-                            <a class="subtle" href="{% url 'doc' 'services/lab' %}">more &raquo;</a>
+                            <a class="subtle" href="{% url 'lab' %}">more &raquo;</a>
                         </span>
                     {% else %}
                         <strong>Lab Temporarily Closed</strong>
@@ -101,7 +101,7 @@
                     {% endif %}
                 </p>
             </div>
-        </div> -->
+        </div>
 
         {% block hero %}
             {% if title %}
@@ -150,7 +150,7 @@
                             <h5>About the OCF</h5>
                             <ul class="list-unstyled">
                                 <li><a href="{% url 'about-staff' %}">About Us</a></li>
-                                <li><a href="https://www.ocf.berkeley.edu/docs/about/officers/">Officers</a></li>
+                                <li><a href="{{docs_url}}/user-docs/officers/">Officers</a></li>
                                 <li><a href="{{docs_url}}/user-docs/docs/">Official Documents</a></li>
                                 <li><a href="{{docs_url}}/bod/">Board Meeting Minutes</a></li>
                                 <li><a href="{{docs_url}}/user-docs/privacy/">Privacy Policy</a></li>

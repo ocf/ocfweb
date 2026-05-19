@@ -19,7 +19,7 @@ $color-blue-baby: #cbe1ea;
 $color-blue-light: #f8fcfc;
 $color-blue: #298399;
 $color-gray-light: #ccc;
-$color-gray: #888;
+$color-gray: #aaa;
 $color-green-light: #de9;
 $color-yellow-light: #ffc;
 $color-penguin-blue: #0f4d92;
@@ -45,7 +45,7 @@ html {
 
 body {
     padding-top: $navbar-height;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'IBM Plex Sans', Roboto, Helvetica, Arial, sans-serif;
     font-size: 16px;
     background-color: #f5f5f5;
     display: flex;
@@ -64,6 +64,10 @@ h5,
 h6 {
     margin-top: 20px;
     margin-bottom: 5px;
+}
+
+code {
+    font-family: 'IBM Plex Mono', Menlo, Consolas, monospace;
 }
 
 .subtle {
