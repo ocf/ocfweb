@@ -25,14 +25,21 @@ def commands(request: HttpRequest) -> HttpResponse:
             ssh = SSHClient()
 
             host_keys = ssh.get_host_keys()
-            entry = HostKeyEntry.from_line(
+            entry_ed25519 = HostKeyEntry.from_line(
+                'ssh.ocf.berkeley.edu ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPm+RlDujsxQyxFTEOCTeImSBDvr63cL8Kg+rNrH6NK8',  # noqa
+            )
+            entry_rsa = HostKeyEntry.from_line(
                 'ssh.ocf.berkeley.edu ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAqMkHVVoMl8md25iky7e2Xe3ARaC4H1PbIpv5Y+xT4KOT17gGvFSmfjGyW9P8ZTyqxq560iWdyELIn7efaGPbkUo9retcnT6WLmuh9nRIYwb6w7BGEEvlblBmH27Fkgt7JQ6+1sr5teuABfIMg22WTQAeDQe1jg0XsPu36OjbC7HjA3BXsiNBpxKDolYIXWzOD+r9FxZLP0lawh8dl//O5FW4ha1IbHklq2i9Mgl79wAH3jxf66kQJTvLmalKnQ0Dbp2+vYGGhIjVFXlGSzKsHAVhuVD6TBXZbxWOYoXanS7CC43MrEtBYYnc6zMn/k/rH0V+WeRhuzTnr/OZGJbBBw==',  # noqa
             )
-            assert entry is not None  # should never be none as we are passing a static string above
+            host_keys.add(
+                'ssh.ocf.berkeley.edu',
+                'ssh-ed25519',
+                entry_ed25519.key,
+            )
             host_keys.add(
                 'ssh.ocf.berkeley.edu',
                 'ssh-rsa',
-                entry.key,
+                entry_rsa.key,
             )
 
             try:
@@ -45,6 +52,8 @@ def commands(request: HttpRequest) -> HttpResponse:
                 error = 'Authentication failed. Did you type the wrong username or password?'
 
             if not error:
+                if command_to_run == 'paper':
+                    command_to_run = f"/run/current-system/sw/bin/paper view {username} | sed 's/\x1B\\[[0-9;]*[a-zA-Z]//g'"  # noqa
                 _, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run, get_pty=True)
                 output = ssh_stdout.read().decode()
                 error = ssh_stderr.read().decode()
@@ -78,7 +87,7 @@ class CommandForm(Form):
 
     COMMAND_CHOICES = (
         (
-            '/opt/share/utils/bin/paper',
+            'paper',
             'paper quota -- how many pages you have remaining this semester',
         ),
         (
