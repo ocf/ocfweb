@@ -15,8 +15,12 @@
                 <p>The Open Computing Facility (OCF) is an all-volunteer student organization dedicated to free computing for all University of California, Berkeley students, faculty, and staff.</p>
                 <p>We're passionate about open source and free software.</p>
                 <p class="ocf-button-holder">
-                <a href="{% url 'about-staff' %}" class="btn btn-lg">Learn what we do</a>
-                <a href="{% url 'register' %}" class="btn btn-lg">Create an account</a>
+                    <a href="{% url 'about-staff' %}" class="btn btn-lg">Learn what we do</a>
+                    {% if user %}
+                        <a href="{% url 'account_info' %}" class="btn btn-lg">View my account</a>
+                    {% else %}
+                        <a href="{% url 'register' %}" class="btn btn-lg">Create an account</a>
+                    {% endif %}
                 </p>
             </div>
         </div>
@@ -39,7 +43,7 @@
         <li><a href="{{docs_url}}/user-docs/services/hpc/">High-performance computing</a> on our GPU server</li>
             <li>...and <a href="{{docs_url}}/user-docs/services">lots more!</a></li>
         </ul>
-        <p>Check out upcoming events on the <a href="{{docs_url}}/news/">OCF Newsletter</a>.</p>
+        <p>Check out upcoming events on the <a href="https://ocf.io/gcal">OCF calendar</a>.</p>
         <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop by to ask questions or just to hang out!</p>
 
         <hr />

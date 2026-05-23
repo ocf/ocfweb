@@ -15,23 +15,24 @@
    $screen-lg-min: 1200px
 */
 
-$color-blue-baby: #cbe1ea;
+$color-blue-baby: #c1e4f0;
 $color-blue-light: #f8fcfc;
 $color-blue: #298399;
 $color-gray-light: #ccc;
 $color-gray: #aaa;
 $color-green-light: #de9;
+$color-purple-light: #e5e7f0;
 $color-yellow-light: #ffc;
 $color-penguin-blue: #0f4d92;
 $color-penguin-yellow: #ffd700;
 
 $navbar-height: 60px;
 
-$hero-color: $color-green-light;
+$hero-color: $color-blue-baby;
 $hero-button-color: #f7f7f7;
 $hero-button-color-hover: #fff;
 
-$status-bar-color: $color-blue-baby;
+$status-bar-color: $color-purple-light;
 
 $footer-top-color: $color-gray-light;
 $footer-bottom-color: $color-gray;
@@ -68,6 +69,25 @@ h6 {
 
 code {
     font-family: 'IBM Plex Mono', Menlo, Consolas, monospace;
+}
+
+.semibold {
+    font-weight: 500;
+}
+
+.form-mini {
+    display: flex;
+    gap: 10px;
+    max-width: 400px;
+
+    label {
+        display: none;
+    }
+
+    .form-group {
+        margin: 0;
+        flex: auto;
+    }
 }
 
 .subtle {

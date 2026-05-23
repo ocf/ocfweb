@@ -61,6 +61,7 @@
                                         <li><a href="{% url 'vhost_mail' %}">Mail Virtual Hosting</a></li>
                                     {% endif %}
 
+                                    <li><a href="{% url 'account_info' %}">My Account</a></li>
                                     <li><a href="{% url 'change_password' %}">Change Password</a></li>
                                     <li><a href="{% url 'logout' %}?next={{request_full_path}}">Log Out</a></li>
                                 </ul>
@@ -161,6 +162,7 @@
                             <h5>Account Tools</h5>
                             <ul class="list-unstyled">
                                 <li><a href="{% url 'register' %}">Create Account</a></li>
+                                <li><a href="{% url 'account_info' %}">My Account</a></li>
                                 <li><a href="{% url 'change_password' %}">Reset Password</a></li>
                                 <li><a href="{% url 'vhost_mail' %}">Mail Virtual Hosting</a></li>
                             </ul>

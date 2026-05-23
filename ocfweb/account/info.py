@@ -6,24 +6,30 @@ from django.shortcuts import render
 from paramiko import AuthenticationException
 from paramiko import SSHClient
 from paramiko.hostkeys import HostKeyEntry
+from ocflib.printing.quota import get_connection
+from ocflib.printing.quota import get_quota
+from ocflib.vhost.web import get_vhosts
+from ocflib.vhost.application import get_app_vhosts
+from ocflib.vhost.mail import vhosts_for_user
 
+from ocfweb.auth import login_required
 from ocfweb.component.forms import Form
+from ocfweb.component.session import logged_in_user
 
-
-def commands(request: HttpRequest) -> HttpResponse:
-    command_to_run = ''
-    output = ''
+@login_required
+def account_info(request: HttpRequest) -> HttpResponse:
+    user = logged_in_user(request)
+    # user = 'animage' # test
+    with get_connection() as c:
+        paper_quota = get_quota(c, user)
+    bytes_used = None
+    bytes_total = None
     error = ''
     if request.method == 'POST':
-        form = CommandForm(request.POST)
+        form = PasswordForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-
-            command_to_run = form.cleaned_data['command_to_run']
-
             ssh = SSHClient()
-
             host_keys = ssh.get_host_keys()
             entry_ed25519 = HostKeyEntry.from_line(
                 'ssh.ocf.berkeley.edu ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPm+RlDujsxQyxFTEOCTeImSBDvr63cL8Kg+rNrH6NK8',  # noqa
@@ -45,67 +51,46 @@ def commands(request: HttpRequest) -> HttpResponse:
             try:
                 ssh.connect(
                     'ssh.ocf.berkeley.edu',
-                    username=username,
+                    username=user,
                     password=password,
                 )
             except AuthenticationException:
-                error = 'Authentication failed. Did you type the wrong username or password?'
+                error = 'Authentication failed. Did you type the wrong password?'
 
             if not error:
-                _, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run, get_pty=True)
-                output = ssh_stdout.read().decode()
-                error = ssh_stderr.read().decode()
+                _, ssh_stdout, _ = ssh.exec_command("/run/current-system/sw/bin/quota 2>/dev/null | awk 'NR==4 {print $1, $2}'", get_pty=True)
+                sizes = ssh_stdout.read().decode().split()
+                if len(sizes) == 2:
+                    bytes_used, bytes_total = [int(size) * 1024 for size in sizes]
+                else:
+                    error = 'Unable to get quota information from the server. Please try again later.'
     else:
-        form = CommandForm()
+        form = PasswordForm()
 
     return render(
         request,
-        'account/commands/index.html', {
-            'title': 'Account commands',
+        'account/info/index.html', {
+            'title': 'My Account',
             'form': form,
-            'command': command_to_run,
-            'output': output,
             'error': error,
-        },
+            'paper_quota': paper_quota,
+            'bytes_used': bytes_used,
+            'bytes_total': bytes_total,
+            'vhosts': [{'host': host, 'aliases': val['aliases']}
+                 for host, val in get_vhosts().items()
+                 if val['username'] == user],
+            'vhosts_app': [{'host': host, 'aliases': val['aliases']}
+                 for host, val in get_app_vhosts().items()
+                 if val['username'] == user],
+            'vhosts_mail': vhosts_for_user(user),
+            },
     )
 
 
-class CommandForm(Form):
-    username = forms.CharField(
-        label='OCF username',
-        min_length=3,
-        max_length=16,
-    )
+class PasswordForm(Form):
     password = forms.CharField(
         widget=forms.PasswordInput,
-        label='Password',
+        label='',
         min_length=8,
         max_length=256,
-    )
-
-    COMMAND_CHOICES = (
-        (
-            "/run/current-system/sw/bin/paper view vqbc | sed 's/\x1B\[[0-9;]*[a-zA-Z]//g'",
-            'paper quota -- how many pages you have remaining this semester',
-        ),
-        (
-            '/usr/bin/quota -vQs',
-            'disk quota -- how much disk space you have used and how much you ' +
-            'have left',
-        ),
-        (
-            '/opt/share/utils/bin/makehttp',
-            'makehttp -- set up the web space for your OCF account',
-        ),
-        (
-            'echo yes | /opt/share/utils/bin/makemysql',
-            'makemysql -- reset your MySQL database password, or create a new ' +
-            'MySQL database (copy down the password somewhere secure)',
-        ),
-    )
-
-    command_to_run = forms.ChoiceField(
-        choices=COMMAND_CHOICES,
-        label='Command to run',
-        widget=widgets.RadioSelect,
     )
