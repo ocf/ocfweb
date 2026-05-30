@@ -19,7 +19,6 @@ from ocfweb.component.session import logged_in_user
 @login_required
 def account_info(request: HttpRequest) -> HttpResponse:
     user = logged_in_user(request)
-    # user = 'animage' # test
     with get_connection() as c:
         paper_quota = get_quota(c, user)
     bytes_used = None
