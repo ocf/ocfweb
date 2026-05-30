@@ -58,7 +58,7 @@ def account_info(request: HttpRequest) -> HttpResponse:
 
             if not error:
                 quota_command = "/run/current-system/sw/bin/quota 2>/dev/null | awk 'NR==3 {print $2, $3}'"
-                _, ssh_stdout, _ = ssh.exec_command(quota_command, get_pty=True)
+                _, ssh_stdout, _ = ssh.exec_command(quota_command, get_pty=False)
                 sizes = ssh_stdout.read().decode().split()
                 if len(sizes) == 2:
                     bytes_used, bytes_total = (int(size) * 1024 for size in sizes)

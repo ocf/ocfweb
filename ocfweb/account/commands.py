@@ -53,8 +53,8 @@ def commands(request: HttpRequest) -> HttpResponse:
 
             if not error:
                 if command_to_run == 'paper':
-                    command_to_run = f"/run/current-system/sw/bin/paper view {username} | sed 's/\x1B\\[[0-9;]*[a-zA-Z]//g'"  # noqa
-                _, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run, get_pty=True)
+                    command_to_run = f"/run/current-system/sw/bin/paper view {username}"  # noqa
+                _, ssh_stdout, ssh_stderr = ssh.exec_command(command_to_run, get_pty=False)
                 output = ssh_stdout.read().decode()
                 error = ssh_stderr.read().decode()
     else:
