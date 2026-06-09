@@ -1,7 +1,7 @@
 from django.urls import re_path
 
 from ocfweb.account.chpass import change_password
-from ocfweb.account.commands import commands
+from ocfweb.account.info import account_info
 from ocfweb.account.register import account_created
 from ocfweb.account.register import account_pending
 from ocfweb.account.register import recommend
@@ -18,7 +18,7 @@ from ocfweb.account.vhost_mail import vhost_mail_update
 
 urlpatterns = [
     re_path(r'^password/$', change_password, name='change_password'),
-    re_path(r'^commands/$', commands, name='commands'),
+    re_path(r'^info/$', account_info, name='account_info'),
 
     # account creation
     re_path(r'^register/$', request_account, name='register'),

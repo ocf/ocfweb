@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 ocf-content-block">
+            <p>You are logged in as <strong>{{user}}</strong>, which is {{ user_is_group|yesno:"a group,an individual" }} account.</p>
+            {% if user_is_group %}
+                <p>Group accounts can't print. Sorry!</p>
+            {% else %}
+                <p>You currently have:</p>
+                <ul>
+                    <li><span class="semibold">{{paper_quota.daily}} sides</span> of paper left for printing today</li>
+                    <li><span class="semibold">{{paper_quota.semesterly}} sides</span> left for the semester</li>
+                    <li><span class="semibold">{{paper_quota.color}} sides</span> left for color printing this semester</li>
+                </ul>
+            {% endif %}
+            {% if bytes_used is None %}
+                <p>Please re-enter your OCF password to check your personal storage.</p>
+                <form action="{% url 'account_info' %}" method="post" class="form-mini">
+                    {% csrf_token %}
+                    {{form | bootstrap}}
+                    <input class="btn btn-primary" type="submit" value="Submit" />
+                </form>
+                {% if error %}
+                    <p><strong>{{ error }}</strong></p>
+                {% endif %}
+            {% else %}
+                <p>You have used <span class="semibold">{{ bytes_used|filesizeformat }}</span> out of {{ bytes_total|filesizeformat }} available in disk storage on the OCF servers.</p>
+            {% endif %}
+            {% if user_is_group or vhosts or vhosts_app or vhosts_mail %}
+                {% if vhosts %}
+                    <p>Your account has web virtual hosting at:</p>
+                    <ul>
+                        {% for vhost in vhosts %}
+                        <li><code>{{vhost.host}}</code>{% if vhost.aliases %} with alias{{ vhost.aliases|pluralize:"es" }} {% for vhost_alias in vhost.aliases %} <code>{{vhost_alias}}</code>{% endfor %}{% endif %}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Your account is not yet set up for <a href="{{docs_url}}/user-docs/services/vhost/">web virtual hosting</a>.</p>
+                {% endif %}
+                {% if vhosts_app %}
+                    <p>Your account has web application hosting at:</p>
+                    <ul>
+                        {% for vhost_app in vhosts_app %}
+                        <li><code>{{vhost_app.host}}</code>{% if vhost_app.aliases %} with alias{{ vhost_app.aliases|pluralize:"es" }} {% for vhost_app_alias in vhost_app.aliases %} <code>{{vhost_app_alias}}</code>{% endfor %}{% endif %}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Your account is not yet set up for web application hosting.</p>
+                {% endif %}
+                {% if vhosts_mail %}
+                    <p>Your account has mail virtual hosting at:</p>
+                    <ul>
+                        {% for vhost_mail in vhosts_mail %}
+                            <li><code>{{vhost_mail.domain}}</code></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Your account is not yet set up for mail virtual hosting.</p>
+                {% endif %}
+            {% else %}
+            <p>Only group, faculty, and staff accounts are eligible for virtual hosting. Sorry!</p>
+            {% endif %}
+            <p>You can also check this information via <a href="{{docs_url}}/user-docs/services/shell/">SSH</a> by running <code>paper view {{user}}</code>, <code>quota -vs</code>, and <code>check {{user}}</code>. SSH, including our <a href="https://ssh.ocf.berkeley.edu">web terminal</a>, gives further access to actions such as editing web space files.</p>
+            <p>For our policies on printing, file storage, and virtual hosting, refer to the relevant documentation:</p>
+            <ul>
+                <li><a href="{{docs_url}}/user-docs/services/lab/printing/">Printing</a></li>
+                <li><a href="{{docs_url}}/user-docs/services/shell/#disk-quotas">Disk storage</a></li>
+                <li><a href="{{docs_url}}/user-docs/services/vhost/">Virtual hosting</a></li>
+            </ul>
+            <p>Out of pages? Here's a <a href="{{docs_url}}/user-docs/services/lab/printing/#out-of-pages">suggested list</a> of other places to print on and around campus.</p>
+        </div>
+    </div>
+{% endblock %}
