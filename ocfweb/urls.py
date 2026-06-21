@@ -10,11 +10,10 @@ from ocfweb.about.lab import lab_vote
 from ocfweb.about.officers import officers
 from ocfweb.about.staff import about_staff
 from ocfweb.account.urls import urlpatterns as account
-from ocfweb.announcements.urls import urlpatterns as announcements
 from ocfweb.api.urls import urlpatterns as api
 from ocfweb.docs.urls import urlpatterns as docs
-from ocfweb.lab_reservations.urls import urlpatterns as lab_reservations
 from ocfweb.login.urls import urlpatterns as login
+from ocfweb.main.announcements import announcements
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
 from ocfweb.main.hosting_logos import hosting_logo
@@ -41,15 +40,14 @@ urlpatterns = [
     re_path(r'^favicon.ico$', favicon, name='favicon'),
     re_path(r'^.well-known/security\.txt$', security_dot_txt, name='security.txt'),
 
-    re_path(r'^staff-hours$', staff_hours, name='staff-hours'),
+    re_path(r'^announcements$', announcements, name='announcements'),
     re_path(r'^lab$', lab, name='lab'),
+    re_path(r'^staff-hours$', staff_hours, name='staff-hours'),
 
     re_path(r'^account/', include(account)),
-    re_path(r'^announcements/', include(announcements)),
     re_path(r'^docs/', include(docs)),
     re_path(r'^login/', include(login)),
     re_path(r'^stats/', include(stats)),
-    re_path(r'^lab_reservations/', include(lab_reservations)),
 
     # about pages
     re_path(r'^about/staff$', about_staff, name='about-staff'),
@@ -94,4 +92,6 @@ urlpatterns = [
     ),
     re_path(r'^OCF/staff/how-to-join\.shtml$', lambda _: redirect(reverse('about-staff'), permanent=True)),
     re_path(r'^mlk$', lambda _: redirect(reverse('lab'), permanent=True)),
+    re_path(r'^announcements/', lambda _: redirect(reverse('announcements'), permanent=True)),
+    re_path(r'^lab_reservations/', lambda _: redirect('https://ocf.io/reserve', permanent=True)),
 ]

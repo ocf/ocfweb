@@ -31,7 +31,6 @@ INSTALLED_APPS = (
     'ocfweb',
     'ocfweb.about',
     'ocfweb.account',
-    'ocfweb.announcements',
     'ocfweb.docs',
     'ocfweb.login',
     'ocfweb.main',
@@ -40,7 +39,6 @@ INSTALLED_APPS = (
     'ocfweb.test',
     'ocfweb.tv',
     'ocfweb.api',
-    'ocfweb.lab_reservations',
 )
 
 MIDDLEWARE = (
