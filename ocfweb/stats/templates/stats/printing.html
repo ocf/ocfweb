@@ -6,12 +6,6 @@
 {% block content %}
     <div class="ocf-content-block">
         {% stats_navbar %}
-        <p>
-            <img class="img-responsive" src="{% url 'daily_job_image' %}" />
-            <img class="img-responsive" src="{% url 'weekday_jobs_image' %}" />
-            <img class="img-responsive" src="{% url 'weekend_jobs_image' %}" />
-            <img class="img-responsive" src="{% url 'semester_histogram' %}" />
-        </p>
 
         <h2>Printer Status</h2>
         <div class="row">
@@ -77,6 +71,13 @@
                 </table>
             </div>
         </div>
+
+        <p>
+            <img class="img-responsive" src="{% url 'daily_job_image' %}" />
+            <img class="img-responsive" src="{% url 'weekday_jobs_image' %}" />
+            <img class="img-responsive" src="{% url 'weekend_jobs_image' %}" />
+            <img class="img-responsive" src="{% url 'semester_histogram' %}" />
+        </p>
 
         <h2>Toner usage</h2>
         <div class="row">
