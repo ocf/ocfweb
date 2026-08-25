@@ -9,9 +9,10 @@
 
         <h2>Printer Status</h2>
         <div class="row">
-            {% for printer, toner, maintkit, status, trays in printers %}
+            {% for printer, toner, maintkit, status, trays, is_color in printers %}
                 <div class="col-sm-4">
                     <h4>{{printer}}</h4>
+                    {% if not is_color %}
                     {% if toner %}
                         <p><strong>Toner: </strong> {% widthratio toner|getitem:0 toner|getitem:1 100 %}% remaining</p>
                         {% progress_bar label='' value=toner|getitem:0 max=toner|getitem:1 %}
@@ -23,6 +24,7 @@
                         {% progress_bar label='' value=maintkit|getitem:0 max=maintkit|getitem:1 %}
                     {% else %}
                         <p><strong>Maintenance Kit: </strong> <em>unable to read</em></p>
+                    {% endif %}
                     {% endif %}
                     {% if trays %}
                         {% for tray_name, tray_cur, tray_max in trays %}

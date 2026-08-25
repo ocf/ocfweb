@@ -23,6 +23,7 @@ from ocflib.printing.printers import get_paper_trays
 from ocflib.printing.printers import get_status
 from ocflib.printing.printers import get_toner
 from ocflib.printing.printers import PRINTERS
+from ocflib.printing.printers import COLOR_PRINTERS
 
 from ocfweb.caching import periodic
 from ocfweb.stats.daily_graph import get_open_close
@@ -88,10 +89,10 @@ def printers() -> List[Any]:
                 return None
         return inner
 
-    return sorted(
-        (printer, silence(get_toner)(printer), silence(get_maintkit)(printer), silence(get_status)(printer), silence(get_paper_trays)(printer))
+    return [
+        (printer, silence(get_toner)(printer), silence(get_maintkit)(printer), silence(get_status)(printer), silence(get_paper_trays)(printer), printer in COLOR_PRINTERS)
         for printer in PRINTERS
-    )
+    ]
 
 
 def summary(request: HttpRequest) -> HttpResponse:
