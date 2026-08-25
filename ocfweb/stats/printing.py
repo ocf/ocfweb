@@ -18,9 +18,10 @@ from ocflib.printing.quota import SEMESTERLY_QUOTA
 
 from ocfweb.caching import periodic
 from ocfweb.component.graph import plot_to_image_bytes
+from ocfweb.stats.summary import printers
 
-ALL_PRINTERS = ('papercut', 'pagefault', 'logjam', 'logjam-old', 'deforestation')
-ACTIVE_PRINTERS = ('papercut', 'pagefault', 'logjam')
+ALL_PRINTERS = ('papercut', 'pagefault', 'logjam', 'logjam-old', 'deforestation', 'fishpaper')
+ACTIVE_PRINTERS = ('logjam', 'papercut', 'pagefault', 'fishpaper')
 
 
 def stats_printing(request: HttpRequest) -> HttpResponse:
@@ -36,6 +37,7 @@ def stats_printing(request: HttpRequest) -> HttpResponse:
                 for i in range(30)
             ],
             'pages_per_day': _pages_per_day(),
+            'printers': printers(),
         },
     )
 

@@ -2,7 +2,6 @@
 {% load common %}
 {% load mathfilters %}
 {% load stats %}
-{% load ui_components %}
 
 {% block content %}
     <div class="ocf-content-block">
@@ -25,27 +24,6 @@
                 {% endfor %}
             </ul>
         {% endif %}
-
-        <h3>Printers</h3>
-        <div class="row">
-            {% for printer, toner, maintkit in printers %}
-                <div class="col-sm-4">
-                    <h4>{{printer}}</h4>
-                    {% if toner %}
-                        <p><strong>Toner: </strong> {% widthratio toner|getitem:0 toner|getitem:1 100 %}% remaining</p>
-                        {% progress_bar label='' value=toner|getitem:0 max=toner|getitem:1 %}
-                    {% else %}
-                        <p><strong>Toner: </strong> <em>unable to read</em></p>
-                    {% endif %}
-                    {% if maintkit %}
-                        <p><strong>Maintenance Kit: </strong> {% widthratio maintkit|getitem:0 maintkit|getitem:1 100 %}% remaining</p>
-                        {% progress_bar label='' value=maintkit|getitem:0 max=maintkit|getitem:1 %}
-                    {% else %}
-                        <p><strong>Maintenance Kit: </strong> <em>unable to read</em></p>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
 
         <h3>Today's Lab Utilization</h3>
         <table id="todays-lab-utilization" class="table table-striped table-hover">
