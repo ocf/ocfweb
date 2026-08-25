@@ -18,12 +18,12 @@ from ocflib.lab.stats import top_staff_alltime as real_top_staff_alltime
 from ocflib.lab.stats import top_staff_semester as real_top_staff_semester
 from ocflib.lab.stats import users_in_lab_count as real_users_in_lab_count
 from ocflib.lab.stats import UtilizationProfile
+from ocflib.printing.printers import COLOR_PRINTERS
 from ocflib.printing.printers import get_maintkit
 from ocflib.printing.printers import get_paper_trays
 from ocflib.printing.printers import get_status
 from ocflib.printing.printers import get_toner
 from ocflib.printing.printers import PRINTERS
-from ocflib.printing.printers import COLOR_PRINTERS
 
 from ocfweb.caching import periodic
 from ocfweb.stats.daily_graph import get_open_close
@@ -90,7 +90,14 @@ def printers() -> List[Any]:
         return inner
 
     return [
-        (printer, silence(get_toner)(printer), silence(get_maintkit)(printer), silence(get_status)(printer), silence(get_paper_trays)(printer), printer in COLOR_PRINTERS)
+        (
+            printer,
+            silence(get_toner)(printer),
+            silence(get_maintkit)(printer),
+            silence(get_status)(printer),
+            silence(get_paper_trays)(printer),
+            printer in COLOR_PRINTERS,
+        )
         for printer in PRINTERS
     ]
 
