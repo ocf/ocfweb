@@ -16,6 +16,7 @@ from ocfweb.lab_reservations.urls import urlpatterns as lab_reservations
 from ocfweb.login.urls import urlpatterns as login
 from ocfweb.main.favicon import favicon
 from ocfweb.main.home import home
+from ocfweb.main.home import random_hosted_site
 from ocfweb.main.hosting_logos import hosting_logo
 from ocfweb.main.lab import lab
 from ocfweb.main.robots import robots_dot_txt
@@ -36,6 +37,7 @@ urlpatterns = [
     re_path('', include('django_prometheus.urls')),
 
     re_path(r'^$', home, name='home'),
+    re_path(r'^random-hosted-site$', random_hosted_site),
     re_path(r'^robots\.txt$', robots_dot_txt, name='robots.txt'),
     re_path(r'^favicon.ico$', favicon, name='favicon'),
     re_path(r'^.well-known/security\.txt$', security_dot_txt, name='security.txt'),
