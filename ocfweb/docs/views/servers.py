@@ -130,7 +130,6 @@ def get_hosts() -> List[Any]:
     hostnames_seen = {
         # These are manually added later, with the correct type
         'overheat',
-        'tornado',
     }
     servers_to_display = []
     # Add children to hypervisors
@@ -165,7 +164,6 @@ def get_hosts() -> List[Any]:
             children=[],
         ),
         servers['overheat']._replace(type='raspi'),
-        servers['tornado']._replace(type='nuc'),
     ])
 
     return sorted(servers_to_display)
