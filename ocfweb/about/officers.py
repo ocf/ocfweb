@@ -572,13 +572,13 @@ def _bod_terms() -> List[Term]:
     ]
 
 
-def officers(doc: Any, request: HttpRequest) -> HttpResponse:
+def officers(request: HttpRequest) -> HttpResponse:
     terms = _bod_terms()
     return render(
         request,
-        'docs/officers.html',
+        'about/officers.html',
         {
-            'title': doc.title,
+            'title': "Officers",
             'current_term': terms[-1],
             'previous_terms': terms[-2::-1],
         },

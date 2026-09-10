@@ -8,6 +8,7 @@ from ocfweb.about.lab import lab_open_source
 from ocfweb.about.lab import lab_survey
 from ocfweb.about.lab import lab_vote
 from ocfweb.about.staff import about_staff
+from ocfweb.about.officers import officers
 from ocfweb.account.urls import urlpatterns as account
 from ocfweb.announcements.urls import urlpatterns as announcements
 from ocfweb.api.urls import urlpatterns as api
@@ -52,6 +53,7 @@ urlpatterns = [
 
     # about pages
     re_path(r'^about/staff$', about_staff, name='about-staff'),
+    re_path(r'^about/officers$', officers, name='about-officers'),
     re_path(r'^about/lab/open-source$', lab_open_source, name='lab-open-source'),
     re_path(r'^about/lab/vote$', lab_vote, name='lab-vote'),
     re_path(r'^about/lab/survey$', lab_survey, name='lab-survey'),
