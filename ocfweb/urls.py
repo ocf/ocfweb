@@ -7,8 +7,8 @@ from django.urls import reverse
 from ocfweb.about.lab import lab_open_source
 from ocfweb.about.lab import lab_survey
 from ocfweb.about.lab import lab_vote
-from ocfweb.about.staff import about_staff
 from ocfweb.about.officers import officers
+from ocfweb.about.staff import about_staff
 from ocfweb.account.urls import urlpatterns as account
 from ocfweb.announcements.urls import urlpatterns as announcements
 from ocfweb.api.urls import urlpatterns as api

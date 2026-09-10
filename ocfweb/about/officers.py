@@ -578,7 +578,7 @@ def officers(request: HttpRequest) -> HttpResponse:
         request,
         'about/officers.html',
         {
-            'title': "Officers",
+            'title': 'Officers',
             'current_term': terms[-1],
             'previous_terms': terms[-2::-1],
         },
