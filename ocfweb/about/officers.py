@@ -1,7 +1,6 @@
 import math
 from dataclasses import dataclass
 from datetime import date
-from typing import Any
 from typing import Callable
 from typing import List
 from typing import Optional
