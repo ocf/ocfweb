@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import re_path
 from django.urls import reverse
+from django.views.generic import RedirectView
 
 from ocfweb.docs.doc import Document
 from ocfweb.docs.markdown_based import get_markdown_docs
@@ -19,7 +20,6 @@ from ocfweb.docs.views.commands import commands
 from ocfweb.docs.views.hosting_badges import hosting_badges
 from ocfweb.docs.views.index import docs_index
 from ocfweb.docs.views.lab import lab
-from ocfweb.docs.views.officers import officers
 from ocfweb.docs.views.servers import servers
 from ocfweb.docs.views.shorturl import shorturl
 
@@ -27,7 +27,6 @@ DOCS = {
     doc.name: doc
     for doc in chain(
         [
-            Document(name='/about/officers', title='Officers', render=officers),
             Document(name='/staff/backend/servers', title='Servers', render=servers),
             Document(name='/staff/backend/buster', title='Debian Buster upgrade', render=buster_upgrade),
             Document(name='/services/account/account-policies', title='Account policies', render=account_policies),
@@ -72,6 +71,8 @@ redir_names = '|'.join(map(doc_name, REDIRECTS.keys()))
 
 urlpatterns = [
     re_path(r'^$', docs_index, name='docs'),
+
+    re_path(r'^about/officers/$', RedirectView.as_view(pattern_name='about-officers', permanent=True)),
 
     # we use a complicated generated regex here so that we have actual
     # validation of URLs (in other words, if you try to make a link to a
