@@ -218,7 +218,7 @@ class VirtualHostForm(Form):
     requested_subdomain = forms.CharField(
         label='Requested domain:',
         min_length=1,
-        max_length=32,
+        max_length=63 + len('.studentorg.berkeley.edu'),
         widget=forms.TextInput(attrs={'placeholder': 'mysite.studentorg.berkeley.edu'}),
     )
 
