@@ -135,9 +135,6 @@ list of our most active repos, with some examples of they're used for:
      [makeservices/makehttp][utils-makehttp])
    * Create new virtual machines ([staff/sys/makevm][utils-makevm])
    * Wake up desktops from sleep ([staff/lab/lab-wakeup][utils-lab-wakeup])
-* [slackbridge][slackbridge] ([issues][slackbridge/issues]) - bridges our IRC
-  network with our Slack organization, so staff members can exercise choice in
-  what chat program they’d like to use. Written in Python.
 * [ircbot][ircbot] ([issues][ircbot/issues]) - a fun chatbot, also used to
   approve new account requests. Written in Python.
    * See https://ircbot.ocf.berkeley.edu/ for a listing of IRC bot functionality
@@ -186,10 +183,10 @@ attending staff hours can serve multiple purposes:
 
 ### Slack, Discord, Matrix, or IRC
 
-OCF staff often communicate on [Slack](https://ocf.io/slack),
-[Discord](https://ocf.io/discord), [Matrix](https://chat.ocf.berkeley.edu),
-or [[IRC|doc contact/irc]]. These chat services are bridged together,
-so joining any of them lets you participate in the same discussions.
+OCF staff often communicate on [Discord](https://ocf.io/discord),
+[Matrix](https://chat.ocf.berkeley.edu), or [[IRC|doc contact/irc]].
+These chat services are bridged together, so joining any of them
+lets you participate in the same discussions.
 Some important channels:
 
    * #rebuild - technical discussion
@@ -263,9 +260,6 @@ part of the OCF community.
 [puppet/issues]: https://github.com/ocf/puppet/issues
 [puppet]: https://github.com/ocf/puppet
 [rt]: https://rt.ocf.berkeley.edu/
-[slack]: https://ocf.io/slack
-[slackbridge/issues]: https://github.com/ocf/slackbridge/issues
-[slackbridge]: https://github.com/ocf/slackbridge
 [sourcegraph-todo]: https://sourcegraph.ocf.berkeley.edu/search?q=TODO+case:yes
 [staffhours]: https://ocf.io/staffhours
 [staff-training]: https://decal.ocf.io/resources
