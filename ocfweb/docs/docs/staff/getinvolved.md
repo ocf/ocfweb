@@ -33,14 +33,14 @@ where we discuss and vote on administrative decisions. If you are interested in
 gaining insight into the internal operations the OCF from an administrative
 perspective, please come to BoD meetings! Meetings always are open to all.
 
-#### Staff Meeting
+#### General Meeting
 
 **Wednesday 8-9pm**
 
-In these meetings, all OCF staff (that includes you!) get together to discuss
+In these meetings, all OCF members (that includes you!) get together to discuss
 technology, learn from each other, and work on OCF projects. These meetings will
-be a mix of presentations, work time, and socializing. Our goal is to build OCF
-staff into a strong community of capable individuals.
+be a mix of presentations, work time, and socializing. Our goal is to build the OCF
+into a strong community of capable individuals.
 
 ### Starter Tasks
 
