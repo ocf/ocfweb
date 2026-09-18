@@ -1,2 +1,1 @@
-for the next person who decides to deal with fonts, this website is good: https://gwfh.mranftl.com/fonts/
-the generate-font-faces.py file was from before i found this site
+for the next person who decides to deal with fonts, this website is a useful tool: https://gwfh.mranftl.com/fonts/
