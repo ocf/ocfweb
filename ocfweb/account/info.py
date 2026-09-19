@@ -52,7 +52,13 @@ def account_info(request: HttpRequest) -> HttpResponse:
                     'ssh.ocf.berkeley.edu',
                     username=user,
                     password=password,
+                    timeout=10,
+                    banner_timeout=10,
+                    allow_agent=False,
+                    look_for_keys=False,
                 )
+            except TimeoutError:
+                error = 'Connection timed out, try again later.'
             except AuthenticationException:
                 error = 'Authentication failed. Did you type the wrong password?'
 
