@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import include
@@ -65,7 +66,7 @@ urlpatterns = [
     # hosting logos
     re_path(
         r'^images/hosted-logos/(?:index\.shtml)?$',
-        lambda _: redirect(reverse('doc', args=('services/vhost/badges',)), permanent=True),
+        lambda _: redirect(settings.DOCS_URL + '/user-docs/services/vhost/hosting-badges/', permanent=True),
     ),
     re_path(r'^images/hosted-logos/(.*)$', lambda _, image: redirect('hosting-logo', image, permanent=True)),
     re_path(r'^hosting-logos/(.*)$', hosting_logo, name='hosting-logo'),
@@ -74,18 +75,21 @@ urlpatterns = [
     re_path(r'^index\.s?html$', lambda _: redirect(reverse('home'), permanent=True)),
     re_path(r'^staff_hours(?:\.cgi)?$', lambda _: redirect(reverse('staff-hours'), permanent=True)),
     re_path(r'^staff-hours\.cgi$', lambda _: redirect(reverse('staff-hours'), permanent=True)),
-    re_path(r'^OCF/(?:index\.shtml)?$', lambda _: redirect(reverse('doc', args=('about',)), permanent=True)),
+    re_path(r'^OCF/(?:index\.shtml)?$', lambda _: redirect(settings.DOCS_URL + '/user-docs/', permanent=True)),
     re_path(
         r'^OCF/(?:past_)?officers.shtml$',
         lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True),
     ),
-    re_path(r'^OCF/staff/(?:index\.shtml)?$', lambda _: redirect(reverse('doc', args=('staff',)), permanent=True)),
+    re_path(
+        r'^OCF/staff/(?:index\.shtml)?$',
+        lambda _: redirect(settings.DOCS_URL + '/staff-docs/', permanent=True),
+    ),
     re_path(
         r'^OCF/staff/where-now\.shtml$',
-        lambda _: redirect(reverse('doc', args=('about/formerstaff',)), permanent=True),
+        lambda _: redirect(settings.DOCS_URL + '/user-docs/archive/formerstaff/', permanent=True),
     ),
-    re_path(r'^OCF/policies(?:/|$)', lambda _: redirect(reverse('docs'), permanent=True)),
-    re_path(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(reverse('doc', args=('faq',)), permanent=True)),
+    re_path(r'^OCF/policies(?:/|$)', lambda _: redirect(settings.DOCS_URL + '/user-docs/', permanent=True)),
+    re_path(r'^OCF/OCF_FAQ\.shtml$', lambda _: redirect(settings.DOCS_URL + '/user-docs/faq/', permanent=True)),
     re_path(
         r'^OCF/officers_.*\.s?html$',
         lambda _: redirect(reverse('doc', args=('about/officers',)), permanent=True),

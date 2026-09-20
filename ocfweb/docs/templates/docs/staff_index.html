@@ -1,9 +1,0 @@
-{% extends 'docs/doc.html' %}
-{% load docs %}
-
-{% block after-content %}
-    {% doc_tree root='/staff/' suppress_root=True cur_path=doc.name %}
-{% endblock %}
-
-{% block sidebar %}
-{% endblock %}
