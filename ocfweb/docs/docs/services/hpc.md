@@ -34,8 +34,7 @@ ssh my_ocf_username@hpcctl.ocf.berkeley.edu
 If you have trouble connecting please [[contact us|doc contact]] at
 [help@ocf.berkeley.edu](mailto:help@ocf.berkeley.edu), or come to
 [[staff hours|staff-hours]] when the lab is open and chat with us in person.
-We also have a #hpc_users channel on [slack][fco] and [[irc|doc contact/irc]]
-where you can ask questions and talk to us about anything HPC.
+Alternatively, join us on [Discord](https://ocf.io/discord)!
 
 ## The Cluster
 
@@ -174,7 +173,6 @@ able to interface with the GPUs.
 [staff_hours]: https://www.ocf.berkeley.edu/staff-hours
 [contact]: https://www.ocf.berkeley.edu/docs/contact/
 [venv]: https://docs.python.org/3/tutorial/venv.html
-[fco]: https://fco.slack.com/
 [mac_install]: https://singularity.lbl.gov/install-mac
 [win_install]: https://singularity.lbl.gov/install-windows
 [linux_install]: https://singularity.lbl.gov/install-linux

@@ -27,7 +27,7 @@ virtually all Directors are staffers.
 * can edit shared staff files such as `User_Info` and `motd` (message of the
   day on public servers)
 * can directly edit the OCF website and commit to some other repositories,
-  such as slackbridge, templates, and utils, and are expected to maintain them
+  such as templates and utils, and are expected to maintain them
 * must hold [[staff hours|staff-hours]], alongside other staffers
 * must join a staffer family
 

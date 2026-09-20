@@ -26,21 +26,21 @@ We hold two meetings every Wednesday:
 
 #### Board of Directors (BoD)
 
-**Wednesday 7-8pm**
+**Wednesday 6-7 PM**
 
-The OCF Board of Directors has open meetings from 8-9 pm every Wednesday. BoD is
+The OCF Board of Directors has open meetings from 6-7 PM every Wednesday. BoD is
 where we discuss and vote on administrative decisions. If you are interested in
 gaining insight into the internal operations the OCF from an administrative
 perspective, please come to BoD meetings! Meetings always are open to all.
 
-#### Staff Meeting
+#### General Meeting
 
-**Wednesday 8-9pm**
+**Wednesday 7:30-10PM**
 
-In these meetings, all OCF staff (that includes you!) get together to discuss
+In these meetings, all OCF members (that includes you!) get together to discuss
 technology, learn from each other, and work on OCF projects. These meetings will
-be a mix of presentations, work time, and socializing. Our goal is to build OCF
-staff into a strong community of capable individuals.
+be a mix of presentations, work time, and socializing. Our goal is to build the OCF
+into a strong community of capable individuals.
 
 ### Starter Tasks
 
@@ -135,9 +135,6 @@ list of our most active repos, with some examples of they're used for:
      [makeservices/makehttp][utils-makehttp])
    * Create new virtual machines ([staff/sys/makevm][utils-makevm])
    * Wake up desktops from sleep ([staff/lab/lab-wakeup][utils-lab-wakeup])
-* [slackbridge][slackbridge] ([issues][slackbridge/issues]) - bridges our IRC
-  network with our Slack organization, so staff members can exercise choice in
-  what chat program they’d like to use. Written in Python.
 * [ircbot][ircbot] ([issues][ircbot/issues]) - a fun chatbot, also used to
   approve new account requests. Written in Python.
    * See https://ircbot.ocf.berkeley.edu/ for a listing of IRC bot functionality
@@ -186,10 +183,10 @@ attending staff hours can serve multiple purposes:
 
 ### Slack, Discord, Matrix, or IRC
 
-OCF staff often communicate on [Slack](https://ocf.io/slack),
-[Discord](https://ocf.io/discord), [Matrix](https://chat.ocf.berkeley.edu),
-or [[IRC|doc contact/irc]]. These chat services are bridged together,
-so joining any of them lets you participate in the same discussions.
+OCF staff often communicate on [Discord](https://ocf.io/discord),
+[Matrix](https://chat.ocf.berkeley.edu), or [[IRC|doc contact/irc]].
+These chat services are bridged together, so joining any of them
+lets you participate in the same discussions.
 Some important channels:
 
    * #rebuild - technical discussion
@@ -263,9 +260,6 @@ part of the OCF community.
 [puppet/issues]: https://github.com/ocf/puppet/issues
 [puppet]: https://github.com/ocf/puppet
 [rt]: https://rt.ocf.berkeley.edu/
-[slack]: https://ocf.io/slack
-[slackbridge/issues]: https://github.com/ocf/slackbridge/issues
-[slackbridge]: https://github.com/ocf/slackbridge
 [sourcegraph-todo]: https://sourcegraph.ocf.berkeley.edu/search?q=TODO+case:yes
 [staffhours]: https://ocf.io/staffhours
 [staff-training]: https://decal.ocf.io/resources
