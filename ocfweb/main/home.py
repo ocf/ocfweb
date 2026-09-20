@@ -1,11 +1,16 @@
+import random
 from datetime import date
 from datetime import timedelta
 from operator import attrgetter
+from typing import Mapping
 
 from django.http import HttpRequest
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.shortcuts import render
 from ocflib.lab.staff_hours import get_staff_hours_soonest_first
+from ocflib.vhost.web import get_vhosts
 
 from ocfweb.api.hours import get_hours_listing
 from ocfweb.caching import periodic
@@ -17,6 +22,20 @@ from ocfweb.component.lab_status import get_lab_status
 @periodic(60)
 def get_staff_hours() -> str:
     return get_staff_hours_soonest_first()[:2]
+
+
+def hosted_site_urls(vhosts: Mapping[str, object] | None = None) -> list[str]:
+    if vhosts is None:
+        vhosts = get_vhosts()
+
+    return sorted(
+        f'https://{hostname}/'
+        for hostname in vhosts.keys()
+    )
+
+
+def random_hosted_site(request: HttpRequest) -> HttpResponseRedirect:
+    return redirect(random.choice(hosted_site_urls()))
 
 
 def home(request: HttpRequest) -> HttpResponse:
