@@ -85,8 +85,6 @@ markupsafe==3.0.2
     # via jinja2
 matplotlib==3.10.5
     # via -r requirements-minimal.txt
-mistune==0.8.4
-    # via -r requirements-minimal.txt
 numpy==2.3.2
     # via
     #   -r requirements-minimal.txt
@@ -127,8 +125,6 @@ pycryptodome==3.23.0
     #   ocflib
 pygithub==2.7.0
     # via ocflib
-pygments==2.19.2
-    # via -r requirements-minimal.txt
 pyjwt==2.10.1
     # via pygithub
 pymysql==1.1.2

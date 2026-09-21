@@ -10,13 +10,11 @@ django-redis
 gunicorn
 libsass
 matplotlib
-mistune
 numpy
 ocflib
 paramiko
 pyasn1
 pycryptodome
-pygments
 pymysql
 python-dateutil
 setuptools

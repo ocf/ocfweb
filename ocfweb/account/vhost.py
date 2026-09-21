@@ -297,12 +297,12 @@ class VirtualHostForm(Form):
         self.fields['website_disclaimer_text'].label = mark_safe((
             'If you are a student group, there is the <a href="{}">university-mandated '
             'disclaimer</a> on each page of your website.'
-        ).format(reverse('doc', args=('services/vhost',))))
+        ).format(settings.DOCS_URL + '/user-docs/services/vhost/'))
 
         self.fields['website_ocf_banner'].label = mark_safe((
             'There is a <a href="{}">Hosted by the OCF</a> banner image '
             'visible on the home page.'
-        ).format(reverse('doc', args=('services/vhost/badges',))))
+        ).format(settings.DOCS_URL + '/user-docs/services/vhost/hosting-badges/'))
 
         self.fields['website_hostmaster_policy'].label = mark_safe(
             'You acknowledge that all relevant university '

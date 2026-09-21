@@ -28,7 +28,7 @@ ocfweb
 ---
 
 We recommend following all of these steps
-[on supernova](https://www.ocf.berkeley.edu/docs/staff/procedures/ssh-supernova/),
+[on koi](https://bestdocs.ocf.io/staff-docs/infrastructure/nix-hosts/login-servers/),
 the staff login server, because it is already configured to run ocfweb in
 development mode with minimal extra setup.
 
