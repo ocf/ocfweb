@@ -63,7 +63,10 @@ def account_info(request: HttpRequest) -> HttpResponse:
                 error = 'Authentication failed. Did you type the wrong password?'
 
             if not error:
-                quota_command = "/run/current-system/sw/bin/quota 2>/dev/null | awk 'NR==3 {print $2, $3}'"
+                quota_command = (
+                    '/run/current-system/sw/bin/quota 2>/dev/null |'
+                    "awk 'NR==3 {print $2, $3} NR==4 {print $1, $2}'"
+                )
                 _, ssh_stdout, _ = ssh.exec_command(quota_command, get_pty=False)
                 sizes = ssh_stdout.read().decode().split()
                 if len(sizes) == 2:

@@ -1,21 +1,9 @@
-$color-blue-baby: #cbe1ea;
-$color-blue-light: #f8fcfc;
-$color-blue: #298399;
-$color-gray-light: #ccc;
-$color-gray: #222;
-$color-green-light: #ddee99;
-$color-yellow-light: #ffffcc;
-$color-penguin-blue: #0f4d92;
-$color-penguin-yellow: #ffd700;
-
-$color-white: #EDF7F2;
-$color-green1: #ddee99;
-$color-yellow: #FFFFA6;
-$color-dark-gray: #2F2933;
-$color-blue2: #01A2A6;
-$color-blue3: #29D9C2;
-
 .page-about-staff {
+    $color-white: #EDF7F2;
+    $color-dark-gray: #2F2933;
+    $color-blue2: #01A2A6;
+    $color-blue3: #29D9C2;
+
     .ocf-lab {
         background-color: $color-dark-gray;
         color: white;
@@ -33,6 +21,7 @@ $color-blue3: #29D9C2;
         h2 {
             margin-top: 15px;
             font-size: 32px;
+            font-stretch: semi-condensed;
 
             @media (max-width: 767px) {
                 font-size: 18px;
@@ -240,6 +229,7 @@ $color-blue3: #29D9C2;
         h2 {
             font-weight: bold;
             font-size: 32px;
+            font-stretch: semi-condensed;
         }
 
         a {
@@ -304,6 +294,7 @@ $color-blue3: #29D9C2;
 
         h1 {
             font-weight: 800;
+            font-stretch: semi-condensed;
 
             @media (max-width: 767px) {
                 font-size: 20px;
@@ -318,5 +309,4 @@ $color-blue3: #29D9C2;
             padding: 10px;
         }
     }
-
 }

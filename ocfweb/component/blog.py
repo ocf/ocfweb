@@ -1,3 +1,4 @@
+import re
 from collections import namedtuple
 from typing import Any
 from typing import Dict
@@ -7,6 +8,7 @@ from xml.etree import ElementTree as etree
 import dateutil.parser
 import requests
 from cached_property import cached_property
+from django.utils.html import strip_tags
 from requests.exceptions import RequestException
 
 from ocfweb.caching import periodic
@@ -45,6 +47,7 @@ class Post(
             attr: grab_attr(attr)
             for attr in cls._fields
         }
+        attrs['description'] = strip_tags(re.sub(r'<h1>.*?</h1>', '', attrs['description'], flags=re.DOTALL))
         attrs['pubDate'] = dateutil.parser.parse(attrs['pubDate'])
         return cls(**attrs)
 
