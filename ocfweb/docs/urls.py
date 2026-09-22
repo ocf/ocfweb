@@ -59,7 +59,7 @@ REDIRECTS = {
     '/services/mirrors': '/user-docs/services/mirrors/',
     '/services/mysql': '/user-docs/services/mysql/',
     '/services/shell': '/user-docs/services/shell/',
-    '/services/shell/commands': '/user-docs/shell/commands/',
+    '/services/shell/commands': '/user-docs/services/shell/commands/',
     '/services/vhost': '/user-docs/services/vhost/',
     '/services/vhost/badges': '/user-docs/services/vhost/hosting-badges/',
     '/services/vhost/mail': '/user-docs/services/vhost/mail/',
