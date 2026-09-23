@@ -78,6 +78,7 @@ def objects():
             "puppet-private.pem": "",
             "puppet-public.pem": "",
             "puppet-signed.pem": "",
+            "ucbldap.passwd": "",
         },
     ).build()
 
