@@ -67,6 +67,34 @@ h6 {
     margin-bottom: 5px;
 }
 
+h2 {
+    font-weight: 600;
+    font-size: 23px;
+    font-stretch: semi-condensed;
+
+    @media (max-width: $screen-xs-max) {
+        font-size: 21px;
+    }
+}
+
+h3 {
+    font-size: 21px;
+    font-stretch: 90%;
+
+    @media (max-width: $screen-xs-max) {
+        font-size: 19px;
+    }
+}
+
+h4 {
+    font-size: 19px;
+    font-stretch: 90%;
+
+    @media (max-width: $screen-xs-max) {
+        font-size: 17px;
+    }
+}
+
 code {
     font-family: 'IBM Plex Mono', Menlo, Consolas, monospace;
 }
@@ -155,11 +183,15 @@ code {
     }
 
     .ocf-account-dropdown {
-        font-size: 12px !important;
+        font-size: 14px !important;
         padding-left: 10px;
         padding-right: 15px;
         background-color: rgba(100, 100, 100, 0.1);
         cursor: pointer;
+
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+            font-size: 13px !important;
+        }
 
         span {
             margin-left: 5px;
@@ -265,20 +297,25 @@ code {
     font-size: 16px;
     padding: 0 10px;
 
+    h1 {
+        font-size: 28px;
+        font-weight: 600;
+        font-stretch: semi-condensed;
+    }
+
     @media (max-width: $screen-xs-max) {
         padding: 5px;
         font-size: 14px;
 
         h1 {
             margin-top: 5px;
-            font-size: 20px;
+            font-size: 24px;
         }
     }
 }
 
 .ocf-page-title {
-    padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
 
     @media (max-width: $screen-xs-max) {
         padding-bottom: 10px;

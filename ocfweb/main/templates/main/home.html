@@ -29,8 +29,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-sm-8 ocf-content-block">
+<div class="home-content">
+    <div class="ocf-content-block">
 
         {{lab_status.banner_html | safe}}
 
@@ -45,33 +45,33 @@
         </ul>
         <p>Check out upcoming events on the <a href="https://ocf.io/gcal">OCF Calendar</a>.</p>
         <p>We hold <a href="{% url 'staff-hours' %}">weekly staff hours</a> to provide assistance with account issues or with OCF services. Drop by to ask questions or just to hang out!</p>
-
-        <hr />
-        <div class="row">
-            <div class="col-sm-6">
-                <h3>Want to help out?</h3>
-                <p>Our volunteer staff team helps create and maintain the OCF services you use.</p>
-                <p>We're always on the lookout for new members interested in
-                learning more about technology and open source.</p>
-                <p>Chat with us on <a href="https://ocf.io/discord">Discord</a>, <a href="https://chat.ocf.io">Matrix</a>, or <a href="{{docs_url}}/user-docs/contact/chat/#2-internet-relay-chat-irc">IRC</a>, or come to our meetings in the lab every Wednesday at 7:30p.</p>
-                <p><a href="{% url 'about-staff' %}">Learn more about getting involved!</a></p>
-                <p>Or see a list of our <a href="https://github.com/orgs/ocf/projects/13">technical projects</a>.</p>
-            </div>
-            <div class="col-sm-6">
-                <h3>Recent news</h3>
-                {% for announcement in announcements %}
-                    <p>
-                        <a href="{{announcement.link}}">{{announcement.title}}</a><br />
-                        {{announcement.datetime | naturaltime}}
-                    </p>
-                {% endfor %}
-                <p><a href="{% url 'announcements' %}">More updates from the OCF &raquo;</a></p>
-            </div>
-        </div>
     </div>
 
-    <div class="col-sm-4 ocf-sidebar">
-        <h3>OCF Computer Lab</h3>
+    <div>
+        <h3>Want to help out?</h3>
+        <p>Our volunteer staff team helps create and maintain the OCF services you use.</p>
+        <p>We're always on the lookout for new members interested in
+        learning more about technology and open source.</p>
+        <p>Chat with us on <a href="https://ocf.io/discord">Discord</a>, <a href="https://chat.ocf.io">Matrix</a>, or <a href="{{docs_url}}/user-docs/contact/chat/#2-internet-relay-chat-irc">IRC</a>, or come to our meetings in the lab every Wednesday at 7:30p.</p>
+        <p><a href="{% url 'about-staff' %}">Learn more about getting involved!</a></p>
+        <p>Or see a list of our <a href="https://github.com/orgs/ocf/projects/13">technical projects</a>.</p>
+    </div>
+    <div>
+        <h3>Recent posts</h3>
+        {% for announcement in announcements %}
+            <p class="announcement">
+                <a class="announcement-link" href="{{announcement.link}}">{{announcement.title}}</a><br />
+                <span class="subtle">{{announcement.datetime | naturaltime}}</span>
+                {% if forloop.first %}<br />{{announcement.description}}{% endif %}
+            </p>
+        {% endfor %}
+        <p>
+            <a href="{% url 'announcements' %}">More updates from the OCF &raquo;</a>
+        </p>
+    </div>
+
+    <div class="ocf-sidebar">
+        <h3>Open lab space</h3>
         <p>
             Our lab is located at 171 MLK Student Union. Whether you're looking to print &amp; scan, burn CDs, do work, or have fun, here's
             <a href="{% url 'lab' %}">how to get there</a>.

@@ -1,4 +1,67 @@
 .page-home {
+    .home-content {
+        display: grid;
+        gap: 6px;
+        margin-left: -15px;
+        margin-right: -15px;
+        padding-top: 10px;
+
+        > * {
+            padding-left: 15px;
+            padding-right: 15px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            font-stretch: semi-condensed;
+
+            &::before {
+                content: '# ';
+            }
+        }
+
+        h4 {
+            font-style: italic;
+            font-stretch: 90%;
+
+            &::before {
+                font-stretch: condensed;
+            }
+        }
+
+        .announcement {
+            a {
+                font-size: 17px;
+
+                @media (max-width: $screen-xs-max) {
+                    font-size: 15px;
+                }
+            }
+
+            .subtle {
+                font-size: 15px;
+                font-style: italic;
+
+                @media (max-width: $screen-xs-max) {
+                    font-size: 13px;
+                }
+            }
+        }
+
+        @media (min-width: $screen-sm-min) {
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: repeat(3, auto) 1fr;
+
+            .ocf-sidebar {
+                grid-column: 2;
+                grid-row: 1 / -1;
+            }
+        }
+    }
+
     .ocf-status-list {
         @media (min-width: $screen-lg-min) {
             margin-right: 310px;
@@ -124,17 +187,18 @@
     .ocf-hero {
         padding-top: 10px;
         padding-bottom: 0;
-
         font-size: 16px;
 
         h1 {
+            font-size: 37px;
+
             @media (max-width: $screen-xs-max) {
-                font-size: 28px;
+                font-size: 29px;
                 font-weight: 800;
             }
 
             @media (min-width: $screen-md-min) {
-                font-size: 39px;
+                font-size: 41px;
             }
 
             // we want the text to wrap after 'Open'
@@ -168,12 +232,6 @@
                     background-color: $hero-button-color-hover;
                 }
             }
-        }
-    }
-
-    .ocf-content-block {
-        hr {
-            margin-bottom: 0;
         }
     }
 }
