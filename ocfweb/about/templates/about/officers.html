@@ -3,14 +3,14 @@
 {% block content %}
   <div class="ocf-content-block">
     <p>
-      Here you can find contact info for the OCF's current officers as well as
-      a listing of past officers by election term.
+      Here you can find the list of OCF's current officers, as well as
+      past officers by election term.
     </p>
     <h2>Current Officers ({{ current_term.name }})</h2>
       <h3>
         Board of Directors
       </h3>
-        <p><strong>See <a href="/~staff/bod/">minutes</a> for
+        <p><strong>See <a href="https://bestdocs.ocf.io/bod/">minutes</a> for
           attendance.</strong></p>
         <p>
           The Board of Directors is the decision-making entity behind the OCF's
@@ -22,10 +22,7 @@
       </h3>
         <p>
           {% for gm in current_term.gms %}
-            {% if gm.end is None %}
-              <strong>{{ gm.name }}</strong> &lt;{{ gm.uid }}&gt;
-              {% if gm.acting %} (acting) {% endif %}<br>
-            {% endif %}
+            <strong>{{ gm.name }}</strong> &lt;{{ gm.uid }}&gt;<br>
           {% endfor %}
         </p>
         {% if current_term.dgms %}
@@ -34,10 +31,7 @@
           </h4>
             <p>
               {% for dgm in current_term.dgms %}
-                {% if dgm.end is None %}
-                  <strong>{{ dgm.name }}</strong> &lt;{{ dgm.uid }}&gt;
-                  {% if dgm.acting %} (acting) {% endif %}<br>
-                {% endif %}
+                <strong>{{ dgm.name }}</strong> &lt;{{ dgm.uid }}&gt;<br>
               {% endfor %}
             </p>
         {% endif %}
@@ -51,10 +45,7 @@
       </h3>
         <p>
           {% for sm in current_term.sms %}
-            {% if sm.end is None %}
-              <strong>{{ sm.name }}</strong> &lt;{{ sm.uid }}&gt;
-              {% if sm.acting %} (acting) {% endif %}<br>
-            {% endif %}
+            <strong>{{ sm.name }}</strong> &lt;{{ sm.uid }}&gt;<br>
           {% endfor %}
         </p>
         {% if current_term.dsms %}
@@ -63,10 +54,7 @@
           </h4>
             <p>
               {% for dsm in current_term.dsms %}
-                {% if dsm.end is None %}
-                  <strong>{{ dsm.name }}</strong> &lt;{{ dsm.uid }}&gt;
-                  {% if dsm.acting %} (acting) {% endif %}<br>
-                {% endif %}
+                <strong>{{ dsm.name }}</strong> &lt;{{ dsm.uid }}&gt;<br>
               {% endfor %}
             </p>
         {% endif %}
@@ -83,10 +71,7 @@
             <h4>{{ committee.name }} Heads</h4>
               <p>
                 {% for head in committee.heads %}
-                  {% if head.end is None %}
-                    <strong>{{ head.name }}</strong> &lt;{{ head.uid }}&gt;
-                    {% if head.acting %} (acting) {% endif %}<br>
-                  {% endif %}
+                  <strong>{{ head.name }}</strong> &lt;{{ head.uid }}&gt;<br>
                 {% endfor %}
               </p>
           {% endfor %}
