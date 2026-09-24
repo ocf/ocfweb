@@ -76,6 +76,7 @@ FROM base as web
 
 COPY services/web /opt/ocfweb/services/
 RUN chown -R nobody:nogroup /opt/ocfweb/services
+RUN ln -s /etc/ocfweb/ucbldap.passwd /etc/ucbldap.passwd
 
 USER nobody
 
