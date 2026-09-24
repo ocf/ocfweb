@@ -11,8 +11,6 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from ocflib.account.officers import all_officer_roles
 
-from ocfweb import caching
-
 
 @dataclass
 class Committee:
