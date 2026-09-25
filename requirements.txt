@@ -90,7 +90,7 @@ numpy==2.3.2
     #   -r requirements-minimal.txt
     #   contourpy
     #   matplotlib
-ocflib==2026.9.24
+ocflib==2026.9.23-1
     # via -r requirements-minimal.txt
 packaging==25.0
     # via
