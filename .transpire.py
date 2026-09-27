@@ -132,6 +132,9 @@ def objects():
     ing_web.obj.metadata.annotations[
         "ingress.kubernetes.io/force-ssl-redirect"
     ] = "false"
+    ing_web.obj.metadata.annotations[
+        "ingress.cilium.io/force-https"
+    ] = "disabled"
     yield ing_web.build()
 
     ing_static = Ingress.from_svc(
